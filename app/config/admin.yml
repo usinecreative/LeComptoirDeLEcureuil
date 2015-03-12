@@ -3,3 +3,7 @@ blue_bear_admin:
         title: Le Comptoir De L'Ecureuil, derrière les noisettes
         description: Des noisettes et des livres
         bootstrap: true
+    admins:
+        user:
+            entity: BlueBear\CmsUserBundle\Entity\User
+            form: user

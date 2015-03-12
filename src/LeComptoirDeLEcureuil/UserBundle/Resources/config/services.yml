@@ -1,4 +1,0 @@
-services:
-#    le_comptoir_de_l_ecureuil_user.example:
-#        class: LeComptoirDeLEcureuil\UserBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]

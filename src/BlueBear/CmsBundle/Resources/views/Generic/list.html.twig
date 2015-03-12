@@ -1,0 +1,61 @@
+{# generic homepage list #}
+{% macro generic_homepage_list(objects, addRoute, listRoute, propertyId, propertyName) %}
+    {% set propertyId = propertyId | default('id') %}
+    {% set propertyName = propertyName | default('name') %}
+
+    <div class="panel panel-default">
+        <div class="panel-heading">{{ 'bluebear.cms.content_types' | trans }}</div>
+        <div class="">
+            <table class="table table-striped">
+                <tbody>
+                {% for object in objects %}
+                    {% set propertyId = propertyId ~ '' %}
+                    {% set parameters = createArrayKey(propertyId, attribute(object, 'get' ~ propertyId | title) | lower) %}
+                    <tr>
+                        <td>{{ attribute(object, propertyName) }}</td>
+                        <td>
+                            <div class="btn-group">
+                                <a class="btn btn-small btn-default"
+                                   href="{{ path(addRoute, parameters) }}">
+                                    <i class="fa fa-plus"></i>&nbsp;&nbsp;{{ 'bluebear.cms.add' | trans }}
+                                </a>
+                                <a class="btn btn-small btn-default"
+                                   href="{{ path(listRoute, parameters) }}">
+                                    <i class="fa fa-bars"></i>&nbsp;&nbsp;{{ 'bluebear.cms.list' | trans }}
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endmacro %}
+
+{% macro generic_homepage_item(title, addRoute, listRoute) %}
+    <div class="panel panel-default">
+        <div class="panel-heading">{{ 'bluebear.cms.content_types' | trans }}</div>
+        <div class="">
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <td>{{ title }}</td>
+                        <td>
+                            <div class="btn-group">
+                                <a class="btn btn-small btn-default"
+                                   href="{{ path(addRoute) }}">
+                                    <i class="fa fa-plus"></i>&nbsp;&nbsp;{{ 'bluebear.cms.add' | trans }}
+                                </a>
+                                <a class="btn btn-small btn-default"
+                                   href="{{ path(listRoute) }}">
+                                    <i class="fa fa-bars"></i>&nbsp;&nbsp;{{ 'bluebear.cms.list' | trans }}
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endmacro %}

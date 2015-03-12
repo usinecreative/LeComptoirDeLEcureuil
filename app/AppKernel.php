@@ -22,10 +22,10 @@ class AppKernel extends Kernel
             new BlueBear\BaseBundle\BlueBearBaseBundle(),
             new BlueBear\AdminBundle\BlueBearAdminBundle(),
             new BlueBear\CmsBundle\BlueBearCmsBundle(),
+            new BlueBear\CmsUserBundle\BlueBearCmsUserBundle(),
             new BlueBear\FileUploadBundle\BlueBearFileUploadBundle(),
             // Noisettes
             new LeComptoirDeLEcureuil\FrontBundle\LeComptoirDeLEcureuilFrontBundle(),
-            new LeComptoirDeLEcureuil\UserBundle\LeComptoirDeLEcureuilUserBundle(),
             new LeComptoirDeLEcureuil\BackBundle\LeComptoirDeLEcureuilBackBundle(),
             new LeComptoirDeLEcureuil\CoreBundle\LeComptoirDeLEcureuilCoreBundle(),
         );

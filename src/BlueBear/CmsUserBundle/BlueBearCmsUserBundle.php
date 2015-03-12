@@ -1,10 +1,10 @@
 <?php
 
-namespace LeComptoirDeLEcureuil\UserBundle;
+namespace BlueBear\CmsUserBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class LeComptoirDeLEcureuilUserBundle extends Bundle
+class BlueBearCmsUserBundle extends Bundle
 {
     public function getParent()
     {

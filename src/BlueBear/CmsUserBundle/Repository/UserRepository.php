@@ -1,6 +1,6 @@
 <?php
 
-namespace LeComptoirDeLEcureuil\UserBundle\Repository;
+namespace BlueBear\CmsUserBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 

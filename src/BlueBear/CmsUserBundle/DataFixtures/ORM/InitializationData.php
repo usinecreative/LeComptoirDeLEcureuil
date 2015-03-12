@@ -1,10 +1,10 @@
 <?php
 
-namespace LeComptoirDeLEcureuil\UserBundle\DataFixtures\ORM;
+namespace BlueBear\CmsUserBundle\DataFixtures\ORM;
 
+use BlueBear\CmsUserBundle\Entity\User;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use LeComptoirDeLEcureuil\UserBundle\Entity\User;
 
 class InitializationData implements FixtureInterface
 {
