@@ -1,0 +1,3 @@
+bluebear.cms.content.list:
+    path: /content/list
+    defaults: {_controller: BlueBearCmsBundle:Backoffice:listContent}

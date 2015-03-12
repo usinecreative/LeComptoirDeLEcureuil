@@ -1,0 +1,3 @@
+le_comptoir_de_l_ecureuil_core_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: LeComptoirDeLEcureuilCoreBundle:Default:index }

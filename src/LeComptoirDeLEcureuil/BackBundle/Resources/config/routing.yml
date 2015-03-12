@@ -1,0 +1,3 @@
+lecomptoir.admin.homepage:
+    pattern:  /
+    defaults: {_controller: LeComptoirDeLEcureuilBackBundle:Main:index}

@@ -1,0 +1,4 @@
+services:
+#    le_comptoir_de_l_ecureuil_core.example:
+#        class: LeComptoirDeLEcureuil\CoreBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

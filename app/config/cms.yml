@@ -1,0 +1,11 @@
+#blue_bear_cms:
+#    content_types:
+#        # Articles
+#        article:
+#            fields:
+#                title: ~
+#                content: ~
+#            behaviors:
+#                authorable: ~
+#                timestampable: ~
+#                publishable: ~

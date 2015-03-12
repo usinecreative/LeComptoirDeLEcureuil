@@ -1,0 +1,3 @@
+ecureuil.homepage:
+    path:     /
+    defaults: { _controller: LeComptoirDeLEcureuilFrontBundle:Main:index }
