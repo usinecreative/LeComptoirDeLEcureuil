@@ -8,7 +8,7 @@ use FOS\UserBundle\Entity\User as BaseUser;
 /**
  * User
  *
- * @ORM\Table(name="users")
+ * @ORM\Table(name="cms_user")
  * @ORM\Entity(repositoryClass="BlueBear\CmsUserBundle\Repository\UserRepository")
  */
 class User extends BaseUser

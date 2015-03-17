@@ -2,7 +2,7 @@ parameters:
     blue_bear_file_upload.resource.uploader.class: BlueBear\FileUploadBundle\EventListener\ResourceUploader
     blue_bear_file_upload.resource.subscriber.class: BlueBear\FileUploadBundle\EventListener\ResourceSubscriber
     blue_bear_file_upload.manager.resource.class: BlueBear\FileUploadBundle\Manager\ResourceManager
-    blue_bear_file_upload.form.resource_type.class: BlueBear\FileUploadBundle\Form\Editor\ResourceType
+    blue_bear_file_upload.form.resource_type.class: BlueBear\FileUploadBundle\Form\Type\ResourceType
 
 services:
     blue_bear_file_upload.resource.uploader:

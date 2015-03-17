@@ -18,6 +18,7 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new FOS\UserBundle\FOSUserBundle(),
+            new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
             // BlueBear
             new BlueBear\BaseBundle\BlueBearBaseBundle(),
             new BlueBear\AdminBundle\BlueBearAdminBundle(),

@@ -48,41 +48,57 @@ article .content {
 
 @media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoirDeLEcureuil\/integration\/scss\/main\.scss}line{font-family:\000035}}
 body {
-  background-image: -webkit-gradient(linear, 50% 100%, 50% 0%, color-stop(0%, #000000), color-stop(100%, #011433));
-  background-image: -webkit-linear-gradient(center bottom, #000000 0%, #011433 100%);
-  background-image: -moz-linear-gradient(center bottom, #000000 0%, #011433 100%);
-  background-image: -o-linear-gradient(center bottom, #000000 0%, #011433 100%);
-  background-image: linear-gradient(center bottom, #000000 0%, #011433 100%);
-  background-repeat: no-repeat;
+  background-color: #11112f;
   margin: 0;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoirDeLEcureuil\/integration\/scss\/main\.scss}line{font-family:\0000313}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoirDeLEcureuil\/integration\/scss\/main\.scss}line{font-family:\0000314}}
 .container .site-title {
   padding: 5px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoirDeLEcureuil\/integration\/scss\/main\.scss}line{font-family:\0000318}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoirDeLEcureuil\/integration\/scss\/main\.scss}line{font-family:\0000319}}
 .container .site-header {
   height: 259px;
   background: url('../images/../images/squirell_big.jpg?1425144117') no-repeat;
   background-size: 100%;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoirDeLEcureuil\/integration\/scss\/main\.scss}line{font-family:\0000324}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoirDeLEcureuil\/integration\/scss\/main\.scss}line{font-family:\0000325}}
 .container .left-menu {
-  background-color: #0B0E18;
+  background-color: #2c4671;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoirDeLEcureuil\/integration\/scss\/main\.scss}line{font-family:\0000327}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoirDeLEcureuil\/integration\/scss\/main\.scss}line{font-family:\0000328}}
+.container .left-menu .col-md-12 {
+  min-height: 195px;
+  border-bottom: 1px solid #11112f;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoirDeLEcureuil\/integration\/scss\/main\.scss}line{font-family:\0000333}}
+.container .left-menu .social-list {
+  text-align: center;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoirDeLEcureuil\/integration\/scss\/main\.scss}line{font-family:\0000335}}
+.container .left-menu .social-list a {
+  display: inline-block;
+  padding: 20px;
+  float: left;
+  width: 50%;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoirDeLEcureuil\/integration\/scss\/main\.scss}line{font-family:\0000340}}
+.container .left-menu .social-list a i {
+  padding-left: 14px;
+  padding-right: 14px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoirDeLEcureuil\/integration\/scss\/main\.scss}line{font-family:\0000351}}
 .container .main-content {
   background-color: #EEEAE8;
   margin-bottom: 40px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoirDeLEcureuil\/integration\/scss\/main\.scss}line{font-family:\0000333}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoirDeLEcureuil\/integration\/scss\/main\.scss}line{font-family:\0000356}}
 .container .categories .category {
   width: 25%;
   float: left;
   position: relative;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoirDeLEcureuil\/integration\/scss\/main\.scss}line{font-family:\0000338}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoirDeLEcureuil\/integration\/scss\/main\.scss}line{font-family:\0000361}}
 .container .categories .category a {
   position: absolute;
   bottom: 5px;
@@ -93,13 +109,56 @@ body {
   width: 100%;
   opacity: 0.8;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoirDeLEcureuil\/integration\/scss\/main\.scss}line{font-family:\0000349}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoirDeLEcureuil\/integration\/scss\/main\.scss}line{font-family:\0000371}}
+.container .categories .category a:hover {
+  position: relative;
+  display: none;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoirDeLEcureuil\/integration\/scss\/main\.scss}line{font-family:\0000375}}
+.container .categories .category a:hover img {
+  display: none;
+  opacity: 0.5;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoirDeLEcureuil\/integration\/scss\/main\.scss}line{font-family:\0000381}}
 .container .categories .category img {
   height: 300px;
   width: 100%;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoirDeLEcureuil\/integration\/scss\/main\.scss}line{font-family:\0000357}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoirDeLEcureuil\/integration\/scss\/main\.scss}line{font-family:\0000389}}
+.thumbnail {
+  padding: 0;
+  border: 0;
+  box-shadow: none;
+  margin-bottom: 0;
+  width: 100%;
+  font-family: Gabriela, sans-serif;
+  text-decoration: none;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoirDeLEcureuil\/integration\/scss\/main\.scss}line{font-family:\0000398}}
+.thumbnail .overlay {
+  display: none;
+  font-size: 50px;
+  top: 70%;
+  left: 20%;
+  position: absolute;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoirDeLEcureuil\/integration\/scss\/main\.scss}line{font-family:\00003106}}
+.thumbnail:hover {
+  text-decoration: none;
+  background-color: #000000;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoirDeLEcureuil\/integration\/scss\/main\.scss}line{font-family:\00003109}}
+.thumbnail:hover img {
+  opacity: 0.5;
+  background-color: #000000;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoirDeLEcureuil\/integration\/scss\/main\.scss}line{font-family:\00003113}}
+.thumbnail:hover .overlay {
+  display: block;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoirDeLEcureuil\/integration\/scss\/main\.scss}line{font-family:\00003121}}
 .col-md-6 {
   padding: 0;
 }
