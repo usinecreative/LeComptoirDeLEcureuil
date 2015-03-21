@@ -42,10 +42,11 @@ class ContentTypeFactory
                             throw new Exception("Invalid behavior \"{$name}\" for content \"$typeName\"");
                         }
                     }
-                    $this->contentTypes[$typeName] = $type;
+                    $this->contentTypes[strtolower($typeName)] = $type;
                 }
             }
         }
+        // TODO inherits from parent
     }
 
     protected function getDefaultConfiguration()
@@ -71,5 +72,18 @@ class ContentTypeFactory
     public function getContentTypes()
     {
         return $this->contentTypes;
+    }
+
+    /**
+     * @param $name
+     * @return ContentType
+     * @throws Exception
+     */
+    public function getContentType($name)
+    {
+        if (!array_key_exists($name, $this->contentTypes)) {
+            throw new Exception("Content type {$name} not found. Check your configuration");
+        }
+        return $this->contentTypes[$name];
     }
 }

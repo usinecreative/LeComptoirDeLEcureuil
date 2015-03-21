@@ -35,4 +35,10 @@ class User extends BaseUser
     {
         $this->id = $id;
     }
+
+//    public function getRolesList()
+//    {
+//        var_dump($this->getRoles());
+//        die;
+//    }
 }

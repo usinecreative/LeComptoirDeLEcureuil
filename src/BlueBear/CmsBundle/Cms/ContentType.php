@@ -41,4 +41,17 @@ class ContentType
     {
         return $this->name;
     }
+
+    public function getType()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @return array
+     */
+    public function getFields()
+    {
+        return $this->fields;
+    }
 }

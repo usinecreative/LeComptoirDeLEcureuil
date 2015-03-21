@@ -4,3 +4,9 @@ bluebear.cms.add: Ajouter
 
 bluebear.cms.content_types: Type de contenu
 bluebear.cms.users: Utilisateurs
+
+# user form
+bluebear.cms.administrator: Administrateur
+bluebear.cms.contributor: Contributeur
+bluebear.cms.roles: Roles
+bluebear.cms.enabled: Activé ?

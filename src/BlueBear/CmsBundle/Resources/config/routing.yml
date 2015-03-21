@@ -1,8 +1,8 @@
 # Contents
 bluebear.cms.content.list:
-    path: /content/list/{name}
-    defaults: {_controller: BlueBearCmsBundle:Backoffice:listContent}
+    path: /content/list/{type}
+    defaults: {_controller: BlueBearCmsBundle:Content:list}
 
 bluebear.cms.content.add:
-    path: /content/add/{name}
-    defaults: {_controller: BlueBearCmsBundle:Backoffice:listContent}
+    path: /content/add/{type}
+    defaults: {_controller: BlueBearCmsBundle:Content:edit}
