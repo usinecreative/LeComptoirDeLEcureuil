@@ -2,7 +2,7 @@
 
 namespace BlueBear\CmsBundle\Event\Subscriber;
 
-use BlueBear\CmsBundle\Cms\Factory\ContentTypeFactory;
+use BlueBear\CmsBundle\Factory\ContentTypeFactory;
 use Symfony\Bridge\Twig\TwigEngine;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\KernelEvent;
@@ -46,7 +46,7 @@ class KernelSubscriber implements EventSubscriberInterface
     public function onKernelController(KernelEvent $event)
     {
         if ($event->getRequestType() == HttpKernelInterface::MASTER_REQUEST) {
-            $this->contentTypeFactory->create($this->contentTypeConfiguration);
+            $this->contentTypeFactory->init($this->contentTypeConfiguration);
         }
 
     }

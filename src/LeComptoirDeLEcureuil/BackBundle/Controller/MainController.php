@@ -3,7 +3,7 @@
 namespace LeComptoirDeLEcureuil\BackBundle\Controller;
 
 use BlueBear\BaseBundle\Behavior\ControllerTrait;
-use BlueBear\CmsBundle\Cms\Factory\ContentTypeFactory;
+use BlueBear\CmsBundle\Factory\ContentTypeFactory;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 

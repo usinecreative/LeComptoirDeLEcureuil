@@ -1,6 +1,6 @@
 parameters:
     # factories
-    bluebear.cms.content_type_factory.class: BlueBear\CmsBundle\Cms\Factory\ContentTypeFactory
+    bluebear.cms.content_type_factory.class: BlueBear\CmsBundle\Factory\ContentTypeFactory
     # subscribers
     bluebear.cms.kernel_subscriber.class: BlueBear\CmsBundle\Event\Subscriber\KernelSubscriber
     # form

@@ -1,6 +1,6 @@
 <?php
 
-namespace BlueBear\CmsBundle\Cms\Factory;
+namespace BlueBear\CmsBundle\Factory;
 
 use BlueBear\CmsBundle\Cms\ContentBehavior;
 use BlueBear\CmsBundle\Cms\ContentType;
@@ -10,7 +10,7 @@ class ContentTypeFactory
 {
     protected $contentTypes = [];
 
-    public function create(array $contentConfiguration)
+    public function init(array $contentConfiguration)
     {
         $behaviors = [];
         $contentConfiguration = array_merge($this->getDefaultConfiguration(), $contentConfiguration);
@@ -47,6 +47,11 @@ class ContentTypeFactory
             }
         }
         // TODO inherits from parent
+    }
+
+    public function create()
+    {
+
     }
 
     protected function getDefaultConfiguration()
