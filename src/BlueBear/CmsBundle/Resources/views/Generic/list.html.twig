@@ -10,10 +10,11 @@
                 <tbody>
                 {% for object in objects %}
                     {% set propertyId = propertyId ~ '' %}
-                    {% set parameters = createArrayKey(propertyId, attribute(object, 'get' ~ propertyId | title) | lower) %}
+                    {% set parameters = createArrayKey(propertyId, attribute(object, 'get' ~ propertyId | title)) %}
                     <tr>
                         <td>{{ attribute(object, propertyName) }}</td>
                         <td>
+                            {{ dump(parameters) }}
                             <div class="btn-group">
                                 <a class="btn btn-small btn-default"
                                    href="{{ path(addRoute, parameters) }}">

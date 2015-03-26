@@ -21,10 +21,12 @@ class ContentManager
         $content->setType($type);
         $fields = $contentType->getFields();
 
-        foreach ($fields as $field) {
-            $content->addField($field, 'lol');
+        foreach ($fields as $fieldName => $fieldConfiguration) {
+            $content->addField($fieldName, $fieldConfiguration);
         }
         $this->save($content);
+
+        var_dump($content->getFields());
         die;
     }
 

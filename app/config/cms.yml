@@ -11,6 +11,6 @@ blue_bear_cms:
                     authorable: ~
                     timestampable: ~
             Article:
-                parent: page
+                parent: Page
                 behaviors:
                     publishable: ~

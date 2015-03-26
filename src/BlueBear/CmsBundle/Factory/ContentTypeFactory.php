@@ -10,9 +10,16 @@ class ContentTypeFactory
 {
     protected $contentTypes = [];
 
+    protected $behaviors = [];
+
+    /**
+     * Initialize content type configuration
+     *
+     * @param array $contentConfiguration
+     * @throws Exception
+     */
     public function init(array $contentConfiguration)
     {
-        $behaviors = [];
         $contentConfiguration = array_merge($this->getDefaultConfiguration(), $contentConfiguration);
         // load content behaviors
         if (array_key_exists('behaviors', $contentConfiguration)) {
@@ -20,55 +27,101 @@ class ContentTypeFactory
                 foreach ($contentConfiguration['behaviors'] as $behaviorName => $behaviorConfiguration) {
                     $behavior = new ContentBehavior();
                     $behavior->hydrateFromConfiguration($behaviorName, $behaviorConfiguration);
-                    $behaviors[$behaviorName] = $behavior;
+                    $this->behaviors[$behaviorName] = $behavior;
                 }
             } else {
                 throw new Exception('Content behaviors configuration should be an array');
             }
         }
-        $allowedBehaviors = array_keys($behaviors);
-
+        // type to inherit
+        $toInherit = [];
         // load content types
         if (array_key_exists('types', $contentConfiguration)) {
             if (is_array($contentConfiguration['types'])) {
 
                 foreach ($contentConfiguration['types'] as $typeName => $typeConfiguration) {
-                    $type = new ContentType();
-                    $type->hydrateFromConfiguration($typeName, $typeConfiguration);
-                    $typeBehaviors = $type->getBehaviors();
+                    // create content type from configuration
+                    $this->create($typeName, $typeConfiguration);
 
-                    foreach ($typeBehaviors as $name => $typeBehavior) {
-                        if (!in_array($name, $allowedBehaviors)) {
-                            throw new Exception("Invalid behavior \"{$name}\" for content \"$typeName\"");
-                        }
+                    if (array_key_exists('parent', $typeConfiguration)) {
+                        $toInherit[$typeName] = $typeConfiguration['parent'];
                     }
-                    $this->contentTypes[strtolower($typeName)] = $type;
                 }
             }
+            // if content type must be inherited
+            foreach ($toInherit as $typeName => $toInheritType) {
+                // type to inherit should exists
+                if (!in_array($toInheritType, array_keys($this->contentTypes))) {
+                    throw new Exception("Invalid type to inherit \"{$toInheritType}\". Check your configuration");
+                }
+                // inherit configuration from parent type
+                $typeConfiguration = array_merge($contentConfiguration['types'][$typeName], $contentConfiguration['types'][$toInheritType]);
+                // create content type with merged configuration
+                $this->create($typeName, $typeConfiguration);
+            }
         }
-        // TODO inherits from parent
     }
 
-    public function create()
+    /**
+     * Create a content type from configuration
+     *
+     * @param $typeName
+     * @param $typeConfiguration
+     * @throws Exception
+     */
+    public function create($typeName, $typeConfiguration)
     {
+        // create content type and hydrate it from configuration
+        $type = new ContentType();
+        $type->hydrateFromConfiguration($typeName, $typeConfiguration);
+        $typeBehaviors = $type->getBehaviors();
+        $allowedBehaviors = array_keys($this->behaviors);
 
+        // check if configured behavior for content type exists
+        foreach ($typeBehaviors as $name => $typeBehavior) {
+            if (!in_array($name, $allowedBehaviors)) {
+                throw new Exception("Invalid behavior \"{$name}\" for content \"$typeName\"");
+            }
+        }
+        // try to guess field type if not defined
+        $fields = $type->getFields();
+        $typedFields = [];
+
+        foreach ($fields as $fieldName => $field) {
+            // TODO guess field type
+        }
+
+        $this->contentTypes[$typeName] = $type;
     }
 
+    /**
+     * Return default configuration
+     *
+     * @return array
+     */
     protected function getDefaultConfiguration()
     {
         return [
             'behaviors' => [
                 'authorable' => [
-                    'class' => 'BlueBear\CmsBundle\Cms\Content\Behaviors\Authorable'
+                    'class' => 'BlueBear\CmsBundle\Cms\Content\Behaviors\Authorable',
+                    'fields' => ['author']
                 ],
                 'timestampable' => [
-                    'class' => 'BlueBear\CmsBundle\Cms\Content\Behaviors\Timestampable'
+                    'class' => 'BlueBear\CmsBundle\Cms\Content\Behaviors\Timestampable',
+                    'fields' => ['createdAt', 'updatedAt']
                 ],
                 'publishable' => [
-                    'class' => 'BlueBear\CmsBundle\Cms\Content\Behaviors\Publishable'
+                    'class' => 'BlueBear\CmsBundle\Cms\Content\Behaviors\Publishable',
+                    'fields' => ['publishing_status']
                 ]
             ]
         ];
+    }
+
+    protected function guessFieldType($field)
+    {
+
     }
 
     /**
