@@ -22,7 +22,10 @@ class ContentType
             throw new \Exception("Content type \"{$this->name}\" should have fields");
         }
         if (array_key_exists('behaviors', $typeConfiguration)) {
-            $this->behaviors = $typeConfiguration['behaviors'];
+            foreach ($typeConfiguration['behaviors'] as $behaviorName => $behavior) {
+                var_dump($behaviorName);
+                die;
+            }
         }
     }
 

@@ -71,9 +71,15 @@ class ContentTypeFactory
      */
     public function create($typeName, $typeConfiguration)
     {
-        // create content type and hydrate it from configuration
-        $type = new ContentType();
-        $type->hydrateFromConfiguration($typeName, $typeConfiguration);
+        // try to guess field type if not defined
+        $fields = $typeConfiguration['fields'];
+        $typedFields = [];
+
+        foreach ($fields as $fieldName => $field) {
+            $typedFields[$fieldName] = $this->guessFieldType($fieldName, $field);
+        }
+        $typeConfiguration['fields'] = $typedFields;
+
         $typeBehaviors = $type->getBehaviors();
         $allowedBehaviors = array_keys($this->behaviors);
 
@@ -83,13 +89,16 @@ class ContentTypeFactory
                 throw new Exception("Invalid behavior \"{$name}\" for content \"$typeName\"");
             }
         }
-        // try to guess field type if not defined
-        $fields = $type->getFields();
-        $typedFields = [];
 
-        foreach ($fields as $fieldName => $field) {
-            // TODO guess field type
-        }
+        var_dump($typeConfiguration);
+        die;
+
+        // create content type and hydrate it from configuration
+        $type = new ContentType();
+
+        $type->hydrateFromConfiguration($typeName, $typeConfiguration);
+
+
 
         $this->contentTypes[$typeName] = $type;
     }
@@ -119,9 +128,20 @@ class ContentTypeFactory
         ];
     }
 
-    protected function guessFieldType($field)
+    protected function guessFieldType($fieldName, $field)
     {
+        $type = null;
 
+        if ($field && array_key_exists('type', $field)) {
+            $type = $field['type'];
+        } else {
+            if (in_array($fieldName, ['content', 'description'])) {
+                $type = 'textarea';
+            } else {
+                $type = 'string';
+            }
+        }
+        return $type;
     }
 
     /**
