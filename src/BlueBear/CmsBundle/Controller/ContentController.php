@@ -39,7 +39,7 @@ class ContentController extends Controller
         $form = $this->createForm('content', $content);
 
         return [
-
+            'form' => $form->createView()
         ];
     }
 }

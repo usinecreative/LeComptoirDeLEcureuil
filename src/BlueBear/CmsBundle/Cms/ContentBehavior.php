@@ -8,10 +8,13 @@ class ContentBehavior
 
     protected $class;
 
+    protected $fields = [];
+
     public function hydrateFromConfiguration($name, array $contentBehaviorConfiguration)
     {
         $this->name = $name;
         $this->class = $contentBehaviorConfiguration['class'];
+        $this->fields = $contentBehaviorConfiguration['fields'];
     }
 
     public function getName()
@@ -22,5 +25,13 @@ class ContentBehavior
     public function getClass()
     {
         return $this->class;
+    }
+
+    /**
+     * @return array
+     */
+    public function getFields()
+    {
+        return $this->fields;
     }
 }

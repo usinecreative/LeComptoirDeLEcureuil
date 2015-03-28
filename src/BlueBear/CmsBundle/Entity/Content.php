@@ -7,6 +7,7 @@ use BlueBear\BaseBundle\Entity\Behaviors\Id;
 use BlueBear\BaseBundle\Entity\Behaviors\Typeable;
 use BlueBear\BaseBundle\Entity\Behaviors\Nameable;
 use Doctrine\ORM\Mapping as ORM;
+use Exception;
 
 /**
  * Content
@@ -16,7 +17,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Content
 {
-    use Id, Nameable, Descriptionable, Typeable;
+    use Id, Nameable, Typeable;
 
     /**
      * @var array
@@ -61,5 +62,13 @@ class Content
     public function setBehaviors($behaviors)
     {
         $this->behaviors = $behaviors;
+    }
+
+    public function __get($name)
+    {
+        if (!array_key_exists($name, $this->fields)) {
+            throw new Exception("Invalid field name \"{$name}\".");
+        }
+        return $this->fields[$name];
     }
 }

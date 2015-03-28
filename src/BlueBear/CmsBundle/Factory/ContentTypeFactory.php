@@ -76,11 +76,12 @@ class ContentTypeFactory
         $typedFields = [];
 
         foreach ($fields as $fieldName => $field) {
-            $typedFields[$fieldName] = $this->guessFieldType($fieldName, $field);
+            $typedFields[$fieldName] = [
+                'type' => $this->guessFieldType($fieldName, $field)
+            ];
         }
         $typeConfiguration['fields'] = $typedFields;
-
-        $typeBehaviors = $type->getBehaviors();
+        $typeBehaviors = $typeConfiguration['behaviors'];
         $allowedBehaviors = array_keys($this->behaviors);
 
         // check if configured behavior for content type exists
@@ -88,18 +89,19 @@ class ContentTypeFactory
             if (!in_array($name, $allowedBehaviors)) {
                 throw new Exception("Invalid behavior \"{$name}\" for content \"$typeName\"");
             }
+            /** @var ContentBehavior $behavior */
+            $behavior = $this->behaviors[$name];
+            // adding behavior fields
+            foreach ($behavior->getFields() as $fieldName => $fieldConfiguration) {
+                if (!array_key_exists($fieldName, $fields)) {
+                    $typeConfiguration['fields'][$fieldName] = $fieldConfiguration;
+                }
+            }
         }
-
-        var_dump($typeConfiguration);
-        die;
-
         // create content type and hydrate it from configuration
         $type = new ContentType();
-
         $type->hydrateFromConfiguration($typeName, $typeConfiguration);
-
-
-
+        // adding it to global content type collection
         $this->contentTypes[$typeName] = $type;
     }
 
@@ -114,20 +116,42 @@ class ContentTypeFactory
             'behaviors' => [
                 'authorable' => [
                     'class' => 'BlueBear\CmsBundle\Cms\Content\Behaviors\Authorable',
-                    'fields' => ['author']
+                    'fields' => [
+                        'author' => [
+                            'type' => 'text'
+                        ]
+                    ]
                 ],
                 'timestampable' => [
                     'class' => 'BlueBear\CmsBundle\Cms\Content\Behaviors\Timestampable',
-                    'fields' => ['createdAt', 'updatedAt']
+                    'fields' => [
+                        'createdAt' => [
+                            'type' => 'datetime'
+                        ],
+                        'updatedAt' => [
+                            'type' => 'datetime'
+                        ]
+                    ]
                 ],
                 'publishable' => [
                     'class' => 'BlueBear\CmsBundle\Cms\Content\Behaviors\Publishable',
-                    'fields' => ['publishing_status']
+                    'fields' => [
+                        'publishing_status' => [
+                            'type' => 'text'
+                        ]
+                    ]
                 ]
             ]
         ];
     }
 
+    /**
+     * Try to guess field type if not defined. It should be an Symfony form type
+     *
+     * @param $fieldName
+     * @param $field
+     * @return null|string
+     */
     protected function guessFieldType($fieldName, $field)
     {
         $type = null;
@@ -138,7 +162,7 @@ class ContentTypeFactory
             if (in_array($fieldName, ['content', 'description'])) {
                 $type = 'textarea';
             } else {
-                $type = 'string';
+                $type = 'text';
             }
         }
         return $type;

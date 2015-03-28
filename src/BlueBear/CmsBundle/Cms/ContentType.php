@@ -23,8 +23,7 @@ class ContentType
         }
         if (array_key_exists('behaviors', $typeConfiguration)) {
             foreach ($typeConfiguration['behaviors'] as $behaviorName => $behavior) {
-                var_dump($behaviorName);
-                die;
+                $this->behaviors[$behaviorName] = $behavior;
             }
         }
     }

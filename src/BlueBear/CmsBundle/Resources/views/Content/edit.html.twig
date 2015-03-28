@@ -1,32 +1,43 @@
 {% extends config.layout %}
 
 {% block left %}
+    {% set content = form.vars.data %}
+
     <ul class="nav nav-pills nav-stacked">
-            <li><a href="{{ path('bluebear.cms.content.add', {type: content.type}) }}">{{ admin.action('list').title }}</a></li>
-            <li><a href="{{ path(admin.action('create').route) }}">{{ admin.action('create').title }}</a></li>
+        <li>
+            <a href="{{ path('bluebear.cms.content.list', {type: content.type}) }}">{{ 'bluebear.cms.content_list' | trans }}</a>
+        </li>
+        <li>
+            <a href="{{ path('bluebear.cms.content.add', {type: content.type}) }}">{{ 'bluebear.cms.content_add' | trans }}</a>
+        </li>
     </ul>
 {% endblock %}
 
 {% block content %}
+    {% set content = form.vars.data %}
     {% set containerClass = containerClass is defined ? containerClass : '' %}
     {% set encType = (form.vars.multipart) ? 'multipart/form-data' : 'application/x-www-form-urlencoded' %}
 
-    <h1>{{ admin.currentAction.title }}</h1>
+    <h1>Edit content</h1>
 
     <div class="well {{ containerClass }}">
-        <form action="{{ path(admin.currentAction.route, { id: form.vars.value.id}) }}" method="post"
+        <form action="{{ path('bluebear.cms.content.add', {type: content.type}) }}" method="post"
               class="form-horizontal" enctype="{{ encType }}">
             {{ form_widget(form) }}
 
             <div class="form-group">
                 <div class="text-right button-list">
-                    <a href="{{ path(admin.action('list').route) }}"
+                    <a href="{{ path('bluebear.cms.content.list', {type: content.type}) }}"
                        class="btn"><i class="fa fa-arrow-circle-left"></i>&nbsp;&nbsp;
                         {{ 'bluebear.admin.cancel' | trans }}</a>
-                    <a href="{{ path(admin.action('delete').route, {id: admin.entity.id}) }}"
-                       class="btn btn-danger">{{ 'bluebear.admin.delete' | trans }}
-                        <i class="fa fa-remove"></i>
-                    </a>
+
+                    {% if content.id %}
+                        <a href="{{ path('bluebear.cms.content.delete', {type: content.type, id: 0}) }}"
+                           class="btn btn-danger">{{ 'bluebear.admin.delete' | trans }}
+                            <i class="fa fa-remove"></i>
+                        </a>
+                    {% endif %}
+
                     <button type="submit" value="save" name="submit"
                             class="btn btn-default">{{ 'bluebear.admin.save' | trans }}
                         <i class="fa fa-floppy-o"></i></button>

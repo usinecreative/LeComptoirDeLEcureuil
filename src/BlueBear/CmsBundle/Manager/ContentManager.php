@@ -22,12 +22,9 @@ class ContentManager
         $fields = $contentType->getFields();
 
         foreach ($fields as $fieldName => $fieldConfiguration) {
-            $content->addField($fieldName, $fieldConfiguration);
+            $content->addField($fieldName, null);
         }
-        $this->save($content);
-
-        var_dump($content->getFields());
-        die;
+        return $content;
     }
 
     /**
