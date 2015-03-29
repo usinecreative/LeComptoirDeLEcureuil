@@ -27,9 +27,12 @@ class ContentType extends AbstractType
             $fieldsType = $this->contentTypeFactory->getContentType($content->getType())->getFields();
 
             foreach ($fields as $fieldName => $fieldValue) {
-                $form->add($fieldName, $fieldsType[$fieldName]['type'], [
-                    'property_path' => null
-                ]);
+
+                if ($fieldsType[$fieldName]['contribuable']) {
+                    $form->add($fieldName, $fieldsType[$fieldName]['type'], [
+                        'property_path' => null
+                    ]);
+                }
             }
         });
     }

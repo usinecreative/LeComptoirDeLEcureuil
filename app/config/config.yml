@@ -17,7 +17,7 @@ framework:
     validation:      { enable_annotations: true }
     templating:
         engines: ['twig']
-    default_locale:  "%locale%"
+    default_locale:  "fr"
     trusted_hosts:   ~
     trusted_proxies: ~
     session:
@@ -33,12 +33,19 @@ twig:
     form:
         resources:
             - "BlueBearAdminBundle:Form:fields.html.twig"
+            - "BlueBearCmsBundle:Form:fields.html.twig"
+
+services:
+    twig.extension.text:
+       class: Twig_Extensions_Extension_Text
+       tags:
+           - { name: twig.extension }
 
 # Assetic Configuration
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        [BlueBearAdminBundle, LeComptoirDeLEcureuilBackBundle]
+    bundles:        [BlueBearAdminBundle, BlueBearCmsBundle, LeComptoirDeLEcureuilBackBundle]
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
@@ -91,3 +98,10 @@ fos_user:
     db_driver: orm
     firewall_name: main
     user_class: BlueBear\CmsUserBundle\Entity\User
+
+# ck editor
+ivory_ck_editor:
+    default_config: my_config
+    configs:
+        my_config:
+            toolbar: full

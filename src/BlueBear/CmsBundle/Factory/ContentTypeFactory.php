@@ -76,9 +76,12 @@ class ContentTypeFactory
         $typedFields = [];
 
         foreach ($fields as $fieldName => $field) {
-            $typedFields[$fieldName] = [
+            if (!$field) {
+                $field = [];
+            }
+            $typedFields[$fieldName] = array_merge($this->getDefaultFieldConfiguration(), [
                 'type' => $this->guessFieldType($fieldName, $field)
-            ];
+            ], $field);
         }
         $typeConfiguration['fields'] = $typedFields;
         $typeBehaviors = $typeConfiguration['behaviors'];
@@ -118,7 +121,8 @@ class ContentTypeFactory
                     'class' => 'BlueBear\CmsBundle\Cms\Content\Behaviors\Authorable',
                     'fields' => [
                         'author' => [
-                            'type' => 'text'
+                            'type' => 'text',
+                            'contribuable' => false
                         ]
                     ]
                 ],
@@ -126,10 +130,12 @@ class ContentTypeFactory
                     'class' => 'BlueBear\CmsBundle\Cms\Content\Behaviors\Timestampable',
                     'fields' => [
                         'createdAt' => [
-                            'type' => 'datetime'
+                            'type' => 'datetime',
+                            'contribuable' => false
                         ],
                         'updatedAt' => [
-                            'type' => 'datetime'
+                            'type' => 'datetime',
+                            'contribuable' => false
                         ]
                     ]
                 ],
@@ -137,11 +143,24 @@ class ContentTypeFactory
                     'class' => 'BlueBear\CmsBundle\Cms\Content\Behaviors\Publishable',
                     'fields' => [
                         'publishing_status' => [
-                            'type' => 'text'
+                            'type' => 'text',
+                            'contribuable' => false
                         ]
                     ]
                 ]
             ]
+        ];
+    }
+
+    /**
+     * Return field default configuration
+     *
+     * @return array
+     */
+    protected function getDefaultFieldConfiguration()
+    {
+        return [
+            'contribuable' => true
         ];
     }
 
@@ -159,7 +178,9 @@ class ContentTypeFactory
         if ($field && array_key_exists('type', $field)) {
             $type = $field['type'];
         } else {
-            if (in_array($fieldName, ['content', 'description'])) {
+            if (in_array($fieldName, ['content'])) {
+                $type = 'ckeditor';
+            } else if (in_array($fieldName, ['description'])) {
                 $type = 'textarea';
             } else {
                 $type = 'text';

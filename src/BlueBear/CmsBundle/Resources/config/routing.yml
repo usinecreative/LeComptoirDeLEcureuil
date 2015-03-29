@@ -7,6 +7,10 @@ bluebear.cms.content.add:
     path: /content/add/{type}
     defaults: {_controller: BlueBearCmsBundle:Content:edit}
 
+bluebear.cms.content.edit:
+    path: /content/edit/{type}/{id}
+    defaults: {_controller: BlueBearCmsBundle:Content:edit}
+
 bluebear.cms.content.delete:
     path: /content/delete/{type}/{id}
     defaults: {_controller: BlueBearCmsBundle:Content:delete}

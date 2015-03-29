@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
+            new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
             // BlueBear
             new BlueBear\BaseBundle\BlueBearBaseBundle(),
             new BlueBear\AdminBundle\BlueBearAdminBundle(),

@@ -1,0 +1,96 @@
+{% extends "BlueBearAdminBundle:Form:fields.html.twig" %}
+
+{% block rich_textarea_widget %}
+    <div class="controls">
+        <div class="btn-toolbar" data-role="editor-toolbar" data-target="#{{ form.vars.id }}">
+            <div class="btn-group">
+                <a data-original-title="Font" class="btn dropdown-toggle" data-toggle="dropdown" title=""><i
+                            class="fa fa-font"></i><b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a data-edit="fontName Serif" style="font-family:'Serif'">Serif</a></li>
+                    {#<li><a data-edit="fontName Sans" style="font-family:'Sans'">Sans</a></li>#}
+                    {#<li><a data-edit="fontName Arial" style="font-family:'Arial'">Arial</a></li>#}
+                    {#<li><a data-edit="fontName Arial Black" style="font-family:'Arial Black'">Arial Black</a></li>#}
+                    {#<li><a data-edit="fontName Courier" style="font-family:'Courier'">Courier</a></li>#}
+                    {#<li><a data-edit="fontName Courier New" style="font-family:'Courier New'">Courier New</a></li>#}
+                    {#<li><a data-edit="fontName Comic Sans MS" style="font-family:'Comic Sans MS'">Comic Sans MS</a></li>#}
+                    {#<li><a data-edit="fontName Helvetica" style="font-family:'Helvetica'">Helvetica</a></li>#}
+                    {#<li><a data-edit="fontName Impact" style="font-family:'Impact'">Impact</a></li>#}
+                    {#<li><a data-edit="fontName Lucida Grande" style="font-family:'Lucida Grande'">Lucida Grande</a></li>#}
+                    {#<li><a data-edit="fontName Lucida Sans" style="font-family:'Lucida Sans'">Lucida Sans</a></li>#}
+                    {#<li><a data-edit="fontName Tahoma" style="font-family:'Tahoma'">Tahoma</a></li>#}
+                    {#<li><a data-edit="fontName Times" style="font-family:'Times'">Times</a></li>#}
+                    {#<li><a data-edit="fontName Times New Roman" style="font-family:'Times New Roman'">Times New#}
+                            {#Roman</a></li>#}
+                    {#<li><a data-edit="fontName Verdana" style="font-family:'Verdana'">Verdana</a></li>#}
+                </ul>
+            </div>
+            {#<div class="btn-group">#}
+                {#<a data-original-title="Font Size" class="btn dropdown-toggle" data-toggle="dropdown" title=""><i#}
+                            {#class=" fa fa-text-height"></i>&nbsp;<b class="caret"></b></a>#}
+                {#<ul class="dropdown-menu">#}
+                    {#<li><a data-edit="fontSize 5"><font size="5">Huge</font></a></li>#}
+                    {#<li><a data-edit="fontSize 3"><font size="3">Normal</font></a></li>#}
+                    {#<li><a data-edit="fontSize 1"><font size="1">Small</font></a></li>#}
+                {#</ul>#}
+            {#</div>#}
+            {#<div class="btn-group">#}
+                {#<a data-original-title="Bold (Ctrl/Cmd+B)" class="btn btn-info" data-edit="bold" title=""><i#}
+                            {#class="fa fa-bold"></i></a>#}
+                {#<a data-original-title="Italic (Ctrl/Cmd+I)" class="btn" data-edit="italic" title=""><i#}
+                            {#class="fa fa-italic"></i></a>#}
+                {#<a data-original-title="Strikethrough" class="btn" data-edit="strikethrough" title=""><i#}
+                            {#class="fa fa-strikethrough"></i></a>#}
+                {#<a data-original-title="Underline (Ctrl/Cmd+U)" class="btn" data-edit="underline" title=""><i#}
+                            {#class="fa fa-underline"></i></a>#}
+            {#</div>#}
+            {#<div class="btn-group">#}
+                {#<a data-original-title="Bullet list" class="btn" data-edit="insertunorderedlist" title=""><i#}
+                            {#class="fa fa-list-ul"></i></a>#}
+                {#<a data-original-title="Number list" class="btn" data-edit="insertorderedlist" title=""><i#}
+                            {#class="fa fa-list-ol"></i></a>#}
+                {#<a data-original-title="Reduce indent (Shift+Tab)" class="btn" data-edit="outdent" title=""><i#}
+                            {#class="fa fa-indent-left"></i></a>#}
+                {#<a data-original-title="Indent (Tab)" class="btn" data-edit="indent" title=""><i#}
+                            {#class="fa fa-indent-right"></i></a>#}
+            {#</div>#}
+            {#<div class="btn-group">#}
+                {#<a data-original-title="Align Left (Ctrl/Cmd+L)" class="btn btn-info" data-edit="justifyleft"#}
+                   {#title=""><i class="fa fa-align-left"></i></a>#}
+                {#<a data-original-title="Center (Ctrl/Cmd+E)" class="btn" data-edit="justifycenter" title=""><i#}
+                            {#class="fa fa-align-center"></i></a>#}
+                {#<a data-original-title="Align Right (Ctrl/Cmd+R)" class="btn" data-edit="justifyright" title=""><i#}
+                            {#class="fa fa-align-right"></i></a>#}
+                {#<a data-original-title="Justify (Ctrl/Cmd+J)" class="btn" data-edit="justifyfull" title=""><i#}
+                            {#class="fa fa-align-justify"></i></a>#}
+            {#</div>#}
+            {#<div class="btn-group">#}
+                {#<a data-original-title="Hyperlink" class="btn dropdown-toggle" data-toggle="dropdown" title=""><i#}
+                            {#class="fa fa-link"></i></a>#}
+
+                {#<div class="dropdown-menu input-append">#}
+                    {#<input class="span2" placeholder="URL" data-edit="createLink" type="text">#}
+                    {#<button class="btn" type="button">Add</button>#}
+                {#</div>#}
+                {#<a data-original-title="Remove Hyperlink" class="btn" data-edit="unlink" title=""><i#}
+                            {#class="fa fa-cut"></i></a>#}
+
+            {#</div>#}
+
+            {#<div class="btn-group">#}
+                {#<a data-original-title="Insert picture (or just drag &amp; drop)" class="btn" title=""#}
+                   {#id="pictureBtn"><i class="fa fa-picture"></i></a>#}
+                {#<input style="opacity: 0; position: absolute; top: 0px; left: 0px; width: 41px; height: 30px;"#}
+                       {#data-role="magic-overlay" data-target="#pictureBtn" data-edit="insertImage" type="file">#}
+            {#</div>#}
+            {#<div class="btn-group">#}
+                {#<a data-original-title="Undo (Ctrl/Cmd+Z)" class="btn" data-edit="undo" title=""><i#}
+                            {#class="fa fa-undo"></i></a>#}
+                {#<a data-original-title="Redo (Ctrl/Cmd+Y)" class="btn" data-edit="redo" title=""><i#}
+                            {#class="fa fa-repeat"></i></a>#}
+            {#</div>#}
+            {#<input style="display: none;" data-edit="inserttext" id="voiceBtn" x-webkit-speech="" type="text">#}
+        </div>
+    </div>
+    {{ form_widget(form) }}
+{% endblock %}

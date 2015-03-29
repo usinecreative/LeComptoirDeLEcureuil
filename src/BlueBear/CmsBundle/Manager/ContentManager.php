@@ -5,11 +5,19 @@ namespace BlueBear\CmsBundle\Manager;
 use BlueBear\BaseBundle\Behavior\ManagerTrait;
 use BlueBear\CmsBundle\Entity\Content;
 use Doctrine\ORM\EntityRepository;
+use Exception;
 
 class ContentManager
 {
     use ManagerTrait;
 
+    /**
+     * Create content from configured type
+     *
+     * @param $type
+     * @return Content
+     * @throws Exception
+     */
     public function create($type)
     {
         $contentType = $this
@@ -17,7 +25,6 @@ class ContentManager
             ->get('bluebear.cms.content_type_factory')
             ->getContentType($type);
         $content = new Content();
-        $content->setName('test');
         $content->setType($type);
         $fields = $contentType->getFields();
 
@@ -25,6 +32,21 @@ class ContentManager
             $content->addField($fieldName, null);
         }
         return $content;
+    }
+
+    public function save(Content $content)
+    {
+        $this->getEntityManager()->persist($content);
+        $this->getEntityManager()->flush($content);
+    }
+
+    public function findByTypeQueryBuilder($type)
+    {
+        return $this
+            ->getRepository()
+            ->createQueryBuilder('content')
+            ->where('content.type = :type')
+            ->setParameter('type', $type);
     }
 
     /**

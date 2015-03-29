@@ -2,10 +2,9 @@
 
 namespace BlueBear\CmsBundle\Entity;
 
-use BlueBear\BaseBundle\Entity\Behaviors\Descriptionable;
+use BlueBear\BaseBundle\Behavior\StringUtilsTrait;
 use BlueBear\BaseBundle\Entity\Behaviors\Id;
 use BlueBear\BaseBundle\Entity\Behaviors\Typeable;
-use BlueBear\BaseBundle\Entity\Behaviors\Nameable;
 use Doctrine\ORM\Mapping as ORM;
 use Exception;
 
@@ -17,7 +16,7 @@ use Exception;
  */
 class Content
 {
-    use Id, Nameable, Typeable;
+    use Id, Typeable, StringUtilsTrait;
 
     /**
      * @var array
@@ -64,11 +63,30 @@ class Content
         $this->behaviors = $behaviors;
     }
 
+    public function __call($method, $parameters = [])
+    {
+        $value = null;
+        $method = $this->underscore($method);
+
+        if (array_key_exists($method, $this->fields)) {
+            $value = $this->fields[$method];
+        }
+        return $value;
+    }
+
     public function __get($name)
     {
         if (!array_key_exists($name, $this->fields)) {
             throw new Exception("Invalid field name \"{$name}\".");
         }
         return $this->fields[$name];
+    }
+
+    public function __set($name, $value)
+    {
+        if (!array_key_exists($name, $this->fields)) {
+            throw new Exception("Invalid field name \"{$name}\".");
+        }
+        $this->fields[$name] = $value;
     }
 }

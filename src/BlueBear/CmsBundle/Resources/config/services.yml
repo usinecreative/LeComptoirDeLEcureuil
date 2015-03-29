@@ -1,22 +1,25 @@
 parameters:
-    # factories
+    # Factories
     bluebear.cms.content_type_factory.class: BlueBear\CmsBundle\Factory\ContentTypeFactory
-    # subscribers
+    # Subscribers
     bluebear.cms.kernel_subscriber.class: BlueBear\CmsBundle\Event\Subscriber\KernelSubscriber
-    # form
+    # Form Type
     bluebear.cms.content_type.class: BlueBear\CmsBundle\Form\ContentType
-    # managers
+    # Managers
     bluebear.cms.manager.content.class: BlueBear\CmsBundle\Manager\ContentManager
 services:
+    # Factories
     bluebear.cms.content_type_factory:
         class: %bluebear.cms.content_type_factory.class%
 
+    # Subscribers
     bluebear.cms.kernel_subscriber:
         class: %bluebear.cms.kernel_subscriber.class%
         arguments: [@twig, @bluebear.cms.content_type_factory, %bluebear.cms.content%]
         tags:
             - {name: kernel.event_subscriber}
 
+    # Form Type
     bluebear.cms.content_type:
         class: %bluebear.cms.content_type.class%
         tags:
@@ -24,6 +27,7 @@ services:
         calls:
             - [setContentTypeFactory, [@bluebear.cms.content_type_factory]]
 
+    # Managers
     bluebear.cms.manager.content:
         class: %bluebear.cms.manager.content.class%
         calls:
