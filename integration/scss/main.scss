@@ -18,8 +18,9 @@ body {
 
   .site-header {
     height: 259px;
-    background: image-url('../images/squirell_big.jpg') no-repeat;
+    background: image-url('ecureuil.png') no-repeat;
     background-size: 100%;
+    margin-bottom: 2px;
   }
 
   .left-menu{
@@ -31,8 +32,10 @@ body {
     }
     // social icons (facebook, twitter...)
     .social-list {
+
       text-align: center;
       a {
+        color: #e9d9d3;
         display: inline-block;
         padding: 20px;
         float: left;
@@ -41,48 +44,24 @@ body {
           padding-left: 14px;
           padding-right: 14px;
         }
+
       }
     }
     // "WhoAmI" block
     .who-am-i {
+      color: #e9d9d3;
+      font-family: Gabriela, sans-serif;
+      padding: 20px;
 
+      .thumbnails img {
+        margin-top: 10px;
+        border-radius: 50%;
+      }
     }
   }
   .main-content {
     background-color: #EEEAE8;
     margin-bottom: 40px;
-  }
-  .categories {
-    .category {
-      width: 25%;
-      float: left;
-      position: relative;
-
-      a {
-        position: absolute;
-        bottom: 5px;
-        left: 0;
-        background-color: #000000;
-        padding: 10px;
-        display: inline-block;
-        width: 100%;
-        opacity: 0.8;
-
-        &:hover {
-          position: relative;
-          display: none;
-
-          img {
-            display: none;
-            opacity: 0.5;
-          }
-        }
-      }
-      img {
-        height: 300px;
-        width: 100%;
-      }
-    }
   }
 }
 
@@ -101,6 +80,9 @@ body {
     top: 70%;
     left: 20%;
     position: absolute;
+  }
+  img {
+    height: 305px;
   }
 
   &:hover {
