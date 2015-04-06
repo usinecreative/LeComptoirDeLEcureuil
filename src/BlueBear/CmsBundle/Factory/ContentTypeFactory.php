@@ -40,11 +40,11 @@ class ContentTypeFactory
             if (is_array($contentConfiguration['types'])) {
 
                 foreach ($contentConfiguration['types'] as $typeName => $typeConfiguration) {
-                    // create content type from configuration
-                    $this->create($typeName, $typeConfiguration);
-
                     if (array_key_exists('parent', $typeConfiguration)) {
                         $toInherit[$typeName] = $typeConfiguration['parent'];
+                    } else {
+                        // create content type from configuration
+                        $this->create($typeName, $typeConfiguration);
                     }
                 }
             }
@@ -54,8 +54,8 @@ class ContentTypeFactory
                 if (!in_array($toInheritType, array_keys($this->contentTypes))) {
                     throw new Exception("Invalid type to inherit \"{$toInheritType}\". Check your configuration");
                 }
-                // inherit configuration from parent type
-                $typeConfiguration = array_merge($contentConfiguration['types'][$typeName], $contentConfiguration['types'][$toInheritType]);
+                // inherit current type configuration from parent type
+                $typeConfiguration = array_merge_recursive($contentConfiguration['types'][$typeName], $contentConfiguration['types'][$toInheritType]);
                 // create content type with merged configuration
                 $this->create($typeName, $typeConfiguration);
             }
@@ -97,7 +97,7 @@ class ContentTypeFactory
             // adding behavior fields
             foreach ($behavior->getFields() as $fieldName => $fieldConfiguration) {
                 if (!array_key_exists($fieldName, $fields)) {
-                    $typeConfiguration['fields'][$fieldName] = $fieldConfiguration;
+                    $typeConfiguration['fields'][$fieldName] = array_merge($this->getDefaultFieldConfiguration(), $fieldConfiguration);
                 }
             }
         }
@@ -145,6 +145,17 @@ class ContentTypeFactory
                         'publishing_status' => [
                             'type' => 'text',
                             'contribuable' => false
+                        ]
+                    ]
+                ],
+                'commentable' => [
+                    'class' => 'BlueBear\CmsBundle\Cms\Content\Behaviors\Publishable',
+                    'fields' => [
+                        'hasComments' => [
+                            'type' => 'choice',
+                            'options' => [
+                                'choices' => [true => 'bluebear.cms.yes', false => 'bluebear.cms.no']
+                            ]
                         ]
                     ]
                 ]

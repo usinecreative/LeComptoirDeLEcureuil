@@ -31,6 +31,8 @@ class KernelSubscriber implements EventSubscriberInterface
 
     protected $contentTypeConfiguration;
 
+    protected $configLoaded = false;
+
     /**
      * @param Twig_Environment $twigEngine
      * @param ContentTypeFactory $contentTypeFactory
@@ -45,8 +47,9 @@ class KernelSubscriber implements EventSubscriberInterface
 
     public function onKernelController(KernelEvent $event)
     {
-        if ($event->getRequestType() == HttpKernelInterface::MASTER_REQUEST) {
+        if ($event->getRequestType() == HttpKernelInterface::MASTER_REQUEST && !$this->configLoaded) {
             $this->contentTypeFactory->init($this->contentTypeConfiguration);
+            $this->configLoaded = true;
         }
 
     }

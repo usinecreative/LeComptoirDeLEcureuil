@@ -1,15 +1,19 @@
 blue_bear_cms:
     content:
-        # available content behaviors: authorable, timestampable, publishable
+        # available content behaviors: authorable, timestampable, publishable, commentable
         types:
             Page:
                 fields:
                     title: ~
                     content: ~
                     description: ~
+                    canonical: ~
                 behaviors:
                     authorable: ~
                     timestampable: ~
                     publishable: ~
             Article:
                 parent: Page
+                behaviors:
+                  commentable: ~
+

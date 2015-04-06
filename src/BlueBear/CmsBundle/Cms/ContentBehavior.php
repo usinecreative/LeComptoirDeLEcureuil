@@ -2,7 +2,9 @@
 
 namespace BlueBear\CmsBundle\Cms;
 
-class ContentBehavior 
+use Exception;
+
+class ContentBehavior
 {
     protected $name;
 
@@ -12,9 +14,13 @@ class ContentBehavior
 
     public function hydrateFromConfiguration($name, array $contentBehaviorConfiguration)
     {
+        if (!class_exists($contentBehaviorConfiguration['class'])) {
+            throw new Exception("Invalid class {$contentBehaviorConfiguration['class']} for behavior \"{$name}\"");
+        }
         $this->name = $name;
         $this->class = $contentBehaviorConfiguration['class'];
         $this->fields = $contentBehaviorConfiguration['fields'];
+
     }
 
     public function getName()

@@ -29,9 +29,10 @@ class ContentType extends AbstractType
             foreach ($fields as $fieldName => $fieldValue) {
 
                 if ($fieldsType[$fieldName]['contribuable']) {
-                    $form->add($fieldName, $fieldsType[$fieldName]['type'], [
-                        'property_path' => null
-                    ]);
+                    $options = array_key_exists('options', $fieldsType[$fieldName]) ? $fieldsType[$fieldName]['options'] : [];
+                    $options['property_path'] = null;
+
+                    $form->add($fieldName, $fieldsType[$fieldName]['type'], $options);
                 }
             }
         });

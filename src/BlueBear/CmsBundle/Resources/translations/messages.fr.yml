@@ -1,6 +1,8 @@
 bluebear.cms.name: Nom
 bluebear.cms.list: Liste
 bluebear.cms.add: Ajouter
+bluebear.cms.yes: Oui
+bluebear.cms.no: Non
 
 bluebear.cms.content_types: Type de contenu
 bluebear.cms.users: Utilisateurs
