@@ -1,16 +1,24 @@
 @import "compass";
+@import "compass/css3/transition";
 @import "partials/resets";
 @import "partials/articles";
+
+$font-family-title: Gabriela, sans-serif;
 
 body {
   background-color: #11112f;
   margin: 0;
 }
+h1, h2, h3 {
+  font-family: $font-family-title;
+}
 
 .container {
   h1 {
     color: #e9d9d3;
-    font-family: Gabriela, sans-serif;
+    position: absolute;
+    font-size: 40px;
+    margin-top: 20px;
   }
   .site-title {
     padding: 5px;
@@ -21,11 +29,6 @@ body {
     margin-bottom: 1px;
     padding-right: 0;
 
-    h1 {
-      position: absolute;
-      font-family: Gabriela, sans-serif;
-      font-size: 40px;
-    }
     img {
       float: right;
     }
@@ -72,7 +75,6 @@ body {
   }
   .main-content {
     background-color: #EEEAE8;
-    margin-bottom: 40px;
   }
 }
 
@@ -83,17 +85,23 @@ body {
   box-shadow: none;
   margin-bottom: 0;
   width: 100%;
-  font-family: Gabriela, sans-serif;
   text-decoration: none;
   background-color: darkgrey;
 
   .overlay {
-    //display: none;
-    font-size: 50px;
-    top: 70%;
-    left: 20%;
+    font-family: Gabriela, sans-serif;
+    font-size: 40px;
+    bottom: 0;
+    width: 100%;
     position: absolute;
-    color: #000000;
+    color: bisque;
+    background-color: #000000;
+    //border-top: 6px solid #ffffff;
+    padding: 14px;
+    text-align: center;
+    opacity: 0.7;
+    @include transition-property(background-color);
+    @include transition-duration(1s);
   }
   img {
     height: 305px;
@@ -108,7 +116,7 @@ body {
       background-color: #000000;
     }
     .overlay {
-      display: block;
+      background-color: transparent;
     }
 
   }
@@ -125,14 +133,26 @@ body {
   background-color: bisque;
   margin-bottom: 200px;
   padding: 20px;
+
+  h2 {
+
+  }
 }
 
 .article {
   padding: 20px;
 
+  .date {
+    //float: left;
+    //clear: both;
+  }
   img {
     float: left;
-    padding-right: 10px;
-    width: 100px;
+    padding-right: 15px;
+    width: 150px;
+    height: 172px;
+  }
+  p {
+    padding-left: 150px;
   }
 }
