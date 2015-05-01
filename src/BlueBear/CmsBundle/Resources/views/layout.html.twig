@@ -1,10 +1,17 @@
 {% extends "BlueBearAdminBundle::admin.layout.html.twig" %}
 
+{% block stylesheets %}
+    {% stylesheets '@BlueBearCmsBundle/Resources/scss/cms.scss'
+    filter='compass, ?cssrewrite, ?yui_css' output="css/cms.css" %}
+        <link rel="stylesheet" href="{{ asset_url }}"/>
+    {% endstylesheets %}
+{% endblock %}
+
 {% block topMenu %}
     <div class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="{{ path('lecomptoir.admin.homepage') }}">Le comptoir des noisettes</a>
+                <a class="navbar-brand" href="{{ path('bluebear.cms.homepage') }}">Le comptoir des noisettes</a>
             </div>
             <div class="navbar-collapse collapse navbar-responsive-collapse">
                 <ul class="nav navbar-nav">

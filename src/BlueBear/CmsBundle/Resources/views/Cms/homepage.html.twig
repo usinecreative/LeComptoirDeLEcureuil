@@ -1,0 +1,14 @@
+{% extends "BlueBearCmsBundle::layout.html.twig" %}
+
+{% block container %}
+    {% import "@BlueBearCms/Generic/list.html.twig" as list %}
+
+    <div class="container">
+        <div class="row-fluid">
+            <div class="col-md-12">
+                {{ list.generic_homepage_list(categories, 'bluebear.cms.category.add', 'bluebear.cms.category.list') }}
+                {#{{ list.generic_homepage_item('bluebear.cms.users'|trans, addUserRoute, listUserRoute) }}#}
+            </div>
+        </div>
+    </div>
+{% endblock %}

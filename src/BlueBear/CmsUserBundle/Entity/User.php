@@ -21,6 +21,11 @@ class User extends BaseUser
     protected $id;
 
     /**
+     * @ORM\ManyToMany(targetEntity="BlueBear\CmsBundle\Entity\Article", mappedBy="author")
+     */
+    protected $articles;
+
+    /**
      * @return mixed
      */
     public function getId()
@@ -35,10 +40,4 @@ class User extends BaseUser
     {
         $this->id = $id;
     }
-
-//    public function getRolesList()
-//    {
-//        var_dump($this->getRoles());
-//        die;
-//    }
 }

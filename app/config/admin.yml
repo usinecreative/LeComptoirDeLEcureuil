@@ -14,3 +14,7 @@ blue_bear_admin:
                 create: ~
                 edit: ~
                 delete: ~
+
+        category:
+            entity: BlueBear\CmsBundle\Entity\Category
+            form: category
