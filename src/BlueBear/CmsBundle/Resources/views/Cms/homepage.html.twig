@@ -6,7 +6,46 @@
     <div class="container">
         <div class="row-fluid">
             <div class="col-md-12">
-                {{ list.generic_homepage_list(categories, 'bluebear.cms.category.add', 'bluebear.cms.category.list') }}
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">{{ 'bluebear.cms.content_types' | trans }}</div>
+
+                        <table class="table table-striped">
+                            <tbody>
+                                <tr>
+                                    <td>{{ 'bluebear.cms.category' | trans }}</td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <a class="btn btn-small btn-default"
+                                               href="{{ path('bluebear_admin_category_create') }}">
+                                                <i class="fa fa-plus"></i>&nbsp;&nbsp;{{ 'bluebear.cms.category.add' | trans }}
+                                            </a>
+                                            <a class="btn btn-small btn-default"
+                                               href="{{ path('bluebear_admin_category_list') }}">
+                                                <i class="fa fa-bars"></i>&nbsp;&nbsp;{{ 'bluebear.cms.category.list' | trans }}
+                                            </a>
+                                        </div>
+                                    </td>
+                                    {#<td>#}
+                                        {#<div class="btn-group">#}
+                                            {#<a class="btn btn-small btn-default"#}
+                                               {#href="{{ path('bluebear_admin_article_create') }}">#}
+                                                {#<i class="fa fa-plus"></i>&nbsp;&nbsp;{{ 'bluebear.cms.category.add' | trans }}#}
+                                            {#</a>#}
+                                            {#<a class="btn btn-small btn-default"#}
+                                               {#href="{{ path('bluebear_admin_article_list') }}">#}
+                                                {#<i class="fa fa-bars"></i>&nbsp;&nbsp;{{ 'bluebear.cms.category.list' | trans }}#}
+                                            {#</a>#}
+                                        {#</div>#}
+                                    {#</td>#}
+                                </tr>
+
+                            </tbody>
+                        </table>
+
+                </div>
+
+                {#{{ list.generic_homepage_list(categories, 'bluebear_admin_category_create', 'bluebear_admin_category_list') }}#}
                 {#{{ list.generic_homepage_item('bluebear.cms.users'|trans, addUserRoute, listUserRoute) }}#}
             </div>
         </div>

@@ -1,8 +1,3 @@
-bluebear.cms.homepage:
-    path: /
-    defaults: {_controller: BlueBearCmsBundle:Cms:homepage}
-
-
 # Contents
 bluebear.cms.content.list:
     path: /content/list/{type}
@@ -19,3 +14,7 @@ bluebear.cms.content.edit:
 bluebear.cms.content.delete:
     path: /content/delete/{type}/{id}
     defaults: {_controller: BlueBearCmsBundle:Content:delete}
+
+bluebear.cms.homepage:
+    path: /
+    defaults: {_controller: BlueBearCmsBundle:Cms:homepage}

@@ -5,6 +5,7 @@ namespace BlueBear\CmsBundle\Entity;
 use BlueBear\BaseBundle\Entity\Behaviors\Id;
 use BlueBear\BaseBundle\Entity\Behaviors\Nameable;
 use BlueBear\BaseBundle\Entity\Behaviors\Timestampable;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -38,9 +39,15 @@ class Category
     protected $publicationStatus;
 
     /**
+     * @var ArrayCollection
      * @ORM\OneToMany(targetEntity="BlueBear\CmsBundle\Entity\Article", mappedBy="category")
      */
     protected $articles;
+
+    public function __construct()
+    {
+        $this->articles = new ArrayCollection();
+    }
 
     /**
      * @return boolean
@@ -56,5 +63,42 @@ class Category
     public function setIsDefault($isDefault)
     {
         $this->isDefault = $isDefault;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getArticles()
+    {
+        return $this->articles;
+    }
+
+    /**
+     * @param mixed $articles
+     */
+    public function setArticles($articles)
+    {
+        $this->articles = $articles;
+    }
+
+    public function addArticle(Article $article)
+    {
+        $this->articles->add($article);
+    }
+
+    /**
+     * @return int
+     */
+    public function getPublicationStatus()
+    {
+        return $this->publicationStatus;
+    }
+
+    /**
+     * @param int $publicationStatus
+     */
+    public function setPublicationStatus($publicationStatus)
+    {
+        $this->publicationStatus = $publicationStatus;
     }
 }

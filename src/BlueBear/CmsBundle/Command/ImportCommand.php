@@ -25,7 +25,7 @@ class ImportCommand extends DoctrineCommand
             throw new Exception("Input file {$inputFile} not found");
         }
         $xml = simplexml_load_file($inputFile);
-        $connector = new WordPressConnector();
+        $connector = new WordPressConnector($this->getContainer());
         $connector->importXml($xml);
 
     }

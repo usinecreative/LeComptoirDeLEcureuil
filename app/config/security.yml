@@ -14,15 +14,21 @@ security:
         dev:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
             security: false
+        login:
+            pattern:   ^/cms/(login$|register|resetting)
+            anonymous: true
+
         main:
-            pattern: ^/
+            pattern: ^/cms
             form_login:
+                check_path: /cms/login_check
+                login_path: /cms/login
                 provider: fos_userbundle
                 csrf_provider: form.csrf_provider
-                default_target_path: /
+                default_target_path: /cms
                 always_use_default_target_path: true
             logout:       true
-            anonymous:    true
+            anonymous:    false
 
     access_control:
         - { path: ^/, role: IS_AUTHENTICATED_ANONYMOUSLY }

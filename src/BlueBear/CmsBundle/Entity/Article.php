@@ -6,6 +6,7 @@ use BlueBear\BaseBundle\Entity\Behaviors\Id;
 use BlueBear\BaseBundle\Entity\Behaviors\Timestampable;
 use BlueBear\CmsUserBundle\Entity\User;
 use DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -73,15 +74,26 @@ class Article
     protected $category;
 
     /**
-     * @ORM\ManyToMany(targetEntity="BlueBear\CmsUserBundle\Entity\User", inversedBy="articles")
+     * @ORM\ManyToOne(targetEntity="BlueBear\CmsUserBundle\Entity\User", inversedBy="articles")
      * @var User
      */
     protected $author;
 
     /**
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="BlueBear\CmsBundle\Entity\Comment", mappedBy="article")
+     */
+    protected $comments;
+
+    /**
      * @ORM\Column(name="is_commentable", type="boolean")
      */
     protected $isCommentable;
+
+    public function __construct()
+    {
+        $this->comments = new ArrayCollection();
+    }
 
     /**
      * @return mixed
@@ -209,5 +221,26 @@ class Article
     public function setIsCommentable($isCommentable)
     {
         $this->isCommentable = $isCommentable;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
+
+    /**
+     * @param mixed $comments
+     */
+    public function setComments($comments)
+    {
+        $this->comments = $comments;
+    }
+
+    public function addComment(Comment $comment)
+    {
+        $this->comments->add($comment);
     }
 }

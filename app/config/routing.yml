@@ -6,14 +6,16 @@ le_comptoir_de_l_ecureuil_front:
     resource: "@LeComptoirDeLEcureuilFrontBundle/Resources/config/routing.yml"
     prefix:   /
 
+# BlueBear AdminBundle
+blue_bear_admin:
+    resource: .
+    prefix: /cms
+    type: extra
+
 blue_bear_cms:
     resource: "@BlueBearCmsBundle/Resources/config/routing.yml"
     prefix:   /cms
 
-# BlueBear AdminBundle
-blue_bear_admin:
-    resource: .
-    type: extra
-
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+    prefix: /cms
