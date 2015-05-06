@@ -17,3 +17,27 @@ blue_bear_cms:
                 behaviors:
                   commentable: ~
 
+
+blue_bear_admin:
+    application:
+        title: Le Comptoir De L'Ecureuil, derrière les noisettes
+        description: Des noisettes et des livres
+        bootstrap: true
+        layout: LeComptoirDeLEcureuilBackBundle::layout.html.twig
+        routing:
+            name_pattern: bluebear.cms.{admin}.{action}
+            url_pattern:  /{admin}/{action}
+    admins:
+        user:
+            entity: BlueBear\CmsUserBundle\Entity\User
+            form: user
+            actions:
+                list:
+                    fields: {id: ~, username: ~, email: ~, enabled: ~}
+                create: ~
+                edit: ~
+                delete: ~
+
+        category:
+            entity: BlueBear\CmsBundle\Entity\Category
+            form: category
