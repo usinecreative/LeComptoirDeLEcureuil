@@ -27,7 +27,7 @@
                         </ul>
                     </li>
                     <li class="{{ getClassForRoute('fos_user_security_logout') }}">
-                        <a href="{{ path('bluebear_admin_user_list') }}">{{ 'bluebear.cms.users' | trans }}</a>
+                        <a href="{{ path('bluebear.cms.user.list') }}">{{ 'bluebear.cms.users' | trans }}</a>
                     </li>
                     <li class="{{ getClassForRoute('fos_user_security_logout') }}">
                         <a href="{{ path('fos_user_security_logout') }}">Logout ({{ app.user.username}})</a>
