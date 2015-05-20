@@ -19,7 +19,7 @@ class ImportCommand extends DoctrineCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $inputFile = '/home/johnkrovitch/Projets/LeComptoir/docs/input-wordpress.xml';
+        $inputFile = '/home/afrezet/Projets/LeComptoir/docs/input-wordpress.xml';
 
         if (!file_exists($inputFile)) {
             throw new Exception("Input file {$inputFile} not found");

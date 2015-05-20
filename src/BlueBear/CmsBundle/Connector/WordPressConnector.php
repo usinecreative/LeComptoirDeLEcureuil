@@ -68,18 +68,20 @@ class WordPressConnector
                     $article->setPublicationDate((new DateTime())->setTimestamp(strtotime($item->pubDate)));
                     $article->setAuthor($author);
                     $article->setContent((string)$item->children($contentNamespace)->encoded);
-                    $article->setCreatedAt((new DateTime())->setTimestamp(strtotime($item->children($wpNamespace)->post_date)));
+                    $article->forceCreatedAt((new DateTime())->setTimestamp(strtotime($item->children($wpNamespace)->post_date)));
                     $article->setIsCommentable($isCommentable);
                     $article->setPublicationStatus($publicationStatus);
                     $article->setCategory($category);
 
                     foreach ($item->children($wpNamespace)->comment as $commentItem) {
+                        $commentDate = (new DateTime())->setTimestamp(strtotime($commentItem->comment_date));
+
                         $comment = new Comment();
                         $comment->setAuthorName($commentItem->comment_author);
                         $comment->setAuthorEmail($commentItem->comment_author_email);
                         $comment->setAuthorUrl($commentItem->comment_author_url);
                         $comment->setAuthorIp($commentItem->comment_author_ip);
-                        $comment->setCreatedAt($commentItem->comment_date);
+                        $comment->forceCreatedAt($commentDate);
                         $comment->setContent($commentItem->comment_content);
                         $comment->setIsApproved((bool)$commentItem->comment_author);
                         $comment->setArticle($article);

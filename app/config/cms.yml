@@ -41,3 +41,18 @@ blue_bear_admin:
         category:
             entity: BlueBear\CmsBundle\Entity\Category
             form: category
+            actions:
+                list:
+                    fields: {id: ~, name: ~}
+                create: ~
+                edit: ~
+                delete: ~
+        article:
+            entity: BlueBear\CmsBundle\Entity\Article
+            form: article
+            actions:
+                list:
+                    fields: {id: ~, title: {length: 10}}
+                create: ~
+                edit: ~
+                delete: ~

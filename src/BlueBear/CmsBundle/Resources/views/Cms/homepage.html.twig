@@ -10,38 +10,41 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">{{ 'bluebear.cms.content_types' | trans }}</div>
 
-                        <table class="table table-striped">
-                            <tbody>
-                                <tr>
-                                    <td>{{ 'bluebear.cms.category' | trans }}</td>
-                                    <td>
-                                        <div class="btn-group">
-                                            <a class="btn btn-small btn-default"
-                                               href="{{ path('bluebear.cms.category.create') }}">
-                                                <i class="fa fa-plus"></i>&nbsp;&nbsp;{{ 'bluebear.cms.category.add' | trans }}
-                                            </a>
-                                            <a class="btn btn-small btn-default"
-                                               href="{{ path('bluebear.cms.category.list') }}">
-                                                <i class="fa fa-bars"></i>&nbsp;&nbsp;{{ 'bluebear.cms.category.list' | trans }}
-                                            </a>
-                                        </div>
-                                    </td>
-                                    {#<td>#}
-                                        {#<div class="btn-group">#}
-                                            {#<a class="btn btn-small btn-default"#}
-                                               {#href="{{ path('bluebear_admin_article_create') }}">#}
-                                                {#<i class="fa fa-plus"></i>&nbsp;&nbsp;{{ 'bluebear.cms.category.add' | trans }}#}
-                                            {#</a>#}
-                                            {#<a class="btn btn-small btn-default"#}
-                                               {#href="{{ path('bluebear_admin_article_list') }}">#}
-                                                {#<i class="fa fa-bars"></i>&nbsp;&nbsp;{{ 'bluebear.cms.category.list' | trans }}#}
-                                            {#</a>#}
-                                        {#</div>#}
-                                    {#</td>#}
-                                </tr>
+                    <table class="table table-striped">
+                        <tbody>
+                        <tr>
+                            <td>{{ 'bluebear.cms.category' | trans }}</td>
+                            <td>
+                                <div class="btn-group">
+                                    <a class="btn btn-small btn-default"
+                                       href="{{ path('bluebear.cms.category.create') }}">
+                                        <i class="fa fa-plus"></i>&nbsp;&nbsp;{{ 'bluebear.cms.category.add' | trans }}
+                                    </a>
+                                    <a class="btn btn-small btn-default"
+                                       href="{{ path('bluebear.cms.category.list') }}">
+                                        <i class="fa fa-bars"></i>&nbsp;&nbsp;{{ 'bluebear.cms.category.list' | trans }}
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>{{ 'bluebear.cms.article' | trans }}</td>
+                            <td>
+                                <div class="btn-group">
+                                    <a class="btn btn-small btn-default"
+                                       href="{{ path('bluebear.cms.article.create') }}">
+                                        <i class="fa fa-plus"></i>&nbsp;&nbsp;{{ 'bluebear.cms.article.add' | trans }}
+                                    </a>
+                                    <a class="btn btn-small btn-default"
+                                       href="{{ path('bluebear.cms.article.list') }}">
+                                        <i class="fa fa-bars"></i>&nbsp;&nbsp;{{ 'bluebear.cms.article.list' | trans }}
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
 
-                            </tbody>
-                        </table>
+                        </tbody>
+                    </table>
 
                 </div>
 
