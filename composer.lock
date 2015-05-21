@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f2eab49ab027969f8c606cfc0facdebf",
+    "hash": "534ead7ac1905c59e4ed31932dc351c4",
     "packages": [
         {
             "name": "bluebear/adminbundle",
@@ -73,12 +73,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/CleverGaming/BaseBundle.git",
-                "reference": "d2ac6e74d7709f1d0b4fda948aed880eb3db64a9"
+                "reference": "e564d220ed510c23a88e5075a0359d826540093d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/CleverGaming/BaseBundle/zipball/d2ac6e74d7709f1d0b4fda948aed880eb3db64a9",
-                "reference": "d2ac6e74d7709f1d0b4fda948aed880eb3db64a9",
+                "url": "https://api.github.com/repos/CleverGaming/BaseBundle/zipball/e564d220ed510c23a88e5075a0359d826540093d",
+                "reference": "e564d220ed510c23a88e5075a0359d826540093d",
                 "shasum": ""
             },
             "require": {
@@ -118,7 +118,7 @@
                 "base",
                 "shortcut"
             ],
-            "time": "2015-05-03 15:13:02"
+            "time": "2015-05-21 19:11:46"
         },
         {
             "name": "doctrine/annotations",
@@ -456,16 +456,16 @@
         },
         {
             "name": "doctrine/dbal",
-            "version": "v2.5.0",
+            "version": "v2.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "71140662c0a954602e81271667b6e03d9f53ea34"
+                "reference": "628c2256b646ae2417d44e063bce8aec5199d48d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/71140662c0a954602e81271667b6e03d9f53ea34",
-                "reference": "71140662c0a954602e81271667b6e03d9f53ea34",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/628c2256b646ae2417d44e063bce8aec5199d48d",
+                "reference": "628c2256b646ae2417d44e063bce8aec5199d48d",
                 "shasum": ""
             },
             "require": {
@@ -523,7 +523,7 @@
                 "persistence",
                 "queryobject"
             ],
-            "time": "2014-12-04 21:57:15"
+            "time": "2015-01-12 21:52:47"
         },
         {
             "name": "doctrine/doctrine-bundle",

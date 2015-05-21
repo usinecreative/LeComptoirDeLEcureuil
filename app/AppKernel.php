@@ -30,6 +30,7 @@ class AppKernel extends Kernel
             new LeComptoirDeLEcureuil\FrontBundle\LeComptoirDeLEcureuilFrontBundle(),
             new LeComptoirDeLEcureuil\BackBundle\LeComptoirDeLEcureuilBackBundle(),
             new LeComptoirDeLEcureuil\CoreBundle\LeComptoirDeLEcureuilCoreBundle(),
+            new BlueBear\MediaBundle\BlueBearMediaBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

@@ -16,6 +16,10 @@ blue_bear_cms:
     resource: "@BlueBearCmsBundle/Resources/config/routing.yml"
     prefix:   /cms
 
+blue_bear_media:
+    resource: "@BlueBearMediaBundle/Resources/config/routing.yml"
+    prefix:   /cms
+
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
     prefix: /cms

@@ -4,6 +4,13 @@ bluebear.cms.add: Ajouter
 bluebear.cms.yes: Oui
 bluebear.cms.no: Non
 
+# contents
+bluebear.cms.category: Catégorie
+bluebear.cms.article: Article
+
+bluebear.cms.medias: Médias
+bluebear.cms.videos: Vidéos
+bluebear.cms.images: Images
 bluebear.cms.content_types: Type de contenu
 bluebear.cms.users: Utilisateurs
 

@@ -76,6 +76,12 @@ h1, h2, h3 {
   .main-content {
     background-color: #EEEAE8;
   }
+  // main menu (all page but homepage)
+  .main-menu {
+    li {
+      list-style: none;
+    }
+  }
 }
 
 .thumbnail {

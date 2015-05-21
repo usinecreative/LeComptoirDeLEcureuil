@@ -1,0 +1,11 @@
+bluebear.media.list:
+    path:     /media/{type}
+    defaults: { _controller: BlueBearMediaBundle:Media:list }
+
+bluebear.media.list_all:
+    path:     /medias
+    defaults: { _controller: BlueBearMediaBundle:Media:list }
+
+bluebear.media.upload:
+    path:     /media/upload/{type}
+    defaults: { _controller: BlueBearMediaBundle:Media:upload }

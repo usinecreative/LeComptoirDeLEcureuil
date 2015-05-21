@@ -1,15 +1,11 @@
 {% extends "BlueBearCmsBundle::layout.html.twig" %}
 
 {% block container %}
-    {% import "@BlueBearCms/Generic/list.html.twig" as list %}
-
     <div class="container">
         <div class="row-fluid">
             <div class="col-md-12">
-
                 <div class="panel panel-default">
                     <div class="panel-heading">{{ 'bluebear.cms.content_types' | trans }}</div>
-
                     <table class="table table-striped">
                         <tbody>
                         <tr>
@@ -18,11 +14,11 @@
                                 <div class="btn-group">
                                     <a class="btn btn-small btn-default"
                                        href="{{ path('bluebear.cms.category.create') }}">
-                                        <i class="fa fa-plus"></i>&nbsp;&nbsp;{{ 'bluebear.cms.category.add' | trans }}
+                                        <i class="fa fa-plus"></i>&nbsp;&nbsp;{{ 'bluebear.cms.add' | trans }}
                                     </a>
                                     <a class="btn btn-small btn-default"
                                        href="{{ path('bluebear.cms.category.list') }}">
-                                        <i class="fa fa-bars"></i>&nbsp;&nbsp;{{ 'bluebear.cms.category.list' | trans }}
+                                        <i class="fa fa-bars"></i>&nbsp;&nbsp;{{ 'bluebear.cms.list' | trans }}
                                     </a>
                                 </div>
                             </td>
@@ -33,23 +29,77 @@
                                 <div class="btn-group">
                                     <a class="btn btn-small btn-default"
                                        href="{{ path('bluebear.cms.article.create') }}">
-                                        <i class="fa fa-plus"></i>&nbsp;&nbsp;{{ 'bluebear.cms.article.add' | trans }}
+                                        <i class="fa fa-plus"></i>&nbsp;&nbsp;{{ 'bluebear.cms.add' | trans }}
                                     </a>
                                     <a class="btn btn-small btn-default"
                                        href="{{ path('bluebear.cms.article.list') }}">
-                                        <i class="fa fa-bars"></i>&nbsp;&nbsp;{{ 'bluebear.cms.article.list' | trans }}
+                                        <i class="fa fa-bars"></i>&nbsp;&nbsp;{{ 'bluebear.cms.list' | trans }}
                                     </a>
                                 </div>
                             </td>
                         </tr>
-
                         </tbody>
                     </table>
-
                 </div>
-
-                {#{{ list.generic_homepage_list(categories, 'bluebear_admin_category_create', 'bluebear_admin_category_list') }}#}
-                {#{{ list.generic_homepage_item('bluebear.cms.users'|trans, addUserRoute, listUserRoute) }}#}
+                <div class="panel panel-default">
+                    <div class="panel-heading">{{ 'bluebear.cms.users' | trans }}</div>
+                    <table class="table table-striped">
+                        <tbody>
+                        <tr>
+                            <td>{{ 'bluebear.cms.users' | trans }}</td>
+                            <td>
+                                <div class="btn-group">
+                                    <a class="btn btn-small btn-default"
+                                       href="{{ path('bluebear.cms.user.create') }}">
+                                        <i class="fa fa-plus"></i>&nbsp;&nbsp;{{ 'bluebear.cms.add' | trans }}
+                                    </a>
+                                    <a class="btn btn-small btn-default"
+                                       href="{{ path('bluebear.cms.user.list') }}">
+                                        <i class="fa fa-bars"></i>&nbsp;&nbsp;{{ 'bluebear.cms.list' | trans }}
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">{{ 'bluebear.cms.medias' | trans }}</div>
+                    <table class="table table-striped">
+                        <tbody>
+                        <tr>
+                            <td>{{ 'bluebear.cms.videos' | trans }}</td>
+                            <td>
+                                <div class="btn-group">
+                                    <a class="btn btn-small btn-default"
+                                       href="{{ path('bluebear.media.upload', {type: 'video'}) }}">
+                                        <i class="fa fa-plus"></i>&nbsp;&nbsp;{{ 'bluebear.cms.add' | trans }}
+                                    </a>
+                                    <a class="btn btn-small btn-default"
+                                       href="{{ path('bluebear.media.list', {type: 'video'}) }}">
+                                        <i class="fa fa-bars"></i>&nbsp;&nbsp;{{ 'bluebear.cms.list' | trans }}
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>{{ 'bluebear.cms.images' | trans }}</td>
+                            <td>
+                                <div class="btn-group">
+                                    <a class="btn btn-small btn-default"
+                                       href="{{ path('bluebear.media.upload', {type: 'image'}) }}">
+                                        <i class="fa fa-plus"></i>&nbsp;&nbsp;{{ 'bluebear.cms.add' | trans }}
+                                    </a>
+                                    <a class="btn btn-small btn-default"
+                                       href="{{ path('bluebear.media.list', {type: 'image'}) }}">
+                                        <i class="fa fa-bars"></i>&nbsp;&nbsp;{{ 'bluebear.cms.list' | trans }}
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
