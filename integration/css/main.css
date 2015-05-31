@@ -46,59 +46,72 @@ article .content {
   padding: 0 20px 0 20px;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/johnkrovitch\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\000038}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/johnkrovitch\/Projets\/LeComptoir\/integration\/scss\/partials\/_menu\.scss}line{font-family:\000031}}
+.main-menu {
+  background: #e6e6e6;
+  border-radius: 0;
+  margin-bottom: 1px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/johnkrovitch\/Projets\/LeComptoir\/integration\/scss\/partials\/_menu\.scss}line{font-family:\000036}}
+.main-menu li {
+  list-style: none;
+  width: 143px;
+  text-align: center;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/johnkrovitch\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\000039}}
 body {
   background-color: #11112f;
   margin: 0;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/johnkrovitch\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\0000312}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/johnkrovitch\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\0000313}}
 h1, h2, h3 {
   font-family: Gabriela, sans-serif;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/johnkrovitch\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\0000317}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/johnkrovitch\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\0000318}}
 .container h1 {
   color: #e9d9d3;
   position: absolute;
   font-size: 40px;
   margin-top: 20px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/johnkrovitch\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\0000323}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/johnkrovitch\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\0000324}}
 .container .site-title {
   padding: 5px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/johnkrovitch\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\0000326}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/johnkrovitch\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\0000327}}
 .container .site-header {
   height: 300px;
   background-size: 100%;
   margin-bottom: 1px;
   padding-right: 0;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/johnkrovitch\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\0000332}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/johnkrovitch\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\0000333}}
 .container .site-header img {
   float: right;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/johnkrovitch\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\0000336}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/johnkrovitch\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\0000337}}
 .container .left-menu {
   height: 610px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/johnkrovitch\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\0000339}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/johnkrovitch\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\0000340}}
 .container .left-menu .row {
   padding-right: 1px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/johnkrovitch\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\0000342}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/johnkrovitch\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\0000343}}
 .container .left-menu .col-md-12 {
   margin-right: 1px;
   background-color: #2c4671;
   min-height: 184px;
   border-bottom: 1px solid #11112f;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/johnkrovitch\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\0000349}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/johnkrovitch\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\0000350}}
 .container .left-menu .social-list {
   text-align: center;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/johnkrovitch\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\0000351}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/johnkrovitch\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\0000352}}
 .container .left-menu .social-list a {
   color: #e9d9d3;
   display: inline-block;
@@ -106,32 +119,28 @@ h1, h2, h3 {
   float: left;
   width: 50%;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/johnkrovitch\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\0000357}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/johnkrovitch\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\0000358}}
 .container .left-menu .social-list a i {
   padding-left: 14px;
   padding-right: 14px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/johnkrovitch\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\0000365}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/johnkrovitch\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\0000366}}
 .container .left-menu .who-am-i {
   color: #e9d9d3;
   font-family: Gabriela, sans-serif;
   padding: 30px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/johnkrovitch\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\0000370}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/johnkrovitch\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\0000371}}
 .container .left-menu .who-am-i .thumbnails img {
   margin-top: 10px;
   border-radius: 50%;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/johnkrovitch\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\0000376}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/johnkrovitch\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\0000377}}
 .container .main-content {
   background-color: #EEEAE8;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/johnkrovitch\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\0000381}}
-.container .main-menu li {
-  list-style: none;
-}
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/johnkrovitch\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\0000387}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/johnkrovitch\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\0000382}}
 .thumbnail {
   padding: 0;
   border: 0;
@@ -142,7 +151,7 @@ h1, h2, h3 {
   text-decoration: none;
   background-color: darkgrey;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/johnkrovitch\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\0000397}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/johnkrovitch\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\0000392}}
 .thumbnail .overlay {
   font-family: Gabriela, sans-serif;
   font-size: 40px;
@@ -163,54 +172,54 @@ h1, h2, h3 {
   -webkit-transition-duration: 1s;
   transition-duration: 1s;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/johnkrovitch\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\00003112}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/johnkrovitch\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\00003107}}
 .thumbnail img {
   height: 305px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/johnkrovitch\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\00003116}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/johnkrovitch\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\00003111}}
 .thumbnail:hover {
   background-color: darkgrey;
   text-decoration: none;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/johnkrovitch\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\00003120}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/johnkrovitch\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\00003115}}
 .thumbnail:hover img {
   opacity: 0.5;
   background-color: #000000;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/johnkrovitch\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\00003124}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/johnkrovitch\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\00003119}}
 .thumbnail:hover .overlay {
   background-color: transparent;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/johnkrovitch\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\00003131}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/johnkrovitch\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\00003126}}
 .hvr-sweep-to-bottom::before {
   background: none repeat scroll 0 0 #000000;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/johnkrovitch\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\00003134}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/johnkrovitch\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\00003129}}
 .col-md-6 {
   padding: 0;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/johnkrovitch\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\00003138}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/johnkrovitch\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\00003133}}
 .latest-article {
   background-color: bisque;
   margin-bottom: 200px;
   padding: 20px;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/johnkrovitch\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\00003148}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/johnkrovitch\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\00003143}}
 .article {
   padding: 20px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/johnkrovitch\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\00003155}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/johnkrovitch\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\00003150}}
 .article img {
   float: left;
   padding-right: 15px;
   width: 150px;
   height: 172px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/johnkrovitch\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\00003161}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/johnkrovitch\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\00003156}}
 .article p {
   padding-left: 150px;
 }
