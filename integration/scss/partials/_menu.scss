@@ -1,11 +1,23 @@
-.main-menu {
+.main-menu.navbar-default {
   background: #e6e6e6;
   border-radius: 0;
-  margin-bottom: 1px;
+  border: none;
+  color: black;
+  font-size: 17px;
+  margin-bottom: 10px;
 
-  li {
-    list-style: none;
-    width: 143px;
-    text-align: center;
+  .navbar-nav {
+    & > li {
+      border-right: 1px solid #2c4671;
+      list-style: none;
+      text-align: center;
+      width: 195px;
+
+      a {
+        color: black;
+      }
+    }
   }
+
 }
+
