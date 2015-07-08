@@ -1,10 +1,21 @@
+// Compass
 @import "compass";
 @import "compass/css3/transition";
+
+// Var
+$font-family-title: Gabriela, sans-serif;
+$main-color: #e9d9d3;
+$main-color: white;
+
+// Fonts
+@include font-face("Trench 100", font-files("fonts/trench100free.otf"));
+
+// Partials
 @import "partials/resets";
 @import "partials/articles";
 @import "partials/menu";
+@import "partials/home";
 
-$font-family-title: Gabriela, sans-serif;
 
 body {
   background-color: #11112f;
@@ -13,10 +24,14 @@ body {
 h1, h2, h3 {
   font-family: $font-family-title;
 }
+h3 {
+  font: 300 22px/22px Ubuntu, sans-serif;
+
+}
 
 .container {
   h1 {
-    color: #e9d9d3;
+    color: $main-color;
     position: absolute;
     font-size: 40px;
     margin-top: 20px;
@@ -50,7 +65,7 @@ h1, h2, h3 {
     .social-list {
       text-align: center;
       a {
-        color: #e9d9d3;
+        color: $main-color;
         display: inline-block;
         padding: 20px;
         float: left;
@@ -64,7 +79,7 @@ h1, h2, h3 {
     }
     // "WhoAmI" block
     .who-am-i {
-      color: #e9d9d3;
+      color: $main-color;
       font-family: Gabriela, sans-serif;
       padding: 30px;
 
@@ -79,66 +94,12 @@ h1, h2, h3 {
   }
 }
 
-.thumbnail {
-  padding: 0;
-  border: 0;
-  border-radius: 0;
-  box-shadow: none;
-  margin-bottom: 0;
-  width: 100%;
-  text-decoration: none;
-  background-color: darkgrey;
 
-  .overlay {
-    font-family: Gabriela, sans-serif;
-    font-size: 40px;
-    bottom: 0;
-    width: 100%;
-    position: absolute;
-    color: bisque;
-    background-color: #000000;
-    //border-top: 6px solid #ffffff;
-    padding: 14px;
-    text-align: center;
-    opacity: 0.7;
-    @include transition-property(background-color);
-    @include transition-duration(1s);
-  }
-  img {
-    height: 305px;
-  }
-
-  &:hover {
-    background-color: darkgrey;
-    text-decoration: none;
-
-    img {
-      opacity: 0.5;
-      background-color: #000000;
-    }
-    .overlay {
-      background-color: transparent;
-    }
-
-  }
-}
-// required for homepage category hover
-.hvr-sweep-to-bottom::before {
-  background: none repeat scroll 0 0 #000000;
-}
 .col-md-6 {
   padding: 0;
 }
 
-.latest-article {
-  background-color: bisque;
-  margin-bottom: 200px;
-  padding: 20px;
 
-  h2 {
-
-  }
-}
 
 .article {
   padding: 20px;
