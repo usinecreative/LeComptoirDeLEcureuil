@@ -21,3 +21,55 @@
 
 }
 
+.left-menu{
+  color: $main-color;
+  height: 610px;
+
+  .row {
+    padding-right: 1px;
+
+    .item {
+
+
+      h2 {
+        font-size: 26px;
+      }
+    }
+  }
+  .col-md-12 {
+    margin-right: 1px;
+    background-color: #2c4671;
+    min-height: 184px;
+    border-bottom: 1px solid #11112f;
+  }
+  // social icons (facebook, twitter...)
+  .social-list {
+    text-align: center;
+    a {
+      color: $main-color;
+      display: inline-block;
+      padding: 20px;
+      float: left;
+      width: 50%;
+      i {
+        padding-left: 14px;
+        padding-right: 14px;
+      }
+
+    }
+  }
+  // "WhoAmI" block
+  .who-am-i {
+    font-family: Gabriela, sans-serif;
+    padding: 30px;
+
+    .thumbnails img {
+      margin-top: 10px;
+      border-radius: 50%;
+    }
+  }
+  .friends {
+    font-family: Gabriela, sans-serif;
+    padding: 20px;
+  }
+}

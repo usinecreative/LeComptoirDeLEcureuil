@@ -11,6 +11,7 @@
   .overlay {
     font-family: "Trench 100", serif;
     font-size: 25px;
+    font-weight: bold;
     bottom: 0;
     width: 100%;
     position: absolute;
@@ -19,6 +20,7 @@
     //border-top: 6px solid #ffffff;
     padding: 14px;
     text-align: center;
+    text-transform: uppercase;
     opacity: 0.7;
     @include transition-property(background-color);
     @include transition-duration(1s);
@@ -48,20 +50,4 @@
 
 .margin-row {
   margin-top: 1px;
-}
-
-// Lastest articles
-.latest-article {
-  background-color: #EEEAE8;
-  margin-bottom: 200px;
-  padding: 20px;
-
-  .article {
-    a {
-      color: #333333;
-    }
-    .date {
-      color: #497ca7;
-    }
-  }
 }

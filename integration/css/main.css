@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Trench 100";
-  src: url('../fonts/fonts/trench100free.otf') format('opentype');
+  src: url('../fonts/trench100free.otf?1384343754') format('opentype');
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoir\/integration\/scss\/partials\/_resets\.scss}line{font-family:\000032}}
 h1 {
@@ -17,7 +17,7 @@ h2, h3 {
 @media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoir\/integration\/scss\/partials\/_articles\.scss}line{font-family:\000033}}
 article .header h2 {
   border-left: 6px solid #497CA7;
-  font: 300 22px/22px Ubuntu,sans-serif;
+  font: 300 22px/22px Ubuntu, sans-serif;
   margin-left: 42px;
   padding-left: 16px;
   padding-top: 40px;
@@ -50,6 +50,35 @@ article .content {
   padding: 0 20px 0 20px;
 }
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoir\/integration\/scss\/partials\/_articles\.scss}line{font-family:\0000337}}
+.ribbon {
+  background: #f43059 none repeat scroll 0 0;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
+  clear: both;
+  color: #fff;
+  font-size: 12px;
+  height: 22px;
+  margin-bottom: -18px;
+  margin-left: -9px;
+  padding: 5px;
+  position: relative;
+  text-shadow: 0 -1px #d0284b, 0 1px #f96080;
+  width: 146px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoir\/integration\/scss\/partials\/_articles\.scss}line{font-family:\0000353}}
+.ribbon:before {
+  content: " ";
+  background: url('../images/ribbon.png?1437391355');
+  display: block;
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin-bottom: -10px;
+}
+
 @media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoir\/integration\/scss\/partials\/_menu\.scss}line{font-family:\000031}}
 .main-menu.navbar-default {
   background: #e6e6e6;
@@ -71,6 +100,59 @@ article .content {
   color: black;
 }
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoir\/integration\/scss\/partials\/_menu\.scss}line{font-family:\0000324}}
+.left-menu {
+  color: white;
+  height: 610px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoir\/integration\/scss\/partials\/_menu\.scss}line{font-family:\0000328}}
+.left-menu .row {
+  padding-right: 1px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoir\/integration\/scss\/partials\/_menu\.scss}line{font-family:\0000334}}
+.left-menu .row .item h2 {
+  font-size: 26px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoir\/integration\/scss\/partials\/_menu\.scss}line{font-family:\0000339}}
+.left-menu .col-md-12 {
+  margin-right: 1px;
+  background-color: #2c4671;
+  min-height: 184px;
+  border-bottom: 1px solid #11112f;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoir\/integration\/scss\/partials\/_menu\.scss}line{font-family:\0000346}}
+.left-menu .social-list {
+  text-align: center;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoir\/integration\/scss\/partials\/_menu\.scss}line{font-family:\0000348}}
+.left-menu .social-list a {
+  color: white;
+  display: inline-block;
+  padding: 20px;
+  float: left;
+  width: 50%;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoir\/integration\/scss\/partials\/_menu\.scss}line{font-family:\0000354}}
+.left-menu .social-list a i {
+  padding-left: 14px;
+  padding-right: 14px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoir\/integration\/scss\/partials\/_menu\.scss}line{font-family:\0000362}}
+.left-menu .who-am-i {
+  font-family: Gabriela, sans-serif;
+  padding: 30px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoir\/integration\/scss\/partials\/_menu\.scss}line{font-family:\0000366}}
+.left-menu .who-am-i .thumbnails img {
+  margin-top: 10px;
+  border-radius: 50%;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoir\/integration\/scss\/partials\/_menu\.scss}line{font-family:\0000371}}
+.left-menu .friends {
+  font-family: Gabriela, sans-serif;
+  padding: 20px;
+}
+
 @media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoir\/integration\/scss\/partials\/_home\.scss}line{font-family:\000031}}
 .thumbnail {
   padding: 0;
@@ -86,6 +168,7 @@ article .content {
 .thumbnail .overlay {
   font-family: "Trench 100", serif;
   font-size: 25px;
+  font-weight: bold;
   bottom: 0;
   width: 100%;
   position: absolute;
@@ -93,6 +176,7 @@ article .content {
   background-color: #000000;
   padding: 14px;
   text-align: center;
+  text-transform: uppercase;
   opacity: 0.7;
   -moz-transition-property: background-color;
   -o-transition-property: background-color;
@@ -103,48 +187,33 @@ article .content {
   -webkit-transition-duration: 1s;
   transition-duration: 1s;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoir\/integration\/scss\/partials\/_home\.scss}line{font-family:\0000326}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoir\/integration\/scss\/partials\/_home\.scss}line{font-family:\0000328}}
 .thumbnail img {
   height: 305px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoir\/integration\/scss\/partials\/_home\.scss}line{font-family:\0000330}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoir\/integration\/scss\/partials\/_home\.scss}line{font-family:\0000332}}
 .thumbnail:hover {
   background-color: darkgrey;
   text-decoration: none;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoir\/integration\/scss\/partials\/_home\.scss}line{font-family:\0000334}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoir\/integration\/scss\/partials\/_home\.scss}line{font-family:\0000336}}
 .thumbnail:hover img {
   opacity: 0.5;
   background-color: #000000;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoir\/integration\/scss\/partials\/_home\.scss}line{font-family:\0000338}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoir\/integration\/scss\/partials\/_home\.scss}line{font-family:\0000340}}
 .thumbnail:hover .overlay {
   background-color: transparent;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoir\/integration\/scss\/partials\/_home\.scss}line{font-family:\0000345}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoir\/integration\/scss\/partials\/_home\.scss}line{font-family:\0000347}}
 .hvr-sweep-to-bottom::before {
   background: none repeat scroll 0 0 #000000;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoir\/integration\/scss\/partials\/_home\.scss}line{font-family:\0000349}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoir\/integration\/scss\/partials\/_home\.scss}line{font-family:\0000351}}
 .margin-row {
   margin-top: 1px;
-}
-
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoir\/integration\/scss\/partials\/_home\.scss}line{font-family:\0000354}}
-.latest-article {
-  background-color: #EEEAE8;
-  margin-bottom: 200px;
-  padding: 20px;
-}
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoir\/integration\/scss\/partials\/_home\.scss}line{font-family:\0000360}}
-.latest-article .article a {
-  color: #333333;
-}
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoir\/integration\/scss\/partials\/_home\.scss}line{font-family:\0000363}}
-.latest-article .article .date {
-  color: #497ca7;
 }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\0000320}}
@@ -185,71 +254,51 @@ h3 {
 .container .site-header img {
   float: right;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\0000352}}
-.container .left-menu {
-  height: 610px;
-}
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\0000355}}
-.container .left-menu .row {
-  padding-right: 1px;
-}
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\0000358}}
-.container .left-menu .col-md-12 {
-  margin-right: 1px;
-  background-color: #2c4671;
-  min-height: 184px;
-  border-bottom: 1px solid #11112f;
-}
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\0000365}}
-.container .left-menu .social-list {
-  text-align: center;
-}
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\0000367}}
-.container .left-menu .social-list a {
-  color: white;
-  display: inline-block;
-  padding: 20px;
-  float: left;
-  width: 50%;
-}
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\0000373}}
-.container .left-menu .social-list a i {
-  padding-left: 14px;
-  padding-right: 14px;
-}
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\0000381}}
-.container .left-menu .who-am-i {
-  color: white;
-  font-family: Gabriela, sans-serif;
-  padding: 30px;
-}
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\0000386}}
-.container .left-menu .who-am-i .thumbnails img {
-  margin-top: 10px;
-  border-radius: 50%;
-}
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\0000392}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\0000353}}
 .container .main-content {
   background-color: #EEEAE8;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\0000398}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\0000360}}
+.latest-article {
+  background-color: #EEEAE8;
+  padding: 20px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\0000366}}
+.latest-article .article a {
+  color: #333333;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\0000369}}
+.latest-article .article .date {
+  color: #497ca7;
+  display: inline-block;
+  margin-top: -5px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\0000378}}
 .col-md-6 {
   padding: 0;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\00003104}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\0000384}}
 .article {
   padding: 20px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\00003111}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\0000391}}
 .article img {
   float: left;
   padding-right: 15px;
   width: 150px;
   height: 172px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\00003117}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\0000397}}
 .article p {
   padding-left: 150px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoir\/integration\/scss\/main\.scss}line{font-family:\00003102}}
+footer {
+  padding: 20px;
+  background-color: #2c4671;
+  margin-bottom: 200px;
 }
