@@ -6,6 +6,7 @@ parameters:
     # Form Type
     bluebear.cms.content_type.class: BlueBear\CmsBundle\Form\ContentType
     bluebear.cms.category_type.class: BlueBear\CmsBundle\Form\CategoryType
+    bluebear.cms.parameters.class: BlueBear\CmsBundle\Form\Type\ParametersType
     # Managers
     bluebear.cms.manager.content.class: BlueBear\CmsBundle\Manager\ContentManager
 services:
@@ -27,10 +28,16 @@ services:
             - {name: form.type, alias: content}
         calls:
             - [setContentTypeFactory, [@bluebear.cms.content_type_factory]]
+
     bluebear.cms.category_type:
         class: %bluebear.cms.category_type.class%
         tags:
             - {name: form.type, alias: category}
+
+    bluebear.cms.parameters:
+        class: %bluebear.cms.parameters.class%
+        tags:
+            - {name: form.type, alias: parameters}
 
     # Managers
     bluebear.cms.manager.content:

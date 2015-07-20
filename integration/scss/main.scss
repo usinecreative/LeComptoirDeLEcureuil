@@ -4,8 +4,9 @@
 
 // Var
 $font-family-title: Gabriela, sans-serif;
-$main-color: #e9d9d3;
+//$main-color: #e9d9d3;
 $main-color: white;
+$background-color: #11112f;
 
 // Fonts
 @include font-face("Trench 100", font-files("trench100free.otf"));
@@ -18,7 +19,7 @@ $main-color: white;
 
 
 body {
-  background-color: #11112f;
+  background-color: $background-color;
   margin: 0;
 }
 h1, h2, h3 {
@@ -69,7 +70,7 @@ h3 {
     .date {
       color: #497ca7;
       display: inline-block;
-      margin-top: -5px;
+      margin-top: -3px;
     }
   }
 }
@@ -100,7 +101,21 @@ h3 {
 }
 
 footer {
-  padding: 20px;
   background-color: #2c4671;
+  color: $main-color;
   margin-bottom: 200px;
+  text-align: center;
+  padding: 20px;
+
+  ul  {
+    height: 15px;
+    margin: auto;
+    padding: 0;
+    width: 300px;
+    li {
+      float: left;
+      list-style-type: none;
+      padding: 0 10px;
+    }
+  }
 }

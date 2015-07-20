@@ -35,7 +35,7 @@ article {
 }
 
 .ribbon {
-  background: #f43059 none repeat scroll 0 0;
+  background: $background-color none repeat scroll 0 0;
   box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
   clear: both;
   color: #fff;
@@ -43,16 +43,16 @@ article {
   height: 22px;
   margin-bottom: -18px;
   margin-left: -9px;
-  padding: 5px;
+  padding: 3px 5px 5px;
   position: relative;
-  text-shadow: 0 -1px #d0284b, 0 1px #f96080;
+  //text-shadow: 0 -1px $background-color, 0 1px $main-color;
   width: 146px;
 
 }
 
 .ribbon:before {
   content: " ";
-  @include background(image_url("ribbon.png"));
+  @include background(image_url("ribbon-blue.png"));
   display: block;
   width: 10px;
   height: 10px;

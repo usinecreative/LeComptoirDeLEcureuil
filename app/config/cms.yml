@@ -56,12 +56,20 @@ blue_bear_admin:
                 create: ~
                 edit: ~
                 delete: ~
-
-        media:
-            entity: BlueBear\MediaBundle\Entity\Media
-            form: media
-            controller: BlueBearMediaBundle:Media
+        parameters:
+            entity: BlueBear\CmsBundle\Entity\Parameters
+            form: parameters
             actions:
                 list:
-                    fields: {id: ~, label: ~}
-                upload: ~
+                    fields: {id: ~, title: {length: 100}, value: {length: 100}}
+                create: ~
+                edit: ~
+                delete: ~
+#        media:
+#            entity: BlueBear\MediaBundle\Entity\Media
+#            form: media
+#            controller: BlueBearMediaBundle:Media
+#            actions:
+#                list:
+#                    fields: {id: ~, label: ~}
+#                upload: ~

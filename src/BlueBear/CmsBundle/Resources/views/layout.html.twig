@@ -10,7 +10,7 @@
 {% block topMenu %}
     <div class="navbar-fixed-left" role="navigation">
         <a class="navigation-title" href="{{ path('bluebear.cms.homepage') }}">Le comptoir des noisettes</a>
-        <ul class="navigation-menu">
+        <ul class="navigation-menu nav nav-pills nav-stacked">
             <li class="{{ getClassForRoute('bluebear.cms.category.list') }}">
                 <a href="{{ path('bluebear.cms.category.list') }}">{{ 'bluebear.cms.category' | trans }}</a>
             </li>
@@ -19,6 +19,17 @@
             </li>
             <li class="{{ getClassForRoute('bluebear.cms.user.list') }}">
                 <a href="{{ path('bluebear.cms.user.list') }}">{{ 'bluebear.cms.users' | trans }}</a>
+            </li>
+            <li class="{{ getClassForRoute('bluebear.cms.parameters') }}">
+                {{ 'bluebear.cms.parameters' | trans }}
+                <ul>
+                    <li>
+                        <a href="{{ path('bluebear.cms.parameters.list') }}">{{ 'bluebear.cms.parameters.list' | trans }}</a>
+                    </li>
+                    <li>
+                        {#<a href="{{ path('bluebear.cms.front_parameters') }}">{{ 'bluebear.cms.front_parameters' | trans }}</a>#}
+                    </li>
+                </ul>
             </li>
             <li class="{{ getClassForRoute('fos_user_security_logout') }}">
                 <a href="{{ path('fos_user_security_logout') }}">Logout ({{ app.user.username }})</a>
