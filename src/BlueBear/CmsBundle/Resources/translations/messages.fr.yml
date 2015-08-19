@@ -1,3 +1,10 @@
+bluebear:
+    cms:
+        publication:
+            draft: Brouillon
+            validation: Validé
+            published: Publié
+
 bluebear.cms.name: Nom
 bluebear.cms.list: Liste
 bluebear.cms.add: Ajouter
@@ -5,8 +12,9 @@ bluebear.cms.yes: Oui
 bluebear.cms.no: Non
 
 # contents
-bluebear.cms.category: Catégorie
-bluebear.cms.article: Article
+bluebear.cms.category: Catégories
+bluebear.cms.article: Articles
+bluebear.cms.parameters: Paramètres
 
 bluebear.cms.medias: Médias
 bluebear.cms.videos: Vidéos

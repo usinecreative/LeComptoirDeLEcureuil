@@ -3,7 +3,6 @@
 namespace BlueBear\MediaBundle\Entity;
 
 use BlueBear\BaseBundle\Entity\Behaviors\Id;
-use BlueBear\BaseBundle\Entity\Behaviors\Label;
 use BlueBear\BaseBundle\Entity\Behaviors\Nameable;
 use BlueBear\BaseBundle\Entity\Behaviors\Timestampable;
 use Doctrine\ORM\Mapping as ORM;
@@ -17,5 +16,5 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Media
 {
-    use Id, Nameable, Label, Timestampable;
+    use Id, Nameable, Timestampable;
 }

@@ -1,5 +1,14 @@
 @import "partials/menu";
 
+body {
+  background-color: #eeeeee;
+}
+
 body > .container {
   margin-bottom: 100px;
+}
+
+// fix AdminBundle styles
+table th a {
+  color: inherit;
 }

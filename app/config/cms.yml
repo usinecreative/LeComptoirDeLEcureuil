@@ -23,7 +23,7 @@ blue_bear_admin:
         title: Le Comptoir De L'Ecureuil, derrière les noisettes
         description: Des noisettes et des livres
         bootstrap: true
-        layout: LeComptoirDeLEcureuilBackBundle::layout.html.twig
+        layout: BlueBearCmsBundle::layout.html.twig
         routing:
             name_pattern: bluebear.cms.{admin}.{action}
             url_pattern:  /{admin}/{action}
@@ -52,7 +52,7 @@ blue_bear_admin:
             form: article
             actions:
                 list:
-                    fields: {id: ~, title: {length: 10}}
+                    fields: {id: ~, title: {length: 20}, category: ~}
                 create: ~
                 edit: ~
                 delete: ~
