@@ -6,6 +6,7 @@
 $font-family-title: Gabriela, sans-serif;
 //$main-color: #e9d9d3;
 $main-color: white;
+$menu-backgroud-color: #2c4671;
 $background-color: #11112f;
 
 // Fonts
@@ -13,9 +14,10 @@ $background-color: #11112f;
 
 // Partials
 @import "partials/resets";
-@import "partials/articles";
 @import "partials/menu";
-@import "partials/home";
+// Pages
+@import "pages/articles";
+@import "pages/home";
 
 
 body {
