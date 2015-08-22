@@ -1,0 +1,87 @@
+.main-menu.navbar-default {
+  background: $menu-backgroud-color;
+  border-radius: 0;
+  border: none;
+  color: $main-color;
+  font-size: 17px;
+  margin-bottom: 1px;
+
+  .navbar-nav {
+    & > li {
+      border-right: 1px solid #11112f;
+      list-style: none;
+      text-align: center;
+      text-shadow: none;
+
+      a {
+        color: $main-color;
+        text-shadow: none;
+
+        &:hover {
+          color: $background-color;
+        }
+      }
+    }
+  }
+  .navbar-form {
+    input[type=text] {
+      border-radius: 0;
+      width: 203px;
+    }
+    .btn {
+      background: transparent;
+    }
+  }
+}
+
+.left-menu{
+  color: $main-color;
+  height: 610px;
+
+  .row {
+    padding-right: 1px;
+
+    .item {
+      h2 {
+        font-size: 26px;
+      }
+    }
+  }
+  .col-md-12 {
+    margin-right: 1px;
+    background-color: $menu-backgroud-color;
+    min-height: 184px;
+    border-bottom: 1px solid #11112f;
+  }
+  // social icons (facebook, twitter...)
+  .social-list {
+    text-align: center;
+    a {
+      color: $main-color;
+      display: inline-block;
+      padding: 20px;
+      float: left;
+      width: 50%;
+      i {
+        padding-left: 14px;
+        padding-right: 14px;
+      }
+    }
+  }
+  // "WhoAmI" block
+  .who-am-i {
+    font-family: Gabriela, sans-serif;
+    padding: 15px;
+
+    .thumbnails img {
+      margin-top: 10px;
+      border-radius: 50%;
+    }
+  }
+  .friends {
+    font-family: Gabriela, sans-serif;
+    height: 206px;
+    // title on one line
+    padding: 13px;
+  }
+}

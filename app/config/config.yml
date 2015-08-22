@@ -44,7 +44,11 @@ services:
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        [BlueBearAdminBundle, BlueBearCmsBundle, LeComptoirDeLEcureuilBackBundle]
+    bundles:
+        - BlueBearAdminBundle
+        - BlueBearCmsBundle
+        - LeComptoirDeLEcureuilBackBundle
+        - LeComptoirDeLEcureuilFrontBundle
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
