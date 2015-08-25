@@ -215,6 +215,11 @@ class Article
         return $this->isCommentable;
     }
 
+    public function isCommentable()
+    {
+        return (bool)$this->isCommentable;
+    }
+
     /**
      * @param mixed $isCommentable
      */

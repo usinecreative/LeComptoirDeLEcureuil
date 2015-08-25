@@ -1,11 +1,13 @@
 <!DOCTYPE>
 <html>
 <head>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/hover-min.css">
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="{{ asset('bundles/lecomptoirdelecureuilfront/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/lecomptoirdelecureuilfront/css/bootstrap-theme.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/lecomptoirdelecureuilfront/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/lecomptoirdelecureuilfront/css/hover-min.css') }}">
+    {% stylesheets '@LeComptoirDeLEcureuilFrontBundle/Resources/scss/main.scss' filter='compass, cssrewrite' %}
+    <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen"/>
+    {% endstylesheets %}
     <link rel='stylesheet' id='googlefonts-css'
           href='http://fonts.googleapis.com/css?family=Redressed:400|Gabriela:400|Playball:400|Gabriela:400&subset=latin'
           type='text/css' media='all'/>
@@ -16,70 +18,31 @@
 </head>
 <body>
 
+{% block container %}{% endblock %}
 <div class="container">
-    <div class="row">
-        <div class="site-header col-lg-12">
-            <h1 class="site-title">Le Comptoir<br/>de l'Ecureuil</h1>
-            <img src="images/ecureuil.png" height=""/>
-        </div>
-    </div>
-    <nav class="main-menu navbar navbar-default row">
-        <ul class="nav navbar-nav">
-            <li class=""><a href="#"><i class="fa fa-home"></i><span class="sr-only">(current)</span></a></li>
-            <li class=""><a href="#">Littérature <span class="sr-only">(current)</span></a></li>
-            <li class=""><a href="#">BD / Manga <span class="sr-only">(current)</span></a></li>
-            <li class=""><a href="#">Séries <span class="sr-only">(current)</span></a></li>
-            <li class=""><a href="#">Sorties <span class="sr-only">(current)</span></a></li>
-            <li class=""><a href="#">Partenariats <span class="sr-only">(current)</span></a></li>
-        </ul>
-        <form class="navbar-form navbar-right" role="search">
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="Recherche dans le comptoir">
-            </div>
-            <button type="submit" class="btn"><i class="fa fa-search"></i></button>
-        </form>
-    </nav>
-    <div class="row">
-        <!-- left column -->
-        <div class="left-menu col-lg-3">
-            <div class="row">
-                <div class="col-md-12 item who-am-i">
-                    <h2>Qui suis-je ?</h2>
+    {# site header : logo and title#}
+    {% include '@LeComptoirDeLEcureuilFront/Main/header.html.twig' %}
 
-                    <div>Nous sommes une bande d'écureuils qui lisent des bouquins avec des noisettes</div>
-                    <div class="thumbnails">
-                        <a href=""><img class="hvr-bounce-in" src="images/thumbail-1.jpg"/></a>
-                        <a href=""><img class="hvr-bounce-in" src="images/thumbail-2.jpg"/></a>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 item social-list">
-                    <a href=""><i class="fa fa-twitter fa-5x hvr-bounce-in"></i></a>
-                    <a href=""><i class="fa fa-facebook fa-5x hvr-bounce-in"></i></a>
-                    <a href=""><i class="fa fa-google-plus fa-5x hvr-bounce-in"></i></a>
-                    <a href=""><i class="fa fa-rss fa-5x hvr-bounce-in"></i></a>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 item friends">
-                    <h2>Les sites à noisettes</h2>
-                </div>
-            </div>
-        </div>
+    {# main menu #}
+    {% include '@LeComptoirDeLEcureuilFront/Main/navbar.html.twig' %}
+
+    <div class="row">
+        {# left column #}
+        {% include '@LeComptoirDeLEcureuilFront/Main/left.html.twig' %}
+
         <!-- content center column -->
         <div class="main-content col-lg-9">
             <div class="row">
                 <div class="col-md-6">
                     <a href="#" class="thumbnail hvr-sweep-to-bottom">
-                        <img src="images/category-1.jpg" alt="Littérature" title="Littérature">
+                        <img src="img/category-1.jpg" alt="Littérature" title="Littérature">
 
                         <div class="overlay">Littérature</div>
                     </a>
                 </div>
                 <div class="col-md-6">
                     <a href="#" class="thumbnail hvr-sweep-to-bottom">
-                        <img src="images/category-4.jpg" alt="...">
+                        <img src="img/category-4.jpg" alt="...">
 
                         <div class="overlay">Manga / BD</div>
                     </a>
@@ -88,14 +51,14 @@
             <div class="row">
                 <div class="col-md-6">
                     <a href="#" class="thumbnail hvr-sweep-to-bottom">
-                        <img src="images/category-4.jpg" alt="...">
+                        <img src="img/category-4.jpg" alt="...">
 
                         <div class="overlay">Séries</div>
                     </a>
                 </div>
                 <div class="col-md-6">
                     <a href="#" class="thumbnail hvr-sweep-to-bottom">
-                        <img src="images/category-1.jpg" alt="...">
+                        <img src="img/category-1.jpg" alt="...">
 
                         <div class="overlay">Sorties</div>
                     </a>
@@ -110,17 +73,17 @@
             <div class="row">
                 <div class="col-md-6 article">
                     <h2 class="ribbon">Littérature</h2>
-                    <a href=""><img src="images/cover-batard.jpg"/></a>
+                    <a href=""><img src="img/cover-batard.jpg"/></a>
                     <span class="date">vendredi, 1 mai 2015</span>
                     <h3><a href="#">Le bâtard de Kosigan</a></h3>
                     <a href="#"><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
-                        laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto
-                        beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut
-                        odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem</p></a>
+                            laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto
+                            beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut
+                            odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem</p></a>
                 </div>
                 <div class="col-md-6 article">
                     <h2 class="ribbon">Manga/Bd</h2>
-                    <img src="images/cover-or.jpg"/>
+                    <img src="img/cover-or.jpg"/>
                     <span class="date">vendredi, 1 mai 2015</span>
                     <h3>Or & Nuit</h3>
                     <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
@@ -133,7 +96,7 @@
             <div class="row">
                 <div class="col-md-6 article">
                     <h2 class="ribbon">Séries</h2>
-                    <img src="images/cover-or.jpg"/>
+                    <img src="img/cover-or.jpg"/>
                     <span class="date">vendredi, 1 mai 2015</span>
                     <h3>Or & Nuit</h3>
                     <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
@@ -143,7 +106,7 @@
                 </div>
                 <div class="col-md-6 article">
                     <h2 class="ribbon">Sorties</h2>
-                    <img src="images/cover-batard.jpg"/>
+                    <img src="img/cover-batard.jpg"/>
                     <span class="date">vendredi, 1 mai 2015</span>
                     <h3>Le bâtard de Kosigan</h3>
                     <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
@@ -155,7 +118,7 @@
 
             <div class="row">
                 <div class="col-md-6 article">
-                    <img src="images/cover-batard.jpg"/>
+                    <img src="img/cover-batard.jpg"/>
                     <span class="date">vendredi, 1 mai 2015</span>
                     <h3>Le bâtard de Kosigan</h3>
                     <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
@@ -164,7 +127,7 @@
                         odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem </p>
                 </div>
                 <div class="col-md-6 article">
-                    <img src="images/cover-or.jpg"/>
+                    <img src="img/cover-or.jpg"/>
                     <span class="date">vendredi, 1 mai 2015</span>
                     <h3>Or & Nuit</h3>
                     <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
@@ -188,3 +151,5 @@
 </div>
 </body>
 </html>
+
+

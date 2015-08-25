@@ -1,0 +1,64 @@
+article {
+  .header {
+    h2 {
+      border-left: 6px solid #497CA7;
+      font: 300 22px/22px Ubuntu, sans-serif;
+      margin-left: 42px;
+      padding-left: 16px;
+      padding-top: 40px;
+      position: relative;
+
+      a {
+        color: #0B0E18;
+      }
+    }
+    .header-image {
+      display: inline-block;
+      margin-top: 16px;
+
+      img {
+        height: 344px;
+        width: 774px;
+      }
+    }
+    .header-date {
+      position: absolute;
+      color: #337AB7;
+      top: 24px;
+      font-size: 11px;
+      text-transform: uppercase;
+    }
+  }
+  .content {
+    padding: 0 20px 0 20px;
+  }
+}
+
+.ribbon {
+  background: $background-color none repeat scroll 0 0;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
+  clear: both;
+  color: #fff;
+  font-size: 12px;
+  height: 22px;
+  margin-bottom: -18px;
+  margin-left: -9px;
+  padding: 3px 5px 5px;
+  position: relative;
+  //text-shadow: 0 -1px $background-color, 0 1px $main-color;
+  width: 146px;
+
+}
+
+.ribbon:before {
+  content: " ";
+  @include background(image_url("ribbon-blue.png"));
+  display: block;
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin-bottom: -10px;
+
+}

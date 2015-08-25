@@ -7,8 +7,27 @@
     {% endstylesheets %}
 {% endblock %}
 
+{% block container %}
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-10">
+                {% block left %}{% endblock %}
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-10">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
 {% block topMenu %}
-    <div class="navbar-fixed-left" role="navigation">
+    <div class="navbar navbar-fixed-left" role="navigation">
         <a class="navigation-title" href="{{ path('bluebear.cms.homepage') }}">Le comptoir des noisettes</a>
         <ul class="navigation-menu nav nav-pills nav-stacked">
             <li class="{{ getClassForRoute('bluebear.cms.category.list') }}">
@@ -20,16 +39,8 @@
             <li class="{{ getClassForRoute('bluebear.cms.user.list') }}">
                 <a href="{{ path('bluebear.cms.user.list') }}">{{ 'bluebear.cms.users' | trans }}</a>
             </li>
-            <li class="{{ getClassForRoute('bluebear.cms.parameters') }}">
-                {{ 'bluebear.cms.parameters' | trans }}
-                <ul>
-                    <li>
-                        <a href="{{ path('bluebear.cms.parameters.list') }}">{{ 'bluebear.cms.parameters.list' | trans }}</a>
-                    </li>
-                    <li>
-                        {#<a href="{{ path('bluebear.cms.front_parameters') }}">{{ 'bluebear.cms.front_parameters' | trans }}</a>#}
-                    </li>
-                </ul>
+            <li class="{{ getClassForRoute('bluebear.cms.parameters.list') }}">
+                <a href="{{ path('bluebear.cms.parameters.list') }}">{{ 'bluebear.cms.parameters' | trans }}</a>
             </li>
             <li class="{{ getClassForRoute('fos_user_security_logout') }}">
                 <a href="{{ path('fos_user_security_logout') }}">Logout ({{ app.user.username }})</a>
