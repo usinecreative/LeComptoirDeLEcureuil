@@ -1,6 +1,6 @@
 <?php
 
-namespace BlueBear\CmsBundle\Form;
+namespace BlueBear\CmsBundle\Form\Type;
 
 
 use BlueBear\CmsBundle\Entity\Content;

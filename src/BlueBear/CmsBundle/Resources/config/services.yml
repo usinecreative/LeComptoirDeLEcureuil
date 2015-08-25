@@ -4,7 +4,7 @@ parameters:
     # Subscribers
     bluebear.cms.kernel_subscriber.class: BlueBear\CmsBundle\Event\Subscriber\KernelSubscriber
     # Form Type
-    bluebear.cms.content_type.class: BlueBear\CmsBundle\Form\ContentType
+    bluebear.cms.content_type.class: BlueBear\CmsBundle\Form\Type\ContentType
     bluebear.cms.category_type.class: BlueBear\CmsBundle\Form\CategoryType
     bluebear.cms.parameters_type.class: BlueBear\CmsBundle\Form\Type\ParametersType
     bluebear.cms.article_type.class: BlueBear\CmsBundle\Form\Type\ArticleType

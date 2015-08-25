@@ -16,7 +16,11 @@ class ArticleType extends AbstractType
             ->add('canonical', 'text', [
                 'read_only' => true
             ])
-            ->add('content', 'textarea')
+            ->add('content', 'ckeditor', [
+                'config' => [
+                    'height' => '800px'
+                ]
+            ])
             ->add('publicationStatus', 'choice', [
                 'choices' => [
                     Article::PUBLICATION_STATUS_DRAFT => 'bluebear.cms.publication.draft',

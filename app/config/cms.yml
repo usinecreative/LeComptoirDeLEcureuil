@@ -52,7 +52,7 @@ blue_bear_admin:
             form: article
             actions:
                 list:
-                    fields: {id: ~, title: {length: 20}, category: ~}
+                    fields: {id: ~, title: {length: 20}, category: ~, canonical: ~, publicationStatus: ~, publicationDate: ~}
                 create: ~
                 edit: ~
                 delete: ~

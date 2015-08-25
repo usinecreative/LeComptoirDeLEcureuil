@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a096567deaf703540bbe6c118a47f321",
+    "hash": "b1872e82cda216b33439a9bd772d4aa9",
     "packages": [
         {
             "name": "bluebear/adminbundle",
@@ -12,12 +12,12 @@
             "target-dir": "BlueBear/AdminBundle",
             "source": {
                 "type": "git",
-                "url": "https://github.com/BlueBearGaming/AdminBundle.git",
+                "url": "https://github.com/larriereguichet/AdminBundle.git",
                 "reference": "99808a4c645334dc111d47581b7843c442ea56a9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/BlueBearGaming/AdminBundle/zipball/99808a4c645334dc111d47581b7843c442ea56a9",
+                "url": "https://api.github.com/repos/larriereguichet/AdminBundle/zipball/99808a4c645334dc111d47581b7843c442ea56a9",
                 "reference": "99808a4c645334dc111d47581b7843c442ea56a9",
                 "shasum": ""
             },
@@ -698,7 +698,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/DoctrineFixturesBundle/zipball/c5ff0542772102ddd4e2fbe173e9ad40ad67c22f",
+                "url": "https://api.github.com/repos/doctrine/DoctrineFixturesBundle/zipball/817c2d233fde0fe85cb7e4d25d43fbfcd028aef8",
                 "reference": "c5ff0542772102ddd4e2fbe173e9ad40ad67c22f",
                 "shasum": ""
             },
@@ -1052,16 +1052,16 @@
         },
         {
             "name": "egeloen/ckeditor-bundle",
-            "version": "dev-master",
+            "version": "3.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/egeloen/IvoryCKEditorBundle.git",
-                "reference": "b9fefa5eaf1fec1f7b849cb7d40ea32535815a83"
+                "reference": "763a41aaa24bddfcf0aa0764871396513f229ad1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/egeloen/IvoryCKEditorBundle/zipball/b9fefa5eaf1fec1f7b849cb7d40ea32535815a83",
-                "reference": "b9fefa5eaf1fec1f7b849cb7d40ea32535815a83",
+                "url": "https://api.github.com/repos/egeloen/IvoryCKEditorBundle/zipball/763a41aaa24bddfcf0aa0764871396513f229ad1",
+                "reference": "763a41aaa24bddfcf0aa0764871396513f229ad1",
                 "shasum": ""
             },
             "require": {
@@ -1105,7 +1105,7 @@
             "keywords": [
                 "CKEditor"
             ],
-            "time": "2015-03-27 08:02:33"
+            "time": "2015-03-08 15:58:14"
         },
         {
             "name": "egeloen/json-builder",
@@ -2380,8 +2380,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "doctrine/doctrine-fixtures-bundle": 20,
-        "egeloen/ckeditor-bundle": 20
+        "doctrine/doctrine-fixtures-bundle": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
