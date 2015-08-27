@@ -156,7 +156,7 @@ article .content {
 @media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/Projets\/LeComptoir\/integration\/scss\/pages\/_articles\.scss}line{font-family:\0000353}}
 .ribbon:before {
   content: " ";
-  background: url('../images/ribbon-blue.png');
+  background: url('../images/ribbon-blue.png?1440672474');
   display: block;
   width: 10px;
   height: 10px;
