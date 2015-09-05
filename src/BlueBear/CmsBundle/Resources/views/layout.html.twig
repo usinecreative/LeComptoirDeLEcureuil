@@ -8,18 +8,31 @@
 {% endblock %}
 
 {% block container %}
+    {% if admin is defined %}
+        <nav class="navbar navbar-default navbar-static-top">
+            <div class="container-fluid">
+                <ul class="nav navbar-nav">
+                    {% if admin.hasAction('list') %}
+                        <li class="{{ getClassForRoute(admin.action('list').route) }}">
+                            <a href="{{ path(admin.action('list').route) }}">
+                                <i class="fa fa-list"></i> {{ admin.action('list').title }}</a>
+                        </li>
+                    {% endif %}
+                    {% if admin.hasAction('create') %}
+                        <li class="{{ getClassForRoute(admin.action('create').route) }}">
+                            <a href="{{ path(admin.action('create').route) }}">
+                                <i class="fa fa-plus"></i> {{ admin.action('create').title }}
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+    {% endif %}
     <div class="container-fluid">
+
         <div class="row-fluid">
-            <div class="col-md-2">
-            </div>
-            <div class="col-md-10">
-                {% block left %}{% endblock %}
-            </div>
-        </div>
-        <div class="row-fluid">
-            <div class="col-md-2">
-            </div>
-            <div class="col-md-10">
+            <div class="col-md-12 content">
                 {% block content %}{% endblock %}
             </div>
         </div>
@@ -28,22 +41,32 @@
 
 {% block topMenu %}
     <div class="navbar navbar-fixed-left" role="navigation">
-        <a class="navigation-title" href="{{ path('bluebear.cms.homepage') }}">Le comptoir des noisettes</a>
+        <a class="navigation-title" href="{{ path('bluebear.cms.homepage') }}">
+            <i class="fa fa-industry"></i> Le comptoir des noisettes</a>
         <ul class="navigation-menu nav nav-pills nav-stacked">
             <li class="{{ getClassForRoute('bluebear.cms.category.list') }}">
-                <a href="{{ path('bluebear.cms.category.list') }}">{{ 'bluebear.cms.category' | trans }}</a>
+                <a href="{{ path('bluebear.cms.category.list') }}">
+                    <i class="fa fa-folder-open"></i> {{ 'bluebear.cms.category' | trans }}</a>
             </li>
             <li class="{{ getClassForRoute('bluebear.cms.article.list') }}">
-                <a href="{{ path('bluebear.cms.article.list') }}">{{ 'bluebear.cms.article' | trans }}</a>
+                <a href="{{ path('bluebear.cms.article.list') }}">
+                    <i class="fa fa-newspaper-o"></i> {{ 'bluebear.cms.article' | trans }}</a>
+            </li>
+            <li class="{{ getClassForRoute('bluebear.cms.comment.list') }}">
+                <a href="{{ path('bluebear.cms.comment.list') }}">
+                    <i class="fa fa-comment"></i> {{ 'bluebear.cms.comment' | trans }}</a>
             </li>
             <li class="{{ getClassForRoute('bluebear.cms.user.list') }}">
-                <a href="{{ path('bluebear.cms.user.list') }}">{{ 'bluebear.cms.users' | trans }}</a>
+                <a href="{{ path('bluebear.cms.user.list') }}">
+                    <i class="fa fa-male"></i> {{ 'bluebear.cms.users' | trans }}</a>
             </li>
             <li class="{{ getClassForRoute('bluebear.cms.parameters.list') }}">
-                <a href="{{ path('bluebear.cms.parameters.list') }}">{{ 'bluebear.cms.parameters' | trans }}</a>
+                <a href="{{ path('bluebear.cms.parameters.list') }}">
+                    <i class="fa fa-cogs"></i> {{ 'bluebear.cms.parameters' | trans }}</a>
             </li>
             <li class="{{ getClassForRoute('fos_user_security_logout') }}">
-                <a href="{{ path('fos_user_security_logout') }}">Logout ({{ app.user.username }})</a>
+                <a href="{{ path('fos_user_security_logout') }}">
+                    <i class="fa fa-sign-out"></i> Logout ({{ app.user.username }})</a>
             </li>
         </ul>
     </div>

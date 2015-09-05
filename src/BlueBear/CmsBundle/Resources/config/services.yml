@@ -5,9 +5,10 @@ parameters:
     bluebear.cms.kernel_subscriber.class: BlueBear\CmsBundle\Event\Subscriber\KernelSubscriber
     # Form Type
     bluebear.cms.content_type.class: BlueBear\CmsBundle\Form\Type\ContentType
-    bluebear.cms.category_type.class: BlueBear\CmsBundle\Form\CategoryType
+    bluebear.cms.category_type.class: BlueBear\CmsBundle\Form\Type\CategoryType
     bluebear.cms.parameters_type.class: BlueBear\CmsBundle\Form\Type\ParametersType
     bluebear.cms.article_type.class: BlueBear\CmsBundle\Form\Type\ArticleType
+    bluebear.cms.comment_type.class: BlueBear\CmsBundle\Form\Type\CommentType
     # Managers
     bluebear.cms.manager.content.class: BlueBear\CmsBundle\Manager\ContentManager
 services:
@@ -44,6 +45,11 @@ services:
         class: %bluebear.cms.article_type.class%
         tags:
             - {name: form.type, alias: article}
+
+    bluebear.cms.comment_type:
+        class: %bluebear.cms.comment_type.class%
+        tags:
+            - {name: form.type, alias: comment}
 
     # Managers
     bluebear.cms.manager.content:

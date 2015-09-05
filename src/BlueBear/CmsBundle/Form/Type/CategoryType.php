@@ -1,6 +1,6 @@
 <?php
 
-namespace BlueBear\CmsBundle\Form;
+namespace BlueBear\CmsBundle\Form\Type;
 
 use BlueBear\CmsBundle\Entity\Content;
 use BlueBear\CmsBundle\Factory\ContentTypeFactory;
@@ -15,7 +15,11 @@ class CategoryType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name');
+            ->add('name')
+            ->add('updatedAt', 'datetime', [
+                'widget' => 'single_text',
+                'read_only' => true
+            ]);
     }
 
     public function getName()

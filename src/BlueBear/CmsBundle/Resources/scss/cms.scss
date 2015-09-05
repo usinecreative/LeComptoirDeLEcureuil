@@ -2,13 +2,55 @@
 
 body {
   background-color: #eeeeee;
+
+  & > .container-fluid {
+    margin-left: 173px;
+  }
 }
 
-body > .container {
-  margin-bottom: 100px;
-}
 
 // fix AdminBundle styles
 table th a {
   color: inherit;
 }
+.navbar-static-top {
+  margin-left: 200px;
+}
+
+// left fixed menu
+.navbar-fixed-left {
+  background-color: rgba(0, 0, 0, 0.86);
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 200px;
+
+  .navigation-title {
+    padding: 10px;
+    display: inline-block;
+    text-transform: capitalize;
+    text-align: center;
+  }
+
+  ul.navigation-menu.nav-pills {
+    padding-left: 0;
+    margin-top: 25px;
+
+    li {
+      display: block;
+      //padding: 20px;
+      margin-top: 0;
+
+      a {
+        padding: 8px 14px;
+
+        i {
+          margin-right: 10px;
+          width: 11px;
+        }
+      }
+    }
+  }
+}
+

@@ -18,7 +18,7 @@ blue_bear_cms:
                   commentable: ~
 
 
-blue_bear_admin:
+bluebear_admin:
     application:
         title: Le Comptoir De L'Ecureuil, derrière les noisettes
         description: Des noisettes et des livres
@@ -27,6 +27,7 @@ blue_bear_admin:
         routing:
             name_pattern: bluebear.cms.{admin}.{action}
             url_pattern:  /{admin}/{action}
+        date_format: d/m/Y h:i:s
     admins:
         user:
             entity: BlueBear\CmsUserBundle\Entity\User
@@ -43,7 +44,9 @@ blue_bear_admin:
             form: category
             actions:
                 list:
-                    fields: {id: ~, name: ~}
+                    fields: {id: ~, name: ~, updatedAt: {format: Y m d}}
+                    order:
+                        - {field: updatedAt, order: asc}
                 create: ~
                 edit: ~
                 delete: ~
@@ -52,10 +55,19 @@ blue_bear_admin:
             form: article
             actions:
                 list:
-                    fields: {id: ~, title: {length: 20}, category: ~, canonical: ~, publicationStatus: ~, publicationDate: ~}
+                    fields: {id: ~, title: {length: 20}, category: ~, canonical: ~, publicationStatus: ~, publicationDate: {format: d/m/Y}}
                 create: ~
                 edit: ~
                 delete: ~
+        comment:
+             entity: BlueBear\CmsBundle\Entity\Comment
+             form: comment
+             actions:
+                 list:
+                     fields: {id: ~, content: {length: 20}, article: ~}
+                 create: ~
+                 edit: ~
+                 delete: ~
         parameters:
             entity: BlueBear\CmsBundle\Entity\Parameters
             form: parameters
