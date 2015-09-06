@@ -4,6 +4,8 @@ bluebear:
             draft: Brouillon
             validation: Validé
             published: Publié
+        article:
+            preview: Prévisualisation
 
 bluebear.cms.name: Nom
 bluebear.cms.list: Liste

@@ -57,7 +57,14 @@ bluebear_admin:
                 list:
                     fields: {id: ~, title: {length: 20}, category: ~, canonical: ~, publicationStatus: ~, publicationDate: {format: d/m/Y}}
                 create: ~
-                edit: ~
+                edit:
+                    actions:
+                        preview:
+                            title: bluebear.cms.article.preview
+                            route: bluebear.cms.article.preview
+                            parameters: {id: ~}
+                            target: _blank
+                            icon: eye
                 delete: ~
         comment:
              entity: BlueBear\CmsBundle\Entity\Comment

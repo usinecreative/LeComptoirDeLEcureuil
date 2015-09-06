@@ -1,20 +1,7 @@
-# Contents
-bluebear.cms.content.list:
-    path: /content/list/{type}
-    defaults: {_controller: BlueBearCmsBundle:Content:list}
-
-bluebear.cms.content.add:
-    path: /content/add/{type}
-    defaults: {_controller: BlueBearCmsBundle:Content:edit}
-
-bluebear.cms.content.edit:
-    path: /content/edit/{type}/{id}
-    defaults: {_controller: BlueBearCmsBundle:Content:edit}
-
-bluebear.cms.content.delete:
-    path: /content/delete/{type}/{id}
-    defaults: {_controller: BlueBearCmsBundle:Content:delete}
-
 bluebear.cms.homepage:
     path: /
     defaults: {_controller: BlueBearCmsBundle:Cms:homepage}
+
+bluebear.cms.article.preview:
+    path: /article/preview
+    defaults: {_controller: BlueBearCmsBundle:Article:preview}

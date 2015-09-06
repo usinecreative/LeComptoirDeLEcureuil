@@ -12,25 +12,12 @@
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container-fluid">
                 <ul class="nav navbar-nav">
-                    {% if admin.hasAction('list') %}
-                        <li class="{{ getClassForRoute(admin.action('list').route) }}">
-                            <a href="{{ path(admin.action('list').route) }}">
-                                <i class="fa fa-list"></i> {{ admin.action('list').title }}</a>
-                        </li>
-                    {% endif %}
-                    {% if admin.hasAction('create') %}
-                        <li class="{{ getClassForRoute(admin.action('create').route) }}">
-                            <a href="{{ path(admin.action('create').route) }}">
-                                <i class="fa fa-plus"></i> {{ admin.action('create').title }}
-                            </a>
-                        </li>
-                    {% endif %}
+                    {% block leftList %}{% endblock %}
                 </ul>
             </div>
         </nav>
     {% endif %}
     <div class="container-fluid">
-
         <div class="row-fluid">
             <div class="col-md-12 content">
                 {% block content %}{% endblock %}
