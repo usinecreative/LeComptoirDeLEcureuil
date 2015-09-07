@@ -56,6 +56,11 @@ bluebear_admin:
             actions:
                 list:
                     fields: {id: ~, title: {length: 20}, category: ~, canonical: ~, publicationStatus: ~, publicationDate: {format: d/m/Y}}
+                    actions:
+                        create:
+                            title: bluebear.admin.create
+                            route: bluebear.cms.article.create
+                            icon: plus
                 create: ~
                 edit:
                     actions:
