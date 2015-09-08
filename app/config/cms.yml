@@ -44,7 +44,7 @@ bluebear_admin:
             form: category
             actions:
                 list:
-                    fields: {id: ~, name: ~, updatedAt: {format: Y m d}}
+                    fields: {id: ~, name: ~, updatedAt: {type: date, options: {format: Y m d}}}
                     order:
                         - {field: updatedAt, order: asc}
                 create: ~
@@ -55,7 +55,19 @@ bluebear_admin:
             form: article
             actions:
                 list:
-                    fields: {id: ~, title: {length: 20}, category: ~, canonical: ~, publicationStatus: ~, publicationDate: {format: d/m/Y}}
+                    fields:
+                        id: ~
+                        title: {type: link, options: {length: 20, route: bluebear.cms.article.edit, parameters: {id: ~}}}
+                        category: ~
+                        author: ~
+                        canonical: ~
+                        publicationStatus: {type: date, options: {format: d/m/Y}}
+                        publicationDate: {type: date, options: {format: d/m/Y}}
+                    field_actions:
+                        edit:
+                            title: bluebear.admin.create
+                            route: bluebear.cms.article.create
+                            icon: pencil
                     actions:
                         create:
                             title: bluebear.admin.create
@@ -76,7 +88,7 @@ bluebear_admin:
              form: comment
              actions:
                  list:
-                     fields: {id: ~, content: {length: 20}, article: ~}
+                     fields: {id: ~, content: {type: string, options: {length: 20}}, article: ~}
                  create: ~
                  edit: ~
                  delete: ~
@@ -85,7 +97,7 @@ bluebear_admin:
             form: parameters
             actions:
                 list:
-                    fields: {id: ~, title: {length: 100}, value: {length: 100}}
+                    fields: {id: ~, title: {type: string, options: {length: 100}}, value: {type: string, options: {length: 100}}}
                 create: ~
                 edit: ~
                 delete: ~
