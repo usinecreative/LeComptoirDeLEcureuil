@@ -57,7 +57,7 @@ bluebear_admin:
                 list:
                     fields:
                         id: ~
-                        title: {type: link, options: {length: 20, route: bluebear.cms.article.edit, parameters: {id: ~}}}
+                        title: {type: link, options: {length: 100, route: bluebear.cms.article.edit, parameters: {id: ~}}}
                         category: ~
                         author: ~
                         canonical: ~
