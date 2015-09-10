@@ -65,8 +65,9 @@ bluebear_admin:
                         publicationDate: {type: date, options: {format: d/m/Y}}
                     field_actions:
                         edit:
-                            title: bluebear.admin.create
-                            route: bluebear.cms.article.create
+                            title: bluebear.admin.edit
+                            route: bluebear.cms.article.edit
+                            parameters: {id: ~}
                             icon: pencil
                     actions:
                         create:
