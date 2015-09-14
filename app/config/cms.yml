@@ -27,7 +27,7 @@ bluebear_admin:
         routing:
             name_pattern: bluebear.cms.{admin}.{action}
             url_pattern:  /{admin}/{action}
-        date_format: d/m/Y h:i:s
+        date_format: dd/MM/Y HH:mm
     admins:
         user:
             entity: BlueBear\CmsUserBundle\Entity\User
@@ -60,15 +60,21 @@ bluebear_admin:
                         title: {type: link, options: {length: 100, route: bluebear.cms.article.edit, parameters: {id: ~}}}
                         category: ~
                         author: ~
-                        canonical: ~
+                        canonical: {type: link, options: {target: _blank}}
                         publicationStatus: {type: date, options: {format: d/m/Y}}
                         publicationDate: {type: date, options: {format: d/m/Y}}
+                        updatedAt: {type: date, options: {format: d/m/Y h:i:s}}
                     field_actions:
                         edit:
                             title: bluebear.admin.edit
                             route: bluebear.cms.article.edit
                             parameters: {id: ~}
                             icon: pencil
+                        delete:
+                            title: bluebear.admin.delete
+                            route: bluebear.cms.article.delete
+                            parameters: {id: ~}
+                            icon: remove
                     actions:
                         create:
                             title: bluebear.admin.create

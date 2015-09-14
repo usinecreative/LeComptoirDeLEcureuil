@@ -5,6 +5,7 @@ namespace BlueBear\CmsBundle\Form\Type;
 use BlueBear\CmsBundle\Entity\Article;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class ArticleType extends AbstractType
 {
@@ -28,7 +29,7 @@ class ArticleType extends AbstractType
                     Article::PUBLICATION_STATUS_PUBLISHED => 'bluebear.cms.publication.published',
                 ]
             ])
-            ->add('publicationDate', 'datetime')
+            ->add('publicationDate', 'datetime_picker')
             ->add('author', null, [
                 'required' => true
             ])
@@ -36,12 +37,14 @@ class ArticleType extends AbstractType
             ->add('createdAt', 'date', [
                 'read_only' => true,
                 'disabled' => true,
-                'widget' => 'single_text'
+                'widget' => 'single_text',
+                'format' => 'dd/MM/yyyy'
             ])
             ->add('updatedAt', 'date', [
                 'read_only' => true,
                 'disabled' => true,
-                'widget' => 'single_text'
+                'widget' => 'single_text',
+                'format' => 'dd/MM/yyyy'
             ]);
     }
 
