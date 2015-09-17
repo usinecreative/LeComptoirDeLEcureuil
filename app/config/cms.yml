@@ -80,6 +80,8 @@ bluebear_admin:
                             title: bluebear.admin.create
                             route: bluebear.cms.article.create
                             icon: plus
+                    filters:
+
                 create: ~
                 edit:
                     actions:
