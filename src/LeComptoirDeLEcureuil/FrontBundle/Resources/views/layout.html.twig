@@ -35,14 +35,14 @@
             <div class="row">
                 <div class="col-md-6">
                     <a href="#" class="thumbnail hvr-sweep-to-bottom">
-                        <img src="img/category-1.jpg" alt="Littérature" title="Littérature">
+                        <img src="/img/category-1.jpg" alt="Littérature" title="Littérature">
 
                         <div class="overlay">Littérature</div>
                     </a>
                 </div>
                 <div class="col-md-6">
                     <a href="#" class="thumbnail hvr-sweep-to-bottom">
-                        <img src="img/category-4.jpg" alt="...">
+                        <img src="/img/category-4.jpg" alt="...">
 
                         <div class="overlay">Manga / BD</div>
                     </a>
@@ -51,14 +51,14 @@
             <div class="row">
                 <div class="col-md-6">
                     <a href="#" class="thumbnail hvr-sweep-to-bottom">
-                        <img src="img/category-4.jpg" alt="...">
+                        <img src="/img/category-4.jpg" alt="...">
 
                         <div class="overlay">Séries</div>
                     </a>
                 </div>
                 <div class="col-md-6">
                     <a href="#" class="thumbnail hvr-sweep-to-bottom">
-                        <img src="img/category-1.jpg" alt="...">
+                        <img src="/img/category-1.jpg" alt="...">
 
                         <div class="overlay">Sorties</div>
                     </a>
@@ -66,78 +66,8 @@
             </div>
         </div>
     </div>
-    <div class="row margin-row">
-        <div class="col-lg-12 latest-article">
-            <h2>Dernières parutions</h2>
+    {% block latestArticles %}{% endblock %}
 
-            <div class="row">
-                <div class="col-md-6 article">
-                    <h2 class="ribbon">Littérature</h2>
-                    <a href=""><img src="img/cover-batard.jpg"/></a>
-                    <span class="date">vendredi, 1 mai 2015</span>
-                    <h3><a href="#">Le bâtard de Kosigan</a></h3>
-                    <a href="#"><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
-                            laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto
-                            beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut
-                            odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem</p></a>
-                </div>
-                <div class="col-md-6 article">
-                    <h2 class="ribbon">Manga/Bd</h2>
-                    <img src="img/cover-or.jpg"/>
-                    <span class="date">vendredi, 1 mai 2015</span>
-                    <h3>Or & Nuit</h3>
-                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
-                        laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto
-                        beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut
-                        odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem </p>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-6 article">
-                    <h2 class="ribbon">Séries</h2>
-                    <img src="img/cover-or.jpg"/>
-                    <span class="date">vendredi, 1 mai 2015</span>
-                    <h3>Or & Nuit</h3>
-                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
-                        laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto
-                        beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut
-                        odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem </p>
-                </div>
-                <div class="col-md-6 article">
-                    <h2 class="ribbon">Sorties</h2>
-                    <img src="img/cover-batard.jpg"/>
-                    <span class="date">vendredi, 1 mai 2015</span>
-                    <h3>Le bâtard de Kosigan</h3>
-                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
-                        laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto
-                        beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut
-                        odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem </p>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-6 article">
-                    <img src="img/cover-batard.jpg"/>
-                    <span class="date">vendredi, 1 mai 2015</span>
-                    <h3>Le bâtard de Kosigan</h3>
-                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
-                        laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto
-                        beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut
-                        odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem </p>
-                </div>
-                <div class="col-md-6 article">
-                    <img src="img/cover-or.jpg"/>
-                    <span class="date">vendredi, 1 mai 2015</span>
-                    <h3>Or & Nuit</h3>
-                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
-                        laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto
-                        beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut
-                        odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem </p>
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="row margin-row">
         <footer>
             <p>Site sous le copyright des noisettes - Le Comptoir De L'Ecureuil 2015<br/></p>

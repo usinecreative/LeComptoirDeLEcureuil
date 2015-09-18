@@ -13,6 +13,13 @@ class MainController extends Controller
      */
     public function indexAction()
     {
-        return [];
+        $latestArticles = $this
+            ->getDoctrine()
+            ->getRepository('BlueBearCmsBundle:Article')
+            ->findLatest();
+
+        return [
+            'latestArticles' => $latestArticles
+        ];
     }
 }

@@ -51,6 +51,10 @@
                 <a href="{{ path('bluebear.cms.parameters.list') }}">
                     <i class="fa fa-cogs"></i> {{ 'bluebear.cms.parameters' | trans }}</a>
             </li>
+            <li class="{{ getClassForRoute('bluebear.cms.import.list') }}">
+                <a href="{{ path('bluebear.cms.import.list') }}">
+                    <i class="fa fa-cogs"></i> {{ 'bluebear.cms.import' | trans }}</a>
+            </li>
             <li class="{{ getClassForRoute('fos_user_security_logout') }}">
                 <a href="{{ path('fos_user_security_logout') }}">
                     <i class="fa fa-sign-out"></i> Logout ({{ app.user.username }})</a>

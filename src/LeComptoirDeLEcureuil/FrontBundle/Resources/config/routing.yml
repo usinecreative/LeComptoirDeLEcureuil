@@ -1,3 +1,6 @@
 ecureuil.homepage:
     path:     /
     defaults: { _controller: LeComptoirDeLEcureuilFrontBundle:Main:index }
+
+lecomptoir.article.show:
+    path:  /article/{year}/{month]/{slug}

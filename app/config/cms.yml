@@ -110,6 +110,16 @@ bluebear_admin:
                 create: ~
                 edit: ~
                 delete: ~
+        import:
+            entity: BlueBear\CmsBundle\Entity\Import
+            form: import
+            actions:
+                list:
+                    fields: {id: ~, title: {type: string, options: {length: 100}}, value: {type: string, options: {length: 100}}}
+                create: ~
+                edit: ~
+                delete: ~
+
 #        media:
 #            entity: BlueBear\MediaBundle\Entity\Media
 #            form: media
