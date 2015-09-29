@@ -33,7 +33,9 @@ class ArticleType extends AbstractType
             ->add('author', null, [
                 'required' => true
             ])
-            ->add('isCommentable', 'checkbox')
+            ->add('isCommentable', 'checkbox', [
+                'required' => false
+            ])
             ->add('createdAt', 'date', [
                 'read_only' => true,
                 'disabled' => true,
