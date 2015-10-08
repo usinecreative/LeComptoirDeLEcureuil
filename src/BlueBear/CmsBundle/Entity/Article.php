@@ -8,6 +8,7 @@ use BlueBear\CmsUserBundle\Entity\User;
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Category
@@ -89,6 +90,12 @@ class Article
      * @ORM\Column(name="is_commentable", type="boolean")
      */
     protected $isCommentable;
+
+    /**
+     * @Gedmo\Slug(fields={"title"})
+     * @ORM\Column(name="slug", type="string", length=255)
+     */
+    protected $slug;
 
     public function __construct()
     {
@@ -252,5 +259,21 @@ class Article
     public function addComment(Comment $comment)
     {
         $this->comments->add($comment);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param mixed $slug
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
     }
 }

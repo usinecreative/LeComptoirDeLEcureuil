@@ -2,7 +2,7 @@
 
 {% block stylesheets %}
     {% stylesheets '@BlueBearCmsBundle/Resources/scss/cms.scss'
-    filter='compass, ?cssrewrite, ?yui_css' output="css/cms.css" %}
+    filter='compass, ?cssrewrite, ?cssmin' output="css/cms.css" %}
     <link rel="stylesheet" href="{{ asset_url }}"/>
     {% endstylesheets %}
 {% endblock %}

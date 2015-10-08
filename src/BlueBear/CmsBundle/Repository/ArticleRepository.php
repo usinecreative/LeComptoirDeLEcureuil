@@ -22,4 +22,19 @@ class ArticleRepository extends EntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function findByCategory($categorySlug, $count = 6)
+    {
+        return $this
+            ->createQueryBuilder('article')
+            ->orderBy('article.id', 'asc')
+            ->innerJoin('article.category', 'category')
+            ->where('article.publicationStatus = :published')
+            ->andWhere('category.slug = :slug')
+            ->setParameter('published', Article::PUBLICATION_STATUS_PUBLISHED)
+            ->setParameter('slug', $categorySlug)
+            ->setMaxResults($count)
+            ->getQuery()
+            ->getResult();
+    }
 }

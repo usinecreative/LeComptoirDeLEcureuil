@@ -1,8 +1,11 @@
+.keepme
+
 # symfony
 app/config/parameters.yml
 app/bootstrap.php.cache
 app/logs
 bin/*
+components
 cache
 resources
 vendor

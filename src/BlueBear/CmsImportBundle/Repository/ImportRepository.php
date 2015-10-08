@@ -1,6 +1,6 @@
 <?php
 
-namespace BlueBear\CmsBundle\Repository;
+namespace BlueBear\CmsImportBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 

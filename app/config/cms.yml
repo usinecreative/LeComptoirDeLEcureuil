@@ -112,11 +112,17 @@ bluebear_admin:
                 edit: ~
                 delete: ~
         import:
-            entity: BlueBear\CmsBundle\Entity\Import
+            entity: BlueBear\CmsImportBundle\Entity\Import
             form: import
+            controller: BlueBearCmsImportBundle:Import
             actions:
                 list:
                     fields: {id: ~, title: {type: string, options: {length: 100}}, value: {type: string, options: {length: 100}}}
+                    actions:
+                        import:
+                            title: bluebear.cms.import.create
+                            route: bluebear.cms.import.create
+                            icon: plus
                 create: ~
                 edit: ~
                 delete: ~
@@ -129,3 +135,4 @@ bluebear_admin:
 #                list:
 #                    fields: {id: ~, label: ~}
 #                upload: ~
+bluebear_cms_import: ~

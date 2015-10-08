@@ -1,17 +1,54 @@
 <nav class="main-menu navbar navbar-default row">
     <ul class="nav navbar-nav">
-        <li class=""><a href="#"><i class="fa fa-home"></i><span class="sr-only">(current)</span></a></li>
-        <li class=""><a href="#">Littérature <span class="sr-only">(current)</span></a></li>
-        <li class=""><a href="#">BD / Manga <span class="sr-only">(current)</span></a></li>
-        <li class=""><a href="#">Séries <span class="sr-only">(current)</span></a></li>
-        <li class=""><a href="#">Sorties <span class="sr-only">(current)</span></a></li>
-        <li class=""><a href="#">Partenariats <span class="sr-only">(current)</span></a></li>
-        <li class=""><a href="#">Contact <span class="sr-only">(current)</span></a></li>
+        <li>
+            <a href="{{ path('lecomptoir.homepage') }}" title="{{ 'lecomptoir.menu.home' | trans }}">
+                <i class="fa fa-home"></i><span class="sr-only">(current)</span></a>
+        </li>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle hvr-bounce-in" title="{{ 'lecomptoir.menu.articles' | trans }}"
+               data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-newspaper-o"></i>&nbsp;{{ 'lecomptoir.menu.articles' | trans }}
+                <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li>
+                    <a href="{{ path('lecomptoir.article.listByCategory', {categorySlug: 'litterature'}) }}"
+                       title="{{ 'lecomptoir.category.litterature' | trans }}" class="hvr-bounce-in">
+                        <i class="fa fa-home"></i>{{ 'lecomptoir.category.litterature' | trans }}</a>
+                </li>
+                <li>
+                    <a href="{{ path('lecomptoir.article.listByCategory', {categorySlug: 'manga-bd'}) }}"
+                       title="{{ 'lecomptoir.category.manga-bd' | trans }}" class="hvr-bounce-in">
+                        <i class="fa fa-home"></i>{{ 'lecomptoir.category.manga-bd' | trans }}</a>
+                </li>
+                <li>
+                    <a href="{{ path('lecomptoir.article.listByCategory', {categorySlug: 'rencontres'}) }}"
+                       title="{{ 'lecomptoir.category.rencontres' | trans }}" class="hvr-bounce-in">
+                        <i class="fa fa-home"></i>{{ 'lecomptoir.category.rencontres' | trans }}</a>
+                </li>
+                <li>
+                    <a href="{{ path('lecomptoir.article.listByCategory', {categorySlug: 'sorties'}) }}"
+                       title="{{ 'lecomptoir.category.sorties' | trans }}" class="hvr-bounce-in">
+                        <i class="fa fa-home"></i>{{ 'lecomptoir.category.sorties' | trans }}</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="#" title="{{ 'lecomptoir.menu.contact' | trans }}" class="hvr-bounce-in">
+                <i class="fa fa-paper-plane-o"></i>
+                {{ 'lecomptoir.menu.contact' | trans }}<span class="sr-only">(current)</span>
+            </a>
+        </li>
+        <li>
+            <a href="#" title="{{ 'lecomptoir.menu.who-am-i' | trans }}" class="hvr-bounce-in">
+                <i class="fa fa-question-circle"></i>
+                {{ 'lecomptoir.menu.who-am-i' | trans }}<span class="sr-only">(current)</span>
+            </a>
+        </li>
     </ul>
     <form class="navbar-form navbar-right" role="search">
         <div class="form-group">
-            <input type="text" class="form-control" placeholder="Recherche dans le comptoir">
+            <input type="text" class="form-control" placeholder="{{ 'lecomptoir.menu.search' | trans }}">
         </div>
-        <button type="submit" class="btn"><i class="fa fa-search"></i></button>
+        <button type="submit" class="btn hvr-bounce-in"><i class="fa fa-search"></i></button>
     </form>
 </nav>

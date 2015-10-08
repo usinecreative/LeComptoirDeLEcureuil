@@ -1,1 +1,14 @@
 lecomptoir.lastest_articles: Dernières parutions
+
+lecomptoir:
+    menu:
+        home: Accueil
+        articles: Articles
+        who-am-i: Qui-suis-je
+        contact: Contact
+        search: Rechercher dans le comptoir
+    category:
+        litterature: Littérature
+        manga-bd: Manga/BD
+        rencontres: Rencontres
+        sorties: Sorties

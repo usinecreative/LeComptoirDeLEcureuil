@@ -1,0 +1,5 @@
+services:
+    bluebear.cms.import.type:
+        class: BlueBear\CmsImportBundle\Form\Type\ImportType
+        tags:
+            - {name: form.type, alias: import}

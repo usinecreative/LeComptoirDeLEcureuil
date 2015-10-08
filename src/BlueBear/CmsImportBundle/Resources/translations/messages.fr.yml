@@ -1,0 +1,5 @@
+bluebear:
+    cms:
+        import:
+            create: Importer vos données
+            wordpress: Importer depuis WordPress
