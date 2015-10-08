@@ -3,18 +3,22 @@
 namespace BlueBear\CmsImportBundle\Factory;
 
 
+use BlueBear\BaseBundle\Behavior\ContainerTrait;
 use BlueBear\CmsImportBundle\Entity\Import;
 use Exception;
 
 class ImporterFactory
 {
-    public function create(Import $import)
+    use ContainerTrait;
+
+    public function create($importType)
     {
         // TODO make dynamic importer
-        if ($import->getType() == Import::IMPORT_TYPE_WORDPRESS) {
-
+        if ($importType == Import::IMPORT_TYPE_WORDPRESS) {
+            $importer = $this->container->get('bluebear.cms.import.wordpress_importer');
         } else {
-            throw new Exception(sprintf('Invalid import type "%s"', $import->getType()));
+            throw new Exception(sprintf('Invalid import type "%s"', $importType));
         }
+        return $importer;
     }
 }

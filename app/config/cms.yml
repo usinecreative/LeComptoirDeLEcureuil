@@ -117,7 +117,13 @@ bluebear_admin:
             controller: BlueBearCmsImportBundle:Import
             actions:
                 list:
-                    fields: {id: ~, title: {type: string, options: {length: 100}}, value: {type: string, options: {length: 100}}}
+                    fields:
+                        id: ~
+                        label: {type: string, options: {length: 100}}
+                        comments: {type: string, options: {length: 100}}
+                        status: ~
+
+
                     actions:
                         import:
                             title: bluebear.cms.import.create

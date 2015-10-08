@@ -16,10 +16,15 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Table(name="cms_import")
  * @ORM\Entity(repositoryClass="BlueBear\CmsImportBundle\Repository\ImportRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Import
 {
     use Id, Label, Timestampable;
+
+    const IMPORT_STATUS_SUCCESS = 'success';
+    const IMPORT_STATUS_ERROR = 'error';
+    const IMPORT_STATUS_IN_PROGRESS = 'in_progress';
 
     const IMPORT_TYPE_WORDPRESS = 'wordpress';
 
@@ -43,6 +48,16 @@ class Import
      * @ORM\Column(name="file_name", type="string")
      */
     protected $fileName;
+
+    /**
+     * @ORM\Column(name="status", type="string")
+     */
+    protected $status;
+
+    /**
+     * @ORM\Column(name="comments", type="text")
+     */
+    protected $comments;
 
     protected $file;
 
@@ -113,5 +128,37 @@ class Import
     public function setFileName($fileName)
     {
         $this->fileName = $fileName;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param mixed $status
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
+
+    /**
+     * @param mixed $comments
+     */
+    public function setComments($comments)
+    {
+        $this->comments = $comments;
     }
 }

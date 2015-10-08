@@ -6,10 +6,6 @@ blue_bear_cms_user:
     resource: "@BlueBearCmsUserBundle/Resources/config/routing.yml"
     prefix:   /
 
-le_comptoir_de_l_ecureuil_front:
-    resource: "@LeComptoirDeLEcureuilFrontBundle/Resources/config/routing.yml"
-    prefix:   /
-
 # BlueBear AdminBundle
 blue_bear_admin:
     resource: .
@@ -19,6 +15,10 @@ blue_bear_admin:
 blue_bear_cms:
     resource: "@BlueBearCmsBundle/Resources/config/routing.yml"
     prefix:   /cms
+
+le_comptoir_de_l_ecureuil_front:
+    resource: "@LeComptoirDeLEcureuilFrontBundle/Resources/config/routing.yml"
+    prefix:   /
 
 blue_bear_media:
     resource: "@BlueBearMediaBundle/Resources/config/routing.yml"

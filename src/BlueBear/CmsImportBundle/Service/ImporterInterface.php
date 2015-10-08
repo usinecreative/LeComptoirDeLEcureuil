@@ -1,6 +1,6 @@
 <?php
 
-namespace BlueBear\CmsImportBundle\Importer;
+namespace BlueBear\CmsImportBundle\Service;
 
 
 use BlueBear\CmsImportBundle\Entity\Import;

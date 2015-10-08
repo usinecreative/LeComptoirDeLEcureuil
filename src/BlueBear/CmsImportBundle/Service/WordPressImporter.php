@@ -1,22 +1,55 @@
 <?php
 
-namespace BlueBear\CmsImportBundle\Importer;
+namespace BlueBear\CmsImportBundle\Service;
 
-
-use BlueBear\BaseBundle\Behavior\ContainerTrait;
+use BlueBear\CmsBundle\Entity\Article;
+use BlueBear\CmsBundle\Entity\Category;
+use BlueBear\CmsBundle\Entity\Comment;
 use BlueBear\CmsImportBundle\Entity\Import;
+use BlueBear\CmsImportBundle\Exception\ImportException;
+use BlueBear\CmsUserBundle\Entity\User;
+use DateTime;
+use Doctrine\Bundle\DoctrineBundle\Registry;
+use Exception;
+use Psr\Log\LoggerInterface;
+use SimpleXMLElement;
+use Symfony\Bridge\Monolog\Logger;
 use Symfony\Component\Filesystem\Filesystem;
 
 class WordPressImporter implements ImporterInterface
 {
-    use ContainerTrait;
+    protected $logger;
+
+    /**
+     * @var Registry
+     */
+    protected $doctrine;
+
+    public function __construct(LoggerInterface $logger, Registry $doctrine)
+    {
+        $this->logger = $logger;
+        $this->doctrine = $doctrine;
+    }
 
     public function import(Import $import)
     {
         $filePath = $import->getfilePath() . '/' . $import->getFileName();
         $fileSystem = new Filesystem();
 
-        //if ($fileSystem->)
+        if ($fileSystem->exists($filePath)) {
+            $xml = simplexml_load_file($filePath);
+
+            try {
+                $this->importFromXml($xml);
+                $import->setStatus(Import::IMPORT_STATUS_SUCCESS);
+            } catch (Exception $e) {
+                $this->logger->log(Logger::ERROR, 'An error has occured during a import : ' . $e->getMessage() . ' ' . $e->getTraceAsString());
+                $import->setStatus(Import::IMPORT_STATUS_ERROR);
+            }
+            $import->setLabel('Test import');
+            $this->doctrine->getManager()->persist($import);
+            $this->doctrine->getManager()->flush($import);
+        }
     }
 
     protected function importFromXml($xml)
@@ -26,9 +59,6 @@ class WordPressImporter implements ImporterInterface
         $contentNamespace = 'http://purl.org/rss/1.0/modules/content/';
         $wpNamespace = 'http://wordpress.org/export/1.2/';
 
-        $doctrine = $this
-            ->container
-            ->get('doctrine');
         // wordpress needed info are stored in node channel->item
         if ($xml->channel) {
             if ($xml->channel->item) {
@@ -36,7 +66,8 @@ class WordPressImporter implements ImporterInterface
                 foreach ($xml->channel->item as $item) {
                     $userName = (string)$item->children($dcNamespace)->creator;
                     // find an existing user with this name
-                    $author = $doctrine
+                    $author = $this
+                        ->doctrine
                         ->getRepository('BlueBearCmsUserBundle:User')
                         ->findOneBy([
                             'username' => $userName
@@ -54,7 +85,8 @@ class WordPressImporter implements ImporterInterface
 
                     // cehck for an existing category
                     $categoryName = (string)$item->category;
-                    $category = $doctrine
+                    $category = $this
+                        ->doctrine
                         ->getRepository('BlueBearCmsBundle:Category')
                         ->findOneBy([
                             'name' => $categoryName
@@ -76,6 +108,7 @@ class WordPressImporter implements ImporterInterface
                     $article->setIsCommentable($isCommentable);
                     $article->setPublicationStatus($publicationStatus);
                     $article->setCategory($category);
+                    $article->setSlug((string)$item->children($wpNamespace)->post_name[0]);
 
                     if ($article->isCommentable()) {
                         foreach ($item->children($wpNamespace)->comment as $commentItem) {
@@ -95,18 +128,18 @@ class WordPressImporter implements ImporterInterface
                             foreach ($commentItem->children($wpNamespace)->commentmeta as $commentMeta) {
                                 $comment->addMetadata((string)$commentMeta->key, (string)$commentMeta->value);
                             }
-                            $doctrine->getManager()->persist($comment);
+                            $this->doctrine->getManager()->persist($comment);
                             $article->addComment($comment);
                         }
                     }
                     // persisting changes
-                    $doctrine->getManager()->persist($author);
-                    $doctrine->getManager()->persist($category);
-                    $doctrine->getManager()->persist($article);
+                    $this->doctrine->getManager()->persist($author);
+                    $this->doctrine->getManager()->persist($category);
+                    $this->doctrine->getManager()->persist($article);
                     // we need to flush to create new categories in database and then not importing them twice
-                    $doctrine->getManager()->flush();
+                    $this->doctrine->getManager()->flush();
                 }
-                $doctrine->getManager()->flush();
+                $this->doctrine->getManager()->flush();
             }
         }
     }

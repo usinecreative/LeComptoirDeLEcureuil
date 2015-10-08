@@ -1,5 +1,17 @@
 services:
+    # import form type
     bluebear.cms.import.type:
         class: BlueBear\CmsImportBundle\Form\Type\ImportType
         tags:
             - {name: form.type, alias: import}
+
+    # importer
+    bluebear.cms.import.wordpress_importer:
+        class: BlueBear\CmsImportBundle\Service\WordPressImporter
+        arguments: [@logger, @doctrine]
+
+    # factory:
+    bluebear.cms.import.importer_factory:
+        class: BlueBear\CmsImportBundle\Factory\ImporterFactory
+        calls:
+            - [setContainer, [@service_container]]

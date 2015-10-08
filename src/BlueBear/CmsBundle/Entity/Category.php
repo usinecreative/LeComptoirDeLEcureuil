@@ -47,7 +47,7 @@ class Category
 
     /**
      * @Gedmo\Slug(fields={"name"})
-     * @ORM\Column(name="slug", type="string", length=255)
+     * @ORM\Column(name="slug", type="string", length=255, nullable=true)
      */
     protected $slug;
 

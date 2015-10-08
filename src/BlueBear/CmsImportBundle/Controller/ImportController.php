@@ -26,10 +26,13 @@ class ImportController extends GenericController
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            var_dump($form->getData());
-            var_dump($import);
+            $importer = $this
+                ->container
+                ->get('bluebear.cms.import.importer_factory')
+                ->create($import->getType());
+            $importer->import($import);
 
-            die('lol');
+            return $this->redirectToRoute('bluebear.cms.import.list');
         }
         return [
             'form' => $form->createView()
