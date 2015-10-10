@@ -12,3 +12,5 @@ lecomptoir:
         manga-bd: Manga/BD
         rencontres: Rencontres
         sorties: Sorties
+    article:
+        go_to_read: Lire l'article "%article%"

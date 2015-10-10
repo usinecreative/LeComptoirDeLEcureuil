@@ -56,7 +56,10 @@ assetic:
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
-        compass: ~
+        compass:
+            images_dir:            %kernel.root_dir%/../web/img
+            generated_images_path: %kernel.root_dir%/../web/img
+            compass.http_path: img/
         jsminplus: ~
         cssmin: ~
 

@@ -11,6 +11,9 @@ use DateTime;
 use SimpleXMLElement;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
+/**
+ * @deprecated
+ */
 class WordPressConnector
 {
     protected $container;

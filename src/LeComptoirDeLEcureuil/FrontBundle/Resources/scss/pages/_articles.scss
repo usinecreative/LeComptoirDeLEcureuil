@@ -52,7 +52,7 @@ article {
 
 .ribbon:before {
   content: " ";
-  @include background(image_url("ribbon-blue.png"));
+  @include background("ribbon.png");
   display: block;
   width: 10px;
   height: 10px;

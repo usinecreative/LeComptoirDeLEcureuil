@@ -7,23 +7,25 @@
 
             <div class="row">
                 {% for article in latestArticles %}
-                <div class="col-md-6 article">
-                    <h2 class="ribbon">{{ article.title }}</h2>
-                    <a href=""><img src="/img/cover-batard.jpg"/></a>
-                    <span class="date">Le {{ article.publicationDate | localizeddate('full', 'none') }}</span>
+                    {% set articleUrl = path('lecomptoir.article.show', article.urlParameters) %}
+                    {% set linkTitle = 'lecomptoir.article.go_to_read' | trans({'%article%': article.title}) %}
 
-                    <h3><a href="#">Le bâtard de Kosigan</a></h3>
-                    <a href="#"><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
-                            laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi
-                            architecto
-                            beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur
-                            aut
-                            odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem</p></a>
-                    {% if loop.index is divisible by(2) %}
-                        </div>
-                        <div class="row">
-                    {% endif %}
-                </div>
+                    <div class="col-md-6 article">
+                        <h2 class="ribbon">{{ article.category.name }}</h2>
+                        <a href=""><img src="/img/cover-batard.jpg"/></a>
+                        <span class="date">{{ article.publicationDate | localizeddate('full', 'none') }}</span>
+
+                        <h3>
+                            <a href="{{ articleUrl }}" title="{{ linkTitle }}">{{ article.title }}</a>
+                        </h3>
+                        <a href="{{ articleUrl }}" title="{{ linkTitle }}">
+                            <p>{{ article.content | striptags | truncate(350) }}</p>
+                        </a>
+                        {% if loop.index is divisible by(2) %}
+                    </div>
+                    <div class="row">
+                        {% endif %}
+                    </div>
                 {% endfor %}
             </div>
         </div>

@@ -15,7 +15,7 @@ class ArticleRepository extends EntityRepository
     {
         return $this
             ->createQueryBuilder('article')
-            ->orderBy('article.id', 'asc')
+            ->orderBy('article.id', 'desc')
             ->where('article.publicationStatus = :published')
             ->setParameter('published', Article::PUBLICATION_STATUS_PUBLISHED)
             ->setMaxResults($count)

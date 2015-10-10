@@ -276,4 +276,13 @@ class Article
     {
         $this->slug = $slug;
     }
+
+    public function getUrlParameters()
+    {
+        return [
+            'year' => $this->publicationDate->format('Y'),
+            'month' => $this->publicationDate->format('m'),
+            'slug' => $this->slug
+        ];
+    }
 }

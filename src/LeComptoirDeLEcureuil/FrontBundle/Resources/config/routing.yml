@@ -3,7 +3,7 @@ lecomptoir.homepage:
     defaults: { _controller: LeComptoirDeLEcureuilFrontBundle:Main:index }
 
 lecomptoir.article.show:
-    path:  /article/{year}/{month]/{slug}
+    path:  /{year}/{month}/{slug}
 
 lecomptoir.article.listByCategory:
     path: /{categorySlug}
