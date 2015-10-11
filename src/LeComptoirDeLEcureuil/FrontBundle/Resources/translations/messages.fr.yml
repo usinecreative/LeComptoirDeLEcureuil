@@ -14,3 +14,4 @@ lecomptoir:
         sorties: Sorties
     article:
         go_to_read: Lire l'article "%article%"
+        go_to_category: Voir les articles de la catégorie "%category%"

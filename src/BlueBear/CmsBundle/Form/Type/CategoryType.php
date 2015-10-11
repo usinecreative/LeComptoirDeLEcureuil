@@ -16,6 +16,9 @@ class CategoryType extends AbstractType
     {
         $builder
             ->add('name')
+            ->add('slug', 'text', [
+                'read_only' => true
+            ])
             ->add('updatedAt', 'datetime', [
                 'widget' => 'single_text',
                 'read_only' => true

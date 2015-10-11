@@ -27,7 +27,7 @@ bluebear_admin:
         routing:
             name_pattern: bluebear.cms.{admin}.{action}
             url_pattern:  /{admin}/{action}
-        date_format: dd/MM/Y HH:mm
+        date_format: d/m/Y h:i:s
     admins:
         user:
             entity: BlueBear\CmsUserBundle\Entity\User
@@ -44,9 +44,38 @@ bluebear_admin:
             form: category
             actions:
                 list:
-                    fields: {id: ~, name: ~, updatedAt: {type: date, options: {format: Y m d}}}
+                    fields:
+                        id: ~
+                        name: ~
+                        slug: ~
+                        createdAt:
+                            type: date
+                        updatedAt:
+                            type: date
+                        articles:
+                            type: count
+                        _edit:
+                            type: action
+                            options:
+                                title: bluebear.admin.edit
+                                route: bluebear.cms.category.edit
+                                parameters: {id: ~}
+                                icon: pencil
+                        _delete:
+                            type: action
+                            options:
+                                title: bluebear.admin.delete
+                                route: bluebear.cms.category.delete
+                                parameters: {id: ~}
+                                icon: remove
                     order:
-                        - {field: updatedAt, order: asc}
+                        - {field: updatedAt, order: desc}
+                    actions:
+                        create:
+                            title: bluebear.admin.create
+                            route: bluebear.cms.category.create
+                            icon: plus
+
                 create: ~
                 edit: ~
                 delete: ~
@@ -58,31 +87,32 @@ bluebear_admin:
                     fields:
                         id: ~
                         title: {type: link, options: {length: 100, route: bluebear.cms.article.edit, parameters: {id: ~}}}
+                        slug: ~
                         category: ~
                         author: ~
                         canonical: {type: link, options: {target: _blank}}
                         publicationStatus: {type: date, options: {format: d/m/Y}}
                         publicationDate: {type: date, options: {format: d/m/Y}}
                         updatedAt: {type: date, options: {format: d/m/Y h:i:s}}
-                    field_actions:
-                        edit:
-                            title: bluebear.admin.edit
-                            route: bluebear.cms.article.edit
-                            parameters: {id: ~}
-                            icon: pencil
-                        delete:
-                            title: bluebear.admin.delete
-                            route: bluebear.cms.article.delete
-                            parameters: {id: ~}
-                            icon: remove
+                        _edit:
+                            type: action
+                            options:
+                                title: bluebear.admin.edit
+                                route: bluebear.cms.category.edit
+                                parameters: {id: ~}
+                                icon: pencil
+                        _delete:
+                            type: action
+                            options:
+                                title: bluebear.admin.delete
+                                route: bluebear.cms.category.delete
+                                parameters: {id: ~}
+                                icon: remove
                     actions:
                         create:
                             title: bluebear.admin.create
                             route: bluebear.cms.article.create
                             icon: plus
-
-
-
                 create: ~
                 edit:
                     actions:

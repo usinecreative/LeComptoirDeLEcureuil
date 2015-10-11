@@ -113,3 +113,8 @@ ivory_ck_editor:
     configs:
         my_config:
             toolbar: full
+
+stof_doctrine_extensions:
+    orm:
+        default:
+            sluggable: true

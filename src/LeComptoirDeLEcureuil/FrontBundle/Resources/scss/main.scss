@@ -5,7 +5,7 @@
 // Var
 $font-family-title: Gabriela, sans-serif;
 $main-color: #e9d9d3;
-$main-color: white;
+$main-color: #EEEAE8;
 $menu-backgroud-color: #2c4671;
 $background-color: #11112f;
 
@@ -54,14 +54,14 @@ h3 {
   }
 
   .main-content {
-    background-color: #EEEAE8;
+    background-color: $main-color;
   }
 }
 
 
 // Lastest articles
 .latest-article {
-  background-color: #EEEAE8;
+  background-color: $main-color;
   padding: 20px;
 
   .article {
@@ -78,6 +78,10 @@ h3 {
   }
   .ribbon {
     text-align: center;
+
+    a, a:visited {
+      color: $main-color;
+    }
   }
 }
 

@@ -4,8 +4,10 @@ namespace LeComptoirDeLEcureuil\FrontBundle\Controller;
 
 use BlueBear\BaseBundle\Behavior\ControllerTrait;
 use BlueBear\CmsBundle\Entity\Article;
+use BlueBear\CmsBundle\Service\Filter\ArticleFilter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 class ArticleController extends Controller
 {
@@ -18,18 +20,17 @@ class ArticleController extends Controller
 
     /**
      * @Template()
-     * @param $categorySlug
+     * @param Request $request
      * @return array
      */
-    public function listByCategorieAction($categorySlug)
+    public function filterAction(Request $request)
     {
-        $articles = $this
-            ->getDoctrine()
-            ->getRepository('BlueBearCmsBundle:Article')
-            ->findByCategory($categorySlug);
+        $filter = new ArticleFilter();
+        $filter->handleRequest($request);
+
 
         return [
-            'articles' => $articles
+            'articles' => []
         ];
     }
 }

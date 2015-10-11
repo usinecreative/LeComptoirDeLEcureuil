@@ -5,6 +5,6 @@ lecomptoir.homepage:
 lecomptoir.article.show:
     path:  /{year}/{month}/{slug}
 
-lecomptoir.article.listByCategory:
+lecomptoir.article.list_by_category:
     path: /{categorySlug}
-    defaults: { _controller: LeComptoirDeLEcureuilFrontBundle:Article:listByCategorie }
+    defaults: { _controller: LeComptoirDeLEcureuilFrontBundle:Article:filter }

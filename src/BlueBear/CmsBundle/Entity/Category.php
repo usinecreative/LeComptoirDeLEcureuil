@@ -35,7 +35,7 @@ class Category
 
     /**
      * @var int
-     * @ORM\Column(name="publication_status", type="smallint")
+     * @ORM\Column(name="publication_status", type="smallint", nullable=true)
      */
     protected $publicationStatus;
 
@@ -112,5 +112,21 @@ class Category
     public function setPublicationStatus($publicationStatus)
     {
         $this->publicationStatus = $publicationStatus;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param mixed $slug
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
     }
 }

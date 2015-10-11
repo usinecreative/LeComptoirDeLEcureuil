@@ -1,5 +1,3 @@
 services:
     bluebear.media.manager:
-        class: BlueBear\MediaBundle\Manager\MediaManager
-        calls:
-            - [setContainer, [@service_container]]
+        class: BlueBear\MediaBundle\Service\MediaManager

@@ -97,6 +97,11 @@ class Article
      */
     protected $slug;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="BlueBear\MediaBundle\Entity\Media", fetch="EAGER")
+     */
+    protected $thumbnail;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
@@ -279,10 +284,27 @@ class Article
 
     public function getUrlParameters()
     {
+        // TODO move in configuration
         return [
             'year' => $this->publicationDate->format('Y'),
             'month' => $this->publicationDate->format('m'),
             'slug' => $this->slug
         ];
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getThumbnail()
+    {
+        return $this->thumbnail;
+    }
+
+    /**
+     * @param mixed $thumbnail
+     */
+    public function setThumbnail($thumbnail)
+    {
+        $this->thumbnail = $thumbnail;
     }
 }

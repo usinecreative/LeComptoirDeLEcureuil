@@ -25,14 +25,13 @@ class AppKernel extends Kernel
             new BlueBear\AdminBundle\BlueBearAdminBundle(),
             new BlueBear\CmsBundle\BlueBearCmsBundle(),
             new BlueBear\CmsUserBundle\BlueBearCmsUserBundle(),
-            new BlueBear\FileUploadBundle\BlueBearFileUploadBundle(),
             new BlueBear\CmsImportBundle\BlueBearCmsImportBundle(),
+            new BlueBear\MediaBundle\BlueBearMediaBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             // Noisettes
             new LeComptoirDeLEcureuil\FrontBundle\LeComptoirDeLEcureuilFrontBundle(),
             new LeComptoirDeLEcureuil\BackBundle\LeComptoirDeLEcureuilBackBundle(),
             new LeComptoirDeLEcureuil\CoreBundle\LeComptoirDeLEcureuilCoreBundle(),
-            new BlueBear\MediaBundle\BlueBearMediaBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'])) {
