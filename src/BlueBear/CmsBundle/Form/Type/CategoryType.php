@@ -2,13 +2,9 @@
 
 namespace BlueBear\CmsBundle\Form\Type;
 
-use BlueBear\CmsBundle\Entity\Content;
-use BlueBear\CmsBundle\Factory\ContentTypeFactory;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\FormEvent;
-use Symfony\Component\Form\FormEvents;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class CategoryType extends AbstractType
 {
@@ -18,6 +14,9 @@ class CategoryType extends AbstractType
             ->add('name')
             ->add('slug', 'text', [
                 'read_only' => true
+            ])
+            ->add('displayInHomepage', 'checkbox', [
+                'required' => false
             ])
             ->add('updatedAt', 'datetime', [
                 'widget' => 'single_text',
@@ -30,7 +29,7 @@ class CategoryType extends AbstractType
         return 'category';
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
             'data_class' => 'BlueBear\CmsBundle\Entity\Category'

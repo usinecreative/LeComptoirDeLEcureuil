@@ -51,6 +51,12 @@ class Category
      */
     protected $slug;
 
+    /**
+     * @var bool
+     * @ORM\Column(name="display_in_homepage", type="boolean")
+     */
+    protected $displayInHomepage = false;
+
     public function __toString()
     {
         return $this->name;
@@ -128,5 +134,21 @@ class Category
     public function setSlug($slug)
     {
         $this->slug = $slug;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isDisplayInHomepage()
+    {
+        return $this->displayInHomepage;
+    }
+
+    /**
+     * @param boolean $displayInHomepage
+     */
+    public function setDisplayInHomepage($displayInHomepage)
+    {
+        $this->displayInHomepage = $displayInHomepage;
     }
 }

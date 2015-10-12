@@ -54,6 +54,8 @@ bluebear_admin:
                             type: date
                         articles:
                             type: count
+                        displayInHomepage:
+                            type: boolean
                         _edit:
                             type: action
                             options:
