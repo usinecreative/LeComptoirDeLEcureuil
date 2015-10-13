@@ -27,7 +27,9 @@ class ArticleController extends Controller
     {
         $filter = new ArticleFilter();
         $filter->handleRequest($request);
-
+        $this
+            ->get('bluebear.cms.article_finder')
+            ->find($filter);
 
         return [
             'articles' => []

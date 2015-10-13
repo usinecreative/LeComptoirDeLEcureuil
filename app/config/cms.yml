@@ -48,6 +48,10 @@ bluebear_admin:
                         id: ~
                         name: ~
                         slug: ~
+                        description:
+                            type: string
+                            options:
+                                length: 100
                         createdAt:
                             type: date
                         updatedAt:
@@ -100,16 +104,18 @@ bluebear_admin:
                             type: action
                             options:
                                 title: bluebear.admin.edit
-                                route: bluebear.cms.category.edit
+                                route: bluebear.cms.article.edit
                                 parameters: {id: ~}
                                 icon: pencil
                         _delete:
                             type: action
                             options:
                                 title: bluebear.admin.delete
-                                route: bluebear.cms.category.delete
+                                route: bluebear.cms.article.delete
                                 parameters: {id: ~}
                                 icon: remove
+                    order:
+                        - {field: publicationDate, order: desc}
                     actions:
                         create:
                             title: bluebear.admin.create

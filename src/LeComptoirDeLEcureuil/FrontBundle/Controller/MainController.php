@@ -13,13 +13,20 @@ class MainController extends Controller
      */
     public function indexAction()
     {
+        // latest published articles
         $latestArticles = $this
             ->getDoctrine()
             ->getRepository('BlueBearCmsBundle:Article')
             ->findLatest();
+        // category configured for display in homepage
+        $categories = $this
+            ->getDoctrine()
+            ->getRepository('BlueBearCmsBundle:Category')
+            ->findForHomepage();
 
         return [
-            'latestArticles' => $latestArticles
+            'latestArticles' => $latestArticles,
+            'categories' => $categories,
         ];
     }
 }

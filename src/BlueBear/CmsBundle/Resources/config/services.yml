@@ -11,6 +11,8 @@ parameters:
     bluebear.cms.comment_type.class: BlueBear\CmsBundle\Form\Type\CommentType
     # Managers
     bluebear.cms.manager.content.class: BlueBear\CmsBundle\Manager\ContentManager
+    # Finders
+    bluebear.cms.article_finder.class: BlueBear\CmsBundle\Service\ArticleFinder
 services:
     # Factories
     bluebear.cms.content_type_factory:
@@ -56,3 +58,7 @@ services:
         class: %bluebear.cms.manager.content.class%
         calls:
             - [setContainer, [@service_container]]
+
+    # Finders
+    bluebear.cms.article_finder:
+        class: %bluebear.cms.article_finder.class%

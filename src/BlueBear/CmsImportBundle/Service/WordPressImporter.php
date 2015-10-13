@@ -6,7 +6,6 @@ use BlueBear\CmsBundle\Entity\Article;
 use BlueBear\CmsBundle\Entity\Category;
 use BlueBear\CmsBundle\Entity\Comment;
 use BlueBear\CmsImportBundle\Entity\Import;
-use BlueBear\CmsImportBundle\Exception\ImportException;
 use BlueBear\CmsUserBundle\Entity\User;
 use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Registry;

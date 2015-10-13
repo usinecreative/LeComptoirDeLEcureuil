@@ -15,6 +15,9 @@ class CategoryType extends AbstractType
             ->add('slug', 'text', [
                 'read_only' => true
             ])
+            ->add('description', 'textarea', [
+                'required' => false
+            ])
             ->add('displayInHomepage', 'checkbox', [
                 'required' => false
             ])
