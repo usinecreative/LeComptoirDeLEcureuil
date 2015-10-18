@@ -1,6 +1,29 @@
 {% extends '@LeComptoirDeLEcureuilFront/layout.html.twig' %}
 
 {% block content %}
+    <div class="col-lg-9 main-content latest-article">
+        <h2>{{ filter.name | trans({'%category%': articles[0].category.name}) }}</h2>
 
+        <div class="row">
+            {% for article in articles %}
+                {% set articleUrl = path('lecomptoir.article.show', article.urlParameters) %}
+                {% set articleLinkTitle = 'lecomptoir.article.go_to_read' | trans({'%article%': article.title}) %}
+
+                <div class="col-md-6 article">
+                    <a href="{{ articleUrl }}" title="{{ articleLinkTitle }}">
+                        <img src="/img/cover-batard.jpg" alt="{{ article.title }}" />
+                    </a>
+                    <span class="date">{{ article.publicationDate | localizeddate('full', 'none') }}</span>
+
+                    <h3>
+                        <a href="{{ articleUrl }}" title="{{ articleLinkTitle }}">{{ article.title }}</a>
+                    </h3>
+                    <a href="{{ articleUrl }}" title="{{ articleLinkTitle }}">
+                        <p>{{ article.content | striptags | truncate(150) }}</p>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}
 

@@ -12,7 +12,7 @@ parameters:
     # Managers
     bluebear.cms.manager.content.class: BlueBear\CmsBundle\Manager\ContentManager
     # Finders
-    bluebear.cms.article_finder.class: BlueBear\CmsBundle\Service\ArticleFinder
+    bluebear.cms.article_finder.class: BlueBear\CmsBundle\Finder\ArticleFinder
 services:
     # Factories
     bluebear.cms.content_type_factory:
@@ -62,3 +62,11 @@ services:
     # Finders
     bluebear.cms.article_finder:
         class: %bluebear.cms.article_finder.class%
+        arguments: [@bluebear.cms.repository.article]
+
+    # Article repository
+    bluebear.cms.repository.article:
+        class: BlueBear\CmsBundle\Repository\ArticleRepository
+        factory_service: doctrine.orm.default_entity_manager
+        factory_method: getRepository
+        arguments: ['BlueBearCmsBundle:Article']

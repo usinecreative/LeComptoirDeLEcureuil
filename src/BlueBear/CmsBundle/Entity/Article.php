@@ -83,6 +83,7 @@ class Article
     /**
      * @var ArrayCollection
      * @ORM\OneToMany(targetEntity="BlueBear\CmsBundle\Entity\Comment", mappedBy="article")
+     * @ORM\Column(nullable=true)
      */
     protected $comments;
 
@@ -99,6 +100,7 @@ class Article
 
     /**
      * @ORM\ManyToOne(targetEntity="BlueBear\MediaBundle\Entity\Media", fetch="EAGER")
+     * @ORM\Column(nullable=true)
      */
     protected $thumbnail;
 

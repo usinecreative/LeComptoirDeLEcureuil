@@ -4,7 +4,7 @@ lecomptoir.homepage:
 
 lecomptoir.article.show:
     path:  /{year}/{month}/{slug}
-    defaults: { _controller: LeComptoirDeLEcureuilFrontBundle:Article:filter }
+    defaults: { _controller: LeComptoirDeLEcureuilFrontBundle:Article:show }
 
 lecomptoir.article.list_by_category:
     path: /{categorySlug}

@@ -1,13 +1,22 @@
 <?php
 
-namespace BlueBear\CmsBundle\Service\Filter;
-
+namespace BlueBear\CmsBundle\Finder\Filter;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * Article filter is use to find Article with ArticleFinder
+ */
 class ArticleFilter
 {
+    /**
+     * Name of the filter
+     *
+     * @var string
+     */
+    protected $name;
+
     protected $categorySlug;
     protected $year;
     protected $month;
@@ -34,7 +43,17 @@ class ArticleFilter
             ]);
             $this->year = (int)$request->get('year');
             $this->month = (int)$request->get('month');
-            $this->slug = (int)$request->get('slug');
+            $this->slug = (string)$request->get('slug');
+            $this->name = 'lecomptoir.article.filter_by_date';
+            $this->isValid = true;
+        } else if ($request->get('categorySlug')) {
+            $resolver->setRequired(['categorySlug']);
+            $resolver->setAllowedTypes('categorySlug', 'string');
+            $resolver->resolve([
+                'categorySlug' => $request->get('categorySlug')
+            ]);
+            $this->categorySlug = $request->get('categorySlug');
+            $this->name = 'lecomptoir.article.filter_by_category';
             $this->isValid = true;
         }
     }
@@ -117,5 +136,21 @@ class ArticleFilter
     public function setIsValid($isValid)
     {
         $this->isValid = $isValid;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
     }
 }

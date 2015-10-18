@@ -27,7 +27,7 @@ class ArticleRepository extends EntityRepository
     {
         return $this
             ->createQueryBuilder('article')
-            ->orderBy('article.id', 'asc')
+            ->orderBy('article.publicationDate', 'desc')
             ->innerJoin('article.category', 'category')
             ->where('article.publicationStatus = :published')
             ->andWhere('category.slug = :slug')

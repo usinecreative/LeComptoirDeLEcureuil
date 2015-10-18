@@ -15,3 +15,5 @@ lecomptoir:
     article:
         go_to_read: Lire l'article "%article%"
         go_to_category: Voir les articles de la catégorie "%category%"
+        filter_by_date: Date
+        filter_by_category: Articles de la catégorie "%category%"
