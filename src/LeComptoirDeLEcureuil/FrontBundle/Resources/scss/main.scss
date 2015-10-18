@@ -33,14 +33,12 @@ h3 {
 }
 
 .container {
-  h1 {
+  .site-title {
     color: $main-color;
     position: absolute;
+    padding: 5px;
     font-size: 40px;
     margin-top: 20px;
-  }
-  .site-title {
-    padding: 5px;
   }
   .site-header {
     height: 300px;
@@ -105,9 +103,14 @@ h3 {
     width: 150px;
     height: 172px;
   }
-  p {
-    padding-left: 150px;
+  h1 {
+    font-family: "Playball",arial,sans-serif;
+    font-size: 21px;
+    color: #11112f;
   }
+/*  p {
+    padding-left: 150px;
+  }*/
 }
 
 footer {
