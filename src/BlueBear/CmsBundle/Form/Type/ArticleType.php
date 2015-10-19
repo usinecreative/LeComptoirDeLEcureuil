@@ -5,7 +5,7 @@ namespace BlueBear\CmsBundle\Form\Type;
 use BlueBear\CmsBundle\Entity\Article;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ArticleType extends AbstractType
 {
@@ -17,6 +17,7 @@ class ArticleType extends AbstractType
             ->add('canonical', 'text', [
                 'read_only' => true
             ])
+            ->add('thumbnail', 'media_upload')
             ->add('content', 'ckeditor', [
                 'config' => [
                     'height' => '800px'
@@ -29,10 +30,10 @@ class ArticleType extends AbstractType
                     Article::PUBLICATION_STATUS_PUBLISHED => 'bluebear.cms.publication.published',
                 ]
             ])
-            ->add('publicationDate', 'datetime_picker')
-            ->add('author', null, [
-                'required' => true
+            ->add('publicationDate', 'datetime_picker', [
+                'required' => false
             ])
+            ->add('author')
             ->add('isCommentable', 'checkbox', [
                 'required' => false
             ])
@@ -48,6 +49,13 @@ class ArticleType extends AbstractType
                 'widget' => 'single_text',
                 'format' => 'dd/MM/yyyy'
             ]);
+    }
+
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'data_class' => 'BlueBear\CmsBundle\Entity\Article'
+        ]);
     }
 
     public function getName()

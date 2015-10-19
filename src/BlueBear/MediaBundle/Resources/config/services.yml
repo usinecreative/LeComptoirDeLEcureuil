@@ -1,3 +1,12 @@
+imports:
+    - { resource: forms.yml }
+
 services:
-    bluebear.media.manager:
-        class: BlueBear\MediaBundle\Service\MediaManager
+    bluebear.media.uploader:
+        class: BlueBear\MediaBundle\Uploader\MediaUploader
+
+    bluebear.media.listener:
+        class: BlueBear\MediaBundle\Event\Listener\MediaListener
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+        arguments: [@bluebear.media.uploader]

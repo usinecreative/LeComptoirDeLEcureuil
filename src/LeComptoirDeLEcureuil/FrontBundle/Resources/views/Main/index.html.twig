@@ -59,25 +59,25 @@
                     {% set articleUrl = path('lecomptoir.article.show', article.urlParameters) %}
                     {% set articleLinkTitle = 'lecomptoir.article.go_to_read' | trans({'%article%': article.title}) %}
 
-                    <div class="col-md-6 article">
-                    <h2 class="ribbon">
-                        <a href="{{ categoryUrl }}" title="{{ categoryLinkTitle }}">
-                            {{ article.category.name }}
-                        </a>
-                    </h2>
-                    <a href=""><img src="/img/cover-batard.jpg"/></a>
-                    <span class="date">{{ article.publicationDate | localizeddate('full', 'none') }}</span>
+                    <div class="col-md-6 article-item">
+                        <h2 class="ribbon">
+                            <a href="{{ categoryUrl }}" title="{{ categoryLinkTitle }}">
+                                {{ article.category.name }}
+                            </a>
+                        </h2>
+                        <a href=""><img src="/img/cover-batard.jpg"/></a>
+                        <span class="date">{{ article.publicationDate | localizeddate('full', 'none') }}</span>
 
-                    <h3>
-                        <a href="{{ articleUrl }}" title="{{ articleLinkTitle }}">{{ article.title }}</a>
-                    </h3>
-                    <a href="{{ articleUrl }}" title="{{ articleLinkTitle }}">
-                        <p>{{ article.content | striptags | truncate(350) }}</p>
-                    </a>
-                    {% if loop.index is divisible by(2) %}
-                        </div>
-                        <div class="row">
-                    {% endif %}
+                        <h3>
+                            <a href="{{ articleUrl }}" title="{{ articleLinkTitle }}">{{ article.title }}</a>
+                        </h3>
+                        <a href="{{ articleUrl }}" title="{{ articleLinkTitle }}">
+                            <p>{{ article.content | striptags | truncate(350) | raw }}</p>
+                        </a>
+                        {% if loop.index is divisible by(2) %}
+                            </div>
+                            <div class="row">
+                        {% endif %}
                     </div>
                 {% endfor %}
             </div>

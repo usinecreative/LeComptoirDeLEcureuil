@@ -99,8 +99,8 @@ class Article
     protected $slug;
 
     /**
-     * @ORM\ManyToOne(targetEntity="BlueBear\MediaBundle\Entity\Media", fetch="EAGER")
-     * @ORM\Column(nullable=true)
+     * @ORM\ManyToOne(targetEntity="BlueBear\MediaBundle\Entity\Media", fetch="EAGER", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=true)
      */
     protected $thumbnail;
 

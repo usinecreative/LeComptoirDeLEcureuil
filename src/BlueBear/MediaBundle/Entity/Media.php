@@ -6,6 +6,8 @@ use BlueBear\BaseBundle\Entity\Behaviors\Id;
 use BlueBear\BaseBundle\Entity\Behaviors\Nameable;
 use BlueBear\BaseBundle\Entity\Behaviors\Timestampable;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * Media
@@ -13,6 +15,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="cms_media")
  * @ORM\Entity(repositoryClass="BlueBear\MediaBundle\Repository\MediaRepository")
  * @ORM\HasLifecycleCallbacks()
+ * @UniqueEntity("name")
  */
 class Media
 {
@@ -32,6 +35,8 @@ class Media
      * @ORM\Column(name="type", type="string")
      */
     protected $type;
+
+    protected $file;
 
     /**
      * @return mixed
@@ -79,5 +84,21 @@ class Media
     public function setType($type)
     {
         $this->type = $type;
+    }
+
+    /**
+     * @return UploadedFile
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    /**
+     * @param UploadedFile $file
+     */
+    public function setFile($file)
+    {
+        $this->file = $file;
     }
 }

@@ -62,8 +62,9 @@ h3 {
   background-color: $main-color;
   padding: 20px;
 
-  .article {
-    //position: relative;
+  .article-item {
+    padding: 20px;
+
     a {
       color: #333333;
     }
@@ -72,6 +73,17 @@ h3 {
       display: inline-block;
       margin-top: -3px;
       text-transform: capitalize;
+    }
+    img {
+      float: left;
+      padding-right: 15px;
+      width: 150px;
+      height: 172px;
+    }
+    h1 {
+      font-family: "Playball", arial, sans-serif;
+      font-size: 21px;
+      color: #11112f;
     }
   }
   .ribbon {
@@ -83,34 +95,36 @@ h3 {
   }
 }
 
-
 .col-md-6 {
   padding: 0;
 }
 
-
-
+// Article
 .article {
-  padding: 20px;
+  padding: 20px 50px;
 
-  .date {
-    //float: left;
-    //clear: both;
-  }
-  img {
-    float: left;
-    padding-right: 15px;
-    width: 150px;
-    height: 172px;
-  }
   h1 {
-    font-family: "Playball",arial,sans-serif;
+    font-family: "Playball", arial, sans-serif;
     font-size: 21px;
     color: #11112f;
   }
-/*  p {
-    padding-left: 150px;
-  }*/
+  .article-content {
+    font-family: "Gabriela", arial, sans-serif;
+  }
+  // content
+  .alignright {
+    display: inline;
+    float: right;
+    padding-left: 15px;
+  }
+  .alignleft {
+    display: inline;
+    float: left;
+    padding-right: 15px;
+  }
+}
+p {
+  margin-bottom: 22px;
 }
 
 footer {
