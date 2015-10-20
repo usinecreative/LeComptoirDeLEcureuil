@@ -11,19 +11,35 @@ class CategoryType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
+            ->add('name', 'text', [
+                'attr' => [
+                    'data-help' => 'bluebear.admin.category.name_help'
+                ]
+            ])
             ->add('slug', 'text', [
-                'read_only' => true
+                'read_only' => true,
+                'attr' => [
+                    'data-help' => 'bluebear.admin.category.slug_help'
+                ]
             ])
             ->add('description', 'textarea', [
-                'required' => false
+                'required' => false,
+                'attr' => [
+                    'data-help' => 'bluebear.admin.category.description_help'
+                ]
             ])
             ->add('displayInHomepage', 'checkbox', [
-                'required' => false
+                'required' => false,
+                'attr' => [
+                    'data-help' => 'bluebear.admin.category.display_in_homepage_help'
+                ]
             ])
             ->add('updatedAt', 'datetime', [
                 'widget' => 'single_text',
-                'read_only' => true
+                'read_only' => true,
+                'attr' => [
+                    'data-help' => 'bluebear.admin.category.updated_at_help'
+                ]
             ]);
     }
 

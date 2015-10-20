@@ -19,7 +19,7 @@ class MediaUploader
         $uploadedFile = $media->getFile();
         // media should have an uploaded file
         if (!$uploadedFile) {
-            throw new Exception('Media should have a uploaded file for upload');
+            return;
         }
         // guess media type from extension
         $mediaType = $this->guessType($uploadedFile->getClientOriginalExtension());

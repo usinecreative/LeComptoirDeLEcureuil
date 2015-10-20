@@ -24,4 +24,9 @@ class CmsController extends Controller
             'categories' => $categories
         ];
     }
+
+    public function dashbordAction()
+    {
+
+    }
 }

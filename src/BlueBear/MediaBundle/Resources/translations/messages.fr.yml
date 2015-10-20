@@ -2,3 +2,4 @@ bluebear:
     admin:
         media:
             list: Medias
+            edit: Edition d'un media

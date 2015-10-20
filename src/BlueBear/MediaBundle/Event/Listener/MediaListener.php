@@ -11,11 +11,11 @@ class MediaListener
     /**
      * @var MediaUploader
      */
-    protected $manager;
+    protected $uploader;
 
-    public function __construct(MediaUploader $manager)
+    public function __construct(MediaUploader $uploader)
     {
-        $this->manager = $manager;
+        $this->uploader = $uploader;
     }
 
     public function prePersist(LifecycleEventArgs $args)
@@ -23,7 +23,7 @@ class MediaListener
         $object = $args->getObject();
 
         if ($object instanceof Media) {
-            $this->manager->upload($object);
+            $this->uploader->upload($object);
         }
     }
 }

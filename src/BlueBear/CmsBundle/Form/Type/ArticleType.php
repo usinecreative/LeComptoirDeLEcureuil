@@ -17,7 +17,8 @@ class ArticleType extends AbstractType
             ->add('canonical', 'text', [
                 'read_only' => true
             ])
-            ->add('thumbnail', 'media_upload')
+            //
+            //->add('thumbnail', 'media_upload')
             ->add('content', 'ckeditor', [
                 'config' => [
                     'height' => '800px'

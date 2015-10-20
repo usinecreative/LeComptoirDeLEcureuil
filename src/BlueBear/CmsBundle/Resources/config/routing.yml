@@ -2,6 +2,10 @@ bluebear.cms.homepage:
     path: /
     defaults: {_controller: BlueBearCmsBundle:Cms:homepage}
 
+bluebear.cms.dashboard:
+    path: /dashboard
+    defaults: {_controller: BlueBearCmsBundle:Cms:dashbord}
+
 bluebear.cms.article.preview:
     path: /article/preview
     defaults: {_controller: BlueBearCmsBundle:Article:preview}

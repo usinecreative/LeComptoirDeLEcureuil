@@ -1,11 +1,38 @@
 bluebear:
     cms:
+        dashboard: Dashboard
         publication:
             draft: Brouillon
             validation: Validé
             published: Publié
         article:
             preview: Prévisualisation
+    admin:
+        category:
+            list: Catégories
+            edit: Edition d'une catégorie
+            create: Ajouter
+            name_help: Le nom de la catégorie
+            slug_help: Le nom utilisé dans les urls
+            description_help: Description longue de la catégorie
+            display_in_homepage_help: Affiche ou non la catégorie sur la page d'accueil
+            updated_at_help: Date de la dernièer mise à jour
+        article:
+            list: Articles
+            edit: Edition d'un article
+            create: Ajouter
+        comment:
+            list: Commentaires
+            edit: Edition d'un commentaire
+        user:
+            list: Utilisateurs
+            edit: Edition d'un utilisateur
+        parameters:
+            list: Paramètres
+            edit: Edition d'un paramètre
+        imports:
+            list: Imports
+            edit: Edition d'un import
 
 bluebear.cms.name: Nom
 bluebear.cms.list: Liste
