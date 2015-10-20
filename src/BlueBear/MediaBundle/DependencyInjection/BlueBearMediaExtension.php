@@ -14,9 +14,6 @@ use Symfony\Component\DependencyInjection\Loader;
  */
 class BlueBearMediaExtension extends Extension
 {
-    /**
-     * {@inheritdoc}
-     */
     public function load(array $configs, ContainerBuilder $container)
     {
         $configuration = new Configuration();
@@ -24,5 +21,16 @@ class BlueBearMediaExtension extends Extension
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
+
+        if (!array_key_exists('resources_path', $config)) {
+            // default value %kernel.root_dir%/../resources
+            $config['resources_path'] = $container->getParameter('kernel.root_dir') . '/../resources';
+        }
+        $container->setParameter('bluebear.media.resources_path', $config['resources_path']);
+    }
+
+    public function getAlias()
+    {
+        return 'bluebear_media';
     }
 }

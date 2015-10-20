@@ -171,12 +171,39 @@ bluebear_admin:
                 edit: ~
                 delete: ~
 
-#        media:
-#            entity: BlueBear\MediaBundle\Entity\Media
-#            form: media
-#            controller: BlueBearMediaBundle:Media
-#            actions:
-#                list:
-#                    fields: {id: ~, label: ~}
-#                upload: ~
+        media:
+            entity: BlueBear\MediaBundle\Entity\Media
+            form: media
+            controller: BlueBearMediaBundle:Media
+            actions:
+                list:
+                    fields:
+                        id: ~
+                        name: ~
+                        filepath: ~
+                        filename: ~
+                        extension: ~
+                        type: ~
+                        updatedAt: {type: date, options: {format: d/m/Y h:i:s}}
+                        _edit:
+                            type: action
+                            options:
+                                title: bluebear.admin.edit
+                                route: bluebear.cms.media.edit
+                                parameters: {id: ~}
+                                icon: pencil
+                        _delete:
+                            type: action
+                            options:
+                                title: bluebear.admin.delete
+                                route: bluebear.cms.media.delete
+                                parameters: {id: ~}
+                                icon: remove
+                upload: ~
+                edit: ~
+                delete: ~
+
 bluebear_cms_import: ~
+
+bluebear_media: ~
+

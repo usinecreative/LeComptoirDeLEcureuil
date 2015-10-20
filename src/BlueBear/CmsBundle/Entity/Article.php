@@ -83,7 +83,7 @@ class Article
     /**
      * @var ArrayCollection
      * @ORM\OneToMany(targetEntity="BlueBear\CmsBundle\Entity\Comment", mappedBy="article")
-     * @ORM\Column(nullable=true)
+     * @ORM\JoinColumn(nullable=true)
      */
     protected $comments;
 

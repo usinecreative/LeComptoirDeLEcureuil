@@ -53,7 +53,11 @@
             </li>
             <li class="{{ getClassForRoute('bluebear.cms.import.list') }}">
                 <a href="{{ path('bluebear.cms.import.list') }}">
-                    <i class="fa fa-cogs"></i> {{ 'bluebear.cms.import' | trans }}</a>
+                    <i class="fa fa-upload"></i> {{ 'bluebear.cms.import' | trans }}</a>
+            </li>
+            <li class="{{ getClassForRoute('bluebear.cms.media.list') }}">
+                <a href="{{ path('bluebear.cms.media.list') }}">
+                    <i class="fa fa-image"></i> {{ 'bluebear.cms.medias' | trans }}</a>
             </li>
             <li class="{{ getClassForRoute('fos_user_security_logout') }}">
                 <a href="{{ path('fos_user_security_logout') }}">

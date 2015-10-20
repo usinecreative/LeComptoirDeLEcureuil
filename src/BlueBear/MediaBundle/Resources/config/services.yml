@@ -4,6 +4,7 @@ imports:
 services:
     bluebear.media.uploader:
         class: BlueBear\MediaBundle\Uploader\MediaUploader
+        arguments: [%bluebear.media.resources_path%]
 
     bluebear.media.listener:
         class: BlueBear\MediaBundle\Event\Listener\MediaListener

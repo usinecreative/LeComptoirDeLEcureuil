@@ -3,3 +3,8 @@ services:
         class: BlueBear\MediaBundle\Form\Type\MediaUploadType
         tags:
             - {name: form.type, alias: media_upload}
+
+    bluebear.media.media_type:
+        class: BlueBear\MediaBundle\Form\Type\MediaType
+        tags:
+            - {name: form.type, alias: media}

@@ -21,10 +21,18 @@ class Media
 {
     use Id, Nameable, Timestampable;
 
+    const MEDIA_TYPE_IMAGE = 'image';
+    const MEDIA_TYPE_FILE = 'file';
+
     /**
      * @ORM\Column(name="filepath", type="string")
      */
     protected $filepath;
+
+    /**
+     * @ORM\Column(name="filename", type="string")
+     */
+    protected $filename;
 
     /**
      * @ORM\Column(name="size", type="integer")
@@ -32,11 +40,20 @@ class Media
     protected $size;
 
     /**
+     * Media type
+     *
      * @ORM\Column(name="type", type="string")
      */
     protected $type;
 
     protected $file;
+
+    public function getExtension()
+    {
+        $array = explode('.', $this->filename);
+
+        return array_pop($array);
+    }
 
     /**
      * @return mixed
@@ -100,5 +117,21 @@ class Media
     public function setFile($file)
     {
         $this->file = $file;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFilename()
+    {
+        return $this->filename;
+    }
+
+    /**
+     * @param mixed $filename
+     */
+    public function setFilename($filename)
+    {
+        $this->filename = $filename;
     }
 }
