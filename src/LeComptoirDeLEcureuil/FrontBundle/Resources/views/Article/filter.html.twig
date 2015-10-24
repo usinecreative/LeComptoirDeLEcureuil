@@ -2,7 +2,7 @@
 
 {% block content %}
     <div class="col-lg-9 main-content latest-article">
-        <h2>{{ filter.name | trans({'%category%': articles[0].category.name}) }}</h2>
+        <h2>{{ filter.name | trans({'%category%': filter.categorySlug}) }}</h2>
 
         <div class="row">
             {% for article in articles %}

@@ -15,10 +15,6 @@
     <div role="navigation" class="navbar-default sidebar">
         <div class="sidebar-nav navbar-collapse">
             <ul id="side-menu" class="nav in">
-                <li class="{{ getClassForRoute('bluebear.cms.dashboard') }}">
-                    <a href="{{ path('bluebear.cms.dashboard') }}">
-                        <i class="fa fa-dashboard fa-fw"></i>{{ 'bluebear.cms.dashboard' | trans }}</a>
-                </li>
                 <li class="{{ getClassForRoute('bluebear.cms.category.list') }}">
                     <a href="{{ path('bluebear.cms.category.list') }}">
                         <i class="fa fa-folder-open"></i> {{ 'bluebear.cms.category' | trans }}</a>
@@ -31,17 +27,33 @@
                     <a href="{{ path('bluebear.cms.comment.list') }}">
                         <i class="fa fa-comment"></i> {{ 'bluebear.cms.comment' | trans }}</a>
                 </li>
-                <li class="{{ getClassForRoute('bluebear.cms.user.list') }}">
-                    <a href="{{ path('bluebear.cms.user.list') }}">
-                        <i class="fa fa-male"></i> {{ 'bluebear.cms.users' | trans }}</a>
+                <li class="{{ getClassForRoute('bluebear.cms.article.list') }}">
+                    <a href="{{ path('bluebear.cms.article.list') }}">
+                        <i class="fa fa-newspaper-o"></i> {{ 'bluebear.cms.article' | trans }}</a>
                 </li>
-                <li class="{{ getClassForRoute('bluebear.cms.parameters.list') }}">
-                    <a href="{{ path('bluebear.cms.parameters.list') }}">
-                        <i class="fa fa-cogs"></i> {{ 'bluebear.cms.parameters' | trans }}</a>
+                <li class="{{ getClassForRoute('bluebear.cms.page.list') }}">
+                    <a href="{{ path('bluebear.cms.page.list') }}">
+                        <i class="fa fa-code"></i> {{ 'bluebear.cms.page' | trans }}</a>
                 </li>
-                <li class="{{ getClassForRoute('bluebear.cms.import.list') }}">
-                    <a href="{{ path('bluebear.cms.import.list') }}">
-                        <i class="fa fa-upload"></i> {{ 'bluebear.cms.import' | trans }}</a>
+                {% set routes = ['bluebear.cms.parameters.list', 'bluebear.cms.import.list'] %}
+                <li class="{{ getClassForRoutes(routes) }}">
+                    <a href="#">
+                        <i class="fa fa-cogs"></i>
+                        {{ 'bluebear.cms.configuration' | trans }}</a>
+                    <ul class="nav nav-second-level collapse">
+                        <li class="{{ getClassForRoute('bluebear.cms.parameters.list') }}">
+                            <a href="{{ path('bluebear.cms.parameters.list') }}">
+                                <i class="fa fa-cogs"></i> {{ 'bluebear.cms.parameters' | trans }}</a>
+                        </li>
+                        <li class="{{ getClassForRoute('bluebear.cms.user.list') }}">
+                            <a href="{{ path('bluebear.cms.user.list') }}">
+                                <i class="fa fa-male"></i> {{ 'bluebear.cms.users' | trans }}</a>
+                        </li>
+                        <li class="{{ getClassForRoute('bluebear.cms.import.list') }}">
+                            <a href="{{ path('bluebear.cms.import.list') }}">
+                                <i class="fa fa-upload"></i> {{ 'bluebear.cms.import' | trans }}</a>
+                        </li>
+                    </ul>
                 </li>
                 <li class="{{ getClassForRoute('bluebear.cms.media.list') }}">
                     <a href="{{ path('bluebear.cms.media.list') }}">
@@ -55,3 +67,8 @@
         </div>
     </div>
 {% endblock %}
+
+{% block javascripts %}
+    {{ tinymce_init() }}
+{% endblock %}
+

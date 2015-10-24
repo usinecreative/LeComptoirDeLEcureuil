@@ -28,6 +28,8 @@ bluebear_admin:
             name_pattern: bluebear.cms.{admin}.{action}
             url_pattern:  /{admin}/{action}
         date_format: d/m/Y h:i:s
+        translation:
+            pattern: bluebear.cms.{key}
     admins:
         user:
             entity: BlueBear\CmsUserBundle\Entity\User
@@ -90,30 +92,41 @@ bluebear_admin:
             form: article
             actions:
                 list:
+                    title: bluebear.cms.article.list
                     fields:
                         id: ~
                         title: {type: link, options: {length: 100, route: bluebear.cms.article.edit, parameters: {id: ~}}}
                         slug: ~
                         category: ~
                         author: ~
-                        canonical: {type: link, options: {target: _blank}}
                         publicationStatus: {type: date, options: {format: d/m/Y}}
                         publicationDate: {type: date, options: {format: d/m/Y}}
                         updatedAt: {type: date, options: {format: d/m/Y h:i:s}}
-                        _edit:
-                            type: action
+                        _actions:
+                            type: collection
                             options:
-                                title: bluebear.admin.edit
-                                route: bluebear.cms.article.edit
-                                parameters: {id: ~}
-                                icon: pencil
-                        _delete:
-                            type: action
-                            options:
-                                title: bluebear.admin.delete
-                                route: bluebear.cms.article.delete
-                                parameters: {id: ~}
-                                icon: remove
+                                _edit:
+                                    type: action
+                                    options:
+                                        title: bluebear.admin.edit
+                                        route: bluebear.cms.article.edit
+                                        parameters: {id: ~}
+                                        icon: pencil
+                                _delete:
+                                    type: action
+                                    options:
+                                        title: bluebear.admin.delete
+                                        route: bluebear.cms.article.delete
+                                        parameters: {id: ~}
+                                        icon: remove
+                                canonical:
+                                    type: link
+                                    options:
+                                        title: bluebear.cms.article.see
+                                        text: bluebear.cms.article.see
+                                        target: _blank
+                                        icon: eye
+
                     order:
                         - {field: publicationDate, order: desc}
                     actions:
@@ -200,6 +213,42 @@ bluebear_admin:
                                 parameters: {id: ~}
                                 icon: remove
                 upload: ~
+                edit: ~
+                delete: ~
+        page:
+            entity: BlueBear\CmsBundle\Entity\Page
+            form: page
+            actions:
+                list:
+                    fields:
+                        id: ~
+                        title: ~
+                        content: ~
+                        updatedAt: {type: date, options: {format: d/m/Y h:i:s}}
+                        publicationDate: {type: date, options: {format: d/m/Y}}
+                        _actions:
+                            type: collection
+                            options:
+                                edit:
+                                    type: action
+                                    options:
+                                        title: bluebear.admin.edit
+                                        route: bluebear.cms.page.edit
+                                        parameters: {id: ~}
+                                        icon: pencil
+                                delete:
+                                    type: action
+                                    options:
+                                        title: bluebear.admin.delete
+                                        route: bluebear.cms.page.delete
+                                        parameters: {id: ~}
+                                        icon: remove
+                    actions:
+                        import:
+                            title: bluebear.admin.create
+                            route: bluebear.cms.page.create
+                            icon: plus
+                create: ~
                 edit: ~
                 delete: ~
 

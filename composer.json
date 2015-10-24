@@ -26,7 +26,7 @@
         "egeloen/ckeditor-bundle": "^3.0",
         "stof/doctrine-extensions-bundle": "^1.2",
         "mrclay/minify": "^2.2",
-        "stfalcon/tinymce-bundle": "^0.3.8"
+        "stfalcon/tinymce-bundle": "dev-master"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

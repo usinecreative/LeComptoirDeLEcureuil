@@ -1,13 +1,23 @@
 bluebear:
     cms:
         dashboard: Dashboard
+        configuration: Configuration
+        # fields
+        id: '#'
+        title: Titre
+        slug: Slug
+        category: Catégorie
+        author: Auteur
+        canonical: Url
+        publicationStatus: Publication
+        publicationDate: Date de publication
+        updatedAt: Dernière modification
+        _actions: Actions
+        page: Pages
         publication:
             draft: Brouillon
             validation: Validé
             published: Publié
-        article:
-            preview: Prévisualisation
-    admin:
         category:
             list: Catégories
             edit: Edition d'une catégorie
@@ -19,13 +29,17 @@ bluebear:
             updated_at_help: Date de la dernièer mise à jour
         article:
             list: Articles
-            edit: Edition d'un article
             create: Ajouter
+            edit: Edition d'un article
+            preview: Prévisualisation
+            see: Voir l'article
         comment:
             list: Commentaires
+            create: Ajouter
             edit: Edition d'un commentaire
         user:
             list: Utilisateurs
+            create: Créer un utilisateur
             edit: Edition d'un utilisateur
         parameters:
             list: Paramètres
@@ -33,6 +47,12 @@ bluebear:
         imports:
             list: Imports
             edit: Edition d'un import
+        page:
+            list: Pages
+            create: Créer une page
+            edit: Edition d'une page
+            title_help: Titre de l'article
+            slug_help: Le nom utilisé dans les urls
 
 bluebear.cms.name: Nom
 bluebear.cms.list: Liste

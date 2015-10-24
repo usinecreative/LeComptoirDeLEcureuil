@@ -1,0 +1,42 @@
+parameters:
+    # Form Type
+    bluebear.cms.content_type.class: BlueBear\CmsBundle\Form\Type\ContentType
+    bluebear.cms.category_type.class: BlueBear\CmsBundle\Form\Type\CategoryType
+    bluebear.cms.parameters_type.class: BlueBear\CmsBundle\Form\Type\ParametersType
+    bluebear.cms.article_type.class: BlueBear\CmsBundle\Form\Type\ArticleType
+    bluebear.cms.comment_type.class: BlueBear\CmsBundle\Form\Type\CommentType
+    bluebear.cms.page_type.class: BlueBear\CmsBundle\Form\Type\PageType
+
+services:
+    # Form Type
+    bluebear.cms.content_type:
+        class: %bluebear.cms.content_type.class%
+        tags:
+            - {name: form.type, alias: content}
+        calls:
+            - [setContentTypeFactory, [@bluebear.cms.content_type_factory]]
+
+    bluebear.cms.category_type:
+        class: %bluebear.cms.category_type.class%
+        tags:
+            - {name: form.type, alias: category}
+
+    bluebear.cms.parameters:
+        class: %bluebear.cms.parameters_type.class%
+        tags:
+            - {name: form.type, alias: parameters}
+
+    bluebear.cms.article_type:
+        class: %bluebear.cms.article_type.class%
+        tags:
+            - {name: form.type, alias: article}
+
+    bluebear.cms.comment_type:
+        class: %bluebear.cms.comment_type.class%
+        tags:
+            - {name: form.type, alias: comment}
+
+    bluebear.cms.page_type:
+        class: %bluebear.cms.page_type.class%
+        tags:
+            - {name: form.type, alias: page}
