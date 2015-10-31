@@ -18,18 +18,18 @@ blue_bear_cms:
                   commentable: ~
 
 
-bluebear_admin:
+lag_admin:
     application:
         title: Le Comptoir De L'Ecureuil, derrière les noisettes
         description: Des noisettes et des livres
         bootstrap: true
-        layout: BlueBearCmsBundle::layout.html.twig
+        layout: LAGCmsBundle::layout.html.twig
         routing:
-            name_pattern: bluebear.cms.{admin}.{action}
+            name_pattern: lag.cms.{admin}.{action}
             url_pattern:  /{admin}/{action}
         date_format: d/m/Y h:i:s
         translation:
-            pattern: bluebear.cms.{key}
+            pattern: lag.cms.{key}
     admins:
         user:
             entity: BlueBear\CmsUserBundle\Entity\User

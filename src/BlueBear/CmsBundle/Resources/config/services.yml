@@ -10,6 +10,8 @@ parameters:
     bluebear.cms.manager.content.class: BlueBear\CmsBundle\Manager\ContentManager
     # Finders
     bluebear.cms.article_finder.class: BlueBear\CmsBundle\Finder\ArticleFinder
+    # Assetic
+    lag.assetic.bundler_compass_filter.class: BlueBear\CmsBundle\Assetic\Filter\BundlerCompassFilter
 services:
     # Factories
     bluebear.cms.content_type_factory:
@@ -39,3 +41,10 @@ services:
         factory_service: doctrine.orm.default_entity_manager
         factory_method: getRepository
         arguments: ['BlueBearCmsBundle:Article']
+
+
+    lag.assetic.bundler_compass_filter:
+        class: BlueBear\CmsBundle\Assetic\Filter\BundlerCompassFilter
+        tags:
+            - {name: assetic.filter, alias: bundler}
+        arguments: [%kernel.root_dir%, %kernel.cache_dir%]

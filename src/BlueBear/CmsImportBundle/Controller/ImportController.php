@@ -2,7 +2,7 @@
 
 namespace BlueBear\CmsImportBundle\Controller;
 
-use BlueBear\AdminBundle\Controller\GenericController;
+use LAG\AdminBundle\Controller\GenericController;
 use BlueBear\CmsImportBundle\Entity\Import;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;

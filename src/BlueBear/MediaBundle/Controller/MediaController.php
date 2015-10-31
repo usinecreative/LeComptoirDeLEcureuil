@@ -2,7 +2,7 @@
 
 namespace BlueBear\MediaBundle\Controller;
 
-use BlueBear\AdminBundle\Controller\GenericController;
+use LAG\AdminBundle\Controller\GenericController;
 use BlueBear\BaseBundle\Behavior\ControllerTrait;
 use Symfony\Component\HttpFoundation\Request;
 

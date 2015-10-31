@@ -22,7 +22,7 @@ class AppKernel extends Kernel
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
             // BlueBear
             new BlueBear\BaseBundle\BlueBearBaseBundle(),
-            new BlueBear\AdminBundle\BlueBearAdminBundle(),
+            new LAG\AdminBundle\LAGAdminBundle(),
             new BlueBear\CmsBundle\BlueBearCmsBundle(),
             new BlueBear\CmsUserBundle\BlueBearCmsUserBundle(),
             new BlueBear\CmsImportBundle\BlueBearCmsImportBundle(),
