@@ -13,32 +13,32 @@ class CategoryType extends AbstractType
         $builder
             ->add('name', 'text', [
                 'attr' => [
-                    'data-help' => 'bluebear.admin.category.name_help'
+                    'data-help' => 'bluebear.cms.category.name_help'
                 ]
             ])
             ->add('slug', 'text', [
                 'read_only' => true,
                 'attr' => [
-                    'data-help' => 'bluebear.admin.category.slug_help'
+                    'data-help' => 'bluebear.cms.category.slug_help'
                 ]
             ])
             ->add('description', 'textarea', [
                 'required' => false,
                 'attr' => [
-                    'data-help' => 'bluebear.admin.category.description_help'
+                    'data-help' => 'bluebear.cms.category.description_help'
                 ]
             ])
             ->add('displayInHomepage', 'checkbox', [
                 'required' => false,
                 'attr' => [
-                    'data-help' => 'bluebear.admin.category.display_in_homepage_help'
+                    'data-help' => 'bluebear.cms.category.display_in_homepage_help'
                 ]
             ])
             ->add('updatedAt', 'datetime', [
                 'widget' => 'single_text',
                 'read_only' => true,
                 'attr' => [
-                    'data-help' => 'bluebear.admin.category.updated_at_help'
+                    'data-help' => 'bluebear.cms.category.updated_at_help'
                 ]
             ]);
     }

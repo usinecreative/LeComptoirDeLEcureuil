@@ -55,7 +55,7 @@ class Import
     protected $status;
 
     /**
-     * @ORM\Column(name="comments", type="text")
+     * @ORM\Column(name="comments", type="text", nullable=true)
      */
     protected $comments;
 

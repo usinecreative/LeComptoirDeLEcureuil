@@ -23,13 +23,13 @@ lag_admin:
         title: Le Comptoir De L'Ecureuil, derrière les noisettes
         description: Des noisettes et des livres
         bootstrap: true
-        layout: LAGCmsBundle::layout.html.twig
+        layout: BlueBearCmsBundle::layout.html.twig
         routing:
-            name_pattern: lag.cms.{admin}.{action}
+            name_pattern: bluebear.cms.{admin}.{action}
             url_pattern:  /{admin}/{action}
         date_format: d/m/Y h:i:s
         translation:
-            pattern: lag.cms.{key}
+            pattern: bluebear.cms.{key}
     admins:
         user:
             entity: BlueBear\CmsUserBundle\Entity\User
@@ -46,14 +46,15 @@ lag_admin:
             form: category
             actions:
                 list:
+                    title: bluebear.cms.category.list
+                    batch:
+                        delete: ~
                     fields:
-                        id: ~
                         name: ~
-                        slug: ~
                         description:
                             type: string
                             options:
-                                length: 100
+                                length: 150
                         createdAt:
                             type: date
                         updatedAt:
@@ -62,20 +63,23 @@ lag_admin:
                             type: count
                         displayInHomepage:
                             type: boolean
-                        _edit:
-                            type: action
+                        _actions:
+                            type: collection
                             options:
-                                title: bluebear.admin.edit
-                                route: bluebear.cms.category.edit
-                                parameters: {id: ~}
-                                icon: pencil
-                        _delete:
-                            type: action
-                            options:
-                                title: bluebear.admin.delete
-                                route: bluebear.cms.category.delete
-                                parameters: {id: ~}
-                                icon: remove
+                                _edit:
+                                    type: action
+                                    options:
+                                        title: lag.admin.edit
+                                        route: bluebear.cms.category.edit
+                                        parameters: {id: ~}
+                                        icon: pencil
+                                _delete:
+                                    type: action
+                                    options:
+                                        title: lag.admin.delete
+                                        route: bluebear.cms.category.delete
+                                        parameters: {id: ~}
+                                        icon: remove
                     order:
                         - {field: updatedAt, order: desc}
                     actions:
@@ -96,7 +100,6 @@ lag_admin:
                     fields:
                         id: ~
                         title: {type: link, options: {length: 100, route: bluebear.cms.article.edit, parameters: {id: ~}}}
-                        slug: ~
                         category: ~
                         author: ~
                         publicationStatus: {type: date, options: {format: d/m/Y}}
@@ -108,21 +111,21 @@ lag_admin:
                                 _edit:
                                     type: action
                                     options:
-                                        title: bluebear.admin.edit
+                                        title: lag.admin.edit
                                         route: bluebear.cms.article.edit
                                         parameters: {id: ~}
                                         icon: pencil
                                 _delete:
                                     type: action
                                     options:
-                                        title: bluebear.admin.delete
+                                        title: lag.admin.delete
                                         route: bluebear.cms.article.delete
                                         parameters: {id: ~}
                                         icon: remove
                                 canonical:
                                     type: link
                                     options:
-                                        title: bluebear.cms.article.see
+                                        title: lag.cms.article.see
                                         text: bluebear.cms.article.see
                                         target: _blank
                                         icon: eye

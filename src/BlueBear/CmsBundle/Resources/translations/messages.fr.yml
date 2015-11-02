@@ -2,7 +2,7 @@ bluebear:
     cms:
         dashboard: Dashboard
         configuration: Configuration
-        # fields
+        # Generic fields
         id: '#'
         title: Titre
         slug: Slug
@@ -12,27 +12,38 @@ bluebear:
         publicationStatus: Publication
         publicationDate: Date de publication
         updatedAt: Dernière modification
-        _actions: Actions
+        '_actions': Actions
         page: Pages
+        description: Description
+        createdAt: Créé le
+        articles: Articles
+        displayInHomepage: "En page d'accueil ?"
         publication:
             draft: Brouillon
             validation: Validé
             published: Publié
-        category:
-            list: Catégories
-            edit: Edition d'une catégorie
-            create: Ajouter
-            name_help: Le nom de la catégorie
-            slug_help: Le nom utilisé dans les urls
-            description_help: Description longue de la catégorie
-            display_in_homepage_help: Affiche ou non la catégorie sur la page d'accueil
-            updated_at_help: Date de la dernièer mise à jour
-        article:
-            list: Articles
-            create: Ajouter
-            edit: Edition d'un article
-            preview: Prévisualisation
-            see: Voir l'article
+
+        # Batches
+        batch.delete: Supprimer les entités
+
+        # Categories
+        category.list: Catégories
+        category.edit: Edition d'une catégorie
+        category.create: Ajouter
+        category.name_help: Le nom de la catégorie
+        category.slug_help: Le nom utilisé dans les urls
+        category.description_help: Description longue de la catégorie
+        category.display_in_homepage_help: Affiche ou non la catégorie sur la page d'accueil
+        category.updated_at_help: Date de la dernièer mise à jour
+
+        # Articles
+        article.list: Articles
+        article.create: Ajouter
+        article.edit: Edition d'un article
+        article.preview: Prévisualisation
+        article.see: Voir
+
+
         comment:
             list: Commentaires
             create: Ajouter

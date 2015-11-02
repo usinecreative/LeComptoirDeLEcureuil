@@ -31,7 +31,7 @@ twig:
     strict_variables: "%kernel.debug%"
     form:
         resources:
-            - "BlueBearAdminBundle:Form:fields.html.twig"
+            - "LAGAdminBundle:Form:fields.html.twig"
             - "BlueBearCmsBundle:Form:fields.html.twig"
 
 services:
