@@ -36,7 +36,12 @@ lag_admin:
             form: user
             actions:
                 list:
-                    fields: {id: ~, username: ~, email: ~, enabled: ~}
+                    fields:
+                        id: ~
+                        username: ~
+                        email: ~
+                        enabled: ~
+                        _actions: ~
                 create: ~
                 edit: ~
                 delete: ~
@@ -63,23 +68,7 @@ lag_admin:
                             type: count
                         displayInHomepage:
                             type: boolean
-                        _actions:
-                            type: collection
-                            options:
-                                _edit:
-                                    type: action
-                                    options:
-                                        title: lag.admin.edit
-                                        route: bluebear.cms.category.edit
-                                        parameters: {id: ~}
-                                        icon: pencil
-                                _delete:
-                                    type: action
-                                    options:
-                                        title: lag.admin.delete
-                                        route: bluebear.cms.category.delete
-                                        parameters: {id: ~}
-                                        icon: remove
+                        _actions: ~
                     order:
                         - {field: updatedAt, order: desc}
                     actions:
@@ -152,7 +141,11 @@ lag_admin:
              form: comment
              actions:
                  list:
-                     fields: {id: ~, content: {type: string, options: {length: 20}}, article: ~}
+                     fields:
+                        id: ~
+                        content: {type: string, options: {length: 150}}
+                        article: ~
+                        _actions: ~
                  create: ~
                  edit: ~
                  delete: ~

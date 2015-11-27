@@ -2,6 +2,10 @@ bluebear:
     cms:
         dashboard: Dashboard
         configuration: Configuration
+        create: Ajouter
+        edit: Editer
+        delete: Supprimer
+
         # Generic fields
         id: '#'
         title: Titre
