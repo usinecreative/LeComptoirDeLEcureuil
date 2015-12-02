@@ -8,7 +8,7 @@ copy=rsync
 all: install
 
 install:
-	@composer install
+	@composer install -n
 	@bundle install --path=vendor/
 	@$(sf) doctrine:fixtures:load
 
