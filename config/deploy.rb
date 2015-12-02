@@ -5,7 +5,7 @@ set :application, 'LeComptoirDeLEcureuil'
 set :repo_url, 'https://github.com/johnkrovitch/LeComptoirDeLEcureuil.git'
 
 # Default branch is :master
-# ask :branch, "dev"
+set :branch, "dev"
 
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, '/home/johnkrovitch/www/le_comptoir'
@@ -13,7 +13,7 @@ set :deploy_to, '/home/johnkrovitch/www/le_comptoir'
 # Config
 set :scm, :git
 set :format, :pretty
-set :log_level, 3
+set :log_level, 1
 set :pty, true
 
 # Symfony application configuration

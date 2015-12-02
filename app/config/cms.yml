@@ -50,10 +50,13 @@ lag_admin:
             entity: BlueBear\CmsBundle\Entity\Category
             form: category
             actions:
+                create: ~
+                edit: ~
+                delete: ~
                 list:
                     title: bluebear.cms.category.list
-                    batch:
-                        delete: ~
+                    #batch:
+                    #    delete: ~
                     fields:
                         name: ~
                         description:
@@ -77,9 +80,6 @@ lag_admin:
                             route: bluebear.cms.category.create
                             icon: plus
 
-                create: ~
-                edit: ~
-                delete: ~
         article:
             entity: BlueBear\CmsBundle\Entity\Article
             form: article
@@ -136,6 +136,15 @@ lag_admin:
                             target: _blank
                             icon: eye
                 delete: ~
+        parameters:
+            entity: BlueBear\CmsBundle\Entity\Parameters
+            form: parameters
+            actions:
+                list:
+                    fields: {id: ~, title: {type: string, options: {length: 100}}, value: {type: string, options: {length: 100}}}
+                create: ~
+                edit: ~
+                delete: ~
         comment:
              entity: BlueBear\CmsBundle\Entity\Comment
              form: comment
@@ -149,15 +158,6 @@ lag_admin:
                  create: ~
                  edit: ~
                  delete: ~
-        parameters:
-            entity: BlueBear\CmsBundle\Entity\Parameters
-            form: parameters
-            actions:
-                list:
-                    fields: {id: ~, title: {type: string, options: {length: 100}}, value: {type: string, options: {length: 100}}}
-                create: ~
-                edit: ~
-                delete: ~
         import:
             entity: BlueBear\CmsImportBundle\Entity\Import
             form: import

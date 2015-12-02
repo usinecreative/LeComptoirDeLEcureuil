@@ -28,7 +28,6 @@ class AppKernel extends Kernel
             new BlueBear\CmsImportBundle\BlueBearCmsImportBundle(),
             new BlueBear\MediaBundle\BlueBearMediaBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
-            new SC\DatetimepickerBundle\SCDatetimepickerBundle(),
             new Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle(),
             // Noisettes
             new LeComptoirDeLEcureuil\FrontBundle\LeComptoirDeLEcureuilFrontBundle(),
