@@ -26,5 +26,5 @@ assets-compile:
 assets-copy:
 	@echo "copying css,js and fonts to web directory..."
 	@$(copy) $(assets_dir)/css/* $(web_dir)/css/
-	@$(copy) $(assets_dir)/js/* $(web_dir)/js/
 	@$(copy) $(assets_dir)/fonts/* $(web_dir)/fonts/
+	@$(copy) $(assets_dir)/js/* $(web_dir)/js/
