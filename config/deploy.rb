@@ -13,7 +13,7 @@ set :deploy_to, '/home/johnkrovitch/www/le_comptoir'
 # Config
 set :scm, :git
 set :format, :pretty
-set :log_level, 1
+set :log_level, 0
 set :pty, true
 
 # Symfony application configuration
@@ -33,6 +33,7 @@ set :keep_releases, 5
 
 # Composer install
 SSHKit.config.command_map[:composer] = "php #{shared_path.join("composer.phar")}"
+set :composer_install_flags, '--no-dev'
 
 namespace :deploy do
   after :starting, 'composer:install_executable'
