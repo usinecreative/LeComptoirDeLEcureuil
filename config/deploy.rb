@@ -33,7 +33,7 @@ set :keep_releases, 5
 
 # Composer install
 SSHKit.config.command_map[:composer] = "php #{shared_path.join("composer.phar")}"
-set :composer_install_flags, '--no-dev'
+set :composer_install_flags, '--no-dev --prefer-dist --no-interaction --optimize-autoloader'
 
 namespace :deploy do
   after :starting, 'composer:install_executable'

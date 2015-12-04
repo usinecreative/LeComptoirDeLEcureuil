@@ -16,6 +16,9 @@ deploy:
 	@bundle exec cap staging deploy
 	@bundle exec cap staging cleanup
 
+cleanup:
+	@bundle exec cap staging cleanup
+
 assets: assets-compile assets-copy
 	@echo "Assets build !"
 
