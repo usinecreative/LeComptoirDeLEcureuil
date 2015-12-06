@@ -7,7 +7,6 @@ app/logs
 bin/*
 cache
 vendor
-web/bundles
 *.log
 
 # sass

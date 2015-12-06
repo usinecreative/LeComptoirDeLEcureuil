@@ -1,4 +1,4 @@
-sf=bin/console
+sf=app/console
 assets_dir=./app/Resources/assets
 web_dir=web
 copy=rsync
@@ -30,4 +30,6 @@ assets-copy:
 	@echo "copying css,js and fonts to web directory..."
 	@$(copy) $(assets_dir)/css/* $(web_dir)/css/
 	@$(copy) $(assets_dir)/fonts/* $(web_dir)/fonts/
-	@$(copy) $(assets_dir)/js/* $(web_dir)/js/
+	@$(copy) $(assets_dir)/img/* $(web_dir)/img/
+	@echo "copying symfony assets"
+	@$(sf) assets:install

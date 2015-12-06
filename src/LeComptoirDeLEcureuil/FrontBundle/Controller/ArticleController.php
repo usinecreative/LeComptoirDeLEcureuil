@@ -16,7 +16,7 @@ class ArticleController extends Controller
     use ControllerTrait;
 
     /**
-     * @Template()
+     * @Template(":Article:show.html.twig")
      * @param Request $request
      * @return array
      */
@@ -34,7 +34,7 @@ class ArticleController extends Controller
     }
 
     /**
-     * @Template()
+     * @Template(":Article:filter.html.twig")
      * @param Request $request
      * @return array
      */

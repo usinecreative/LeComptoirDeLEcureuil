@@ -29,7 +29,7 @@ lag_admin:
             url_pattern:  /{admin}/{action}
         date_format: d/m/Y h:i:s
         translation:
-            pattern: bluebear.cms.{key}
+            pattern: lecomptoir.{key}
     admins:
         user:
             entity: BlueBear\CmsUserBundle\Entity\User
@@ -76,7 +76,7 @@ lag_admin:
                         - {field: updatedAt, order: desc}
                     actions:
                         create:
-                            title: bluebear.admin.create
+                            title: lecomptoir.create
                             route: bluebear.cms.category.create
                             icon: plus
 

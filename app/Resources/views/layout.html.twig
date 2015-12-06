@@ -21,15 +21,15 @@
 {% block container %}
 <div class="container">
     {# site header : logo and title#}
-    {% include '@LeComptoirDeLEcureuilFront/Main/header.html.twig' %}
+    {% include '::Main/header.html.twig' %}
 
     {# main menu #}
-    {% include '@LeComptoirDeLEcureuilFront/Main/navbar.html.twig' %}
+    {% include '::Main/navbar.html.twig' %}
 
     <div class="row">
         {# left column #}
         {% block left %}
-            {% include '@LeComptoirDeLEcureuilFront/Main/left.html.twig' %}
+            {% include '::Main/left.html.twig' %}
         {% endblock %}
 
         {% block content %}{% endblock %}

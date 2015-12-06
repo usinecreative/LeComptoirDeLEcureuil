@@ -8,7 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class MainController extends Controller
 {
     /**
-     * @Template()
+     * @Template(":Main:index.html.twig")
      * @return array
      */
     public function indexAction()
