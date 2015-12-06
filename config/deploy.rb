@@ -13,7 +13,7 @@ set :deploy_to, '/home/johnkrovitch/www/le_comptoir'
 # Config
 set :scm, :git
 set :format, :pretty
-set :log_level, 0
+set :log_level, 1
 set :pty, true
 
 # Symfony application configuration
