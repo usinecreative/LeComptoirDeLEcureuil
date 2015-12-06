@@ -14,10 +14,10 @@ install:
 
 deploy:
 	@bundle exec cap staging deploy
-	@bundle exec cap staging cleanup
+	@bundle exec cap staging deploy:cleanup
 
 cleanup:
-	@bundle exec cap staging cleanup
+	@bundle exec cap staging deploy:cleanup
 
 assets: assets-compile assets-copy
 	@echo "Assets build !"
