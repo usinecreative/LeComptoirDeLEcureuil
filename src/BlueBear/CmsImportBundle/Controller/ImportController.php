@@ -2,12 +2,12 @@
 
 namespace BlueBear\CmsImportBundle\Controller;
 
-use LAG\AdminBundle\Controller\GenericController;
+use LAG\AdminBundle\Controller\CRUDController;
 use BlueBear\CmsImportBundle\Entity\Import;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 
-class ImportController extends GenericController
+class ImportController extends CRUDController
 {
     public function importAction()
     {

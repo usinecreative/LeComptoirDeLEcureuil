@@ -1,3 +1,9 @@
+lag:
+    admin:
+        category.saved: La catégorie a été sauvegardée correctement
+    cms:
+        comments: Commentaires
+
 bluebear:
     cms:
         dashboard: Dashboard

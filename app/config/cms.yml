@@ -146,18 +146,19 @@ lag_admin:
                 edit: ~
                 delete: ~
         comment:
-             entity: BlueBear\CmsBundle\Entity\Comment
-             form: comment
-             actions:
-                 list:
-                     fields:
+            entity: BlueBear\CmsBundle\Entity\Comment
+            form: comment
+            actions:
+                list:
+                    title: lag.cms.comments
+                    fields:
                         id: ~
                         content: {type: string, options: {length: 150}}
                         article: ~
                         _actions: ~
-                 create: ~
-                 edit: ~
-                 delete: ~
+                create: ~
+                edit: ~
+                delete: ~
         import:
             entity: BlueBear\CmsImportBundle\Entity\Import
             form: import

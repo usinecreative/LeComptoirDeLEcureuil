@@ -2,11 +2,10 @@
 
 namespace BlueBear\MediaBundle\Controller;
 
-use LAG\AdminBundle\Controller\GenericController;
+use LAG\AdminBundle\Controller\CRUDController;
 use BlueBear\BaseBundle\Behavior\ControllerTrait;
-use Symfony\Component\HttpFoundation\Request;
 
-class MediaController extends GenericController
+class MediaController extends CRUDController
 {
     use ControllerTrait;
 }
