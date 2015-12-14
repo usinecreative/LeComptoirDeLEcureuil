@@ -32,4 +32,4 @@ assets-copy:
 	@$(copy) $(assets_dir)/fonts/* $(web_dir)/fonts/
 	@$(copy) $(assets_dir)/img/* $(web_dir)/img/
 	@echo "copying symfony assets"
-	@$(sf) assets:install
+	@$(sf) assets:install --symlink

@@ -5,6 +5,7 @@ app/config/parameters.yml
 app/bootstrap.php.cache
 app/logs
 bin/*
+web/bundles
 cache
 vendor
 *.log
