@@ -1,3 +1,6 @@
+// homepage
+
+// main thumbnail
 .thumbnail {
   padding: 0;
   border: 0;
@@ -8,22 +11,21 @@
   text-decoration: none;
   background-color: darkgrey;
 
+  // grey overlay
   .overlay {
-    font-family: Gabriela, serif;
+    font-family: "Times New Roman", serif;
     font-size: 25px;
-    //font-weight: bold;
     bottom: 0;
     width: 100%;
     position: absolute;
     color: $main-color;
     background-color: #000000;
-    //border-top: 6px solid #ffffff;
     padding: 14px;
     text-align: center;
     text-transform: uppercase;
     opacity: 0.7;
     @include transition-property(background-color);
-    @include transition-duration(1s);
+    @include transition-duration(0.3s);
   }
   img {
     height: 305px;
@@ -40,14 +42,14 @@
     .overlay {
       background-color: transparent;
     }
-
   }
 }
-// required for homepage category hover
+
+// homepage category hover
 .hvr-sweep-to-bottom::before {
   background: none repeat scroll 0 0 #000000;
 }
 
 .margin-row {
-  margin-top: 1px;
+  //margin-top: 1px;
 }

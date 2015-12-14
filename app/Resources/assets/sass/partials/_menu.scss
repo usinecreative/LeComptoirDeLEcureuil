@@ -1,3 +1,4 @@
+// main top menu
 .main-menu.navbar-default {
   background: $menu-backgroud-color;
   border-radius: 0;
@@ -6,25 +7,26 @@
   font-size: 17px;
   margin-bottom: 1px;
 
+  // menu
   .navbar-nav {
+    // menu items
     & > li {
-      border-right: 1px solid #11112f;
       list-style: none;
       text-align: center;
       text-shadow: none;
-      width: 160px;
-
+      width: 130px;
+      // first element is the home link, it is smaller
       &:nth-child(1) {
+        height: 50px;
         width: 70px;
+      }
+      &:hover {
+        background-color: $background-color;
       }
 
       a {
         color: $main-color;
         text-shadow: none;
-
-        &:hover {
-          color: $background-color;
-        }
       }
     }
   }
