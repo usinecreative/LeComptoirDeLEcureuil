@@ -2,8 +2,10 @@
 
 namespace LeComptoirDeLEcureuil\FrontBundle\DataFixtures\ORM;
 
+use BlueBear\CmsBundle\Entity\Article;
 use BlueBear\CmsBundle\Entity\Category;
 use BlueBear\CmsUserBundle\Entity\User;
+use DateTime;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -40,7 +42,7 @@ abstract class FixturesBase implements ContainerAwareInterface
         return $user;
     }
 
-    protected function loadCategory($name, $slug, $isDisplayedInHomepage = false, $articles = [])
+    protected function loadCategory($name, $slug, $isDisplayedInHomepage = false)
     {
         $category = new Category();
         $category->setName($name);
@@ -49,6 +51,23 @@ abstract class FixturesBase implements ContainerAwareInterface
         $this->manager->persist($category);
 
         return $category;
+    }
+
+    protected function loadArticle($title, $content, $slug, Category $category, User $user)
+    {
+        $article = new Article();
+        $article->setTitle($title);
+        $article->setContent($content);
+        $article->setSlug($slug);
+        $article->setAuthor($user);
+        $article->setCanonical('test');
+        $article->setCategory($category);
+        $article->setPublicationStatus(Article::PUBLICATION_STATUS_PUBLISHED);
+        $article->setPublicationDate(new DateTime());
+        $article->setIsCommentable(true);
+        $this->manager->persist($article);
+
+        return $article;
     }
 
     /**
