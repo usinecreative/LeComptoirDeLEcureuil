@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c3f676fb0f6962e6763874ec01a93bf3",
-    "content-hash": "39ee15a05908b22965934b4487110a12",
+    "hash": "554f841feb3c7995d2ebad2d920d8e6f",
+    "content-hash": "95a2f27644111dbda291de0c3987a1d6",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -673,7 +673,7 @@
         },
         {
             "name": "doctrine/doctrine-fixtures-bundle",
-            "version": "dev-master",
+            "version": "2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/DoctrineFixturesBundle.git",
@@ -2355,12 +2355,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/stfalcon/TinymceBundle.git",
-                "reference": "435c855f546fda9e4a05a1558f843f1712416ecb"
+                "reference": "5f8ed022dd6a606c8f0b4da97f524b9864cd0e29"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stfalcon/TinymceBundle/zipball/435c855f546fda9e4a05a1558f843f1712416ecb",
-                "reference": "435c855f546fda9e4a05a1558f843f1712416ecb",
+                "url": "https://api.github.com/repos/stfalcon/TinymceBundle/zipball/5f8ed022dd6a606c8f0b4da97f524b9864cd0e29",
+                "reference": "5f8ed022dd6a606c8f0b4da97f524b9864cd0e29",
                 "shasum": ""
             },
             "require": {
@@ -2404,7 +2404,7 @@
                 "tinymce",
                 "wysiwyg"
             ],
-            "time": "2015-12-08 12:12:45"
+            "time": "2015-12-15 15:50:30"
         },
         {
             "name": "stof/doctrine-extensions-bundle",
@@ -3461,7 +3461,6 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "doctrine/doctrine-fixtures-bundle": 20,
         "lag/adminbundle": 20,
         "stfalcon/tinymce-bundle": 20
     },

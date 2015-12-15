@@ -15,7 +15,7 @@
     "doctrine/orm": "2.5.*",
     "doctrine/dbal": "2.5.*",
     "doctrine/doctrine-bundle": "~1.2",
-    "doctrine/doctrine-fixtures-bundle": "@dev",
+    "doctrine/doctrine-fixtures-bundle": "~2.3",
     "sensio/generator-bundle": "~2.3",
     "twig/extensions": "~1.0",
     "symfony/assetic-bundle": "~2.3",
