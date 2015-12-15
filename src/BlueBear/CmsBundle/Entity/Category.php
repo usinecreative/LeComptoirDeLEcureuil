@@ -27,6 +27,18 @@ class Category
     const PUBLICATION_STATUS_PUBLISHED = 1;
 
     /**
+     * @var Category
+     * @ORM\ManyToOne(targetEntity="BlueBear\CmsBundle\Entity\Category", inversedBy="children")
+     */
+    protected $parent;
+
+    /**
+     * @var Category[]
+     * @ORM\OneToMany(targetEntity="BlueBear\CmsBundle\Entity\Category", mappedBy="parent")
+     */
+    protected $children;
+
+    /**
      * @var int
      * @ORM\Column(name="publication_status", type="smallint", nullable=true)
      */
@@ -34,7 +46,7 @@ class Category
 
     /**
      * @var ArrayCollection
-     * @ORM\OneToMany(targetEntity="BlueBear\CmsBundle\Entity\Article", mappedBy="category")
+     * @ORM\ManyToMany(targetEntity="BlueBear\CmsBundle\Entity\Article", mappedBy="category")
      */
     protected $articles;
 
@@ -50,11 +62,17 @@ class Category
      */
     protected $displayInHomepage = false;
 
+    /**
+     * @return mixed
+     */
     public function __toString()
     {
         return $this->name;
     }
 
+    /**
+     * Category constructor.
+     */
     public function __construct()
     {
         $this->articles = new ArrayCollection();
@@ -76,6 +94,9 @@ class Category
         $this->articles = $articles;
     }
 
+    /**
+     * @param Article $article
+     */
     public function addArticle(Article $article)
     {
         $this->articles->add($article);
@@ -127,5 +148,37 @@ class Category
     public function setDisplayInHomepage($displayInHomepage)
     {
         $this->displayInHomepage = $displayInHomepage;
+    }
+
+    /**
+     * @return Category
+     */
+    public function getParent()
+    {
+        return $this->parent;
+    }
+
+    /**
+     * @param Category $parent
+     */
+    public function setParent($parent)
+    {
+        $this->parent = $parent;
+    }
+
+    /**
+     * @return Category[]
+     */
+    public function getChildren()
+    {
+        return $this->children;
+    }
+
+    /**
+     * @param Category[] $children
+     */
+    public function setChildren($children)
+    {
+        $this->children = $children;
     }
 }

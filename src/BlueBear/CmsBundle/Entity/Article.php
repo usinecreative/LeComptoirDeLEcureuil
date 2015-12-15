@@ -68,7 +68,7 @@ class Article
     protected $content;
 
     /**
-     * @ORM\ManyToOne(targetEntity="BlueBear\CmsBundle\Entity\Category", inversedBy="articles", fetch="EAGER")
+     * @ORM\ManyToMany(targetEntity="BlueBear\CmsBundle\Entity\Category", inversedBy="articles", fetch="EAGER")
      * @ORM\JoinColumn(nullable=true)
      * @var Category
      */

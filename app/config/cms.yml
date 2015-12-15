@@ -55,8 +55,6 @@ lag_admin:
                 delete: ~
                 list:
                     title: bluebear.cms.category.list
-                    #batch:
-                    #    delete: ~
                     fields:
                         name: ~
                         description:
@@ -88,8 +86,15 @@ lag_admin:
                     title: bluebear.cms.article.list
                     fields:
                         id: ~
-                        title: {type: link, options: {length: 100, route: bluebear.cms.article.edit, parameters: {id: ~}}}
-                        category: ~
+                        title:
+                            type: link
+                            options:
+                                length: 100
+                                route: bluebear.cms.article.edit
+                                parameters: {id: ~}
+                        category:
+                            type: array
+
                         author: ~
                         publicationStatus: {type: date, options: {format: d/m/Y}}
                         publicationDate: {type: date, options: {format: d/m/Y}}
@@ -170,8 +175,6 @@ lag_admin:
                         label: {type: string, options: {length: 100}}
                         comments: {type: string, options: {length: 100}}
                         status: ~
-
-
                     actions:
                         import:
                             title: bluebear.cms.import.create

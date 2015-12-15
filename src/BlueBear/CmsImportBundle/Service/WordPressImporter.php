@@ -82,7 +82,7 @@ class WordPressImporter implements ImporterInterface
                     $publicationStatus = ($item->children($wpNamespace)->status == 'publish') ?
                         Article::PUBLICATION_STATUS_PUBLISHED : Article::PUBLICATION_STATUS_DRAFT;
 
-                    // cehck for an existing category
+                    // check for an existing category
                     $categoryName = (string)$item->category;
                     $category = $this
                         ->doctrine
