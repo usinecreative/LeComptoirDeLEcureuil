@@ -4,10 +4,10 @@ namespace BlueBear\CmsBundle\Entity;
 
 use BlueBear\BaseBundle\Entity\Behaviors\Id;
 use BlueBear\BaseBundle\Entity\Behaviors\Timestampable;
+use BlueBear\CmsBundle\Entity\Behavior\Taggable;
 use BlueBear\CmsUserBundle\Entity\User;
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
@@ -22,7 +22,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  */
 class Article
 {
-    use Id, Timestampable;
+    use Id, Timestampable, Taggable;
 
     const PUBLICATION_STATUS_DRAFT = 0;
     const PUBLICATION_STATUS_VALIDATION = 1;
@@ -257,6 +257,9 @@ class Article
         $this->comments = $comments;
     }
 
+    /**
+     * @param Comment $comment
+     */
     public function addComment(Comment $comment)
     {
         $this->comments->add($comment);
@@ -321,5 +324,22 @@ class Article
     public function setCategory($category)
     {
         $this->category = $category;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCategories()
+    {
+        $category = $this->category;
+        $categories = [
+            $category
+        ];
+
+        while ($category->getParent()) {
+            $categories[] = $category->getParent();
+            $category = $category->getParent();
+        }
+        return $categories;
     }
 }

@@ -41,7 +41,7 @@ services:
     # Finders
     bluebear.cms.article_finder:
         class: %bluebear.cms.article_finder.class%
-        arguments: [@cms.article.repository]
+        arguments: [@lag.cms.article_repository]
 
 
 

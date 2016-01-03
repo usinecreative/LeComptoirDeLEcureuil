@@ -8,3 +8,8 @@ services:
         class: BlueBear\CmsBundle\Repository\ArticleRepository
         tags:
             - {name: doctrine.repository}
+
+    lag.cms.category_repository:
+        class: BlueBear\CmsBundle\Repository\CategoryRepository
+        tags:
+            - {name: doctrine.repository}

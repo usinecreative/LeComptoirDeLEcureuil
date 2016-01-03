@@ -15,11 +15,11 @@ class MainController extends Controller
     {
         // latest published articles
         $latestArticles = $this
-            ->get('cms.article.repository')
+            ->get('lag.cms.article_repository')
             ->findLatest();
         // category configured for display in homepage
         $categories = $this
-            ->get('cms.category.repository')
+            ->get('lag.cms.category_repository')
             ->findForHomepage();
 
         return [

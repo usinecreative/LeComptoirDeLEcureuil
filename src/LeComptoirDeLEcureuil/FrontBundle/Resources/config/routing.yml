@@ -1,11 +1,15 @@
 lecomptoir.homepage:
     path:     /
-    defaults: { _controller: LeComptoirDeLEcureuilFrontBundle:Main:index }
+    defaults: {_controller: LeComptoirDeLEcureuilFrontBundle:Main:index}
 
 lecomptoir.article.show:
     path:  /{year}/{month}/{slug}
-    defaults: { _controller: LeComptoirDeLEcureuilFrontBundle:Article:show }
+    defaults: {_controller: LeComptoirDeLEcureuilFrontBundle:Article:show}
 
 lecomptoir.article.list_by_category:
-    path: /{categorySlug}
-    defaults: { _controller: LeComptoirDeLEcureuilFrontBundle:Article:filter }
+    path: /category/{categorySlug}
+    defaults: {_controller: LeComptoirDeLEcureuilFrontBundle:Article:filter}
+
+lecomptoir.article.list_by_tag:
+    path: /tag/{tag}
+    defaults: {_controller: LeComptoirDeLEcureuilFrontBundle:Article:filter}

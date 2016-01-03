@@ -5,9 +5,11 @@
 {% block content %}
     <div class="main-content col-lg-9 article">
         <div class="article-header">
-            <span class="title-date">{{ article.publicationDate | localizeddate('full', 'none') }}</span>
-            <h2>{{ article.title }}</h2>
-
+            <div class="article-title">
+                <span class="title-date">{{ article.publicationDate | localizeddate('full', 'none') }}</span>
+                <span class="ribbon category-ribbon">{{ article.category.name }}</span>
+                <h2>{{ article.title }}</h2>
+            </div>
             <div class="article-thumbnail">
                 {% if article.thumbnail.filepath is defined %}
                     {{ article.thumbnail.filepath }}
@@ -18,6 +20,13 @@
         </div>
         <div class="article-content">
             {{ article.content | raw }}
+        </div>
+        <div class="article-footer">
+            {{ 'lag.cms.categories' | trans }} : {{ article.categories | join(', ') }}<br/>
+            {{ 'lag.cms.tags' | trans }} :
+            {% for tag in article.tags %}
+                <a href="{{ path('lecomptoir.article.list_by_tag', {tag: tag}) }}">{{ tag }}</a>
+            {% endfor %}
         </div>
     </div>
 {% endblock %}

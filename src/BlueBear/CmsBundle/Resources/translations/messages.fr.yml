@@ -7,6 +7,10 @@ lag:
         # Articles
         new_articles: Nouveaux Articles
         articles_not_published: Articles non publiés
+        # Categories
+        categories: Catégories
+        # Tags
+        tags: Tags
         # Dashboard
         dashboard_title: Dashboard
         dashboard_heading_text: Voir

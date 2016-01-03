@@ -99,13 +99,20 @@ h1, h2, h3 {
     font-size: 21px;
     color: #11112f;
   }
+  .article-header {
+    .article-title {
+      padding-left: 20px;
+
+      h2 {
+        margin: 10px 0 20px 0;
+      }
+    }
+  }
   .article-content {
     padding: 20px 50px;
     font-family: "Gabriela", arial, sans-serif;
   }
-  .article-header {
 
-  }
   .article-thumbnail {
     text-align: center;
     background-color: black;
@@ -127,6 +134,12 @@ h1, h2, h3 {
   display: inline-block;
   margin-top: -3px;
   text-transform: capitalize;
+}
+.category-ribbon {
+  float: right;
+  margin-top: -4px;
+  margin-right: 20px;
+  text-align: center;
 }
 
 p {
