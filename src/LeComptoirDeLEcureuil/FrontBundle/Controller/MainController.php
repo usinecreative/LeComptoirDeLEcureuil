@@ -15,13 +15,11 @@ class MainController extends Controller
     {
         // latest published articles
         $latestArticles = $this
-            ->getDoctrine()
-            ->getRepository('BlueBearCmsBundle:Article')
+            ->get('cms.article.repository')
             ->findLatest();
         // category configured for display in homepage
         $categories = $this
-            ->getDoctrine()
-            ->getRepository('BlueBearCmsBundle:Category')
+            ->get('cms.category.repository')
             ->findForHomepage();
 
         return [

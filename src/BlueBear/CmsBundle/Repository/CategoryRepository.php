@@ -3,13 +3,12 @@
 namespace BlueBear\CmsBundle\Repository;
 
 use BlueBear\CmsBundle\Entity\Category;
-use Doctrine\ORM\EntityRepository;
+use LAG\DoctrineRepositoryBundle\Repository\DoctrineRepository;
 
 /**
  * CategoryRepository
- *
  */
-class CategoryRepository extends EntityRepository
+class CategoryRepository extends DoctrineRepository
 {
     /**
      * Return categories that should be display in homepage. They are indexed by slug
@@ -19,6 +18,7 @@ class CategoryRepository extends EntityRepository
     public function findForHomepage()
     {
         return $this
+            ->repository
             ->createQueryBuilder('category', 'category.slug')
             ->where('category.displayInHomepage = :display')
             ->setParameter('display', true)

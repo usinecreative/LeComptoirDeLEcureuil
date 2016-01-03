@@ -4,7 +4,7 @@ bluebear.cms.homepage:
 
 bluebear.cms.dashboard:
     path: /dashboard
-    defaults: {_controller: BlueBearCmsBundle:Cms:dashbord}
+    defaults: {_controller: BlueBearCmsBundle:Cms:dashboard}
 
 bluebear.cms.article.preview:
     path: /article/preview

@@ -1,0 +1,70 @@
+BlueBear\CmsUserBundle\Entity\User:
+    salveena:
+        username: Salveena
+        plainPassword: admin
+        enabled: true
+        email: arnaudfrezet@gmail.com
+
+BlueBear\CmsBundle\Entity\Category:
+    litterature:
+        name: Littérature
+        slug: litterature
+        displayInHomepage: true
+        description: <realText()>
+        publicationStatus: 1
+    manga-bd:
+        name: Manga / BD
+        slug: manga-bd
+        displayInHomepage: true
+        description: <realText()>
+        publicationStatus: 1
+    rencontres:
+        name: Rencontres
+        slug: rencontres
+        displayInHomepage: true
+        description: <realText()>
+        publicationStatus: 1
+    sorties:
+        name: Sorties
+        slug: sorties
+        displayInHomepage: true
+        description: <realText()>
+        publicationStatus: 1
+
+BlueBear\CmsBundle\Entity\Article:
+    articles_litterature_{1..200}:
+        title: <realText(20)>
+        canonical: url
+        publicationStatus: <numberBetween(0, 2)>
+        publicationDate: <dateTimeBetween('-5 years')>
+        content: <realText(5000)>
+        category: @litterature
+        author: @salveena
+        isCommentable: true
+    articles_manga_{1..200}:
+        title: <realText(20)>
+        canonical: url
+        publicationStatus: <numberBetween(0, 2)>
+        publicationDate: <dateTimeBetween('-5 years')>
+        content: <realText(500)>
+        category: @manga-bd
+        author: @salveena
+        isCommentable: true
+    articles_sorties_{1..200}:
+        title: <realText(5000)>
+        canonical: url
+        publicationStatus: <numberBetween(0, 2)>
+        publicationDate: <dateTimeBetween('-5 years')>
+        content: <realText(500)>
+        category: @sorties
+        author: @salveena
+        isCommentable: true
+    articles_rencontres_{1..200}:
+        title: <realText(20)>
+        canonical: url
+        publicationStatus: <numberBetween(0, 2)>
+        publicationDate: <dateTimeBetween('-5 years')>
+        content: <realText(5000)>
+        category: @rencontres
+        author: @salveena
+        isCommentable: true

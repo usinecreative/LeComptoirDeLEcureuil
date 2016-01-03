@@ -1,12 +1,20 @@
-{% extends '@LeComptoirDeLEcureuilFront/layout.html.twig' %}
+{% extends '::layout.html.twig' %}
 
 {% block title %}{{ article.title }}{% endblock %}
 
 {% block content %}
-    <div class="col-lg-9 main-content article">
-        <h2>{{ article.title }}</h2>
-        <div class="thumbnail">
-            {{ article.thumbnail.filepath }}
+    <div class="main-content col-lg-9 article">
+        <div class="article-header">
+            <span class="title-date">{{ article.publicationDate | localizeddate('full', 'none') }}</span>
+            <h2>{{ article.title }}</h2>
+
+            <div class="article-thumbnail">
+                {% if article.thumbnail.filepath is defined %}
+                    {{ article.thumbnail.filepath }}
+                {% else %}
+                    <img src="/img/article-header2.jpg" alt="">
+                {% endif %}
+            </div>
         </div>
         <div class="article-content">
             {{ article.content | raw }}

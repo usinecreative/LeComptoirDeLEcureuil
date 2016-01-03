@@ -7,6 +7,7 @@ use BlueBear\BaseBundle\Entity\Behaviors\Timestampable;
 use BlueBear\CmsUserBundle\Entity\User;
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
@@ -68,7 +69,7 @@ class Article
     protected $content;
 
     /**
-     * @ORM\ManyToMany(targetEntity="BlueBear\CmsBundle\Entity\Category", inversedBy="articles", fetch="EAGER")
+     * @ORM\ManyToOne(targetEntity="BlueBear\CmsBundle\Entity\Category", inversedBy="articles", fetch="EAGER")
      * @ORM\JoinColumn(nullable=true)
      * @var Category
      */
@@ -104,11 +105,17 @@ class Article
      */
     protected $thumbnail;
 
+    /**
+     * Article constructor.
+     */
     public function __construct()
     {
         $this->comments = new ArrayCollection();
     }
 
+    /**
+     * @return string
+     */
     public function __toString()
     {
         return $this->title;
@@ -195,22 +202,6 @@ class Article
     }
 
     /**
-     * @return Category
-     */
-    public function getCategory()
-    {
-        return $this->category;
-    }
-
-    /**
-     * @param Category $category
-     */
-    public function setCategory($category)
-    {
-        $this->category = $category;
-    }
-
-    /**
      * @return mixed
      */
     public function getAuthor()
@@ -234,6 +225,9 @@ class Article
         return $this->isCommentable;
     }
 
+    /**
+     * @return bool
+     */
     public function isCommentable()
     {
         return (bool)$this->isCommentable;
@@ -284,6 +278,9 @@ class Article
         $this->slug = $slug;
     }
 
+    /**
+     * @return array
+     */
     public function getUrlParameters()
     {
         // TODO move in configuration
@@ -308,5 +305,21 @@ class Article
     public function setThumbnail($thumbnail)
     {
         $this->thumbnail = $thumbnail;
+    }
+
+    /**
+     * @return Category
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * @param Category $category
+     */
+    public function setCategory($category)
+    {
+        $this->category = $category;
     }
 }

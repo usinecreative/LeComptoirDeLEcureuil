@@ -13,3 +13,11 @@ web_profiler:
 
 assetic:
     use_controller: true
+
+hautelook_alice:
+    db_drivers:
+        orm: ~
+    locale: fr_FR
+    seed: 1
+    persist_once: false
+    loading_limit: 5

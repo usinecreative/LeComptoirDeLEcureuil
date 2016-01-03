@@ -33,3 +33,10 @@ assets-copy:
 	@$(copy) $(assets_dir)/img/* $(web_dir)/img/
 	@echo "copying symfony assets"
 	@$(sf) assets:install --symlink
+
+watch:
+	@while [ "true" ] ; do \
+	    @echo "building symfony assets" ; \
+		make assets ; \
+		sleep 2; \
+	done;

@@ -46,7 +46,7 @@ class Category
 
     /**
      * @var ArrayCollection
-     * @ORM\ManyToMany(targetEntity="BlueBear\CmsBundle\Entity\Article", mappedBy="category")
+     * @ORM\OneToMany(targetEntity="BlueBear\CmsBundle\Entity\Article", mappedBy="category")
      */
     protected $articles;
 

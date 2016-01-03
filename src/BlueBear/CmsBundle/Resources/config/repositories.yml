@@ -1,0 +1,10 @@
+services:
+    lag.cms.comment_repository:
+        class: BlueBear\CmsBundle\Repository\CommentRepository
+        tags:
+            - {name: doctrine.repository}
+
+    lag.cms.article_repository:
+        class: BlueBear\CmsBundle\Repository\ArticleRepository
+        tags:
+            - {name: doctrine.repository}

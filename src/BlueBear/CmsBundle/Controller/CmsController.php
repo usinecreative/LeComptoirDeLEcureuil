@@ -17,16 +17,24 @@ class CmsController extends Controller
     public function homepageAction()
     {
         $categories = $this
-            ->get('doctrine')
-            ->getRepository('BlueBearCmsBundle:Category')
+            ->get('cms.category.repository')
             ->findAll();
         return [
             'categories' => $categories
         ];
     }
 
-    public function dashbordAction()
+    /**
+     * @Template("@BlueBearCms/Dashboard/dashboard.html.twig")
+     */
+    public function dashboardAction()
     {
+        $dashboard = $this
+            ->get('bluebear.cms.dashboard_factory')
+            ->create($this->getUser()->getLastLogin());
 
+        return [
+            'dashboard' => $dashboard
+        ];
     }
 }

@@ -2,9 +2,8 @@
 
 namespace BlueBear\CmsBundle\Repository;
 
+use LAG\DoctrineRepositoryBundle\Repository\DoctrineRepository;
 
-use Doctrine\ORM\EntityRepository;
-
-class ContentRepository extends EntityRepository
+class ContentRepository extends DoctrineRepository
 {
 }

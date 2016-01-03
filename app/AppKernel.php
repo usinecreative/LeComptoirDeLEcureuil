@@ -33,6 +33,7 @@ class AppKernel extends Kernel
             new LeComptoirDeLEcureuil\FrontBundle\LeComptoirDeLEcureuilFrontBundle(),
             new LeComptoirDeLEcureuil\BackBundle\LeComptoirDeLEcureuilBackBundle(),
             new LeComptoirDeLEcureuil\CoreBundle\LeComptoirDeLEcureuilCoreBundle(),
+            new LAG\DoctrineRepositoryBundle\LAGDoctrineRepositoryBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'])) {
@@ -41,6 +42,7 @@ class AppKernel extends Kernel
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
             $bundles[] = new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle();
+            $bundles[] = new \Hautelook\AliceBundle\HautelookAliceBundle();
         }
         if (in_array($this->getEnvironment(), ['prod'])) {
             $bundles[] = new \Ekino\Bundle\NewRelicBundle\EkinoNewRelicBundle();

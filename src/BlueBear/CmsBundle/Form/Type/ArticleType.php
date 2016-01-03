@@ -11,16 +11,9 @@ class ArticleType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        //
-        //->add('thumbnail', 'media_upload')
-//            ->add('content', 'ckeditor', [
-//                'config' => [
-//                    'height' => '800px'
-//                ]
-//            ])
         $builder
             ->add('title', 'text')
-            ->add('category')
+           // ->add('category')
             ->add('canonical', 'text', [
                 'read_only' => true
             ])

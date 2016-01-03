@@ -23,6 +23,7 @@ lecomptoir:
     edit: Editer
     delete: Supprimer
 
+    id: '#'
     name: Nom
     description: Description
     createdAt: Crée le
@@ -30,3 +31,7 @@ lecomptoir:
     articles: Articles liés
     displayInHomepage: Sur la page d'accueil ?
     _actions: ''
+    title: Titre
+    author: Author
+    publicationStatus: Publication
+    publicationDate: Publié le

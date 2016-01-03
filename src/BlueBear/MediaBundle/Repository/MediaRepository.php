@@ -2,8 +2,8 @@
 
 namespace BlueBear\MediaBundle\Repository;
 
-use Doctrine\ORM\EntityRepository;
+use LAG\DoctrineRepositoryBundle\Repository\DoctrineRepository;
 
-class MediaRepository extends EntityRepository
+class MediaRepository extends DoctrineRepository
 {
 }

@@ -2,7 +2,14 @@ lag:
     admin:
         category.saved: La catégorie a été sauvegardée correctement
     cms:
-        comments: Commentaires
+        # Comments
+        new_comments: Nouveaux Commentaires
+        # Articles
+        new_articles: Nouveaux Articles
+        articles_not_published: Articles non publiés
+        # Dashboard
+        dashboard_title: Dashboard
+        dashboard_heading_text: Voir
 
 bluebear:
     cms:

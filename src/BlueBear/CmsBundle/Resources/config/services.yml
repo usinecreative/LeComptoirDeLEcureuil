@@ -1,9 +1,11 @@
 imports:
     - { resource: forms.yml }
+    - { resource: repositories.yml }
 
 parameters:
     # Factories
     bluebear.cms.content_type_factory.class: BlueBear\CmsBundle\Factory\ContentTypeFactory
+    bluebear.cms.dashboard_factory: BlueBear\CmsBundle\Dashboard\Factory\DashboardFactory
     # Subscribers
     bluebear.cms.kernel_subscriber.class: BlueBear\CmsBundle\Event\Subscriber\KernelSubscriber
     # Managers
@@ -16,6 +18,12 @@ services:
     # Factories
     bluebear.cms.content_type_factory:
         class: %bluebear.cms.content_type_factory.class%
+
+    bluebear.cms.dashboard_factory:
+        class: %bluebear.cms.dashboard_factory%
+        arguments:
+            - @lag.cms.comment_repository
+            - @lag.cms.article_repository
 
     # Subscribers
     bluebear.cms.kernel_subscriber:
@@ -33,14 +41,8 @@ services:
     # Finders
     bluebear.cms.article_finder:
         class: %bluebear.cms.article_finder.class%
-        arguments: [@bluebear.cms.repository.article]
+        arguments: [@cms.article.repository]
 
-    # Article repository
-    bluebear.cms.repository.article:
-        class: BlueBear\CmsBundle\Repository\ArticleRepository
-        factory_service: doctrine.orm.default_entity_manager
-        factory_method: getRepository
-        arguments: ['BlueBearCmsBundle:Article']
 
 
     lag.assetic.bundler_compass_filter:
