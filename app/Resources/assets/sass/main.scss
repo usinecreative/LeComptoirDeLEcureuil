@@ -27,6 +27,12 @@ body {
 h1, h2, h3 {
   font-family: $font-family-title;
 }
+.text-left {
+  text-align: left;
+}
+.text-right {
+  text-align: right;
+}
 
 .container {
   .site-title {
@@ -136,10 +142,26 @@ h1, h2, h3 {
   text-transform: capitalize;
 }
 .category-ribbon {
-  float: right;
-  margin-top: -4px;
-  margin-right: 20px;
+  margin: -4px 20px 0 20px;
   text-align: center;
+}
+
+
+// Contact page
+.contact-page {
+  padding: 30px;
+
+  h2 {
+    margin-bottom: 50px;
+  }
+  .form-group {
+    margin-bottom: 30px;
+  }
+
+  .form-control, .btn {
+    border-radius: 0;
+    box-shadow: none;
+  }
 }
 
 p {

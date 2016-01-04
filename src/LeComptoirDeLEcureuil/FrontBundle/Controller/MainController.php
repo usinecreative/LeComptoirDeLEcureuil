@@ -2,6 +2,7 @@
 
 namespace LeComptoirDeLEcureuil\FrontBundle\Controller;
 
+use LeComptoirDeLEcureuil\FrontBundle\Form\Type\ContactType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -25,6 +26,18 @@ class MainController extends Controller
         return [
             'latestArticles' => $latestArticles,
             'categories' => $categories,
+        ];
+    }
+
+    /**
+     * @Template(":Main:contact.html.twig")
+     */
+    public function contactAction()
+    {
+        $form = $this->createForm(new ContactType());
+
+        return [
+            'form' => $form->createView()
         ];
     }
 }

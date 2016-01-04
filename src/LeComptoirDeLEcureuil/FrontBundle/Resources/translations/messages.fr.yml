@@ -22,6 +22,7 @@ lecomptoir:
     create: Ajouter
     edit: Editer
     delete: Supprimer
+    contact: Contacter
 
     id: '#'
     name: Nom
