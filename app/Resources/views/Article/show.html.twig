@@ -22,11 +22,24 @@
             {{ article.content | raw }}
         </div>
         <div class="article-footer">
-            {{ 'lag.cms.categories' | trans }} : {{ article.categories | join(', ') }}<br/>
-            {{ 'lag.cms.tags' | trans }} :
-            {% for tag in article.tags %}
-                <a href="{{ path('lecomptoir.article.list_by_tag', {tag: tag}) }}">{{ tag }}</a>
-            {% endfor %}
+            <ul>
+                <li>
+                    {{ 'lecomptoir.interface.categories' | trans }} :
+                    <a href="{{ path('lecomptoir.article.list_by_category', {categorySlug: article.category.slug}) }}">
+                        {{ article.category.name }}
+                    </a>
+                </li>
+                <li>
+                    {{ 'lag.cms.tags' | trans }} :
+                    <ul class="inline">
+                        {% for tag in article.tags %}
+                            <li class="tag">
+                                <a href="{{ path('lecomptoir.article.list_by_tag', {tag: tag}) }}">{{ tag }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            </ul>
         </div>
     </div>
 {% endblock %}

@@ -36,3 +36,7 @@ lecomptoir:
     author: Author
     publicationStatus: Publication
     publicationDate: Publié le
+
+    interface:
+        more_link: Lire la suite
+        categories: Catégories

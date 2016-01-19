@@ -79,6 +79,7 @@ class ArticleFinder
                 ->andWhere('category.slug = :category')
                 ->setParameter('category', $parameters->get('categorySlug'));
         }
+
         // search an article by its slug
         if ($parameters->has('slug')) {
             $queryBuilder

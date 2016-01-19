@@ -33,6 +33,9 @@ h1, h2, h3 {
 .text-right {
   text-align: right;
 }
+.inline {
+  display: inline;
+}
 
 .container {
   .site-title {
@@ -56,6 +59,9 @@ h1, h2, h3 {
   }
 }
 
+.more-link {
+  color: #497ca7;
+}
 
 // Lastest articles
 .latest-article {
@@ -65,7 +71,7 @@ h1, h2, h3 {
   .article-item {
     padding: 20px;
 
-    a {
+    h3, h3 a {
       color: #333333;
     }
     img {
@@ -73,11 +79,15 @@ h1, h2, h3 {
       padding-right: 15px;
       width: 150px;
       height: 172px;
+      margin-bottom: 25px;
     }
     h1 {
       font-family: "Playball", arial, sans-serif;
       font-size: 21px;
       color: #11112f;
+    }
+    p {
+      text-align: justify;
     }
   }
   .ribbon {
@@ -96,6 +106,7 @@ h1, h2, h3 {
 // Article
 .article {
   padding: 20px 0 20px 0;
+  font-family: "Gabriela", arial, sans-serif;
 
   h1 {
     font-family: "Playball", arial, sans-serif;
@@ -113,12 +124,23 @@ h1, h2, h3 {
   }
   .article-content {
     padding: 20px 50px;
-    font-family: "Gabriela", arial, sans-serif;
+
   }
 
   .article-thumbnail {
     text-align: center;
     background-color: black;
+  }
+  .article-footer {
+    padding: 20px 50px;
+
+    ul, li {
+      list-style: none;
+      padding: 0;
+    }
+    .tag {
+      display: inline;
+    }
   }
   // content
   .alignright {
