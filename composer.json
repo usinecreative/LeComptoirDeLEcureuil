@@ -32,7 +32,9 @@
     "mrclay/minify": "^2.2",
     "stfalcon/tinymce-bundle": "dev-master",
     "symfony/monolog-bundle": "^2.8",
-    "ekino/newrelic-bundle": "^1.3"
+    "ekino/newrelic-bundle": "^1.3",
+    "phpunit/phpunit": "5.1.*",
+    "guzzlehttp/guzzle": "~6.0"
   },
   "scripts": {
     "post-root-package-install": [

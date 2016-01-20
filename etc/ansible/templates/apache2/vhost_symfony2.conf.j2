@@ -1,0 +1,24 @@
+<VirtualHost *:80>
+    ServerAdmin admin@larriereguichet.fr
+    ServerName {{ server_name }}
+{% if aliases is defined %}
+    {% for alias in aliases %}
+    ServerAlias {{ alias }}
+    {% endfor %}
+{% endif %}
+
+    DocumentRoot {{ document_root }}
+
+    <Directory {{ document_root }}>
+        Options -Indexes +FollowSymLinks
+        AllowOverride All
+        Require all granted
+    </Directory>
+
+    ErrorLog ${APACHE_LOG_DIR}/{{ server_name }}-error.log
+
+    # Possible values include: debug, info, notice, warn, error, crit, alert, emerg.
+    LogLevel warn
+
+    CustomLog ${APACHE_LOG_DIR}/{{ server_name }}-access.log combined
+</VirtualHost>

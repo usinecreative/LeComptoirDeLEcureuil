@@ -1,0 +1,12 @@
+staging ansible_ssh_host=example.org ansible_ssh_port=22 ansible_ssh_user=root ansible_ssh_private_key_file=~/.ssh/id_rsa
+
+[staging]
+staging
+
+[staging:vars]
+user=pesenti
+server_name=api.holding-pesenti.lag.rest
+deploy_to=/home/pesenti/api/
+document_root=/home/pesenti/api/current/web/
+key=
+repo_url=git@gitlab.com:larriereguichet/holding-pesenti-api.git

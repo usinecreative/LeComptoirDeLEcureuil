@@ -1,0 +1,41 @@
+---
+
+- hosts: staging
+  sudo: yes
+  tasks:
+    # user, groups and authorizations
+    - name: add project specific group
+      group: name={{user}} state=present
+    - name: add project specific user with a home and him to www-data group
+      user: name={{user}} comment="Holding Pesenti" group={{user}} groups=www-data,ssh append=yes createhome=yes shell=/bin/bash
+    - name: add authorized key
+      authorized_key: user={{user}} key={{key}}
+
+    # apache setting and project directories
+    - name: create deployment directory
+      file: path={{deploy_to}} state=directory mode=0755 owner={{user}} group={{user}} recurse=yes
+    - name: create apache2 vhost for a symfony2 project in available sites
+      template: src=templates/apache2/vhost_symfony2.conf.j2 dest=/etc/apache2/sites-available/{{server_name}}.conf
+    - name: enable site
+      command: a2ensite {{server_name}}
+      notify:
+        - restart apache
+    - name: create shared directories
+      file: path={{deploy_to}}/shared/app/config/ state=directory mode=0755 owner={{user}} group={{user}} recurse=yes
+
+    # project configuration
+    - name: copy parameter files
+      template: src=../../app/config/parameters.yml.dist dest={{deploy_to}}/shared/app/config/parameters.yml
+
+    # locals deployment configuration files
+    - name: generate local capistrano deploy.rb
+      template: src=templates/capistrano/deploy_symfony2.rb.j2 dest=../../etc/capistrano/deploy.rb
+      delegate_to: 127.0.0.1
+      sudo: false
+    - name: generate local capistrano environment configuration files
+      template: src=templates/capistrano/env.rb.j2 dest=../../etc/capistrano/stages/{{ inventory_hostname_short }}.rb
+      delegate_to: 127.0.0.1
+      sudo: false
+  handlers:
+    - name: restart apache
+      service: name=apache2 state=restarted
