@@ -2,6 +2,7 @@
 
 namespace JK\StaticClientBundle\Client;
 
+use Exception;
 use GuzzleHttp\Client;
 use SplFileInfo;
 
@@ -26,7 +27,7 @@ class StaticClient
      *
      * @param $staticServerUrl
      */
-            public function __construct($staticServerUrl)
+    public function __construct($staticServerUrl)
     {
         // guzzle client creation
         $this->client = new Client([
@@ -37,6 +38,11 @@ class StaticClient
 
     public function post(SplFileInfo $file)
     {
+        if (!$file->isReadable()) {
+            throw new Exception('File ' . $file->getRealPath() . ' is not readable');
+        }
+
+
         $this
             ->client
             ->post('/post', [

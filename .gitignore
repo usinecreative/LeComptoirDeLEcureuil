@@ -4,6 +4,7 @@
 app/config/parameters.yml
 app/bootstrap.php.cache
 app/logs
+app/phpunit.xml
 bin/*
 web/bundles
 cache
