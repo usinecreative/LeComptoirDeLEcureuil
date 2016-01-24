@@ -24,12 +24,12 @@
     {# site header : logo and title#}
     {% include '::Main/header.html.twig' %}
     {# main menu #}
-    {% include '::Main/navbar.html.twig' %}
+    {% include '::Menu/navbar.html.twig' %}
 
-    <div class="row">
+    <div class="row content">
         {# left column #}
         {% block left %}
-            {% include '::Main/left.html.twig' %}
+            {% include '::Menu/left.html.twig' %}
         {% endblock %}
 
         {% block content %}{% endblock %}

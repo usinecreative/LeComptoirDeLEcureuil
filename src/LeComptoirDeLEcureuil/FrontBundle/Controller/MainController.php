@@ -40,4 +40,14 @@ class MainController extends Controller
             'form' => $form->createView()
         ];
     }
+
+    /**
+     * @Template(":Main:page.html.twig")
+     * @param $partnerSlug
+     * @return array
+     */
+    public function partnersAction($partnerSlug = null)
+    {
+        // TODO find page
+    }
 }

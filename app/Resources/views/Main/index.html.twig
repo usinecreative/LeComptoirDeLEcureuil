@@ -61,7 +61,7 @@
             <h2>{{ 'lecomptoir.lastest_articles' | trans }}</h2>
 
             <div class="row">
-                {% for article in articles %}
+                {% for article in latestArticles %}
                     {% set categoryUrl = path('lecomptoir.article.list_by_category', {categorySlug: article.category.slug}) %}
                     {% set categoryLinkTitle = 'lecomptoir.article.go_to_category' | trans({'%category%': article.category.name}) %}
                     {% set articleUrl = path('lecomptoir.article.show', article.urlParameters) %}
@@ -80,7 +80,7 @@
                         <a href="{{ articleUrl }}" title="{{ articleLinkTitle }}">{{ article.title }}</a>
                     </h3>
 
-                    <p>{{ article.content | striptags | truncate(350) | raw }}
+                    <p>{{ article.content | striptags | truncate(330) | raw }}
                         <a href="{{ articleUrl }}" title="{{ articleLinkTitle }}" class="more-link">
                             {{ 'lecomptoir.interface.more_link' | trans }}
                             <i class="fa fa-plus-circle"></i>

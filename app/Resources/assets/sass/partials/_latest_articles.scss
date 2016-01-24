@@ -1,0 +1,35 @@
+// Lastest articles
+.latest-article {
+  background-color: $main-color;
+  padding: 20px;
+
+  .article-item {
+    padding: 20px;
+
+    h3, h3 a {
+      color: #333333;
+    }
+    img {
+      float: left;
+      padding-right: 15px;
+      width: 150px;
+      height: 172px;
+      margin-bottom: 25px;
+    }
+    h1 {
+      font-family: "Playball", arial, sans-serif;
+      font-size: 21px;
+      color: #11112f;
+    }
+    p {
+      text-align: justify;
+    }
+  }
+  .ribbon {
+    text-align: center;
+
+    a, a:visited {
+      color: $main-color;
+    }
+  }
+}

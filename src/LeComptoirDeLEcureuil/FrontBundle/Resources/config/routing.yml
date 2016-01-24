@@ -6,6 +6,14 @@ lecomptoir.contact:
     path: /contact
     defaults: {_controller: LeComptoirDeLEcureuilFrontBundle:Main:contact}
 
+lecomptoir.partners:
+    path: /partenaires
+    defaults: {_controller: LeComptoirDeLEcureuilFrontBundle:Main:partners}
+
+lecomptoir.partner:
+    path: /partenaires/{partnerSlug}
+    defaults: {_controller: LeComptoirDeLEcureuilFrontBundle:Main:partners}
+
 lecomptoir.article.show:
     path:  /{year}/{month}/{slug}
     defaults: {_controller: LeComptoirDeLEcureuilFrontBundle:Article:show}
