@@ -34,7 +34,7 @@ class AppKernel extends Kernel
             new LeComptoirDeLEcureuil\BackBundle\LeComptoirDeLEcureuilBackBundle(),
             new LeComptoirDeLEcureuil\CoreBundle\LeComptoirDeLEcureuilCoreBundle(),
             new LAG\DoctrineRepositoryBundle\LAGDoctrineRepositoryBundle(),
-            new JK\StaticClientBundle\JKStaticClientBundle(),
+            //new JK\StaticClientBundle\JKStaticClientBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'])) {
