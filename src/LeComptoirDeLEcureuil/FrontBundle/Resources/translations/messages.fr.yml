@@ -26,7 +26,10 @@ lecomptoir:
     contact:
         contact: Contacter l'écureuil
         first_name: Prénom
+        first_name_placeholder: Saisissez votre prénom...
         last_name: Nom
+        last_name_placeholder: Saisissez votre nom...
+        email_placeholder: Saisissez votre email pour une réponse...
         message: Message
 
     id: '#'

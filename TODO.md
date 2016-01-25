@@ -5,9 +5,11 @@ TODO
 > mettre un widget archives (menu droite)
 > mettre zone commentaire
 > lors de commentaire, premiere fois envoyer un mail pour validation , ensuite juste mail information
-> rajouter linkedin
 > mettre le rss dans le footer
 > mettre les logos
+> page partenaires
+> page qui-suis-je ?
+> widget left site à noisettes
 
 DONE
 ========================
@@ -33,3 +35,5 @@ fond : #0D0D1F
 > colonnes page article trop large : à priori doubler le padding, justifer par défaut
 police 16px
 line-height: 1.8
+
+> rajouter linkedin
