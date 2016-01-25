@@ -1,0 +1,17 @@
+// Contact page
+.contact-page {
+  padding: 30px;
+  font-family: $font-family;
+
+  h2 {
+    margin-bottom: 50px;
+  }
+  .form-group {
+    margin-bottom: 30px;
+  }
+
+  .form-control, .btn {
+    border-radius: 0;
+    box-shadow: none;
+  }
+}

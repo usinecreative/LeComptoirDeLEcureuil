@@ -23,7 +23,11 @@ lecomptoir:
     create: Ajouter
     edit: Editer
     delete: Supprimer
-    contact: Contacter
+    contact:
+        contact: Contacter l'écureuil
+        first_name: Prénom
+        last_name: Nom
+        message: Message
 
     id: '#'
     name: Nom

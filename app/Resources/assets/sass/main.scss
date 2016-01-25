@@ -1,9 +1,9 @@
 // Compass
 @import "compass";
-//@import "compass/css3/transition";
 
-// Var
+// Vars
 $font-family-title: Gabriela, sans-serif;
+$font-family: Gabriela, sans-serif;
 $main-color: #e9d9d3;
 $main-color: #EEEAE8;
 $menu-backgroud-color: #09090F;
@@ -15,10 +15,12 @@ $background-color: #11112f;
 // Partials
 @import "partials/resets";
 @import "partials/menu";
+@import "partials/top-menu";
 @import "partials/latest_articles";
 // Pages
 @import "pages/articles";
 @import "pages/home";
+@import "pages/contact";
 
 
 body {
@@ -63,6 +65,7 @@ h1, h2, h3 {
   .main-content {
     background-color: $main-color;
     border-left: 1px solid #0D0D1F;
+    padding-left: 14px;
   }
 }
 
@@ -135,24 +138,6 @@ h1, h2, h3 {
 .category-ribbon {
   margin: -4px 20px 0 20px;
   text-align: center;
-}
-
-
-// Contact page
-.contact-page {
-  padding: 30px;
-
-  h2 {
-    margin-bottom: 50px;
-  }
-  .form-group {
-    margin-bottom: 30px;
-  }
-
-  .form-control, .btn {
-    border-radius: 0;
-    box-shadow: none;
-  }
 }
 
 p {
