@@ -17,6 +17,12 @@ blue_bear_cms:
                 behaviors:
                   commentable: ~
 
+ivory_ck_editor:
+    configs:
+        my_config:
+            toolbar: standard
+            height: 1500px
+
 
 lag_admin:
     application:
@@ -24,15 +30,16 @@ lag_admin:
         description: Des noisettes et des livres
         bootstrap: true
         layout: BlueBearCmsBundle::layout.html.twig
+        max_per_page: 25
         routing:
             name_pattern: bluebear.cms.{admin}.{action}
             url_pattern:  /{admin}/{action}
-        date_format: d/m/Y h:i:s
+        date_format: \L\e d/m/Y à h:i:s
         translation:
-            pattern: lecomptoir.{key}
+            pattern: lecomptoir.{admin}.{key}
     admins:
         user:
-            entity: BlueBear\CmsUserBundle\Entity\User
+            entity: BlueBear\CmsBundle\Entity\User
             form: user
             actions:
                 list:
@@ -48,7 +55,7 @@ lag_admin:
 
         category:
             entity: BlueBear\CmsBundle\Entity\Category
-            form: category
+            form: BlueBear\CmsBundle\Form\Type\CategoryType
             actions:
                 create: ~
                 edit: ~
@@ -58,10 +65,6 @@ lag_admin:
                     fields:
                         id: ~
                         name: ~
-                        description:
-                            type: string
-                            options:
-                                length: 150
                         createdAt:
                             type: date
                         updatedAt:
@@ -75,29 +78,36 @@ lag_admin:
                         - {field: updatedAt, order: desc}
                     actions:
                         create:
-                            title: lecomptoir.create
+                            title: bluebear.cms.category.create
                             route: bluebear.cms.category.create
                             icon: plus
 
         article:
             entity: BlueBear\CmsBundle\Entity\Article
-            form: article
+            form: BlueBear\CmsBundle\Form\Type\ArticleType
             actions:
                 list:
                     title: bluebear.cms.article.list
+                    order:
+                        - {field: publicationDate, order: desc}
+                    actions:
+                        create:
+                            title: bluebear.cms.article.create
+                            route: bluebear.cms.article.create
+                            icon: plus
                     fields:
                         id: ~
                         title:
                             type: link
                             options:
-                                length: 100
+                                length: 40
                                 route: bluebear.cms.article.edit
                                 parameters: {id: ~}
                         category: ~
                         author: ~
-                        publicationStatus: {type: date, options: {format: d/m/Y}}
+                        publicationStatus: ~
                         publicationDate: {type: date, options: {format: d/m/Y}}
-                        updatedAt: {type: date, options: {format: d/m/Y h:i:s}}
+                        updatedAt: {type: date, options: {format: '\L\e d/m/Y à h:i:s'}}
                         _actions:
                             type: collection
                             options:
@@ -122,14 +132,6 @@ lag_admin:
                                         text: bluebear.cms.article.see
                                         target: _blank
                                         icon: eye
-
-                    order:
-                        - {field: publicationDate, order: desc}
-                    actions:
-                        create:
-                            title: bluebear.admin.create
-                            route: bluebear.cms.article.create
-                            icon: plus
                 create: ~
                 edit:
                     actions:
@@ -164,9 +166,9 @@ lag_admin:
                 edit: ~
                 delete: ~
         import:
-            entity: BlueBear\CmsImportBundle\Entity\Import
+            entity: BlueBear\CmsBundle\Entity\Import
             form: import
-            controller: BlueBearCmsImportBundle:Import
+            controller: BlueBearCmsBundle:Import
             actions:
                 list:
                     fields:
@@ -250,8 +252,6 @@ lag_admin:
                 create: ~
                 edit: ~
                 delete: ~
-
-bluebear_cms_import: ~
 
 bluebear_media: ~
 

@@ -5,7 +5,6 @@ namespace BlueBear\CmsBundle\Entity;
 use BlueBear\BaseBundle\Entity\Behaviors\Id;
 use BlueBear\BaseBundle\Entity\Behaviors\Timestampable;
 use BlueBear\CmsBundle\Entity\Behavior\Taggable;
-use BlueBear\CmsUserBundle\Entity\User;
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -76,7 +75,7 @@ class Article
     protected $category;
 
     /**
-     * @ORM\ManyToOne(targetEntity="BlueBear\CmsUserBundle\Entity\User", inversedBy="articles")
+     * @ORM\ManyToOne(targetEntity="BlueBear\CmsBundle\Entity\User", inversedBy="articles")
      * @var User
      */
     protected $author;

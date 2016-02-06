@@ -1,3 +1,16 @@
+# Guard
+login:
+    path: /login
+    defaults: {_controller: BlueBearCmsBundle:Guard:login}
+
+login_check:
+    path: /login_check
+    defaults: {_controller: BlueBearCmsBundle:Guard:loginCheck}
+
+logout:
+    path: /logout
+
+# Cms
 bluebear.cms.homepage:
     path: /
     defaults: {_controller: BlueBearCmsBundle:Cms:homepage}

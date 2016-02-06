@@ -14,8 +14,16 @@ lag:
         # Dashboard
         dashboard_title: Dashboard
         dashboard_heading_text: Voir
+        login:
+            login: Se connecter
+
+
+lecomptoir.article.batch.delete: Supprimer plusieurs articles
+
 
 bluebear:
+
+
     cms:
         dashboard: Dashboard
         configuration: Configuration
@@ -41,7 +49,7 @@ bluebear:
         displayInHomepage: "En page d'accueil ?"
         publication:
             draft: Brouillon
-            validation: Validé
+            validation: En attente de validation
             published: Publié
 
         # Batches
@@ -55,14 +63,22 @@ bluebear:
         category.slug_help: Le nom utilisé dans les urls
         category.description_help: Description longue de la catégorie
         category.display_in_homepage_help: Affiche ou non la catégorie sur la page d'accueil
-        category.updated_at_help: Date de la dernièer mise à jour
+        category.updated_at_help: Date de la dernière mise à jour
 
         # Articles
         article.list: Articles
-        article.create: Ajouter
+        article.create: Créer un article
         article.edit: Edition d'un article
         article.preview: Prévisualisation
         article.see: Voir
+        article.id: Id
+        article.title: Titre
+        article.category: Catégorie
+        article.author: Auteur
+        article.publicationStatus: Statut de publication
+        article.publicationDate: Date de publication
+        article.updatedAt: Mis à jour le
+        article._actions:
 
 
         comment:
@@ -85,6 +101,11 @@ bluebear:
             edit: Edition d'une page
             title_help: Titre de l'article
             slug_help: Le nom utilisé dans les urls
+
+        import:
+            create: Importer vos données
+            wordpress: Importer depuis WordPress
+
 
 bluebear.cms.name: Nom
 bluebear.cms.list: Liste

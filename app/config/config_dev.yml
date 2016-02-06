@@ -11,13 +11,5 @@ web_profiler:
     toolbar: true
     intercept_redirects: false
 
-assetic:
-    use_controller: true
-
-hautelook_alice:
-    db_drivers:
-        orm: ~
-    locale: fr_FR
-    seed: 1
-    persist_once: false
-    loading_limit: 5
+swiftmailer:
+    delivery_address: arnaudfrezet@gmail.com

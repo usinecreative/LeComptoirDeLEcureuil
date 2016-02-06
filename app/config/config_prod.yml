@@ -20,20 +20,20 @@ monolog:
             path: "%kernel.logs_dir%/bluebear-%kernel.environment%.log"
             level: error
 
-ekino_new_relic:
-    enabled: true
-    application_name: LeComptoir
-    deployment_names: ~
-    api_key:
-    license_key:
-    xmit: false
-    logging: false
-    instrument: false
-    log_exceptions: false
-    log_commands: true
-    using_symfony_cache: false
-    transaction_naming: route
-    transaction_naming_service: ~
-    ignored_routes: []
-    ignored_paths: []
-    ignored_commands: []
+#ekino_new_relic:
+#    enabled: true
+#    application_name: LeComptoir
+#    deployment_names: ~
+#    api_key:
+#    license_key:
+#    xmit: false
+#    logging: false
+#    instrument: false
+#    log_exceptions: false
+#    log_commands: true
+#    using_symfony_cache: false
+#    transaction_naming: route
+#    transaction_naming_service: ~
+#    ignored_routes: []
+#    ignored_paths: []
+#    ignored_commands: []

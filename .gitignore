@@ -1,11 +1,10 @@
-.gitkeep
-
 # symfony
 app/config/parameters.yml
 app/bootstrap.php.cache
-app/logs
+var/logs
 app/phpunit.xml
 bin/*
+!bin/console
 web/bundles
 cache
 vendor

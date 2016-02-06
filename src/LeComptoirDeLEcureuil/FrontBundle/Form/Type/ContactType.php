@@ -3,35 +3,45 @@
 namespace LeComptoirDeLEcureuil\FrontBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
+/**
+ * Contact form
+ */
 class ContactType extends AbstractType
 {
+    /**
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('firstName', 'text', [
+            ->add('firstName', TextType::class, [
                 'label' => 'lecomptoir.contact.first_name',
                 'attr' => [
                     'placeholder' => 'lecomptoir.contact.first_name_placeholder'
                 ]
             ])
-            ->add('lastName', 'text', [
+            ->add('lastName', TextType::class, [
                 'label' => 'lecomptoir.contact.last_name',
                 'attr' => [
                     'placeholder' => 'lecomptoir.contact.last_name_placeholder'
                 ]
             ])
-            ->add('email', 'email', [
+            ->add('email', EmailType::class, [
                 'attr' => [
                     'placeholder' => 'lecomptoir.contact.email_placeholder'
                 ]
             ])
             // anti spam field
-            ->add('url', 'text', [
+            ->add('url', TextType::class, [
                 'required' => false,
             ])
-            ->add('message', 'textarea', [
+            ->add('message', TextareaType::class, [
                 'label' => 'lecomptoir.contact.message',
                 'attr' => [
                     'rows' => 10,

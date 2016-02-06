@@ -1,4 +1,4 @@
-sf=app/console
+sf=bin/console
 assets_dir=./app/Resources/assets
 web_dir=web
 copy=rsync
@@ -11,6 +11,10 @@ install:
 	@composer install -n
 	@bundle install --path=vendor/
 	@$(sf) doctrine:fixtures:load
+
+cc:
+	rm -rf var/cache/*
+	$(sf) doctrine:cache:clear-metadata
 
 deploy:
 	@bundle exec cap staging deploy
@@ -36,7 +40,7 @@ assets-copy:
 
 watch:
 	@while [ "true" ] ; do \
-	    @echo "building symfony assets" ; \
+		@echo "building symfony assets" ; \
 		make assets ; \
 		sleep 2; \
 	done;

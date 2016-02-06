@@ -22,13 +22,13 @@ services:
     bluebear.cms.dashboard_factory:
         class: %bluebear.cms.dashboard_factory%
         arguments:
-            - @lag.cms.comment_repository
-            - @lag.cms.article_repository
+            - '@lag.cms.comment_repository'
+            - '@lag.cms.article_repository'
 
     # Subscribers
     bluebear.cms.kernel_subscriber:
         class: %bluebear.cms.kernel_subscriber.class%
-        arguments: [@twig, @bluebear.cms.content_type_factory, %bluebear.cms.content%]
+        arguments: ['@twig', '@bluebear.cms.content_type_factory', %bluebear.cms.content%]
         tags:
             - {name: kernel.event_subscriber}
 
@@ -36,12 +36,12 @@ services:
     bluebear.cms.manager.content:
         class: %bluebear.cms.manager.content.class%
         calls:
-            - [setContainer, [@service_container]]
+            - [setContainer, ['@service_container']]
 
     # Finders
     bluebear.cms.article_finder:
         class: %bluebear.cms.article_finder.class%
-        arguments: [@lag.cms.article_repository]
+        arguments: ['@lag.cms.article_repository']
 
 
 
@@ -50,3 +50,19 @@ services:
         tags:
             - {name: assetic.filter, alias: bundler}
         arguments: [%kernel.root_dir%, %kernel.cache_dir%]
+
+    # importer
+    bluebear.cms.import.wordpress_importer:
+        class: BlueBear\CmsBundle\Import\Importer\WordPressImporter
+        arguments:
+            - '@logger'
+            - '@doctrine'
+            - '@lag.cms.category_repository'
+            - '@lag.cms.user_repository'
+            - '@lag.cms.article_repository'
+
+    # factory:
+    bluebear.cms.import.importer_factory:
+        class: BlueBear\CmsBundle\Import\Factory\ImporterFactory
+        calls:
+            - [setContainer, ['@service_container']]

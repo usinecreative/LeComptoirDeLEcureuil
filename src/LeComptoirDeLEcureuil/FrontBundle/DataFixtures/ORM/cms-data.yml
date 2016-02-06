@@ -1,4 +1,4 @@
-BlueBear\CmsUserBundle\Entity\User:
+BlueBear\CmsBundle\Entity\User:
     salveena:
         username: Salveena
         plainPassword: admin

@@ -1,7 +1,0 @@
-#blue_bear_cms_import_homepage:
-#    path:     /hello/{name}
-#    defaults: { _controller: BlueBearCmsImportBundle:Default:index }
-
-bluebear.cms.import:
-    path:   /import
-    defaults: { _controller: BlueBearCmsImportBundle:Import:import}

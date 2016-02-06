@@ -13,3 +13,13 @@ services:
         class: BlueBear\CmsBundle\Repository\CategoryRepository
         tags:
             - {name: doctrine.repository}
+
+#    lag.cms.user_repository:
+#        class: BlueBear\CmsBundle\Repository\UserRepository
+#        tags:
+#            - {name: doctrine.repository}
+    lag.cms.user_repository:
+        class: BlueBear\CmsBundle\Repository\UserRepository
+        factory: ["@doctrine", getRepository]
+        arguments:
+            - BlueBear\CmsBundle\Entity\User

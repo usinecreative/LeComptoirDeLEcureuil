@@ -19,8 +19,8 @@ set :pty, true
 # Symfony application configuration
 set :app_path,        "app"
 set :web_path,        "web"
-set :log_path,        fetch(:app_path) + "/logs"
-set :cache_path,      fetch(:app_path) + "/cache"
+set :log_path,        "var/logs"
+set :cache_path,      "var/cache"
 set :app_config_path, fetch(:app_path) + "/config"
 set :symfony_console_path, fetch(:app_path) + "/console"
 set :controllers_to_clear, ["app_*.php"]

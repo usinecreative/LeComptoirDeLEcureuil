@@ -10,6 +10,8 @@ TODO
 > page partenaires
 > page qui-suis-je ?
 > widget left site à noisettes
+> mettre les vrais comptes dans les widgets réseaux sociaux
+> mettre un pager sur la page des articles
 
 DONE
 ========================
@@ -37,3 +39,5 @@ police 16px
 line-height: 1.8
 
 > rajouter linkedin
+
+> migration symfony 3

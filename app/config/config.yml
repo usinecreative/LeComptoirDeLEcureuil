@@ -7,6 +7,7 @@ imports:
 framework:
     #esi:             ~
     translator:      { fallbacks: [en] }
+    assets: ~
     secret:          "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -29,16 +30,15 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
-    form:
-        resources:
-            - "LAGAdminBundle:Form:fields.html.twig"
-            - "BlueBearCmsBundle:Form:fields.html.twig"
+    form_themes:
+        - "LAGAdminBundle:Form:fields.html.twig"
+        - "BlueBearCmsBundle:Form:fields.html.twig"
 
 services:
     twig.extension.text:
        class: Twig_Extensions_Extension_Text
        tags:
-           - { name: twig.extension }
+            - { name: twig.extension }
     twig.extension.intl:
         class: Twig_Extensions_Extension_Intl
         tags:
@@ -100,18 +100,12 @@ monolog:
             path: "%kernel.logs_dir%/bluebear-%kernel.environment%.log"
             level: error
 
-# FOS User
-fos_user:
-    db_driver: orm
-    firewall_name: main
-    user_class: BlueBear\CmsUserBundle\Entity\User
-
 # ck editor
-ivory_ck_editor:
-    default_config: my_config
-    configs:
-        my_config:
-            toolbar: full
+#ivory_ck_editor:
+#    default_config: my_config
+#    configs:
+#        my_config:
+#            toolbar: full
 
 stof_doctrine_extensions:
     orm:

@@ -32,19 +32,41 @@ lecomptoir:
         email_placeholder: Saisissez votre email pour une réponse...
         message: Message
 
-    id: '#'
-    name: Nom
-    description: Description
-    createdAt: Crée le
-    updatedAt: Mis à jour le
-    articles: Articles liés
-    displayInHomepage: Sur la page d'accueil ?
-    _actions: ''
-    title: Titre
-    author: Author
-    publicationStatus: Publication
-    publicationDate: Publié le
+    # Articles
+    article.list: Articles
+    article.create: Créer un article
+    article.edit: Edition d'un article
+    article.preview: Prévisualisation
+    article.see: Voir
+    article.id: Id
+    article.title: Titre
+    article.category: Catégorie
+    article.author: Auteur
+    article.publicationStatus: Statut de publication
+    article.publicationDate: Date de publication
+    article.updatedAt: Mis à jour le
+    article._actions: ''
+
+    category.id: '#'
+    category.name: Nom
+    category.description: Description
+    category.createdAt: Crée le
+    category.updatedAt: Mis à jour le
+    category.articles: Articles liés
+    category.displayInHomepage: Sur la page d'accueil ?
+    category._actions: ''
+    category.title: Titre
+    category.author: Author
+    category.publicationStatus: Publication
+    category.publicationDate: Publié le
+    category.create: Ajouter une catégorie
+    category.edit: Editer
+    category.delete: Supprimer
+    category.batch.delete: Supprimer
 
     interface:
         more_link: Lire la suite
         categories: Catégories
+
+    # Mail
+    mail.contact.title: "[Le Comptoir de l'écureuil] Contact : nouveau message de %email%"

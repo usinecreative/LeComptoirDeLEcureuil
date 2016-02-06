@@ -6,6 +6,7 @@ parameters:
     bluebear.cms.article_type.class: BlueBear\CmsBundle\Form\Type\ArticleType
     bluebear.cms.comment_type.class: BlueBear\CmsBundle\Form\Type\CommentType
     bluebear.cms.page_type.class: BlueBear\CmsBundle\Form\Type\PageType
+    bluebear.cms.import_type.class: BlueBear\CmsBundle\Form\Type\ImportType
 
 services:
     # Form Type
@@ -14,7 +15,7 @@ services:
         tags:
             - {name: form.type, alias: content}
         calls:
-            - [setContentTypeFactory, [@bluebear.cms.content_type_factory]]
+            - [setContentTypeFactory, ['@bluebear.cms.content_type_factory']]
 
     bluebear.cms.category_type:
         class: %bluebear.cms.category_type.class%
@@ -40,3 +41,8 @@ services:
         class: %bluebear.cms.page_type.class%
         tags:
             - {name: form.type, alias: page}
+
+    bluebear.cms.import_type:
+        class: %bluebear.cms.import_type.class%
+        tags:
+            - {name: form.type, alias: import}
