@@ -39,7 +39,8 @@
     "doctrine/doctrine-fixtures-bundle": "*",
     "gedmo/doctrine-extensions": "^2.4",
     "lag/array-utils": "^0.1.0",
-    "lag/doctrine-repository": "dev-master"
+    "lag/doctrine-repository": "dev-master",
+    "lag/adminbundle": "dev-0.3-dev"
   },
   "scripts": {
     "post-root-package-install": [

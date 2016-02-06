@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "157082377f3e64a8a1bc7a081c693d1c",
-    "content-hash": "1965e155515ca9ba111c579a697ff540",
+    "hash": "d62b115946a7ee37b6108b20992bc559",
+    "content-hash": "6f80bbca99f0ed9a544e8eb359cdc88b",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -1092,6 +1092,60 @@
             "time": "2015-12-06 13:20:24"
         },
         {
+            "name": "fabpot/php-cs-fixer",
+            "version": "v1.11.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/FriendsOfPHP/PHP-CS-Fixer.git",
+                "reference": "2c9f8298181f059c5077abda78019b9a0c9a7cc0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/2c9f8298181f059c5077abda78019b9a0c9a7cc0",
+                "reference": "2c9f8298181f059c5077abda78019b9a0c9a7cc0",
+                "shasum": ""
+            },
+            "require": {
+                "ext-tokenizer": "*",
+                "php": ">=5.3.6",
+                "sebastian/diff": "~1.1",
+                "symfony/console": "~2.3|~3.0",
+                "symfony/event-dispatcher": "~2.1|~3.0",
+                "symfony/filesystem": "~2.1|~3.0",
+                "symfony/finder": "~2.1|~3.0",
+                "symfony/process": "~2.3|~3.0",
+                "symfony/stopwatch": "~2.5|~3.0"
+            },
+            "require-dev": {
+                "satooshi/php-coveralls": "0.7.*@dev"
+            },
+            "bin": [
+                "php-cs-fixer"
+            ],
+            "type": "application",
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\CS\\": "Symfony/CS/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dariusz Rumiński",
+                    "email": "dariusz.ruminski@gmail.com"
+                },
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                }
+            ],
+            "description": "A tool to automatically fix PHP code style",
+            "time": "2016-01-20 19:00:28"
+        },
+        {
             "name": "friendsofsymfony/user-bundle",
             "version": "dev-master",
             "source": {
@@ -1587,6 +1641,76 @@
                 "minification"
             ],
             "time": "2015-11-12 13:51:40"
+        },
+        {
+            "name": "lag/adminbundle",
+            "version": "dev-0.3-dev",
+            "target-dir": "LAG/AdminBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/larriereguichet/AdminBundle.git",
+                "reference": "29e489621a552940283adf1257caf27e9c031a87"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/larriereguichet/AdminBundle/zipball/29e489621a552940283adf1257caf27e9c031a87",
+                "reference": "29e489621a552940283adf1257caf27e9c031a87",
+                "shasum": ""
+            },
+            "require": {
+                "bluebear/basebundle": "~0.2",
+                "doctrine/data-fixtures": "*",
+                "doctrine/doctrine-bundle": "~1.2",
+                "doctrine/doctrine-fixtures-bundle": "*",
+                "egeloen/ckeditor-bundle": "^4.0",
+                "fabpot/php-cs-fixer": "^1.10",
+                "gedmo/doctrine-extensions": "^2.4",
+                "lag/array-utils": "^0.1.0",
+                "lag/doctrine-repository": "dev-master",
+                "php": ">=5.5",
+                "sensio/framework-extra-bundle": "~3.0",
+                "stfalcon/tinymce-bundle": "^0.4",
+                "symfony/monolog-bundle": "~2.4",
+                "symfony/symfony": "~3.0",
+                "twig/extensions": "^1.2",
+                "white-october/pagerfanta-bundle": "~1.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.7.*"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-0": {
+                    "LAG\\AdminBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "JohnKrovitch",
+                    "email": "arnaudfrezet@gmail.com"
+                },
+                {
+                    "name": "JohanDufour",
+                    "email": "johan.dufour@gmail.com"
+                },
+                {
+                    "name": "VincentChalnot",
+                    "email": "vincent.chalnot@gmail.com"
+                }
+            ],
+            "description": "Generic admin bundle for Symfony2 from L'arrière-guichet",
+            "homepage": "https://github.com/larriereguichet/AdminBundle",
+            "keywords": [
+                "Symfony2",
+                "admin",
+                "backoffice",
+                "generic"
+            ],
+            "time": "2016-02-06 23:49:14"
         },
         {
             "name": "lag/array-utils",
@@ -4040,7 +4164,8 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "friendsofsymfony/user-bundle": 20,
-        "lag/doctrine-repository": 20
+        "lag/doctrine-repository": 20,
+        "lag/adminbundle": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
