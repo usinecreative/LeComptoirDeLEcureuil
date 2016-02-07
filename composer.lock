@@ -1649,12 +1649,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/larriereguichet/AdminBundle.git",
-                "reference": "29e489621a552940283adf1257caf27e9c031a87"
+                "reference": "2a2fd71abd8e9a281187ac22708c29c715c9c777"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/larriereguichet/AdminBundle/zipball/29e489621a552940283adf1257caf27e9c031a87",
-                "reference": "29e489621a552940283adf1257caf27e9c031a87",
+                "url": "https://api.github.com/repos/larriereguichet/AdminBundle/zipball/2a2fd71abd8e9a281187ac22708c29c715c9c777",
+                "reference": "2a2fd71abd8e9a281187ac22708c29c715c9c777",
                 "shasum": ""
             },
             "require": {
@@ -1710,7 +1710,7 @@
                 "backoffice",
                 "generic"
             ],
-            "time": "2016-02-06 23:49:14"
+            "time": "2016-02-07 18:48:14"
         },
         {
             "name": "lag/array-utils",
@@ -1779,12 +1779,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/larriereguichet/DoctrineRepositoryBundle.git",
-                "reference": "278bf98242a06125825749c502fc0cac3e664adf"
+                "reference": "dffebc3a088e70838b23b473d4366e1935b67ad4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/larriereguichet/DoctrineRepositoryBundle/zipball/278bf98242a06125825749c502fc0cac3e664adf",
-                "reference": "278bf98242a06125825749c502fc0cac3e664adf",
+                "url": "https://api.github.com/repos/larriereguichet/DoctrineRepositoryBundle/zipball/dffebc3a088e70838b23b473d4366e1935b67ad4",
+                "reference": "dffebc3a088e70838b23b473d4366e1935b67ad4",
                 "shasum": ""
             },
             "require": {
@@ -1824,7 +1824,7 @@
                 "doctrine",
                 "repository"
             ],
-            "time": "2016-02-06 23:17:48"
+            "time": "2016-02-07 19:06:13"
         },
         {
             "name": "monolog/monolog",

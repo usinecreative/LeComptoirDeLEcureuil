@@ -12360,8 +12360,7 @@ Après... Je n'y vais pas seule, donc ça dépend des désirs de chacun. Je pens
             <wp:post_type>post</wp:post_type>
             <wp:post_password></wp:post_password>
             <wp:is_sticky>0</wp:is_sticky>
-            <category domain="post_tag" nicename="editions-de-la-bourdonnaye">
-                <![CDATA[Editions de la Bourdonnaye]]></category>
+            <category domain="post_tag" nicename="editions-de-la-bourdonnaye"><![CDATA[Editions de la Bourdonnaye]]></category>
             <category domain="post_tag" nicename="fantasy"><![CDATA[Fantasy]]></category>
             <category domain="category" nicename="fantasy"><![CDATA[Fantasy]]></category>
             <category domain="post_tag" nicename="les-pelerins-dyssel"><![CDATA[Les Pélerins d'Yssel]]></category>

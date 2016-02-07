@@ -1,6 +1,6 @@
 <?php
 
-namespace LeComptoirDeLEcureuil\FrontBundle\Controller;
+namespace AppBundle\Controller;
 
 use BlueBear\BaseBundle\Behavior\ControllerTrait;
 use BlueBear\CmsBundle\Finder\Filter\ArticleFilter;

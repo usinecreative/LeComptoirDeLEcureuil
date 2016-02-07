@@ -6,11 +6,13 @@ use BlueBear\CmsBundle\Entity\Article;
 use BlueBear\CmsBundle\Entity\Category;
 use BlueBear\CmsBundle\Entity\Comment;
 use BlueBear\CmsBundle\Entity\Import;
+use BlueBear\CmsBundle\Entity\Tag;
 use BlueBear\CmsBundle\Entity\User;
 use BlueBear\CmsBundle\Exception\ImportException;
 use BlueBear\CmsBundle\Import\ImporterInterface;
 use BlueBear\CmsBundle\Repository\ArticleRepository;
 use BlueBear\CmsBundle\Repository\CategoryRepository;
+use BlueBear\CmsBundle\Repository\TagRepository;
 use BlueBear\CmsBundle\Repository\UserRepository;
 use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Registry;
@@ -22,18 +24,16 @@ use Symfony\Component\Filesystem\Filesystem;
 
 class WordPressImporter implements ImporterInterface
 {
-    protected $dcNamespace = 'http://purl.org/dc/elements/1.1/';
+    const DC_NAMESPACE = 'http://purl.org/dc/elements/1.1/';
 
-    protected $wpNamespace = 'http://wordpress.org/export/1.2/';
+    const WP_NAMESPACE = 'http://wordpress.org/export/1.2/';
 
-    protected $contentNamespace = 'http://purl.org/rss/1.0/modules/content/';
-
-    protected $logger;
+    const CONTENT_NAMESPACE = 'http://purl.org/rss/1.0/modules/content/';
 
     /**
-     * @var Registry
+     * @var LoggerInterface
      */
-    protected $doctrine;
+    protected $logger;
 
     /**
      * @var CategoryRepository
@@ -51,26 +51,31 @@ class WordPressImporter implements ImporterInterface
     protected $articleRepository;
 
     /**
+     * @var TagRepository
+     */
+    protected $tagRepository;
+
+    /**
      * WordPressImporter constructor.
      *
      * @param LoggerInterface $logger
-     * @param Registry $doctrine
      * @param CategoryRepository $categoryRepository
      * @param UserRepository $userRepository
      * @param ArticleRepository $articleRepository
+     * @param TagRepository $tagRepository
      */
     public function __construct(
         LoggerInterface $logger,
-        Registry $doctrine,
         CategoryRepository $categoryRepository,
         UserRepository $userRepository,
-        ArticleRepository $articleRepository
+        ArticleRepository $articleRepository,
+        TagRepository $tagRepository
     ) {
         $this->logger = $logger;
-        $this->doctrine = $doctrine;
         $this->categoryRepository = $categoryRepository;
         $this->userRepository = $userRepository;
         $this->articleRepository = $articleRepository;
+        $this->tagRepository = $tagRepository;
     }
 
     public function import(Import $import)
@@ -91,8 +96,6 @@ class WordPressImporter implements ImporterInterface
                 throw $e;
             }
             $import->setLabel('Test import');
-            $this->doctrine->getManager()->persist($import);
-            $this->doctrine->getManager()->flush($import);
         }
     }
 
@@ -112,56 +115,10 @@ class WordPressImporter implements ImporterInterface
                     $this->importCategory($item);
                     $this->importUser($item);
                     $this->importArticle($item);
-                    continue;
+                    $this->importTag($item);
 
-                    $userName = (string)$item->children($dcNamespace)->creator;
-                    // find an existing user with this name
-                    $author = $this
-                        ->doctrine
-                        ->getRepository('BlueBearCmsUserBundle:User')
-                        ->findOneBy([
-                            'username' => $userName
-                        ]);
-
-                    if (!$author) {
-                        $author = new User();
-                        $author->setUsername($item->children($dcNamespace)->author);
-                    }
-                    // check if article allow comments
-                    $isCommentable = ($item->children($wpNamespace)->comment_status == 'open') ? true : false;
-                    // check publication status. Not published items will be set as draft
-                    $publicationStatus = ($item->children($wpNamespace)->status == 'publish') ?
-                        Article::PUBLICATION_STATUS_PUBLISHED : Article::PUBLICATION_STATUS_DRAFT;
-
-                    // check for an existing category
-                    $categoryName = (string)$item->category;
-                    $category = $this
-                        ->doctrine
-                        ->getRepository('BlueBearCmsBundle:Category')
-                        ->findOneBy([
-                            'name' => $categoryName
-                        ]);
-                    // if not create new one
-                    if (!$category) {
-                        $category = new Category();
-                        $category->setName($categoryName);
-                        $category->setPublicationStatus(Category::PUBLICATION_NOT_PUBLISHED);
-                    }
-                    // creating article
-                    $article = new Article();
-                    $article->setTitle((string)$item->title);
-                    $article->setCanonical((string)$item->link);
-                    $article->setPublicationDate((new DateTime())->setTimestamp(strtotime($item->pubDate)));
-                    $article->setAuthor($author);
-                    $article->setContent((string)$item->children($contentNamespace)->encoded);
-                    $article->forceCreatedAt((new DateTime())->setTimestamp(strtotime($item->children($wpNamespace)->post_date)));
-                    $article->setIsCommentable($isCommentable);
-                    $article->setPublicationStatus($publicationStatus);
-                    $article->setCategory($category);
-                    $article->setSlug((string)$item->children($wpNamespace)->post_name[0]);
-
-                    if ($article->isCommentable()) {
-                        foreach ($item->children($wpNamespace)->comment as $commentItem) {
+                    /*if ($article->isCommentable()) {
+                        foreach ($item->children($WP_NAMESPACE)->comment as $commentItem) {
                             // convert timestamp to DateTime
                             $commentDate = (new DateTime())->setTimestamp(strtotime($commentItem->comment_date));
                             // creating commment
@@ -175,13 +132,13 @@ class WordPressImporter implements ImporterInterface
                             $comment->setIsApproved((bool)$commentItem->comment_author);
                             $comment->setArticle($article);
 
-                            foreach ($commentItem->children($wpNamespace)->commentmeta as $commentMeta) {
+                            foreach ($commentItem->children($WP_NAMESPACE)->commentmeta as $commentMeta) {
                                 $comment->addMetadata((string)$commentMeta->key, (string)$commentMeta->value);
                             }
                             $this->doctrine->getManager()->persist($comment);
                             $article->addComment($comment);
                         }
-                    }
+                    }*/
                     // persisting changes
                     //$this->doctrine->getManager()->persist($author);
 
@@ -192,7 +149,7 @@ class WordPressImporter implements ImporterInterface
                 //$this->doctrine->getManager()->flush();
             }
         }
-        $this->doctrine->getManager()->flush();
+        die;
     }
 
     /**
@@ -203,8 +160,16 @@ class WordPressImporter implements ImporterInterface
     protected function importCategory(SimpleXMLElement $element)
     {
         // convert xml element to string
-        $categoryName = (string)$element->category;
+        $categoryName = '';
 
+        // WordPress xml export has many <category> but only one is an actual category; we must to find it
+        foreach ($element->category as $categoryElement) {
+
+            if ((string)$categoryElement['domain'] == 'category') {
+                $categoryName = (string)$categoryElement;
+                break;
+            }
+        }
         if (!$categoryName) {
             return;
         }
@@ -222,6 +187,7 @@ class WordPressImporter implements ImporterInterface
             $category->setName($categoryName);
             $category->setPublicationStatus(Category::PUBLICATION_NOT_PUBLISHED);
         }
+
         $this
             ->categoryRepository
             ->save($category);
@@ -235,7 +201,7 @@ class WordPressImporter implements ImporterInterface
     protected function importUser(SimpleXMLElement $element)
     {
         // get user name from element
-        $userName = (string)$element->children($this->dcNamespace)->creator;
+        $userName = (string)$element->children(self::DC_NAMESPACE)->creator;
 
         if (!$userName) {
             return;
@@ -249,7 +215,7 @@ class WordPressImporter implements ImporterInterface
 
         if (!$author) {
             $author = new User();
-            $author->setUsername($element->children($this->dcNamespace)->author);
+            $author->setUsername($element->children(self::DC_NAMESPACE)->author);
         }
         $this
             ->userRepository
@@ -265,12 +231,12 @@ class WordPressImporter implements ImporterInterface
     protected function importArticle(SimpleXMLElement $element)
     {
         // only process post type
-        $postType = (string)$element->children($this->wpNamespace)->post_type;
+        $postType = (string)$element->children(self::WP_NAMESPACE)->post_type;
 
         if ($postType != 'post') {
             return;
         }
-        $authorName = (string)$element->children($this->dcNamespace)->creator;
+        $authorName = (string)$element->children(self::DC_NAMESPACE)->creator;
 
         // author must exist
         $author = $this->userRepository->findOneBy([
@@ -280,17 +246,26 @@ class WordPressImporter implements ImporterInterface
         if (!$author) {
             throw new ImportException("Author {$authorName} not found");
         }
-        $isCommentable = ((string)$element->children($this->wpNamespace)->comment_status == 'open') ? true : false;
-        $categoryName = (string)$element->category;
+        $isCommentable = ((string)$element->children(self::WP_NAMESPACE)->comment_status == 'open') ? true : false;
+        $categoryName = '';
+
+        // WordPress xml export has many <category> but only one is an actual category; we must to find it
+        foreach ($element->category as $categoryElement) {
+
+            if ((string)$categoryElement['domain'] == 'category') {
+                $categoryName = (string)$categoryElement;
+                break;
+            }
+        }
+        $articleName = (string)$element->title;
 
         $category = $this->categoryRepository->findOneBy([
             'name' => $categoryName
         ]);
 
         if (!$category) {
-            throw new ImportException("Category {$category} not found");
+            throw new ImportException("Category {$category} not found for article {$articleName}");
         }
-        $articleName = (string)$element->title;
 
         $article = $this->articleRepository->findOneBy([
             'title' => $articleName
@@ -303,15 +278,70 @@ class WordPressImporter implements ImporterInterface
         $article->setCanonical((string)$element->link);
         $article->setPublicationDate((new DateTime())->setTimestamp(strtotime($element->pubDate)));
         $article->setAuthor($author);
-        $article->setContent((string)$element->children($this->contentNamespace)->encoded);
-        $article->forceCreatedAt((new DateTime())->setTimestamp(strtotime($element->children($this->wpNamespace)->post_date)));
+        $article->setContent((string)$element->children(self::CONTENT_NAMESPACE)->encoded);
+        $article->forceCreatedAt((new DateTime())->setTimestamp(strtotime($element->children(self::WP_NAMESPACE)->post_date)));
         $article->setIsCommentable($isCommentable);
         $article->setPublicationStatus(Article::PUBLICATION_STATUS_VALIDATION);
         $article->setCategory($category);
-        $article->setSlug((string)$element->children($this->wpNamespace)->post_name[0]);
+        $article->setSlug((string)$element->children(self::WP_NAMESPACE)->post_name[0]);
 
         $this
             ->articleRepository
             ->save($article);
+    }
+
+    /**
+     * Import a tag fron an xml element
+     *
+     * @param SimpleXMLElement $element
+     */
+    protected function importTag(SimpleXMLElement $element)
+    {
+        $tagName = '';
+
+        foreach ($element->category as $categoryElement) {
+
+            if ((string)$categoryElement['domain'] == 'post_tag') {
+                $tagName = (string)$categoryElement;
+                break;
+            }
+        }
+        if (!$tagName) {
+            return;
+        }
+        $tagName = str_replace("\n", '', $tagName);
+        $tagName = trim($tagName);
+
+        // check for an existing tag
+        $tag = $this
+            ->tagRepository
+            ->findOneBy([
+                'name' => $tagName
+            ]);
+
+        // if not create new one
+        if (!$tag) {
+            $tag = new Tag();
+            $tag->setName($tagName);
+        }
+        $this
+            ->tagRepository
+            ->save($tag);
+
+        // find a linked article
+        $articleName = (string)$element->title;
+
+        /** @var Article $article */
+        $article = $this->articleRepository->findOneBy([
+            'title' => $articleName
+        ]);
+
+        if ($article) {
+            $article->addTag($tag);
+            $this->articleRepository->save($article);
+            $this
+                ->tagRepository
+                ->save($tag);
+        }
     }
 }

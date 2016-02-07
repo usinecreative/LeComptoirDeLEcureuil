@@ -4,7 +4,6 @@ namespace BlueBear\CmsBundle\Entity;
 
 use BlueBear\BaseBundle\Entity\Behaviors\Id;
 use BlueBear\BaseBundle\Entity\Behaviors\Timestampable;
-use BlueBear\CmsBundle\Entity\Behavior\Taggable;
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -21,7 +20,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  */
 class Article
 {
-    use Id, Timestampable, Taggable;
+    use Id, Timestampable;
 
     const PUBLICATION_STATUS_DRAFT = 0;
     const PUBLICATION_STATUS_VALIDATION = 1;
@@ -105,11 +104,17 @@ class Article
     protected $thumbnail;
 
     /**
+     * @ORM\ManyToMany(targetEntity="BlueBear\CmsBundle\Entity\Tag", mappedBy="articles", fetch="EAGER")
+     */
+    protected $tags;
+
+    /**
      * Article constructor.
      */
     public function __construct()
     {
         $this->comments = new ArrayCollection();
+        $this->tags = new ArrayCollection();
     }
 
     /**
@@ -340,5 +345,32 @@ class Article
             $category = $category->getParent();
         }
         return $categories;
+    }
+
+    /**
+     * @param Tag $tag
+     */
+    public function addTag(Tag $tag)
+    {
+        $this->tags->add($tag);
+        $tag->addArticle($this);
+    }
+
+    /**
+     * @param mixed $tags
+     * @return Article
+     */
+    public function setTags($tags)
+    {
+        $this->tags = $tags;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTags()
+    {
+        return $this->tags;
     }
 }

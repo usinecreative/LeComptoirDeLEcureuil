@@ -125,13 +125,6 @@ lag_admin:
                                         route: bluebear.cms.article.delete
                                         parameters: {id: ~}
                                         icon: remove
-                                canonical:
-                                    type: link
-                                    options:
-                                        title: lag.cms.article.see
-                                        text: bluebear.cms.article.see
-                                        target: _blank
-                                        icon: eye
                 create: ~
                 edit:
                     actions:

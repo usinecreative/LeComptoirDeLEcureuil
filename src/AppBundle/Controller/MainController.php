@@ -1,9 +1,9 @@
 <?php
 
-namespace LeComptoirDeLEcureuil\FrontBundle\Controller;
+namespace AppBundle\Controller;
 
 use BlueBear\BaseBundle\Behavior\ControllerTrait;
-use LeComptoirDeLEcureuil\FrontBundle\Form\Type\ContactType;
+use AppBundle\Form\Type\ContactType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Swift_Message;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;

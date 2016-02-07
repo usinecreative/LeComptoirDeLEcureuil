@@ -18,7 +18,6 @@ class CategoryRepository extends DoctrineRepository
     public function findForHomepage()
     {
         return $this
-            ->repository
             ->createQueryBuilder('category', 'category.slug')
             ->where('category.displayInHomepage = :display')
             ->setParameter('display', true)

@@ -3,6 +3,7 @@ imports:
     - { resource: security.yml }
     - { resource: services.yml }
     - { resource: cms.yml }
+    - { resource: "@AppBundle/Resources/config/services.yml" }
 
 framework:
     #esi:             ~
@@ -50,8 +51,7 @@ assetic:
     use_controller: false
     bundles:
         - BlueBearCmsBundle
-        - LeComptoirDeLEcureuilBackBundle
-        - LeComptoirDeLEcureuilFrontBundle
+        - AppBundle
     #java: /usr/bin/java
     filters:
         cssrewrite: ~

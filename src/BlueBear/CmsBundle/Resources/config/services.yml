@@ -56,10 +56,10 @@ services:
         class: BlueBear\CmsBundle\Import\Importer\WordPressImporter
         arguments:
             - '@logger'
-            - '@doctrine'
             - '@lag.cms.category_repository'
             - '@lag.cms.user_repository'
             - '@lag.cms.article_repository'
+            - '@lag.cms.tag_repository'
 
     # factory:
     bluebear.cms.import.importer_factory:

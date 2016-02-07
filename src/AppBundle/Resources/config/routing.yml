@@ -1,0 +1,27 @@
+lecomptoir.homepage:
+    path:     /
+    defaults: {_controller: AppBundle:Main:index}
+
+lecomptoir.contact:
+    path: /contact
+    defaults: {_controller: AppBundle:Main:contact}
+
+lecomptoir.partners:
+    path: /partenaires
+    defaults: {_controller: AppBundle:Main:partners}
+
+lecomptoir.partner:
+    path: /partenaires/{partnerSlug}
+    defaults: {_controller: AppBundle:Main:partners}
+
+lecomptoir.article.show:
+    path:  /{year}/{month}/{slug}
+    defaults: {_controller: AppBundle:Article:show}
+
+lecomptoir.article.list_by_category:
+    path: /category/{categorySlug}
+    defaults: {_controller: AppBundle:Article:filter}
+
+lecomptoir.article.list_by_tag:
+    path: /tag/{tag}
+    defaults: {_controller: AppBundle:Article:filter}

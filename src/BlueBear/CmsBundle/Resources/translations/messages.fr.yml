@@ -58,7 +58,7 @@ bluebear:
         # Categories
         category.list: Catégories
         category.edit: Edition d'une catégorie
-        category.create: Ajouter
+        category.create: Ajouter une catégorie
         category.name_help: Le nom de la catégorie
         category.slug_help: Le nom utilisé dans les urls
         category.description_help: Description longue de la catégorie

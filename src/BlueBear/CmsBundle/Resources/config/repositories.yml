@@ -1,25 +1,30 @@
 services:
     lag.cms.comment_repository:
         class: BlueBear\CmsBundle\Repository\CommentRepository
-        tags:
-            - {name: doctrine.repository}
+        factory: ["@doctrine", getRepository]
+        arguments:
+            - BlueBear\CmsBundle\Entity\Comment
 
     lag.cms.article_repository:
         class: BlueBear\CmsBundle\Repository\ArticleRepository
-        tags:
-            - {name: doctrine.repository}
+        factory: ["@doctrine", getRepository]
+        arguments:
+            - BlueBear\CmsBundle\Entity\Article
 
     lag.cms.category_repository:
         class: BlueBear\CmsBundle\Repository\CategoryRepository
-        tags:
-            - {name: doctrine.repository}
+        factory: ["@doctrine", getRepository]
+        arguments:
+            - BlueBear\CmsBundle\Entity\Category
 
-#    lag.cms.user_repository:
-#        class: BlueBear\CmsBundle\Repository\UserRepository
-#        tags:
-#            - {name: doctrine.repository}
     lag.cms.user_repository:
         class: BlueBear\CmsBundle\Repository\UserRepository
         factory: ["@doctrine", getRepository]
         arguments:
             - BlueBear\CmsBundle\Entity\User
+
+    lag.cms.tag_repository:
+        class: BlueBear\CmsBundle\Repository\TagRepository
+        factory: ["@doctrine", getRepository]
+        arguments:
+            - BlueBear\CmsBundle\Entity\Tag

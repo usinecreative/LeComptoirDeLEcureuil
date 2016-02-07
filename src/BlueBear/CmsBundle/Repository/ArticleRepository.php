@@ -12,10 +12,13 @@ use LAG\DoctrineRepositoryBundle\Repository\DoctrineRepository;
  */
 class ArticleRepository extends DoctrineRepository
 {
+    /**
+     * @param int $count
+     * @return array
+     */
     public function findLatest($count = 6)
     {
         return $this
-            ->repository
             ->createQueryBuilder('article')
             ->orderBy('article.id', 'desc')
             ->where('article.publicationStatus = :published')
@@ -25,10 +28,14 @@ class ArticleRepository extends DoctrineRepository
             ->getResult();
     }
 
+    /**
+     * @param $categorySlug
+     * @param int $count
+     * @return mixed
+     */
     public function findByCategory($categorySlug, $count = 6)
     {
         return $this
-            ->repository
             ->createQueryBuilder('article')
             ->orderBy('article.publicationDate', 'desc')
             ->innerJoin('article.category', 'category')
@@ -57,6 +64,9 @@ class ArticleRepository extends DoctrineRepository
             ->getResult();
     }
 
+    /**
+     * @return array
+     */
     public function findNotPublished()
     {
         return $this
