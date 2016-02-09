@@ -29,6 +29,7 @@ class ArticleFilter
         $this->parameters = new ParameterBag();
         $this->allowedParameters = new ParameterBag([
             'categorySlug' => 'string',
+            'tagSlug' => 'string',
             'tag' => 'string',
             'slug' => 'string',
             'year' => 'string',

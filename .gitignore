@@ -12,3 +12,5 @@ vendor
 
 # sass
 .sass-cache
+
+.gitkeep

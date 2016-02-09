@@ -33,6 +33,9 @@ class AppKernel extends Kernel
             //new JK\StaticClientBundle\JKStaticClientBundle(),
             new \WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
             new AppBundle\AppBundle(),
+
+            new \Knp\Bundle\GaufretteBundle\KnpGaufretteBundle(),
+            new \Dizda\CloudBackupBundle\DizdaCloudBackupBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'])) {

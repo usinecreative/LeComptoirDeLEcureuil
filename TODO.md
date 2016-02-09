@@ -12,6 +12,7 @@ TODO
 > widget left site à noisettes
 > mettre les vrais comptes dans les widgets réseaux sociaux
 > mettre un pager sur la page des articles
+> faire le moteur de recherche
 
 DONE
 ========================

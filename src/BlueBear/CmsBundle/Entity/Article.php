@@ -104,7 +104,7 @@ class Article
     protected $thumbnail;
 
     /**
-     * @ORM\ManyToMany(targetEntity="BlueBear\CmsBundle\Entity\Tag", mappedBy="articles", fetch="EAGER")
+     * @ORM\ManyToMany(targetEntity="BlueBear\CmsBundle\Entity\Tag", mappedBy="articles")
      */
     protected $tags;
 

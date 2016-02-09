@@ -1,6 +1,7 @@
 lag:
     admin:
         category.saved: La catégorie a été sauvegardée correctement
+        article.saved: L'article a été sauvegardée correctement
     cms:
         # Comments
         new_comments: Nouveaux Commentaires

@@ -59,6 +59,14 @@ class MainController extends Controller
         // TODO find page
     }
 
+    /**
+     * @Template(":Main:who-am-i.html.twig")
+     */
+    public function whoAmIAction()
+    {
+        return [];
+    }
+
     protected function sendContactMail(array $data)
     {
         $message = Swift_Message::newInstance(

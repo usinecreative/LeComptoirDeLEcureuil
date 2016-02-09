@@ -6,6 +6,11 @@ lecomptoir.contact:
     path: /contact
     defaults: {_controller: AppBundle:Main:contact}
 
+lecomptoir.about:
+    path: /a-propos
+    defaults: {_controller: AppBundle:Main:whoAmI}
+
+# Partners pages
 lecomptoir.partners:
     path: /partenaires
     defaults: {_controller: AppBundle:Main:partners}
@@ -14,6 +19,7 @@ lecomptoir.partner:
     path: /partenaires/{partnerSlug}
     defaults: {_controller: AppBundle:Main:partners}
 
+# Articles Pages
 lecomptoir.article.show:
     path:  /{year}/{month}/{slug}
     defaults: {_controller: AppBundle:Article:show}
@@ -23,5 +29,5 @@ lecomptoir.article.list_by_category:
     defaults: {_controller: AppBundle:Article:filter}
 
 lecomptoir.article.list_by_tag:
-    path: /tag/{tag}
+    path: /tag/{tagSlug}
     defaults: {_controller: AppBundle:Article:filter}

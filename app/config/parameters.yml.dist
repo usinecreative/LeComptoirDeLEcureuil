@@ -6,6 +6,8 @@ parameters:
     database_name:     symfony
     database_user:     root
     database_password: ~
+    database_backup_path: /home
+
     # You should uncomment this if you want use pdo_sqlite
     # database_path: "%kernel.root_dir%/data.db3"
 
@@ -23,3 +25,5 @@ parameters:
     new_relic_license_key: ~
 
     default_mail: ~
+
+
