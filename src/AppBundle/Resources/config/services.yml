@@ -1,0 +1,8 @@
+services:
+    app_partner_repository:
+        class: AppBundle\Repository\PartnerRepository
+        factory:
+            - '@doctrine'
+            - getRepository
+        arguments:
+            - AppBundlee\Entity\Partner

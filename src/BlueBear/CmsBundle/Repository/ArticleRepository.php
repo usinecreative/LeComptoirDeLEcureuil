@@ -13,6 +13,8 @@ use LAG\DoctrineRepositoryBundle\Repository\DoctrineRepository;
 class ArticleRepository extends DoctrineRepository
 {
     /**
+     * Find latest published articles.
+     *
      * @param int $count
      * @return array
      */
@@ -49,7 +51,7 @@ class ArticleRepository extends DoctrineRepository
     }
 
     /**
-     * Find articles created after $date
+     * Find articles created after $date.
      *
      * @param DateTime $date
      * @return array
@@ -65,6 +67,8 @@ class ArticleRepository extends DoctrineRepository
     }
 
     /**
+     * Find not published articles.
+     *
      * @return array
      */
     public function findNotPublished()
@@ -75,5 +79,15 @@ class ArticleRepository extends DoctrineRepository
             ->setParameter('publication_status', Article::PUBLICATION_STATUS_PUBLISHED)
             ->getQuery()
             ->getResult();
+    }
+
+    public function findByTag($tag)
+    {
+        return $this
+            ->createQueryBuilder('article')
+            ->join('article.tags', 'tag')
+            ->where('tag.slug = :tag')
+            ->setParameter('tag', $tag)
+        ;
     }
 }

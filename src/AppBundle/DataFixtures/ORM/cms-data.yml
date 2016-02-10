@@ -12,63 +12,25 @@ BlueBear\CmsBundle\Entity\Category:
         displayInHomepage: true
         description: <realText()>
         publicationStatus: 1
+        displayInHomepage: true
     manga-bd:
         name: Manga / BD
         slug: manga-bd
         displayInHomepage: true
         description: <realText()>
         publicationStatus: 1
+        displayInHomepage: true
     rencontres:
         name: Rencontres
         slug: rencontres
         displayInHomepage: true
         description: <realText()>
         publicationStatus: 1
+        displayInHomepage: true
     sorties:
         name: Sorties
         slug: sorties
         displayInHomepage: true
         description: <realText()>
         publicationStatus: 1
-
-BlueBear\CmsBundle\Entity\Article:
-    articles_litterature_{1..200}:
-        title: <realText(20)>
-        canonical: url
-        publicationStatus: <numberBetween(0, 2)>
-        publicationDate: <dateTimeBetween('-5 years')>
-        content: <realText(5000)>
-        category: @litterature
-        author: @salveena
-        isCommentable: true
-        tags: ['litterature', 'steam-punk', 'auteur']
-    articles_manga_{1..200}:
-        title: <realText(20)>
-        canonical: url
-        publicationStatus: <numberBetween(0, 2)>
-        publicationDate: <dateTimeBetween('-5 years')>
-        content: <realText(500)>
-        category: @manga-bd
-        author: @salveena
-        isCommentable: true
-        tags: ['manga', 'bd', 'fantasy', 'dessin']
-    articles_sorties_{1..200}:
-        title: <realText(5000)>
-        canonical: url
-        publicationStatus: <numberBetween(0, 2)>
-        publicationDate: <dateTimeBetween('-5 years')>
-        content: <realText(500)>
-        category: @sorties
-        author: @salveena
-        isCommentable: true
-        tags: ['auteurs', 'salon']
-    articles_rencontres_{1..200}:
-        title: <realText(20)>
-        canonical: url
-        publicationStatus: <numberBetween(0, 2)>
-        publicationDate: <dateTimeBetween('-5 years')>
-        content: <realText(5000)>
-        category: @rencontres
-        author: @salveena
-        isCommentable: true
-        tags: ['rencontres', 'auteurs']
+        displayInHomepage: true

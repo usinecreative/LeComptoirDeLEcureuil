@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Partner;
 use BlueBear\BaseBundle\Behavior\ControllerTrait;
 use AppBundle\Form\Type\ContactType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -50,13 +51,27 @@ class MainController extends Controller
     }
 
     /**
-     * @Template(":Main:page.html.twig")
+     * @Template(":Partner:partner.html.twig")
      * @param $partnerSlug
      * @return array
      */
-    public function partnersAction($partnerSlug = null)
+    public function partnerAction($partnerSlug)
     {
-        // TODO find page
+        /** @var Partner $partner */
+        $partner = $this
+            ->get('app_partner_repository')
+            ->findOneBy([
+                'slug' => $partnerSlug
+            ]);
+        // find linked articles (by tag)
+        $articles = $this
+            ->get('lag.cms.article_repository')
+            ->findByTag($partner->getSlug());
+
+        return [
+            'partner' => $partner,
+            'articles' => $articles
+        ];
     }
 
     /**
