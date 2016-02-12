@@ -10,7 +10,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 /**
  * Partner
  *
- * @ORM\Table(name="lecomptoir_article")
+ * @ORM\Table(name="lecomptoir_partner")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\PartnerRepository")
  * @ORM\HasLifecycleCallbacks()
  */

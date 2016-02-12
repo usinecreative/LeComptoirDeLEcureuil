@@ -54,6 +54,13 @@ h1, h2, h3 {
   .site-header {
     background-size: 100%;
     padding: 0;
+
+    #squirrel-logo {
+      left: 0;
+      height: 50%;
+      position: absolute;
+      top: 51%;
+    }
   }
   .header-image {
     padding: 0;
@@ -65,7 +72,6 @@ h1, h2, h3 {
   }
   .main-content {
     background-color: $main-color;
-    border-left: 1px solid #0D0D1F;
     padding-left: 14px;
   }
 }

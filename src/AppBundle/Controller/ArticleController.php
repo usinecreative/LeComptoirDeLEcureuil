@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use BlueBear\BaseBundle\Behavior\ControllerTrait;
+use BlueBear\CmsBundle\Entity\Category;
 use BlueBear\CmsBundle\Finder\Filter\ArticleFilter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -48,7 +49,26 @@ class ArticleController extends Controller
 
         return [
             'articles' => $articles,
-            'filter' => $filter
+            'filter' => $filter,
+            // title is dynamic in filter action
+            'title' => $this->getFilterTitle($filter)
         ];
+    }
+
+    protected function getFilterTitle(ArticleFilter $filter)
+    {
+        $parameters = $filter->getParameters();
+        $title = implode(',', $parameters->all());
+
+        if ($parameters->has('categorySlug')) {
+            /** @var Category $category */
+            $category = $this
+                ->get('lag.cms.category_repository')
+                ->findOneBy([
+                    'slug' => $parameters->get('categorySlug')
+                ]);
+            $title = $category->getName();
+        }
+        return $title;
     }
 }
