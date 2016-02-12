@@ -38,3 +38,20 @@ set :composer_install_flags, '--prefer-dist --no-interaction --optimize-autoload
 namespace :deploy do
   after :starting, 'composer:install_executable'
 end
+
+namespace :symfony do
+    namespace :dizda do
+        namespace :backup do
+            desc "Upload a backup of your database to cloud service's"
+            task :start do
+                run "#{try_sudo} sh -c 'cd #{current_release} && #{php_bin} #{symfony_console} dizda:backup:start #{console_options}'"
+            end
+            task :load do
+                run "#{try_sudo} sh -c 'cd #{current_release} && #{php_bin} #{symfony_console} dizda:backup:load'"
+            end
+        end
+    end
+end
+
+before "deploy", "symfony:dizda:backup:start"
+

@@ -16,6 +16,12 @@ cc:
 	rm -rf var/cache/*
 	$(sf) doctrine:cache:clear-metadata
 
+backup:
+	$(sf) dizda:backup:start
+
+remote-backup:
+    @bundle exec cap staging symfony:dizda:backup:start
+
 deploy:
 	@bundle exec cap staging deploy
 	@bundle exec cap staging deploy:cleanup

@@ -123,15 +123,15 @@ knp_gaufrette:
 dizda_cloud_backup:
     # By default backup files will have your servers hostname as prefix
     # such as: hostname_2014-01-01_21-08-39.tar
-    output_file_prefix: hostname
+    output_file_prefix: backup_%database_name%
     timeout: 300
     processor:
         type: 7z # Required: tar|zip|7z
         options:
             compression_ratio: 6
             # Split into many files of `split_size` bytes
-    folders:
-        - dumps
+    #folders:
+    #    - dumps
     cloud_storages:
         # Local storage definition
         local:
