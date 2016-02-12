@@ -44,14 +44,14 @@ namespace :symfony do
         namespace :backup do
             desc "Upload a backup of your database to cloud service's"
             task :start do
-                run "#{try_sudo} sh -c 'cd #{current_release} && #{php_bin} #{symfony_console} dizda:backup:start #{console_options}'"
+                invoke 'symfony:console', 'dizda:backup:start', '--no-interaction'
             end
             task :load do
-                run "#{try_sudo} sh -c 'cd #{current_release} && #{php_bin} #{symfony_console} dizda:backup:load'"
+                invoke 'symfony:console', 'dizda:backup:load', '--no-interaction'
             end
         end
     end
 end
 
-before "deploy", "symfony:dizda:backup:start"
+#after "deploy", "symfony:dizda:backup:start"
 

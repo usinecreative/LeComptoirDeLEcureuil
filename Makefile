@@ -20,7 +20,10 @@ backup:
 	$(sf) dizda:backup:start
 
 remote-backup:
-    @bundle exec cap staging symfony:dizda:backup:start
+	@bundle exec cap staging symfony:dizda:backup:start
+
+remote-load:
+	@bundle exec cap staging symfony:dizda:backup:load
 
 deploy:
 	@bundle exec cap staging deploy

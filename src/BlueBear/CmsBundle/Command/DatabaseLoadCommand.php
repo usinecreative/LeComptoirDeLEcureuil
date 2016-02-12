@@ -40,7 +40,7 @@ class DatabaseLoadCommand extends Command implements ContainerAwareInterface
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $outputArray = [];
-        $rootPath = realpath($this->container->getParameter('kernel.root_dir') . '/../dumps');
+        $rootPath = realpath($this->container->getParameter('database_backup_path'));
 
         // find 7z archives in dump directory
         $finder = new Finder();
