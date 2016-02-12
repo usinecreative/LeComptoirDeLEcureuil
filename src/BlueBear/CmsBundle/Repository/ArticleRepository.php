@@ -4,6 +4,7 @@ namespace BlueBear\CmsBundle\Repository;
 
 use BlueBear\CmsBundle\Entity\Article;
 use DateTime;
+use Doctrine\Common\Collections\Collection;
 use LAG\DoctrineRepositoryBundle\Repository\DoctrineRepository;
 
 /**
@@ -76,6 +77,21 @@ class ArticleRepository extends DoctrineRepository
         return $this
             ->createQueryBuilder('article')
             ->where('article.publicationStatus != :publication_status')
+            ->setParameter('publication_status', Article::PUBLICATION_STATUS_PUBLISHED)
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * Find published articles.
+     *
+     * @return Article[]|Collection
+     */
+    public function findPublished()
+    {
+        return $this
+            ->createQueryBuilder('article')
+            ->where('article.publicationStatus = :publication_status')
             ->setParameter('publication_status', Article::PUBLICATION_STATUS_PUBLISHED)
             ->getQuery()
             ->getResult();

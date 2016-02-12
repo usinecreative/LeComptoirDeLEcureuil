@@ -82,6 +82,21 @@ class MainController extends Controller
         return [];
     }
 
+    /**
+     * @Template(":Sitemap:sitemap.xml.twig")
+     * @return array
+     */
+    public function sitemapAction()
+    {
+        $items = $this
+            ->get('app_sitemap_generator')
+            ->generate();
+
+        return [
+            'items' => $items
+        ];
+    }
+
     protected function sendContactMail(array $data)
     {
         $message = Swift_Message::newInstance(

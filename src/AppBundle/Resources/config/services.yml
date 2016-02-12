@@ -6,3 +6,9 @@ services:
             - getRepository
         arguments:
             - AppBundle\Entity\Partner
+
+    app_sitemap_generator:
+        class: AppBundle\Sitemap\Generator
+        arguments:
+            - '@router'
+            - '@lag.cms.article_repository'
