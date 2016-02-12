@@ -5,4 +5,4 @@ services:
             - '@doctrine'
             - getRepository
         arguments:
-            - AppBundlee\Entity\Partner
+            - AppBundle\Entity\Partner

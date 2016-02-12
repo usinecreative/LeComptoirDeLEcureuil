@@ -7,6 +7,10 @@
   font-size: 17px;
   margin-bottom: 1px;
 
+  .collapse.navbar-collapse {
+    padding-left: 0;
+  }
+
   // menu
   .navbar-nav {
     // menu items

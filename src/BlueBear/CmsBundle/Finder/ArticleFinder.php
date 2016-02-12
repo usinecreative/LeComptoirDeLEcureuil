@@ -83,7 +83,7 @@ class ArticleFinder
         if ($parameters->has('categorySlug')) {
             $queryBuilder
                 ->addSelect('category')
-                ->join('article.category', 'category')
+                ->leftJoin('article.category', 'category')
                 ->andWhere('category.slug = :category')
                 ->setParameter('category', $parameters->get('categorySlug'));
         }
@@ -99,8 +99,8 @@ class ArticleFinder
         if ($parameters->has('tagSlug')) {
             $queryBuilder
                 ->addSelect('tag')
-                ->join('article.tags', 'tag')
-                ->andWhere('tag.name = :tag_slug')
+                ->leftJoin('article.tags', 'tag')
+                ->andWhere('tag.slug = :tag_slug')
                 ->setParameter('tag_slug', $parameters->get('tagSlug'));
         }
 

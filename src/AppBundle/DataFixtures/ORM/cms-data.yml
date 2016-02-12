@@ -34,3 +34,16 @@ BlueBear\CmsBundle\Entity\Category:
         description: <realText()>
         publicationStatus: 1
         displayInHomepage: true
+
+
+AppBundle\Entity\Partner:
+    mnemos:
+        name: Editions Mnemos
+        description: <realText()>
+        slug: editions-mnemos
+#    chat-noir:
+#    actu-sf:
+#    bourdonnaye:
+#    intergalactiques_lyon:
+#    trollune:
+#    esprit_livre:

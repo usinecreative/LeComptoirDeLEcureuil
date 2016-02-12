@@ -11,13 +11,9 @@ lecomptoir.about:
     defaults: {_controller: AppBundle:Main:whoAmI}
 
 # Partners pages
-lecomptoir.partners:
-    path: /partenaires
-    defaults: {_controller: AppBundle:Main:partners}
-
 lecomptoir.partner:
     path: /partenaires/{partnerSlug}
-    defaults: {_controller: AppBundle:Main:partners}
+    defaults: {_controller: AppBundle:Main:partner}
 
 # Articles Pages
 lecomptoir.article.show:

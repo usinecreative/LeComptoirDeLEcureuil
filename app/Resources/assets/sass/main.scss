@@ -104,13 +104,20 @@ h1, h2, h3 {
     }
   }
   .article-content {
+    text-align: justify;
     line-height: 1.8;
-    padding: 20px 100px;
+    padding: 20px 60px;
+
+    p img {
+      height: auto;
+      width: 100%;
+    }
   }
 
   .article-thumbnail {
     text-align: center;
     background-color: black;
+    margin-left: -14px;
   }
   .article-footer {
     line-height: 1.8;

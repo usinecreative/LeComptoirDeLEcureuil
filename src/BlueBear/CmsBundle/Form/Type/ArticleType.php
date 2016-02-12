@@ -31,6 +31,9 @@ class ArticleType extends AbstractType
             ->add('canonical', UrlType::class, [
                 'disabled' => true
             ])
+            ->add('category', EntityType::class, [
+                'class' => 'BlueBear\CmsBundle\Entity\Category'
+            ])
             ->add('content', CKEditorType::class, [
                 'config_name' => 'my_config',
                 'config' => [

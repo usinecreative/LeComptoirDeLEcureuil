@@ -1,81 +1,84 @@
 <nav class="main-menu navbar navbar-default row">
-    <ul class="nav navbar-nav">
-        <li>
-            <a href="{{ path('lecomptoir.homepage') }}" title="{{ 'lecomptoir.menu.home' | trans }}">
-                <i class="fa fa-home"></i><span class="sr-only">(current)</span></a>
-        </li>
-        <li class="dropdown">
-            <a href="#" class="dropdown-toggle " title="{{ 'lecomptoir.menu.articles' | trans }}"
-               data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                &nbsp;{{ 'lecomptoir.menu.articles' | trans }}
-                <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-                <li>
-                    <a href="{{ path('lecomptoir.article.list_by_category', {categorySlug: 'litterature'}) }}"
-                       title="{{ 'lecomptoir.category.litterature' | trans }}" class="">
-                        {{ 'lecomptoir.category.litterature' | trans }}</a>
-                </li>
-                <li>
-                    <a href="{{ path('lecomptoir.article.list_by_category', {categorySlug: 'manga-bd'}) }}"
-                       title="{{ 'lecomptoir.category.manga-bd' | trans }}" class="">
-                        {{ 'lecomptoir.category.manga-bd' | trans }}</a>
-                </li>
-                <li>
-                    <a href="{{ path('lecomptoir.article.list_by_category', {categorySlug: 'rencontres'}) }}"
-                       title="{{ 'lecomptoir.category.rencontres' | trans }}" class="">
-                        {{ 'lecomptoir.category.rencontres' | trans }}</a>
-                </li>
-                <li>
-                    <a href="{{ path('lecomptoir.article.list_by_category', {categorySlug: 'sorties'}) }}"
-                       title="{{ 'lecomptoir.category.sorties' | trans }}" class="">
-                        {{ 'lecomptoir.category.sorties' | trans }}</a>
-                </li>
-            </ul>
-        </li>
-        <li>
-            <a href="{{ path('lecomptoir.contact') }}" title="{{ 'lecomptoir.menu.contact' | trans }}">
-                {{ 'lecomptoir.menu.contact' | trans }}<span class="sr-only">(current)</span>
-            </a>
-        </li>
-        <li>
-            <a href="{{ path('lecomptoir.about') }}" title="{{ 'lecomptoir.menu.who-am-i' | trans }}">
-                {{ 'lecomptoir.menu.who-am-i' | trans }}<span class="sr-only">(current)</span>
-            </a>
-        </li>
-        <li class="dropdown">
-            <a href="{{ path('lecomptoir.partners') }}" class="dropdown-toggle " title="{{ 'lecomptoir.menu.partners' | trans }}"
-               data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                {{ 'lecomptoir.menu.partners' | trans }}<span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-                <li>
-                    <a href="" title="Editions Mnémos">Editions Mnémos</a>
-                </li>
-                <li>
-                    <a href="" title="Editions Du Chat Noir">Editions Du Chat Noir</a>
-                </li>
-                <li>
-                    <a href="" title="Editions ActuSF">Editions ActuSF</a>
-                </li>
-                <li>
-                    <a href="" title="Editions de la Bourdonnaye">Editions de la Bourdonnaye</a>
-                </li>
-                <li>
-                    <a href="" title="Intergalactiques De Lyon">Intergalactiques De Lyon</a>
-                </li>
-                <li>
-                    <a href="" title="Trollune">Trollune</a>
-                </li>
-                <li>
-                    <a href="" title="Esprit livre">Esprit livre</a>
-                </li>
-            </ul>
-        </li>
-    </ul>
+    <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav" role="navigation">
+            <li>
+                <a href="{{ path('lecomptoir.homepage') }}" title="{{ 'lecomptoir.menu.home' | trans }}">
+                    <i class="fa fa-home"></i><span class="sr-only">(current)</span></a>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle " title="{{ 'lecomptoir.menu.articles' | trans }}"
+                   data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    &nbsp;{{ 'lecomptoir.menu.articles' | trans }}
+                    <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="{{ path('lecomptoir.article.list_by_category', {categorySlug: 'litterature'}) }}"
+                           title="{{ 'lecomptoir.category.litterature' | trans }}" class="">
+                            {{ 'lecomptoir.category.litterature' | trans }}</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('lecomptoir.article.list_by_category', {categorySlug: 'manga-bd'}) }}"
+                           title="{{ 'lecomptoir.category.manga-bd' | trans }}" class="">
+                            {{ 'lecomptoir.category.manga-bd' | trans }}</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('lecomptoir.article.list_by_category', {categorySlug: 'rencontres'}) }}"
+                           title="{{ 'lecomptoir.category.rencontres' | trans }}" class="">
+                            {{ 'lecomptoir.category.rencontres' | trans }}</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('lecomptoir.article.list_by_category', {categorySlug: 'sorties'}) }}"
+                           title="{{ 'lecomptoir.category.sorties' | trans }}" class="">
+                            {{ 'lecomptoir.category.sorties' | trans }}</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="{{ path('lecomptoir.contact') }}" title="{{ 'lecomptoir.menu.contact' | trans }}">
+                    {{ 'lecomptoir.menu.contact' | trans }}<span class="sr-only">(current)</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ path('lecomptoir.about') }}" title="{{ 'lecomptoir.menu.who-am-i' | trans }}">
+                    {{ 'lecomptoir.menu.who-am-i' | trans }}<span class="sr-only">(current)</span>
+                </a>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle "
+                   title="{{ 'lecomptoir.menu.partners' | trans }}"
+                   data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    {{ 'lecomptoir.menu.partners' | trans }}<span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="{{ path('lecomptoir.partner', {partnerSlug: 'editions-mnemos'}) }}" title="Editions Mnémos">Editions Mnémos</a>
+                    </li>
+                    <li>
+                        <a href="" title="Editions Du Chat Noir">Editions Du Chat Noir</a>
+                    </li>
+                    <li>
+                        <a href="" title="Editions ActuSF">Editions ActuSF</a>
+                    </li>
+                    <li>
+                        <a href="" title="Editions de la Bourdonnaye">Editions de la Bourdonnaye</a>
+                    </li>
+                    <li>
+                        <a href="" title="Intergalactiques De Lyon">Intergalactiques De Lyon</a>
+                    </li>
+                    <li>
+                        <a href="" title="Trollune">Trollune</a>
+                    </li>
+                    <li>
+                        <a href="" title="Esprit livre">Esprit livre</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
     {#<form class="navbar-form navbar-right" role="search">#}
-        {#<div class="form-group">#}
-            {#<input type="text" class="form-control" placeholder="{{ 'lecomptoir.menu.search' | trans }}">#}
-        {#</div>#}
-        {#<button type="submit" class="btn hvr-bounce-in"><i class="fa fa-search"></i></button>#}
+    {#<div class="form-group">#}
+    {#<input type="text" class="form-control" placeholder="{{ 'lecomptoir.menu.search' | trans }}">#}
+    {#</div>#}
+    {#<button type="submit" class="btn hvr-bounce-in"><i class="fa fa-search"></i></button>#}
     {#</form>#}
 </nav>
