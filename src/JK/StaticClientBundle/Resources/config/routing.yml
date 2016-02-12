@@ -1,0 +1,3 @@
+jk_static_client_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: JKStaticClientBundle:Default:index }
