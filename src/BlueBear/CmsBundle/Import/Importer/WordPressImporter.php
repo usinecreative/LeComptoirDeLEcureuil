@@ -12,6 +12,8 @@ use BlueBear\CmsBundle\Exception\ImportException;
 use BlueBear\CmsBundle\Import\ImporterInterface;
 use BlueBear\CmsBundle\Repository\ArticleRepository;
 use BlueBear\CmsBundle\Repository\CategoryRepository;
+use BlueBear\CmsBundle\Repository\CommentRepository;
+use BlueBear\CmsBundle\Repository\ImportRepository;
 use BlueBear\CmsBundle\Repository\TagRepository;
 use BlueBear\CmsBundle\Repository\UserRepository;
 use DateTime;
@@ -56,6 +58,16 @@ class WordPressImporter implements ImporterInterface
     protected $tagRepository;
 
     /**
+     * @var CommentRepository
+     */
+    protected $commentRepository;
+
+    /**
+     * @var ImportRepository
+     */
+    protected $importRepository;
+
+    /**
      * WordPressImporter constructor.
      *
      * @param LoggerInterface $logger
@@ -63,21 +75,31 @@ class WordPressImporter implements ImporterInterface
      * @param UserRepository $userRepository
      * @param ArticleRepository $articleRepository
      * @param TagRepository $tagRepository
+     * @param CommentRepository $commentRepository
+     * @param ImportRepository $importRepository
      */
     public function __construct(
         LoggerInterface $logger,
         CategoryRepository $categoryRepository,
         UserRepository $userRepository,
         ArticleRepository $articleRepository,
-        TagRepository $tagRepository
-    ) {
+        TagRepository $tagRepository,
+        CommentRepository $commentRepository,
+        ImportRepository $importRepository
+    )
+    {
         $this->logger = $logger;
         $this->categoryRepository = $categoryRepository;
         $this->userRepository = $userRepository;
         $this->articleRepository = $articleRepository;
         $this->tagRepository = $tagRepository;
+        $this->commentRepository = $commentRepository;
+        $this->importRepository = $importRepository;
     }
 
+    /**
+     * @param Import $import
+     */
     public function import(Import $import)
     {
         $filePath = $import->getfilePath() . '/' . $import->getFileName();
@@ -86,70 +108,41 @@ class WordPressImporter implements ImporterInterface
         if ($fileSystem->exists($filePath)) {
             $xml = simplexml_load_file($filePath);
 
-            try {
-                $this->importFromXml($xml);
-                $import->setStatus(Import::IMPORT_STATUS_SUCCESS);
-            } catch (Exception $e) {
-                $this->logger->log(Logger::ERROR, 'An error has occured during a import : ' . $e->getMessage() . ' ' . $e->getTraceAsString());
-                $import->setStatus(Import::IMPORT_STATUS_ERROR);
+            // wordpress needed info are stored in node channel->item
+            if ($xml->channel) {
+                if ($xml->channel->item) {
+                    /** @var SimpleXMLElement $item */
+                    foreach ($xml->channel->item as $item) {
 
-                throw $e;
-            }
-            $import->setLabel('Test import');
-        }
-    }
+                        try {
+                            $this->importCategory($item);
+                            $this->importUser($item);
+                            $this->importArticle($item);
+                            $this->importTag($item);
+                            $this->importComment($item);
 
-    protected function importFromXml($xml)
-    {
-        // xml required namespaces
+                        } catch (Exception $e) {
+                            // log import error
+                            $this
+                                ->logger
+                                ->log(Logger::ERROR, 'An error has occured during a import : ' . $e->getMessage() . ' ' . $e->getTraceAsString());
 
-
-
-        // wordpress needed info are stored in node channel->item
-        if ($xml->channel) {
-            if ($xml->channel->item) {
-                /** @var SimpleXMLElement $item */
-                foreach ($xml->channel->item as $item) {
-
-
-                    $this->importCategory($item);
-                    $this->importUser($item);
-                    $this->importArticle($item);
-                    $this->importTag($item);
-
-                    /*if ($article->isCommentable()) {
-                        foreach ($item->children($WP_NAMESPACE)->comment as $commentItem) {
-                            // convert timestamp to DateTime
-                            $commentDate = (new DateTime())->setTimestamp(strtotime($commentItem->comment_date));
-                            // creating commment
-                            $comment = new Comment();
-                            $comment->setAuthorName($commentItem->comment_author);
-                            $comment->setAuthorEmail($commentItem->comment_author_email);
-                            $comment->setAuthorUrl($commentItem->comment_author_url);
-                            $comment->setAuthorIp($commentItem->comment_author_ip);
-                            $comment->forceCreatedAt($commentDate);
-                            $comment->setContent($commentItem->comment_content);
-                            $comment->setIsApproved((bool)$commentItem->comment_author);
-                            $comment->setArticle($article);
-
-                            foreach ($commentItem->children($WP_NAMESPACE)->commentmeta as $commentMeta) {
-                                $comment->addMetadata((string)$commentMeta->key, (string)$commentMeta->value);
-                            }
-                            $this->doctrine->getManager()->persist($comment);
-                            $article->addComment($comment);
+                            // set import as errored
+                            $import->setStatus(Import::IMPORT_STATUS_ERROR);
+                            $import->setComments($import->getComments() . "\n" . $e->getMessage());
                         }
-                    }*/
-                    // persisting changes
-                    //$this->doctrine->getManager()->persist($author);
-
-                    //$this->doctrine->getManager()->persist($article);
-                    // we need to flush to create new categories in database and then not importing them twice
-                    //$this->doctrine->getManager()->flush();
+                    }
                 }
-                //$this->doctrine->getManager()->flush();
             }
         }
-        die;
+        $import->setLabel('WORDPRESS Importing xml file ' . $import->getFileName());
+
+        if ($import->getStatus() != Import::IMPORT_STATUS_ERROR) {
+            $import->setStatus(Import::IMPORT_STATUS_SUCCESS);
+        }
+        $this
+            ->importRepository
+            ->save($import);
     }
 
     /**
@@ -259,6 +252,7 @@ class WordPressImporter implements ImporterInterface
         }
         $articleName = (string)$element->title;
 
+        /** @var Category $category */
         $category = $this->categoryRepository->findOneBy([
             'name' => $categoryName
         ]);
@@ -272,8 +266,9 @@ class WordPressImporter implements ImporterInterface
         ]);
 
         if (!$article) {
-            $article = new Article();
+            return;
         }
+        $article = new Article();
         $article->setTitle((string)$element->title);
         $article->setCanonical((string)$element->link);
         $article->setPublicationDate((new DateTime())->setTimestamp(strtotime($element->pubDate)));
@@ -336,12 +331,64 @@ class WordPressImporter implements ImporterInterface
             'title' => $articleName
         ]);
 
-        if ($article) {
+        if ($article && !$article->hasTag($tag)) {
             $article->addTag($tag);
             $this->articleRepository->save($article);
             $this
                 ->tagRepository
                 ->save($tag);
+        }
+    }
+
+    /**
+     * Import a comment from an xml element
+     *
+     * @param SimpleXMLElement $element
+     * @throws Exception
+     */
+    protected function importComment(SimpleXMLElement $element)
+    {
+        // only process post type
+        $postType = (string)$element->children(self::WP_NAMESPACE)->post_type;
+
+        if ($postType != 'post') {
+            return;
+        }
+        $articleTitle = (string)$element->title;
+
+        /** @var Article $article */
+        $article = $this->articleRepository->findOneBy([
+            'title' => $articleTitle
+        ]);
+
+        if (!$article) {
+            throw new Exception("Article {$articleTitle} not found for comments");
+        }
+        foreach ($element->children(self::WP_NAMESPACE)->comment as $commentItem) {
+            // convert timestamp to DateTime
+            $commentDate = (new DateTime())->setTimestamp(strtotime($commentItem->comment_date));
+            // creating commment
+            $comment = new Comment();
+            $comment->setAuthorName($commentItem->comment_author);
+            $comment->setAuthorEmail($commentItem->comment_author_email);
+            $comment->setAuthorUrl($commentItem->comment_author_url);
+            $comment->setAuthorIp($commentItem->comment_author_ip);
+            $comment->forceCreatedAt($commentDate);
+            $comment->setContent($commentItem->comment_content);
+            $comment->setIsApproved((bool)$commentItem->comment_author);
+            $comment->setArticle($article);
+
+            foreach ($commentItem->children(self::WP_NAMESPACE)->commentmeta as $commentMeta) {
+                $comment->addMetadata((string)$commentMeta->key, (string)$commentMeta->value);
+            }
+            $article->addComment($comment);
+
+            $this
+                ->commentRepository
+                ->save($comment);
+            $this
+                ->articleRepository
+                ->save($article);
         }
     }
 }

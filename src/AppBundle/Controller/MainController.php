@@ -21,11 +21,11 @@ class MainController extends Controller
     {
         // latest published articles
         $latestArticles = $this
-            ->get('lag.cms.article_repository')
+            ->get('jk.cms.article_repository')
             ->findLatest();
         // category configured for display in homepage
         $categories = $this
-            ->get('lag.cms.category_repository')
+            ->get('jk.cms.category_repository')
             ->findForHomepage();
 
         return [
@@ -65,7 +65,7 @@ class MainController extends Controller
             ]);
         // find linked articles (by tag)
         $articles = $this
-            ->get('lag.cms.article_repository')
+            ->get('jk.cms.article_repository')
             ->findByTag($partner->getSlug());
 
         return [

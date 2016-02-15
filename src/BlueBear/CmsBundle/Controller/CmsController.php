@@ -18,7 +18,7 @@ class CmsController extends Controller
     public function homepageAction()
     {
         $categories = $this
-            ->get('lag.cms.category_repository')
+            ->get('jk.cms.category_repository')
             ->findAll();
         return [
             'categories' => $categories

@@ -8,10 +8,9 @@ copy=rsync
 all: install
 
 install:
-	composer install -n
-	bundle install --path=vendor/
-	make assets
-	make cc
+	@composer install -n
+	@bundle install --path=vendor/
+	@$(sf) doctrine:fixtures:load
 
 cc:
 	rm -rf var/cache/*
@@ -46,7 +45,7 @@ assets-copy:
 	@$(copy) $(assets_dir)/fonts/* $(web_dir)/fonts/
 	@$(copy) $(assets_dir)/img/* $(web_dir)/img/
 	@echo "copying symfony assets"
-	@$(sf) assets:install --symlink
+	@$(sf) assets:install
 
 watch:
 	@while [ "true" ] ; do \

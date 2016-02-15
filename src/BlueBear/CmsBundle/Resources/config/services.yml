@@ -22,8 +22,8 @@ services:
     bluebear.cms.dashboard_factory:
         class: %bluebear.cms.dashboard_factory%
         arguments:
-            - '@lag.cms.comment_repository'
-            - '@lag.cms.article_repository'
+            - '@jk.cms.comment_repository'
+            - '@jk.cms.article_repository'
 
     # Subscribers
     bluebear.cms.kernel_subscriber:
@@ -41,7 +41,7 @@ services:
     # Finders
     bluebear.cms.article_finder:
         class: %bluebear.cms.article_finder.class%
-        arguments: ['@lag.cms.article_repository']
+        arguments: ['@jk.cms.article_repository']
 
 
 
@@ -56,10 +56,12 @@ services:
         class: BlueBear\CmsBundle\Import\Importer\WordPressImporter
         arguments:
             - '@logger'
-            - '@lag.cms.category_repository'
-            - '@lag.cms.user_repository'
-            - '@lag.cms.article_repository'
-            - '@lag.cms.tag_repository'
+            - '@jk.cms.category_repository'
+            - '@jk.cms.user_repository'
+            - '@jk.cms.article_repository'
+            - '@jk.cms.tag_repository'
+            - '@jk.cms.comment_repository'
+            - '@jk.cms.import_repository'
 
     # factory:
     bluebear.cms.import.importer_factory:

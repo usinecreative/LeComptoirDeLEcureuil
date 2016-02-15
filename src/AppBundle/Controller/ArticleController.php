@@ -63,7 +63,7 @@ class ArticleController extends Controller
         if ($parameters->has('categorySlug')) {
             /** @var Category $category */
             $category = $this
-                ->get('lag.cms.category_repository')
+                ->get('jk.cms.category_repository')
                 ->findOneBy([
                     'slug' => $parameters->get('categorySlug')
                 ]);

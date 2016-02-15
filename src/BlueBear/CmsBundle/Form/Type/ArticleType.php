@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -34,14 +35,11 @@ class ArticleType extends AbstractType
             ->add('category', EntityType::class, [
                 'class' => 'BlueBear\CmsBundle\Entity\Category'
             ])
-            ->add('content', CKEditorType::class, [
-                'config_name' => 'my_config',
-                'config' => [
-                    'height' => '500px'
-                ],
+            ->add('content', TextareaType::class, [
                 'attr' => [
-                    'rows' => 500,
-
+                    'rows' => 50,
+                    'class' => 'tinymce',
+                    'data-theme' => 'advanced'
                 ]
             ])
             ->add('publicationStatus', ChoiceType::class, [

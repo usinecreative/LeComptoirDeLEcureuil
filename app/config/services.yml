@@ -4,7 +4,7 @@ services:
     cms_user_provider:
         class: BlueBear\CmsBundle\Guard\UserProvider\UserProvider
         arguments:
-            - '@lag.cms.user_repository'
+            - '@jk.cms.user_repository'
 
     cms_authenticator:
         class: BlueBear\CmsBundle\Guard\Authenticator\TokenAuthenticator

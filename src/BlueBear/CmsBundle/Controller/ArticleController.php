@@ -19,7 +19,7 @@ class ArticleController extends Controller
     public function previewAction(Request $request)
     {
         $article = $this
-            ->get('lag.cms.article_repository')
+            ->get('jk.cms.article_repository')
             ->find($request->get('id'));
         $this->forward404Unless($article);
 

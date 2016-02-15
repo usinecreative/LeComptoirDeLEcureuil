@@ -76,6 +76,11 @@ class ArticleFinder
             ->andWhere('article.publicationStatus = :publication_status')
             ->setParameter('publication_status', Article::PUBLICATION_STATUS_PUBLISHED);
 
+        // only with the published comments
+        $queryBuilder
+            ->addSelect('comments')
+            ->leftJoin('article.comments', 'comments');
+
         // get parameters from filters
         $parameters = $filter->getParameters();
 

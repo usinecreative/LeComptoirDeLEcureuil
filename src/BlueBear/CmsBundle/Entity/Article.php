@@ -357,6 +357,17 @@ class Article
     }
 
     /**
+     * @param Tag $tag
+     * @return bool
+     */
+    public function hasTag(Tag $tag)
+    {
+        return $this
+            ->tags
+            ->contains($tag);
+    }
+
+    /**
      * @param mixed $tags
      * @return Article
      */
