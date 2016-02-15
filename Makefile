@@ -4,13 +4,13 @@ web_dir=web
 copy=rsync
 
 
-
 all: install
 
 install:
-	@composer install -n
-	@bundle install --path=vendor/
-	@$(sf) doctrine:fixtures:load
+	composer install -n
+	bundle install --path=vendor/
+	make assets
+	make cc
 
 cc:
 	rm -rf var/cache/*
