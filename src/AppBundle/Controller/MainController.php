@@ -8,6 +8,8 @@ use AppBundle\Form\Type\ContactType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Swift_Message;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 
 class MainController extends Controller
 {
@@ -83,18 +85,29 @@ class MainController extends Controller
     }
 
     /**
-     * @Template(":Sitemap:sitemap.xml.twig")
      * @return array
      */
     public function sitemapAction()
     {
-        $items = $this
+        $sitemap = $this
             ->get('app_sitemap_generator')
             ->generate();
+        $this->forward404Unless(file_exists($sitemap));
 
-        return [
-            'items' => $items
-        ];
+        $response = new BinaryFileResponse($sitemap);
+
+        $d = $response->headers->makeDisposition(
+            ResponseHeaderBag::DISPOSITION_ATTACHMENT,
+            'foo.pdf'
+        );
+        $response->headers->set('Content-Disposition', $d);
+        $response->headers->set('Content-Type', 'text/xml');
+        $response->setContentDisposition(
+            ResponseHeaderBag::DISPOSITION_ATTACHMENT,
+            'le_comptoir_de_l_ecureuil-sitemap.xml'
+        );
+
+        return $response;
     }
 
     protected function sendContactMail(array $data)
