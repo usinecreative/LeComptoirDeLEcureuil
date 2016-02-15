@@ -25,14 +25,22 @@ class Generator
      * @var Twig_Environment
      */
     protected $twig;
-    private $cacheDirectory;
+
+    /**
+     * Cache directory path.
+     *
+     * @var string
+     */
+    protected $cacheDirectory;
 
     /**
      * Generator constructor.
+     *
      * @param $cacheDirectory
      * @param RouterInterface $router
      * @param ArticleRepository $articleRepository
      * @param Twig_Environment $twig
+     * @throws Exception
      */
     public function __construct(
         $cacheDirectory,
@@ -51,6 +59,11 @@ class Generator
         }
     }
 
+    /**
+     * Generate a xml sitemap file and return its filepath.
+     *
+     * @return string
+     */
     public function generate()
     {
         $items = [];
@@ -68,6 +81,21 @@ class Generator
             // add it to the collection
             $items[] = new Item($url, 'daily');
         }
+        // homepage
+        $items[] = new Item(
+            $this->router->generate('lecomptoir.homepage', [], RouterInterface::ABSOLUTE_URL),
+            'weekly'
+        );
+        // contact page
+        $items[] = new Item(
+            $this->router->generate('lecomptoir.contact', [], RouterInterface::ABSOLUTE_URL),
+            'weekly'
+        );
+        $items[] = new Item(
+            $this->router->generate('lecomptoir.about', [], RouterInterface::ABSOLUTE_URL),
+            'weekly'
+        );
+
         $content = $this
             ->twig
             ->render(':Sitemap:sitemap.xml.twig', [

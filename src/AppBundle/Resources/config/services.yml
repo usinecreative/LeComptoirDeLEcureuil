@@ -12,5 +12,5 @@ services:
         arguments:
             - '%kernel.cache_dir%'
             - '@router'
-            - '@lag.cms.article_repository'
+            - '@jk.cms.article_repository'
             - '@twig'
