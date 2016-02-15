@@ -1,7 +1,7 @@
 TODO
 ========================
     
-
+> gérer la sitemap
 > mettre un widget archives (menu droite)
 > mettre zone commentaire
 > lors de commentaire, premiere fois envoyer un mail pour validation , ensuite juste mail information
@@ -13,6 +13,8 @@ TODO
 > mettre les vrais comptes dans les widgets réseaux sociaux
 > mettre un pager sur la page des articles
 > faire le moteur de recherche
+> faire des tests fonctionnels des pages et des liens
+> ajouter le multilingue à la sitemap
 
 DONE
 ========================

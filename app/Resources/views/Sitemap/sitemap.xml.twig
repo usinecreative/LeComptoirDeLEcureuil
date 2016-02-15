@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+{% spaceless %}
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    {% for item in items %}
+
+        <url>
+            <loc>{{ item.location }}</loc>
+
+            {% if item.lastModification %}
+                <lastmod>{{ item.lastModification }}</lastmod>
+            {% endif %}
+
+            {% if item.frequency %}
+                <changefreq>{{ item.frequency }}</changefreq>
+            {% endif %}
+
+            {% if item.priority %}
+                <priority>{{ item.priority }}</priority>
+            {% endif %}
+        </url>
+    {% endfor %}
+</urlset>
+{% endspaceless %}
