@@ -53,6 +53,8 @@ class MainController extends Controller
     }
 
     /**
+     * Dislay the partner page.
+     *
      * @Template(":Partner:partner.html.twig")
      * @param $partnerSlug
      * @return array
@@ -65,6 +67,7 @@ class MainController extends Controller
             ->findOneBy([
                 'slug' => $partnerSlug
             ]);
+        $this->redirect404Unless($partner, 'lecomptoir.partner.not_found');
         // find linked articles (by tag)
         $articles = $this
             ->get('jk.cms.article_repository')
@@ -125,5 +128,18 @@ class MainController extends Controller
         $this
             ->get('swiftmailer.mailer')
             ->send($message);
+    }
+
+    /**
+     * Throw a 404 Exception if $boolean is false or null
+     *
+     * @param mixed $boolean
+     * @param string $message
+     */
+    protected function redirect404Unless($boolean, $message = '404 Not Found')
+    {
+        if (!$boolean) {
+            throw $this->createNotFoundException($this->translate($message));
+        }
     }
 }

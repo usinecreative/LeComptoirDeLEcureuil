@@ -36,7 +36,7 @@
     "friendsofsymfony/user-bundle": "dev-master",
     "white-october/pagerfanta-bundle": "~1.0",
     "doctrine/data-fixtures": "*",
-    "doctrine/doctrine-fixtures-bundle": "*",
+    "doctrine/doctrine-fixtures-bundle": "^2.3",
     "gedmo/doctrine-extensions": "^2.4",
     "lag/array-utils": "^0.1.0",
     "lag/doctrine-repository": "dev-master",

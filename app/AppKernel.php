@@ -27,16 +27,22 @@ class AppKernel extends Kernel
             //new AppBundle\LeComptoirDeLEcureuilFrontBundle(),
             new LeComptoirDeLEcureuil\BackBundle\LeComptoirDeLEcureuilBackBundle(),
             new LeComptoirDeLEcureuil\CoreBundle\LeComptoirDeLEcureuilCoreBundle(),
+            new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
+
+            // Admin dev
             new LAG\DoctrineRepositoryBundle\LAGDoctrineRepositoryBundle(),
             new BlueBear\BaseBundle\BlueBearBaseBundle(),
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
             new \Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle(),
+
+
             //new JK\StaticClientBundle\JKStaticClientBundle(),
             new \WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
             new AppBundle\AppBundle(),
 
             new \Knp\Bundle\GaufretteBundle\KnpGaufretteBundle(),
             new \Dizda\CloudBackupBundle\DizdaCloudBackupBundle(),
+
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'])) {

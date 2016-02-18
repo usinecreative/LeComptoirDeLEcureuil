@@ -42,6 +42,11 @@ class Partner
     protected $slug;
 
     /**
+     * @ORM\Column(name="baseline", type="string", length=255)
+     */
+    protected $baseline;
+
+    /**
      * @return mixed
      */
     public function getSlug()
@@ -59,10 +64,13 @@ class Partner
 
     /**
      * @param string $name
+     * @return $this
      */
     public function setName($name)
     {
         $this->name = $name;
+
+        return $this;
     }
 
     /**
@@ -75,10 +83,13 @@ class Partner
 
     /**
      * @param string $description
+     * @return $this
      */
     public function setDescription($description)
     {
         $this->description = $description;
+
+        return $this;
     }
 
     /**
@@ -88,6 +99,25 @@ class Partner
     public function setSlug($slug)
     {
         $this->slug = $slug;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBaseline()
+    {
+        return $this->baseline;
+    }
+
+    /**
+     * @param string $baseline
+     * @return $this
+     */
+    public function setBaseline($baseline)
+    {
+        $this->baseline = $baseline;
+
         return $this;
     }
 }
