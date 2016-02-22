@@ -25,7 +25,7 @@ lecomptoir:
         not_found: Le partenaire n'existe pas... C'est vraiment dommage...
         website: Site internet
     error:
-        generic: Cette noisette n'est vraiment pas bonne... Peut être en cherchiez-vous une autre
+        generic: Cette noisette n'est vraiment pas bonne... Peut être en cherchiez-vous une autre ?
     create: Ajouter
     edit: Editer
     delete: Supprimer
