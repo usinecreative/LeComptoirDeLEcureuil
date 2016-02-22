@@ -1,11 +1,22 @@
 {% extends "::layout.html.twig" %}
 
 {% block content %}
-    <div class="col-lg-9 partner-page main-content">
+    <div class="col-lg-9 partner-page main-content article">
         <h2>{{ partner.name }}</h2>
 
-        <p>
-            {{ partner.description }}
-        </p>
+        <div class="article-content">
+            <strong>{{ partner.baseline }}</strong><br/>
+
+            {{ partner.description | raw }}
+        </div>
+
+        {% if partner.website %}
+            <div class="article-footer">
+                {{ 'lecomptoir.partner.website' | trans }} :
+                <a href="{{ partner.website }}" target="_blank">
+                    <i class="fa fa-info-circle"></i>&nbsp;{{ partner.website }}
+                </a>
+            </div>
+        {% endif %}
     </div>
 {% endblock %}

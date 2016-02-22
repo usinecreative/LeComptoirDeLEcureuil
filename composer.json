@@ -35,12 +35,11 @@
     "symfony/asset": "^3.0",
     "friendsofsymfony/user-bundle": "dev-master",
     "white-october/pagerfanta-bundle": "~1.0",
-    "doctrine/data-fixtures": "*",
     "doctrine/doctrine-fixtures-bundle": "^2.3",
     "gedmo/doctrine-extensions": "^2.4",
     "lag/array-utils": "^0.1.0",
     "lag/doctrine-repository": "dev-master",
-    "lag/adminbundle": "dev-0.3-dev",
+    "lag/adminbundle": "dev-dev",
     "dizda/cloud-backup-bundle": "^3.2",
     "knplabs/knp-gaufrette-bundle": "^0.3.0"
   },
@@ -79,5 +78,9 @@
     "incenteev-parameters": {
       "file": "app/config/parameters.yml"
     }
+  },
+  "require-dev": {
+    "hautelook/alice-bundle": "^1.2",
+    "doctrine/data-fixtures": "^1.1"
   }
 }

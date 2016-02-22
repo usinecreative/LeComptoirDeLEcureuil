@@ -1,0 +1,97 @@
+AppBundle\Entity\Partner:
+    edition_mnemos:
+        name: Edition Mnemos
+        description: >
+            <p>Mnémos, éditeur d’imaginaire depuis 1996 et membre fondateur <strong><a href="http://www.mnemos.com/auteurs/les-indes-de-limaginaire/">des Indés de l’imaginaire</a></strong>.</p>
+            <p><i>Les Éditions Mnémos défendent une littérature de l’imaginaire vivante et de qualité. Depuis 20 ans, plus de 200 titres ont été publiés. Notre politique éditoriale est basée autour de deux critères : la découverte de nouveaux talents et la mise en avant de la création française dans des genres habituellement dévolus aux auteurs anglo-saxons.<br>
+            Nos publications se regroupent en livres grand format, en poche avec le label Hélios, en beaux livres avec notre label Ourobores.</i><i></i></p>
+            <img alt="" src="http://www.mnemos.com/JOOMLA2/images/auteurs/fred%205%20site.gif" width="100" border="0"><img title="Nathalie Weil" alt="Nathalie Weil" src="http://www.mnemos.com/JOOMLA2/images/cartouche/nat.jpg" border="0">&nbsp;&nbsp;<img alt="" src="http://www.mnemos.com/JOOMLA2/images/cartouche/coralie%202-site.gif" width="100" border="0"><img alt="" src="http://www.mnemos.com/JOOMLA2/images/auteurs/st%C3%A9phanie%20site.gif" width="100" border="0">
+            <p>Direction éditoriale :&nbsp;Frédéric WEIL<br>
+            Administration – communication : Nathalie Weil</p>
+            <p>Directeurs d’ouvrages : Stéphanie CHABERT -&nbsp;Coralie DAVID -&nbsp;Raphaël Granier de Cassagnac – Frédéric WEIL</p>
+            <p>Graphistes : Franck ACHARD – Isabelle JOVANOVIC – Atelier Octobre Rouge</p>
+            <p>Photographies : © Patrick Imbert, sauf pour Coralie et Stéphanie (voir son&nbsp;<a href="http://www.icicommeailleurs.org/" target="_blank">site</a>)<br>
+            Photographie Coralie : ©&nbsp;Pouria Amir Ardalan</p></section>
+        baseline: 'Mnémos, éditeur d’imaginaire depuis 1996 et membre fondateur des Indés de l’imaginaire.'
+        slug: editions-mnemos
+        website: http://www.mnemos.com/
+
+    edition_chat_noir:
+        name: Editions du Chat Noir
+        description: >
+            Editions du Chat Noir, maison spécialisée dans la littérature de l'imaginaire...
+            Fantastique, Bit-lit, gothic, steampunk... traversez le voile d'un coup de griffes !
+        baseline: Editions du Chat Noir, maison spécialisée dans la littérature de l'imaginaire...
+        slug: edition-chat-noir
+        website: http://www.editionsduchatnoir.com/
+
+    edition_actu_sf:
+        name: Edition ActuSF
+        description: >
+            ActuSF est un webzine francophone consacré à l'actualité des littératures
+        baseline: ActuSF est un webzine francophone consacré à l'actualité des littératures
+        slug: edition-actusf
+        website: http://www.editions-actusf.fr/
+
+    edition_bourdonaye:
+        name: Edition Bourdonnaye
+        description: >
+            Nous nous présentons comme la french touch de la littérature. En effet, nous adorons suivre nos coups de
+            cœur et découvrir les nouveaux talents que nous offre la scène littéraire française. Nous développons ainsi
+            une ligne éditoriale généraliste autour d’auteurs dont les styles et les univers illuminent nos différentes
+            collections. Notre objectif est de propulser la création dans tous les domaines : littérature générale,
+            littérature noire, fantasy, science-fiction, tout public, érotisme. Et nous sommes particulièrement fiers
+            d'avoir remis au goût du jour la série littéraire si chère à nos grands feuilletonistes des XIXe et
+            XXe siècles, à laquelle nous avons appliqué les codes de la série télé, à travers notre collection « Pulp ».
+
+            Nous publions des livres aux formats papier et numérique, car nous sommes convaincus que ces deux supports
+            de lecture sont synergiques. Tout en étant donc présents dans les librairies « physiques » avec nos livres
+            papier, nous défendons une véritable politique de promotion du livre numérique, fondée sur des prix très
+            attractifs – car nous pensons aux lecteurs – et une large communication digitale.
+
+            Et puisque nous plaçons les auteurs au centre de l'univers littéraire, nous établissons un réel partenariat
+            avec eux et leur proposons des contrats aux conditions satisfaisantes : droits d'auteur élevés, durée de
+            cession des droits réduite, paiement et reddition des comptes tous les trimestres.
+
+            Les éditions La Bourdonnaye sont également propriétaires de la librairie en ligne Didactibook.
+        baseline: La French touch de la littérature
+        slug: edition-bourdonnaye
+        website: http://www.labourdonnaye.com/
+
+    librairie_trollune:
+        name: Trollune
+        description: >
+            Trollune, Boutique de l’Imaginaire à Lyon est à la fois une librairie spécialisée dans la science-fiction
+            (et les genres qui en découlent, fantasy, horreur, fantastique, bit-lit, etc...), et un magasin de jeu
+            spécialisé (jeux de société/plateaux, jeux de rôles, cartes, figurines).
+
+            Elle propose aussi de nombreux produits d’import en anglais. Les joueurs de tous poils et autres adeptes
+            des univers imaginaires pourront y assouvir leur passion et bénéficier de sa salle de jeux et de lecture.
+        baseline: Trollune, Boutique de l’Imaginaire à Lyon est à la fois une librairie spécialisée dans la science-fiction
+        website: http://www.trollune.fr/
+
+    esprit_livre:
+        name: L'Esprit Livre
+        description: >
+            L’Esprit Livre est une librairie papeterie généraliste.
+
+            Située au coeur du 3ème arrondissement de Lyon dans le quartier Dauphiné Lacassagne, entre Montchat et
+            Monplaisir, la librairie L’Esprit Livre propose des ouvrages neufs dans les domaines éditoriaux suivants :
+
+            Littérature française et étrangère
+            Littérature Jeunesse (de la naissance à l’adolescence : livre-bain, livre-tissu, albums jeunesse, documentaires, premières lectures, romans ados…)
+            Romans policiers (polars historiques, thrillers, espionnage…)
+            Science-fiction (de la Hard SF en passant par la Fantasy)
+            Bandes dessinées et mangas (BD adulte et BD Jeunesse)
+            Sciences humaines (histoire, philosophie, droit, économie, science politique…)
+            Scolaires, parascolaire
+            Développement personnel
+            Pratique (cuisine, voyages, jardinage…)
+            Beaux livres (arts, spectacles…)
+            Littérature en langues étrangères (VO)
+
+            L’Esprit Livre c’est aussi une offre complète en papeterie pour les scolaires et les professionnels.
+
+            Nous proposons enfin des jeux éducatifs, des cartes et des articles pour les loisirs créatifs.
+        baseline: La librairie au coeur du 3e arrondissement de Lyon
+        website: http://www.lesprit-livre.fr/

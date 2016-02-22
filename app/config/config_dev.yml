@@ -13,3 +13,8 @@ web_profiler:
 
 swiftmailer:
     delivery_address: arnaudfrezet@gmail.com
+
+hautelook_alice:
+    db_drivers:
+        orm: ~
+    locale: fr_FR

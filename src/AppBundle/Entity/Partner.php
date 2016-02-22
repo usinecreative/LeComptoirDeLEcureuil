@@ -6,12 +6,14 @@ use BlueBear\BaseBundle\Entity\Behaviors\Id;
 use BlueBear\BaseBundle\Entity\Behaviors\Timestampable;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Partner
  *
- * @ORM\Table(name="lecomptoir_partner")
+ * @ORM\Table(name="lecomptoir_partner", indexes={@ORM\Index(name="slug_idx", columns={"slug"})}))
  * @ORM\Entity(repositoryClass="AppBundle\Repository\PartnerRepository")
+ * @UniqueEntity(fields={"name", "slug"})
  * @ORM\HasLifecycleCallbacks()
  */
 class Partner
@@ -45,6 +47,11 @@ class Partner
      * @ORM\Column(name="baseline", type="string", length=255)
      */
     protected $baseline;
+
+    /**
+     * @ORM\Column(name="website", type="text", nullable=true)
+     */
+    protected $website;
 
     /**
      * @return mixed
@@ -117,6 +124,25 @@ class Partner
     public function setBaseline($baseline)
     {
         $this->baseline = $baseline;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getWebsite()
+    {
+        return $this->website;
+    }
+
+    /**
+     * @param mixed $website
+     * @return $this
+     */
+    public function setWebsite($website)
+    {
+        $this->website = $website;
 
         return $this;
     }

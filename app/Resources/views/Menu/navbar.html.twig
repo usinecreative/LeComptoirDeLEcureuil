@@ -33,16 +33,6 @@
                     </li>
                 </ul>
             </li>
-            <li>
-                <a href="{{ path('lecomptoir.contact') }}" title="{{ 'lecomptoir.menu.contact' | trans }}">
-                    {{ 'lecomptoir.menu.contact' | trans }}<span class="sr-only">(current)</span>
-                </a>
-            </li>
-            <li>
-                <a href="{{ path('lecomptoir.about') }}" title="{{ 'lecomptoir.menu.who-am-i' | trans }}">
-                    {{ 'lecomptoir.menu.who-am-i' | trans }}<span class="sr-only">(current)</span>
-                </a>
-            </li>
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle "
                    title="{{ 'lecomptoir.menu.partners' | trans }}"
@@ -72,6 +62,16 @@
                         <a href="" title="Esprit livre">Esprit livre</a>
                     </li>
                 </ul>
+            </li>
+            <li>
+                <a href="{{ path('lecomptoir.about') }}" title="{{ 'lecomptoir.menu.who-am-i' | trans }}">
+                    {{ 'lecomptoir.menu.who-am-i' | trans }}<span class="sr-only">(current)</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ path('lecomptoir.contact') }}" title="{{ 'lecomptoir.menu.contact' | trans }}">
+                    {{ 'lecomptoir.menu.contact' | trans }}<span class="sr-only">(current)</span>
+                </a>
             </li>
         </ul>
     </div>

@@ -43,6 +43,7 @@ class AppKernel extends Kernel
             new \Knp\Bundle\GaufretteBundle\KnpGaufretteBundle(),
             new \Dizda\CloudBackupBundle\DizdaCloudBackupBundle(),
 
+
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'])) {
@@ -50,6 +51,7 @@ class AppKernel extends Kernel
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
+            $bundles[] = new Hautelook\AliceBundle\HautelookAliceBundle();
         }
 
         return $bundles;

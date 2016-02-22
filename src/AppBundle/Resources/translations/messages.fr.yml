@@ -23,6 +23,7 @@ lecomptoir:
         delete: Supprimer les entités
     partner:
         not_found: Le partenaire n'existe pas... C'est vraiment dommage...
+        website: Site internet
     create: Ajouter
     edit: Editer
     delete: Supprimer

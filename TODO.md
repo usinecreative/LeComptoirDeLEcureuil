@@ -15,6 +15,7 @@ TODO
 > faire le moteur de recherche
 > faire des tests fonctionnels des pages et des liens
 > ajouter le multilingue à la sitemap
+> ordre du menu : accueil, articles, partenaires, qui-suis-je ?, contact
 
 DONE
 ========================

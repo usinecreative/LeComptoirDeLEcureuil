@@ -40,7 +40,7 @@ namespace :deploy do
 end
 
 namespace :symfony do
-    namespace :dizda do
+    namespace :database do
         namespace :backup do
             desc "Upload a backup of your database to cloud service's"
             task :start do
@@ -50,8 +50,16 @@ namespace :symfony do
                 invoke 'symfony:console', 'dizda:backup:load', '--no-interaction'
             end
         end
+        task :move_to_local do
+            on roles(:app) do
+                puts "#{release_path}"
+                puts Dir.glob("#{release_path}" + "/dumps/*.7z").max_by {|f| File.ctime(f)}
+            end
+            #invoke 'symfony:database:backup:start'
+            #print Dir.glob(fetch(:app_path) + "/../dumps/*.7z").max_by {|f| File.ctime(f)}
+        end
     end
 end
 
-#after "deploy", "symfony:dizda:backup:start"
+before "deploy", "symfony:dizda:backup:start"
 

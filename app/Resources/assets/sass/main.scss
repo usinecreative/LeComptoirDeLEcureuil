@@ -22,6 +22,7 @@ $background-color: #11112f;
 @import "pages/home";
 @import "pages/contact";
 @import "pages/about";
+@import "pages/partners";
 
 
 body {
@@ -88,65 +89,7 @@ h1, h2, h3 {
   padding: 0;
 }
 
-// Article
-.article {
-  padding: 20px 0 20px 0;
-  font-family: "Gabriela", arial, sans-serif;
 
-  h1 {
-    font-family: "Playball", arial, sans-serif;
-    font-size: 21px;
-    color: #11112f;
-  }
-  .article-header {
-    .article-title {
-      padding-left: 20px;
-
-      h2 {
-        margin: 10px 0 20px 0;
-      }
-    }
-  }
-  .article-content {
-    text-align: justify;
-    line-height: 1.8;
-    padding: 20px 60px;
-
-    p img {
-      height: auto;
-      width: 100%;
-    }
-  }
-
-  .article-thumbnail {
-    text-align: center;
-    background-color: black;
-    margin-left: -14px;
-  }
-  .article-footer {
-    line-height: 1.8;
-    padding: 20px 50px;
-
-    ul, li {
-      list-style: none;
-      padding: 0;
-    }
-    .tag {
-      display: inline;
-    }
-  }
-  // content
-  .alignright {
-    display: inline;
-    float: right;
-    padding-left: 15px;
-  }
-  .alignleft {
-    display: inline;
-    float: left;
-    padding-right: 15px;
-  }
-}
 .title-date {
   color: #497ca7;
   display: inline-block;
@@ -166,7 +109,7 @@ footer {
   background-color: #2f2f49;
   color: $main-color;
   text-align: center;
-  padding: 40px 20px;
+  padding: 50px 20px;
 
   ul  {
     height: 15px;
@@ -178,5 +121,8 @@ footer {
       list-style-type: none;
       padding: 0 10px;
     }
+  }
+  p {
+    margin-bottom: 5px;
   }
 }
