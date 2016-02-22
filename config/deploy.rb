@@ -61,5 +61,5 @@ namespace :symfony do
     end
 end
 
-before "deploy", "symfony:dizda:backup:start"
+before "deploy", "symfony:database:backup:start"
 

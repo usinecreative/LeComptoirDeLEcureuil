@@ -41,7 +41,8 @@
     "lag/doctrine-repository": "dev-master",
     "lag/adminbundle": "dev-dev",
     "dizda/cloud-backup-bundle": "^3.2",
-    "knplabs/knp-gaufrette-bundle": "^0.3.0"
+    "knplabs/knp-gaufrette-bundle": "^0.3.0",
+    "doctrine/doctrine-migrations-bundle": "^1.1"
   },
   "scripts": {
     "post-root-package-install": [
