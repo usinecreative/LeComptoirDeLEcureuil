@@ -43,6 +43,7 @@ class AppKernel extends Kernel
 
             new \Knp\Bundle\GaufretteBundle\KnpGaufretteBundle(),
             new \Dizda\CloudBackupBundle\DizdaCloudBackupBundle(),
+            new Eko\FeedBundle\EkoFeedBundle(),
 
 
         ];

@@ -10,6 +10,14 @@ lecomptoir.about:
     path: /a-propos
     defaults: {_controller: AppBundle:Main:whoAmI}
 
+lecomptoir.legal:
+    path: /mentions-legales
+    defaults: {_controller: AppBundle:Main:legal}
+
+lecomptoir.feed:
+    path: /feed
+    defaults: {_controller: AppBundle:Main:feed}
+
 
 # Partners pages
 lecomptoir.partner:
