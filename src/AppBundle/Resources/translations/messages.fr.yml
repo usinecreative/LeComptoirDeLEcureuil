@@ -26,6 +26,11 @@ lecomptoir:
         sitemap_title: Plan du site (sitemap)
         legal: Mentions légales
         legal_title: Mentions légales
+    left:
+        twitter: Aller sur le twitter de l'écureuil
+        facebook: Aller sur le facebook de l'écureuil
+        linkedin: Aller sur le linkedin de l'écureuil
+        google_plus: Aller sur le google+ de l'écureuil
 
 #    batch:
 #        delete: Supprimer les entités

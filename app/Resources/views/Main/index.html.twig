@@ -73,7 +73,9 @@
                             {{ article.category.name }}
                         </a>
                     </h2>
-                    <a href=""><img src="/img/cover-batard.jpg"/></a>
+                    <a href="{{ articleUrl }}" title="{{ articleLinkTitle }}">
+                        <img src="/img/cover-batard.jpg"/>
+                    </a>
                     <span class="title-date">{{ article.publicationDate | localizeddate('full', 'none') }}</span>
 
                     <h3>

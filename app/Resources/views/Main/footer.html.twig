@@ -15,8 +15,10 @@
                     <i class="fa fa-gavel"></i>&nbsp;{{ 'lecomptoir.footer.legal' | trans }}
                 </a>
             </li>
-            <li><a href="#"><i class="fa fa-briefcase"></i>&nbsp;Partenariats</a></li>
-            <li><a href="{{ path('lecomptoir.feed') }}"><i class="fa fa-rss"></i>&nbsp;Rss</a></li>
+            <li>
+                <a href="{{ path('lecomptoir.feed') }}" title="Rss">
+                    <i class="fa fa-rss"></i>&nbsp;Rss</a>
+            </li>
         </ul>
     </footer>
 </div>

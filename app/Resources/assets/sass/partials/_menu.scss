@@ -41,11 +41,20 @@
       border-radius: 50%;
     }
   }
+  // "Friends" block
   .friends {
     font-family: Gabriela, sans-serif;
     height: 206px;
     // title on one line
-    padding: 13px;
+    padding: 13px 15px 15px 15px;
+
+    ul {
+      padding-left: 0;
+
+      li {
+        list-style: none;
+      }
+    }
   }
   .filer {
     background-color: #2F2F49;
