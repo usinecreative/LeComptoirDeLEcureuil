@@ -10,7 +10,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
-use ZipArchive;
 
 class DatabaseLoadCommand extends Command implements ContainerAwareInterface
 {
@@ -29,6 +28,9 @@ class DatabaseLoadCommand extends Command implements ContainerAwareInterface
         $this->container = $container;
     }
 
+    /**
+     * Configure command.
+     */
     protected function configure()
     {
         $this
@@ -37,6 +39,11 @@ class DatabaseLoadCommand extends Command implements ContainerAwareInterface
         ;
     }
 
+    /**
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     * @return int|null|void
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $outputArray = [];

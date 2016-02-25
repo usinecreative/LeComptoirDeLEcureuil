@@ -234,7 +234,7 @@ class Article
      */
     public function isCommentable()
     {
-        return (bool)$this->isCommentable;
+        return (bool) $this->isCommentable;
     }
 
     /**

@@ -62,7 +62,7 @@ class DashboardItem
         $linkText = 'lag.cms.dashboard_heading_text'
     ) {
         $this->icon = $icon;
-        $this->count  = $count;
+        $this->count = $count;
         $this->text = $text;
         $this->url = $url;
         $this->linkText = $linkText;

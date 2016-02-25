@@ -233,7 +233,7 @@ class User implements UserInterface
      *
      * This can return null if the password was not encoded using a salt.
      *
-     * @return string|null The salt
+     * @return string The salt
      */
     public function getSalt()
     {
