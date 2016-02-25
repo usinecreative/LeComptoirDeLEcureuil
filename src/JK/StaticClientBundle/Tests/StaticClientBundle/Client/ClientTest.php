@@ -16,7 +16,7 @@ class ClientTest extends PHPUnit_Framework_TestCase
 
 
         // if the file does not exists, it SHOULD thrown an exception
-        $this->assertExceptionRaised('Exception', function () use ($client) {
+        $this->assertExceptionRaised('Exception', function() use ($client) {
             $client->post(new SplFileInfo('/tmp/test.txt'));
         });
     }

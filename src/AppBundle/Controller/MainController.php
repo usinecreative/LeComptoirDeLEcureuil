@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Swift_Message;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 
 class MainController extends Controller
@@ -111,6 +112,40 @@ class MainController extends Controller
         );
 
         return $response;
+    }
+
+    /**
+     * @Template(":Main:legal.html.twig")
+     */
+    public function legalAction()
+    {
+    }
+
+    /**
+     * Return an xml response containing a rss feed with published articles.
+     *
+     * @return Response
+     */
+    public function feedAction()
+    {
+        // get published articles
+        $articles = $this
+            ->get('jk.cms.article_repository')
+            ->findPublished();
+
+        // convert to feed item
+        $items = $this
+            ->get('jk.cms.feed.article_item_factory')
+            ->create($articles);
+
+        // create feed
+        $feed = $this
+            ->get('eko_feed.feed.manager')
+            ->get('article');
+        $feed->addFromArray($items);
+
+        // return xml response
+        return new Response($feed->render('rss'));
     }
 
     protected function sendContactMail(array $data)

@@ -209,7 +209,7 @@ class ContentTypeFactory
     }
 
     /**
-     * @param $name
+     * @param string $name
      * @return ContentType
      * @throws Exception
      */

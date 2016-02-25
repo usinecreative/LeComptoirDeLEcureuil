@@ -14,6 +14,8 @@ parameters:
     bluebear.cms.article_finder.class: BlueBear\CmsBundle\Finder\ArticleFinder
     # Assetic
     lag.assetic.bundler_compass_filter.class: BlueBear\CmsBundle\Assetic\Filter\BundlerCompassFilter
+
+
 services:
     # Factories
     bluebear.cms.content_type_factory:
@@ -68,3 +70,8 @@ services:
         class: BlueBear\CmsBundle\Import\Factory\ImporterFactory
         calls:
             - [setContainer, ['@service_container']]
+
+    jk.cms.feed.article_item_factory:
+        class: BlueBear\CmsBundle\Feed\Factory\ArticleItemFactory
+        arguments:
+            - '@router'

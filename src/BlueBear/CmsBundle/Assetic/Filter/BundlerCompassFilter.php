@@ -7,6 +7,7 @@ use Assetic\Filter\BaseProcessFilter;
 use Assetic\Filter\FilterInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+// TODO remove this class ?
 class BundlerCompassFilter extends BaseProcessFilter implements FilterInterface
 {
     protected $bundleCommand = 'bundle exec';
@@ -23,6 +24,13 @@ class BundlerCompassFilter extends BaseProcessFilter implements FilterInterface
 
     protected $environment;
 
+    /**
+     * BundlerCompassFilter constructor.
+     *
+     * @param $kernelRootDir
+     * @param $cacheDir
+     * @param string $environment
+     */
     public function __construct($kernelRootDir, $cacheDir, $environment = 'dev')
     {
         $this->environment = $environment;
@@ -70,6 +78,9 @@ class BundlerCompassFilter extends BaseProcessFilter implements FilterInterface
         die('dump');
     }
 
+    /**
+     * @return string
+     */
     protected function getBundlerCommand()
     {
         $workingDir = realpath($this->kernelRootDir . '/../');
@@ -78,6 +89,10 @@ class BundlerCompassFilter extends BaseProcessFilter implements FilterInterface
         return $bundlerCommand;
     }
 
+    /**
+     * @param string $filePath
+     * @return string
+     */
     protected function getCompassCommand($filePath)
     {
         $action = 'compass compile';
@@ -99,6 +114,10 @@ class BundlerCompassFilter extends BaseProcessFilter implements FilterInterface
         return $command;
     }
 
+    /**
+     * @param array $options
+     * @return array
+     */
     protected function getCompassOptions(array $options = [])
     {
         $resolver = new OptionsResolver();
@@ -122,6 +141,10 @@ class BundlerCompassFilter extends BaseProcessFilter implements FilterInterface
         return $options;
     }
 
+    /**
+     * @param array $options
+     * @return string
+     */
     protected function generateCompassConfigurationFile(array $options)
     {
         // creating filter cache dir

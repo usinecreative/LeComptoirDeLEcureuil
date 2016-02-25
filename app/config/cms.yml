@@ -265,3 +265,12 @@ lag_admin:
 
 bluebear_media: ~
 
+# rss/atom feed bundle
+eko_feed:
+    feeds:
+        article:
+            title: Le Comptoir de L'Ecureuil - Articles
+            description: Voici les articles du comptoir de l'écureuil
+            link:
+                route_name: lecomptoir.feed
+            encoding: utf-8

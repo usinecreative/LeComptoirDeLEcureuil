@@ -60,7 +60,7 @@ class Comment
     protected $metadata = [];
 
     /**
-     * @return mixed
+     * @return Article
      */
     public function getArticle()
     {
@@ -68,15 +68,15 @@ class Comment
     }
 
     /**
-     * @param mixed $article
+     * @param Article $article
      */
-    public function setArticle($article)
+    public function setArticle(Article $article)
     {
         $this->article = $article;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getAuthorName()
     {
@@ -84,7 +84,7 @@ class Comment
     }
 
     /**
-     * @param mixed $authorName
+     * @param string $authorName
      */
     public function setAuthorName($authorName)
     {
@@ -92,7 +92,7 @@ class Comment
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getAuthorEmail()
     {
@@ -100,7 +100,7 @@ class Comment
     }
 
     /**
-     * @param mixed $authorEmail
+     * @param string $authorEmail
      */
     public function setAuthorEmail($authorEmail)
     {
@@ -108,7 +108,7 @@ class Comment
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getAuthorIp()
     {
@@ -116,7 +116,7 @@ class Comment
     }
 
     /**
-     * @param mixed $authorIp
+     * @param string $authorIp
      */
     public function setAuthorIp($authorIp)
     {
@@ -124,7 +124,7 @@ class Comment
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getContent()
     {
@@ -132,7 +132,7 @@ class Comment
     }
 
     /**
-     * @param mixed $content
+     * @param string $content
      */
     public function setContent($content)
     {
@@ -140,7 +140,7 @@ class Comment
     }
 
     /**
-     * @return mixed
+     * @return boolean
      */
     public function getIsApproved()
     {
@@ -148,7 +148,7 @@ class Comment
     }
 
     /**
-     * @param mixed $isApproved
+     * @param boolean $isApproved
      */
     public function setIsApproved($isApproved)
     {
@@ -156,7 +156,7 @@ class Comment
     }
 
     /**
-     * @return mixed
+     * @return array
      */
     public function getMetadata()
     {
@@ -164,9 +164,9 @@ class Comment
     }
 
     /**
-     * @param mixed $metadata
+     * @param array $metadata
      */
-    public function setMetadata($metadata)
+    public function setMetadata(array $metadata)
     {
         $this->metadata = $metadata;
     }
@@ -177,7 +177,7 @@ class Comment
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getAuthorUrl()
     {
@@ -185,7 +185,7 @@ class Comment
     }
 
     /**
-     * @param mixed $authorUrl
+     * @param string $authorUrl
      */
     public function setAuthorUrl($authorUrl)
     {

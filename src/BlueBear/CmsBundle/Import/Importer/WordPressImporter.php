@@ -17,7 +17,6 @@ use BlueBear\CmsBundle\Repository\ImportRepository;
 use BlueBear\CmsBundle\Repository\TagRepository;
 use BlueBear\CmsBundle\Repository\UserRepository;
 use DateTime;
-use Doctrine\Bundle\DoctrineBundle\Registry;
 use Exception;
 use Psr\Log\LoggerInterface;
 use SimpleXMLElement;
@@ -86,8 +85,7 @@ class WordPressImporter implements ImporterInterface
         TagRepository $tagRepository,
         CommentRepository $commentRepository,
         ImportRepository $importRepository
-    )
-    {
+    ) {
         $this->logger = $logger;
         $this->categoryRepository = $categoryRepository;
         $this->userRepository = $userRepository;
@@ -158,8 +156,8 @@ class WordPressImporter implements ImporterInterface
         // WordPress xml export has many <category> but only one is an actual category; we must to find it
         foreach ($element->category as $categoryElement) {
 
-            if ((string)$categoryElement['domain'] == 'category') {
-                $categoryName = (string)$categoryElement;
+            if ((string) $categoryElement['domain'] == 'category') {
+                $categoryName = (string) $categoryElement;
                 break;
             }
         }
@@ -194,7 +192,7 @@ class WordPressImporter implements ImporterInterface
     protected function importUser(SimpleXMLElement $element)
     {
         // get user name from element
-        $userName = (string)$element->children(self::DC_NAMESPACE)->creator;
+        $userName = (string) $element->children(self::DC_NAMESPACE)->creator;
 
         if (!$userName) {
             return;
@@ -224,12 +222,12 @@ class WordPressImporter implements ImporterInterface
     protected function importArticle(SimpleXMLElement $element)
     {
         // only process post type
-        $postType = (string)$element->children(self::WP_NAMESPACE)->post_type;
+        $postType = (string) $element->children(self::WP_NAMESPACE)->post_type;
 
         if ($postType != 'post') {
             return;
         }
-        $authorName = (string)$element->children(self::DC_NAMESPACE)->creator;
+        $authorName = (string) $element->children(self::DC_NAMESPACE)->creator;
 
         // author must exist
         $author = $this->userRepository->findOneBy([
@@ -239,18 +237,18 @@ class WordPressImporter implements ImporterInterface
         if (!$author) {
             throw new ImportException("Author {$authorName} not found");
         }
-        $isCommentable = ((string)$element->children(self::WP_NAMESPACE)->comment_status == 'open') ? true : false;
+        $isCommentable = ((string) $element->children(self::WP_NAMESPACE)->comment_status == 'open') ? true : false;
         $categoryName = '';
 
         // WordPress xml export has many <category> but only one is an actual category; we must to find it
         foreach ($element->category as $categoryElement) {
 
-            if ((string)$categoryElement['domain'] == 'category') {
-                $categoryName = (string)$categoryElement;
+            if ((string) $categoryElement['domain'] == 'category') {
+                $categoryName = (string) $categoryElement;
                 break;
             }
         }
-        $articleName = (string)$element->title;
+        $articleName = (string) $element->title;
 
         /** @var Category $category */
         $category = $this->categoryRepository->findOneBy([
@@ -269,16 +267,16 @@ class WordPressImporter implements ImporterInterface
             return;
         }
         $article = new Article();
-        $article->setTitle((string)$element->title);
-        $article->setCanonical((string)$element->link);
+        $article->setTitle((string) $element->title);
+        $article->setCanonical((string) $element->link);
         $article->setPublicationDate((new DateTime())->setTimestamp(strtotime($element->pubDate)));
         $article->setAuthor($author);
-        $article->setContent((string)$element->children(self::CONTENT_NAMESPACE)->encoded);
+        $article->setContent((string) $element->children(self::CONTENT_NAMESPACE)->encoded);
         $article->forceCreatedAt((new DateTime())->setTimestamp(strtotime($element->children(self::WP_NAMESPACE)->post_date)));
         $article->setIsCommentable($isCommentable);
         $article->setPublicationStatus(Article::PUBLICATION_STATUS_VALIDATION);
         $article->setCategory($category);
-        $article->setSlug((string)$element->children(self::WP_NAMESPACE)->post_name[0]);
+        $article->setSlug((string) $element->children(self::WP_NAMESPACE)->post_name[0]);
 
         $this
             ->articleRepository
@@ -296,8 +294,8 @@ class WordPressImporter implements ImporterInterface
 
         foreach ($element->category as $categoryElement) {
 
-            if ((string)$categoryElement['domain'] == 'post_tag') {
-                $tagName = (string)$categoryElement;
+            if ((string) $categoryElement['domain'] == 'post_tag') {
+                $tagName = (string) $categoryElement;
                 break;
             }
         }
@@ -324,7 +322,7 @@ class WordPressImporter implements ImporterInterface
             ->save($tag);
 
         // find a linked article
-        $articleName = (string)$element->title;
+        $articleName = (string) $element->title;
 
         /** @var Article $article */
         $article = $this->articleRepository->findOneBy([
@@ -349,12 +347,12 @@ class WordPressImporter implements ImporterInterface
     protected function importComment(SimpleXMLElement $element)
     {
         // only process post type
-        $postType = (string)$element->children(self::WP_NAMESPACE)->post_type;
+        $postType = (string) $element->children(self::WP_NAMESPACE)->post_type;
 
         if ($postType != 'post') {
             return;
         }
-        $articleTitle = (string)$element->title;
+        $articleTitle = (string) $element->title;
 
         /** @var Article $article */
         $article = $this->articleRepository->findOneBy([
@@ -375,11 +373,11 @@ class WordPressImporter implements ImporterInterface
             $comment->setAuthorIp($commentItem->comment_author_ip);
             $comment->forceCreatedAt($commentDate);
             $comment->setContent($commentItem->comment_content);
-            $comment->setIsApproved((bool)$commentItem->comment_author);
+            $comment->setIsApproved((bool) $commentItem->comment_author);
             $comment->setArticle($article);
 
             foreach ($commentItem->children(self::WP_NAMESPACE)->commentmeta as $commentMeta) {
-                $comment->addMetadata((string)$commentMeta->key, (string)$commentMeta->value);
+                $comment->addMetadata((string) $commentMeta->key, (string) $commentMeta->value);
             }
             $article->addComment($comment);
 

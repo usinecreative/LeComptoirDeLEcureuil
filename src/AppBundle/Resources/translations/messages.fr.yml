@@ -19,8 +19,16 @@ lecomptoir:
         filter_by_date: Date
         filter_by_category: Articles de la catégorie "%category%"
         no_result: Pas encore d'articles...
-    batch:
-        delete: Supprimer les entités
+    footer:
+        contact: Contact
+        contact_title: Contacter l'écureuil
+        sitemap: Plan du site
+        sitemap_title: Plan du site (sitemap)
+        legal: Mentions légales
+        legal_title: Mentions légales
+
+#    batch:
+#        delete: Supprimer les entités
     partner:
         not_found: Le partenaire n'existe pas... C'est vraiment dommage...
         website: Site internet
