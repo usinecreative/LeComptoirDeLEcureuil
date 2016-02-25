@@ -55,7 +55,7 @@ class DatabaseLoadCommand extends Command implements ContainerAwareInterface
             ->name('*.7z')
             ->files()
             ->in($rootPath)
-            ->sort(function (SplFileInfo $file1, SplFileInfo $file2) {
+            ->sort(function(SplFileInfo $file1, SplFileInfo $file2) {
                 return $file1->getATime() < $file2->getATime();
             })
         ;

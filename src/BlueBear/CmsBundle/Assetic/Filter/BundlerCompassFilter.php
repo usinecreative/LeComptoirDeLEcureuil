@@ -90,7 +90,7 @@ class BundlerCompassFilter extends BaseProcessFilter implements FilterInterface
     }
 
     /**
-     * @param $filePath
+     * @param string $filePath
      * @return string
      */
     protected function getCompassCommand($filePath)
