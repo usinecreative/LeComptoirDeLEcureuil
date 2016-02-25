@@ -102,6 +102,8 @@ class WordPressImporter implements ImporterInterface
     {
         $filePath = $import->getfilePath() . '/' . $import->getFileName();
         $fileSystem = new Filesystem();
+        $status = Import::IMPORT_STATUS_SUCCESS;
+        $comments = '';
 
         if ($fileSystem->exists($filePath)) {
             $xml = simplexml_load_file($filePath);
@@ -118,6 +120,7 @@ class WordPressImporter implements ImporterInterface
                             $this->importArticle($item);
                             $this->importTag($item);
                             $this->importComment($item);
+                            $this->importImages($item);
 
                         } catch (Exception $e) {
                             // log import error
@@ -126,25 +129,24 @@ class WordPressImporter implements ImporterInterface
                                 ->log(Logger::ERROR, 'An error has occured during a import : ' . $e->getMessage() . ' ' . $e->getTraceAsString());
 
                             // set import as errored
-                            $import->setStatus(Import::IMPORT_STATUS_ERROR);
-                            $import->setComments($import->getComments() . "\n" . $e->getMessage());
+                            $status = Import::IMPORT_STATUS_ERROR;
+                            $comments .= $e->getMessage();
                         }
                     }
                 }
             }
         }
         $import->setLabel('WORDPRESS Importing xml file ' . $import->getFileName());
+        $import->setStatus($status);
+        $import->setComments($comments);
 
-        if ($import->getStatus() != Import::IMPORT_STATUS_ERROR) {
-            $import->setStatus(Import::IMPORT_STATUS_SUCCESS);
-        }
         $this
             ->importRepository
             ->save($import);
     }
 
     /**
-     * Import a category from an xml element
+     * Import a category from an xml element.
      *
      * @param SimpleXMLElement $element
      */
@@ -185,7 +187,7 @@ class WordPressImporter implements ImporterInterface
     }
 
     /**
-     * Import an user from an xml element
+     * Import an user from an xml element.
      *
      * @param SimpleXMLElement $element
      */
@@ -214,7 +216,7 @@ class WordPressImporter implements ImporterInterface
     }
 
     /**
-     * Import an article from an xml element
+     * Import an article from an xml element.
      *
      * @param SimpleXMLElement $element
      * @throws ImportException
@@ -293,7 +295,7 @@ class WordPressImporter implements ImporterInterface
     }
 
     /**
-     * Import a tag fron an xml element
+     * Import a tag fron an xml element.
      *
      * @param SimpleXMLElement $element
      */
@@ -348,7 +350,7 @@ class WordPressImporter implements ImporterInterface
     }
 
     /**
-     * Import a comment from an xml element
+     * Import a comment from an xml element.
      *
      * @param SimpleXMLElement $element
      * @throws Exception
@@ -396,6 +398,16 @@ class WordPressImporter implements ImporterInterface
             $this
                 ->articleRepository
                 ->save($article);
+        }
+    }
+
+    protected function importImages(SimpleXMLElement $element)
+    {
+        // only process post type
+        $postType = (string) $element->children(self::WP_NAMESPACE)->post_type;
+
+        if ($postType != 'post') {
+            return;
         }
     }
 }
