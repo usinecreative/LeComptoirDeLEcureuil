@@ -373,7 +373,7 @@ class WordPressImporter implements ImporterInterface
             $comment->setAuthorIp($commentItem->comment_author_ip);
             $comment->forceCreatedAt($commentDate);
             $comment->setContent($commentItem->comment_content);
-            $comment->setIsApproved((bool)$commentItem->comment_author);
+            $comment->setIsApproved((bool) $commentItem->comment_author);
             $comment->setArticle($article);
 
             foreach ($commentItem->children(self::WP_NAMESPACE)->commentmeta as $commentMeta) {
