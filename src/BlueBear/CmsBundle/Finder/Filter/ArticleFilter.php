@@ -2,10 +2,8 @@
 
 namespace BlueBear\CmsBundle\Finder\Filter;
 
-use const null;
 use Symfony\Component\HttpFoundation\ParameterBag;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Article filter is use to find Article with ArticleFinder
