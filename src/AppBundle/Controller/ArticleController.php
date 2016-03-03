@@ -43,12 +43,13 @@ class ArticleController extends Controller
     {
         $filter = new ArticleFilter();
         $filter->handleRequest($request);
-        $articles = $this
+        $pager = $this
             ->get('bluebear.cms.article_finder')
             ->find($filter);
 
         return [
-            'articles' => $articles,
+            'articles' => $pager->getCurrentPageResults(),
+            'pager' => $pager,
             'filter' => $filter,
             // title is dynamic in filter action
             'title' => $this->getFilterTitle($filter)

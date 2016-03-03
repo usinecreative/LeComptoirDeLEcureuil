@@ -2,6 +2,7 @@
 
 namespace BlueBear\CmsBundle\Finder\Filter;
 
+use const null;
 use Symfony\Component\HttpFoundation\ParameterBag;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -28,12 +29,13 @@ class ArticleFilter
     {
         $this->parameters = new ParameterBag();
         $this->allowedParameters = new ParameterBag([
-            'categorySlug' => 'string',
-            'tagSlug' => 'string',
-            'tag' => 'string',
-            'slug' => 'string',
-            'year' => 'string',
-            'month' => 'string'
+            'categorySlug',
+            'tagSlug',
+            'tag',
+            'slug',
+            'year',
+            'month',
+            'page'
         ]);
     }
 
@@ -44,20 +46,10 @@ class ArticleFilter
      */
     public function handleRequest(Request $request)
     {
-        $resolver = new OptionsResolver();
-
-        foreach ($this->allowedParameters as $parameter => $type) {
+        foreach ($this->allowedParameters as $parameter) {
             $value = $request->get($parameter);
 
-            if ($value) {
-                // resolve value according to allowed types
-                $resolver
-                    ->clear()
-                    ->setRequired($parameter)
-                    ->setAllowedTypes($parameter, $type)
-                    ->resolve([
-                        $parameter => $value
-                    ]);
+            if ($value !== null) {
                 // add correct filter parameter to the bag
                 $this
                     ->parameters
@@ -74,5 +66,19 @@ class ArticleFilter
     public function getParameters()
     {
         return $this->parameters;
+    }
+
+    /**
+     * Return a parameter value by its name
+     *
+     * @param $name
+     * @param null $default
+     * @return mixed
+     */
+    public function getParameter($name, $default = null)
+    {
+        return $this
+            ->parameters
+            ->get($name, $default);
     }
 }

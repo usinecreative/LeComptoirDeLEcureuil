@@ -7,6 +7,8 @@ use BlueBear\CmsBundle\Repository\ArticleRepository;
 use BlueBear\CmsBundle\Finder\Filter\ArticleFilter;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\QueryBuilder;
+use Pagerfanta\Adapter\DoctrineORMAdapter;
+use Pagerfanta\Pagerfanta;
 
 class ArticleFinder
 {
@@ -29,16 +31,18 @@ class ArticleFinder
      * Return filtered articles
      *
      * @param ArticleFilter $filter
-     * @return array
+     * @return Pagerfanta
      */
     public function find(ArticleFilter $filter)
     {
         $queryBuilder = $this->buildQueryBuilder($filter);
-        $articles = $queryBuilder
-            ->getQuery()
-            ->getResult();
 
-        return $articles;
+        $adapter = new DoctrineORMAdapter($queryBuilder);
+        $pager = new Pagerfanta($adapter);
+        $pager->setMaxPerPage(11);
+        $pager->setCurrentPage($filter->getParameter('page', 1));
+
+        return $pager;
     }
 
     /**

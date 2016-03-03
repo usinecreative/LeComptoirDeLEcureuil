@@ -38,12 +38,17 @@
                         <div class="row">
                     {% endif %}
                 {% endfor %}
+
             {% else %}
                 <div class="col-md-12">
                     {{ 'lecomptoir.article.no_result' | trans }}
                 </div>
             {% endif %}
         </div>
+
+        {% if articles | length > 0 %}
+            {{ pagerfanta(pager, 'default', {page: pager.currentPage}) }}
+        {% endif %}
     </div>
 {% endblock %}
 
