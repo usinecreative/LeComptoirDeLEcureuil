@@ -18,10 +18,13 @@ use BlueBear\CmsBundle\Repository\TagRepository;
 use BlueBear\CmsBundle\Repository\UserRepository;
 use DateTime;
 use Exception;
+use JK\StaticClientBundle\Client\StaticClient;
 use Psr\Log\LoggerInterface;
 use SimpleXMLElement;
+use SplFileInfo;
 use Symfony\Bridge\Monolog\Logger;
 use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Finder\Finder;
 
 class WordPressImporter implements ImporterInterface
 {
@@ -67,6 +70,21 @@ class WordPressImporter implements ImporterInterface
     protected $importRepository;
 
     /**
+     * @var string
+     */
+    protected $host;
+
+    /**
+     * @var string[]
+     */
+    protected $imageUrls= [];
+
+    /**
+     * @var StaticClient
+     */
+    protected $staticClient;
+
+    /**
      * WordPressImporter constructor.
      *
      * @param LoggerInterface $logger
@@ -76,6 +94,7 @@ class WordPressImporter implements ImporterInterface
      * @param TagRepository $tagRepository
      * @param CommentRepository $commentRepository
      * @param ImportRepository $importRepository
+     * @param StaticClient $staticClient
      */
     public function __construct(
         LoggerInterface $logger,
@@ -84,7 +103,8 @@ class WordPressImporter implements ImporterInterface
         ArticleRepository $articleRepository,
         TagRepository $tagRepository,
         CommentRepository $commentRepository,
-        ImportRepository $importRepository
+        ImportRepository $importRepository,
+        StaticClient $staticClient
     ) {
         $this->logger = $logger;
         $this->categoryRepository = $categoryRepository;
@@ -93,6 +113,7 @@ class WordPressImporter implements ImporterInterface
         $this->tagRepository = $tagRepository;
         $this->commentRepository = $commentRepository;
         $this->importRepository = $importRepository;
+        $this->staticClient = $staticClient;
     }
 
     /**
@@ -110,6 +131,8 @@ class WordPressImporter implements ImporterInterface
 
             // wordpress needed info are stored in node channel->item
             if ($xml->channel) {
+                $this->host = (string)$xml->channel->link;
+
                 if ($xml->channel->item) {
                     /** @var SimpleXMLElement $item */
                     foreach ($xml->channel->item as $item) {
@@ -133,6 +156,8 @@ class WordPressImporter implements ImporterInterface
                             $comments .= $e->getMessage();
                         }
                     }
+
+                    $this->processImages();
                 }
             }
         }
@@ -158,8 +183,8 @@ class WordPressImporter implements ImporterInterface
         // WordPress xml export has many <category> but only one is an actual category; we must to find it
         foreach ($element->category as $categoryElement) {
 
-            if ((string) $categoryElement['domain'] == 'category') {
-                $categoryName = (string) $categoryElement;
+            if ((string)$categoryElement['domain'] == 'category') {
+                $categoryName = (string)$categoryElement;
                 break;
             }
         }
@@ -194,7 +219,7 @@ class WordPressImporter implements ImporterInterface
     protected function importUser(SimpleXMLElement $element)
     {
         // get user name from element
-        $userName = (string) $element->children(self::DC_NAMESPACE)->creator;
+        $userName = (string)$element->children(self::DC_NAMESPACE)->creator;
 
         if (!$userName) {
             return;
@@ -224,12 +249,12 @@ class WordPressImporter implements ImporterInterface
     protected function importArticle(SimpleXMLElement $element)
     {
         // only process post type
-        $postType = (string) $element->children(self::WP_NAMESPACE)->post_type;
+        $postType = (string)$element->children(self::WP_NAMESPACE)->post_type;
 
         if ($postType != 'post') {
             return;
         }
-        $authorName = (string) $element->children(self::DC_NAMESPACE)->creator;
+        $authorName = (string)$element->children(self::DC_NAMESPACE)->creator;
 
         // author must exist
         $author = $this->userRepository->findOneBy([
@@ -239,18 +264,18 @@ class WordPressImporter implements ImporterInterface
         if (!$author) {
             throw new ImportException("Author {$authorName} not found");
         }
-        $isCommentable = ((string) $element->children(self::WP_NAMESPACE)->comment_status == 'open') ? true : false;
+        $isCommentable = ((string)$element->children(self::WP_NAMESPACE)->comment_status == 'open') ? true : false;
         $categoryName = '';
 
         // WordPress xml export has many <category> but only one is an actual category; we must to find it
         foreach ($element->category as $categoryElement) {
 
-            if ((string) $categoryElement['domain'] == 'category') {
-                $categoryName = (string) $categoryElement;
+            if ((string)$categoryElement['domain'] == 'category') {
+                $categoryName = (string)$categoryElement;
                 break;
             }
         }
-        $articleName = (string) $element->title;
+        $articleName = (string)$element->title;
 
         /** @var Category $category */
         $category = $this->categoryRepository->findOneBy([
@@ -268,26 +293,17 @@ class WordPressImporter implements ImporterInterface
         if (!$article) {
             return;
         }
-        // fix WP content
-        $content = (string) $element->children(self::CONTENT_NAMESPACE)->encoded;
-
-        while (($position = strpos($content, '[caption')) !== false) {
-            $endPosition = strpos($content, ']', $position + 1);
-            $content = substr($content, 0, $position).substr($content, $endPosition + 1);
-        }
-        $content = str_replace('[/caption]', '', $content);
-
         $article = new Article();
-        $article->setTitle((string) $element->title);
-        $article->setCanonical((string) $element->link);
+        $article->setTitle((string)$element->title);
+        $article->setCanonical((string)$element->link);
         $article->setPublicationDate((new DateTime())->setTimestamp(strtotime($element->pubDate)));
         $article->setAuthor($author);
-        $article->setContent($content);
+        $article->setContent((string)$element->children(self::CONTENT_NAMESPACE)->encoded);
         $article->forceCreatedAt((new DateTime())->setTimestamp(strtotime($element->children(self::WP_NAMESPACE)->post_date)));
         $article->setIsCommentable($isCommentable);
         $article->setPublicationStatus(Article::PUBLICATION_STATUS_VALIDATION);
         $article->setCategory($category);
-        $article->setSlug((string) $element->children(self::WP_NAMESPACE)->post_name[0]);
+        $article->setSlug((string)$element->children(self::WP_NAMESPACE)->post_name[0]);
 
         $this
             ->articleRepository
@@ -305,8 +321,8 @@ class WordPressImporter implements ImporterInterface
 
         foreach ($element->category as $categoryElement) {
 
-            if ((string) $categoryElement['domain'] == 'post_tag') {
-                $tagName = (string) $categoryElement;
+            if ((string)$categoryElement['domain'] == 'post_tag') {
+                $tagName = (string)$categoryElement;
                 break;
             }
         }
@@ -333,7 +349,7 @@ class WordPressImporter implements ImporterInterface
             ->save($tag);
 
         // find a linked article
-        $articleName = (string) $element->title;
+        $articleName = (string)$element->title;
 
         /** @var Article $article */
         $article = $this->articleRepository->findOneBy([
@@ -358,12 +374,12 @@ class WordPressImporter implements ImporterInterface
     protected function importComment(SimpleXMLElement $element)
     {
         // only process post type
-        $postType = (string) $element->children(self::WP_NAMESPACE)->post_type;
+        $postType = (string)$element->children(self::WP_NAMESPACE)->post_type;
 
         if ($postType != 'post') {
             return;
         }
-        $articleTitle = (string) $element->title;
+        $articleTitle = (string)$element->title;
 
         /** @var Article $article */
         $article = $this->articleRepository->findOneBy([
@@ -384,11 +400,11 @@ class WordPressImporter implements ImporterInterface
             $comment->setAuthorIp($commentItem->comment_author_ip);
             $comment->forceCreatedAt($commentDate);
             $comment->setContent($commentItem->comment_content);
-            $comment->setIsApproved((bool) $commentItem->comment_author);
+            $comment->setIsApproved((bool)$commentItem->comment_author);
             $comment->setArticle($article);
 
             foreach ($commentItem->children(self::WP_NAMESPACE)->commentmeta as $commentMeta) {
-                $comment->addMetadata((string) $commentMeta->key, (string) $commentMeta->value);
+                $comment->addMetadata((string)$commentMeta->key, (string)$commentMeta->value);
             }
             $article->addComment($comment);
 
@@ -404,10 +420,142 @@ class WordPressImporter implements ImporterInterface
     protected function importImages(SimpleXMLElement $element)
     {
         // only process post type
-        $postType = (string) $element->children(self::WP_NAMESPACE)->post_type;
+        $postType = (string)$element->children(self::WP_NAMESPACE)->post_type;
 
-        if ($postType != 'post') {
+        if ($postType != 'attachment') {
             return;
         }
+        $url = trim((string)$element->children(self::WP_NAMESPACE)->attachment_url);
+
+        $array = explode('.', $url);
+        $extension = array_pop($array);
+
+        if (!in_array($extension, [
+            'jpg',
+            'jpeg',
+            'png'
+        ])) {
+            return;
+        }
+        $this->imageUrls[] = $url;
+    }
+
+    protected function processImages()
+    {
+        $finder = new Finder();
+        $fileSystem = new Filesystem();
+        $downloadedImages = [];
+        $imagesDirectory = sys_get_temp_dir() . '/wp-importer';
+        $fileSystem->mkdir($imagesDirectory);
+
+        // first, download images in imports directory
+        foreach ($this->imageUrls as $imageUrl) {
+
+            $imageName = $this->getFileNameFromUrl($imageUrl);
+            $path = $imagesDirectory . '/imports/' . $imageName;
+
+            if (!$fileSystem->exists($path)) {
+                $fileSystem->dumpFile($path, file_get_contents($imageUrl));
+            }
+        }
+
+        // then upload it into the new assets server
+        foreach ($this->imageUrls as $imageUrl) {
+            $file = new SplFileInfo($imagesDirectory . '/imports/' . $this->getFileNameFromUrl($imageUrl));
+
+            $url = $this
+                ->staticClient
+                ->post($file);
+
+            // find articles with this image in content (in WordPress, the link between an image and an article is
+            // made with the url)
+            $articles = $this
+                ->articleRepository
+                ->createQueryBuilder('article')
+                ->where('article.content like :image_url')
+                ->setParameter('image_url', '%' . $imageUrl . '%')
+                ->getQuery()
+                ->getResult();
+
+            if (count($articles)) {
+                /** @var Article $article */
+                foreach ($articles as $article) {
+                    // replace old url
+                    $content = str_replace($imageUrl, $url, $article->getContent());
+                    $article->setContent($content);
+
+                    // update article
+                    $this
+                        ->articleRepository
+                        ->save($article);
+                }
+            }
+        }
+
+        die;
+
+
+        foreach ($this->imageUrls as $imageUrl) {
+            // find articles with this image in content (in WordPress, the link between an image and an article is
+            // made with the url)
+            $articles = $this
+                ->articleRepository
+                ->createQueryBuilder('article')
+                ->where('article.content like :image_url')
+                ->setParameter('image_url', '%' . $imageUrl . '%')
+                ->getQuery()
+                ->getResult();
+
+           // var_dump ($imageUrl, $articles);
+            if (count($articles)) {
+
+                $fileSystem = new Filesystem();
+                $finder = new Finder();
+
+                $arrayDirectory = explode('/', $imageUrl);
+                array_pop($arrayDirectory);
+
+                //$imageDirectory
+
+                var_dump($arrayDirectory);
+                die;
+
+                foreach ($finder->in($imageUrl) as $file) {
+                    var_dump($file);
+                }
+                die;
+
+                foreach ($articles as $article) {
+
+
+                    $tmp = $fileSystem->tempnam('/tmp/wp-import/', '');
+
+                    var_dump($tmp);
+                    $file = new SplFileInfo($tmp);
+
+
+                    $this
+                        ->staticClient
+                        ->post($file);
+                    var_dump($file);
+                    die;
+
+                }
+
+                die('ol');
+            }
+
+
+        }
+        die;
+
+    }
+
+    protected function getFileNameFromUrl($url)
+    {
+        $arrayDirectory = explode('/', $url);
+        $imageName = array_pop($arrayDirectory);
+
+        return $imageName;
     }
 }

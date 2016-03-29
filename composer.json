@@ -39,7 +39,7 @@
     "gedmo/doctrine-extensions": "^2.4",
     "lag/array-utils": "^0.1.0",
     "lag/doctrine-repository": "dev-master",
-    "lag/adminbundle": "dev-dev",
+    "lag/adminbundle": "0.3",
     "dizda/cloud-backup-bundle": "^3.2",
     "knplabs/knp-gaufrette-bundle": "^0.3.0",
     "doctrine/doctrine-migrations-bundle": "^1.1",

@@ -64,6 +64,7 @@ services:
             - '@jk.cms.tag_repository'
             - '@jk.cms.comment_repository'
             - '@jk.cms.import_repository'
+            - '@jk.static_client'
 
     # factory:
     bluebear.cms.import.importer_factory:
@@ -75,3 +76,8 @@ services:
         class: BlueBear\CmsBundle\Feed\Factory\ArticleItemFactory
         arguments:
             - '@router'
+
+    jk.static_client:
+        class: JK\StaticClientBundle\Client\StaticClient
+        arguments:
+            - 'http://dev.static.fr/'
