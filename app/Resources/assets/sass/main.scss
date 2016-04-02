@@ -17,6 +17,7 @@ $background-color: #11112f;
 @import "partials/menu";
 @import "partials/top-menu";
 @import "partials/latest_articles";
+@import "partials/footer";
 // Pages
 @import "pages/page";
 @import "pages/articles";
@@ -104,27 +105,4 @@ h1, h2, h3 {
 
 p {
   margin-bottom: 22px;
-}
-
-footer {
-  background-color: #2f2f49;
-  color: $main-color;
-  text-align: center;
-  padding: 50px 20px;
-
-  ul  {
-    display: inline-block;
-    height: 15px;
-    margin: auto;
-    padding: 0;
-
-    li {
-      float: left;
-      list-style-type: none;
-      padding: 0 10px;
-    }
-  }
-  p {
-    margin-bottom: 5px;
-  }
 }
