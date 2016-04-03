@@ -92,3 +92,12 @@ lecomptoir:
 
     # Mail
     mail.contact.title: "[Le Comptoir de l'écureuil] Contact : nouveau message de %email%"
+
+    # Imports
+    import.list: Imports
+    import.create: Importez vos données
+    import.id: '#'
+    import.comments: Notes
+    import.label: Libellé
+    import.status: Statut
+    batch.delete: Supprimer plusieurs imports

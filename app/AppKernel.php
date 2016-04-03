@@ -16,17 +16,16 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
-            //new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
             // BlueBear
+            new \Symfony\Bundle\AsseticBundle\AsseticBundle(),
+            // CMS
             new LAG\AdminBundle\LAGAdminBundle(),
             new BlueBear\CmsBundle\BlueBearCmsBundle(),
             new BlueBear\MediaBundle\BlueBearMediaBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
 
             // Noisettes
-            //new AppBundle\LeComptoirDeLEcureuilFrontBundle(),
             new LeComptoirDeLEcureuil\BackBundle\LeComptoirDeLEcureuilBackBundle(),
-            new LeComptoirDeLEcureuil\CoreBundle\LeComptoirDeLEcureuilCoreBundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
 

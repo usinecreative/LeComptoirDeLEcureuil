@@ -24,7 +24,6 @@ use SimpleXMLElement;
 use SplFileInfo;
 use Symfony\Bridge\Monolog\Logger;
 use Symfony\Component\Filesystem\Filesystem;
-use Symfony\Component\Finder\Finder;
 
 class WordPressImporter implements ImporterInterface
 {
@@ -138,11 +137,91 @@ class WordPressImporter implements ImporterInterface
                     foreach ($xml->channel->item as $item) {
 
                         try {
-                            $this->importCategory($item);
                             $this->importUser($item);
+
+                        } catch (Exception $e) {
+                            // log import error
+                            $this
+                                ->logger
+                                ->log(Logger::ERROR, 'An error has occured during a import : ' . $e->getMessage() . ' ' . $e->getTraceAsString());
+
+                            // set import as errored
+                            $status = Import::IMPORT_STATUS_ERROR;
+                            $comments .= $e->getMessage();
+                        }
+                    }
+                    /** @var SimpleXMLElement $item */
+                    foreach ($xml->channel->item as $item) {
+
+                        try {
+                            $this->importCategory($item);
+
+                        } catch (Exception $e) {
+                            // log import error
+                            $this
+                                ->logger
+                                ->log(Logger::ERROR, 'An error has occured during a import : ' . $e->getMessage() . ' ' . $e->getTraceAsString());
+
+                            // set import as errored
+                            $status = Import::IMPORT_STATUS_ERROR;
+                            $comments .= $e->getMessage();
+                        }
+                    }
+                    /** @var SimpleXMLElement $item */
+                    foreach ($xml->channel->item as $item) {
+
+                        try {
                             $this->importArticle($item);
+
+                        } catch (Exception $e) {
+                            // log import error
+                            $this
+                                ->logger
+                                ->log(Logger::ERROR, 'An error has occured during a import : ' . $e->getMessage() . ' ' . $e->getTraceAsString());
+
+                            // set import as errored
+                            $status = Import::IMPORT_STATUS_ERROR;
+                            $comments .= $e->getMessage();
+                        }
+                    }
+                    /** @var SimpleXMLElement $item */
+                    foreach ($xml->channel->item as $item) {
+
+                        try {
                             $this->importTag($item);
+
+                        } catch (Exception $e) {
+                            // log import error
+                            $this
+                                ->logger
+                                ->log(Logger::ERROR, 'An error has occured during a import : ' . $e->getMessage() . ' ' . $e->getTraceAsString());
+
+                            // set import as errored
+                            $status = Import::IMPORT_STATUS_ERROR;
+                            $comments .= $e->getMessage();
+                        }
+                    }
+                    /** @var SimpleXMLElement $item */
+                    foreach ($xml->channel->item as $item) {
+
+                        try {
                             $this->importComment($item);
+
+                        } catch (Exception $e) {
+                            // log import error
+                            $this
+                                ->logger
+                                ->log(Logger::ERROR, 'An error has occured during a import : ' . $e->getMessage() . ' ' . $e->getTraceAsString());
+
+                            // set import as errored
+                            $status = Import::IMPORT_STATUS_ERROR;
+                            $comments .= $e->getMessage();
+                        }
+                    }
+                    /** @var SimpleXMLElement $item */
+                    foreach ($xml->channel->item as $item) {
+
+                        try {
                             $this->importImages($item);
 
                         } catch (Exception $e) {
@@ -286,14 +365,14 @@ class WordPressImporter implements ImporterInterface
             throw new ImportException("Category {$category} not found for article {$articleName}");
         }
 
+        // if the article already exists, we update this one
         $article = $this->articleRepository->findOneBy([
             'title' => $articleName
         ]);
 
         if (!$article) {
-            return;
+            $article = new Article();
         }
-        $article = new Article();
         $article->setTitle((string)$element->title);
         $article->setCanonical((string)$element->link);
         $article->setPublicationDate((new DateTime())->setTimestamp(strtotime($element->pubDate)));
@@ -417,6 +496,9 @@ class WordPressImporter implements ImporterInterface
         }
     }
 
+    /**
+     * @param SimpleXMLElement $element
+     */
     protected function importImages(SimpleXMLElement $element)
     {
         // only process post type
@@ -440,11 +522,12 @@ class WordPressImporter implements ImporterInterface
         $this->imageUrls[] = $url;
     }
 
+    /**
+     * @throws Exception
+     */
     protected function processImages()
     {
-        $finder = new Finder();
         $fileSystem = new Filesystem();
-        $downloadedImages = [];
         $imagesDirectory = sys_get_temp_dir() . '/wp-importer';
         $fileSystem->mkdir($imagesDirectory);
 
@@ -491,66 +574,12 @@ class WordPressImporter implements ImporterInterface
                 }
             }
         }
-
-        die;
-
-
-        foreach ($this->imageUrls as $imageUrl) {
-            // find articles with this image in content (in WordPress, the link between an image and an article is
-            // made with the url)
-            $articles = $this
-                ->articleRepository
-                ->createQueryBuilder('article')
-                ->where('article.content like :image_url')
-                ->setParameter('image_url', '%' . $imageUrl . '%')
-                ->getQuery()
-                ->getResult();
-
-           // var_dump ($imageUrl, $articles);
-            if (count($articles)) {
-
-                $fileSystem = new Filesystem();
-                $finder = new Finder();
-
-                $arrayDirectory = explode('/', $imageUrl);
-                array_pop($arrayDirectory);
-
-                //$imageDirectory
-
-                var_dump($arrayDirectory);
-                die;
-
-                foreach ($finder->in($imageUrl) as $file) {
-                    var_dump($file);
-                }
-                die;
-
-                foreach ($articles as $article) {
-
-
-                    $tmp = $fileSystem->tempnam('/tmp/wp-import/', '');
-
-                    var_dump($tmp);
-                    $file = new SplFileInfo($tmp);
-
-
-                    $this
-                        ->staticClient
-                        ->post($file);
-                    var_dump($file);
-                    die;
-
-                }
-
-                die('ol');
-            }
-
-
-        }
-        die;
-
     }
 
+    /**
+     * @param $url
+     * @return string
+     */
     protected function getFileNameFromUrl($url)
     {
         $arrayDirectory = explode('/', $url);
