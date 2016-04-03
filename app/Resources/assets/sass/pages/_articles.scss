@@ -121,3 +121,12 @@ article {
   left: 0;
   margin-bottom: -10px;
 }
+
+// filter page
+.page-filter {
+  .pager {
+    a, span {
+      margin: 5px;
+    }
+  }
+}
