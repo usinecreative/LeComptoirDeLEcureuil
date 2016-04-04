@@ -12,6 +12,7 @@ before_install:
 
 install:
     - composer install
+    - bin/console doctrine:fixtures:load --quiet --multiple-transactions
 
 script:
   - phpunit --coverage-text --coverage-clover=coverage.clover -c app
