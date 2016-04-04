@@ -1,0 +1,15 @@
+BlueBear\CmsBundle\Entity\User:
+    user{1.10}:
+        username: <userName()>
+        usernameCanonical: <userName()>
+        password: <password()>
+        enabled: true
+        email: <email()>
+        emailCanonical: <email()>
+        salt: <password()>
+        lastLogin: <dateTime()>
+        confirmationToken: <password()>
+        passwordRequestedAt: <dateTime()>
+        roles: ['ROLE_ADMIN']
+        credentialsExpired: false
+        credentialsExpireAt: <dateTime()>

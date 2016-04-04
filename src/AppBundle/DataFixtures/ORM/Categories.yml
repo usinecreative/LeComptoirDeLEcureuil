@@ -1,0 +1,7 @@
+BlueBear\CmsBundle\Entity\Category:
+    category{1..4}:
+        name: <realText(20), 3>
+        slug: <slug()>
+        displayInHomepage: true
+        description: <realText()>
+        publicationStatus: 1

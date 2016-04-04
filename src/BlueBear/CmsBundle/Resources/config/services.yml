@@ -19,30 +19,30 @@ parameters:
 services:
     # Factories
     bluebear.cms.content_type_factory:
-        class: %bluebear.cms.content_type_factory.class%
+        class: '%bluebear.cms.content_type_factory.class%'
 
     bluebear.cms.dashboard_factory:
-        class: %bluebear.cms.dashboard_factory%
+        class: '%bluebear.cms.dashboard_factory%'
         arguments:
             - '@jk.cms.comment_repository'
             - '@jk.cms.article_repository'
 
     # Subscribers
     bluebear.cms.kernel_subscriber:
-        class: %bluebear.cms.kernel_subscriber.class%
-        arguments: ['@twig', '@bluebear.cms.content_type_factory', %bluebear.cms.content%]
+        class: '%bluebear.cms.kernel_subscriber.class%'
+        arguments: ['@twig', '@bluebear.cms.content_type_factory', '%bluebear.cms.content%']
         tags:
             - {name: kernel.event_subscriber}
 
     # Managers
     bluebear.cms.manager.content:
-        class: %bluebear.cms.manager.content.class%
+        class: '%bluebear.cms.manager.content.class%'
         calls:
             - [setContainer, ['@service_container']]
 
     # Finders
     bluebear.cms.article_finder:
-        class: %bluebear.cms.article_finder.class%
+        class: '%bluebear.cms.article_finder.class%'
         arguments: ['@jk.cms.article_repository']
 
 
@@ -51,7 +51,7 @@ services:
         class: BlueBear\CmsBundle\Assetic\Filter\BundlerCompassFilter
         tags:
             - {name: assetic.filter, alias: bundler}
-        arguments: [%kernel.root_dir%, %kernel.cache_dir%]
+        arguments: ['%kernel.root_dir%', '%kernel.cache_dir%']
 
     # importer
     bluebear.cms.import.wordpress_importer:
