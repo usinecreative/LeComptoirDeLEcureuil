@@ -1,8 +1,8 @@
 BlueBear\CmsBundle\Entity\Article:
     articles{1..100}:
-        title: <realText(200, 2)>
+        title: <realText(20, 2)>
         canonical (unique): <url()>
-        publicationStatus: <numberBetween(0,2>
+        publicationStatus: <numberBetween(0,2)>
         publicationDate: <dateTime()>
         content: <realText(2500, 2)>
         category: '@category*'

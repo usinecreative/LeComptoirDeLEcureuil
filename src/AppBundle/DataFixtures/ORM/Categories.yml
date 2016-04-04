@@ -1,7 +1,7 @@
 BlueBear\CmsBundle\Entity\Category:
     category{1..4}:
-        name: <realText(20), 3>
-        slug: <slug()>
+        name: <realText(20, 1)>
+        slug (unique): <randomElement(['litterature', 'manga-bd', 'sorties', 'rencontres'])>
         displayInHomepage: true
-        description: <realText()>
+        description: <realText(200, 3)>
         publicationStatus: 1
