@@ -3,7 +3,7 @@ BlueBear\CmsBundle\Entity\Article:
         title: <realText(200, 2)>
         canonical (unique): <url()>
         publicationStatus: <numberBetween(0,2>
-        publicationDate: <date()>
+        publicationDate: <dateTime()>
         content: <realText(2500, 2)>
         category: '@category*'
         author: '@user*'
