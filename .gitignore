@@ -5,6 +5,7 @@ var/logs
 app/phpunit.xml
 bin/*
 !bin/console
+app/build
 web/bundles
 cache
 vendor
