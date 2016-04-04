@@ -1,5 +1,5 @@
 BlueBear\CmsBundle\Entity\Article:
-    articles{1..500}:
+    articles{1..100}:
         title: <realText(200, 2)>
         canonical (unique): <url()>
         publicationStatus: <numberBetween(0,2>
