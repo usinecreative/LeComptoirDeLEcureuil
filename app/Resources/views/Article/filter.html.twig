@@ -44,7 +44,10 @@
 
         {% if articles | length > 0 %}
             <div class="pager">
-                {{ pagerfanta(pager, 'default', {page: pager.currentPage}) }}
+
+                {% if pager.haveToPaginate %}
+                    {{ pagerfanta(pager, 'default', {page: pager.currentPage}) }}
+                {% endif %}
             </div>
         {% endif %}
     </div>

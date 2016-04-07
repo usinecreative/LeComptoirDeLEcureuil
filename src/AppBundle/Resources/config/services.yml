@@ -14,3 +14,8 @@ services:
             - '@router'
             - '@jk.cms.article_repository'
             - '@twig'
+
+    app_comment_form_handler:
+        class: AppBundle\Form\Handler\CommentHandler
+        arguments:
+            - '@jk.cms.comment_repository'

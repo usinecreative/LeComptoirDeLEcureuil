@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Form\Type\CommentType;
 use BlueBear\BaseBundle\Behavior\ControllerTrait;
 use BlueBear\CmsBundle\Entity\Category;
 use BlueBear\CmsBundle\Finder\Filter\ArticleFilter;
@@ -29,8 +30,22 @@ class ArticleController extends Controller
             ->get('bluebear.cms.article_finder')
             ->findOne($filter);
 
-        return [
+        $commentForm = $this->createForm(CommentType::class, [
             'article' => $article
+        ], [
+            'articleRepository' => $this->get('jk.cms.article_repository')
+        ]);
+        $commentForm->handleRequest($request);
+
+        if ($commentForm->isValid()) {
+            $this
+                ->get('app_comment_form_handler')
+                ->handle($commentForm, $request);
+        }
+
+        return [
+            'article' => $article,
+            'commentForm' => $commentForm->createView()
         ];
     }
 
@@ -56,6 +71,10 @@ class ArticleController extends Controller
         ];
     }
 
+    /**
+     * @param ArticleFilter $filter
+     * @return string
+     */
     protected function getFilterTitle(ArticleFilter $filter)
     {
         $parameters = $filter->getParameters();
