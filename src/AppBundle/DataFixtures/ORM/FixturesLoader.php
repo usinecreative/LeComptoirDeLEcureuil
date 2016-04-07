@@ -23,6 +23,8 @@ class FixturesLoader implements FixtureInterface
             __DIR__ . '/User.yml',
             __DIR__ . '/Categories.yml',
             __DIR__ . '/Articles.yml',
+            __DIR__ . '/Comments.yml',
+            __DIR__ . '/Tags.yml',
         ], $manager, [
             'locale' => 'fr_FR'
         ]);

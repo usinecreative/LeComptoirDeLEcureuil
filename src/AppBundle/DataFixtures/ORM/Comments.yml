@@ -1,0 +1,9 @@
+BlueBear\CmsBundle\Entity\Comment:
+    comments{1..200}:
+        article: '@article*'
+        authorName: <userName()>
+        authorEmail: <email()>
+        authorUrl: <url()>
+        authorIp: <ipv4()>
+        content: <realText(250)>
+        isApproved: <randomElement([true, false])>
