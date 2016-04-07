@@ -36,7 +36,7 @@ class CommentType extends AbstractType
 
         $builder
             ->get('article')
-            ->addModelTransformer(new CallbackTransformer(function (Article $article = null) {
+            ->addModelTransformer(new CallbackTransformer(function (Article $article) {
                     return $article->getId();
                 }, function ($id) use ($articleRepository) {
                     return $articleRepository
