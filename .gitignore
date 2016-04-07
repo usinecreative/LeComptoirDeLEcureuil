@@ -15,3 +15,6 @@ vendor
 .sass-cache
 
 .gitkeep
+
+# backup
+backups
