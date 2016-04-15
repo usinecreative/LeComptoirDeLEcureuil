@@ -46,7 +46,7 @@ lag_admin:
         title: Le Comptoir De L'Ecureuil, derrière les noisettes
         description: Des noisettes et des livres
         bootstrap: true
-        layout: BlueBearCmsBundle::layout.html.twig
+        base_template: '@BlueBearCms::layout.html.twig'
         max_per_page: 25
         routing:
             name_pattern: bluebear.cms.{admin}.{action}
