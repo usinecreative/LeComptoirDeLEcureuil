@@ -266,12 +266,21 @@ class WordPressImporter implements ImporterInterface
         if (!$article) {
             return;
         }
+        // fix WP content
+        $content = (string) $element->children(self::CONTENT_NAMESPACE)->encoded;
+
+        while (($position = strpos($content, '[caption')) !== false) {
+            $endPosition = strpos($content, ']', $position + 1);
+            $content = substr($content, 0, $position).substr($content, $endPosition + 1);
+        }
+        $content = str_replace('[/caption]', '', $content);
+
         $article = new Article();
         $article->setTitle((string) $element->title);
         $article->setCanonical((string) $element->link);
         $article->setPublicationDate((new DateTime())->setTimestamp(strtotime($element->pubDate)));
         $article->setAuthor($author);
-        $article->setContent((string) $element->children(self::CONTENT_NAMESPACE)->encoded);
+        $article->setContent($content);
         $article->forceCreatedAt((new DateTime())->setTimestamp(strtotime($element->children(self::WP_NAMESPACE)->post_date)));
         $article->setIsCommentable($isCommentable);
         $article->setPublicationStatus(Article::PUBLICATION_STATUS_VALIDATION);
