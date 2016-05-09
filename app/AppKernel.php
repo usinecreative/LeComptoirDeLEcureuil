@@ -31,7 +31,9 @@ class AppKernel extends Kernel
             new LAG\DoctrineRepositoryBundle\LAGDoctrineRepositoryBundle(),
             new BlueBear\BaseBundle\BlueBearBaseBundle(),
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
-            new Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle(),
+            new \Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle(),
+            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+
 
             //new JK\StaticClientBundle\JKStaticClientBundle(),
             new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),

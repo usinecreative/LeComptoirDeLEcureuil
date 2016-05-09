@@ -1,138 +1,33 @@
-lag:
-    admin:
-        category.saved: La catégorie a été sauvegardée correctement
-        article.saved: L'article a été sauvegardée correctement
-    cms:
-        # Comments
-        new_comments: Nouveaux Commentaires
-        # Articles
-        new_articles: Nouveaux Articles
-        articles_not_published: Articles non publiés
-        # Categories
-        categories: Catégories
-        # Tags
-        tags: Tags
-        # Dashboard
-        dashboard_title: Dashboard
-        dashboard_heading_text: Voir
-        login:
-            login: Se connecter
+category:
+    list: Catégories
+    edit: Editer
+    delete: Supprimer
+    create: Ajouter une catégorie
+
+    id: '#'
+    name: Nom
+    createdAt: Crée le
+    updatedAt: Mis à jour le
+    articles: Nombre d'articles
+    displayInHomepage: Sur la page d'accueil ?
+    _actions: ''
 
 
-lecomptoir.article.batch.delete: Supprimer plusieurs articles
+article:
+    list: Articles
 
+comment:
+    list: Commentaires
 
-bluebear:
+page:
+    list: Pages
 
+media:
+    list: Medias
 
-    cms:
-        dashboard: Dashboard
-        configuration: Configuration
-        create: Ajouter
-        edit: Editer
-        delete: Supprimer
+import:
+    list: Imports
+    create: Importez vos données
 
-        # Generic fields
-        id: '#'
-        title: Titre
-        slug: Slug
-        category: Catégorie
-        author: Auteur
-        canonical: Url
-        publicationStatus: Publication
-        publicationDate: Date de publication
-        updatedAt: Dernière modification
-        '_actions': Actions
-        page: Pages
-        description: Description
-        createdAt: Créé le
-        articles: Articles
-        displayInHomepage: "En page d'accueil ?"
-        publication:
-            draft: Brouillon
-            validation: En attente de validation
-            published: Publié
-
-        # Batches
-        batch.delete: Supprimer les entités
-
-        # Categories
-        category.list: Catégories
-        category.edit: Edition d'une catégorie
-        category.create: Ajouter une catégorie
-        category.name_help: Le nom de la catégorie
-        category.slug_help: Le nom utilisé dans les urls
-        category.description_help: Description longue de la catégorie
-        category.display_in_homepage_help: Affiche ou non la catégorie sur la page d'accueil
-        category.updated_at_help: Date de la dernière mise à jour
-
-        # Articles
-        article.list: Articles
-        article.create: Créer un article
-        article.edit: Edition d'un article
-        article.preview: Prévisualisation
-        article.see: Voir
-        article.id: Id
-        article.title: Titre
-        article.category: Catégorie
-        article.author: Auteur
-        article.publicationStatus: Statut de publication
-        article.publicationDate: Date de publication
-        article.updatedAt: Mis à jour le
-        article._actions:
-
-
-        comment:
-            list: Commentaires
-            create: Ajouter
-            edit: Edition d'un commentaire
-        user:
-            list: Utilisateurs
-            create: Créer un utilisateur
-            edit: Edition d'un utilisateur
-        parameters:
-            list: Paramètres
-            edit: Edition d'un paramètre
-        imports:
-            list: Imports
-            edit: Edition d'un import
-        page:
-            list: Pages
-            create: Créer une page
-            edit: Edition d'une page
-            title_help: Titre de l'article
-            slug_help: Le nom utilisé dans les urls
-
-        import:
-            create: Importer vos données
-            wordpress: Importer depuis WordPress
-
-
-bluebear.cms.name: Nom
-bluebear.cms.list: Liste
-bluebear.cms.add: Ajouter
-bluebear.cms.yes: Oui
-bluebear.cms.no: Non
-
-# contents
-bluebear.cms.category: Catégories
-bluebear.cms.article: Articles
-bluebear.cms.comment: Commentaires
-bluebear.cms.parameters: Paramètres
-
-bluebear.cms.medias: Médias
-bluebear.cms.videos: Vidéos
-bluebear.cms.images: Images
-bluebear.cms.content_types: Type de contenu
-bluebear.cms.users: Utilisateurs
-
-# user form
-bluebear.cms.administrator: Administrateur
-bluebear.cms.contributor: Contributeur
-bluebear.cms.roles: Roles
-bluebear.cms.enabled: Activé ?
-bluebear.cms.content_list: Liste des contenus
-bluebear.cms.content_add: Ajouter un contenu
-
-
-bluebear.cms.import: Imports
+logout: Déconnexion
+login: Se Connecter

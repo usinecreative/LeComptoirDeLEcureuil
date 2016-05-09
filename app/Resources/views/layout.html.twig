@@ -40,8 +40,8 @@
     </div>
 {% endblock %}
 
-<script src="/bundles/lagadmin/js/jquery/jquery.min.js"></script>
-<script src="/bundles/lagadmin/js/bootstrap.min.js"></script>
+<script src="{{ asset('bundles/lagadmin/js/jquery/jquery.min.js') }}"></script>
+<script src="{{ asset('bundles/lagadmin/js/bootstrap/bootstrap.min.js') }}"></script>
 
 {% if app.environment == 'prod' %}
     <script>

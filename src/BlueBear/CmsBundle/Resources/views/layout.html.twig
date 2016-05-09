@@ -11,64 +11,64 @@
     <a href="{{ path('bluebear.cms.homepage') }}" class="navbar-brand">Le comptoir des noisettes</a>
 {% endblock %}
 
-{% block leftMenu %}
-    <div role="navigation" class="navbar-default sidebar">
-        <div class="sidebar-nav navbar-collapse">
-            <ul id="side-menu" class="nav in">
-                {% set route = app.request.get('_route') %}
+{#{% block leftMenu %}#}
+    {#<div role="navigation" class="navbar-default sidebar">#}
+        {#<div class="sidebar-nav navbar-collapse">#}
+            {#<ul id="side-menu" class="nav in">#}
+                {#{% set route = app.request.get('_route') %}#}
 
-                <li class="{{ route == 'bluebear.cms.category.list' ? 'active' : '' }}">
-                    <a href="{{ path('bluebear.cms.category.list') }}">
-                        <i class="fa fa-folder-open"></i> {{ 'bluebear.cms.category' | trans }}</a>
-                </li>
-                <li class="{{ route == 'bluebear.cms.article.list' ? 'active' : '' }}">
-                    <a href="{{ path('bluebear.cms.article.list') }}">
-                        <i class="fa fa-newspaper-o"></i> {{ 'bluebear.cms.article' | trans }}</a>
-                </li>
-                <li class="{{ route == 'bluebear.cms.comment.list' ? 'active' : '' }}">
-                    <a href="{{ path('bluebear.cms.comment.list') }}">
-                        <i class="fa fa-comment"></i> {{ 'bluebear.cms.comment' | trans }}</a>
-                </li>
-                <li class="{{ route == 'bluebear.cms.page.list' ? 'active' : '' }}">
-                    <a href="{{ path('bluebear.cms.page.list') }}">
-                        <i class="fa fa-code"></i> {{ 'bluebear.cms.page' | trans }}</a>
-                </li>
-                {% set routes = ['bluebear.cms.parameters.list', 'bluebear.cms.import.list'] %}
+                {#<li class="{{ route == 'bluebear.cms.category.list' ? 'active' : '' }}">#}
+                    {#<a href="{{ path('bluebear.cms.category.list') }}">#}
+                        {#<i class="fa fa-folder-open"></i> {{ 'bluebear.cms.category' | trans }}</a>#}
+                {#</li>#}
+                {#<li class="{{ route == 'bluebear.cms.article.list' ? 'active' : '' }}">#}
+                    {#<a href="{{ path('bluebear.cms.article.list') }}">#}
+                        {#<i class="fa fa-newspaper-o"></i> {{ 'bluebear.cms.article' | trans }}</a>#}
+                {#</li>#}
+                {#<li class="{{ route == 'bluebear.cms.comment.list' ? 'active' : '' }}">#}
+                    {#<a href="{{ path('bluebear.cms.comment.list') }}">#}
+                        {#<i class="fa fa-comment"></i> {{ 'bluebear.cms.comment' | trans }}</a>#}
+                {#</li>#}
+                {#<li class="{{ route == 'bluebear.cms.page.list' ? 'active' : '' }}">#}
+                    {#<a href="{{ path('bluebear.cms.page.list') }}">#}
+                        {#<i class="fa fa-code"></i> {{ 'bluebear.cms.page' | trans }}</a>#}
+                {#</li>#}
+                {#{% set routes = ['bluebear.cms.parameters.list', 'bluebear.cms.import.list'] %}#}
 
-                <li class="{{ route == 'bluebear.cms.imports.list' or
-                    route == 'bluebear.cms.parameters' or
-                    route == 'bluebear.cms.user'
-                    ? 'active' : '' }}">
-                    <a href="#">
-                        <i class="fa fa-cogs"></i>
-                        {{ 'bluebear.cms.configuration' | trans }}</a>
-                    <ul class="nav nav-second-level collapse">
-                        <li class="{{ route == 'bluebear.cms.parameters.list' ? 'active' : '' }}">
-                            <a href="{{ path('bluebear.cms.parameters.list') }}">
-                                <i class="fa fa-cogs"></i> {{ 'bluebear.cms.parameters' | trans }}</a>
-                        </li>
-                        <li class="{{ route == 'bluebear.cms.user.list' ? 'active' : '' }}">
-                            <a href="{{ path('bluebear.cms.user.list') }}">
-                                <i class="fa fa-male"></i> {{ 'bluebear.cms.users' | trans }}</a>
-                        </li>
-                        <li class="{{ route == 'bluebear.cms.import.list' ? 'active' : '' }}">
-                            <a href="{{ path('bluebear.cms.import.list') }}">
-                                <i class="fa fa-upload"></i> {{ 'bluebear.cms.import' | trans }}</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="{{ route == 'bluebear.cms.media.list' ? 'active' : '' }}">
-                    <a href="{{ path('bluebear.cms.media.list') }}">
-                        <i class="fa fa-image"></i> {{ 'bluebear.cms.medias' | trans }}</a>
-                </li>
-                <li>
-                    <a href="{{ path('logout') }}">
-                        <i class="fa fa-sign-out"></i> Logout ({{ app.user.username }})</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-{% endblock %}
+                {#<li class="{{ route == 'bluebear.cms.imports.list' or#}
+                    {#route == 'bluebear.cms.parameters' or#}
+                    {#route == 'bluebear.cms.user'#}
+                    {#? 'active' : '' }}">#}
+                    {#<a href="#">#}
+                        {#<i class="fa fa-cogs"></i>#}
+                        {#{{ 'bluebear.cms.configuration' | trans }}</a>#}
+                    {#<ul class="nav nav-second-level collapse">#}
+                        {#<li class="{{ route == 'bluebear.cms.parameters.list' ? 'active' : '' }}">#}
+                            {#<a href="{{ path('bluebear.cms.parameters.list') }}">#}
+                                {#<i class="fa fa-cogs"></i> {{ 'bluebear.cms.parameters' | trans }}</a>#}
+                        {#</li>#}
+                        {#<li class="{{ route == 'bluebear.cms.user.list' ? 'active' : '' }}">#}
+                            {#<a href="{{ path('bluebear.cms.user.list') }}">#}
+                                {#<i class="fa fa-male"></i> {{ 'bluebear.cms.users' | trans }}</a>#}
+                        {#</li>#}
+                        {#<li class="{{ route == 'bluebear.cms.import.list' ? 'active' : '' }}">#}
+                            {#<a href="{{ path('bluebear.cms.import.list') }}">#}
+                                {#<i class="fa fa-upload"></i> {{ 'bluebear.cms.import' | trans }}</a>#}
+                        {#</li>#}
+                    {#</ul>#}
+                {#</li>#}
+                {#<li class="{{ route == 'bluebear.cms.media.list' ? 'active' : '' }}">#}
+                    {#<a href="{{ path('bluebear.cms.media.list') }}">#}
+                        {#<i class="fa fa-image"></i> {{ 'bluebear.cms.medias' | trans }}</a>#}
+                {#</li>#}
+                {#<li>#}
+                    {#<a href="{{ path('logout') }}">#}
+                        {#<i class="fa fa-sign-out"></i> Logout ({{ app.user.username }})</a>#}
+                {#</li>#}
+            {#</ul>#}
+        {#</div>#}
+    {#</div>#}
+{#{% endblock %}#}
 
 {% block javascripts %}
     {#{{ tinymce_init() }}#}

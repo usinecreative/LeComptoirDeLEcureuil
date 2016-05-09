@@ -2,7 +2,7 @@
 
 namespace BlueBear\MediaBundle\Repository;
 
-use LAG\DoctrineRepositoryBundle\Repository\DoctrineRepository;
+use LAG\AdminBundle\Repository\DoctrineRepository;
 
 class MediaRepository extends DoctrineRepository
 {

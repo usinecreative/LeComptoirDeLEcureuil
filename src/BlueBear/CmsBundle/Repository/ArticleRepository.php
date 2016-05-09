@@ -5,7 +5,7 @@ namespace BlueBear\CmsBundle\Repository;
 use BlueBear\CmsBundle\Entity\Article;
 use DateTime;
 use Doctrine\Common\Collections\Collection;
-use LAG\DoctrineRepositoryBundle\Repository\DoctrineRepository;
+use LAG\AdminBundle\Repository\DoctrineRepository;
 
 /**
  * CategoryRepository

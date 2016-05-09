@@ -3,7 +3,7 @@
 namespace BlueBear\CmsBundle\Repository;
 
 use DateTime;
-use LAG\DoctrineRepositoryBundle\Repository\DoctrineRepository;
+use LAG\AdminBundle\Repository\DoctrineRepository;
 
 class CommentRepository extends DoctrineRepository
 {

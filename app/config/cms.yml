@@ -41,20 +41,151 @@ stfalcon_tinymce:
              image_advtab: true
              menubar: false
 
+
+# app/config/config.yml
+knp_menu:
+    # use "twig: false" to disable the Twig extension and the TwigRenderer
+    twig:
+        template: LAGAdminBundle:Menu:bootstrap_menu.html.twig
+    #  if true, enables the helper for PHP templates
+    templating: false
+    # the renderer to use, list is also available by default
+    default_renderer: twig
+
+
 lag_admin:
     application:
         title: Le Comptoir De L'Ecureuil, derrière les noisettes
         description: Des noisettes et des livres
         bootstrap: true
-        layout: '@BlueBearCms::layout.html.twig'
+        base_template: 'BlueBearCmsBundle::layout.html.twig'
         max_per_page: 25
         routing:
-            name_pattern: bluebear.cms.{admin}.{action}
+            name_pattern: lecomptoir.cms.{admin}.{action}
             url_pattern:  /{admin}/{action}
         date_format: \L\e d/m/Y à h:i:s
-        translation:
-            pattern: lecomptoir.{admin}.{key}
+
+    menus:
+        main:
+            items:
+                category:
+                    admin: category
+                    icon: fa fa-folder-open
+                article:
+                    admin: article
+                    icon: fa fa-newspaper-o
+                comment:
+                    admin: comment
+                    icon: fa fa-comment
+                page:
+                    admin: page
+                    icon: fa fa-code
+                parameters:
+                    url: '#'
+                    text: Parameters
+                    icon: fa fa-gear
+                    items:
+                        imports:
+                            admin: import
+                            action: list
+                            icon: fa fa-upload
+                media:
+                    admin: media
+                    icon: fa fa-image
+                logout:
+                    route: logout
+                    icon: fa fa-sign-out
+
     admins:
+        category:
+            entity: BlueBear\CmsBundle\Entity\Category
+            form: BlueBear\CmsBundle\Form\Type\CategoryType
+            actions:
+                create: ~
+                edit: ~
+                delete: ~
+                list:
+                    title: category.list
+                    menus:
+                        top:
+                            items:
+                                create:
+                                    admin: category
+                                    action: create
+                                    icon: fa fa-plus
+                    fields:
+                        id: ~
+                        name: ~
+                        createdAt:
+                            type: date
+                        updatedAt:
+                            type: date
+                        articles:
+                            type: count
+                        displayInHomepage:
+                            type: boolean
+                        _actions: ~
+                    order:
+                        - {field: updatedAt, order: desc}
+
+        #                    actions:
+        #                        create:
+        #                            title: bluebear.cms.category.create
+        #                            route: bluebear.cms.category.create
+        #                            icon: plus
+        article:
+            entity: BlueBear\CmsBundle\Entity\Article
+            form: BlueBear\CmsBundle\Form\Type\ArticleType
+            actions:
+                list:
+                    title: article.list
+                    order:
+                        - {field: publicationDate, order: desc}
+#                    actions:
+#                        create:
+#                            title: bluebear.cms.article.create
+#                            route: bluebear.cms.article.create
+#                            icon: plus
+                    fields:
+                        id: ~
+                        title:
+                            type: link
+                            options:
+                                length: 40
+                                route: lecomptoir.cms.article.edit
+                                parameters: {id: ~}
+                        category: ~
+                        author: ~
+                        publicationStatus: ~
+                        publicationDate: {type: date, options: {format: d/m/Y}}
+                        updatedAt: {type: date, options: {format: '\L\e d/m/Y à h:i:s'}}
+                        _actions:
+                            type: collection
+                            options:
+                                _edit:
+                                    type: action
+                                    options:
+                                        title: lag.admin.edit
+                                        route: lecomptoir.cms.article.edit
+                                        parameters: {id: ~}
+                                        icon: pencil
+                                _delete:
+                                    type: action
+                                    options:
+                                        title: lag.admin.delete
+                                        route: lecomptoir.cms.article.delete
+                                        parameters: {id: ~}
+                                        icon: remove
+                create: ~
+                edit:
+#                    actions:
+#                        preview:
+#                            title: bluebear.cms.article.preview
+#                            route: bluebear.cms.article.preview
+#                            parameters: {id: ~}
+#                            target: _blank
+#                            icon: eye
+                delete: ~
         user:
             entity: BlueBear\CmsBundle\Entity\User
             form: user
@@ -70,94 +201,21 @@ lag_admin:
                 edit: ~
                 delete: ~
 
-        category:
-            entity: BlueBear\CmsBundle\Entity\Category
-            form: BlueBear\CmsBundle\Form\Type\CategoryType
-            actions:
-                create: ~
-                edit: ~
-                delete: ~
-                list:
-                    title: bluebear.cms.category.list
-                    fields:
-                        id: ~
-                        name: ~
-                        createdAt:
-                            type: date
-                        updatedAt:
-                            type: date
-                        articles:
-                            type: count
-                        displayInHomepage:
-                            type: boolean
-                        _actions: ~
-                    order:
-                        - {field: updatedAt, order: desc}
-                    actions:
-                        create:
-                            title: bluebear.cms.category.create
-                            route: bluebear.cms.category.create
-                            icon: plus
-
-        article:
-            entity: BlueBear\CmsBundle\Entity\Article
-            form: BlueBear\CmsBundle\Form\Type\ArticleType
-            actions:
-                list:
-                    title: bluebear.cms.article.list
-                    order:
-                        - {field: publicationDate, order: desc}
-                    actions:
-                        create:
-                            title: bluebear.cms.article.create
-                            route: bluebear.cms.article.create
-                            icon: plus
-                    fields:
-                        id: ~
-                        title:
-                            type: link
-                            options:
-                                length: 40
-                                route: bluebear.cms.article.edit
-                                parameters: {id: ~}
-                        category: ~
-                        author: ~
-                        publicationStatus: ~
-                        publicationDate: {type: date, options: {format: d/m/Y}}
-                        updatedAt: {type: date, options: {format: '\L\e d/m/Y à h:i:s'}}
-                        _actions:
-                            type: collection
-                            options:
-                                _edit:
-                                    type: action
-                                    options:
-                                        title: lag.admin.edit
-                                        route: bluebear.cms.article.edit
-                                        parameters: {id: ~}
-                                        icon: pencil
-                                _delete:
-                                    type: action
-                                    options:
-                                        title: lag.admin.delete
-                                        route: bluebear.cms.article.delete
-                                        parameters: {id: ~}
-                                        icon: remove
-                create: ~
-                edit:
-                    actions:
-                        preview:
-                            title: bluebear.cms.article.preview
-                            route: bluebear.cms.article.preview
-                            parameters: {id: ~}
-                            target: _blank
-                            icon: eye
-                delete: ~
         parameters:
             entity: BlueBear\CmsBundle\Entity\Parameters
             form: parameters
             actions:
                 list:
-                    fields: {id: ~, title: {type: string, options: {length: 100}}, value: {type: string, options: {length: 100}}}
+                    fields:
+                        id: ~
+                        title:
+                            type: string
+                            options:
+                                length: 100
+                        value:
+                            type: string
+                            options:
+                                length: 100
                 create: ~
                 edit: ~
                 delete: ~
@@ -166,12 +224,13 @@ lag_admin:
             form: comment
             actions:
                 list:
-                    title: lag.cms.comments
+                    title: comment.list
                     fields:
                         id: ~
                         content: {type: string, options: {length: 150}}
                         article: ~
                         _actions: ~
+                    menus: false
                 create: ~
                 edit: ~
                 delete: ~
@@ -181,16 +240,23 @@ lag_admin:
             controller: BlueBearCmsBundle:Import
             actions:
                 list:
+                    menus:
+                        top:
+                            items:
+                                import:
+                                    admin: import
+                                    action: create
+                                    icon: fa fa-upload
                     fields:
                         id: ~
                         label: {type: string, options: {length: 100}}
                         comments: {type: string, options: {length: 100}}
                         status: ~
-                    actions:
-                        import:
-                            title: lecomptoir.import.create
-                            route: bluebear.cms.import.create
-                            icon: plus
+#                    actions:
+#                        import:
+#                            title: bluebear.cms.import.create
+#                            route: bluebear.cms.import.create
+#                            icon: plus
                 create: ~
                 edit: ~
                 delete: ~
@@ -254,11 +320,11 @@ lag_admin:
                                         route: bluebear.cms.page.delete
                                         parameters: {id: ~}
                                         icon: remove
-                    actions:
-                        import:
-                            title: bluebear.admin.create
-                            route: bluebear.cms.page.create
-                            icon: plus
+#                    actions:
+#                        import:
+#                            title: bluebear.admin.create
+#                            route: bluebear.cms.page.create
+#                            icon: plus
                 create: ~
                 edit: ~
                 delete: ~

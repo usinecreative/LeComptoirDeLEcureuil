@@ -3,7 +3,7 @@
 namespace BlueBear\CmsBundle\Repository;
 
 use BlueBear\CmsBundle\Entity\Category;
-use LAG\DoctrineRepositoryBundle\Repository\DoctrineRepository;
+use LAG\AdminBundle\Repository\DoctrineRepository;
 
 /**
  * CategoryRepository

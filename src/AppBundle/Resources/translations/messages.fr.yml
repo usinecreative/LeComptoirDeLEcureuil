@@ -55,21 +55,6 @@ lecomptoir:
         email_placeholder: Saisissez votre email pour une réponse...
         message: Message
 
-    # Articles
-    article.list: Articles
-    article.create: Créer un article
-    article.edit: Edition d'un article
-    article.preview: Prévisualisation
-    article.see: Voir
-    article.id: Id
-    article.title: Titre
-    article.category: Catégorie
-    article.author: Auteur
-    article.publicationStatus: Statut de publication
-    article.publicationDate: Date de publication
-    article.updatedAt: Mis à jour le
-    article._actions: ''
-
     category.id: '#'
     category.name: Nom
     category.description: Description
@@ -94,11 +79,39 @@ lecomptoir:
     # Mail
     mail.contact.title: "[Le Comptoir de l'écureuil] Contact : nouveau message de %email%"
 
-    # Imports
-    import.list: Imports
-    import.create: Importez vos données
-    import.id: '#'
-    import.comments: Notes
-    import.label: Libellé
-    import.status: Statut
-    batch.delete: Supprimer plusieurs imports
+# Articles
+article.list: Articles
+article.create: Ajouter un article
+article.edit: Edition d'un article
+article.preview: Prévisualisation
+article.see: Voir
+article.id: Id
+article.title: Titre
+article.category: Catégorie
+article.author: Auteur
+article.publicationStatus: Statut de publication
+article.publicationDate: Date de publication
+article.updatedAt: Mis à jour le
+article._actions: ''
+
+comment:
+    create: Ajouter un commentaire
+    list: Commentaires
+    edit: Editer
+    delete: Supprimer
+    content: Contenu
+    id: '#'
+    article: Article
+    _actions: ''
+
+page:
+    create: Créer une page libre
+
+# Imports
+import.list: Imports
+import.create: Importez vos données
+import.id: '#'
+import.comments: Notes
+import.label: Libellé
+import.status: Statut
+batch.delete: Supprimer plusieurs imports

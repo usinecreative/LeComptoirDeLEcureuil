@@ -37,7 +37,7 @@ class ArticleFinder
     {
         $queryBuilder = $this->buildQueryBuilder($filter);
 
-        $adapter = new DoctrineORMAdapter($queryBuilder);
+        $adapter = new DoctrineORMAdapter($queryBuilder, false);
         $pager = new Pagerfanta($adapter);
         $pager->setMaxPerPage(11);
         $pager->setCurrentPage($filter->getParameter('page', 1));
@@ -73,7 +73,8 @@ class ArticleFinder
         // create generic query builder
         $queryBuilder = $this
             ->repository
-            ->createQueryBuilder('article');
+            ->createQueryBuilder('article')
+        ;
 
         // only the published articles
         $queryBuilder
