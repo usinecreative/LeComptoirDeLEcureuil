@@ -12,8 +12,6 @@ parameters:
     bluebear.cms.manager.content.class: BlueBear\CmsBundle\Manager\ContentManager
     # Finders
     bluebear.cms.article_finder.class: BlueBear\CmsBundle\Finder\ArticleFinder
-    # Assetic
-    lag.assetic.bundler_compass_filter.class: BlueBear\CmsBundle\Assetic\Filter\BundlerCompassFilter
 
 
 services:
@@ -46,13 +44,6 @@ services:
         arguments: ['@jk.cms.article_repository']
 
 
-
-    lag.assetic.bundler_compass_filter:
-        class: BlueBear\CmsBundle\Assetic\Filter\BundlerCompassFilter
-        tags:
-            - {name: assetic.filter, alias: bundler}
-        arguments: ['%kernel.root_dir%', '%kernel.cache_dir%']
-
     # importer
     bluebear.cms.import.wordpress_importer:
         class: BlueBear\CmsBundle\Import\Importer\WordPressImporter
@@ -64,6 +55,7 @@ services:
             - '@jk.cms.tag_repository'
             - '@jk.cms.comment_repository'
             - '@jk.cms.import_repository'
+            - '@jk.static_client'
 
     # factory:
     bluebear.cms.import.importer_factory:
@@ -75,3 +67,8 @@ services:
         class: BlueBear\CmsBundle\Feed\Factory\ArticleItemFactory
         arguments:
             - '@router'
+
+    jk.static_client:
+        class: JK\StaticClientBundle\Client\StaticClient
+        arguments:
+            - 'http://dev.static.fr/'

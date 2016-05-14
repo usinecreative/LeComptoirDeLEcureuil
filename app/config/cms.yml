@@ -188,7 +188,7 @@ lag_admin:
                         status: ~
                     actions:
                         import:
-                            title: bluebear.cms.import.create
+                            title: lecomptoir.import.create
                             route: bluebear.cms.import.create
                             icon: plus
                 create: ~
