@@ -16,5 +16,8 @@ vendor
 
 .gitkeep
 
+/etc/ansible/vars
+/etc/ansible/roles
+
 # backup
 backups

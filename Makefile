@@ -8,26 +8,26 @@ all: install
 
 install:
 	composer install -n
-	bundle install --path=vendor/
 	make assets
 	make cc
+	make install-ansible
+
+
+install-ansible:
+	sudo apt-get install python python-pip
+	sudo pip install ansible
+	ansible-galaxy install carlosbuenosvinos.ansistrano-deploy carlosbuenosvinos.ansistrano-rollback
+
+install-server:
+	ansible-playbook etc/ansible/playbooks/install.yml --ask-become-pass
 
 cc:
 	rm -rf var/cache/*
 	$(sf) doctrine:cache:clear-metadata
 
-backup:
-	$(sf) dizda:backup:start
-
-remote-backup:
-	@bundle exec cap staging symfony:dizda:backup:start
-
-remote-load:
-	@bundle exec cap staging symfony:dizda:backup:load
 
 deploy:
-	@bundle exec cap staging deploy
-	@bundle exec cap staging deploy:cleanup
+	ansible-playbook etc/ansible/playbooks/deploy.yml --ask-become-pass
 
 cleanup:
 	@bundle exec cap staging deploy:cleanup
