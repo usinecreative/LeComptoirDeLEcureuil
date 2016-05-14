@@ -26,7 +26,6 @@ class AppKernel extends Kernel
             // Noisettes
             //new AppBundle\LeComptoirDeLEcureuilFrontBundle(),
             new LeComptoirDeLEcureuil\BackBundle\LeComptoirDeLEcureuilBackBundle(),
-            new LeComptoirDeLEcureuil\CoreBundle\LeComptoirDeLEcureuilCoreBundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
 
