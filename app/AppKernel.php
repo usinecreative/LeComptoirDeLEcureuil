@@ -15,20 +15,22 @@ class AppKernel extends Kernel
             new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
-            new Symfony\Bundle\AsseticBundle\AsseticBundle(),
-            // CMS
+            new \Symfony\Bundle\AsseticBundle\AsseticBundle(),
+            //new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
+            // BlueBear
             new LAG\AdminBundle\LAGAdminBundle(),
             new BlueBear\CmsBundle\BlueBearCmsBundle(),
             new BlueBear\MediaBundle\BlueBearMediaBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
-
+            //new Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle(),
             // Noisettes
+            //new AppBundle\LeComptoirDeLEcureuilFrontBundle(),
             new LeComptoirDeLEcureuil\BackBundle\LeComptoirDeLEcureuilBackBundle(),
+            new LeComptoirDeLEcureuil\CoreBundle\LeComptoirDeLEcureuilCoreBundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
 
-            // Admin dev
-            new LAG\DoctrineRepositoryBundle\LAGDoctrineRepositoryBundle(),
+            // Admin dev            
             new BlueBear\BaseBundle\BlueBearBaseBundle(),
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
             new \Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle(),
@@ -36,13 +38,13 @@ class AppKernel extends Kernel
 
 
             //new JK\StaticClientBundle\JKStaticClientBundle(),
-            new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
+            new \WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
             new AppBundle\AppBundle(),
 
-            new Knp\Bundle\GaufretteBundle\KnpGaufretteBundle(),
-            new Dizda\CloudBackupBundle\DizdaCloudBackupBundle(),
+            new \Knp\Bundle\GaufretteBundle\KnpGaufretteBundle(),
             new Eko\FeedBundle\EkoFeedBundle(),
-            new JK\DatabaseBundle\JKDatabaseBundle(),
+
+
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'])) {

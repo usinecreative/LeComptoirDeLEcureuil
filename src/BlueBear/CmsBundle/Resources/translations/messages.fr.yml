@@ -31,3 +31,5 @@ import:
 
 logout: Déconnexion
 login: Se Connecter
+
+lag.admin.category.deleted: La catégorie a été correctement supprimée

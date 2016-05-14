@@ -83,6 +83,7 @@ lecomptoir:
 article.list: Articles
 article.create: Ajouter un article
 article.edit: Edition d'un article
+article.delete: Supprimer un article
 article.preview: Prévisualisation
 article.see: Voir
 article.id: Id
@@ -98,7 +99,7 @@ comment:
     create: Ajouter un commentaire
     list: Commentaires
     edit: Editer
-    delete: Supprimer
+    delete: Supprimer une commentaire
     content: Contenu
     id: '#'
     article: Article
