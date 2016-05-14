@@ -30,17 +30,17 @@ class Comment
     protected $authorName;
 
     /**
-     * @ORM\Column(name="author_email", type="string", length=255)
+     * @ORM\Column(name="author_email", type="string", length=255, nullable=true)
      */
     protected $authorEmail;
 
     /**
-     * @ORM\Column(name="author_url", type="string", length=255)
+     * @ORM\Column(name="author_url", type="string", length=255, nullable=true)
      */
     protected $authorUrl;
 
     /**
-     * @ORM\Column(name="author_ip", type="string", length=255)
+     * @ORM\Column(name="author_ip", type="string", length=255, nullable=true)
      */
     protected $authorIp;
 
