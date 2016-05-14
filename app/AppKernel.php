@@ -39,6 +39,7 @@ class AppKernel extends Kernel
             //new JK\StaticClientBundle\JKStaticClientBundle(),
             new \WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
             new AppBundle\AppBundle(),
+            new \JK\DatabaseBundle\JKDatabaseBundle(),
 
             new \Knp\Bundle\GaufretteBundle\KnpGaufretteBundle(),
             new Eko\FeedBundle\EkoFeedBundle(),
