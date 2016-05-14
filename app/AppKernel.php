@@ -16,8 +16,6 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
-            // BlueBear
-            new \Symfony\Bundle\AsseticBundle\AsseticBundle(),
             // CMS
             new LAG\AdminBundle\LAGAdminBundle(),
             new BlueBear\CmsBundle\BlueBearCmsBundle(),
