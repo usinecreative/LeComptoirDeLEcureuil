@@ -10,11 +10,6 @@ use Symfony\Component\HttpFoundation\Request;
 
 class ImportController extends CRUDController
 {
-    public function importAction()
-    {
-
-    }
-
     /**
      * @Template()
      * @param Request $request
@@ -32,7 +27,7 @@ class ImportController extends CRUDController
                 ->create($import->getType());
             $importer->import($import);
 
-            return $this->redirectToRoute('bluebear.cms.import.list');
+            return $this->redirectToRoute('lecomptoir.cms.import.list');
         }
         return [
             'form' => $form->createView()

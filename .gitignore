@@ -9,7 +9,7 @@ app/build
 web/bundles
 cache
 vendor
-*.log
+composer.lock
 
 # sass
 .sass-cache

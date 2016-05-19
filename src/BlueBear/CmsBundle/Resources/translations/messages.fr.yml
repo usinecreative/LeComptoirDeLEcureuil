@@ -32,4 +32,11 @@ import:
 logout: Déconnexion
 login: Se Connecter
 
-lag.admin.category.deleted: La catégorie a été correctement supprimée
+
+lag.cms.publication.draft: Brouillon
+lag.cms.publication.validation: En attente de validation
+lag.cms.publication.published: Publié
+
+lag.admin.article.saved: L'article a été sauvergadé
+lag.admin.article.deleted: L'article a été supprimé
+

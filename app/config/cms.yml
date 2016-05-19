@@ -186,7 +186,7 @@ lag_admin:
                 delete: ~
         user:
             entity: BlueBear\CmsBundle\Entity\User
-            form: user
+            form: BlueBear\CmsBundle\Form\Type\UserType
             actions:
                 list:
                     fields:
@@ -201,7 +201,7 @@ lag_admin:
 
         parameters:
             entity: BlueBear\CmsBundle\Entity\Parameters
-            form: parameters
+            form: BlueBear\CmsBundle\Form\Type\ParametersType
             actions:
                 list:
                     fields:
@@ -219,7 +219,7 @@ lag_admin:
                 delete: ~
         comment:
             entity: BlueBear\CmsBundle\Entity\Comment
-            form: comment
+            form: BlueBear\CmsBundle\Form\Type\CommentType
             actions:
                 list:
                     title: comment.list
@@ -235,7 +235,7 @@ lag_admin:
                 delete: ~
         import:
             entity: BlueBear\CmsBundle\Entity\Import
-            form: import
+            form: BlueBear\CmsBundle\Form\Type\ImportType
             controller: 'BlueBearCmsBundle:Import'
             actions:
                 list:
@@ -262,7 +262,7 @@ lag_admin:
 
         media:
             entity: BlueBear\MediaBundle\Entity\Media
-            form: media
+            form: BlueBear\CmsBundle\Form\Type\MediaType
             controller: 'BlueBearMediaBundle:Media'
             actions:
                 list:
@@ -293,7 +293,7 @@ lag_admin:
                 delete: ~
         page:
             entity: BlueBear\CmsBundle\Entity\Page
-            form: page
+            form: BlueBear\CmsBundle\Form\Type\PageType
             actions:
                 list:
                     fields:

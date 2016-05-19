@@ -3,7 +3,6 @@
 namespace BlueBear\CmsBundle\Form\Type;
 
 use BlueBear\CmsBundle\Entity\Article;
-use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -44,13 +43,13 @@ class ArticleType extends AbstractType
             ])
             ->add('publicationStatus', ChoiceType::class, [
                 'choices' => [
-                    'bluebear.cms.publication.draft' => Article::PUBLICATION_STATUS_DRAFT,
-                    'bluebear.cms.publication.validation' => Article::PUBLICATION_STATUS_VALIDATION,
-                    'bluebear.cms.publication.published' => Article::PUBLICATION_STATUS_PUBLISHED,
+                    'lag.cms.publication.draft' => Article::PUBLICATION_STATUS_DRAFT,
+                    'lag.cms.publication.validation' => Article::PUBLICATION_STATUS_VALIDATION,
+                    'lag.cms.publication.published' => Article::PUBLICATION_STATUS_PUBLISHED,
                 ]
             ])
             ->add('publicationDate', DateTimeType::class, [
-                'required' => false
+                'required' => false,
             ])
             ->add('author', EntityType::class, [
                 'empty_data' => false,
@@ -71,6 +70,9 @@ class ArticleType extends AbstractType
             ]);
     }
 
+    /**
+     * @param OptionsResolver $resolver
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
@@ -78,7 +80,10 @@ class ArticleType extends AbstractType
         ]);
     }
 
-    public function getName()
+    /**
+     * @return string
+     */
+    public function getBlockPrefix()
     {
         return 'article';
     }

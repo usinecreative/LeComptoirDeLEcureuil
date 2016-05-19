@@ -116,3 +116,6 @@ import.comments: Notes
 import.label: Libellé
 import.status: Statut
 batch.delete: Supprimer plusieurs imports
+
+lag.admin.category.deleted: La catégorie a été supprimée
+lag.admin.category.saved: La catégorie a été sauvegardée
