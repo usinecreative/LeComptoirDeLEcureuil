@@ -18,6 +18,7 @@ use BlueBear\CmsBundle\Repository\TagRepository;
 use BlueBear\CmsBundle\Repository\UserRepository;
 use DateTime;
 use Exception;
+use Gedmo\Sluggable\Util\Urlizer;
 use JK\StaticClientBundle\Client\StaticClient;
 use Psr\Log\LoggerInterface;
 use SimpleXMLElement;
@@ -240,6 +241,10 @@ class WordPressImporter implements ImporterInterface
                 }
             }
         }
+
+
+        $this->fixSlugs();
+
         $import->setLabel('WORDPRESS Importing xml file ' . $import->getFileName());
         $import->setStatus($status);
         $import->setComments($comments);
@@ -586,5 +591,32 @@ class WordPressImporter implements ImporterInterface
         $imageName = array_pop($arrayDirectory);
 
         return $imageName;
+    }
+
+    /**
+     * Fix slug after wordpress import.
+     */
+    protected function fixSlugs()
+    {
+        $articles = $this
+            ->articleRepository
+            ->findBy([
+                'slug' => [
+                    '',
+                    '-1',
+                    '-2',
+                    '-3',
+                ]
+            ]);
+        /** @var Article $article */
+        foreach ($articles as $article) {
+
+            $slug = Urlizer::transliterate($article->getTitle());
+            $article->setSlug($slug);
+
+            $this
+                ->articleRepository
+                ->save($article);
+        }
     }
 }
