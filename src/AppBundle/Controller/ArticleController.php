@@ -42,7 +42,7 @@ class ArticleController extends Controller
                 ->get('app_comment_form_handler')
                 ->handle($commentForm, $request);
 
-            $url = $this->generateUrl('lecomptoir.article.show', $article->getUrlParameters()) . '#category-link';
+            $url = $this->generateUrl('lecomptoir.article.show', $article->getUrlParameters()).'#category-link';
 
             return $this->redirect($url);
         }
