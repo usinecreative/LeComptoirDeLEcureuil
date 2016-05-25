@@ -22,6 +22,7 @@ class CommentType extends AbstractType
         $builder
             ->add('article', HiddenType::class)
             ->add('authorName', TextType::class, [
+                'label' => false,
                 'attr' => [
                     'placeholder' => 'Le nom sur la noisette...'
                 ]
