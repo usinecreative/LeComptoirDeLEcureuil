@@ -37,6 +37,7 @@ lag.cms.publication.draft: Brouillon
 lag.cms.publication.validation: En attente de validation
 lag.cms.publication.published: Publié
 
-lag.admin.article.saved: L'article a été sauvergadé
+lag.admin.article.saved: L'article a été sauvegardé
 lag.admin.article.deleted: L'article a été supprimé
 
+lag.admin.comment.deleted: Le commentaire a été supprimé

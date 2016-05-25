@@ -24,7 +24,7 @@
         </div>
         <div class="article-footer">
             <ul>
-                <li>
+                <li id="category-link">
                     <strong>{{ 'lecomptoir.interface.categories' | trans }} :</strong>
                     <a href="{{ path('lecomptoir.article.list_by_category', {categorySlug: article.category.slug}) }}">
                         {{ article.category.name }}

@@ -99,7 +99,7 @@ comment:
     create: Ajouter un commentaire
     list: Commentaires
     edit: Editer
-    delete: Supprimer une commentaire
+    delete: Supprimer un commentaire
     content: Contenu
     id: '#'
     article: Article

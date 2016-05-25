@@ -28,6 +28,7 @@ class CommentHandler
         $comment->setArticle($data['article']);
         $comment->setAuthorIp($request->getClientIp());
         $comment->setAuthorName($data['authorName']);
+        $comment->setContent($data['content']);
 
         $this
             ->commentRepository

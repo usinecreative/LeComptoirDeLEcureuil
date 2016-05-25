@@ -49,7 +49,7 @@ class ArticleFinder
      * Return one filtered article
      *
      * @param ArticleFilter $filter
-     * @return mixed
+     * @return Article
      * @throws NonUniqueResultException
      */
     public function findOne(ArticleFilter $filter)
@@ -116,7 +116,7 @@ class ArticleFinder
 
         // by default, articles are sorted by publication date
         $queryBuilder
-            ->orderBy('article.publicationDate', 'desc');
+            ->orderBy('article.publicationDate, comments.updatedAt', 'desc');
 
         return $queryBuilder;
     }
