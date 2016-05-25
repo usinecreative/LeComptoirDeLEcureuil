@@ -84,7 +84,7 @@ class User implements UserInterface
      * User name
      *
      * @var DateTime
-     * @ORM\Column(type="datetime", name="last_login")
+     * @ORM\Column(type="datetime", name="last_login", nullable=true)
      */
     protected $lastLogin;
 
@@ -116,7 +116,7 @@ class User implements UserInterface
      * User confirmation token
      *
      * @var string
-     * @ORM\Column(type="string", length=255, name="confirmation_token")
+     * @ORM\Column(type="string", length=255, name="confirmation_token", nullable=true)
      */
     protected $confirmationToken;
 
@@ -124,7 +124,7 @@ class User implements UserInterface
      * User last password request date
      *
      * @var DateTime
-     * @ORM\Column(type="datetime", name="password_requested_at")
+     * @ORM\Column(type="datetime", name="password_requested_at", nullable=true)
      */
     protected $passwordRequestedAt;
 
@@ -148,12 +148,13 @@ class User implements UserInterface
      * User credentials expiration date
      *
      * @var DateTime
-     * @ORM\Column(type="datetime", name="credentials_expire_at")
+     * @ORM\Column(type="datetime", name="credentials_expire_at", nullable=true)
      */
     protected $credentialsExpireAt;
 
     /**
      * @ORM\OneToMany(targetEntity="BlueBear\CmsBundle\Entity\Article", mappedBy="author")
+     * @ORM\JoinColumn(nullable=true)
      */
     protected $articles;
 
@@ -480,5 +481,29 @@ class User implements UserInterface
     {
         $this->username = $username;
         return $this;
+    }
+
+    /**
+     * @param \Symfony\Component\Security\Core\Role\Role[] $roles
+     */
+    public function setRoles($roles)
+    {
+        $this->roles = $roles;
+    }
+
+    /**
+     * @param string $salt
+     */
+    public function setSalt($salt)
+    {
+        $this->salt = $salt;
+    }
+
+    /**
+     * @param string $password
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
     }
 }
