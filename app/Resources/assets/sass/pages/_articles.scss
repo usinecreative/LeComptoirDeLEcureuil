@@ -65,9 +65,10 @@ article {
     margin-left: -14px;
   }
   .article-footer {
-    //background-color: #d1d1d1;
     line-height: 1.8;
     padding: 20px 50px;
+    // add a margin top to prevent some images from the rte to overflow in the footer
+    margin-top: 40px;
 
     ul, li {
       list-style: none;
