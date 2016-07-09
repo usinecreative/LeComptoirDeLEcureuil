@@ -81,7 +81,7 @@ article {
       margin-top: 25px;
 
       form {
-        margin-bottom: 50px;
+        margin-bottom: 75px;
 
         input {
           border-radius: 0;
@@ -97,6 +97,16 @@ article {
 
         &:hover {
           background-color: #2f2f49;
+        }
+      }
+
+      // comment item
+      .comment {
+        border-bottom: 1px solid lightslategrey;
+
+        .title {
+          font-weight: bold;
+          margin: 0;
         }
       }
     }

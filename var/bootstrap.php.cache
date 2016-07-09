@@ -361,6 +361,7 @@ return $headers;
 }
 namespace Symfony\Component\HttpFoundation
 {
+use Symfony\Component\HttpFoundation\Exception\ConflictingHeadersException;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 class Request
 {
@@ -710,30 +711,27 @@ $ip = $this->server->get('REMOTE_ADDR');
 if (!$this->isFromTrustedProxy()) {
 return array($ip);
 }
-if (self::$trustedHeaders[self::HEADER_FORWARDED] && $this->headers->has(self::$trustedHeaders[self::HEADER_FORWARDED])) {
+$hasTrustedForwardedHeader = self::$trustedHeaders[self::HEADER_FORWARDED] && $this->headers->has(self::$trustedHeaders[self::HEADER_FORWARDED]);
+$hasTrustedClientIpHeader = self::$trustedHeaders[self::HEADER_CLIENT_IP] && $this->headers->has(self::$trustedHeaders[self::HEADER_CLIENT_IP]);
+if ($hasTrustedForwardedHeader) {
 $forwardedHeader = $this->headers->get(self::$trustedHeaders[self::HEADER_FORWARDED]);
 preg_match_all('{(for)=("?\[?)([a-z0-9\.:_\-/]*)}', $forwardedHeader, $matches);
-$clientIps = $matches[3];
-} elseif (self::$trustedHeaders[self::HEADER_CLIENT_IP] && $this->headers->has(self::$trustedHeaders[self::HEADER_CLIENT_IP])) {
-$clientIps = array_map('trim', explode(',', $this->headers->get(self::$trustedHeaders[self::HEADER_CLIENT_IP])));
+$forwardedClientIps = $matches[3];
+$forwardedClientIps = $this->normalizeAndFilterClientIps($forwardedClientIps, $ip);
+$clientIps = $forwardedClientIps;
 }
-$clientIps[] = $ip; $firstTrustedIp = null;
-foreach ($clientIps as $key => $clientIp) {
-if (preg_match('{((?:\d+\.){3}\d+)\:\d+}', $clientIp, $match)) {
-$clientIps[$key] = $clientIp = $match[1];
+if ($hasTrustedClientIpHeader) {
+$xForwardedForClientIps = array_map('trim', explode(',', $this->headers->get(self::$trustedHeaders[self::HEADER_CLIENT_IP])));
+$xForwardedForClientIps = $this->normalizeAndFilterClientIps($xForwardedForClientIps, $ip);
+$clientIps = $xForwardedForClientIps;
 }
-if (!filter_var($clientIp, FILTER_VALIDATE_IP)) {
-unset($clientIps[$key]);
-continue;
+if ($hasTrustedForwardedHeader && $hasTrustedClientIpHeader && $forwardedClientIps !== $xForwardedForClientIps) {
+throw new ConflictingHeadersException('The request has both a trusted Forwarded header and a trusted Client IP header, conflicting with each other with regards to the originating IP addresses of the request. This is the result of a misconfiguration. You should either configure your proxy only to send one of these headers, or configure Symfony to distrust one of them.');
 }
-if (IpUtils::checkIp($clientIp, self::$trustedProxies)) {
-unset($clientIps[$key]);
-if (null === $firstTrustedIp) {
-$firstTrustedIp = $clientIp;
+if (!$hasTrustedForwardedHeader && !$hasTrustedClientIpHeader) {
+return $this->normalizeAndFilterClientIps(array(), $ip);
 }
-}
-}
-return $clientIps ? array_reverse($clientIps) : array($firstTrustedIp);
+return $clientIps;
 }
 public function getClientIp()
 {
@@ -935,6 +933,13 @@ if (null === static::$formats) {
 static::initializeFormats();
 }
 return isset(static::$formats[$format]) ? static::$formats[$format][0] : null;
+}
+public static function getMimeTypes($format)
+{
+if (null === static::$formats) {
+static::initializeFormats();
+}
+return isset(static::$formats[$format]) ? static::$formats[$format] : array();
 }
 public function getFormat($mimeType)
 {
@@ -1259,9 +1264,29 @@ return $request;
 }
 return new static($query, $request, $attributes, $cookies, $files, $server, $content);
 }
-private function isFromTrustedProxy()
+public function isFromTrustedProxy()
 {
 return self::$trustedProxies && IpUtils::checkIp($this->server->get('REMOTE_ADDR'), self::$trustedProxies);
+}
+private function normalizeAndFilterClientIps(array $clientIps, $ip)
+{
+$clientIps[] = $ip; $firstTrustedIp = null;
+foreach ($clientIps as $key => $clientIp) {
+if (preg_match('{((?:\d+\.){3}\d+)\:\d+}', $clientIp, $match)) {
+$clientIps[$key] = $clientIp = $match[1];
+}
+if (!filter_var($clientIp, FILTER_VALIDATE_IP)) {
+unset($clientIps[$key]);
+continue;
+}
+if (IpUtils::checkIp($clientIp, self::$trustedProxies)) {
+unset($clientIps[$key]);
+if (null === $firstTrustedIp) {
+$firstTrustedIp = $clientIp;
+}
+}
+}
+return $clientIps ? array_reverse($clientIps) : array($firstTrustedIp);
 }
 }
 }
@@ -1304,7 +1329,7 @@ const HTTP_REQUEST_URI_TOO_LONG = 414;
 const HTTP_UNSUPPORTED_MEDIA_TYPE = 415;
 const HTTP_REQUESTED_RANGE_NOT_SATISFIABLE = 416;
 const HTTP_EXPECTATION_FAILED = 417;
-const HTTP_I_AM_A_TEAPOT = 418; const HTTP_UNPROCESSABLE_ENTITY = 422; const HTTP_LOCKED = 423; const HTTP_FAILED_DEPENDENCY = 424; const HTTP_RESERVED_FOR_WEBDAV_ADVANCED_COLLECTIONS_EXPIRED_PROPOSAL = 425; const HTTP_UPGRADE_REQUIRED = 426; const HTTP_PRECONDITION_REQUIRED = 428; const HTTP_TOO_MANY_REQUESTS = 429; const HTTP_REQUEST_HEADER_FIELDS_TOO_LARGE = 431; const HTTP_UNAVAILABLE_FOR_LEGAL_REASONS = 451;
+const HTTP_I_AM_A_TEAPOT = 418; const HTTP_MISDIRECTED_REQUEST = 421; const HTTP_UNPROCESSABLE_ENTITY = 422; const HTTP_LOCKED = 423; const HTTP_FAILED_DEPENDENCY = 424; const HTTP_RESERVED_FOR_WEBDAV_ADVANCED_COLLECTIONS_EXPIRED_PROPOSAL = 425; const HTTP_UPGRADE_REQUIRED = 426; const HTTP_PRECONDITION_REQUIRED = 428; const HTTP_TOO_MANY_REQUESTS = 429; const HTTP_REQUEST_HEADER_FIELDS_TOO_LARGE = 431; const HTTP_UNAVAILABLE_FOR_LEGAL_REASONS = 451;
 const HTTP_INTERNAL_SERVER_ERROR = 500;
 const HTTP_NOT_IMPLEMENTED = 501;
 const HTTP_BAD_GATEWAY = 502;
@@ -1353,7 +1378,7 @@ public static $statusTexts = array(
 415 =>'Unsupported Media Type',
 416 =>'Range Not Satisfiable',
 417 =>'Expectation Failed',
-418 =>'I\'m a teapot', 422 =>'Unprocessable Entity', 423 =>'Locked', 424 =>'Failed Dependency', 425 =>'Reserved for WebDAV advanced collections expired proposal', 426 =>'Upgrade Required', 428 =>'Precondition Required', 429 =>'Too Many Requests', 431 =>'Request Header Fields Too Large', 451 =>'Unavailable For Legal Reasons', 500 =>'Internal Server Error',
+418 =>'I\'m a teapot', 421 =>'Misdirected Request', 422 =>'Unprocessable Entity', 423 =>'Locked', 424 =>'Failed Dependency', 425 =>'Reserved for WebDAV advanced collections expired proposal', 426 =>'Upgrade Required', 428 =>'Precondition Required', 429 =>'Too Many Requests', 431 =>'Request Header Fields Too Large', 451 =>'Unavailable For Legal Reasons', 500 =>'Internal Server Error',
 501 =>'Not Implemented',
 502 =>'Bad Gateway',
 503 =>'Service Unavailable',
@@ -1438,7 +1463,11 @@ header($name.': '.$value, false, $this->statusCode);
 }
 header(sprintf('HTTP/%s %s %s', $this->version, $this->statusCode, $this->statusText), true, $this->statusCode);
 foreach ($this->headers->getCookies() as $cookie) {
+if ($cookie->isRaw()) {
+setrawcookie($cookie->getName(), $cookie->getValue(), $cookie->getExpiresTime(), $cookie->getPath(), $cookie->getDomain(), $cookie->isSecure(), $cookie->isHttpOnly());
+} else {
 setcookie($cookie->getName(), $cookie->getValue(), $cookie->getExpiresTime(), $cookie->getPath(), $cookie->getDomain(), $cookie->isSecure(), $cookie->isHttpOnly());
+}
 }
 return $this;
 }
@@ -1451,11 +1480,6 @@ public function send()
 {
 $this->sendHeaders();
 $this->sendContent();
-if (function_exists('fastcgi_finish_request')) {
-fastcgi_finish_request();
-} elseif ('cli'!== PHP_SAPI) {
-static::closeOutputBuffers(0, true);
-}
 return $this;
 }
 public function setContent($content)
@@ -2235,14 +2259,14 @@ protected $booted = false;
 protected $name;
 protected $startTime;
 protected $loadClassCache;
-const VERSION ='3.0.6';
-const VERSION_ID = 30006;
+const VERSION ='3.1.2';
+const VERSION_ID = 30102;
 const MAJOR_VERSION = 3;
-const MINOR_VERSION = 0;
-const RELEASE_VERSION = 6;
+const MINOR_VERSION = 1;
+const RELEASE_VERSION = 2;
 const EXTRA_VERSION ='';
-const END_OF_MAINTENANCE ='07/2016';
-const END_OF_LIFE ='01/2017';
+const END_OF_MAINTENANCE ='01/2017';
+const END_OF_LIFE ='07/2017';
 public function __construct($environment, $debug)
 {
 $this->environment = $environment;
@@ -2283,6 +2307,13 @@ if (false === $this->booted) {
 return;
 }
 if ($this->getHttpKernel() instanceof TerminableInterface) {
+if (!$this->debug) {
+if (function_exists('fastcgi_finish_request')) {
+fastcgi_finish_request();
+} elseif ('cli'!== PHP_SAPI) {
+Response::closeOutputBuffers(0, true);
+}
+}
 $this->getHttpKernel()->terminate($request, $response);
 }
 }
@@ -2923,7 +2954,11 @@ return parent::isFresh();
 }
 namespace Symfony\Component\HttpKernel
 {
+use Symfony\Component\HttpKernel\Controller\ArgumentResolver;
+use Symfony\Component\HttpKernel\Controller\ArgumentResolverInterface;
 use Symfony\Component\HttpKernel\Controller\ControllerResolverInterface;
+use Symfony\Component\HttpKernel\Event\FilterControllerArgumentsEvent;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
@@ -2933,6 +2968,7 @@ use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\Event\GetResponseForControllerResultEvent;
 use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
 use Symfony\Component\HttpKernel\Event\PostResponseEvent;
+use Symfony\Component\HttpFoundation\Exception\ConflictingHeadersException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
@@ -2942,11 +2978,17 @@ class HttpKernel implements HttpKernelInterface, TerminableInterface
 protected $dispatcher;
 protected $resolver;
 protected $requestStack;
-public function __construct(EventDispatcherInterface $dispatcher, ControllerResolverInterface $resolver, RequestStack $requestStack = null)
+private $argumentResolver;
+public function __construct(EventDispatcherInterface $dispatcher, ControllerResolverInterface $resolver, RequestStack $requestStack = null, ArgumentResolverInterface $argumentResolver = null)
 {
 $this->dispatcher = $dispatcher;
 $this->resolver = $resolver;
 $this->requestStack = $requestStack ?: new RequestStack();
+$this->argumentResolver = $argumentResolver;
+if (null === $this->argumentResolver) {
+@trigger_error(sprintf('As of 3.1 an %s is used to resolve arguments. In 4.0 the $argumentResolver becomes the %s if no other is provided instead of using the $resolver argument.', ArgumentResolverInterface::class, ArgumentResolver::class), E_USER_DEPRECATED);
+$this->argumentResolver = $resolver;
+}
 }
 public function handle(Request $request, $type = HttpKernelInterface::MASTER_REQUEST, $catch = true)
 {
@@ -2954,6 +2996,9 @@ $request->headers->set('X-Php-Ob-Level', ob_get_level());
 try {
 return $this->handleRaw($request, $type);
 } catch (\Exception $e) {
+if ($e instanceof ConflictingHeadersException) {
+$e = new BadRequestHttpException('The request headers contain conflicting information regarding the origin of this request.', $e);
+}
 if (false === $catch) {
 $this->finishRequest($request, $type);
 throw $e;
@@ -2989,7 +3034,11 @@ throw new NotFoundHttpException(sprintf('Unable to find the controller for path 
 $event = new FilterControllerEvent($this, $controller, $request, $type);
 $this->dispatcher->dispatch(KernelEvents::CONTROLLER, $event);
 $controller = $event->getController();
-$arguments = $this->resolver->getArguments($request, $controller);
+$arguments = $this->argumentResolver->getArguments($request, $controller);
+$event = new FilterControllerArgumentsEvent($this, $controller, $arguments, $request, $type);
+$this->dispatcher->dispatch(KernelEvents::CONTROLLER_ARGUMENTS, $event);
+$controller = $event->getController();
+$arguments = $event->getArguments();
 $response = call_user_func_array($controller, $arguments);
 if (!$response instanceof Response) {
 $event = new GetResponseForControllerResultEvent($this, $request, $type, $response);

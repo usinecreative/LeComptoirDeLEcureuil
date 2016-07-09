@@ -30,22 +30,22 @@ deploy:
 	ansible-playbook etc/ansible/playbooks/deploy.yml --ask-become-pass
 
 cleanup:
-	@bundle exec cap staging deploy:cleanup
+	bundle exec cap staging deploy:cleanup
 
 assets: assets-compile assets-copy
-	@echo "Assets build !"
+	echo "Assets build !"
 
 assets-compile:
-	@echo "compiling scss files using compass..."
-	@cd $(assets_dir) && compass compile
+	echo "compiling scss files using compass..."
+	cd $(assets_dir) && compass compile
 
 assets-copy:
-	@echo "copying css,js and fonts to web directory..."
-	@$(copy) $(assets_dir)/css/* $(web_dir)/css/
-	@$(copy) $(assets_dir)/fonts/* $(web_dir)/fonts/
-	@$(copy) $(assets_dir)/img/* $(web_dir)/img/
-	@echo "copying symfony assets"
-	@$(sf) assets:install
+	echo "copying css,js and fonts to web directory..."
+	$(copy) $(assets_dir)/css/* $(web_dir)/css/
+	$(copy) $(assets_dir)/fonts/* $(web_dir)/fonts/
+	$(copy) $(assets_dir)/img/* $(web_dir)/img/
+	echo "copying symfony assets"
+	$(sf) assets:install
 
 watch:
 	@while [ "true" ] ; do \
@@ -53,3 +53,6 @@ watch:
 		make assets ; \
 		sleep 2; \
 	done;
+
+run:
+	$(sf) server:run

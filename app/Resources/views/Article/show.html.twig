@@ -30,16 +30,19 @@
                         {{ article.category.name }}
                     </a>
                 </li>
-                <li>
-                    <strong>{{ 'lecomptoir.tags' | trans }} :</strong>
-                    <ul class="inline">
-                        {% for tag in article.tags %}
-                            <li class="tag">
-                                <a href="{{ path('lecomptoir.article.list_by_tag', {tagSlug: tag.slug}) }}">{{ tag.name }}</a>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                </li>
+
+                {% if article.tags | length > 0 %}
+                    <li>
+                        <strong>{{ 'lecomptoir.tags' | trans }} :</strong>
+                        <ul class="inline">
+                            {% for tag in article.tags %}
+                                <li class="tag">
+                                    <a href="{{ path('lecomptoir.article.list_by_tag', {tagSlug: tag.slug}) }}">{{ tag.name }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                {% endif %}
             </ul>
 
             {# Article comments (if allowed) #}
@@ -50,14 +53,15 @@
                     <form action="" method="post">
                         {{ form_row(commentForm) }}
 
-                        <input type="submit" value="Poster un commentaire" class="btn btn-info comments-btn" />
+                        <input type="submit" value="Poster un commentaire" class="btn btn-info comments-btn"/>
                     </form>
 
 
                     {% for comment in article.comments %}
                         <div class="comment">
-                            <p class="title">Par {{ comment.authorName }}, le {{ comment.createdAt | localizeddate('full') }}</p>
-                            <p class="">{{ comment.content }}</p>
+                            <p class="title">Par {{ comment.authorName }},
+                                le {{ comment.createdAt | localizeddate('full') }}</p>
+                            <p class="">{{ comment.content | truncate(500, '...') }}</p>
                         </div>
                     {% endfor %}
                 </div>
