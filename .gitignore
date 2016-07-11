@@ -16,7 +16,7 @@ dumps
 
 .gitkeep
 
-/etc/ansible/vars
+/etc/ansible/vars/vars.yml
 /etc/ansible/roles
 
 # backup
