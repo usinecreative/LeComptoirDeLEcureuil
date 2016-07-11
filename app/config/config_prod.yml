@@ -37,3 +37,44 @@ monolog:
 #    ignored_routes: []
 #    ignored_paths: []
 #    ignored_commands: []
+
+jk_assets:
+    debug: true
+    filters:
+        compass:
+            bin: /usr/local/bin/compass
+        merge: ~
+        minify: ~
+        copy: ~
+    tasks:
+        build.css:
+            filters:
+                - compass
+                - merge
+                - minify
+            sources:
+                - app/Resources/assets/sass/main.scss
+            destinations:
+                - web/css/main.css
+
+        bootstrap:
+            filters:
+                - copy
+            sources:
+                # bootstrap
+                - vendor/components/bootstrap/css/bootstrap.min.css
+                - vendor/components/bootstrap/css/bootstrap-theme.min.css
+                - vendor/components/bootstrap/js/bootstrap.min.js
+                - vendor/components/bootstrap/fonts/*
+                # font-awesome
+                - vendor/components/font-awesome/css/font-awesome.min.css
+                - vendor/components/font-awesome/fonts/*
+            destinations:
+                # bootstrap
+                - web/css/bootstrap.min.css
+                - web/css/bootstrap-theme.min.css
+                - web/js/bootstrap.min.js
+                - web/fonts/
+                # font-awesome
+                - web/css/font-awesome.min.css
+                - web/fonts/

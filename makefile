@@ -29,23 +29,10 @@ cc:
 deploy:
 	ansible-playbook etc/ansible/playbooks/deploy.yml --ask-become-pass
 
-cleanup:
-	bundle exec cap staging deploy:cleanup
 
-assets: assets-compile assets-copy
-	echo "Assets build !"
 
-assets-compile:
-	echo "compiling scss files using compass..."
-	cd $(assets_dir) && compass compile
-
-assets-copy:
-	echo "copying css,js and fonts to web directory..."
-	$(copy) $(assets_dir)/css/* $(web_dir)/css/
-	$(copy) $(assets_dir)/fonts/* $(web_dir)/fonts/
-	$(copy) $(assets_dir)/img/* $(web_dir)/img/
-	echo "copying symfony assets"
-	$(sf) assets:install
+assets:
+	$(sf) jk:assets:build
 
 watch:
 	@while [ "true" ] ; do \
@@ -53,6 +40,17 @@ watch:
 		make assets ; \
 		sleep 2; \
 	done;
+
+
+install-admin-symlink:
+	rm -rf vendor/lag/adminbundle
+	mkdir src/LAG
+	ln -s /home/johnkrovitch/Projects/AdminBundle/AdminBundle src/LAG/AdminBundle
+
+install-sam-symlink:
+	rm -rf vendor/johnkrovitch/sam
+	mkdir src/JK
+	ln -s /home/johnkrovitch/Projects/JK/Sam src/JK/Sam
 
 run:
 	$(sf) server:run

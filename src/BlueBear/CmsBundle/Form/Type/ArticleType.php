@@ -3,6 +3,7 @@
 namespace BlueBear\CmsBundle\Form\Type;
 
 use BlueBear\CmsBundle\Entity\Article;
+use LAG\AdminBundle\Form\Type\DateTimePickerType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -48,7 +49,7 @@ class ArticleType extends AbstractType
                     'lag.cms.publication.published' => Article::PUBLICATION_STATUS_PUBLISHED,
                 ]
             ])
-            ->add('publicationDate', DateTimeType::class, [
+            ->add('publicationDate', DateTimePickerType::class, [
                 'required' => false,
             ])
             ->add('author', EntityType::class, [

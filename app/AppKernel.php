@@ -43,8 +43,7 @@ class AppKernel extends Kernel
 
             new \Knp\Bundle\GaufretteBundle\KnpGaufretteBundle(),
             new Eko\FeedBundle\EkoFeedBundle(),
-
-
+            new JK\SamBundle\JKSamBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'])) {
