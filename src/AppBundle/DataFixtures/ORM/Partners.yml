@@ -2,16 +2,15 @@ AppBundle\Entity\Partner:
     edition_mnemos:
         name: Edition Mnemos
         description: >
-            <p>Mnémos, éditeur d’imaginaire depuis 1996 et membre fondateur <strong><a href="http://www.mnemos.com/auteurs/les-indes-de-limaginaire/">des Indés de l’imaginaire</a></strong>.</p>
-            <p><i>Les Éditions Mnémos défendent une littérature de l’imaginaire vivante et de qualité. Depuis 20 ans, plus de 200 titres ont été publiés. Notre politique éditoriale est basée autour de deux critères : la découverte de nouveaux talents et la mise en avant de la création française dans des genres habituellement dévolus aux auteurs anglo-saxons.<br>
-            Nos publications se regroupent en livres grand format, en poche avec le label Hélios, en beaux livres avec notre label Ourobores.</i><i></i></p>
-            <img alt="" src="http://www.mnemos.com/JOOMLA2/images/auteurs/fred%205%20site.gif" width="100" border="0"><img title="Nathalie Weil" alt="Nathalie Weil" src="http://www.mnemos.com/JOOMLA2/images/cartouche/nat.jpg" border="0">&nbsp;&nbsp;<img alt="" src="http://www.mnemos.com/JOOMLA2/images/cartouche/coralie%202-site.gif" width="100" border="0"><img alt="" src="http://www.mnemos.com/JOOMLA2/images/auteurs/st%C3%A9phanie%20site.gif" width="100" border="0">
-            <p>Direction éditoriale :&nbsp;Frédéric WEIL<br>
-            Administration – communication : Nathalie Weil</p>
-            <p>Directeurs d’ouvrages : Stéphanie CHABERT -&nbsp;Coralie DAVID -&nbsp;Raphaël Granier de Cassagnac – Frédéric WEIL</p>
-            <p>Graphistes : Franck ACHARD – Isabelle JOVANOVIC – Atelier Octobre Rouge</p>
-            <p>Photographies : © Patrick Imbert, sauf pour Coralie et Stéphanie (voir son&nbsp;<a href="http://www.icicommeailleurs.org/" target="_blank">site</a>)<br>
-            Photographie Coralie : ©&nbsp;Pouria Amir Ardalan</p></section>
+            Les éditions Mnémos sont une maison d'édition française fondée le 1er février 1996 par Stéphane Marsan (fondateur des éditions Bragelonne) et Frédéric Weil, venant tous deux de l'univers du jeu de rôle. À l'origine, Mnémos avait été créé afin de publier des romans inspirés d'univers de jeux de rôle.
+
+            La politique initiale était de promouvoir une nouvelle génération d'écrivains français de fantasy. Parmi les auteurs publiés, nous pouvons retrouver Pierre Grimbert, Johan Heliot, Fabrice Colin, Mathieu Gaborit, GD Arthur, Fabien Cerutti…
+
+            Depuis sa fondation, la politique de la maison a évolué, avec une augmentation du nombre de traductions avec par exemple David Gemmell ou encore Robin Hobb.
+
+            Il est à noter que les éditions Mnémos (dont environ les deux tiers de la production sont consacrés à des auteurs francophones), garde sa vocation de découvreur avec notamment la création en 2009 de la collection Dédales dont le but est de révèler et promouvoir de nouvelles plumes, de nouveaux styles, et de s’affranchir d’une littérature de l’imaginaire conventionnelle.
+
+            Depuis fin 2012, cet éditeur appartient au collectif des Indés de l'Imaginaire, avec les maisons Les Moutons électriques et ActuSF.
         baseline: 'Mnémos, éditeur d’imaginaire depuis 1996 et membre fondateur des Indés de l’imaginaire.'
         slug: editions-mnemos
         website: http://www.mnemos.com/
@@ -19,8 +18,16 @@ AppBundle\Entity\Partner:
     edition_chat_noir:
         name: Editions du Chat Noir
         description: >
-            Editions du Chat Noir, maison spécialisée dans la littérature de l'imaginaire...
-            Fantastique, Bit-lit, gothic, steampunk... traversez le voile d'un coup de griffes !
+            Les éditions du Chat Noir sont une maison d'édition indépendante basée à en Charente. Elle est spécialisée dans le fantastique et le steampunk.
+
+            Fondée par Cécile Guillot sous un statut associatif en 2011, elle devient rapidement une société à part entière suite aux succès de Réminiscences, premier tome de la série Les Larmes Rouges de Georgia Caldera. Fin 2012, les éditions du Chat Noir changent de statut et deviennent une société, dirigée par Cécile Guillot et Mathieu Guibé.
+
+            Les cinq collections des éditions du Chat Noir ont vocation à explorer différentes nuances des genres fantastique et steampunk. Chacune est identifiable par la couleur de la gemme sur la quatrième de couverture :
+            Griffe Sombre (gemme noire) pour le fantastique gothique.
+            Féline (gemme rouge) pour l'urban fantasy et la bit-lit.
+            Cheshire (gemme violette) pour le young adult.
+            Black Steam (gemme verte) pour le steampunk et la gaslamp fantasy.
+            Graphicat (gemme blanche) pour les artbooks et les livres illustrés.
         baseline: Editions du Chat Noir, maison spécialisée dans la littérature de l'imaginaire...
         slug: edition-chat-noir
         website: http://www.editionsduchatnoir.com/
@@ -28,7 +35,16 @@ AppBundle\Entity\Partner:
     edition_actu_sf:
         name: Edition ActuSF
         description: >
-            ActuSF est un webzine francophone consacré à l'actualité des littératures
+            Les éditions ActuSF sont nées en 2003 à la suite du webzine du même nom.
+            ActuSF est spécialisé dans la publication de petits recueils de nouvelles ou de romans courts (novellas) dans les domaines de la science-fiction, du fantastique et de la fantasy.
+
+            Depuis 2007, les publications se sont accélérées avec une dizaine de titres par an, dont la plupart sont d’auteurs français dans la collection des Trois Souhaits comme Sylvie Lainé, Jean-Marc Ligny, Etienne Barillier, Arthur Morgan, Jean-Michel Calvez ou dernièrement Karim Berrouka et Jean-Laurent Del Socorro.
+
+            En 2010, les éditions ActuSF ont lancé une nouvelle collection Perles d'Épice, destinée aux auteurs étrangers avec entre autre la publication de titres de Robert Silverberg, Nancy Kress et George R. R. Martin.
+
+            Enfin depuis 2013, ils ont fondé le collectif des Indés de l'imaginaire avec les éditions Mnémos et Les Moutons électriques. Ils partagent notamment ensemble la collection de poche Hélios et sa déclinaison polar Hélios Noir. Dernier rebondissement en 2016 avec le lancement de la série jeunesse : Aventures à Guédelon de Danielle Martinigol.
+
+            La direction éditoriale des éditions ActuSF est assurée par Éric Holstein, Jérôme Vincent, Marie Marquez et Charlotte Volper.
         baseline: ActuSF est un webzine francophone consacré à l'actualité des littératures
         slug: edition-actusf
         website: http://www.editions-actusf.fr/
@@ -36,23 +52,17 @@ AppBundle\Entity\Partner:
     edition_bourdonaye:
         name: Edition Bourdonnaye
         description: >
-            Nous nous présentons comme la french touch de la littérature. En effet, nous adorons suivre nos coups de
-            cœur et découvrir les nouveaux talents que nous offre la scène littéraire française. Nous développons ainsi
-            une ligne éditoriale généraliste autour d’auteurs dont les styles et les univers illuminent nos différentes
-            collections. Notre objectif est de propulser la création dans tous les domaines : littérature générale,
-            littérature noire, fantasy, science-fiction, tout public, érotisme. Et nous sommes particulièrement fiers
-            d'avoir remis au goût du jour la série littéraire si chère à nos grands feuilletonistes des XIXe et
-            XXe siècles, à laquelle nous avons appliqué les codes de la série télé, à travers notre collection « Pulp ».
-
-            Nous publions des livres aux formats papier et numérique, car nous sommes convaincus que ces deux supports
-            de lecture sont synergiques. Tout en étant donc présents dans les librairies « physiques » avec nos livres
-            papier, nous défendons une véritable politique de promotion du livre numérique, fondée sur des prix très
-            attractifs – car nous pensons aux lecteurs – et une large communication digitale.
-
-            Et puisque nous plaçons les auteurs au centre de l'univers littéraire, nous établissons un réel partenariat
-            avec eux et leur proposons des contrats aux conditions satisfaisantes : droits d'auteur élevés, durée de
-            cession des droits réduite, paiement et reddition des comptes tous les trimestres.
-
+            Jeune maison d’édition fondée en 2011, La Bourdonnaye, suit ses coups de cœur et aime découvrir de nouveaux talents. La Bourdonnaye développe une ligne éditoriale généraliste très vaste autour d’auteurs français dont les styles et les univers illuminent ses collections :
+            « Pulp » : format novateur de feuilletons littéraires conçus comme des séries télé, avec des épisodes écrits pour un temps de lecture de 15 à 20 minutes, des saisons de 6 épisodes chacune et chaque saison disponible en version intégrale. Pulp offre donc la possibilité d’une lecture par petites plages horaires, collant au rythme de vie de nombreux lecteurs.
+            « Fictions » : littérature générale.
+            « Intrigues » : romans noirs, thrillers, polars.
+            « Imaginaires » : fantasy, science-fiction.
+            « Tous publics » : jeunesse.
+            « AEGE » : guerre et intelligence économique.
+            « Réflexions » : essais.
+            « Documents » : comme son nom l’indique.
+            « Carré philo » : philosophie.
+            « Adultes » : littérature érotique, la petite nouvelle lancée en 2016.
             Les éditions La Bourdonnaye sont également propriétaires de la librairie en ligne Didactibook.
         baseline: La French touch de la littérature
         slug: edition-bourdonnaye

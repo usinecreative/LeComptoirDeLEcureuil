@@ -80,6 +80,9 @@ lag_admin:
                 page:
                     admin: page
                     icon: fa fa-code
+                partners:
+                    admin: partner
+                    icon: fa fa-book
                 parameters:
                     url: '#'
                     text: Parameters
@@ -327,6 +330,9 @@ lag_admin:
                 create: ~
                 edit: ~
                 delete: ~
+        partner:
+            entity: AppBundle\Entity\Partner
+            form: AppBundle\Form\Type\PartnerType
 
 bluebear_media: ~
 

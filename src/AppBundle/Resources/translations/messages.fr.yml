@@ -121,3 +121,19 @@ lag.admin.category.deleted: La catégorie a été supprimée
 lag.admin.category.saved: La catégorie a été sauvegardée
 
 lecomptoir.tags: Tags
+
+# Partners
+partner:
+    list: Partenaires
+    delete: Supprimer
+    create: Ajouter
+    edit: Editer
+    name: Nom
+    description: Description
+    website: Site internet
+    slug: Slug
+    baseline: Baseline
+    createdAt: Crée le
+    updatedAt: Mis à jour le
+    _actions: ''
+
