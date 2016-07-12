@@ -1,3 +1,7 @@
+jk_cms:
+    resource: "@JKCmsBundle/Resources/config/routing.yml"
+    prefix:   /
+
 jk_database:
     resource: "@JKDatabaseBundle/Resources/config/routing.yml"
     prefix:   /

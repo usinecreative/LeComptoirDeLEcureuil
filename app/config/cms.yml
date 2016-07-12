@@ -1,3 +1,7 @@
+imports:
+    - { resource: admin/category.yml }
+    - { resource: admin/article.yml }
+
 blue_bear_cms:
     content:
         # available content behaviors: authorable, timestampable, publishable, commentable
@@ -107,39 +111,6 @@ lag_admin:
 
     # Admins configurations
     admins:
-        ### Category ###
-        category:
-            entity: BlueBear\CmsBundle\Entity\Category
-            form: BlueBear\CmsBundle\Form\Type\CategoryType
-            actions:
-                batch: ~
-                create: ~
-                edit: ~
-                delete: ~
-                list:
-                    title: category.list
-                    menus:
-                        top:
-                            items:
-                                create:
-                                    admin: category
-                                    action: create
-                                    icon: fa fa-plus
-                    fields:
-                        id: ~
-                        name: ~
-                        createdAt:
-                            type: date
-                        updatedAt:
-                            type: date
-                        articles:
-                            type: count
-                        displayInHomepage:
-                            type: boolean
-                        _actions: ~
-                    order:
-                        - {field: updatedAt, order: desc}
-
         ### Article ###
         article:
             entity: BlueBear\CmsBundle\Entity\Article

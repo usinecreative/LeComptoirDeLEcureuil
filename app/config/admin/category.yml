@@ -1,0 +1,39 @@
+lag_admin:
+    admins:
+        ### Category ###
+        category:
+            entity: BlueBear\CmsBundle\Entity\Category
+            form: BlueBear\CmsBundle\Form\Type\CategoryType
+            actions:
+                batch: ~
+                create: ~
+                edit: ~
+                delete: ~
+                list:
+                    title: category.list
+                    menus:
+                        top:
+                            items:
+                                create:
+                                    admin: category
+                                    action: create
+                                    icon: fa fa-plus
+                    fields:
+                        id: ~
+                        name:
+                            type: link
+                            options:
+                                admin: category
+                                action: edit
+                                parameters: {id: ~}
+                        createdAt:
+                            type: date
+                        updatedAt:
+                            type: date
+                        articles:
+                            type: count
+                        displayInHomepage:
+                            type: boolean
+                        _actions: ~
+                    order:
+                        - {field: updatedAt, order: desc}

@@ -44,6 +44,7 @@ class AppKernel extends Kernel
             new \Knp\Bundle\GaufretteBundle\KnpGaufretteBundle(),
             new Eko\FeedBundle\EkoFeedBundle(),
             new JK\SamBundle\JKSamBundle(),
+            new JK\CmsBundle\JKCmsBundle(),
 
             new Vich\UploaderBundle\VichUploaderBundle()
         ];

@@ -1,0 +1,55 @@
+lag_admin:
+    admins:
+        ### Article ###
+        article:
+            entity: BlueBear\CmsBundle\Entity\Article
+            form: BlueBear\CmsBundle\Form\Type\ArticleType
+            actions:
+                list:
+                    title: article.list
+                    order:
+                        - {field: publicationDate, order: desc}
+                    fields:
+                        id: ~
+                        title:
+                            type: link
+                            options:
+                                length: 40
+                                route: lecomptoir.cms.article.edit
+                                parameters: {id: ~}
+                        category: ~
+                        author: ~
+                        publicationStatus: ~
+                        publicationDate: {type: date, options: {format: d/m/Y}}
+                        updatedAt: {type: date, options: {format: '\L\e d/m/Y à h:i:s'}}
+                        _actions:
+                            type: collection
+                            options:
+                                _edit:
+                                    type: action
+                                    options:
+                                        title: lag.admin.edit
+                                        route: lecomptoir.cms.article.edit
+                                        parameters: {id: ~}
+                                        icon: pencil
+                                _delete:
+                                    type: action
+                                    options:
+                                        title: lag.admin.delete
+                                        route: lecomptoir.cms.article.delete
+                                        parameters: {id: ~}
+                                        icon: remove
+                create: ~
+                edit:
+                    menus:
+                        top:
+                            items:
+                                preview:
+                                    text: article.preview
+                                    route: bluebear.cms.article.preview
+                                    parameters: {id: ~}
+                                    icon: fa fa-eye
+                                    attr:
+                                        target: _blank
+
+                delete: ~
