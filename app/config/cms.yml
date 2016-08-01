@@ -281,14 +281,14 @@ lag_admin:
                             type: action
                             options:
                                 title: bluebear.admin.edit
-                                route: bluebear.cms.media.edit
+                                route: lecomptoir.cms.media.edit
                                 parameters: {id: ~}
                                 icon: pencil
                         _delete:
                             type: action
                             options:
                                 title: bluebear.admin.delete
-                                route: bluebear.cms.media.delete
+                                route: lecomptoir.cms.media.delete
                                 parameters: {id: ~}
                                 icon: remove
                 upload: ~
@@ -308,18 +308,18 @@ lag_admin:
                         _actions:
                             type: collection
                             options:
-                                edit:
+                                _edit:
                                     type: action
                                     options:
-                                        title: bluebear.admin.edit
-                                        route: bluebear.cms.page.edit
+                                        title: lg.admin.edit
+                                        route: lecomptoir.cms.page.edit
                                         parameters: {id: ~}
                                         icon: pencil
-                                delete:
+                                _delete:
                                     type: action
                                     options:
-                                        title: bluebear.admin.delete
-                                        route: bluebear.cms.page.delete
+                                        title: lag.admin.delete
+                                        route: lecomptoir.cms.page.delete
                                         parameters: {id: ~}
                                         icon: remove
 #                    actions:

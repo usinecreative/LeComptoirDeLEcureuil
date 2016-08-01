@@ -99,7 +99,7 @@ comment:
     create: Ajouter un commentaire
     list: Commentaires
     edit: Editer
-    delete: Supprimer un commentaire
+    delete: Supprimer
     content: Contenu
     id: '#'
     article: Article
@@ -107,6 +107,16 @@ comment:
 
 page:
     create: Créer une page libre
+    id: '#'
+    title: Titre
+    content: Contenu
+    updatedAt: Mis à jour le
+    publicationDate: Publié le
+    _actions: ''
+    delete: Supprimer une page
+
+lag.admin.page.saved: Page sauvegardée
+lag.admin.page.deleted: Page supprimée
 
 # Imports
 import.list: Imports
@@ -138,3 +148,4 @@ partner:
     _actions: ''
 
 lag.admin.partner.saved: Partenaire sauvegardé
+lag.admin.partner.saved: Partenaire supprimer
