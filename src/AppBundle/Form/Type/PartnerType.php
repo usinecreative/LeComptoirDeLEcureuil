@@ -16,6 +16,9 @@ class PartnerType extends AbstractType
             ->add('name', TextType::class, [
                 'label' => 'partner.name'
             ])
+            ->add('slug', TextType::class, [
+                'label' => 'partner.slug'
+            ])
             ->add('description', TextareaType::class, [
                 'attr' => [
                     'rows' => 10,
