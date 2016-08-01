@@ -13,7 +13,7 @@
     ]
   },
   "require": {
-    "php": ">=5.6",
+    "php": ">=5.5",
     "symfony/symfony": "~3.0",
     "symfony/swiftmailer-bundle": "~2.3",
     "symfony/assetic-bundle": "~2.7",
@@ -33,7 +33,6 @@
     "guzzlehttp/guzzle": "^6.1",
     "knplabs/knp-gaufrette-bundle": "^0.3.0",
     "eko/feedbundle": "^1.2",
-
     "bluebear/basebundle": "0.2.*",
     "lag/adminbundle": "0.4",
     "components/bootstrap": "^3.3",
