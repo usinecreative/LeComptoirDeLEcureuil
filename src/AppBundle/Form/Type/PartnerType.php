@@ -28,7 +28,20 @@ class PartnerType extends AbstractType
                 'label' => 'partner.description'
             ])
             ->add('website', UrlType::class, [
-                'label' => 'partner.website'
+                'label' => 'partner.website',
+                'required' => false
+            ])
+            ->add('twitter', UrlType::class, [
+                'label' => 'partner.twitter',
+                'required' => false
+            ])
+            ->add('facebook', UrlType::class, [
+                'label' => 'partner.facebook',
+                'required' => false
+            ])
+            ->add('instagram', UrlType::class, [
+                'label' => 'partner.instagram',
+                'required' => false
             ])
         ;
     }

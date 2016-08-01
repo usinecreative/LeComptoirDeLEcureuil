@@ -44,14 +44,39 @@ class Partner
     protected $slug;
 
     /**
-     * @ORM\Column(name="baseline", type="string", length=255)
+     * @var string
+     *
+     * @ORM\Column(name="baseline", type="string", length=255, nullable=true)
      */
     protected $baseline;
 
     /**
+     * @var string
+     *
      * @ORM\Column(name="website", type="text", nullable=true)
      */
     protected $website;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="twitter", type="text", nullable=true)
+     */
+    protected $twitter;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="facebook", type="text", nullable=true)
+     */
+    protected $facebook;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="instagram", type="text", nullable=true)
+     */
+    protected $instagram;
 
     /**
      * @return mixed
@@ -145,5 +170,53 @@ class Partner
         $this->website = $website;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTwitter()
+    {
+        return $this->twitter;
+    }
+
+    /**
+     * @param string $twitter
+     */
+    public function setTwitter($twitter)
+    {
+        $this->twitter = $twitter;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFacebook()
+    {
+        return $this->facebook;
+    }
+
+    /**
+     * @param string $facebook
+     */
+    public function setFacebook($facebook)
+    {
+        $this->facebook = $facebook;
+    }
+
+    /**
+     * @return string
+     */
+    public function getInstagram()
+    {
+        return $this->instagram;
+    }
+
+    /**
+     * @param string $instagram
+     */
+    public function setInstagram($instagram)
+    {
+        $this->instagram = $instagram;
     }
 }

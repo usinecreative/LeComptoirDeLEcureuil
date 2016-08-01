@@ -31,6 +31,9 @@
 - name: Create database schema
   shell: '{{ symfony_console }} doctrine:database:create --if-not-exists'
 
+- name: Run Doctrine migratioons
+  shell: '{{ symfony_console }} doctrine:migration:migrate --no-interaction'
+
 - name: Clear cache
   shell: '{{ symfony_console }} cache:clear --env={{ symfony_env }}'
 
