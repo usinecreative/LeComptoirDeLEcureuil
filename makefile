@@ -27,7 +27,7 @@ cc:
 
 
 deploy:
-	ansible-playbook etc/ansible/playbooks/deploy.yml --ask-become-pass
+	ansible-playbook etc/ansible/playbooks/deploy.yml
 
 
 
