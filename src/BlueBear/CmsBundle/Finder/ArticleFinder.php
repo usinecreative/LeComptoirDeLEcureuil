@@ -116,7 +116,8 @@ class ArticleFinder
 
         // by default, articles are sorted by publication date
         $queryBuilder
-            ->orderBy('article.publicationDate, comments.updatedAt', 'desc');
+            ->addOrderBy('article.publicationDate', 'DESC')
+            ->addOrderBy('comments.updatedAt', 'DESC');
 
         return $queryBuilder;
     }
