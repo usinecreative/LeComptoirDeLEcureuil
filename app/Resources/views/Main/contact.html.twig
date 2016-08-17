@@ -1,41 +1,44 @@
 {% extends "::layout.html.twig" %}
 
 {% block content %}
-    <div class="col-lg-9 main-content contact-page">
-        <h2>Contacter l'écureuil</h2>
+    <div class="col-lg-9 main-content free-page contact-page">
+        <div class="page-content">
 
-        <p>
-            Vous pouvez laisser un message à l'écureuil qui ne manquera pas de répondre dès qu'il aura fini sa collecte
-            de noisettes...
-        </p>
+            <h2>Contacter l'écureuil</h2>
 
-        <form action="" method="post">
-            {# anti spam field #}
-            <div class="form-group hide">
-                {{ form_label(form.url) }}
-                {{ form_widget(form.url) }}
-            </div>
-            <div class="form-group">
-                {{ form_label(form.firstName) }}
-                {{ form_widget(form.firstName) }}
-            </div>
-            <div class="form-group">
-                {{ form_label(form.lastName) }}
-                {{ form_widget(form.lastName) }}
-            </div>
-            <div class="form-group">
-                {{ form_label(form.email) }}
-                {{ form_widget(form.email) }}
-            </div>
-            <div class="form-group">
-                {{ form_label(form.message) }}
-                {{ form_widget(form.message) }}
-            </div>
-            <div class="form-group text-right">
-                <input type="submit" class="btn btn-success"
-                       value="{{ 'lecomptoir.contact.contact' | trans }}" />
-            </div>
-        </form>
+            <p>
+                Vous pouvez laisser un message à l'écureuil qui ne manquera pas de répondre dès qu'il aura fini sa collecte
+                de noisettes...
+            </p>
+
+            <form action="" method="post">
+                {# anti spam field #}
+                <div class="form-group hide">
+                    {{ form_label(form.url) }}
+                    {{ form_widget(form.url) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.firstName) }}
+                    {{ form_widget(form.firstName) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.lastName) }}
+                    {{ form_widget(form.lastName) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.email) }}
+                    {{ form_widget(form.email) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.message) }}
+                    {{ form_widget(form.message) }}
+                </div>
+                <div class="form-group text-right">
+                    <input type="submit" class="btn btn-success"
+                           value="{{ 'lecomptoir.contact.contact' | trans }}" />
+                </div>
+            </form>
+        </div>
 
     </div>
 {% endblock %}

@@ -1,55 +1,57 @@
 {% extends '::layout.html.twig' %}
 
 {% block content %}
-    <div class="col-lg-9 main-content latest-article page-filter">
-        <h2>{{ title | capitalize }}</h2>
+    <div class="col-lg-9 main-content latest-article page-filter free-page">
+        <div class="page-content">
+            <h2>{{ title | capitalize }}</h2>
 
-        <div class="row">
+            <div class="row">
+
+                {% if articles | length > 0 %}
+                    {% for article in articles %}
+                        {% set categoryUrl = path('lecomptoir.article.list_by_category', {categorySlug: article.category.slug}) %}
+                        {% set categoryLinkTitle = 'lecomptoir.article.go_to_category' | trans({'%category%': article.category.name}) %}
+                        {% set articleUrl = path('lecomptoir.article.show', article.urlParameters) %}
+                        {% set articleLinkTitle = 'lecomptoir.article.go_to_read' | trans({'%article%': article.title}) %}
+
+                        <div class="col-md-12 article-item">
+                            <h2 class="ribbon">
+                                <a href="{{ categoryUrl }}" title="{{ categoryLinkTitle }}">
+                                    {{ article.category.name }}
+                                </a>
+                            </h2>
+                            <a href=""><img src="/img/cover-batard.jpg"/></a>
+                            <span class="title-date">{{ article.publicationDate | localizeddate('full', 'none') }}</span>
+
+                            <h3>
+                                <a href="{{ articleUrl }}" title="{{ articleLinkTitle }}">{{ article.title }}</a>
+                            </h3>
+
+                            <p>{{ article.content | striptags | truncate(500) | raw }}
+                                <a href="{{ articleUrl }}" title="{{ articleLinkTitle }}" class="more-link">
+                                    {{ 'lecomptoir.interface.more_link' | trans }}
+                                    <i class="fa fa-plus-circle"></i>
+                                </a>
+                            </p>
+                        </div>
+                    {% endfor %}
+
+                {% else %}
+                    <div class="col-md-12">
+                        {{ 'lecomptoir.article.no_result' | trans }}
+                    </div>
+                {% endif %}
+            </div>
 
             {% if articles | length > 0 %}
-                {% for article in articles %}
-                    {% set categoryUrl = path('lecomptoir.article.list_by_category', {categorySlug: article.category.slug}) %}
-                    {% set categoryLinkTitle = 'lecomptoir.article.go_to_category' | trans({'%category%': article.category.name}) %}
-                    {% set articleUrl = path('lecomptoir.article.show', article.urlParameters) %}
-                    {% set articleLinkTitle = 'lecomptoir.article.go_to_read' | trans({'%article%': article.title}) %}
+                <div class="pager">
 
-                    <div class="col-md-12 article-item">
-                        <h2 class="ribbon">
-                            <a href="{{ categoryUrl }}" title="{{ categoryLinkTitle }}">
-                                {{ article.category.name }}
-                            </a>
-                        </h2>
-                        <a href=""><img src="/img/cover-batard.jpg"/></a>
-                        <span class="title-date">{{ article.publicationDate | localizeddate('full', 'none') }}</span>
-
-                        <h3>
-                            <a href="{{ articleUrl }}" title="{{ articleLinkTitle }}">{{ article.title }}</a>
-                        </h3>
-
-                        <p>{{ article.content | striptags | truncate(500) | raw }}
-                            <a href="{{ articleUrl }}" title="{{ articleLinkTitle }}" class="more-link">
-                                {{ 'lecomptoir.interface.more_link' | trans }}
-                                <i class="fa fa-plus-circle"></i>
-                            </a>
-                        </p>
-                    </div>
-                {% endfor %}
-
-            {% else %}
-                <div class="col-md-12">
-                    {{ 'lecomptoir.article.no_result' | trans }}
+                    {% if pager.haveToPaginate %}
+                        {{ pagerfanta(pager, 'default_translated', {page: pager.currentPage}) }}
+                    {% endif %}
                 </div>
             {% endif %}
         </div>
-
-        {% if articles | length > 0 %}
-            <div class="pager">
-
-                {% if pager.haveToPaginate %}
-                    {{ pagerfanta(pager, 'default_translated', {page: pager.currentPage}) }}
-                {% endif %}
-            </div>
-        {% endif %}
     </div>
 {% endblock %}
 

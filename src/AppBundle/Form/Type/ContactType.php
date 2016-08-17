@@ -45,7 +45,7 @@ class ContactType extends AbstractType
                 'label' => 'lecomptoir.contact.message',
                 'attr' => [
                     'rows' => 10,
-                    'placeholder' => 'lecomptoir.contact.first_name_placeholder'
+                    'placeholder' => 'lecomptoir.contact.message_placeholder'
                 ]
             ])
         ;

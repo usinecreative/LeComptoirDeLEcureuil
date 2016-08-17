@@ -35,9 +35,6 @@ lecomptoir:
         facebook: Aller sur le facebook de l'écureuil
         linkedin: Aller sur le linkedin de l'écureuil
         google_plus: Aller sur le google+ de l'écureuil
-
-#    batch:
-#        delete: Supprimer les entités
     partner:
         not_found: Le partenaire n'existe pas... C'est vraiment dommage...
         website: Site internet
@@ -54,6 +51,7 @@ lecomptoir:
         last_name_placeholder: Saisissez votre nom...
         email_placeholder: Saisissez votre email pour une réponse...
         message: Message
+        message_placeholder: Saisissez ici votre message...
 
     category.id: '#'
     category.name: Nom
