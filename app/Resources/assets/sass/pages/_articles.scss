@@ -39,10 +39,11 @@ article {
   padding: 20px 0 20px 0;
   font-family: "Gabriela", arial, sans-serif;
 
-  h1 {
-    font-family: "Playball", arial, sans-serif;
-    font-size: 21px;
+  h1, h2 {
+    //font-family: "Playball", arial, sans-serif;
+    //font-size: 21px;
     color: #11112f;
+    padding: 0 60px;
   }
   .article-header {
     .article-title {
