@@ -8,6 +8,8 @@ use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * Category
@@ -17,6 +19,8 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\Table(name="cms_article")
  * @ORM\Entity(repositoryClass="BlueBear\CmsBundle\Repository\ArticleRepository")
  * @ORM\HasLifecycleCallbacks()
+ *
+ * @Vich\Uploadable()
  */
 class Article
 {
@@ -98,10 +102,16 @@ class Article
     protected $slug;
 
     /**
-     * @ORM\ManyToOne(targetEntity="BlueBear\MediaBundle\Entity\Media", fetch="EAGER", cascade={"persist"})
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\Column(name="thumbnail_name", type="string")
      */
-    protected $thumbnail;
+    protected $thumbnailName;
+
+    /**
+     * @Vich\UploadableField(mapping="article_media", fileNameProperty="thumbnailName")
+     *
+     * @Assert\File(maxSize="10M")
+     */
+    protected $thumbnailFile;
 
     /**
      * @ORM\ManyToMany(targetEntity="BlueBear\CmsBundle\Entity\Tag", mappedBy="articles")
@@ -299,22 +309,6 @@ class Article
     }
 
     /**
-     * @return mixed
-     */
-    public function getThumbnail()
-    {
-        return $this->thumbnail;
-    }
-
-    /**
-     * @param mixed $thumbnail
-     */
-    public function setThumbnail($thumbnail)
-    {
-        $this->thumbnail = $thumbnail;
-    }
-
-    /**
      * @return Category
      */
     public function getCategory()
@@ -383,5 +377,41 @@ class Article
     public function getTags()
     {
         return $this->tags;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getThumbnailFile()
+    {
+        return $this->thumbnailFile;
+    }
+
+    /**
+     * @param mixed $thumbnailFile
+     */
+    public function setThumbnailFile($thumbnailFile)
+    {
+        $this->thumbnailFile = $thumbnailFile;
+
+        if ($thumbnailFile) {
+            $this->updatedAt = new DateTime();
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getThumbnailName()
+    {
+        return $this->thumbnailName;
+    }
+
+    /**
+     * @param mixed $thumbnailName
+     */
+    public function setThumbnailName($thumbnailName)
+    {
+        $this->thumbnailName = $thumbnailName;
     }
 }

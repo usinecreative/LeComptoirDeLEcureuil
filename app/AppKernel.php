@@ -44,6 +44,8 @@ class AppKernel extends Kernel
             new \Knp\Bundle\GaufretteBundle\KnpGaufretteBundle(),
             new Eko\FeedBundle\EkoFeedBundle(),
             new JK\SamBundle\JKSamBundle(),
+
+            new Vich\UploaderBundle\VichUploaderBundle()
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'])) {

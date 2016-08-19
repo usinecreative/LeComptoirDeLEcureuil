@@ -74,7 +74,7 @@
                         </a>
                     </h2>
                     <a href="{{ articleUrl }}" title="{{ articleLinkTitle }}">
-                        <img src="/img/cover-batard.jpg"/>
+                        <img src="{{ vich_uploader_asset(article, 'thumbnailFile') }}" alt="articleLinkTitle">
                     </a>
                     <span class="title-date">{{ article.publicationDate | localizeddate('full', 'none') }}</span>
 

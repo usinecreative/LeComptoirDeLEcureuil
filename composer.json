@@ -37,7 +37,8 @@
     "lag/adminbundle": "dev-dev",
     "components/bootstrap": "^3.3",
     "johnkrovitch/sam": "dev-dev",
-    "johnkrovitch/sam-bundle": "dev-master"
+    "johnkrovitch/sam-bundle": "dev-master",
+    "vich/uploader-bundle": "^1.3"
   },
   "scripts": {
     "post-root-package-install": [

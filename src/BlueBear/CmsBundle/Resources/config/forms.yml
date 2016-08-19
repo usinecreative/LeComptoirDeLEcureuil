@@ -38,3 +38,10 @@ services:
         class: 'BlueBear\CmsBundle\Form\Type\ImportType'
         tags:
             - {name: form.type, alias: import}
+
+    # Form Handler
+    bluebear.cms.article.handler:
+        class: 'BlueBear\CmsBundle\Form\Handler\ArticleFormHandler'
+        arguments:
+            - '%kernel.root_dir%'
+            - '@jk.media.media_repository'

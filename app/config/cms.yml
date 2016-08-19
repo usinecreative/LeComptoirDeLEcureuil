@@ -138,6 +138,7 @@ lag_admin:
         article:
             entity: BlueBear\CmsBundle\Entity\Article
             form: BlueBear\CmsBundle\Form\Type\ArticleType
+            controller: BlueBearCmsBundle:Article
             actions:
                 list:
                     title: article.list
@@ -187,6 +188,7 @@ lag_admin:
                                         target: _blank
 
                 delete: ~
+        ### User ###
         user:
             entity: BlueBear\CmsBundle\Entity\User
             form: BlueBear\CmsBundle\Form\Type\UserType
@@ -345,3 +347,11 @@ eko_feed:
             link:
                 route_name: lecomptoir.feed
             encoding: utf-8
+
+# File Upload
+vich_uploader:
+    db_driver: orm
+    mappings:
+        article_media:
+            uri_prefix: /images/articles/thumbnails
+            upload_destination: '%kernel.root_dir%/../web/images/articles/thumbnails'
