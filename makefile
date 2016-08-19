@@ -41,16 +41,5 @@ watch:
 		sleep 2; \
 	done;
 
-
-install-admin-symlink:
-	rm -rf vendor/lag/adminbundle
-	mkdir src/LAG
-	ln -s /home/johnkrovitch/Projects/AdminBundle/AdminBundle src/LAG/AdminBundle
-
-install-sam-symlink:
-	rm -rf vendor/johnkrovitch/sam
-	mkdir src/JK
-	ln -s /home/johnkrovitch/Projects/JK/Sam src/JK/Sam
-
 run:
 	$(sf) server:run
