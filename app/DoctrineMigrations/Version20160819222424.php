@@ -20,7 +20,7 @@ class Version20160819222424 extends AbstractMigration
 
         $this->addSql('ALTER TABLE cms_article DROP FOREIGN KEY FK_5CD60177FDFF2E92');
         $this->addSql('DROP INDEX IDX_5CD60177FDFF2E92 ON cms_article');
-        $this->addSql('ALTER TABLE cms_article ADD thumbnail_name VARCHAR(255) NOT NULL, DROP thumbnail_id');
+        $this->addSql('ALTER TABLE cms_article ADD thumbnail_name VARCHAR(255) DEFAULT NULL, DROP thumbnail_id');
     }
 
     /**

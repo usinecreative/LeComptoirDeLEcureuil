@@ -102,7 +102,7 @@ class Article
     protected $slug;
 
     /**
-     * @ORM\Column(name="thumbnail_name", type="string")
+     * @ORM\Column(name="thumbnail_name", type="string", nullable=true)
      */
     protected $thumbnailName;
 
