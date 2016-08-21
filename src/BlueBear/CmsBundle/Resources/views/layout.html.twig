@@ -1,10 +1,7 @@
 {% extends "LAGAdminBundle::admin.layout.html.twig" %}
 
 {% block stylesheets %}
-    {% stylesheets '@BlueBearCmsBundle/Resources/scss/cms.scss'
-    filter='compass, ?cssrewrite, ?cssmin' output="css/cms.css" %}
-    <link rel="stylesheet" href="{{ asset_url }}"/>
-    {% endstylesheets %}
+    <link rel="stylesheet" href="{{ asset('bundles/bluebearcms/css/cms.css') }}">
 {% endblock %}
 
 {% block mainTitle %}

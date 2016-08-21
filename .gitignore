@@ -21,3 +21,8 @@ dumps
 
 # backup
 backups
+
+admin-bundle-local.sh
+
+web/assets
+web/images/articles

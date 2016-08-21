@@ -15,6 +15,8 @@ category:
 
 article:
     list: Articles
+    saved_errors: Une erreur a été rencontrée
+    saved: L'article a été sauvegardé
 
 comment:
     list: Commentaires

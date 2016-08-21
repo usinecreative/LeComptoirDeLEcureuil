@@ -1,0 +1,6 @@
+services:
+    jk.media.media_repository:
+        class: BlueBear\MediaBundle\Repository\MediaRepository
+        factory: ["@doctrine", getRepository]
+        arguments:
+            - BlueBear\MediaBundle\Entity\Media

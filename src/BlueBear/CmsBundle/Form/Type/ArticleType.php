@@ -9,11 +9,13 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 /**
  * Article form type
@@ -36,10 +38,13 @@ class ArticleType extends AbstractType
             ])
             ->add('content', TextareaType::class, [
                 'attr' => [
-                    'rows' => 50,
+                    'rows' => 15,
                     'class' => 'tinymce',
                     'data-theme' => 'advanced'
                 ]
+            ])
+            ->add('thumbnailFile', VichImageType::class, [
+                'required' => false
             ])
             ->add('publicationStatus', ChoiceType::class, [
                 'choices' => [
