@@ -35,6 +35,7 @@ twig:
     form_themes:
         - "LAGAdminBundle:Form:fields.html.twig"
         - "BlueBearCmsBundle:Form:fields.html.twig"
+        - 'VichUploaderBundle:Form:fields.html.twig'
 
 services:
     twig.extension.text:

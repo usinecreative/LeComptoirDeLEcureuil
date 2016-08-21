@@ -30,6 +30,16 @@ jk_assets:
             destinations:
                 - web/fonts/
 
+        cms.css:
+            filters:
+                - compass
+                - merge
+                - minify
+            sources:
+                - src/BlueBear/CmsBundle/Resources/scss/cms.scss
+            destinations:
+                - src/BlueBear/CmsBundle/Resources/public/css/cms.css
+
 #        bootstrap:
 #            filters:
 #                - copy
