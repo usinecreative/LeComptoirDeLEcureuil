@@ -1,43 +1,43 @@
-{% extends 'layout.html.twig' %}
+{% extends ':Article:show.html.twig' %}
 
-{% block content %}
-    <div class="main-content col-lg-9 article">
-        <div class="article-header">
-            <div class="article-title">
-                <span class="title-date">{{ article.publicationDate | localizeddate('full', 'none') }}</span>
-                <span class="ribbon category-ribbon">{{ article.category.name }}</span>
-                <h2>{{ article.title }}</h2>
-            </div>
-            <div class="article-thumbnail">
-                {% if article.thumbnail.filepath is defined %}
-                    {{ article.thumbnail.filepath }}
-                {% else %}
-                    <img src="/img/article-header2.jpg" alt="">
-                {% endif %}
-            </div>
-        </div>
-        <div class="article-content">
-            {{ article.content | raw }}
-        </div>
-        <div class="article-footer">
-            <ul>
-                <li>
-                    {{ 'lecomptoir.interface.categories' | trans }} :
-                    <a href="{{ path('lecomptoir.article.list_by_category', {categorySlug: article.category.slug}) }}">
-                        {{ article.category.name }}
-                    </a>
-                </li>
-                <li>
-                    {{ 'lecomptoir.tags' | trans }} :
-                    <ul class="inline">
-                        {% for tag in article.tags %}
-                            <li class="tag">
-                                <a href="{{ path('lecomptoir.article.list_by_tag', {tag: tag}) }}">{{ tag }}</a>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </div>
-{% endblock %}
+{#{% block content %}#}
+    {#<div class="main-content col-lg-9 article">#}
+        {#<div class="article-header">#}
+            {#<div class="article-title">#}
+                {#<span class="title-date">{{ article.publicationDate | localizeddate('full', 'none') }}</span>#}
+                {#<span class="ribbon category-ribbon">{{ article.category.name }}</span>#}
+                {#<h2>{{ article.title }}</h2>#}
+            {#</div>#}
+            {#<div class="article-thumbnail">#}
+                {#{% if article.thumbnail.filepath is defined %}#}
+                    {#{{ article.thumbnail.filepath }}#}
+                {#{% else %}#}
+                    {#<img src="/img/article-header2.jpg" alt="">#}
+                {#{% endif %}#}
+            {#</div>#}
+        {#</div>#}
+        {#<div class="article-content">#}
+            {#{{ article.content | raw }}#}
+        {#</div>#}
+        {#<div class="article-footer">#}
+            {#<ul>#}
+                {#<li>#}
+                    {#{{ 'lecomptoir.interface.categories' | trans }} :#}
+                    {#<a href="{{ path('lecomptoir.article.list_by_category', {categorySlug: article.category.slug}) }}">#}
+                        {#{{ article.category.name }}#}
+                    {#</a>#}
+                {#</li>#}
+                {#<li>#}
+                    {#{{ 'lecomptoir.tags' | trans }} :#}
+                    {#<ul class="inline">#}
+                        {#{% for tag in article.tags %}#}
+                            {#<li class="tag">#}
+                                {#<a href="{{ path('lecomptoir.article.list_by_tag', {tag: tag}) }}">{{ tag }}</a>#}
+                            {#</li>#}
+                        {#{% endfor %}#}
+                    {#</ul>#}
+                {#</li>#}
+            {#</ul>#}
+        {#</div>#}
+    {#</div>#}
+{#{% endblock %}#}

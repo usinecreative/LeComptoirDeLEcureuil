@@ -26,9 +26,7 @@ class ArticleController extends CRUDController
             ->find($request->get('id'));
         $this->forward404Unless($article);
 
-        return [
-            'article' => $article
-        ];
+        return $this->redirectToRoute('lecomptoir.article.show', $article->getUrlParameters());
     }
 
     /**
