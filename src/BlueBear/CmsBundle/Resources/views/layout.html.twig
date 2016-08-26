@@ -2,72 +2,93 @@
 
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('bundles/bluebearcms/css/cms.css') }}">
+
+    <style>
+        .mce-close::before {
+            content: "";
+            float: right;
+        }
+    </style>
 {% endblock %}
 
 {% block mainTitle %}
     <a href="{{ path('bluebear.cms.homepage') }}" class="navbar-brand">Le comptoir des noisettes</a>
 {% endblock %}
 
-{#{% block leftMenu %}#}
-    {#<div role="navigation" class="navbar-default sidebar">#}
-        {#<div class="sidebar-nav navbar-collapse">#}
-            {#<ul id="side-menu" class="nav in">#}
-                {#{% set route = app.request.get('_route') %}#}
-
-                {#<li class="{{ route == 'bluebear.cms.category.list' ? 'active' : '' }}">#}
-                    {#<a href="{{ path('bluebear.cms.category.list') }}">#}
-                        {#<i class="fa fa-folder-open"></i> {{ 'bluebear.cms.category' | trans }}</a>#}
-                {#</li>#}
-                {#<li class="{{ route == 'bluebear.cms.article.list' ? 'active' : '' }}">#}
-                    {#<a href="{{ path('bluebear.cms.article.list') }}">#}
-                        {#<i class="fa fa-newspaper-o"></i> {{ 'bluebear.cms.article' | trans }}</a>#}
-                {#</li>#}
-                {#<li class="{{ route == 'bluebear.cms.comment.list' ? 'active' : '' }}">#}
-                    {#<a href="{{ path('bluebear.cms.comment.list') }}">#}
-                        {#<i class="fa fa-comment"></i> {{ 'bluebear.cms.comment' | trans }}</a>#}
-                {#</li>#}
-                {#<li class="{{ route == 'bluebear.cms.page.list' ? 'active' : '' }}">#}
-                    {#<a href="{{ path('bluebear.cms.page.list') }}">#}
-                        {#<i class="fa fa-code"></i> {{ 'bluebear.cms.page' | trans }}</a>#}
-                {#</li>#}
-                {#{% set routes = ['bluebear.cms.parameters.list', 'bluebear.cms.import.list'] %}#}
-
-                {#<li class="{{ route == 'bluebear.cms.imports.list' or#}
-                    {#route == 'bluebear.cms.parameters' or#}
-                    {#route == 'bluebear.cms.user'#}
-                    {#? 'active' : '' }}">#}
-                    {#<a href="#">#}
-                        {#<i class="fa fa-cogs"></i>#}
-                        {#{{ 'bluebear.cms.configuration' | trans }}</a>#}
-                    {#<ul class="nav nav-second-level collapse">#}
-                        {#<li class="{{ route == 'bluebear.cms.parameters.list' ? 'active' : '' }}">#}
-                            {#<a href="{{ path('bluebear.cms.parameters.list') }}">#}
-                                {#<i class="fa fa-cogs"></i> {{ 'bluebear.cms.parameters' | trans }}</a>#}
-                        {#</li>#}
-                        {#<li class="{{ route == 'bluebear.cms.user.list' ? 'active' : '' }}">#}
-                            {#<a href="{{ path('bluebear.cms.user.list') }}">#}
-                                {#<i class="fa fa-male"></i> {{ 'bluebear.cms.users' | trans }}</a>#}
-                        {#</li>#}
-                        {#<li class="{{ route == 'bluebear.cms.import.list' ? 'active' : '' }}">#}
-                            {#<a href="{{ path('bluebear.cms.import.list') }}">#}
-                                {#<i class="fa fa-upload"></i> {{ 'bluebear.cms.import' | trans }}</a>#}
-                        {#</li>#}
-                    {#</ul>#}
-                {#</li>#}
-                {#<li class="{{ route == 'bluebear.cms.media.list' ? 'active' : '' }}">#}
-                    {#<a href="{{ path('bluebear.cms.media.list') }}">#}
-                        {#<i class="fa fa-image"></i> {{ 'bluebear.cms.medias' | trans }}</a>#}
-                {#</li>#}
-                {#<li>#}
-                    {#<a href="{{ path('logout') }}">#}
-                        {#<i class="fa fa-sign-out"></i> Logout ({{ app.user.username }})</a>#}
-                {#</li>#}
-            {#</ul>#}
-        {#</div>#}
-    {#</div>#}
-{#{% endblock %}#}
-
 {% block javascripts %}
-    {#{{ tinymce_init() }}#}
+    <script src="{{ asset('js/tinymce/tinymce.min.js') }}"></script>
+    <script src="{{ asset('js/tinymce/jquery.tinymce.min.js') }}"></script>
+
+    <script>
+        $(document).on('ready', function () {
+
+            tinymce.init({
+                selector: '.tinymce',
+                plugins: [
+                    'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+                    'searchreplace wordcount visualblocks visualchars code fullscreen',
+                    'insertdatetime media nonbreaking save table contextmenu directionality',
+                    'emoticons template paste textcolor colorpicker textpattern imagetools'
+                ],
+                toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+                toolbar2: 'print preview media | forecolor backcolor emoticons code mybutton',
+                image_advtab: true,
+                imagetools_toolbar: "rotateleft rotateright | flipv fliph | editimage imageoptions",
+                setup: function (editor) {
+                    editor.addButton('mybutton', {
+                        text: 'My button',
+                        icon: false,
+                        onclick: function () {
+
+                            $('#myModal').modal('show');
+
+                            {#editor.windowManager.open({#}
+                                {#title: 'My html dialog',#}
+                                {#url: '{{ path('cms.image.gallery_dialog') }}',#}
+                                {#width: 700,#}
+                                {#height: 600#}
+                            {#});#}
+
+                            {#editor.insertContent('&nbsp;<b>It\'s my button!</b>&nbsp;');#}
+                        }
+                    });
+                }
+            });
+
+
+        });
+    </script>
+
+    <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Modal title</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>One fine body&hellip;</p>
+                        
+                        <ul class="media-list">
+                            <li class="media">
+                                <div class="media-left">
+                                    <a href="#">
+                                        <img class="media-object" src="{{ asset('img/books.jpg') }}" alt="...">
+                                    </a>
+                                </div>
+                                <div class="media-body">
+                                    <h4 class="media-heading">Media heading</h4>
+                                    ...
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
 {% endblock %}
 

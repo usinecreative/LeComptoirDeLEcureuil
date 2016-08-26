@@ -40,6 +40,17 @@ jk_assets:
             destinations:
                 - src/BlueBear/CmsBundle/Resources/public/css/cms.css
 
+#        tinymce:
+#            filters:
+#                - copy
+#            sources:
+#                - vendor/tinymce/tinymce/*.js
+#                - vendor/tinymce/tinymce/themes/*
+#                - vendor/tinymce/tinymce/skins/*
+#            destinations:
+#                - web/js/tinymce/
+
+
 #        bootstrap:
 #            filters:
 #                - copy
