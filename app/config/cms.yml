@@ -23,23 +23,29 @@ ivory_ck_editor:
             toolbar: standard
             height: 1500px
 
-stfalcon_tinymce:
-    include_jquery: false
-    tinymce_jquery: true
-    theme:
-        simple:
-            theme: "modern"
-        advanced:
-             theme: "modern"
-             plugins:
-                 - "advlist autolink lists link image charmap print preview hr anchor pagebreak"
-                 - "searchreplace wordcount visualblocks visualchars code fullscreen"
-                 - "insertdatetime media nonbreaking save table contextmenu directionality"
-                 - "emoticons template paste textcolor"
-             toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
-             toolbar2: "print preview media | forecolor backcolor emoticons | stfalcon | example"
-             image_advtab: true
-             menubar: false
+#stfalcon_tinymce:
+#    include_jquery: false
+#    tinymce_jquery: false
+#    external_plugins:
+#        imagetools:
+#            url: 'asset[bundles/bluebearcms/js/tinymce/plugins/imagetools/plugin.js]'
+#    theme:
+#        simple:
+#            theme: "modern"
+#        advanced:
+#             theme: "modern"
+#             plugins:
+#                 - "advlist autolink lists link image charmap print preview hr anchor pagebreak"
+#                 - "searchreplace wordcount visualblocks visualchars code fullscreen"
+#                 - "insertdatetime media nonbreaking save table contextmenu directionality"
+#                 - "emoticons template paste textcolor"
+#             toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
+#             toolbar2: "print preview media | forecolor backcolor emoticons | imagetools"
+#             image_advtab: true
+#             menubar: true
+#             imagetools_cors_hosts: ['dev.le-comptoir.fr', 'lecomptoir.bluebear.fr']
+#             imagetools_proxy: 'proxy.php'
+#             imagetools_toolbar: "imageoptions"
 
 
 # app/config/config.yml

@@ -32,7 +32,7 @@ class AppKernel extends Kernel
             // Admin dev            
             new BlueBear\BaseBundle\BlueBearBaseBundle(),
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
-            new \Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle(),
+            //new \Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
 
 

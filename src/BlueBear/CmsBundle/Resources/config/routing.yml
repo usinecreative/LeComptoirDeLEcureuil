@@ -22,3 +22,8 @@ bluebear.cms.dashboard:
 bluebear.cms.article.preview:
     path: /article/preview/{id}
     defaults: {_controller: 'BlueBearCmsBundle:Article:preview'}
+
+# Image
+cms.image.gallery_dialog:
+    path: /images/gallery/dialog
+    defaults: {_controller: 'BlueBearCmsBundle:Image:galleryDialog'}
