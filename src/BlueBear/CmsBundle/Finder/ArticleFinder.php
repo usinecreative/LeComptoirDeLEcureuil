@@ -74,6 +74,7 @@ class ArticleFinder
         $queryBuilder = $this
             ->repository
             ->createQueryBuilder('article')
+            ->distinct()
         ;
 
         // only the published articles
@@ -83,7 +84,6 @@ class ArticleFinder
 
         // only with the published comments
         $queryBuilder
-            ->addSelect('comments')
             ->leftJoin('article.comments', 'comments');
 
         // get parameters from filters
@@ -92,8 +92,7 @@ class ArticleFinder
         // search an article by the category slug
         if ($parameters->has('categorySlug')) {
             $queryBuilder
-                ->addSelect('category')
-                ->leftJoin('article.category', 'category')
+                ->innerJoin('article.category', 'category')
                 ->andWhere('category.slug = :category')
                 ->setParameter('category', $parameters->get('categorySlug'));
         }
@@ -108,8 +107,7 @@ class ArticleFinder
         // search articles by tag slug
         if ($parameters->has('tagSlug')) {
             $queryBuilder
-                ->addSelect('tag')
-                ->leftJoin('article.tags', 'tag')
+                ->innerJoin('article.tags', 'tag')
                 ->andWhere('tag.slug = :tag_slug')
                 ->setParameter('tag_slug', $parameters->get('tagSlug'));
         }
