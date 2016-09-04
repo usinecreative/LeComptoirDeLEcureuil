@@ -1,3 +1,20 @@
+cms:
+    page:
+        edit:
+            form_title: Edition d'une page
+            title: Titre
+            title_help: Titre affiché sur la page en front
+            slug: Slug
+            slug_help: Url de la page dans le front
+            publication_status: Statut de publication
+            content: Contenu
+            content_help: Contenu de la page
+    publication:
+        draft: Brouillon
+        waiting_validation: En attente de validation
+        published: Publié
+
+
 category:
     list: Catégories
     edit: Editer

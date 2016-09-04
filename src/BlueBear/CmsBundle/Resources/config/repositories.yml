@@ -34,3 +34,9 @@ services:
         factory: ["@doctrine", getRepository]
         arguments:
             - BlueBear\CmsBundle\Entity\Import
+
+    jk.cms.page_repository:
+        class: BlueBear\CmsBundle\Repository\PageRepository
+        factory: ["@doctrine", getRepository]
+        arguments:
+            - BlueBear\CmsBundle\Entity\Page

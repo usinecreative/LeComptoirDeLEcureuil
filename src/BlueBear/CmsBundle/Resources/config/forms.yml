@@ -29,10 +29,12 @@ services:
         tags:
             - {name: form.type, alias: comment}
 
-    bluebear.cms.page_type:
+    cms.form.page_type:
         class: 'BlueBear\CmsBundle\Form\Type\PageType'
         tags:
             - {name: form.type, alias: page}
+        arguments:
+            - ''
 
     bluebear.cms.import_type:
         class: 'BlueBear\CmsBundle\Form\Type\ImportType'
@@ -45,3 +47,7 @@ services:
         arguments:
             - '%kernel.root_dir%'
             - '@jk.media.media_repository'
+
+    # Helper
+    cms.form.helper:
+        class: BlueBear\CmsBundle\Form\Helper\FormHelper

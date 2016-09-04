@@ -3,8 +3,10 @@
 namespace BlueBear\CmsBundle\Form\Type;
 
 use BlueBear\CmsBundle\Entity\Article;
+use LAG\AdminBundle\Form\Type\DateTimePickerType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -15,27 +17,32 @@ class PageType extends AbstractType
     {
         $builder
             ->add('title', TextType::class, [
+                'label' => 'cms.page.edit.title',
                 'attr' => [
-                    'data-help' => 'bluebear.admin.page.title_help'
+                    'data-help' => 'cms.page.edit.title_help'
                 ]
             ])
             ->add('slug', TextType::class, [
                 'disabled' => true,
+                'label' => 'cms.page.edit.slug',
                 'attr' => [
-                    'data-help' => 'bluebear.admin.page.slug_help'
+                    'data-help' => 'cms.page.edit.slug_help'
                 ]
             ])
             ->add('publicationStatus', ChoiceType::class, [
+                'label' => 'cms.page.edit.publication_status',
                 'choices' => [
-                    Article::PUBLICATION_STATUS_DRAFT => 'bluebear.cms.publication.draft',
-                    Article::PUBLICATION_STATUS_VALIDATION => 'bluebear.cms.publication.validation',
-                    Article::PUBLICATION_STATUS_PUBLISHED => 'bluebear.cms.publication.published',
+                    'cms.publication.draft' => Article::PUBLICATION_STATUS_DRAFT,
+                    'cms.publication.waiting_validation' => Article::PUBLICATION_STATUS_VALIDATION,
+                    'cms.publication.published' => Article::PUBLICATION_STATUS_PUBLISHED,
                 ]
             ])
+            ->add('publicationDate', DateTimeType::class)
             ->add('content', TextareaType::class, [
+                'label' => 'cms.page.edit.content',
                 'attr' => [
                     'class' => 'tinymce',
-                    'data-help' => 'bluebear.admin.page.title_help'
+                    'data-help' => 'cms.page.edit.content_help'
                 ]
             ])
         ;

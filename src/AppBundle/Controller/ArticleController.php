@@ -8,6 +8,7 @@ use BlueBear\CmsBundle\Entity\Category;
 use BlueBear\CmsBundle\Finder\Filter\ArticleFilter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -20,7 +21,7 @@ class ArticleController extends Controller
     /**
      * @Template(":Article:show.html.twig")
      * @param Request $request
-     * @return array
+     * @return array|RedirectResponse
      */
     public function showAction(Request $request)
     {

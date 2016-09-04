@@ -309,8 +309,15 @@ lag_admin:
                 list:
                     fields:
                         id: ~
-                        title: ~
-                        content: ~
+                        title:
+                            type: link
+                            options:
+                                length: 40
+                                route: lecomptoir.cms.page.edit
+                                parameters: {id: ~}
+                        content:
+                            options:
+                                 length: 150
                         updatedAt: {type: date, options: {format: 'd/m/Y h:i:s'}}
                         publicationDate: {type: date, options: {format: d/m/Y}}
                         _actions:
@@ -319,7 +326,7 @@ lag_admin:
                                 _edit:
                                     type: action
                                     options:
-                                        title: lg.admin.edit
+                                        title: lag.admin.edit
                                         route: lecomptoir.cms.page.edit
                                         parameters: {id: ~}
                                         icon: pencil
@@ -336,7 +343,8 @@ lag_admin:
 #                            route: bluebear.cms.page.create
 #                            icon: plus
                 create: ~
-                edit: ~
+                edit:
+                    title: cms.page.edit.form_title
                 delete: ~
         partner:
             entity: AppBundle\Entity\Partner

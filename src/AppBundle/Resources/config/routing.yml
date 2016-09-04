@@ -37,6 +37,11 @@ lecomptoir.article.show:
     path:  /{year}/{month}/{slug}
     defaults: {_controller: AppBundle:Article:show}
 
+# Free Pages
+lecomptoir.free_pages:
+    path: /{pageSlug}
+    defaults: {_controller: AppBundle:Page:show}
+
 
 # Sitemap
 lecomptoir.sitemap:
