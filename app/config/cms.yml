@@ -71,8 +71,8 @@ lag_admin:
         base_template: 'BlueBearCmsBundle::layout.html.twig'
         max_per_page: 25
         routing:
-            name_pattern: lecomptoir.cms.{admin}.{action}
-            url_pattern:  /{admin}/{action}
+            name_pattern: cms.{admin}.{action}
+            url_pattern:  /cms/{admin}/{action}
         date_format: '\L\e d/m/Y à h:i:s'
 
     menus:
@@ -111,60 +111,6 @@ lag_admin:
 
     # Admins configurations
     admins:
-        ### Article ###
-        article:
-            entity: BlueBear\CmsBundle\Entity\Article
-            form: BlueBear\CmsBundle\Form\Type\ArticleType
-            controller: BlueBearCmsBundle:Article
-            actions:
-                list:
-                    title: article.list
-                    order:
-                        - {field: publicationDate, order: desc}
-                    fields:
-                        id: ~
-                        title:
-                            type: link
-                            options:
-                                length: 40
-                                route: lecomptoir.cms.article.edit
-                                parameters: {id: ~}
-                        category: ~
-                        author: ~
-                        publicationStatus: ~
-                        publicationDate: {type: date, options: {format: d/m/Y}}
-                        updatedAt: {type: date, options: {format: '\L\e d/m/Y à h:i:s'}}
-                        _actions:
-                            type: collection
-                            options:
-                                _edit:
-                                    type: action
-                                    options:
-                                        title: lag.admin.edit
-                                        route: lecomptoir.cms.article.edit
-                                        parameters: {id: ~}
-                                        icon: pencil
-                                _delete:
-                                    type: action
-                                    options:
-                                        title: lag.admin.delete
-                                        route: lecomptoir.cms.article.delete
-                                        parameters: {id: ~}
-                                        icon: remove
-                create: ~
-                edit:
-                    menus:
-                        top:
-                            items:
-                                preview:
-                                    text: article.preview
-                                    route: bluebear.cms.article.preview
-                                    parameters: {id: ~}
-                                    icon: fa fa-eye
-                                    attr:
-                                        target: _blank
-
-                delete: ~
         ### User ###
         user:
             entity: BlueBear\CmsBundle\Entity\User
@@ -284,7 +230,7 @@ lag_admin:
                             type: link
                             options:
                                 length: 40
-                                route: lecomptoir.cms.page.edit
+                                route: cms.page.edit
                                 parameters: {id: ~}
                         content:
                             options:
@@ -298,14 +244,14 @@ lag_admin:
                                     type: action
                                     options:
                                         title: lag.admin.edit
-                                        route: lecomptoir.cms.page.edit
+                                        route: cms.page.edit
                                         parameters: {id: ~}
                                         icon: pencil
                                 _delete:
                                     type: action
                                     options:
                                         title: lag.admin.delete
-                                        route: lecomptoir.cms.page.delete
+                                        route: cms.page.delete
                                         parameters: {id: ~}
                                         icon: remove
 #                    actions:

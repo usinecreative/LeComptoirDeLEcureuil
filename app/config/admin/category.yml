@@ -1,6 +1,5 @@
 lag_admin:
     admins:
-        ### Category ###
         category:
             entity: BlueBear\CmsBundle\Entity\Category
             form: BlueBear\CmsBundle\Form\Type\CategoryType
@@ -23,8 +22,7 @@ lag_admin:
                         name:
                             type: link
                             options:
-                                admin: category
-                                action: edit
+                                route: cms.category.edit
                                 parameters: {id: ~}
                         createdAt:
                             type: date
