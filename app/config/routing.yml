@@ -13,12 +13,12 @@ app:
 # BlueBear AdminBundle
 blue_bear_admin:
     resource: .
-    prefix: /cms
+    prefix: /
     type: extra
 
 blue_bear_cms:
     resource: "@BlueBearCmsBundle/Resources/config/routing.yml"
-    prefix:   /cms
+    prefix:   /
 
 le_comptoir_de_l_ecureuil_front:
     resource: "@AppBundle/Resources/config/routing.yml"
@@ -26,4 +26,4 @@ le_comptoir_de_l_ecureuil_front:
 
 blue_bear_media:
     resource: "@BlueBearMediaBundle/Resources/config/routing.yml"
-    prefix:   /cms
+    prefix:   /
