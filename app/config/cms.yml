@@ -267,6 +267,8 @@ lag_admin:
             entity: AppBundle\Entity\Partner
             form: AppBundle\Form\Type\PartnerType
             actions:
+                edit: ~
+                delete: ~
                 list:
                     fields:
                         id: ~

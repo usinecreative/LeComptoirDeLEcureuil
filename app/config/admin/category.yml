@@ -32,6 +32,22 @@ lag_admin:
                             type: count
                         displayInHomepage:
                             type: boolean
-                        _actions: ~
+                        _actions:
+                            type: collection
+                            options:
+                                _edit:
+                                    type: action
+                                    options:
+                                        title: cms.menu.edit
+                                        route: cms.article.edit
+                                        parameters: {id: ~}
+                                        icon: pencil
+                                _delete:
+                                    type: action
+                                    options:
+                                        title: cms.menu.delete
+                                        route: cms.article.delete
+                                        parameters: {id: ~}
+                                        icon: remove
                     order:
                         - {field: updatedAt, order: desc}

@@ -34,7 +34,7 @@ lag_admin:
                                 _delete:
                                     type: action
                                     options:
-                                        title: cms.delete.menu
+                                        title: cms.menu.delete
                                         route: cms.article.delete
                                         parameters: {id: ~}
                                         icon: remove
