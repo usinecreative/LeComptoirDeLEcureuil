@@ -10,9 +10,9 @@
     # Site
     http_port: 80
     server_admin: arnaudfrezet@gmail.com
-    server_name: lecomptoir.bluebear.fr
+    server_name: lecomptoirdelecureuil.fr
+    server_alias: www.lecomptoirdelecureuil.fr
     database_name: le-comptoir
-
 
   tasks:
     - include_vars: ../vars/vars.yml
@@ -34,41 +34,6 @@
                       key="{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
 
     ###################
-    # Security
-    ###################
-    - name: Install fail2ban
-      apt: name=fail2ban state=present
-
-    - name: Start fail2ban service
-      service: name=fail2ban state=started enabled=true
-
-    ###################
-    # Tools
-    ###################
-    - name: Install usefull system tools
-      apt: name={{ item }} state=present
-      with_items:
-        - vim
-        - htop
-        - git
-        - nano
-        - zsh
-        - php5
-        - php5-cli
-        - php5-common
-        - php5-curl
-        - php5-gd
-        - php5-intl
-        - php5-json
-        - php5-ldap
-        - php5-mcrypt
-        - php5-mysql
-        - php5-odbc
-        - php5-xsl
-        - libapache2-mod-php5
-        - python-mysqldb
-
-    ###################
     # Database
     ###################
     - name: Create database {{ database_name }}
@@ -84,12 +49,12 @@
       file: path=/home/{{ user }}/www state=directory mode=0755 owner={{ user }} group={{ user }}
 
     - name: Create vhost
-      template: src=../templates/virtualhost.j2 dest=/etc/apache2/sites-available/{{ user }}.conf force=yes
+      template: src=../templates/virtualhost.j2 dest=/etc/apache2/sites-available/{{ server_name }}.conf force=yes
       notify:
-      - restart apache
+        - restart apache
 
-    - name: Enable {{ user }} site
-      command: a2ensite {{ user }}.conf
+    - name: Enable {{ server_name }} site
+      command: a2ensite {{ server_name }}.conf
 
     - name: Add ssh key to know hosts
       known_hosts: path='/home/{{ user }}/.ssh/known_hosts'
