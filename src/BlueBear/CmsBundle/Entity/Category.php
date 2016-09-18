@@ -6,9 +6,11 @@ use BlueBear\BaseBundle\Entity\Behaviors\Descriptionable;
 use BlueBear\BaseBundle\Entity\Behaviors\Id;
 use BlueBear\BaseBundle\Entity\Behaviors\Nameable;
 use BlueBear\BaseBundle\Entity\Behaviors\Timestampable;
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
@@ -74,7 +76,10 @@ class Category
     /**
      * @Vich\UploadableField(mapping="category_media", fileNameProperty="thumbnailName")
      *
-     * @Assert\File(maxSize="10M")
+     * @Assert\File(
+     *     maxSize="10M",
+     *     mimeTypes={"image/jpg", "image/png", "image/jpeg", "application/octet-stream"}
+     * )
      */
     protected $thumbnailFile;
 
@@ -228,5 +233,11 @@ class Category
     public function setThumbnailFile($thumbnailFile)
     {
         $this->thumbnailFile = $thumbnailFile;
+
+        // Only change the updated af if the file is really uploaded to avoid database updates.
+        // This is needed when the file should be set when loading the entity.
+        if ($this->thumbnailFile instanceof UploadedFile) {
+            $this->updatedAt = new DateTime('now');
+        }
     }
 }

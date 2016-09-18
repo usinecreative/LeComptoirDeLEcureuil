@@ -36,7 +36,7 @@ class CategoryType extends AbstractType
                 ]
             ])
             ->add('thumbnailFile', VichImageType::class, [
-                'required' => false
+                'required' => false,
             ])
             ->add('description', TextareaType::class, [
                 'required' => false,
