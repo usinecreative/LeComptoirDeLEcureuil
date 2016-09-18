@@ -53,23 +53,6 @@ lecomptoir:
         message: Message
         message_placeholder: Saisissez ici votre message...
 
-    category.id: '#'
-    category.name: Nom
-    category.description: Description
-    category.createdAt: Crée le
-    category.updatedAt: Mis à jour le
-    category.articles: Articles liés
-    category.displayInHomepage: Sur la page d'accueil ?
-    category._actions: ''
-    category.title: Titre
-    category.author: Author
-    category.publicationStatus: Publication
-    category.publicationDate: Publié le
-    category.create: Ajouter une catégorie
-    category.edit: Editer
-    category.delete: Supprimer
-    category.batch.delete: Supprimer
-
     interface:
         more_link: Lire la suite
         categories: Catégories
