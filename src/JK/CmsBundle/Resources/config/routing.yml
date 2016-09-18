@@ -1,3 +1,0 @@
-jk_cms_homepage:
-    path:     /
-    defaults: { _controller: JKCmsBundle:Default:index }
