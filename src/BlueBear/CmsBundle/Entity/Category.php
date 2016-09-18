@@ -9,6 +9,8 @@ use BlueBear\BaseBundle\Entity\Behaviors\Timestampable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * Category
@@ -18,6 +20,8 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\Table(name="cms_category")
  * @ORM\Entity(repositoryClass="BlueBear\CmsBundle\Repository\CategoryRepository")
  * @ORM\HasLifecycleCallbacks()
+ *
+ * @Vich\Uploadable()
  */
 class Category
 {
@@ -61,6 +65,18 @@ class Category
      * @ORM\Column(name="display_in_homepage", type="boolean")
      */
     protected $displayInHomepage = false;
+
+    /**
+     * @ORM\Column(name="thumbnail_name", type="string", nullable=true)
+     */
+    protected $thumbnailName;
+
+    /**
+     * @Vich\UploadableField(mapping="category_media", fileNameProperty="thumbnailName")
+     *
+     * @Assert\File(maxSize="10M")
+     */
+    protected $thumbnailFile;
 
     /**
      * @return mixed
@@ -180,5 +196,37 @@ class Category
     public function setChildren($children)
     {
         $this->children = $children;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getThumbnailName()
+    {
+        return $this->thumbnailName;
+    }
+
+    /**
+     * @param mixed $thumbnailName
+     */
+    public function setThumbnailName($thumbnailName)
+    {
+        $this->thumbnailName = $thumbnailName;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getThumbnailFile()
+    {
+        return $this->thumbnailFile;
+    }
+
+    /**
+     * @param mixed $thumbnailFile
+     */
+    public function setThumbnailFile($thumbnailFile)
+    {
+        $this->thumbnailFile = $thumbnailFile;
     }
 }

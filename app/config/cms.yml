@@ -310,3 +310,7 @@ vich_uploader:
         article_media:
             uri_prefix: /images/articles/thumbnails
             upload_destination: '%kernel.root_dir%/../web/images/articles/thumbnails'
+
+        category_media:
+            uri_prefix: /images/categories/thumbnails
+            upload_destination: '%kernel.root_dir%/../web/images/categories/thumbnails'

@@ -10,9 +10,10 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 /**
- * Catgory edit form
+ * Category edit form
  */
 class CategoryType extends AbstractType
 {
@@ -34,6 +35,9 @@ class CategoryType extends AbstractType
                     'read-only' => true,
                     'data-help' => 'bluebear.cms.category.slug_help',
                 ]
+            ])
+            ->add('thumbnailFile', VichImageType::class, [
+                'required' => false
             ])
             ->add('description', TextareaType::class, [
                 'required' => false,
