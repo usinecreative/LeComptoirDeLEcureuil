@@ -72,7 +72,8 @@ lag_admin:
         max_per_page: 25
         routing:
             name_pattern: cms.{admin}.{action}
-            url_pattern:  /cms/{admin}/{action}
+            # CmsBundle already have "cms" prefix
+            url_pattern:  /{admin}/{action}
         date_format: '\L\e d/m/Y à h:i:s'
 
     menus:
