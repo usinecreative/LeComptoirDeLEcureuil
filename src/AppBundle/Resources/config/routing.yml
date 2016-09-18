@@ -18,7 +18,6 @@ lecomptoir.feed:
     path: /feed
     defaults: {_controller: AppBundle:Main:feed}
 
-
 # Partners pages
 lecomptoir.partner:
     path: /partenaires/{partnerSlug}
@@ -41,7 +40,6 @@ lecomptoir.article.show:
 lecomptoir.free_pages:
     path: /{pageSlug}
     defaults: {_controller: AppBundle:Page:show}
-
 
 # Sitemap
 lecomptoir.sitemap:
