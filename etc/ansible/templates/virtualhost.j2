@@ -38,6 +38,7 @@
 <VirtualHost *:80>
     ServerAdmin {{ server_admin }}
     ServerName {{ server_name }}
+    ServerAlias {{ server_alias }}
     DocumentRoot /home/{{ user }}/www/{{ user }}/current/web
 
     <Directory /home/{{ user }}/www/{{ user }}/current/web>
