@@ -13,6 +13,31 @@ cms:
         draft: Brouillon
         waiting_validation: En attente de validation
         published: Publié
+    article:
+        list: Articles
+        saved_errors: Une erreur a été rencontrée
+        saved: L'article a été sauvegardé
+        preview: Prévisualiser l'article
+    menu:
+        edit: Editer
+        delete: Supprimer
+
+    category.id: '#'
+    category.name: Nom
+    category.description: Description
+    category.createdAt: Crée le
+    category.updatedAt: Mis à jour le
+    category.articles: Articles liés
+    category.displayInHomepage: Sur la page d'accueil ?
+    category._actions: ''
+    category.title: Titre
+    category.author: Author
+    category.publicationStatus: Publication
+    category.publicationDate: Publié le
+    category.create: Ajouter une catégorie
+    category.edit: Editer
+    category.delete: Supprimer
+    category.batch.delete: Supprimer
 
 
 category:
@@ -30,10 +55,6 @@ category:
     _actions: ''
 
 
-article:
-    list: Articles
-    saved_errors: Une erreur a été rencontrée
-    saved: L'article a été sauvegardé
 
 comment:
     list: Commentaires
