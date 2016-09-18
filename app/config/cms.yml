@@ -266,6 +266,28 @@ lag_admin:
         partner:
             entity: AppBundle\Entity\Partner
             form: AppBundle\Form\Type\PartnerType
+            actions:
+                list:
+                    fields:
+                        id: ~
+                        name: ~
+                        _actions:
+                            type: collection
+                            options:
+                                _edit:
+                                    type: action
+                                    options:
+                                        title: lag.admin.edit
+                                        route: cms.partner.edit
+                                        parameters: {id: ~}
+                                        icon: pencil
+                                _delete:
+                                    type: action
+                                    options:
+                                        title: lag.admin.delete
+                                        route: cms.partner.delete
+                                        parameters: {id: ~}
+                                        icon: remove
 
 bluebear_media: ~
 
