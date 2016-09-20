@@ -30,7 +30,8 @@ class ArticleType extends AbstractType
         $builder
             ->add('title', TextType::class)
             ->add('canonical', UrlType::class, [
-                'disabled' => true
+                'disabled' => true,
+                'required' => false
             ])
             ->add('category', EntityType::class, [
                 'class' => 'BlueBear\CmsBundle\Entity\Category'

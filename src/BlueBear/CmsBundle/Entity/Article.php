@@ -41,7 +41,7 @@ class Article
     /**
      * Article canonical url
      *
-     * @ORM\Column(name="canonical", type="string")
+     * @ORM\Column(name="canonical", type="string", nullable=true)
      * @var string
      */
     protected $canonical;
