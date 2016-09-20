@@ -8,6 +8,13 @@ lag_admin:
                     title: cms.article.list
                     order:
                         - {field: publicationDate, order: desc}
+                    menus:
+                        top:
+                            items:
+                                create:
+                                    admin: article
+                                    action: create
+                                    icon: fa fa-plus
                     fields:
                         id: ~
                         title:
