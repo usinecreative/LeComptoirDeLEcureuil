@@ -41,7 +41,8 @@ class ArticleType extends AbstractType
                     'rows' => 15,
                     'class' => 'tinymce',
                     'data-theme' => 'advanced'
-                ]
+                ],
+                'required' => false
             ])
             ->add('thumbnailFile', VichImageType::class, [
                 'required' => false
@@ -72,7 +73,8 @@ class ArticleType extends AbstractType
                 'disabled' => true,
                 'widget' => 'single_text',
                 'format' => 'dd/MM/yyyy'
-            ]);
+            ])
+        ;
     }
 
     /**
