@@ -57,7 +57,7 @@ class Article
     /**
      * Article publication date
      *
-     * @ORM\Column(name="publication_date", type="datetime")
+     * @ORM\Column(name="publication_date", type="datetime", nullable=true)
      * @var DateTime
      */
     protected $publicationDate;
