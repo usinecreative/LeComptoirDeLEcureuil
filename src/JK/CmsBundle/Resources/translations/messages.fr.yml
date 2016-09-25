@@ -33,6 +33,7 @@ cms:
         create: Ajouter un article
         edit: Edition d'un article
         delete: Supprimer un article
+        deleted: L'article a été supprimé
         see: Voir
         # Fields
         id: Id
@@ -50,6 +51,7 @@ cms:
         list: Catégories
         edit: Editer
         delete: Supprimer
+        deleted: La catégorie a été supprimé
         create: Ajouter une catégorie
         id: '#'
         name: Nom
