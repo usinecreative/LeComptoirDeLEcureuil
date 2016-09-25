@@ -9,7 +9,7 @@ lag_admin:
                 edit: ~
                 delete: ~
                 list:
-                    title: category.list
+                    title: cms.category.list
                     menus:
                         top:
                             items:

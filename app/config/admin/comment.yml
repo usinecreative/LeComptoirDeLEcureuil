@@ -1,0 +1,18 @@
+lag_admin:
+    admins:
+        comment:
+            entity: BlueBear\CmsBundle\Entity\Comment
+            form: BlueBear\CmsBundle\Form\Type\CommentType
+            actions:
+                list:
+                    title: cms.comment.list
+                    fields:
+                        id: ~
+                        content: {type: string, options: {length: 150}}
+                        article: ~
+                        _actions: ~
+                    # Comments creations through backoffice is not allowed
+                    menus: false
+                create: ~
+                edit: ~
+                delete: ~

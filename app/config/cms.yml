@@ -1,6 +1,7 @@
 imports:
     - { resource: admin/category.yml }
     - { resource: admin/article.yml }
+    - { resource: admin/comment.yml }
 
 blue_bear_cms:
     content:
@@ -75,6 +76,9 @@ lag_admin:
             # CmsBundle already have "cms" prefix
             url_pattern:  /{admin}/{action}
         date_format: '\L\e d/m/Y à h:i:s'
+        translation:
+            enabled: true
+            pattern: cms.{admin}.{key}
 
     menus:
         main:
@@ -94,6 +98,7 @@ lag_admin:
                 partners:
                     admin: partner
                     icon: fa fa-book
+                    text: lecomptoir.partner.list
                 parameters:
                     url: '#'
                     text: Parameters
@@ -146,22 +151,7 @@ lag_admin:
                 create: ~
                 edit: ~
                 delete: ~
-        comment:
-            entity: BlueBear\CmsBundle\Entity\Comment
-            form: BlueBear\CmsBundle\Form\Type\CommentType
-            actions:
-                list:
-                    title: comment.list
-                    fields:
-                        id: ~
-                        content: {type: string, options: {length: 150}}
-                        article: ~
-                        _actions: ~
-                    # Comments creations through backoffice is not allowed
-                    menus: false
-                create: ~
-                edit: ~
-                delete: ~
+
         import:
             entity: BlueBear\CmsBundle\Entity\Import
             form: BlueBear\CmsBundle\Form\Type\ImportType
@@ -225,6 +215,13 @@ lag_admin:
             form: BlueBear\CmsBundle\Form\Type\PageType
             actions:
                 list:
+                    menus:
+                        top:
+                            items:
+                                create:
+                                    admin: page
+                                    action: create
+                                    icon: fa fa-plus
                     fields:
                         id: ~
                         title:
