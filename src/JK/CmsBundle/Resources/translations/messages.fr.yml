@@ -9,65 +9,84 @@ cms:
             publication_status: Statut de publication
             content: Contenu
             content_help: Contenu de la page
+        list: Pages
+        create: Créer une page libre
+        id: '#'
+        title: Titre
+        content: Contenu
+        updatedAt: Mis à jour le
+        publicationDate: Publié le
+        _actions: ''
+        delete: Supprimer une page
     publication:
         draft: Brouillon
         waiting_validation: En attente de validation
         published: Publié
+    # Articles
     article:
+        # Actions
         list: Articles
         saved_errors: Une erreur a été rencontrée
         saved: L'article a été sauvegardé
         preview: Prévisualiser l'article
+        list: Articles
+        create: Ajouter un article
+        edit: Edition d'un article
+        delete: Supprimer un article
+        see: Voir
+        # Fields
+        id: Id
+        title: Titre
+        category: Catégorie
+        author: Auteur
+        publicationStatus: Statut de publication
+        publicationDate: Date de publication
+        updatedAt: Mis à jour le
+        _actions: ''
     menu:
         edit: Editer
         delete: Supprimer
+    category:
+        list: Catégories
+        edit: Editer
+        delete: Supprimer
+        create: Ajouter une catégorie
+        id: '#'
+        name: Nom
+        createdAt: Crée le
+        updatedAt: Mis à jour le
+        articles: Nombre d'articles
+        displayInHomepage: Sur la page d'accueil ?
+        _actions: ''
+        description: Description
+        createdAt: Crée le
+        updatedAt: Mis à jour le
+        articles: Articles liés
+        displayInHomepage: Sur la page d'accueil ?
+        _actions: ''
+        title: Titre
+        author: Author
+        publicationStatus: Publication
+        publicationDate: Publié le
+        create: Ajouter une catégorie
+        edit: Editer
+        delete: Supprimer
+        batch.delete: Supprimer
+    comment:
+        create: Ajouter un commentaire
+        list: Commentaires
+        edit: Editer
+        delete: Supprimer
+        content: Contenu
+        id: '#'
+        article: Article
+        _actions: ''
+    media:
+        list: Medias
 
-    category.id: '#'
-    category.name: Nom
-    category.description: Description
-    category.createdAt: Crée le
-    category.updatedAt: Mis à jour le
-    category.articles: Articles liés
-    category.displayInHomepage: Sur la page d'accueil ?
-    category._actions: ''
-    category.title: Titre
-    category.author: Author
-    category.publicationStatus: Publication
-    category.publicationDate: Publié le
-    category.create: Ajouter une catégorie
-    category.edit: Editer
-    category.delete: Supprimer
-    category.batch.delete: Supprimer
-
-
-category:
-    list: Catégories
-    edit: Editer
-    delete: Supprimer
-    create: Ajouter une catégorie
-
-    id: '#'
-    name: Nom
-    createdAt: Crée le
-    updatedAt: Mis à jour le
-    articles: Nombre d'articles
-    displayInHomepage: Sur la page d'accueil ?
-    _actions: ''
-
-
-
-comment:
-    list: Commentaires
-
-page:
-    list: Pages
-
-media:
-    list: Medias
-
-import:
-    list: Imports
-    create: Importez vos données
+    import:
+        list: Imports
+        create: Importez vos données
 
 logout: Déconnexion
 login: Connexion

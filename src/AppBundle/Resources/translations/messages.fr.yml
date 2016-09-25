@@ -35,9 +35,22 @@ lecomptoir:
         facebook: Aller sur le facebook de l'écureuil
         linkedin: Aller sur le linkedin de l'écureuil
         google_plus: Aller sur le google+ de l'écureuil
+    # Partners
     partner:
         not_found: Le partenaire n'existe pas... C'est vraiment dommage...
         website: Site internet
+        list: Partenaires
+        delete: Supprimer
+        create: Ajouter
+        edit: Editer
+        name: Nom
+        description: Description
+        website: Site internet
+        slug: Slug
+        baseline: Baseline
+        createdAt: Crée le
+        updatedAt: Mis à jour le
+        _actions: ''
     error:
         generic: Cette noisette n'est vraiment pas bonne... Peut être en cherchiez-vous une autre ?
     create: Ajouter
@@ -60,42 +73,6 @@ lecomptoir:
     # Mail
     mail.contact.title: "[Le Comptoir de l'écureuil] Contact : nouveau message de %email%"
 
-# Articles
-article.list: Articles
-article.create: Ajouter un article
-article.edit: Edition d'un article
-article.delete: Supprimer un article
-article.preview: Prévisualisation
-article.see: Voir
-article.id: Id
-article.title: Titre
-article.category: Catégorie
-article.author: Auteur
-article.publicationStatus: Statut de publication
-article.publicationDate: Date de publication
-article.updatedAt: Mis à jour le
-article._actions: ''
-
-comment:
-    create: Ajouter un commentaire
-    list: Commentaires
-    edit: Editer
-    delete: Supprimer
-    content: Contenu
-    id: '#'
-    article: Article
-    _actions: ''
-
-page:
-    create: Créer une page libre
-    id: '#'
-    title: Titre
-    content: Contenu
-    updatedAt: Mis à jour le
-    publicationDate: Publié le
-    _actions: ''
-    delete: Supprimer une page
-
 lag.admin.page.saved: Page sauvegardée
 lag.admin.page.deleted: Page supprimée
 
@@ -113,20 +90,6 @@ lag.admin.category.saved: La catégorie a été sauvegardée
 
 lecomptoir.tags: Tags
 
-# Partners
-partner:
-    list: Partenaires
-    delete: Supprimer
-    create: Ajouter
-    edit: Editer
-    name: Nom
-    description: Description
-    website: Site internet
-    slug: Slug
-    baseline: Baseline
-    createdAt: Crée le
-    updatedAt: Mis à jour le
-    _actions: ''
 
 lag.admin.partner.saved: Partenaire sauvegardé
 lag.admin.partner.saved: Partenaire supprimer
