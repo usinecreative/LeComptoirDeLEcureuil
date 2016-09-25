@@ -36,6 +36,10 @@ lecomptoir.article.show:
     path:  /{year}/{month}/{slug}
     defaults: {_controller: AppBundle:Article:show}
 
+lecomptoir.article.show2:
+    path:  /{year}/{month}/{slug}/
+    defaults: {_controller: AppBundle:Article:show}
+
 # Free Pages
 lecomptoir.free_pages:
     path: /{pageSlug}
