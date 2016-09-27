@@ -7,7 +7,9 @@
         </div>
 
         <div class="article-content">
-            <strong>{{ partner.baseline }}</strong><br/>
+            {% if partner.baseline %}
+                <strong>{{ partner.baseline }}</strong><br/>
+            {% endif %}
 
             {{ partner.description | raw }}
         </div>
