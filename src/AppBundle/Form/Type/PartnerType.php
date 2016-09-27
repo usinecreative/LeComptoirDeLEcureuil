@@ -14,10 +14,10 @@ class PartnerType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'label' => 'partner.name'
+                'label' => 'cms.partner.name'
             ])
             ->add('slug', TextType::class, [
-                'label' => 'partner.slug'
+                'label' => 'cms.partner.slug'
             ])
             ->add('description', TextareaType::class, [
                 'attr' => [
@@ -25,22 +25,23 @@ class PartnerType extends AbstractType
                     'class' => 'tinymce',
                     'data-theme' => 'advanced'
                 ],
-                'label' => 'partner.description'
+                'label' => 'cms.partner.description'
             ])
+            ->add('baseline')
             ->add('website', UrlType::class, [
-                'label' => 'partner.website',
+                'label' => 'cms.partner.website',
                 'required' => false
             ])
             ->add('twitter', UrlType::class, [
-                'label' => 'partner.twitter',
+                'label' => 'cms.partner.twitter',
                 'required' => false
             ])
             ->add('facebook', UrlType::class, [
-                'label' => 'partner.facebook',
+                'label' => 'cms.partner.facebook',
                 'required' => false
             ])
             ->add('instagram', UrlType::class, [
-                'label' => 'partner.instagram',
+                'label' => 'cms.partner.instagram',
                 'required' => false
             ])
         ;

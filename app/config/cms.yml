@@ -271,6 +271,7 @@ lag_admin:
                     fields:
                         id: ~
                         name: ~
+                        baseline: ~
                         _actions:
                             type: collection
                             options:

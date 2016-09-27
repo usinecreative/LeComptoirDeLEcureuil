@@ -93,3 +93,22 @@ lecomptoir.tags: Tags
 
 lag.admin.partner.saved: Partenaire sauvegardé
 lag.admin.partner.saved: Partenaire supprimer
+
+# Partner is not part of the cms bundle
+cms:
+    partner:
+        list: Partenaires
+        delete: Supprimer un partenaire
+        edit: Edition d'un partenaire
+        saved: Le partenaire a été sauvegardé
+
+        id: '#'
+        name: Nom
+        baseline: Phrase d'accroche
+        slug: Slug
+        description: Description
+        _actions: ''
+        website: Site internet
+        twitter: Twitter
+        facebook: Facebook
+        instagram: Instragram
