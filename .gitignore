@@ -14,10 +14,8 @@ dumps
 # sass
 .sass-cache
 
-.gitkeep
-
 /etc/ansible/vars/vars.yml
-/etc/ansible/roles
+/etc/ansible/host_vars/*.yml
 
 # backup
 backups
