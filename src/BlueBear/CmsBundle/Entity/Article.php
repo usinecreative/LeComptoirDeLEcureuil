@@ -300,10 +300,17 @@ class Article
      */
     public function getUrlParameters()
     {
-        // TODO move in configuration
+        $year = date('Y');
+        $month = date('m');
+
+        if (null !== $this->publicationDate) {
+            $year = $this->publicationDate->format('Y');
+            $month = $this->publicationDate->format('m');
+        }
+
         return [
-            'year' => $this->publicationDate->format('Y'),
-            'month' => $this->publicationDate->format('m'),
+            'year' => $year,
+            'month' => $month,
             'slug' => $this->slug
         ];
     }
