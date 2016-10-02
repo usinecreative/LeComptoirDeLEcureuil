@@ -38,6 +38,7 @@ class PageType extends AbstractType
             ])
             ->add('publicationDate', DateTimeType::class)
             ->add('content', TextareaType::class, [
+                'required' => false,
                 'label' => 'cms.page.edit.content',
                 'attr' => [
                     'class' => 'tinymce',
