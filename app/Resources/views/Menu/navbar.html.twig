@@ -35,9 +35,13 @@
                 </ul>
             </li>
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle "
+                <a href="#"
+                   class="dropdown-toggle"
                    title="{{ 'lecomptoir.menu.partners' | trans }}"
-                   data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                   data-toggle="dropdown"
+                   role="button"
+                   aria-haspopup="true"
+                   aria-expanded="false">
                     {{ 'lecomptoir.menu.partners' | trans }}<span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
@@ -64,10 +68,34 @@
                     </li>
                 </ul>
             </li>
-            <li>
-                <a href="{{ path('lecomptoir.free_pages', {pageSlug: 'qui-suis-je'}) }}" title="{{ 'lecomptoir.menu.who-am-i' | trans }}">
-                    {{ 'lecomptoir.menu.who-am-i' | trans }}<span class="sr-only">(current)</span>
+            <li class="dropdown">
+                <a href="#"
+                   class="dropdown-toggle"
+                   title="{{ 'lecomptoir.menu.who-am-i' | trans }}"
+                   data-toggle="dropdown"
+                   role="button"
+                   aria-haspopup="true"
+                   aria-expanded="false">
+                    {{ 'lecomptoir.menu.who-am-i' | trans }}<span class="caret"></span>
                 </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="{{ path('lecomptoir.free_pages', {pageSlug: 'presentation'}) }}"
+                           title="{{ 'lecomptoir.menu.presentation' | trans }}">
+                            {{ 'lecomptoir.menu.presentation' | trans }}<span class="sr-only">(current)</span>
+                        </a>
+                        <a href="{{ path('lecomptoir.free_pages', {pageSlug: 'parcours'}) }}"
+                           title="{{ 'lecomptoir.menu.course' | trans }}">
+                            {{ 'lecomptoir.menu.course' | trans }}<span class="sr-only">(current)</span>
+                        </a>
+                        <a href="{{ path('lecomptoir.free_pages', {pageSlug: 'realisations'}) }}"
+                           title="{{ 'lecomptoir.menu.realisations' | trans }}">
+                            {{ 'lecomptoir.menu.realisations' | trans }}<span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                </ul>
+
+
             </li>
             <li>
                 <a href="{{ path('lecomptoir.contact') }}" title="{{ 'lecomptoir.menu.contact' | trans }}">

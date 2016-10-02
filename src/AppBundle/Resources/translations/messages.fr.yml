@@ -12,6 +12,9 @@ lecomptoir:
         contact: Contact
         search: Rechercher dans le comptoir
         partners: Partenaires
+        presentation: Présentation
+        course: Parcours
+        realisations: Réalisations
     category:
         litterature: Littérature
         manga-bd: Manga/BD
