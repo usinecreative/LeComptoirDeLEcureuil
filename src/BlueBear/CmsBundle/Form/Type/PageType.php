@@ -23,7 +23,6 @@ class PageType extends AbstractType
                 ]
             ])
             ->add('slug', TextType::class, [
-                'disabled' => true,
                 'label' => 'cms.page.edit.slug',
                 'attr' => [
                     'data-help' => 'cms.page.edit.slug_help'

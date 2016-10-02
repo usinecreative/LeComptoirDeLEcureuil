@@ -11,13 +11,14 @@ cms:
             content_help: Contenu de la page
         list: Pages
         create: Créer une page libre
+        delete: Supprimer une page
+        saved: La page a été sauvegardée
         id: '#'
         title: Titre
         content: Contenu
         updatedAt: Mis à jour le
         publicationDate: Publié le
         _actions: ''
-        delete: Supprimer une page
     publication:
         draft: Brouillon
         waiting_validation: En attente de validation
