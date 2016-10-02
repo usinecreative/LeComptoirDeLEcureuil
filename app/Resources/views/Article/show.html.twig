@@ -59,7 +59,9 @@
                     {% for comment in article.comments %}
                         <div class="comment">
                             <p class="title">Par {{ comment.authorName }},
-                                le {{ comment.createdAt | localizeddate('full') }}</p>
+                                le {{ comment.createdAt | localizeddate('full', 'none') }}
+                                à  {{ comment.createdAt | localizeddate('none', 'short') }}
+                            </p>
                             <p class="">{{ comment.content | truncate(500, '...') }}</p>
                         </div>
                     {% endfor %}
