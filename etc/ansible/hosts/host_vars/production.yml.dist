@@ -1,0 +1,23 @@
+---
+ansible_host:
+ansible_user:
+ansible_port:
+
+mysql_remote_root_password:
+mysql_remote_password:
+
+# username
+user:
+
+# mysql username (16 characters max)
+database_name:
+database_user:
+
+# apache vars
+server_admin:
+server_name:
+server_alias:
+
+# project vars
+git_version: master
+deploy_path:

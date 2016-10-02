@@ -2,14 +2,9 @@
 - hosts: all
   user: lecomptoirdelecureuil
   vars:
-    git_version: dev
-    deploy_path: /home/{{ user }}/www/{{ user }}
-    user: lecomptoirdelecureuil
+    ansible_user: lecomptoirdelecureuil
 
   tasks:
-    # Include dynamic vars
-    - include_vars: ../vars/vars.yml
-
     - name: Initialize the deploy structure
       deploy_helper: path={{ deploy_path }}
 

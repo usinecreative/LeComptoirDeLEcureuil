@@ -2,21 +2,7 @@
 - hosts: all
   become: yes
 
-  vars:
-    # Username
-    user: lecomptoirdelecureuil
-    # Timezone
-    timezone: 'Europe/Paris'
-    # Site
-    http_port: 80
-    server_admin: arnaudfrezet@gmail.com
-    server_name: lecomptoirdelecureuil.fr
-    server_alias: www.lecomptoirdelecureuil.fr
-    database_name: le-comptoir
-
   tasks:
-    - include_vars: ../vars/vars.yml
-
     ###################
     # User Management
     ###################

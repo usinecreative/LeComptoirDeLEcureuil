@@ -14,8 +14,7 @@ dumps
 # sass
 .sass-cache
 
-/etc/ansible/vars/vars.yml
-/etc/ansible/host_vars/*.yml
+/etc/ansible/hosts/host_vars/*.yml
 
 # backup
 backups
