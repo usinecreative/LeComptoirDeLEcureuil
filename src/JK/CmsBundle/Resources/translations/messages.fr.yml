@@ -54,6 +54,7 @@ cms:
         delete: Supprimer
         deleted: La catégorie a été supprimé
         create: Ajouter une catégorie
+        saved: La catégorie a été sauvegardé
         id: '#'
         name: Nom
         createdAt: Crée le
