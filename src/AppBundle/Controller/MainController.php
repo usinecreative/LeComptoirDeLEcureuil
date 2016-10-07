@@ -89,7 +89,7 @@ class MainController extends Controller
     }
 
     /**
-     * @return array
+     * @return BinaryFileResponse
      */
     public function sitemapAction()
     {
@@ -142,6 +142,8 @@ class MainController extends Controller
         $feed = $this
             ->get('eko_feed.feed.manager')
             ->get('article');
+
+        // add loaded articles to the feed
         $feed->addFromArray($items);
 
         // return xml response

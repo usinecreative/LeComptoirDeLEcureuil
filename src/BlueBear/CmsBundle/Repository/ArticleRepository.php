@@ -93,6 +93,7 @@ class ArticleRepository extends DoctrineRepository
             ->createQueryBuilder('article')
             ->where('article.publicationStatus = :publication_status')
             ->setParameter('publication_status', Article::PUBLICATION_STATUS_PUBLISHED)
+            ->orderBy('article.publicationDate', 'desc')
             ->getQuery()
             ->getResult();
     }
