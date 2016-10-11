@@ -51,13 +51,13 @@ class MainControllerTest extends WebTestCase
         $this->assertEquals(1, $this->crawler->filter('li a:contains("Sorties")')->count());
 
         // partners
-        $this->assertEquals(1, $this->crawler->filter('li a:contains("Editions Mnémos")')->count());
-        $this->assertEquals(1, $this->crawler->filter('li a:contains("Editions Du Chat Noir")')->count());
-        $this->assertEquals(1, $this->crawler->filter('li a:contains("Editions ActuSF")')->count());
-        $this->assertEquals(1, $this->crawler->filter('li a:contains("Editions de la Bourdonnaye")')->count());
-        $this->assertEquals(1, $this->crawler->filter('li a:contains("Intergalactiques De Lyon")')->count());
-        $this->assertEquals(1, $this->crawler->filter('li a:contains("Trollune")')->count());
-        $this->assertEquals(1, $this->crawler->filter('li a:contains("Esprit livre")')->count());
+        $this->assertEquals(1, $this->crawler->filter('.nav.navbar-nav li a:contains("Editions Mnémos")')->count());
+        $this->assertEquals(1, $this->crawler->filter('.nav.navbar-nav li a:contains("Editions Du Chat Noir")')->count());
+        $this->assertEquals(1, $this->crawler->filter('.nav.navbar-nav li a:contains("Editions ActuSF")')->count());
+        $this->assertEquals(1, $this->crawler->filter('.nav.navbar-nav li a:contains("Editions de la Bourdonnaye")')->count());
+        $this->assertEquals(1, $this->crawler->filter('.nav.navbar-nav li a:contains("Intergalactiques De Lyon")')->count());
+        $this->assertEquals(1, $this->crawler->filter('.nav.navbar-nav li a:contains("Trollune")')->count());
+        $this->assertEquals(1, $this->crawler->filter('.nav.navbar-nav li a:contains("Esprit livre")')->count());
 
         // who am i
         $this->assertEquals(1, $this->crawler->filter('li a:contains("Qui-suis-je")')->count());
