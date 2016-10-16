@@ -265,9 +265,17 @@ lag_admin:
             entity: AppBundle\Entity\Partner
             form: AppBundle\Form\Type\PartnerType
             actions:
+                create: ~
                 edit: ~
                 delete: ~
                 list:
+                    menus:
+                        top:
+                            items:
+                                create:
+                                    admin: partner
+                                    action: create
+                                    icon: fa fa-plus
                     fields:
                         id: ~
                         name: ~
