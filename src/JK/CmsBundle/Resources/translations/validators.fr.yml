@@ -1,0 +1,3 @@
+cms:
+    article:
+        violations.publication_date: Vous devez saisir une date de publication avant de publier un article
