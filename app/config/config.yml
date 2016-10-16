@@ -35,6 +35,8 @@ twig:
         - "LAGAdminBundle:Form:fields.html.twig"
         - "BlueBearCmsBundle:Form:fields.html.twig"
         - 'VichUploaderBundle:Form:fields.html.twig'
+    globals:
+        google_analytics_id: '%google_analytics_id%'
 
 services:
     twig.extension.text:
