@@ -21,3 +21,4 @@ server_alias:
 # project vars
 git_version: master
 deploy_path:
+google_analytics_id:

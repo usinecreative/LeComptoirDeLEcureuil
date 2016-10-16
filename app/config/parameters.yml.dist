@@ -26,4 +26,6 @@ parameters:
 
     default_mail: ~
 
+    google_analytics_id: ~
+
 
