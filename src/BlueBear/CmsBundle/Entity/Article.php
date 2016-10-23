@@ -94,7 +94,7 @@ class Article
     /**
      * @ORM\Column(name="is_commentable", type="boolean")
      */
-    protected $isCommentable;
+    protected $isCommentable = true;
 
     /**
      * @Gedmo\Slug(fields={"title"})

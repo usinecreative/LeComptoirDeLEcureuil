@@ -40,11 +40,27 @@ cms:
         # Fields
         id: Id
         title: Titre
+        title_help: Titre de l'article
         category: Catégorie
+        category_help: Catégorie dans laquelle sera publié l'article
         author: Auteur
+        author_help: Auteur de l'article
+        content: Corps de l'article
+        content_help: Contenu de l'article. Le style et la mise en page peuventt être légerement différents lors de l'affichage de l'article
         publicationStatus: Statut de publication
+        publicationStatus_help: Seul les articles publiés seront vus sur le site par les lecteurs
         publicationDate: Date de publication
+        publicationDate_help: Date de publication à laquelle l'article sera publié
+        createdAt: Date de création
+        createdAt_help: Date à laquelle l'article à été créé
         updatedAt: Mis à jour le
+        updatedAt_help: Date de la dernière modification de l'article
+        isCommentable: Autoriser les commentaires
+        isCommentable_help: Si cette cache case est décochée, les commentaires seront désactivés pour cet article
+        canonical: Url
+        canonical_help: Url de la page sur le site
+        thumbnailFile: Minitature de l'article
+        thumbnailFile_help: Minitature affichée sur la page d'accueil ou dans les catégories
         _actions: ''
     menu:
         edit: Editer
