@@ -9,6 +9,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
@@ -133,6 +134,20 @@ class Article
     public function __toString()
     {
         return $this->title;
+    }
+
+    /**
+     * @Assert\Callback()
+     *
+     * @param ExecutionContextInterface $context
+     */
+    public function validate(ExecutionContextInterface $context)
+    {
+        if ($this->getPublicationStatus() == self::PUBLICATION_STATUS_PUBLISHED
+            && !($this->getPublicationDate() instanceof DateTime)) {
+            // if the article is published, it should have a publication date
+            $context->addViolation('cms.article.violations.publication_date');
+        }
     }
 
     /**
@@ -302,16 +317,21 @@ class Article
     {
         $year = date('Y');
         $month = date('m');
+        $slug = $this->slug;
 
         if (null !== $this->publicationDate) {
             $year = $this->publicationDate->format('Y');
             $month = $this->publicationDate->format('m');
         }
 
+        if (null === $slug) {
+            $slug = '__TOKEN__';
+        }
+
         return [
             'year' => $year,
             'month' => $month,
-            'slug' => $this->slug
+            'slug' => $slug
         ];
     }
 
