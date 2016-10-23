@@ -108,9 +108,6 @@ lag_admin:
                             admin: import
                             action: list
                             icon: fa fa-upload
-                media:
-                    admin: media
-                    icon: fa fa-image
                 logout:
                     route: logout
                     icon: fa fa-sign-out
@@ -137,17 +134,7 @@ lag_admin:
             entity: BlueBear\CmsBundle\Entity\Parameters
             form: BlueBear\CmsBundle\Form\Type\ParametersType
             actions:
-                list:
-                    fields:
-                        id: ~
-                        title:
-                            type: string
-                            options:
-                                length: 100
-                        value:
-                            type: string
-                            options:
-                                length: 100
+                list: ~
                 create: ~
                 edit: ~
                 delete: ~
@@ -170,11 +157,6 @@ lag_admin:
                         label: {type: string, options: {length: 100}}
                         comments: {type: string, options: {length: 100}}
                         status: ~
-#                    actions:
-#                        import:
-#                            title: bluebear.cms.import.create
-#                            route: bluebear.cms.import.create
-#                            icon: plus
                 create: ~
                 edit: ~
                 delete: ~
@@ -184,30 +166,8 @@ lag_admin:
             form: BlueBear\CmsBundle\Form\Type\MediaType
             controller: 'BlueBearMediaBundle:Media'
             actions:
-                list:
-                    fields:
-                        id: ~
-                        name: ~
-                        filepath: ~
-                        filename: ~
-                        extension: ~
-                        type: ~
-                        updatedAt: {type: date, options: {format: 'd/m/Y h:i:s'}}
-                        _edit:
-                            type: action
-                            options:
-                                title: bluebear.admin.edit
-                                route: lecomptoir.cms.media.edit
-                                parameters: {id: ~}
-                                icon: pencil
-                        _delete:
-                            type: action
-                            options:
-                                title: bluebear.admin.delete
-                                route: lecomptoir.cms.media.delete
-                                parameters: {id: ~}
-                                icon: remove
-                upload: ~
+                list: ~
+                create: ~
                 edit: ~
                 delete: ~
         page:
@@ -252,11 +212,6 @@ lag_admin:
                                         route: cms.page.delete
                                         parameters: {id: ~}
                                         icon: remove
-#                    actions:
-#                        import:
-#                            title: bluebear.admin.create
-#                            route: bluebear.cms.page.create
-#                            icon: plus
                 create: ~
                 edit:
                     title: cms.page.edit.form_title
@@ -264,39 +219,7 @@ lag_admin:
         partner:
             entity: AppBundle\Entity\Partner
             form: AppBundle\Form\Type\PartnerType
-            actions:
-                create: ~
-                edit: ~
-                delete: ~
-                list:
-                    menus:
-                        top:
-                            items:
-                                create:
-                                    admin: partner
-                                    action: create
-                                    icon: fa fa-plus
-                    fields:
-                        id: ~
-                        name: ~
-                        baseline: ~
-                        _actions:
-                            type: collection
-                            options:
-                                _edit:
-                                    type: action
-                                    options:
-                                        title: lag.admin.edit
-                                        route: cms.partner.edit
-                                        parameters: {id: ~}
-                                        icon: pencil
-                                _delete:
-                                    type: action
-                                    options:
-                                        title: lag.admin.delete
-                                        route: cms.partner.delete
-                                        parameters: {id: ~}
-                                        icon: remove
+            actions: ~
 
 bluebear_media: ~
 
