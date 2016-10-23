@@ -24,13 +24,13 @@ class CommentType extends AbstractType
             ->add('authorName', TextType::class, [
                 'label' => false,
                 'attr' => [
-                    'placeholder' => 'Le nom sur la noisette...'
+                    'placeholder' => 'Laisser votre nom...'
                 ]
             ])
             ->add('content', TextareaType::class, [
                 'label' => false,
                 'attr' => [
-                    'placeholder' => 'Laissez votre noisette ici...'
+                    'placeholder' => 'Laissez votre message ici...'
                 ]
             ])
         ;
