@@ -1,6 +1,5 @@
 <?php
 
-
 namespace JK\CmsBundle\Event\Subscriber;
 
 use BlueBear\CmsBundle\Entity\Article;
@@ -19,7 +18,7 @@ class ArticleSubscriber implements EventSubscriber
     public function getSubscribedEvents()
     {
         return [
-            Events::prePersist
+            Events::preUpdate
         ];
     }
 
@@ -28,7 +27,7 @@ class ArticleSubscriber implements EventSubscriber
         $this->router = $router;
     }
 
-    public function prePersist(LifecycleEventArgs $event)
+    public function preUpdate(LifecycleEventArgs $event)
     {
         $entity = $event->getEntity();
 
