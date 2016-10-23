@@ -116,3 +116,5 @@ cms:
         twitter: Twitter
         facebook: Facebook
         instagram: Instragram
+        createdAt: Crée le
+        updatedAt: Mis à jour le

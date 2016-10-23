@@ -18,6 +18,7 @@ cms:
         content: Contenu
         updatedAt: Mis à jour le
         publicationDate: Publié le
+        slug: Slug
         _actions: ''
     publication:
         draft: Brouillon
