@@ -5,4 +5,12 @@
   .article-content {
     padding-top: 0;
   }
+  .article-footer {
+    margin-top: 0;
+
+    .social-links li {
+      float: left;
+      padding: 20px 10px;
+    }
+  }
 }

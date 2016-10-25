@@ -14,13 +14,40 @@
             {{ partner.description | raw }}
         </div>
 
-        {% if partner.website %}
-            <div class="article-footer">
-                {{ 'lecomptoir.partner.website' | trans }} :
-                <a href="{{ partner.website }}" target="_blank">
-                    <i class="fa fa-info-circle"></i>&nbsp;{{ partner.website }}
-                </a>
-            </div>
-        {% endif %}
+        <div class="article-footer">
+            <ul class="social-links">
+                {% if partner.website %}
+                    <li>
+                        <a href="{{ partner.website }}" target="_blank">
+                            <i class="fa fa-info-circle fa-3x"></i>
+                        </a>
+                    </li>
+                {% endif %}
+
+                {% if partner.facebook %}
+                    <li>
+                        <a href="{{ partner.facebook }}">
+                            <i class="fa fa-facebook-official fa-3x"></i>
+                        </a>
+                    </li>
+                {% endif %}
+
+                {% if partner.twitter %}
+                    <li>
+                        <a href="{{ partner.twitter }}">
+                            <i class="fa fa-twitter fa-3x"></i>
+                        </a>
+                    </li>
+                {% endif %}
+
+                {% if partner.instagram %}
+                    <li>
+                        <a href="{{ partner.instagram }}">
+                            <i class="fa fa-instagram fa-3x"></i>
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
     </div>
 {% endblock %}
