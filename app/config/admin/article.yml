@@ -7,7 +7,7 @@ lag_admin:
                 list:
                     title: cms.article.list
                     order:
-                        - {field: publicationDate, order: desc}
+                        id: desc
                     menus:
                         top:
                             items:
@@ -27,7 +27,7 @@ lag_admin:
                         author: ~
                         publicationStatus: ~
                         publicationDate: {type: date, options: {format: d/m/Y}}
-                        updatedAt: {type: date, options: {format: '\L\e d/m/Y à h:i:s'}}
+                        updatedAt: {type: date, options: {format: d/m/Y}}
                         _actions:
                             type: collection
                             options:
@@ -52,7 +52,7 @@ lag_admin:
                             items:
                                 preview:
                                     text: cms.article.preview
-                                    route: bluebear.cms.article.preview
+                                    route: lecomptoir.article.preview
                                     parameters: {id: ~}
                                     icon: fa fa-eye
                                     attr:
