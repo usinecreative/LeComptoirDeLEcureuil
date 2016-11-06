@@ -15,9 +15,12 @@ use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Guard\AbstractGuardAuthenticator;
+use Symfony\Component\Security\Http\Util\TargetPathTrait;
 
 class TokenAuthenticator extends AbstractGuardAuthenticator
 {
+    use TargetPathTrait;
+
     /**
      * @var RouterInterface
      */
@@ -90,17 +93,15 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
      *
      * @param Request $request
      *
-     * @return mixed|null
+     * @return mixed
      */
     public function getCredentials(Request $request)
     {
         if ($request->get('_route') != 'login_check') {
-            return;
+            return null;
         }
         $form = $this->formFactory->create(LoginType::class);
         $form->handleRequest($request);
-
-        //var_dump($request->getSession()->get)
 
         if (!$form->isValid()) {
             throw new AuthenticationException();
@@ -194,7 +195,15 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
      */
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
-        return new RedirectResponse($this->router->generate('bluebear.cms.dashboard'));
+        $url = $this->getTargetPath($request->getSession(), $providerKey);
+
+        if (!$url) {
+            $url = $this
+                ->router
+                ->generate('bluebear.cms.dashboard');
+        }
+
+        return new RedirectResponse($url);
     }
 
     /**
