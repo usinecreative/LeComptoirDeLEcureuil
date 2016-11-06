@@ -34,7 +34,7 @@
     "knplabs/knp-gaufrette-bundle": "^0.3.0",
     "eko/feedbundle": "^1.2",
     "bluebear/basebundle": "0.2.*",
-    "lag/adminbundle": "^0.4",
+    "lag/adminbundle": "dev-release/v0.4.3",
     "components/bootstrap": "^3.3",
     "johnkrovitch/sam": "dev-dev",
     "johnkrovitch/sam-bundle": "dev-master",
