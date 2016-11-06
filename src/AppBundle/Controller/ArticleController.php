@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Form\Type\CommentType;
 use BlueBear\BaseBundle\Behavior\ControllerTrait;
+use BlueBear\CmsBundle\Entity\Article;
 use BlueBear\CmsBundle\Entity\Category;
 use BlueBear\CmsBundle\Finder\Filter\ArticleFilter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -20,7 +21,9 @@ class ArticleController extends Controller
 
     /**
      * @Template(":Article:show.html.twig")
+     *
      * @param Request $request
+     *
      * @return array|RedirectResponse
      */
     public function showAction(Request $request)
@@ -56,6 +59,7 @@ class ArticleController extends Controller
 
     /**
      * @Template(":Article:filter.html.twig")
+     *
      * @param Request $request
      * @return array
      */
@@ -77,7 +81,24 @@ class ArticleController extends Controller
     }
 
     /**
+     * @Template(":Article:preview.html.twig")
+     *
+     * @param Article $article
+     *
+     * @return array
+     */
+    public function previewAction(Article $article)
+    {
+        $this->denyAccessUnlessGranted('ROLE_USER');
+
+        return [
+            'article' => $article
+        ];
+    }
+
+    /**
      * @param ArticleFilter $filter
+     *
      * @return string
      */
     protected function getFilterTitle(ArticleFilter $filter)

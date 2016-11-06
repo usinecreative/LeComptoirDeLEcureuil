@@ -16,7 +16,7 @@ security:
             security: false
 
         main:
-            pattern: ^/cms
+            pattern: ^/(cms)|(article/(\d+)/preview)
             anonymous: ~
             logout:
                 path: /cms/logout
@@ -26,22 +26,8 @@ security:
                 authenticators:
                     - cms_authenticator
 
-
-#        main:
-#            pattern: ^/cms
-#            form_login:
-#                check_path: /cms/login_check
-#                login_path: /cms/login
-#                provider: fos_userbundle
-#                csrf_provider: form.csrf_provider
-#                default_target_path: /cms/dashboard
-#                always_use_default_target_path: true
-#            logout:
-#                path:   /cms/logout
-#                target: /
-#            anonymous:    false
-
     access_control:
         - { path: ^/cms/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/cms/, role: ROLE_ADMIN }
+        - { path: ^/article/    , role: ROLE_ADMIN }
         - { path: ^/, role: IS_AUTHENTICATED_ANONYMOUSLY }

@@ -32,10 +32,16 @@ lecomptoir.article.list_by_tag:
     path: /tag/{tagSlug}
     defaults: {_controller: AppBundle:Article:filter}
 
+# Article preview
+lecomptoir.article.preview:
+    path: /article/{id}/preview
+    defaults: {_controller: AppBundle:Article:preview}
+
 lecomptoir.article.show:
     path:  /{year}/{month}/{slug}
     defaults: {_controller: AppBundle:Article:show}
 
+# fix for bad wordpress urls
 lecomptoir.article.show2:
     path:  /{year}/{month}/{slug}/
     defaults: {_controller: AppBundle:Article:show}
