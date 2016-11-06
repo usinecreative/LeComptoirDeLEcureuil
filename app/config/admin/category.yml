@@ -50,4 +50,4 @@ lag_admin:
                                         parameters: {id: ~}
                                         icon: remove
                     order:
-                        - {field: updatedAt, order: desc}
+                        updatedAt: desc
