@@ -16,16 +16,14 @@ class PartnerType extends AbstractType
             ->add('name', TextType::class, [
                 'label' => 'cms.partner.name'
             ])
-            ->add('slug', TextType::class, [
-                'label' => 'cms.partner.slug'
-            ])
             ->add('description', TextareaType::class, [
                 'attr' => [
                     'rows' => 10,
                     'class' => 'tinymce',
                     'data-theme' => 'advanced'
                 ],
-                'label' => 'cms.partner.description'
+                'label' => 'cms.partner.description',
+                'required' => false,
             ])
             ->add('baseline')
             ->add('website', UrlType::class, [

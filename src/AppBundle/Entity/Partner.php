@@ -13,7 +13,9 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *
  * @ORM\Table(name="lecomptoir_partner", indexes={@ORM\Index(name="slug_idx", columns={"slug"})}))
  * @ORM\Entity(repositoryClass="AppBundle\Repository\PartnerRepository")
+ *
  * @UniqueEntity(fields={"name", "slug"})
+ *
  * @ORM\HasLifecycleCallbacks()
  */
 class Partner
