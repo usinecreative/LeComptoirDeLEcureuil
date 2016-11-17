@@ -15,6 +15,7 @@
   .navbar-nav {
     // menu items
     & > li {
+      float: left;
       list-style: none;
       text-align: center;
       text-shadow: none;
