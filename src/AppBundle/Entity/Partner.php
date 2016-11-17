@@ -36,7 +36,7 @@ class Partner
      * @ORM\Column(name="description", type="text")
      * @var string
      */
-    protected $description;
+    protected $description = '';
 
     /**
      * @Gedmo\Slug(fields={"name"})
