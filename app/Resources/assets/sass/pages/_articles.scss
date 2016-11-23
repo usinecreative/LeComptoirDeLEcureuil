@@ -40,17 +40,12 @@ article {
   font-family: "Gabriela", arial, sans-serif;
 
   h1, h2 {
-    //font-family: "Playball", arial, sans-serif;
-    //font-size: 21px;
     color: #11112f;
-    //padding: 0 60px;
   }
   .article-header {
     padding: 20px 60px;
 
     .article-title {
-      //padding-left: 20px;
-
       h2 {
         margin: 10px 0 20px 0;
       }
@@ -60,6 +55,10 @@ article {
     text-align: justify;
     line-height: 1.8;
     padding: 20px 60px;
+
+    img {
+      margin: 0 20px;
+    }
   }
 
   .article-thumbnail {
