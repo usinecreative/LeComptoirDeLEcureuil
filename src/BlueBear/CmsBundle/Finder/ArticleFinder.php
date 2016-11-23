@@ -84,6 +84,7 @@ class ArticleFinder
 
         // only with the published comments
         $queryBuilder
+            ->addSelect('comments')
             ->leftJoin('article.comments', 'comments');
 
         // get parameters from filters
