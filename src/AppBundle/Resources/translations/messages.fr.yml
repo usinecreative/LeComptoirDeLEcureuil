@@ -68,13 +68,14 @@ lecomptoir:
         email_placeholder: Saisissez votre email pour une réponse...
         message: Message
         message_placeholder: Saisissez ici votre message...
+        message_send: Le message a été envoyé à l'écureuil. Il vous répondra entre deux noisettes...
 
     interface:
         more_link: Lire la suite
         categories: Catégories
 
     # Mail
-    mail.contact.title: "[Le Comptoir de l'écureuil] Contact : nouveau message de %email%"
+    mail.contact.title: "[Le Comptoir de l'écureuil] Contact : nouveau message de :email"
 
 lag.admin.page.saved: Page sauvegardée
 lag.admin.page.deleted: Page supprimée

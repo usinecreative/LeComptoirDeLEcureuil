@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Swift_Message;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 
@@ -39,13 +40,19 @@ class MainController extends Controller
 
     /**
      * @Template(":Main:contact.html.twig")
+     *
+     * @param Request $request
+     *
+     * @return array
      */
-    public function contactAction()
+    public function contactAction(Request $request)
     {
         $form = $this->createForm(ContactType::class);
+        $form->handleRequest($request);
 
         if ($form->isValid()) {
             $this->sendContactMail($form->getData());
+            $this->addFlash('success', $this->translate('lecomptoir.contact.message_send'));
         }
 
         return [
@@ -150,20 +157,25 @@ class MainController extends Controller
         return new Response($feed->render('rss'));
     }
 
+    /**
+     * @param array $data
+     */
     protected function sendContactMail(array $data)
     {
-        $message = Swift_Message::newInstance(
-            $this->translate('lecomptoir.mail.contact.title', [
-                'email' => $data['email']
-            ]),
-            $this->render('Mail/contact.mail.html.twig', $data),
-            'text/html'
-        );
-        $message->setTo('arnaudfrezet@gmail.com');
-        $message->setFrom('contact@lecomptoirdelecureuil');
-
+        $subject = $this->translate('lecomptoir.mail.contact.title', [
+            ':email' => $data['email'],
+        ]);
+        $body = $this->renderView('Mail/contact.mail.html.twig', $data);
+        /** @var Swift_Message $message */
+        $message = Swift_Message::newInstance()
+            ->setSubject($subject)
+            ->setFrom($data['email'])
+            ->setCc($this->getParameter('admin_mail'))
+            ->setTo($this->getParameter('squirrel_mail'))
+            ->setBody($body, 'text/html', 'utf8')
+        ;
         $this
-            ->get('swiftmailer.mailer')
+            ->get('mailer')
             ->send($message);
     }
 

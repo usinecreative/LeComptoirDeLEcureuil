@@ -22,3 +22,9 @@ server_alias:
 git_version: master
 deploy_path:
 google_analytics_id:
+
+# mail
+squirrel_mail:
+admin_mail:
+mailer_user:
+mailer_password:

@@ -103,7 +103,3 @@ stof_doctrine_extensions:
         default:
             sluggable: true
             timestampable: false
-
-
-# app/config/config.yml
-

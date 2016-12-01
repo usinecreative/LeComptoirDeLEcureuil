@@ -1,21 +1,29 @@
 parameters:
     locale: fr
+
     database_driver: pdo_mysql
     database_host: 127.0.0.1
     database_port: null
     database_name: {{ database_name }}
     database_user: {{ database_name }}
     database_password: {{ mysql_remote_password }}
-    mailer_transport: smtp
-    mailer_host: 127.0.0.1
-    mailer_user: null
-    mailer_password: null
+
+    mailer_transport: gmail
+    mailer_user: {{ mailer_user }}
+    mailer_password: {{ mailer_password }}
     mailer_port: null
+
     secret: ThisIsASecretTokenForColibriWebsite
+
     use_assetic_controller: false
     debug_toolbar: true
     debug_redirects: false
+
     new_relic_api_key: null
     new_relic_license_key: null
+
     default_mail: afrezet@larriereguichet.com
     google_analytics_id: {{ google_analytics_id }}
+
+    squirrel_mail: {{ squirrel_mail }}
+    admin_mail: {{ admin_mail }}
