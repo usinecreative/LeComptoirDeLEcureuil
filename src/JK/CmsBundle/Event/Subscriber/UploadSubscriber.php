@@ -14,6 +14,9 @@ class UploadSubscriber implements EventSubscriberInterface
      */
     private $mediaRepository;
 
+    /**
+     * @return array
+     */
     public static function getSubscribedEvents()
     {
         return [
@@ -21,11 +24,21 @@ class UploadSubscriber implements EventSubscriberInterface
         ];
     }
 
+    /**
+     * UploadSubscriber constructor.
+     *
+     * @param MediaRepository $mediaRepository
+     */
     public function __construct(MediaRepository $mediaRepository)
     {
         $this->mediaRepository = $mediaRepository;
     }
 
+    /**
+     * On file upload, a new media entity is created.
+     *
+     * @param PostPersistEvent $event
+     */
     public function onUpload(PostPersistEvent $event)
     {
         if ('gallery' !== $event->getType()) {
@@ -48,6 +61,11 @@ class UploadSubscriber implements EventSubscriberInterface
             ->save($media);
     }
 
+    /**
+     * Generate an unique default file name.
+     *
+     * @return string
+     */
     protected function generateFileName()
     {
         return uniqid('assets-');
