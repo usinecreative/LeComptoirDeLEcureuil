@@ -1,0 +1,7 @@
+cms.media.gallery.modal:
+    path: /media/gallery/modal
+    defaults: {_controller: JKCmsBundle:Media:modalGallery}
+
+cms.media.gallery.content:
+    path: /media/gallery/content
+    defaults: {_controller: JKCmsBundle:Media:galleryContent}

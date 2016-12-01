@@ -1,11 +1,28 @@
-services:
-#    jk_cms.example:
-#        class: JK\CmsBundle\Example
-#        arguments: ["@service_id", "plain_value", %parameter%]
+parameters:
+    cms.media.class: JK\CmsBundle\Entity\Media
 
+services:
     cms.article.subscriber:
         class: JK\CmsBundle\Event\Subscriber\ArticleSubscriber
         tags:
             - {name: doctrine.event_subscriber}
         arguments:
             - '@router'
+
+    cms.upload.subscriber:
+        class: JK\CmsBundle\Event\Subscriber\UploadSubscriber
+        arguments:
+            - '@cms.media.media_repository'
+        tags:
+            - {name: kernel.event_subscriber}
+
+    cms.media.media_repository:
+        class: JK\CmsBundle\Repository\MediaRepository
+        factory: ["@doctrine", getRepository]
+        arguments:
+            - JK\CmsBundle\Entity\Media
+
+    cms.twig.cms_extension:
+        class: JK\CmsBundle\Twig\CmsExtension
+        tags:
+            - {name: twig.extension}
