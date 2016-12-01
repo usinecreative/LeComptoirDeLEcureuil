@@ -1,4 +1,6 @@
 cms:
+    main:
+        cancel: Annuler
     page:
         edit:
             form_title: Edition d'une page
@@ -108,6 +110,9 @@ cms:
     import:
         list: Imports
         create: Importez vos données
+    gallery:
+      add_gallery: Ajouter une galerie d'image
+      upload_media: Uploader une média
 
 logout: Déconnexion
 login: Connexion
