@@ -3,12 +3,15 @@
 {% block content %}
     <div class="col-lg-9 col-sm-9 col-sm-9 main-content free-page contact-page">
         <div class="page-content">
+            {% include "@LAGAdmin/Layout/flash_messages.html.twig" %}
 
             <h2>Contacter l'écureuil</h2>
 
             <p>
                 Vous pouvez laisser un message à l'écureuil qui ne manquera pas de répondre dès qu'il aura fini sa collecte
-                de noisettes...
+                de noisettes...<br/><br/>
+
+                {{ form_errors(form) }}
             </p>
 
             <form action="" method="post">
@@ -34,6 +37,8 @@
                     {{ form_widget(form.message) }}
                 </div>
                 <div class="form-group text-right">
+                    {{ form_rest(form) }}
+
                     <input type="submit" class="btn btn-success"
                            value="{{ 'lecomptoir.contact.contact' | trans }}" />
                 </div>

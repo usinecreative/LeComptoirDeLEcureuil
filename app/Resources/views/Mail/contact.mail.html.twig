@@ -1,5 +1,11 @@
-<h1>Nouveau message de {{ firstName }} {{ lastName }} ({{ email }})</h1>
+<h2>Nouveau message de {{ firstName }} {{ lastName }} ({{ email }})</h2>
+
+<p>Un message a été posté depuis le formulaire de contact du comptoir :</p><br/>
 
 <div>
+    <p>
+        Nom: {{ firstName }} {{ lastName }}
+        Email: {{ email }}
+    </p>
     {{ message }}
 </div>
