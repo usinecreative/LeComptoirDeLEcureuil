@@ -1,0 +1,13 @@
+<div class="media-gallery">
+    {% for media in mediaList %}
+        <figure>
+        <img src="{{ cms_asset(media) | imagine_filter('media_gallery') }}"
+             alt="{{ media.description }}"
+             class="media"/>
+            <figcaption>{{ media.name }}</figcaption><br/>
+        </figure>
+    {% endfor %}
+</div>
+{# add br to ensure tynimce will not append elements inside the media gallery #}
+<br/>
+<br/>
