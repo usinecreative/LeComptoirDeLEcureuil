@@ -26,7 +26,7 @@
     "sensio/framework-extra-bundle": "^3.0",
     "twig/extensions": "^1.3",
     "incenteev/composer-parameter-handler": "^2.1",
-    "oneup/uploader-bundle": "^1.5",
+    "oneup/uploader-bundle": "^1.7",
     "stof/doctrine-extensions-bundle": "^1.2",
     "symfony/monolog-bundle": "^2.8",
     "phpunit/phpunit": "^4.8",
@@ -36,8 +36,13 @@
     "lag/adminbundle": "^0.4.3",
     "components/bootstrap": "^3.3",
     "johnkrovitch/sam-bundle": "dev-dev",
-    "vich/uploader-bundle": "^1.3",
-    "tinymce/tinymce": "^4.4"
+    "tinymce/tinymce": "^4.4",
+    "blueimp/jquery-file-upload": "^9.14",
+    "liip/imagine-bundle": "^1.6"
+  },
+  "require-dev": {
+    "hautelook/alice-bundle": "^1.2",
+    "doctrine/data-fixtures": "^1.1"
   },
   "scripts": {
     "post-root-package-install": [
@@ -75,9 +80,5 @@
     "incenteev-parameters": {
       "file": "app/config/parameters.yml"
     }
-  },
-  "require-dev": {
-    "hautelook/alice-bundle": "^1.2",
-    "doctrine/data-fixtures": "^1.1"
   }
 }
