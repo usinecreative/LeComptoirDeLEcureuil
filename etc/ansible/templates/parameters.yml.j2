@@ -8,13 +8,13 @@ parameters:
     database_user: {{ database_name }}
     database_password: {{ mysql_remote_password }}
 
-    mailer_transport: gmail
+    mailer_transport: smtp
     mailer_host: smtp.gmail.com
+    mailer_port: 587
     mailer_user: {{ mailer_user }}
     mailer_password: {{ mailer_password }}
     mailer_encryption: ssl
     mailer_auth_mode: login
-
 
     secret: ThisIsASecretTokenForColibriWebsite
 
