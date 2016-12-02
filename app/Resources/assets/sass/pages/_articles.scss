@@ -56,6 +56,10 @@ article {
     line-height: 1.8;
     padding: 20px 60px;
 
+    & > p > img {
+      float: none;
+    }
+
     img {
       margin: 0 20px;
     }

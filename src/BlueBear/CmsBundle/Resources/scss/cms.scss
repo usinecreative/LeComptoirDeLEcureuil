@@ -1,4 +1,5 @@
 @import "partials/menu";
+@import "partials/media";
 
 body {
   background-color: #eeeeee;
@@ -51,6 +52,7 @@ table th a {
   }
 }
 
-.vich-image img {
-  width: 100px;
+.mce-close::before {
+  content: "";
+  float: right;
 }
