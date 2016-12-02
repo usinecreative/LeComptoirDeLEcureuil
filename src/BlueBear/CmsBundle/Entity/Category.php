@@ -2,10 +2,6 @@
 
 namespace BlueBear\CmsBundle\Entity;
 
-use BlueBear\BaseBundle\Entity\Behaviors\Descriptionable;
-use BlueBear\BaseBundle\Entity\Behaviors\Id;
-use BlueBear\BaseBundle\Entity\Behaviors\Nameable;
-use BlueBear\BaseBundle\Entity\Behaviors\Timestampable;
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -27,10 +23,24 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  */
 class Category
 {
-    use Id, Nameable, Timestampable, Descriptionable;
-
     const PUBLICATION_NOT_PUBLISHED = 0;
     const PUBLICATION_STATUS_PUBLISHED = 1;
+    
+    /**
+     * Entity id
+     *
+     * @ORM\Id()
+     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Column(type="integer")
+     */
+    protected $id;
+    
+    /**
+     * Entity name
+     *
+     * @ORM\Column(type="string", length=255)
+     */
+    protected $name;
 
     /**
      * @var Category
@@ -82,6 +92,76 @@ class Category
      * )
      */
     protected $thumbnailFile;
+
+    /**
+     * Entity description
+     *
+     * @ORM\Column(type="text", nullable=true)
+     */
+    protected $description;
+    
+    /**
+     * @var DateTime
+     * @ORM\Column(name="created_at", type="datetime")
+     */
+    protected $createdAt;
+    
+    /**
+     * @var DateTime
+     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
+     */
+    protected $updatedAt;
+    
+    /**
+     * @ORM\PrePersist()
+     * @return $this
+     */
+    public function setCreatedAt()
+    {
+        if (!$this->createdAt) {
+            $this->createdAt = new DateTime();
+        }
+    }
+    
+    /**
+     * Return entity name
+     *
+     * @return mixed
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+    
+    /**
+     * Set entity name
+     *
+     * @param mixed $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
 
     /**
      * @return mixed
@@ -239,5 +319,64 @@ class Category
         if ($this->thumbnailFile instanceof UploadedFile) {
             $this->updatedAt = new DateTime('now');
         }
+    }
+    
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+    
+    /**
+     * @param mixed $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+        
+    /**
+     * Created at cannot be set. But in some case (like imports...), it is required to set created at. Use this method
+     * in this case
+     *
+     * @param DateTime $createdAt
+     */
+    public function forceCreatedAt(DateTime $createdAt)
+    {
+        $this->createdAt = $createdAt;
+    }
+    
+    /**
+     * @return DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+    
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     * @param null $value
+     * @return $this
+     */
+    public function setUpdatedAt($value = null)
+    {
+        if ($value instanceof DateTime) {
+            $this->updatedAt = $value;
+        } else {
+            $this->updatedAt = new DateTime();
+        }
+        return $this;
+    }
+    
+    /**
+     * @return DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
     }
 }
