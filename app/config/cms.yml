@@ -161,15 +161,15 @@ lag_admin:
                 edit: ~
                 delete: ~
 
-        media:
-            entity: BlueBear\MediaBundle\Entity\Media
-            form: BlueBear\CmsBundle\Form\Type\MediaType
-            controller: 'BlueBearMediaBundle:Media'
-            actions:
-                list: ~
-                create: ~
-                edit: ~
-                delete: ~
+#        media:
+#            entity: BlueBear\MediaBundle\Entity\Media
+#            form: BlueBear\CmsBundle\Form\Type\MediaType
+#            controller: 'BlueBearMediaBundle:Media'
+#            actions:
+#                list: ~
+#                create: ~
+#                edit: ~
+#                delete: ~
         page:
             entity: BlueBear\CmsBundle\Entity\Page
             form: BlueBear\CmsBundle\Form\Type\PageType
@@ -233,14 +233,22 @@ eko_feed:
                 route_name: lecomptoir.feed
             encoding: utf-8
 
-# File Upload
-vich_uploader:
-    db_driver: orm
+oneup_uploader:
     mappings:
-        article_media:
-            uri_prefix: /images/articles/thumbnails
-            upload_destination: '%kernel.root_dir%/../web/images/articles/thumbnails'
+        gallery:
+            frontend: blueimp
 
-        category_media:
-            uri_prefix: /images/categories/thumbnails
-            upload_destination: '%kernel.root_dir%/../web/images/categories/thumbnails'
+liip_imagine:
+    resolvers:
+        default:
+            web_path: ~
+    filter_sets:
+        cache: ~
+        media_thumbnail:
+            quality: 75
+            filters:
+                thumbnail: {size: [120, 90], mode: outbound}
+                background: {size: [124, 94], position: center, color: '#000000'}
+        media_gallery:
+            filters:
+                thumbnail: {size: [200, 250], mode: outbound}

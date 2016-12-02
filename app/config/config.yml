@@ -34,7 +34,7 @@ twig:
     form_themes:
         - "LAGAdminBundle:Form:fields.html.twig"
         - "BlueBearCmsBundle:Form:fields.html.twig"
-        - 'VichUploaderBundle:Form:fields.html.twig'
+#        - 'VichUploaderBundle:Form:fields.html.twig'
     globals:
         google_analytics_id: '%google_analytics_id%'
 
@@ -98,7 +98,6 @@ monolog:
             max_files: 5
             path: "%kernel.logs_dir%/bluebear-%kernel.environment%.log"
             level: error
-
 
 stof_doctrine_extensions:
     orm:
