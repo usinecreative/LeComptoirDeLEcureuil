@@ -3,8 +3,6 @@
 namespace BlueBear\CmsBundle\Entity;
 
 use BlueBear\BaseBundle\Behavior\StringUtilsTrait;
-use BlueBear\BaseBundle\Entity\Behaviors\Id;
-use BlueBear\BaseBundle\Entity\Behaviors\Typeable;
 use Doctrine\ORM\Mapping as ORM;
 use Exception;
 
@@ -16,16 +14,52 @@ use Exception;
  */
 class Content
 {
-    use Id, Typeable, StringUtilsTrait;
+    use StringUtilsTrait;
+    
+    /**
+     * Entity id
+     *
+     * @ORM\Id()
+     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Column(type="integer")
+     */
+    protected $id;
 
     /**
      * @var array
      * @ORM\Column(type="array")
      */
     protected $fields = [];
+    
+    /**
+     * Entity type
+     *
+     * @ORM\Column(type="string", length=255)
+     */
+    protected $type;
 
     protected $behaviors = [];
-
+    
+    /**
+     * Return entity id
+     *
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+    
+    /**
+     * Set entity id
+     *
+     * @param mixed $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+    
     /**
      * @return array
      */
@@ -88,5 +122,25 @@ class Content
             throw new Exception("Invalid field name \"{$name}\".");
         }
         $this->fields[$name] = $value;
+    }
+    
+    /**
+     * Return entity type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+    
+    /**
+     * Set entity type
+     *
+     * @param string $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
     }
 }

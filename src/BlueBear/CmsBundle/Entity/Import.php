@@ -2,9 +2,7 @@
 
 namespace BlueBear\CmsBundle\Entity;
 
-use BlueBear\BaseBundle\Entity\Behaviors\Id;
-use BlueBear\BaseBundle\Entity\Behaviors\Label;
-use BlueBear\BaseBundle\Entity\Behaviors\Timestampable;
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -20,14 +18,28 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Import
 {
-    use Id, Label, Timestampable;
-
     const IMPORT_STATUS_SUCCESS = 'success';
     const IMPORT_STATUS_ERROR = 'error';
     const IMPORT_STATUS_IN_PROGRESS = 'in_progress';
 
     const IMPORT_TYPE_WORDPRESS = 'wordpress';
-
+    
+    /**
+     * Entity id
+     *
+     * @ORM\Id()
+     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Column(type="integer")
+     */
+    protected $id;
+    
+    /**
+     * Entity label
+     *
+     * @ORM\Column(name="label", type="string")
+     */
+    protected $label;
+    
     /**
      * Import type (Wordpress...)
      *
@@ -58,9 +70,63 @@ class Import
      * @ORM\Column(name="comments", type="text", nullable=true)
      */
     protected $comments;
-
+    
+    /**
+     * @var
+     */
     protected $file;
-
+    
+    /**
+     * @var DateTime
+     * @ORM\Column(name="created_at", type="datetime")
+     */
+    protected $createdAt;
+    
+    /**
+     * @var DateTime
+     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
+     */
+    protected $updatedAt;
+    
+    /**
+     * Return entity id
+     *
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+    
+    /**
+     * Set entity id
+     *
+     * @param mixed $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+    
+    /**
+     * Return entity label
+     *
+     * @return string
+     */
+    public function getLabel()
+    {
+        return $this->label;
+    }
+    
+    /**
+     * Set entity label
+     *
+     * @param string $label
+     */
+    public function setLabel($label)
+    {
+        $this->label = $label;
+    }
     /**
      * @return string
      */
@@ -160,5 +226,58 @@ class Import
     public function setComments($comments)
     {
         $this->comments = $comments;
+    }
+    
+    /**
+     * @ORM\PrePersist()
+     */
+    public function setCreatedAt()
+    {
+        if (!$this->createdAt) {
+            $this->createdAt = new DateTime();
+        }
+    }
+    
+    /**
+     * Created at cannot be set. But in some case (like imports...), it is required to set created at. Use this method
+     * in this case
+     *
+     * @param DateTime $createdAt
+     */
+    public function forceCreatedAt(DateTime $createdAt)
+    {
+        $this->createdAt = $createdAt;
+    }
+    
+    /**
+     * @return DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+    
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     * @param null $value
+     * @return $this
+     */
+    public function setUpdatedAt($value = null)
+    {
+        if ($value instanceof DateTime) {
+            $this->updatedAt = $value;
+        } else {
+            $this->updatedAt = new DateTime();
+        }
+        return $this;
+    }
+    
+    /**
+     * @return DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
     }
 }

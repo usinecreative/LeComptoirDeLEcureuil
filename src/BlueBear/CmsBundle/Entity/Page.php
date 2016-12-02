@@ -2,8 +2,6 @@
 
 namespace BlueBear\CmsBundle\Entity;
 
-use BlueBear\BaseBundle\Entity\Behaviors\Id;
-use BlueBear\BaseBundle\Entity\Behaviors\Timestampable;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
@@ -15,8 +13,15 @@ use Gedmo\Mapping\Annotation as Gedmo;
  */
 class Page
 {
-    use Id, Timestampable;
-
+    /**
+     * Entity id
+     *
+     * @ORM\Id()
+     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Column(type="integer")
+     */
+    protected $id;
+    
     /**
      * @Gedmo\Slug(fields={"title"})
      * @ORM\Column(name="slug", type="string", length=255)
@@ -52,7 +57,38 @@ class Page
      * @var DateTime
      */
     protected $publicationDate;
-
+    /**
+     * @var DateTime
+     * @ORM\Column(name="created_at", type="datetime")
+     */
+    protected $createdAt;
+    
+    /**
+     * @var DateTime
+     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
+     */
+    protected $updatedAt;
+    
+    /**
+     * Return entity id
+     *
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+    
+    /**
+     * Set entity id
+     *
+     * @param mixed $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+    
     /**
      * @return string
      */
@@ -132,5 +168,57 @@ class Page
     {
         $this->publicationDate = $publicationDate;
     }
-
+    
+    /**
+     * @ORM\PrePersist()
+     */
+    public function setCreatedAt()
+    {
+        if (!$this->createdAt) {
+            $this->createdAt = new DateTime();
+        }
+    }
+    
+    /**
+     * Created at cannot be set. But in some case (like imports...), it is required to set created at. Use this method
+     * in this case
+     *
+     * @param DateTime $createdAt
+     */
+    public function forceCreatedAt(DateTime $createdAt)
+    {
+        $this->createdAt = $createdAt;
+    }
+    
+    /**
+     * @return DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+    
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     * @param null $value
+     * @return $this
+     */
+    public function setUpdatedAt($value = null)
+    {
+        if ($value instanceof DateTime) {
+            $this->updatedAt = $value;
+        } else {
+            $this->updatedAt = new DateTime();
+        }
+        return $this;
+    }
+    
+    /**
+     * @return DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
 }

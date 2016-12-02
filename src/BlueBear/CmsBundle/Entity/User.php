@@ -467,7 +467,10 @@ class User implements UserInterface
         $this->credentialsExpireAt = $credentialsExpireAt;
         return $this;
     }
-
+    
+    /**
+     * @return string
+     */
     public function __toString()
     {
         return $this->username;
@@ -484,7 +487,7 @@ class User implements UserInterface
     }
 
     /**
-     * @param \Symfony\Component\Security\Core\Role\Role[] $roles
+     * @param Role[] $roles
      */
     public function setRoles($roles)
     {
