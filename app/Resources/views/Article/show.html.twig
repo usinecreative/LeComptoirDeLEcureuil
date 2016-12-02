@@ -13,11 +13,6 @@
                     <span class="ribbon category-ribbon">{{ article.category.name }}</span></a>
                 <h2>{{ article.title }}</h2>
             </div>
-            <div class="article-thumbnail">
-                {% if article.thumbnail.filepath is defined %}
-                    {{ article.thumbnail.filepath }}
-                {% endif %}
-            </div>
         </div>
         <div class="article-content">
             {{ article.content | raw }}

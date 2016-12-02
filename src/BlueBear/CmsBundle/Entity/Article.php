@@ -18,8 +18,6 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  * @ORM\Table(name="cms_article")
  * @ORM\Entity(repositoryClass="BlueBear\CmsBundle\Repository\ArticleRepository")
  * @ORM\HasLifecycleCallbacks()
- *
- * @Vich\Uploadable()
  */
 class Article
 {
@@ -113,8 +111,6 @@ class Article
     protected $thumbnailName;
 
     /**
-     * @Vich\UploadableField(mapping="article_media", fileNameProperty="thumbnailName")
-     *
      * @Assert\File(maxSize="10M")
      */
     protected $thumbnailFile;

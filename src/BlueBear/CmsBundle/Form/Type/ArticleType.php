@@ -14,7 +14,6 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Vich\UploaderBundle\Form\Type\VichImageType;
 
 /**
  * Article form type
@@ -59,13 +58,13 @@ class ArticleType extends AbstractType
                 'label' => 'cms.article.content',
                 'required' => false,
             ])
-            ->add('thumbnailFile', VichImageType::class, [
-                'label' => 'cms.article.thumbnailFile',
-                'attr' => [
-                    'data-help' => 'cms.article.thumbnailFile_help'
-                ],
-                'required' => false,
-            ])
+//            ->add('thumbnailFile', VichImageType::class, [
+//                'label' => 'cms.article.thumbnailFile',
+//                'attr' => [
+//                    'data-help' => 'cms.article.thumbnailFile_help'
+//                ],
+//                'required' => false,
+//            ])
             ->add('publicationStatus', ChoiceType::class, [
                 'label' => 'cms.article.publicationStatus',
                 'attr' => [

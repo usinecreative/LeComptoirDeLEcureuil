@@ -8,7 +8,6 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * Category
@@ -18,8 +17,6 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  * @ORM\Table(name="cms_category")
  * @ORM\Entity(repositoryClass="BlueBear\CmsBundle\Repository\CategoryRepository")
  * @ORM\HasLifecycleCallbacks()
- *
- * @Vich\Uploadable()
  */
 class Category
 {
@@ -84,8 +81,6 @@ class Category
     protected $thumbnailName;
 
     /**
-     * @Vich\UploadableField(mapping="category_media", fileNameProperty="thumbnailName")
-     *
      * @Assert\File(
      *     maxSize="10M",
      *     mimeTypes={"image/jpg", "image/png", "image/jpeg", "application/octet-stream"}
