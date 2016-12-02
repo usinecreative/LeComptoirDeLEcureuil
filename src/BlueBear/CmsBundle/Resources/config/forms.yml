@@ -42,11 +42,11 @@ services:
             - {name: form.type, alias: import}
 
     # Form Handler
-    bluebear.cms.article.handler:
-        class: 'BlueBear\CmsBundle\Form\Handler\ArticleFormHandler'
-        arguments:
-            - '%kernel.root_dir%'
-            - '@jk.media.media_repository'
+#    bluebear.cms.article.handler:
+#        class: 'BlueBear\CmsBundle\Form\Handler\ArticleFormHandler'
+#        arguments:
+#            - '%kernel.root_dir%'
+#            - '@jk.media.media_repository'
 
     # Form Helper
     cms.form.helper:
