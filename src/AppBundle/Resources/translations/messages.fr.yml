@@ -15,6 +15,7 @@ lecomptoir:
         presentation: Présentation
         course: Parcours
         realisations: Réalisations
+        prestations: Mes prestations
     category:
         litterature: Littérature
         manga-bd: Manga/BD

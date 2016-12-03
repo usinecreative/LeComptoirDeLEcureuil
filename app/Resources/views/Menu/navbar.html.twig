@@ -45,34 +45,43 @@
             </a>
             <ul class="dropdown-menu">
                 <li>
-                    <a href="{{ path('lecomptoir.partner', {partnerSlug: 'le-diable-vauvert'}) }}">Editions du Diable Vauvert</a>
+                    <a href="{{ path('lecomptoir.partner', {partnerSlug: 'le-diable-vauvert'}) }}">Editions du Diable
+                        Vauvert</a>
                 </li>
                 <li>
-                    <a href="{{ path('lecomptoir.partner', {partnerSlug: 'editions-mnemos'}) }}" title="Editions Mnémos">Editions Mnémos</a>
+                    <a href="{{ path('lecomptoir.partner', {partnerSlug: 'editions-mnemos'}) }}"
+                       title="Editions Mnémos">Editions Mnémos</a>
                 </li>
                 <li>
-                    <a href="{{ path('lecomptoir.partner', {partnerSlug: 'editions-actusf'}) }}" title="Editions ActuSF">Editions ActuSF</a>
+                    <a href="{{ path('lecomptoir.partner', {partnerSlug: 'editions-actusf'}) }}"
+                       title="Editions ActuSF">Editions ActuSF</a>
                 </li>
                 <li>
-                    <a href="{{ path('lecomptoir.partner', {partnerSlug: 'le-peuple-de-mu'}) }}">Editions du Peuple de Mü</a>
+                    <a href="{{ path('lecomptoir.partner', {partnerSlug: 'le-peuple-de-mu'}) }}">Editions du Peuple de
+                        Mü</a>
                 </li>
                 <li>
-                    <a href="{{ path('lecomptoir.partner', {partnerSlug: 'editions-du-chat-noir'}) }}" title="Editions Du Chat Noir">Editions Du Chat Noir</a>
+                    <a href="{{ path('lecomptoir.partner', {partnerSlug: 'editions-du-chat-noir'}) }}"
+                       title="Editions Du Chat Noir">Editions Du Chat Noir</a>
                 </li>
                 <li>
-                    <a href="{{ path('lecomptoir.partner', {partnerSlug: 'editions-riviere-blanche'}) }}" title="Editions Rivière Blanche">Editions Rivière Blanche</a>
+                    <a href="{{ path('lecomptoir.partner', {partnerSlug: 'editions-riviere-blanche'}) }}"
+                       title="Editions Rivière Blanche">Editions Rivière Blanche</a>
                 </li>
                 <li>
                     <a href="{{ path('lecomptoir.partner', {partnerSlug: 'trollune'}) }}" title="Trollune">Trollune</a>
                 </li>
                 <li>
-                    <a href="{{ path('lecomptoir.partner', {partnerSlug: 'l-esprit-livre'}) }}" title="Esprit livre">L'Esprit livre</a>
+                    <a href="{{ path('lecomptoir.partner', {partnerSlug: 'l-esprit-livre'}) }}" title="Esprit livre">L'Esprit
+                        livre</a>
                 </li>
                 <li>
-                    <a href="{{ path('lecomptoir.partner', {partnerSlug: 'le-depot-imaginaire'}) }}" title="Dépôt Imaginaire">Le Dépôt Imaginaire</a>
+                    <a href="{{ path('lecomptoir.partner', {partnerSlug: 'le-depot-imaginaire'}) }}"
+                       title="Dépôt Imaginaire">Le Dépôt Imaginaire</a>
                 </li>
                 <li>
-                    <a href="{{ path('lecomptoir.partner', {partnerSlug: 'les-intergalactiques'}) }}" title="Intergalactiques De Lyon">Les Intergalactiques De Lyon</a>
+                    <a href="{{ path('lecomptoir.partner', {partnerSlug: 'les-intergalactiques'}) }}"
+                       title="Intergalactiques De Lyon">Les Intergalactiques De Lyon</a>
                 </li>
             </ul>
         </li>
@@ -88,7 +97,7 @@
             </a>
             <ul class="dropdown-menu">
                 <li>
-                    <a href="{{ path('lecomptoir.free_pages', {pageSlug: 'presentation-et-prestations'}) }}"
+                    <a href="{{ path('lecomptoir.free_pages', {pageSlug: 'presentation'}) }}"
                        title="{{ 'lecomptoir.menu.presentation' | trans }}">
                         {{ 'lecomptoir.menu.presentation' | trans }}<span class="sr-only">(current)</span>
                     </a>
@@ -102,8 +111,12 @@
                     </a>
                 </li>
             </ul>
-
-
+        </li>
+        <li class="large-item">
+            <a href="{{ path('lecomptoir.free_pages', {pageSlug: 'mes-prestations'}) }}"
+               title="{{ 'lecomptoir.menu.prestations' | trans }}">
+                {{ 'lecomptoir.menu.prestations' | trans }}<span class="sr-only">(current)</span>
+            </a>
         </li>
         <li>
             <a href="{{ path('lecomptoir.contact') }}" title="{{ 'lecomptoir.menu.contact' | trans }}">
