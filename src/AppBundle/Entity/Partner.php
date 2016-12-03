@@ -90,12 +90,17 @@ class Partner
      * @var DateTime
      *
      * @ORM\Column(name="created_at", type="datetime")
+     *
+     * @Gedmo\Timestampable(on="create")
      */
     protected $createdAt;
     
     /**
      * @var DateTime
+     *
      * @ORM\Column(name="updated_at", type="datetime", nullable=true)
+     *
+     * @Gedmo\Timestampable(on="update")
      */
     protected $updatedAt;
 
