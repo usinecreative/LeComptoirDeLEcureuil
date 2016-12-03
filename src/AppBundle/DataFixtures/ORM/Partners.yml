@@ -14,6 +14,8 @@ AppBundle\Entity\Partner:
         baseline: 'Mnémos, éditeur d’imaginaire depuis 1996 et membre fondateur des Indés de l’imaginaire.'
         slug: editions-mnemos
         website: http://www.mnemos.com/
+        createdAt: <dateTime()>
+        updatedAt: <dateTime()>
 
     edition_chat_noir:
         name: Editions du Chat Noir
@@ -31,6 +33,8 @@ AppBundle\Entity\Partner:
         baseline: Editions du Chat Noir, maison spécialisée dans la littérature de l'imaginaire...
         slug: edition-chat-noir
         website: http://www.editionsduchatnoir.com/
+        createdAt: <dateTime()>
+        updatedAt: <dateTime()>
 
     edition_actu_sf:
         name: Edition ActuSF
@@ -48,6 +52,8 @@ AppBundle\Entity\Partner:
         baseline: ActuSF est un webzine francophone consacré à l'actualité des littératures
         slug: edition-actusf
         website: http://www.editions-actusf.fr/
+        createdAt: <dateTime()>
+        updatedAt: <dateTime()>
 
     edition_bourdonaye:
         name: Edition Bourdonnaye
@@ -67,6 +73,8 @@ AppBundle\Entity\Partner:
         baseline: La French touch de la littérature
         slug: edition-bourdonnaye
         website: http://www.labourdonnaye.com/
+        createdAt: <dateTime()>
+        updatedAt: <dateTime()>
 
     librairie_trollune:
         name: Trollune
@@ -79,6 +87,8 @@ AppBundle\Entity\Partner:
             des univers imaginaires pourront y assouvir leur passion et bénéficier de sa salle de jeux et de lecture.
         baseline: Trollune, Boutique de l’Imaginaire à Lyon est à la fois une librairie spécialisée dans la science-fiction
         website: http://www.trollune.fr/
+        createdAt: <dateTime()>
+        updatedAt: <dateTime()>
 
     esprit_livre:
         name: L'Esprit Livre
@@ -105,3 +115,5 @@ AppBundle\Entity\Partner:
             Nous proposons enfin des jeux éducatifs, des cartes et des articles pour les loisirs créatifs.
         baseline: La librairie au coeur du 3e arrondissement de Lyon
         website: http://www.lesprit-livre.fr/
+        createdAt: <dateTime()>
+        updatedAt: <dateTime()>
