@@ -42,7 +42,7 @@ class ContentController extends Controller
         $type = $request->get('type');
         
         if (!$type) {
-            $this->createNotFoundException('Content name not found');
+            throw $this->createNotFoundException('Content name not found');
         }
 
         if ($id = $request->get('id')) {

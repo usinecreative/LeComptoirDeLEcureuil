@@ -102,7 +102,7 @@ class MainController extends Controller
             ->generate();
     
         if (!file_exists($sitemap)) {
-            $this->createNotFoundException('Sitemap not found');
+            throw $this->createNotFoundException('Sitemap not found');
         }
         $response = new BinaryFileResponse($sitemap);
 

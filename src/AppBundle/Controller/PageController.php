@@ -21,7 +21,7 @@ class PageController extends Controller
             ->findPublished($request->get('pageSlug'));
     
         if (!$page) {
-            $this->createNotFoundException('Page not found');
+            throw $this->createNotFoundException('Page not found');
         }
 
         return [
