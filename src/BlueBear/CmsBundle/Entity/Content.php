@@ -2,9 +2,10 @@
 
 namespace BlueBear\CmsBundle\Entity;
 
-use BlueBear\BaseBundle\Behavior\StringUtilsTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Exception;
+use Symfony\Component\DependencyInjection\Container;
+use Symfony\Component\HttpKernel\Kernel;
 
 /**
  * Content
@@ -14,8 +15,6 @@ use Exception;
  */
 class Content
 {
-    use StringUtilsTrait;
-    
     /**
      * Entity id
      *
@@ -100,7 +99,7 @@ class Content
     public function __call($method, $parameters = [])
     {
         $value = null;
-        $method = $this->underscore($method);
+        $method = Container::underscore($method);
 
         if (array_key_exists($method, $this->fields)) {
             $value = $this->fields[$method];
