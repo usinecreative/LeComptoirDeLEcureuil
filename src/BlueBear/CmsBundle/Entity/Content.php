@@ -5,7 +5,6 @@ namespace BlueBear\CmsBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Exception;
 use Symfony\Component\DependencyInjection\Container;
-use Symfony\Component\HttpKernel\Kernel;
 
 /**
  * Content
