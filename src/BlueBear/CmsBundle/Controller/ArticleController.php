@@ -2,21 +2,19 @@
 
 namespace BlueBear\CmsBundle\Controller;
 
-use BlueBear\BaseBundle\Behavior\ControllerTrait;
 use LAG\AdminBundle\Controller\CRUDController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 
 class ArticleController extends CRUDController
 {
-    use ControllerTrait;
-
     /**
      * @Template()
+     *
      * @param Request $request
+     *
      * @return array
      */
     public function previewAction(Request $request)

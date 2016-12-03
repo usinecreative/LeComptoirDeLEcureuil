@@ -2,9 +2,7 @@
 
 namespace BlueBear\MediaBundle\Entity;
 
-use BlueBear\BaseBundle\Entity\Behaviors\Id;
-use BlueBear\BaseBundle\Entity\Behaviors\Nameable;
-use BlueBear\BaseBundle\Entity\Behaviors\Timestampable;
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -19,7 +17,19 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  */
 class Media
 {
-    use Id, Nameable, Timestampable;
+    /**
+     * Entity id
+     *
+     * @ORM\Id()
+     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Column(type="integer")
+     */
+    protected $id;
+    
+    /**
+     * @ORM\Column(name="name", type="string", length=255)
+     */
+    protected $name;
 
     const MEDIA_TYPE_IMAGE = 'image';
     const MEDIA_TYPE_FILE = 'file';
@@ -47,6 +57,20 @@ class Media
     protected $type;
 
     protected $file;
+    
+    
+    /**
+     * @var DateTime
+     *
+     * @ORM\Column(name="created_at", type="datetime")
+     */
+    protected $createdAt;
+    
+    /**
+     * @var DateTime
+     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
+     */
+    protected $updatedAt;
 
     public function getExtension()
     {
@@ -133,5 +157,37 @@ class Media
     public function setFilename($filename)
     {
         $this->filename = $filename;
+    }
+    
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+    
+    /**
+     * @param mixed $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+    
+    /**
+     * @return mixed
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+    
+    /**
+     * @param mixed $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
     }
 }

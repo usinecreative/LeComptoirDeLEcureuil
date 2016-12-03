@@ -2,15 +2,12 @@
 
 namespace AppBundle\Controller;
 
-use BlueBear\BaseBundle\Behavior\ControllerTrait;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 class PageController extends Controller
 {
-    use ControllerTrait;
-
     /**
      * @Template(":Page:show.html.twig")
      *
@@ -22,7 +19,10 @@ class PageController extends Controller
         $page = $this
             ->get('jk.cms.page_repository')
             ->findPublished($request->get('pageSlug'));
-        $this->forward404Unless($page);
+    
+        if (!$page) {
+            $this->createNotFoundException('Page not found');
+        }
 
         return [
             'page' => $page

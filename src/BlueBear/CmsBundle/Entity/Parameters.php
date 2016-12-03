@@ -2,7 +2,6 @@
 
 namespace BlueBear\CmsBundle\Entity;
 
-use BlueBear\BaseBundle\Entity\Behaviors\Id;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -13,8 +12,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Parameters
 {
-    use Id;
-    
     /**
      * Entity id
      *

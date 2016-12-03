@@ -3,7 +3,6 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Partner;
-use BlueBear\BaseBundle\Behavior\ControllerTrait;
 use AppBundle\Form\Type\ContactType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Swift_Message;
@@ -15,8 +14,6 @@ use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 
 class MainController extends Controller
 {
-    use ControllerTrait;
-
     /**
      * @Template(":Main:index.html.twig")
      * @return array
@@ -61,7 +58,7 @@ class MainController extends Controller
     }
 
     /**
-     * Dislay the partner page.
+     * Display the partner page.
      *
      * @Template(":Partner:partner.html.twig")
      * @param $partnerSlug
@@ -103,8 +100,10 @@ class MainController extends Controller
         $sitemap = $this
             ->get('app_sitemap_generator')
             ->generate();
-        $this->forward404Unless(file_exists($sitemap));
-
+    
+        if (!file_exists($sitemap)) {
+            $this->createNotFoundException('Sitemap not found');
+        }
         $response = new BinaryFileResponse($sitemap);
 
         $d = $response->headers->makeDisposition(
@@ -180,7 +179,7 @@ class MainController extends Controller
     }
 
     /**
-     * Throw a 404 Exception if $boolean is false or null
+     * Throw a 404 Exception if $boolean is false or null.
      *
      * @param mixed $boolean
      * @param string $message
@@ -190,5 +189,12 @@ class MainController extends Controller
         if (!$boolean) {
             throw $this->createNotFoundException($this->translate($message));
         }
+    }
+    
+    protected function translate($message, array $parameters = [])
+    {
+        return $this
+            ->get('translator')
+            ->trans($message, $parameters);
     }
 }

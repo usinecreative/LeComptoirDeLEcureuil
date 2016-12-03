@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "70dcdd1f8f25567ba9b594d769896534",
-    "content-hash": "c1222b6e87c8325c6aed762eb2dd7dbb",
+    "hash": "47a25be2f4ba5bce09d2740a06306298",
+    "content-hash": "b56c816381593b9a7bc3c5a33243fb8d",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -46,61 +46,6 @@
                 "transliterator"
             ],
             "time": "2015-09-28 16:26:35"
-        },
-        {
-            "name": "bluebear/basebundle",
-            "version": "0.2.3",
-            "target-dir": "BlueBear/BaseBundle",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/BlueBearGaming/BaseBundle.git",
-                "reference": "18ae4cac298c85a1dba0890e38242a72d425d982"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/BlueBearGaming/BaseBundle/zipball/18ae4cac298c85a1dba0890e38242a72d425d982",
-                "reference": "18ae4cac298c85a1dba0890e38242a72d425d982",
-                "shasum": ""
-            },
-            "require": {
-                "doctrine/orm": ">=2.3",
-                "php": ">=5.4",
-                "sensio/framework-extra-bundle": "~3.0",
-                "symfony/symfony": ">=2.6"
-            },
-            "type": "symfony-bundle",
-            "autoload": {
-                "psr-0": {
-                    "BlueBear\\BaseBundle": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "JohnKrovitch",
-                    "email": "arnaudfrezet@gmail.com"
-                },
-                {
-                    "name": "JohanDufour",
-                    "email": "johan.dufour@gmail.com"
-                },
-                {
-                    "name": "VincentChalnot",
-                    "email": "vincent.chalnot@gmail.com"
-                }
-            ],
-            "description": "Base bundle for Symfony2",
-            "homepage": "https://github.com/CleverGaming/BaseBundle",
-            "keywords": [
-                "Symfony2",
-                "base",
-                "shortcut"
-            ],
-            "abandoned": "lag/adminbundle",
-            "time": "2016-01-30 18:30:06"
         },
         {
             "name": "components/bootstrap",

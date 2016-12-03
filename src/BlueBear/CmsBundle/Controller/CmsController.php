@@ -2,15 +2,12 @@
 
 namespace BlueBear\CmsBundle\Controller;
 
-use BlueBear\BaseBundle\Behavior\ControllerTrait;
 use DateTime;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class CmsController extends Controller
 {
-    use ControllerTrait;
-
     /**
      * @Template()
      * @return array

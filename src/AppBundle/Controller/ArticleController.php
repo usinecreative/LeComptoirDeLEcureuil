@@ -3,7 +3,6 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Form\Type\CommentType;
-use BlueBear\BaseBundle\Behavior\ControllerTrait;
 use BlueBear\CmsBundle\Entity\Article;
 use BlueBear\CmsBundle\Entity\Category;
 use BlueBear\CmsBundle\Finder\Filter\ArticleFilter;
@@ -17,8 +16,6 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class ArticleController extends Controller
 {
-    use ControllerTrait;
-
     /**
      * @Template(":Article:show.html.twig")
      *

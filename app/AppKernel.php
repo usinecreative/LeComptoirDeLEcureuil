@@ -15,33 +15,27 @@ class AppKernel extends Kernel
             new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
-            new \Symfony\Bundle\AsseticBundle\AsseticBundle(),
-            //new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
+            new Symfony\Bundle\AsseticBundle\AsseticBundle(),
+            
             // BlueBear
             new LAG\AdminBundle\LAGAdminBundle(),
             new BlueBear\CmsBundle\BlueBearCmsBundle(),
             new BlueBear\MediaBundle\BlueBearMediaBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
-            //new Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle(),
+            
             // Noisettes
-            //new AppBundle\LeComptoirDeLEcureuilFrontBundle(),
             new LeComptoirDeLEcureuil\BackBundle\LeComptoirDeLEcureuilBackBundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
-
-            // Admin dev            
-            new BlueBear\BaseBundle\BlueBearBaseBundle(),
+            
+            // CMS
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
-            //new \Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
-
-
-            //new JK\StaticClientBundle\JKStaticClientBundle(),
-            new \WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
+            new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
             new AppBundle\AppBundle(),
-            new \JK\DatabaseBundle\JKDatabaseBundle(),
+            new JK\DatabaseBundle\JKDatabaseBundle(),
 
-            new \Knp\Bundle\GaufretteBundle\KnpGaufretteBundle(),
+            new Knp\Bundle\GaufretteBundle\KnpGaufretteBundle(),
             new Eko\FeedBundle\EkoFeedBundle(),
             new JK\SamBundle\JKSamBundle(),
             new JK\CmsBundle\JKCmsBundle(),

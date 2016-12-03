@@ -2,7 +2,6 @@
 
 namespace BlueBear\CmsBundle\Controller;
 
-use BlueBear\BaseBundle\Behavior\ControllerTrait;
 use BlueBear\CmsBundle\Entity\Content;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\Pagerfanta;
@@ -12,10 +11,9 @@ use Symfony\Component\HttpFoundation\Request;
 
 class ContentController extends Controller
 {
-    use ControllerTrait;
-
     /**
      * @Template()
+     *
      * @param Request $request
      * @return array
      */
@@ -35,12 +33,17 @@ class ContentController extends Controller
 
     /**
      * @Template("@BlueBearCms/Content/edit.html.twig")
+     *
      * @param Request $request
      * @return array
      */
     public function editAction(Request $request)
     {
-        $this->forward404Unless($type = $request->get('type'), 'Content name not found');
+        $type = $request->get('type');
+        
+        if (!$type) {
+            $this->createNotFoundException('Content name not found');
+        }
 
         if ($id = $request->get('id')) {
             /** @var Content $content */
@@ -79,5 +82,6 @@ class ContentController extends Controller
 
     public function deleteAction($id, $type)
     {
+        // TODO implements delete action ?
     }
 }
