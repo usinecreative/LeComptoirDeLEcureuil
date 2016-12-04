@@ -52,6 +52,10 @@
       with_items:
         - { path: 'var/logs', src: "var/logs" }
         - { path: 'web/images', src: "web/images" }
+        - { path: 'uploads', src: "uploads" }
+
+    - name: Cache warmup
+      shell: '{{ deploy_helper.new_release_path }}/bin/console cache:warmup --env=prod'
 
     - name: Finalize the deploy, removing the unfinished file and switching the symlink
       deploy_helper:
