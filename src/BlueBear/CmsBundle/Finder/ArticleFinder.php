@@ -82,11 +82,6 @@ class ArticleFinder
             ->andWhere('article.publicationStatus = :publication_status')
             ->setParameter('publication_status', Article::PUBLICATION_STATUS_PUBLISHED);
 
-        // only with the published comments
-        $queryBuilder
-            ->addSelect('comments')
-            ->leftJoin('article.comments', 'comments');
-
         // get parameters from filters
         $parameters = $filter->getParameters();
 
@@ -116,7 +111,7 @@ class ArticleFinder
         // by default, articles are sorted by publication date
         $queryBuilder
             ->addOrderBy('article.publicationDate', 'DESC')
-            ->addOrderBy('comments.updatedAt', 'DESC');
+        ;
 
         return $queryBuilder;
     }
