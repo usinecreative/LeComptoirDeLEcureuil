@@ -3,43 +3,39 @@
 namespace JK\CmsBundle\Twig;
 
 use Exception;
+use JK\CmsBundle\Assets\AssetsHelper;
 use JK\CmsBundle\Entity\MediaInterface;
 use Twig_Extension;
 use Twig_SimpleFunction;
 
+/**
+ * Add helper methods to get media path and directory.
+ */
 class CmsExtension extends Twig_Extension
 {
     /**
-     * @var array
+     * @var AssetsHelper
      */
-    protected $assetsMapping;
-
+    private $assetsHelper;
+    
     /**
      * CmsExtension constructor.
      *
-     * @param array $assetsMapping
+     * @param AssetsHelper $assetsHelper
      */
-    public function __construct(array $assetsMapping = [])
+    public function __construct(AssetsHelper $assetsHelper)
     {
-        $this->assetsMapping = $assetsMapping;
-
-        if ([] === $this->assetsMapping) {
-            $this->assetsMapping = [
-                'gallery' => '/uploads/gallery'
-            ];
-        }
+        $this->assetsHelper = $assetsHelper;
     }
-
+    
     /**
      * @return array
      */
     public function getFunctions()
     {
         return [
-            new Twig_SimpleFunction('cms_asset', [
-                $this,
-                'cmsAsset',
-            ]),
+            new Twig_SimpleFunction('cms_media_path', [$this, 'cmsMediaPath']),
+            new Twig_SimpleFunction('cms_media_directory', [$this, 'cmsMediaDirectory']),
         ];
     }
 
@@ -50,16 +46,23 @@ class CmsExtension extends Twig_Extension
      * @return string
      * @throws Exception
      */
-    public function cmsAsset(MediaInterface $media)
+    public function cmsMediaPath(MediaInterface $media)
     {
-        if (!array_key_exists($media->getType(), $this->assetsMapping)) {
-            throw new Exception('No assets mapping found for media type '.$media->getType());
-        }
-
-        return sprintf(
-            '%s/%s',
-            $this->assetsMapping[$media->getType()],
-            $media->getFileName()
-        );
+        return $this
+            ->assetsHelper
+            ->getMediaPath($media);
+    }
+    
+    /**
+     * Return the media web directory according to its type and the mapping.
+     *
+     * @param $mappingName
+     * @return mixed
+     */
+    public function cmsMediaDirectory($mappingName)
+    {
+        return $this
+            ->assetsHelper
+            ->getMediaDirectory($mappingName);
     }
 }
