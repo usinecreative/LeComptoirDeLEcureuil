@@ -1,6 +1,9 @@
-<VirtualHost *:443>
+<VirtualHost *:1443>
     ServerAdmin {{ server_admin }}
     ServerName {{ server_name }}
+    {% if server_alias is defined %}
+        ServerAlias {{ server_alias }}
+    {% endif %}
     DocumentRoot /home/{{ user }}/www/{{ user }}/current/web
 
     <Directory /home/{{ user }}/www/{{ user }}/current/web>
@@ -35,10 +38,12 @@
 </VirtualHost>
 
 
-<VirtualHost *:80>
+<VirtualHost *:8080>
     ServerAdmin {{ server_admin }}
     ServerName {{ server_name }}
-    ServerAlias {{ server_alias }}
+    {% if server_alias is defined %}
+        ServerAlias {{ server_alias }}
+    {% endif %}
     DocumentRoot /home/{{ user }}/www/{{ user }}/current/web
 
     <Directory /home/{{ user }}/www/{{ user }}/current/web>
