@@ -1,7 +1,7 @@
 <div class="media-gallery">
     {% for media in mediaList %}
         <figure>
-        <img src="{{ cms_asset(media) | imagine_filter('media_gallery') }}"
+        <img src="{{ cms_media_path(media) | imagine_filter('media_gallery') }}"
              alt="{{ media.description }}"
              class="media"/>
             <figcaption>{{ media.name }}</figcaption><br/>

@@ -2,7 +2,7 @@
     {% for media in mediaList %}
     <li class="media">
         <a href="#" class="media-link" data-id="{{ media.id }}">
-            <img src="{{ cms_asset(media) | imagine_filter('media_thumbnail') }}"
+            <img src="{{ cms_media_path(media) | imagine_filter('media_thumbnail') }}"
                  alt="{{ media.description }}"/>
             <br/>{{ media.name }}
         </a>
