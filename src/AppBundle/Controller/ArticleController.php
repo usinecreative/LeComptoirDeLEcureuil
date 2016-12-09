@@ -3,7 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Form\Type\CommentType;
-use BlueBear\CmsBundle\Entity\Article;
+use JK\CmsBundle\Entity\Article;
 use BlueBear\CmsBundle\Entity\Category;
 use BlueBear\CmsBundle\Finder\Filter\ArticleFilter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -34,7 +34,7 @@ class ArticleController extends Controller
         $commentForm = $this->createForm(CommentType::class, [
             'article' => $article
         ], [
-            'articleRepository' => $this->get('jk.cms.article_repository')
+            'articleRepository' => $this->get('cms.article.repository')
         ]);
         $commentForm->handleRequest($request);
 

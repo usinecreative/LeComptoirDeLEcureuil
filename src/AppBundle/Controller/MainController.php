@@ -22,7 +22,7 @@ class MainController extends Controller
     {
         // latest published articles
         $latestArticles = $this
-            ->get('jk.cms.article_repository')
+            ->get('cms.article.repository')
             ->findLatest();
         // category configured for display in homepage
         $categories = $this
@@ -75,7 +75,7 @@ class MainController extends Controller
         $this->redirect404Unless($partner, 'lecomptoir.partner.not_found');
         // find linked articles (by tag)
         $articles = $this
-            ->get('jk.cms.article_repository')
+            ->get('cms.article.repository')
             ->findByTag($partner->getSlug());
 
         return [
@@ -136,7 +136,7 @@ class MainController extends Controller
     {
         // get published articles
         $articles = $this
-            ->get('jk.cms.article_repository')
+            ->get('cms.article.repository')
             ->findPublished();
 
         // convert to feed item
