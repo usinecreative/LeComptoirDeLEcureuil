@@ -13,7 +13,7 @@
     ]
   },
   "require": {
-    "php": ">=5.5",
+    "php": ">=5.5 || >=7.0",
     "symfony/symfony": "~3.0",
     "symfony/swiftmailer-bundle": "~2.3",
     "symfony/assetic-bundle": "~2.7",
