@@ -1,0 +1,5 @@
+lag_admin:
+    admins:
+        media:
+            entity: JK\CmsBundle\Entity\Media
+            form: JK\CmsBundle\Form\Type\Media

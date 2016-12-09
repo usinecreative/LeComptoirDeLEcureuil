@@ -2,8 +2,8 @@
 
 namespace AppBundle\Form\Type;
 
-use BlueBear\CmsBundle\Entity\Article;
-use BlueBear\CmsBundle\Repository\ArticleRepository;
+use JK\CmsBundle\Entity\Article;
+use JK\CmsBundle\Repository\ArticleRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
@@ -14,6 +14,10 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class CommentType extends AbstractType
 {
+    /**
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         /** @var ArticleRepository $articleRepository */
@@ -45,7 +49,10 @@ class CommentType extends AbstractType
                 })
             );
     }
-
+    
+    /**
+     * @param OptionsResolver $resolver
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver
