@@ -6,7 +6,8 @@ use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
+use JK\CmsBundle\Entity\Article;
+use JK\CmsBundle\Entity\MediaInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -24,7 +25,9 @@ class Category
     const PUBLICATION_STATUS_PUBLISHED = 1;
     
     /**
-     * Entity id
+     * Category id
+     *
+     * @var integer
      *
      * @ORM\Id()
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -35,93 +38,109 @@ class Category
     /**
      * Entity name
      *
+     * @var string
+     *
      * @ORM\Column(type="string", length=255)
      */
     protected $name;
 
     /**
+     * Parent Category
+     *
      * @var Category
+     *
      * @ORM\ManyToOne(targetEntity="BlueBear\CmsBundle\Entity\Category", inversedBy="children")
      */
     protected $parent;
 
     /**
+     * Children categories
+     *
      * @var Category[]
+     *
      * @ORM\OneToMany(targetEntity="BlueBear\CmsBundle\Entity\Category", mappedBy="parent")
      */
     protected $children;
 
     /**
+     * Category publication status
+     *
      * @var int
+     *
      * @ORM\Column(name="publication_status", type="smallint", nullable=true)
      */
     protected $publicationStatus;
 
     /**
+     * Category articles
+     *
      * @var ArrayCollection
-     * @ORM\OneToMany(targetEntity="BlueBear\CmsBundle\Entity\Article", mappedBy="category")
+     *
+     * @ORM\OneToMany(targetEntity="JK\CmsBundle\Entity\Article", mappedBy="category")
      */
     protected $articles;
 
     /**
+     * Category slug
+     *
+     * @var string
+     *
      * @Gedmo\Slug(fields={"name"})
+     *
      * @ORM\Column(name="slug", type="string", length=255, nullable=true)
      */
     protected $slug;
 
     /**
+     * Indicate if the Category should be display in homepage.
+     *
      * @var bool
+     *
      * @ORM\Column(name="display_in_homepage", type="boolean")
      */
     protected $displayInHomepage = false;
-
+    
     /**
-     * @ORM\Column(name="thumbnail_name", type="string", nullable=true)
-     */
-    protected $thumbnailName;
-
-    /**
-     * @Assert\File(
-     *     maxSize="10M",
-     *     mimeTypes={"image/jpg", "image/png", "image/jpeg", "application/octet-stream"}
-     * )
-     */
-    protected $thumbnailFile;
-
-    /**
-     * Entity description
+     * Category long description
+     *
+     * @var string
      *
      * @ORM\Column(type="text", nullable=true)
      */
     protected $description;
     
     /**
+     * Category creation date
+     *
      * @var DateTime
+     *
      * @ORM\Column(name="created_at", type="datetime")
      */
     protected $createdAt;
     
     /**
+     * Category update date
+     *
      * @var DateTime
+     *
      * @ORM\Column(name="updated_at", type="datetime", nullable=true)
      */
     protected $updatedAt;
     
     /**
-     * @ORM\PrePersist()
-     * @return $this
+     * Category thumbnail
+     *
+     * @var MediaInterface
+     *
+     * @ORM\ManyToOne(targetEntity="JK\CmsBundle\Entity\Media")
+     * @ORM\JoinColumn(nullable=true)
      */
-    public function setCreatedAt()
-    {
-        if (!$this->createdAt) {
-            $this->createdAt = new DateTime();
-        }
-    }
+    protected $thumbnail;
     
     /**
-     * Return entity name
+     * Return the Category name.
      *
-     * @return mixed
+     * @return string
      */
     public function getName()
     {
@@ -129,9 +148,9 @@ class Category
     }
     
     /**
-     * Set entity name
+     * Set the Category name.
      *
-     * @param mixed $name
+     * @param string $name
      */
     public function setName($name)
     {
@@ -277,44 +296,6 @@ class Category
     {
         $this->children = $children;
     }
-
-    /**
-     * @return mixed
-     */
-    public function getThumbnailName()
-    {
-        return $this->thumbnailName;
-    }
-
-    /**
-     * @param mixed $thumbnailName
-     */
-    public function setThumbnailName($thumbnailName)
-    {
-        $this->thumbnailName = $thumbnailName;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getThumbnailFile()
-    {
-        return $this->thumbnailFile;
-    }
-
-    /**
-     * @param mixed $thumbnailFile
-     */
-    public function setThumbnailFile($thumbnailFile)
-    {
-        $this->thumbnailFile = $thumbnailFile;
-
-        // Only change the updated af if the file is really uploaded to avoid database updates.
-        // This is needed when the file should be set when loading the entity.
-        if ($this->thumbnailFile instanceof UploadedFile) {
-            $this->updatedAt = new DateTime('now');
-        }
-    }
     
     /**
      * @return mixed
@@ -373,5 +354,29 @@ class Category
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+    
+    /**
+     * @return MediaInterface
+     */
+    public function getThumbnail()
+    {
+        return $this->thumbnail;
+    }
+    
+    /**
+     * @param MediaInterface $thumbnail
+     */
+    public function setThumbnail(MediaInterface $thumbnail = null)
+    {
+        $this->thumbnail = $thumbnail;
+    }
+    
+    /**
+     * @param DateTime $createdAt
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
     }
 }
