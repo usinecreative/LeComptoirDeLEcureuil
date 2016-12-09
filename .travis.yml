@@ -6,7 +6,7 @@ php:
     - hhvm
 
 before_install:
-    - mysql -e "create database IF NOT EXISTS symfony;"
+    - mysql -e "create database IF NOT EXISTS symfony_test;"
     - cp app/config/parameters.yml.dist app/config/parameters.yml
 
 install:
