@@ -13,18 +13,25 @@
                     {% set articleLinkTitle = 'lecomptoir.article.go_to_read' | trans({'%article%': article.title}) %}
 
                     <div class="col-md-12 article-item">
+                        {# Category ribbon #}
                         <h2 class="ribbon">
                             <a href="{{ categoryUrl }}" title="{{ categoryLinkTitle }}">
                                 {{ article.category.name }}
                             </a>
                         </h2>
-                        <a href=""><img src="{{ vich_uploader_asset(article, 'thumbnailFile') }}"/></a>
+                        {# Article thumbnail #}
+                        <a href="{{ articleUrl }}" title="{{ articleLinkTitle }}">
+                            <img src="{{ cms_media_path(article.thumbnail) }}"
+                                 alt="{{ articleLinkTitle }}"
+                                 title="{{ articleLinkTitle }}"/>
+                        </a>
+                        {# Article publication date#}
                         <span class="title-date">{{ article.publicationDate | localizeddate('full', 'none') }}</span>
-
+                        {# Article title #}
                         <h3>
                             <a href="{{ articleUrl }}" title="{{ articleLinkTitle }}">{{ article.title }}</a>
                         </h3>
-
+                        {# Article truncated content #}
                         <p>{{ article.content | striptags | truncate(500) | raw }}
                             <a href="{{ articleUrl }}" title="{{ articleLinkTitle }}" class="more-link">
                                 {{ 'lecomptoir.interface.more_link' | trans }}
