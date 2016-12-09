@@ -56,7 +56,7 @@ class MainControllerTest extends WebTestCase
         $this->assertEquals(1, $this->crawler->filter('.nav.navbar-nav li a:contains("Editions ActuSF")')->count());
         $this->assertEquals(1, $this->crawler->filter('.nav.navbar-nav li a:contains("Intergalactiques De Lyon")')->count());
         $this->assertEquals(1, $this->crawler->filter('.nav.navbar-nav li a:contains("Trollune")')->count());
-        $this->assertEquals(1, $this->crawler->filter('.nav.navbar-nav li a:contains("Esprit livre")')->count());
+        $this->assertEquals(1, $this->crawler->filter('.nav.navbar-nav li a:contains("L\'Esprit livre")')->count());
         $this->assertEquals(1, $this->crawler->filter('.nav.navbar-nav li a:contains("Editions Rivière Blanche")')->count());
 
         // who am i
