@@ -1,0 +1,24 @@
+{% block jquery_upload_widget %}
+    <div class="input-group">
+        {{ block('form_widget') }}
+
+        <div class="media-form-preview">
+            {% if form.vars.data %}
+                {% set mediaUrl = cms_media_directory('gallery') ~ '/' ~ form.vars.data.filename %}
+
+                <img src="{{ mediaUrl | imagine_filter('media_thumbnail') }}" class="media-target"/>
+                <br />
+                <a href="#" class="remove-media">
+                    <i class="fa fa-remove"></i>
+                    Remove Media
+                </a>
+            {% else %}
+                <img src="" class="media-target"/>
+                <a href="#" class="remove-media hide">
+                    <i class="fa fa-remove"></i>
+                    Remove Media
+                </a>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
