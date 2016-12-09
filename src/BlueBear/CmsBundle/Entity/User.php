@@ -153,7 +153,7 @@ class User implements UserInterface
     protected $credentialsExpireAt;
 
     /**
-     * @ORM\OneToMany(targetEntity="BlueBear\CmsBundle\Entity\Article", mappedBy="author")
+     * @ORM\OneToMany(targetEntity="JK\CmsBundle\Entity\Article", mappedBy="author")
      * @ORM\JoinColumn(nullable=true)
      */
     protected $articles;

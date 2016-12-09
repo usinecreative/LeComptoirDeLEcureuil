@@ -4,8 +4,10 @@ namespace BlueBear\CmsBundle\Entity;
 
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use JK\CmsBundle\Entity\Article;
 
 /**
  * Tag
@@ -21,6 +23,8 @@ class Tag
     /**
      * Entity id
      *
+     * @var integer
+     *
      * @ORM\Id()
      * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(type="integer")
@@ -28,30 +32,38 @@ class Tag
     protected $id;
 
     /**
+     * @var string
+     *
      * @ORM\Column(name="name", type="string", length=255)
      */
     protected $name;
 
     /**
+     * @var string
+     *
      * @Gedmo\Slug(fields={"name"})
      * @ORM\Column(name="slug", type="string", length=255)
      */
     protected $slug;
 
     /**
-     * @ORM\ManyToMany(targetEntity="BlueBear\CmsBundle\Entity\Article", inversedBy="tags")
+     * @var Article[]
+     *
+     * @ORM\ManyToMany(targetEntity="JK\CmsBundle\Entity\Article", inversedBy="tags")
      * @ORM\JoinTable(name="cms_tag_article")
      */
     protected $articles;
     
     /**
      * @var DateTime
+     *
      * @ORM\Column(name="created_at", type="datetime")
      */
     protected $createdAt;
     
     /**
      * @var DateTime
+     *
      * @ORM\Column(name="updated_at", type="datetime", nullable=true)
      */
     protected $updatedAt;
@@ -65,7 +77,7 @@ class Tag
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getName()
     {
@@ -73,17 +85,15 @@ class Tag
     }
 
     /**
-     * @param mixed $name
-     * @return Tag
+     * @param string $name
      */
     public function setName($name)
     {
         $this->name = $name;
-        return $this;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getSlug()
     {
@@ -91,42 +101,43 @@ class Tag
     }
 
     /**
-     * @param mixed $slug
-     * @return Tag
+     * @param string $slug
      */
     public function setSlug($slug)
     {
         $this->slug = $slug;
-        return $this;
     }
 
     /**
-     * @param mixed $articles
-     * @return Tag
+     * @param Article[] $articles
      */
     public function setArticles($articles)
     {
         $this->articles = $articles;
-        return $this;
     }
 
     /**
-     * @return mixed
+     * @return Article[]|Collection
      */
     public function getArticles()
     {
         return $this->articles;
     }
-
+    
+    /**
+     * @param Article $article
+     */
     public function addArticle(Article $article)
     {
-        $this->articles->add($article);
+        $this
+            ->articles
+            ->add($article);
     }
     
     /**
-     * Return entity id
+     * Return entity id.
      *
-     * @return mixed
+     * @return string
      */
     public function getId()
     {
@@ -134,9 +145,9 @@ class Tag
     }
     
     /**
-     * Set entity id
+     * Set entity id.
      *
-     * @param mixed $id
+     * @param string $id
      */
     public function setId($id)
     {
@@ -155,7 +166,7 @@ class Tag
     
     /**
      * Created at cannot be set. But in some case (like imports...), it is required to set created at. Use this method
-     * in this case
+     * in this case.
      *
      * @param DateTime $createdAt
      */
@@ -175,7 +186,9 @@ class Tag
     /**
      * @ORM\PrePersist()
      * @ORM\PreUpdate()
-     * @param null $value
+     *
+     * @param string $value
+     *
      * @return $this
      */
     public function setUpdatedAt($value = null)

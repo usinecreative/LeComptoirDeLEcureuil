@@ -4,6 +4,7 @@ namespace BlueBear\CmsBundle\Entity;
 
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+use JK\CmsBundle\Entity\Article;
 
 /**
  * Comment
@@ -26,7 +27,7 @@ class Comment
     protected $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="BlueBear\CmsBundle\Entity\Article", inversedBy="comments")
+     * @ORM\ManyToOne(targetEntity="JK\CmsBundle\Entity\Article", inversedBy="comments")
      */
     protected $article;
 
