@@ -46,6 +46,7 @@ jk_assets:
                 - minify
             sources:
                 - src/JK/CmsBundle/Resources/assets/js/jquery.iframe-transport.js
+                - src/JK/CmsBundle/Resources/assets/js/cms/fileupload.js
                 - vendor/blueimp/jquery-file-upload/js/jquery.fileupload.js
             destinations:
                 - src/JK/CmsBundle/Resources/public/js/cms.js

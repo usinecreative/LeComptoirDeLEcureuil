@@ -2,6 +2,7 @@ imports:
     - { resource: admin/category.yml }
     - { resource: admin/article.yml }
     - { resource: admin/comment.yml }
+    - { resource: admin/media.yml }
 
 blue_bear_cms:
     content:
@@ -89,6 +90,9 @@ lag_admin:
                 article:
                     admin: article
                     icon: fa fa-newspaper-o
+                media:
+                    admin: media
+                    icon: fa fa-image
                 comment:
                     admin: comment
                     icon: fa fa-comment
@@ -237,6 +241,16 @@ oneup_uploader:
     mappings:
         gallery:
             frontend: blueimp
+            storage:
+                directory: '%kernel.root_dir%/../web/uploads/gallery'
+        article_thumbnail:
+            frontend: blueimp
+            storage:
+                directory: '%kernel.root_dir%/../web/uploads/articles/thumbnails'
+        category_thumbnail:
+            frontend: blueimp
+            storage:
+                directory: '%kernel.root_dir%/../web/uploads/category/thumbnails'
 
 liip_imagine:
     resolvers:
@@ -252,3 +266,12 @@ liip_imagine:
         media_gallery:
             filters:
                 thumbnail: {size: [200, 250], mode: outbound}
+        article_thumbnail:
+            filters:
+                thumbnail: {size: [200, 300], mode: outbound}
+        category_big:
+            filters:
+                thumbnail: {size: [439, 305], mode: outbound}
+
+jk_cms:
+    assets: ~
