@@ -3,7 +3,7 @@
 namespace BlueBear\CmsBundle\Feed\Factory;
 
 
-use BlueBear\CmsBundle\Entity\Article;
+use JK\CmsBundle\Entity\Article;
 use BlueBear\CmsBundle\Feed\Item\FeedItem;
 use Symfony\Component\Routing\RouterInterface;
 

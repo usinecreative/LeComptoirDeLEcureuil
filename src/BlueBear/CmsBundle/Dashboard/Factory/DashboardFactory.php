@@ -4,7 +4,7 @@ namespace BlueBear\CmsBundle\Dashboard\Factory;
 
 use BlueBear\CmsBundle\Dashboard\Dashboard;
 use BlueBear\CmsBundle\Dashboard\DashboardItem;
-use BlueBear\CmsBundle\Repository\ArticleRepository;
+use JK\CmsBundle\Repository\ArticleRepository;
 use BlueBear\CmsBundle\Repository\CommentRepository;
 use DateTime;
 
@@ -26,16 +26,24 @@ class DashboardFactory
         $this->commentRepository = $commentRepository;
         $this->articleRepository = $articleRepository;
     }
-
+    
+    /**
+     * @param DateTime $lastLogin
+     *
+     * @return Dashboard
+     */
     public function create(DateTime $lastLogin)
     {
         $dashboard = new Dashboard();
         $this->createHeaders($dashboard, $lastLogin);
 
-
         return $dashboard;
     }
-
+    
+    /**
+     * @param Dashboard $dashboard
+     * @param DateTime $lastLogin
+     */
     protected function createHeaders(Dashboard $dashboard, DateTime $lastLogin)
     {
         // new comments item

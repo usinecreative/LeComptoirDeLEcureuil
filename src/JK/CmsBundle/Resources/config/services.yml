@@ -13,6 +13,7 @@ services:
         class: JK\CmsBundle\Event\Subscriber\UploadSubscriber
         arguments:
             - '@cms.media.media_repository'
+            - '@cms.assets.helper'
         tags:
             - {name: kernel.event_subscriber}
 
@@ -24,5 +25,21 @@ services:
 
     cms.twig.cms_extension:
         class: JK\CmsBundle\Twig\CmsExtension
+        arguments:
+            - '@cms.assets.helper'
         tags:
             - {name: twig.extension}
+
+    cms.assets.helper:
+        class: JK\CmsBundle\Assets\AssetsHelper
+        arguments:
+            - '%kernel.environment%'
+            - '%cms.assets.mapping%'
+            - '@router'
+            - '@liip_imagine.cache.manager'
+
+    cms.article.repository:
+        class: JK\CmsBundle\Repository\ArticleRepository
+        factory: ["@doctrine", getRepository]
+        arguments:
+            - JK\CmsBundle\Entity\Article

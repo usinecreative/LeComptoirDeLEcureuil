@@ -5,12 +5,6 @@ services:
         arguments:
             - BlueBear\CmsBundle\Entity\Comment
 
-    jk.cms.article_repository:
-        class: BlueBear\CmsBundle\Repository\ArticleRepository
-        factory: ["@doctrine", getRepository]
-        arguments:
-            - BlueBear\CmsBundle\Entity\Article
-
     jk.cms.category_repository:
         class: BlueBear\CmsBundle\Repository\CategoryRepository
         factory: ["@doctrine", getRepository]

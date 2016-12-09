@@ -1,8 +1,8 @@
 <?php
 
-namespace BlueBear\CmsBundle\Repository;
+namespace JK\CmsBundle\Repository;
 
-use BlueBear\CmsBundle\Entity\Article;
+use JK\CmsBundle\Entity\Article;
 use DateTime;
 use Doctrine\Common\Collections\Collection;
 use LAG\AdminBundle\Repository\DoctrineRepository;

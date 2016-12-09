@@ -2,7 +2,7 @@
 
 namespace AppBundle\Sitemap;
 
-use BlueBear\CmsBundle\Repository\ArticleRepository;
+use JK\CmsBundle\Repository\ArticleRepository;
 use AppBundle\Sitemap\Item\Item;
 use Exception;
 use Symfony\Component\Filesystem\Filesystem;

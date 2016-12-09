@@ -2,8 +2,8 @@
 
 namespace BlueBear\CmsBundle\Finder;
 
-use BlueBear\CmsBundle\Entity\Article;
-use BlueBear\CmsBundle\Repository\ArticleRepository;
+use JK\CmsBundle\Entity\Article;
+use JK\CmsBundle\Repository\ArticleRepository;
 use BlueBear\CmsBundle\Finder\Filter\ArticleFilter;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\QueryBuilder;

@@ -2,7 +2,7 @@
 
 namespace BlueBear\CmsBundle\Import\Importer;
 
-use BlueBear\CmsBundle\Entity\Article;
+use JK\CmsBundle\Entity\Article;
 use BlueBear\CmsBundle\Entity\Category;
 use BlueBear\CmsBundle\Entity\Comment;
 use BlueBear\CmsBundle\Entity\Import;
@@ -10,7 +10,7 @@ use BlueBear\CmsBundle\Entity\Tag;
 use BlueBear\CmsBundle\Entity\User;
 use BlueBear\CmsBundle\Exception\ImportException;
 use BlueBear\CmsBundle\Import\ImporterInterface;
-use BlueBear\CmsBundle\Repository\ArticleRepository;
+use JK\CmsBundle\Repository\ArticleRepository;
 use BlueBear\CmsBundle\Repository\CategoryRepository;
 use BlueBear\CmsBundle\Repository\CommentRepository;
 use BlueBear\CmsBundle\Repository\ImportRepository;
