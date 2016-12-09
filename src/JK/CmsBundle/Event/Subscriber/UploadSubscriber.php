@@ -2,6 +2,7 @@
 
 namespace JK\CmsBundle\Event\Subscriber;
 
+use JK\CmsBundle\Assets\AssetsHelper;
 use JK\CmsBundle\Repository\MediaRepository;
 use Oneup\UploaderBundle\Event\PostPersistEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -13,7 +14,12 @@ class UploadSubscriber implements EventSubscriberInterface
      * @var MediaRepository
      */
     private $mediaRepository;
-
+    
+    /**
+     * @var AssetsHelper
+     */
+    private $assetsHelper;
+    
     /**
      * @return array
      */
@@ -23,15 +29,17 @@ class UploadSubscriber implements EventSubscriberInterface
             'oneup_uploader.post_persist' => 'onUpload',
         ];
     }
-
+    
     /**
      * UploadSubscriber constructor.
      *
      * @param MediaRepository $mediaRepository
+     * @param AssetsHelper $assetsHelper
      */
-    public function __construct(MediaRepository $mediaRepository)
+    public function __construct(MediaRepository $mediaRepository, AssetsHelper $assetsHelper)
     {
         $this->mediaRepository = $mediaRepository;
+        $this->assetsHelper = $assetsHelper;
     }
 
     /**
@@ -46,19 +54,27 @@ class UploadSubscriber implements EventSubscriberInterface
         }
         /** @var File $file */
         $file = $event->getFile();
+        
+        // creating a new media with the uploaded file
         $media = $this
             ->mediaRepository
             ->create();
-
         $media->setName($this->generateFileName().'.'.$file->getExtension());
         $media->setFileName($file->getFilename());
         $media->setFileType($file->getExtension());
         $media->setType($event->getType());
         $media->setSize($file->getSize());
-
         $this
             ->mediaRepository
             ->save($media);
+    
+        // add the url and the id of the created media
+        $response = $event->getResponse();
+        $response['mediaId'] = $media->getId();
+        $response['mediaUrl'] = $this
+            ->assetsHelper
+            ->getMediaPath($media);
+        
     }
 
     /**
