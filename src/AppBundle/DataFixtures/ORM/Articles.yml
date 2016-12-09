@@ -9,3 +9,5 @@ JK\CmsBundle\Entity\Article:
         author: '@user*'
         isCommentable: true
         slug (unique): <slug()>
+        createdAt: <dateTime()>
+        updatedAt: <dateTime()>

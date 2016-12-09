@@ -5,3 +5,5 @@ BlueBear\CmsBundle\Entity\Category:
         displayInHomepage: true
         description: <realText(200, 3)>
         publicationStatus: 1
+        createdAt: <dateTime()>
+        updatedAt: <dateTime()>
