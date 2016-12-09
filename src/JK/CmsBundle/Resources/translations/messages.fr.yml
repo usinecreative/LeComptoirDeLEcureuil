@@ -95,6 +95,11 @@ cms:
         edit: Editer
         delete: Supprimer
         batch.delete: Supprimer
+        name_help: Nom de la catégorie. Ce nom sera affiché aux lecteurs du site
+        slug_help: Slug unique de la catégorie. Ne doit pas contenir d'espaces ou de majuscules
+        description_help: Description de la catégorie
+        display_in_homepage_help: Si la case est coché, la catégorie sera affiché sur la page d'accueil
+        updated_at_help: Date de la dernière modification de la catégorie
     comment:
         create: Ajouter un commentaire
         list: Commentaires
