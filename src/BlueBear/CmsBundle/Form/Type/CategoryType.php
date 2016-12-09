@@ -2,6 +2,9 @@
 
 namespace BlueBear\CmsBundle\Form\Type;
 
+use BlueBear\CmsBundle\Entity\Category;
+use JK\CmsBundle\Form\Transformer\MediaTransformer;
+use JK\CmsBundle\Form\Type\JQueryUploadType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -16,6 +19,21 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class CategoryType extends AbstractType
 {
     /**
+     * @var MediaTransformer
+     */
+    protected $mediaTransformer;
+    
+    /**
+     * CategoryType constructor.
+     *
+     * @param MediaTransformer $mediaTransformer
+     */
+    public function __construct(MediaTransformer $mediaTransformer)
+    {
+        $this->mediaTransformer = $mediaTransformer;
+    }
+    
+    /**
      * @param FormBuilderInterface $builder
      * @param array $options
      */
@@ -24,29 +42,29 @@ class CategoryType extends AbstractType
         $builder
             ->add('name', TextType::class, [
                 'attr' => [
-                    'data-help' => 'bluebear.cms.category.name_help'
+                    'data-help' => 'cms.category.name_help'
                 ]
             ])
             ->add('slug', TextType::class, [
                 'disabled' => true,
                 'attr' => [
                     'read-only' => true,
-                    'data-help' => 'bluebear.cms.category.slug_help',
+                    'data-help' => 'cms.category.slug_help',
                 ]
             ])
-//            ->add('thumbnailFile', VichImageType::class, [
-//                'required' => false,
-//            ])
+            ->add('thumbnail', JQueryUploadType::class, [
+                'end_point' => 'category_thumbnail',
+            ])
             ->add('description', TextareaType::class, [
                 'required' => false,
                 'attr' => [
-                    'data-help' => 'bluebear.cms.category.description_help'
+                    'data-help' => 'cms.category.description_help'
                 ]
             ])
             ->add('displayInHomepage', CheckboxType::class, [
                 'required' => false,
                 'attr' => [
-                    'data-help' => 'bluebear.cms.category.display_in_homepage_help'
+                    'data-help' => 'cms.category.display_in_homepage_help'
                 ]
             ])
             ->add('updatedAt', DateType::class, [
@@ -54,9 +72,10 @@ class CategoryType extends AbstractType
                 'disabled' => true,
                 'attr' => [
                     'read-only' => true,
-                    'data-help' => 'bluebear.cms.category.updated_at_help',
+                    'data-help' => 'cms.category.updated_at_help',
                 ]
-            ]);
+            ])
+        ;
     }
 
     /**
@@ -73,7 +92,7 @@ class CategoryType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'BlueBear\CmsBundle\Entity\Category'
+            'data_class' => Category::class
         ]);
     }
 }

@@ -2,8 +2,7 @@
 
 namespace BlueBear\CmsBundle\Form\Type;
 
-use BlueBear\CmsBundle\Entity\Article;
-use LAG\AdminBundle\Form\Type\DateTimePickerType;
+use JK\CmsBundle\Entity\Article;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
@@ -13,6 +12,10 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 class PageType extends AbstractType
 {
+    /**
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder

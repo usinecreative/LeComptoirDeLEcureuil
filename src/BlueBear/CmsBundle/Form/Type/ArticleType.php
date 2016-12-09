@@ -2,7 +2,9 @@
 
 namespace BlueBear\CmsBundle\Form\Type;
 
-use BlueBear\CmsBundle\Entity\Article;
+use JK\CmsBundle\Entity\Article;
+use JK\CmsBundle\Form\Transformer\MediaTransformer;
+use JK\CmsBundle\Form\Type\JQueryUploadType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -20,6 +22,21 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class ArticleType extends AbstractType
 {
+    /**
+     * @var MediaTransformer
+     */
+    protected $mediaTransformer;
+    
+    /**
+     * ArticleType constructor.
+     *
+     * @param MediaTransformer $mediaTransformer
+     */
+    public function __construct(MediaTransformer $mediaTransformer)
+    {
+        $this->mediaTransformer = $mediaTransformer;
+    }
+    
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
@@ -58,13 +75,9 @@ class ArticleType extends AbstractType
                 'label' => 'cms.article.content',
                 'required' => false,
             ])
-//            ->add('thumbnailFile', VichImageType::class, [
-//                'label' => 'cms.article.thumbnailFile',
-//                'attr' => [
-//                    'data-help' => 'cms.article.thumbnailFile_help'
-//                ],
-//                'required' => false,
-//            ])
+            ->add('thumbnail', JQueryUploadType::class, [
+                'end_point' => 'article_thumbnail',
+            ])
             ->add('publicationStatus', ChoiceType::class, [
                 'label' => 'cms.article.publicationStatus',
                 'attr' => [
@@ -125,7 +138,7 @@ class ArticleType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'BlueBear\CmsBundle\Entity\Article'
+            'data_class' => Article::class
         ]);
     }
 
