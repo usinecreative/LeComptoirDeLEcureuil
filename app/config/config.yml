@@ -33,8 +33,7 @@ twig:
     strict_variables: "%kernel.debug%"
     form_themes:
         - "LAGAdminBundle:Form:fields.html.twig"
-        - "BlueBearCmsBundle:Form:fields.html.twig"
-#        - 'VichUploaderBundle:Form:fields.html.twig'
+        - "JKCmsBundle:Form:fields.html.twig"
     globals:
         google_analytics_id: '%google_analytics_id%'
 
@@ -47,23 +46,6 @@ services:
         class: Twig_Extensions_Extension_Intl
         tags:
             - { name: twig.extension }
-
-# Assetic Configuration
-assetic:
-    debug:          "%kernel.debug%"
-    use_controller: false
-    bundles:
-        - BlueBearCmsBundle
-        - AppBundle
-    #java: /usr/bin/java
-    filters:
-        cssrewrite: ~
-        compass:
-            images_dir:            '%kernel.root_dir%/../web/img'
-            generated_images_path: '%kernel.root_dir%/../web/img'
-            compass.http_path: img/
-        jsminplus: ~
-        cssmin: ~
 
 # Doctrine Configuration
 doctrine:
@@ -96,7 +78,7 @@ monolog:
         main:
             type: rotating_file
             max_files: 5
-            path: "%kernel.logs_dir%/bluebear-%kernel.environment%.log"
+            path: "%kernel.logs_dir%/lecomptoir-%kernel.environment%.log"
             level: error
 
 stof_doctrine_extensions:
