@@ -19,14 +19,19 @@
                                 {{ article.category.name }}
                             </a>
                         </h2>
+
                         {# Article thumbnail #}
-                        <a href="{{ articleUrl }}" title="{{ articleLinkTitle }}">
-                            <img src="{{ cms_media_path(article.thumbnail) }}"
-                                 alt="{{ articleLinkTitle }}"
-                                 title="{{ articleLinkTitle }}"/>
-                        </a>
+                        {% if article.thumbnail %}
+                            <a href="{{ articleUrl }}" title="{{ articleLinkTitle }}">
+                                <img src="{{ cms_media_path(article.thumbnail) }}"
+                                     alt="{{ articleLinkTitle }}"
+                                     title="{{ articleLinkTitle }}"/>
+                            </a>
+                        {% endif %}
+
                         {# Article publication date#}
                         <span class="title-date">{{ article.publicationDate | localizeddate('full', 'none') }}</span>
+
                         {# Article title #}
                         <h3>
                             <a href="{{ articleUrl }}" title="{{ articleLinkTitle }}">{{ article.title }}</a>
