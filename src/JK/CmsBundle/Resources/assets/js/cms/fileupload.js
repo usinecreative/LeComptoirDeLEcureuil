@@ -7,7 +7,7 @@ $(document).on('ready', function () {
             // ajax response
             var result = JSON.parse(data.result);
             // file upload
-            var formInput = $(this).parents('.input-group');
+            var formInput = $(this).parents('.media-form-container');
             // target media id hidden field
             var targetMediaIdSelector = $(this).data('target');
 
@@ -21,7 +21,7 @@ $(document).on('ready', function () {
     });
     removeMediaLink.on('click', function () {
         // file upload
-        var formInput = $(this).parents('.input-group');
+        var formInput = $(this).parents('.media-form-container');
         // target media id hidden field
         var targetMediaIdSelector = $(this).data('target');
 
