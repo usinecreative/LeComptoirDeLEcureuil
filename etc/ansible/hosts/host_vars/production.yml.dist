@@ -6,24 +6,24 @@ ansible_port:
 mysql_remote_root_password:
 mysql_remote_password:
 
-# username
 user:
 
-# mysql username (16 characters max)
 database_name:
 database_user:
 
-# apache vars
 server_admin:
 server_name:
+server_document_root:
+# optional
 server_alias:
+server_basic_auth_user:
+server_basic_auth_password:
 
-# project vars
-git_version: master
+git_version:
 deploy_path:
 google_analytics_id:
 
-# mail
+# mail
 squirrel_mail:
 admin_mail:
 mailer_user:
