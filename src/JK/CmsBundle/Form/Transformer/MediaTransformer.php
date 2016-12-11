@@ -27,7 +27,7 @@ class MediaTransformer implements DataTransformerInterface
     }
     
     /**
-     * Return the media id or null if the Media is null.
+     * Return an array containing media data or null.
      *
      * @param MediaInterface $media
      *
@@ -43,6 +43,7 @@ class MediaTransformer implements DataTransformerInterface
         return [
             'id' => $media->getId(),
             'filename' => $media->getFileName(),
+            'type' => $media->getType(),
         ];
     }
     
@@ -55,7 +56,7 @@ class MediaTransformer implements DataTransformerInterface
      */
     public function reverseTransform($data)
     {
-        if (0 === count($data) || !array_key_exists('id', $data)) {
+        if (0 === count($data) || !array_key_exists('id', $data) || !$data['id']) {
             return null;
         }
         
