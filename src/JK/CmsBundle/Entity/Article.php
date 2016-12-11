@@ -12,7 +12,6 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 /**
  * Category
@@ -149,7 +148,7 @@ class Article
      * @var MediaInterface
      *
      * @ORM\ManyToOne(targetEntity="JK\CmsBundle\Entity\Media")
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      */
     protected $thumbnail;
     

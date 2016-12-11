@@ -133,7 +133,7 @@ class Category
      * @var MediaInterface
      *
      * @ORM\ManyToOne(targetEntity="JK\CmsBundle\Entity\Media")
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      */
     protected $thumbnail;
     

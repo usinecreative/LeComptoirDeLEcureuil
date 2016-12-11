@@ -33,11 +33,11 @@ class Version20161128005212 extends AbstractMigration implements ContainerAwareI
         $this->addSql('ALTER TABLE cms_media ADD description LONGTEXT NOT NULL');
 
         $this->addSql('ALTER TABLE cms_category ADD thumbnail_id INT DEFAULT NULL');
-        $this->addSql('ALTER TABLE cms_category ADD CONSTRAINT FK_6CA2D53CFDFF2E92 FOREIGN KEY (thumbnail_id) REFERENCES cms_media (id)');
+        $this->addSql('ALTER TABLE cms_category ADD CONSTRAINT FK_6CA2D53CFDFF2E92 FOREIGN KEY (thumbnail_id) REFERENCES cms_media (id) ON DELETE SET NULL');
         $this->addSql('CREATE INDEX IDX_6CA2D53CFDFF2E92 ON cms_category (thumbnail_id)');
 
         $this->addSql('ALTER TABLE cms_article ADD thumbnail_id INT DEFAULT NULL');
-        $this->addSql('ALTER TABLE cms_article ADD CONSTRAINT FK_5CD60177FDFF2E92 FOREIGN KEY (thumbnail_id) REFERENCES cms_media (id)');
+        $this->addSql('ALTER TABLE cms_article ADD CONSTRAINT FK_5CD60177FDFF2E92 FOREIGN KEY (thumbnail_id) REFERENCES cms_media (id) ON DELETE SET NULL');
         $this->addSql('CREATE INDEX IDX_5CD60177FDFF2E92 ON cms_article (thumbnail_id)');
     
         $this->addSql('ALTER TABLE cms_category DROP thumbnail_name');
