@@ -25,7 +25,7 @@
         path={{ deploy_helper.new_release_path }}/{{ deploy_helper.unfinished_filename }}
         state=touch
 
-    - name: Run composer update
+    - name: Run composer install
       composer:
         command=install
         working_dir={{ deploy_helper.new_release_path }}
@@ -53,6 +53,7 @@
         - { path: 'var/logs', src: "var/logs" }
         - { path: 'web/images', src: "web/images" }
         - { path: 'uploads', src: "uploads" }
+        - { path: 'media_cache', src: "media" }
 
     - name: Cache warmup
       shell: '{{ deploy_helper.new_release_path }}/bin/console cache:warmup --env=prod'
