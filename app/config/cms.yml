@@ -23,12 +23,6 @@ blue_bear_cms:
                 behaviors:
                   commentable: ~
 
-ivory_ck_editor:
-    configs:
-        my_config:
-            toolbar: standard
-            height: 1500px
-
 #stfalcon_tinymce:
 #    include_jquery: false
 #    tinymce_jquery: false
@@ -49,8 +43,6 @@ ivory_ck_editor:
 #             toolbar2: "print preview media | forecolor backcolor emoticons | imagetools"
 #             image_advtab: true
 #             menubar: true
-#             imagetools_cors_hosts: ['dev.le-comptoir.fr', 'lecomptoir.bluebear.fr']
-#             imagetools_proxy: 'proxy.php'
 #             imagetools_toolbar: "imageoptions"
 
 
@@ -63,7 +55,6 @@ knp_menu:
     templating: false
     # the renderer to use, list is also available by default
     default_renderer: twig
-
 
 lag_admin:
     application:
@@ -164,16 +155,6 @@ lag_admin:
                 create: ~
                 edit: ~
                 delete: ~
-
-#        media:
-#            entity: BlueBear\MediaBundle\Entity\Media
-#            form: BlueBear\CmsBundle\Form\Type\MediaType
-#            controller: 'BlueBearMediaBundle:Media'
-#            actions:
-#                list: ~
-#                create: ~
-#                edit: ~
-#                delete: ~
         page:
             entity: BlueBear\CmsBundle\Entity\Page
             form: BlueBear\CmsBundle\Form\Type\PageType
@@ -239,7 +220,7 @@ eko_feed:
 
 oneup_uploader:
     mappings:
-        gallery:
+        media_gallery:
             frontend: blueimp
             storage:
                 directory: '%kernel.root_dir%/../web/uploads/gallery'
@@ -262,11 +243,13 @@ liip_imagine:
             quality: 75
             filters:
                 thumbnail: {size: [120, 90], mode: outbound}
-                background: {size: [124, 94], position: center, color: '#000000'}
         media_gallery:
             filters:
                 thumbnail: {size: [200, 250], mode: outbound}
         article_thumbnail:
+            filters:
+                thumbnail: {size: [200, 300], mode: outbound}
+        category_thumbnail:
             filters:
                 thumbnail: {size: [200, 300], mode: outbound}
         category_big:
