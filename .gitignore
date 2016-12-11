@@ -18,6 +18,7 @@ dumps
 
 # backup
 backups
+dump.sql
 
 admin-bundle-local.sh
 
