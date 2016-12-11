@@ -49,9 +49,6 @@ class UploadSubscriber implements EventSubscriberInterface
      */
     public function onUpload(PostPersistEvent $event)
     {
-        if ('gallery' !== $event->getType()) {
-            return;
-        }
         /** @var File $file */
         $file = $event->getFile();
         
