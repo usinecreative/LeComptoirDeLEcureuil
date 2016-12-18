@@ -231,7 +231,7 @@ oneup_uploader:
         category_thumbnail:
             frontend: blueimp
             storage:
-                directory: '%kernel.root_dir%/../web/uploads/category/thumbnails'
+                directory: '%kernel.root_dir%/../web/uploads/categories/thumbnails'
 
 liip_imagine:
     resolvers:
