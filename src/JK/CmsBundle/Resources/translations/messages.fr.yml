@@ -111,6 +111,16 @@ cms:
         _actions: ''
     media:
         list: Medias
+        edit: Edition du média
+        create: Ajouter un média
+        saved: Le média a été correctement sauvegardée
+        filename: Nom du fichier
+        extension: Extension du fichier
+        size: Taille du fichier
+        type: Type du média
+        type_help: Le type du média va changer le répertoire où est stockée l'image
+        category_thumbnail: Miniature d'une Catégorie
+        article_thumbnail: Miniature d'un Article
 
     import:
         list: Imports

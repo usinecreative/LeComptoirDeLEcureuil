@@ -4,10 +4,10 @@ parameters:
 services:
     cms.article.subscriber:
         class: JK\CmsBundle\Event\Subscriber\ArticleSubscriber
-        tags:
-            - {name: doctrine.event_subscriber}
         arguments:
             - '@router'
+        tags:
+            - {name: doctrine.event_subscriber}
 
     cms.upload.subscriber:
         class: JK\CmsBundle\Event\Subscriber\UploadSubscriber
@@ -37,6 +37,7 @@ services:
             - '%cms.assets.mapping%'
             - '@router'
             - '@liip_imagine.cache.manager'
+            - '%kernel.root_dir%'
 
     cms.article.repository:
         class: JK\CmsBundle\Repository\ArticleRepository

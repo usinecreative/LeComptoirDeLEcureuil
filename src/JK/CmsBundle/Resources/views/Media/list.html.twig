@@ -1,0 +1,23 @@
+{% extends '@LAGAdmin/CRUD/list.html.twig' %}
+
+{% block content %}
+    <h1 class="page-header">{{ admin.currentAction.title | trans }}</h1>
+
+    <div class="media-list admin-list">
+        <ul class="media-list large">
+            {% for media in admin.entities %}
+                <li class="media">
+                    <a href="{{ path(mediaEditAction, {id: media.id}) }}" class="media-link" data-id="{{ media.id }}">
+                        <img src="{{ cms_media_path(media, true, true, 'media_thumbnail') }}"
+                             alt="{{ media.description }}"/>
+                    </a>
+                    <p class="name">
+                        <a href="{{ path(mediaEditAction, {id: media.id}) }}">
+                            {{ media.name }}
+                        </a>
+                    </p>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
