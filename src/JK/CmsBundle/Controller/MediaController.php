@@ -106,9 +106,7 @@ class MediaController extends CRUDController
         $formType = $admin
             ->getConfiguration()
             ->getParameter('form');
-        $form = $this->createForm($formType, $admin->create(), [
-            'is_file_required' => true,
-        ]);
+        $form = $this->createForm($formType, $admin->create());
         $form->handleRequest($request);
     
         if ($form->isValid()) {
