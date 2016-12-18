@@ -30,7 +30,7 @@ class Version20161128005212 extends AbstractMigration implements ContainerAwareI
         $this->abortIf($this->connection->getDatabasePlatform()->getName() != 'mysql', 'Migration can only be executed safely on \'mysql\'.');
         
         $this->addSql('ALTER TABLE cms_media ADD updatedAt DATETIME NOT NULL, DROP updated_at, CHANGE filepath fileType VARCHAR(255) NOT NULL, CHANGE created_at createdAt DATETIME NOT NULL');
-        $this->addSql('ALTER TABLE cms_media ADD description LONGTEXT NOT NULL');
+        $this->addSql('ALTER TABLE cms_media ADD description LONGTEXT DEFAULT NULL');
 
         $this->addSql('ALTER TABLE cms_category ADD thumbnail_id INT DEFAULT NULL');
         $this->addSql('ALTER TABLE cms_category ADD CONSTRAINT FK_6CA2D53CFDFF2E92 FOREIGN KEY (thumbnail_id) REFERENCES cms_media (id) ON DELETE SET NULL');
@@ -39,6 +39,9 @@ class Version20161128005212 extends AbstractMigration implements ContainerAwareI
         $this->addSql('ALTER TABLE cms_article ADD thumbnail_id INT DEFAULT NULL');
         $this->addSql('ALTER TABLE cms_article ADD CONSTRAINT FK_5CD60177FDFF2E92 FOREIGN KEY (thumbnail_id) REFERENCES cms_media (id) ON DELETE SET NULL');
         $this->addSql('CREATE INDEX IDX_5CD60177FDFF2E92 ON cms_article (thumbnail_id)');
+        
+        $this->addSql('ALTER TABLE cms_media CHANGE fileType fileType VARCHAR(255) DEFAULT NULL, CHANGE filename fileName VARCHAR(255) DEFAULT NULL');
+        $this->addSql('ALTER TABLE cms_media CHANGE size size INT DEFAULT NULL');
     
         $this->addSql('ALTER TABLE cms_category DROP thumbnail_name');
     }
