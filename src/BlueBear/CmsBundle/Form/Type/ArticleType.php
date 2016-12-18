@@ -3,7 +3,6 @@
 namespace BlueBear\CmsBundle\Form\Type;
 
 use JK\CmsBundle\Entity\Article;
-use JK\CmsBundle\Form\Transformer\MediaTransformer;
 use JK\CmsBundle\Form\Type\JQueryUploadType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -22,21 +21,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class ArticleType extends AbstractType
 {
-    /**
-     * @var MediaTransformer
-     */
-    protected $mediaTransformer;
-    
-    /**
-     * ArticleType constructor.
-     *
-     * @param MediaTransformer $mediaTransformer
-     */
-    public function __construct(MediaTransformer $mediaTransformer)
-    {
-        $this->mediaTransformer = $mediaTransformer;
-    }
-    
     /**
      * @param FormBuilderInterface $builder
      * @param array $options

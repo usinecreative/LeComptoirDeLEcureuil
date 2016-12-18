@@ -3,7 +3,7 @@
 namespace BlueBear\CmsBundle\Form\Type;
 
 use BlueBear\CmsBundle\Entity\Category;
-use JK\CmsBundle\Form\Transformer\MediaTransformer;
+use JK\CmsBundle\Form\Transformer\MediaUploadTransformer;
 use JK\CmsBundle\Form\Type\JQueryUploadType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -19,18 +19,18 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class CategoryType extends AbstractType
 {
     /**
-     * @var MediaTransformer
+     * @var MediaUploadTransformer
      */
-    protected $mediaTransformer;
+    protected $MediaUploadTransformer;
     
     /**
      * CategoryType constructor.
      *
-     * @param MediaTransformer $mediaTransformer
+     * @param MediaUploadTransformer $MediaUploadTransformer
      */
-    public function __construct(MediaTransformer $mediaTransformer)
+    public function __construct(MediaUploadTransformer $MediaUploadTransformer)
     {
-        $this->mediaTransformer = $mediaTransformer;
+        $this->MediaUploadTransformer = $MediaUploadTransformer;
     }
     
     /**
