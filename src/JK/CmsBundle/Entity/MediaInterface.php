@@ -3,91 +3,105 @@
 namespace JK\CmsBundle\Entity;
 
 /**
- * A media handled by the CMS should implements this interface.
+ * A Media handled by the CMS should implements this interface.
  */
 interface MediaInterface
 {
     /**
-     * Define the media name.
+     * Define the Media name.
      *
      * @param int $id
      */
     public function setId($id);
     
     /**
-     * Define the media name.
+     * Define the Media name.
      *
      * @param string $name
      */
     public function setName($name);
 
     /**
-     * Define the media file name.
+     * Define the Media file name.
      *
      * @param string $fileName
      */
     public function setFileName($fileName);
 
     /**
-     * Define the media file type (images, audio, video...).
+     * Define the Media file type (images, audio, video...).
      *
      * @param string $fileType
      */
     public function setFileType($fileType);
 
     /**
-     * Define the media type.
+     * Define the Media type.
      *
      * @param string $type
      */
     public function setType($type);
 
     /**
-     * Define the media file size.
+     * Define the Media file size.
      *
      * @param int $size
      */
     public function setSize($size);
     
     /**
-     * Return the media id.
+     * Define the Media description.
+     *
+     * @param string $description
+     */
+    public function setDescription($description);
+    
+    /**
+     * Return the Media id.
      *
      * @return string
      */
     public function getId();
     
     /**
-     * Return the media name.
+     * Return the Media name.
      *
      * @return string
      */
     public function getName();
 
     /**
-     * Return the media file name.
+     * Return the Media file name.
      *
      * @return string
      */
     public function getFileName();
 
     /**
-     * Return the media file type.
+     * Return the Media file type.
      *
      * @return string
      */
     public function getFileType();
 
     /**
-     * Return the media file type.
+     * Return the Media file type.
      *
      * @return string
      */
     public function getType();
 
     /**
-     * Return the media file size.
+     * Return the Media file size.
      *
      * @return int
      */
     public function getSize();
+    
+    /**
+     * Return the Media description.
+     *
+     * @return string
+     */
+    public function getDescription();
 }
