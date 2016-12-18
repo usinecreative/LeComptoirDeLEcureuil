@@ -3,7 +3,7 @@ jk_assets:
     register_assets: true
     filters:
         compass:
-            bin: /usr/local/bin/compass
+            bin: compass
         merge: ~
         minify: ~
         copy: ~
