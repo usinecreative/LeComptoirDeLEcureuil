@@ -4,3 +4,9 @@ lag_admin:
             controller: JKCmsBundle:Media
             entity: JK\CmsBundle\Entity\Media
             form: JK\CmsBundle\Form\Type\MediaType
+            actions:
+                list:
+                    pager: false
+                edit:
+                create:
+                delete:
