@@ -2,66 +2,82 @@
 
 namespace JK\CmsBundle\Form\Transformer;
 
+use JK\CmsBundle\Assets\AssetsHelper;
 use JK\CmsBundle\Entity\MediaInterface;
 use JK\CmsBundle\Repository\MediaRepository;
 use Symfony\Component\Form\DataTransformerInterface;
+use Symfony\Component\Form\Exception\TransformationFailedException;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-/**
- * Transform an Media to an array of data and reverse transform this array into a Media using the id
- */
 class MediaTransformer implements DataTransformerInterface
 {
     /**
-     * @var MediaRepository
+     * @var AssetsHelper
      */
-    protected $mediaRepository;
+    private $assetsHelper;
     
     /**
-     * CategoryType constructor.
+     * @var string
+     */
+    private $originalFileName;
+    
+    /**
+     * MediaEditTransformer constructor.
      *
+     * @param AssetsHelper $assetsHelper
      * @param MediaRepository $mediaRepository
      */
-    public function __construct(MediaRepository $mediaRepository)
+    public function __construct(AssetsHelper $assetsHelper, MediaRepository $mediaRepository)
     {
-        $this->mediaRepository = $mediaRepository;
+        $this->assetsHelper = $assetsHelper;
     }
     
-    /**
-     * Return an array containing media data or null.
-     *
-     * @param MediaInterface $media
-     *
-     * @return string
-     */
     public function transform($media)
     {
-        // the media can be null if the column in the linked entity is nullable
-        if (null === $media) {
-            return [];
+        if (!$media instanceof MediaInterface) {
+            throw new TransformationFailedException('Only '.MediaInterface::class.' can be transformed');
+        }
+    
+        if ($media->getFileName()) {
+            $directory = $this
+                ->assetsHelper
+                ->getMediaDirectory($media->getType());
+            $path = $directory.'/'.$media->getFileName();
+            $file = new UploadedFile($path, $media->getFileName());
+    
+            $media->setFileName(new UploadedFile($file, $media->getFileName(), null, null, null, true));
         }
         
-        return [
-            'id' => $media->getId(),
-            'filename' => $media->getFileName(),
-            'type' => $media->getType(),
-        ];
+        return $media;
     }
     
     /**
-     * Return the Media or null if the id is null.
-     *
-     * @param mixed $data
-     *
-     * @return MediaInterface|null|object
+     * @param MediaInterface|null $media
+     * @return mixed
      */
-    public function reverseTransform($data)
+    public function reverseTransform($media)
     {
-        if (0 === count($data) || !array_key_exists('id', $data) || !$data['id']) {
-            return null;
+        if (null === $media) {
+            return $media;
         }
-        
-        return $this
-            ->mediaRepository
-            ->find($data['id']);
+        $uploadedFile = $media->getFileName();
+    
+        if ($uploadedFile instanceof UploadedFile) {
+            $this
+                ->assetsHelper
+                ->uploadAsset($media, $uploadedFile);
+        } else if (null === $uploadedFile) {
+            $media->setFileName($this->originalFileName);
+        }
+    
+        return $media;
+    }
+    
+    /**
+     * @param string $fileName
+     */
+    public function setOriginalFileName($fileName)
+    {
+        $this->originalFileName = $fileName;
     }
 }

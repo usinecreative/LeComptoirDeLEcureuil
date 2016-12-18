@@ -2,12 +2,14 @@
 
 namespace JK\CmsBundle\Form\Type;
 
-use JK\CmsBundle\Form\Transformer\MediaTransformer;
+use JK\CmsBundle\Form\Transformer\MediaUploadTransformer;
 use Oneup\UploaderBundle\Templating\Helper\UploaderHelper;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class JQueryUploadType extends AbstractType
@@ -18,20 +20,20 @@ class JQueryUploadType extends AbstractType
     protected $uploaderHelper;
     
     /**
-     * @var MediaTransformer
+     * @var MediaUploadTransformer
      */
-    protected $mediaTransformer;
+    protected $MediaUploadTransformer;
     
     /**
      * JQueryUploadType constructor.
      *
      * @param UploaderHelper $uploaderHelper
-     * @param MediaTransformer $mediaTransformer
+     * @param MediaUploadTransformer $MediaUploadTransformer
      */
-    public function __construct(UploaderHelper $uploaderHelper, MediaTransformer $mediaTransformer)
+    public function __construct(UploaderHelper $uploaderHelper, MediaUploadTransformer $MediaUploadTransformer)
     {
         $this->uploaderHelper = $uploaderHelper;
-        $this->mediaTransformer = $mediaTransformer;
+        $this->MediaUploadTransformer = $MediaUploadTransformer;
     }
     
     /**
@@ -49,18 +51,26 @@ class JQueryUploadType extends AbstractType
                     'data-url' => $this
                         ->uploaderHelper
                         ->endpoint($options['end_point']),
-                    'data-target' => $options['media_id_selector'],
+                    'data-target' => '.'.$options['media_id_class'],
                 ]
             ])
             ->add('id', HiddenType::class, [
                 'attr' => [
-                    'class' => 'media-id',
-                ]
+                    'class' => $options['media_id_class'],
+                ],
             ])
         ;
-        $builder
-            ->addModelTransformer($this->mediaTransformer)
-        ;
+        $builder->addModelTransformer($this->MediaUploadTransformer);
+    }
+    
+    /**
+     * @param FormView $view
+     * @param FormInterface $form
+     * @param array $options
+     */
+    public function buildView(FormView $view, FormInterface $form, array $options)
+    {
+        $view->vars['mediaIdClass'] = '.'.$options['media_id_class'];
     }
     
     /**
@@ -70,9 +80,9 @@ class JQueryUploadType extends AbstractType
     {
         $resolver
             ->setDefaults([
-                'media_id_selector' => '.media-id',
+                'media_id_class' => 'media-id',
                 'required' => false,
-                'end_point' => 'gallery'
+                'end_point' => 'media_gallery',
             ])
         ;
     }

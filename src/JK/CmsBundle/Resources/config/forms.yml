@@ -3,11 +3,24 @@ services:
         class: JK\CmsBundle\Form\Type\JQueryUploadType
         arguments:
             - '@oneup_uploader.templating.uploader_helper'
+            - '@cms.media.media_upload_transformer'
+        tags:
+            - {name: form.type}
+
+    cms.media.media_type:
+        class: JK\CmsBundle\Form\Type\MediaType
+        arguments:
             - '@cms.media.media_transformer'
         tags:
             - {name: form.type}
 
+    cms.media.media_upload_transformer:
+        class: JK\CmsBundle\Form\Transformer\MediaUploadTransformer
+        arguments:
+            - '@cms.media.media_repository'
+
     cms.media.media_transformer:
         class: JK\CmsBundle\Form\Transformer\MediaTransformer
         arguments:
+            - '@cms.assets.helper'
             - '@cms.media.media_repository'
