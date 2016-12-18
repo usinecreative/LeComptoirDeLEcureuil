@@ -5,6 +5,8 @@ namespace JK\CmsBundle\Assets;
 use Exception;
 use JK\CmsBundle\Entity\MediaInterface;
 use Liip\ImagineBundle\Imagine\Cache\CacheManager;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Routing\RouterInterface;
 
 class AssetsHelper
@@ -30,18 +32,25 @@ class AssetsHelper
     private $assetsManager;
     
     /**
+     * @var string
+     */
+    private $rootDir;
+    
+    /**
      * AssetsHelper constructor.
      *
      * @param string $environment
      * @param array $assetsMapping
      * @param RouterInterface $router
      * @param CacheManager $assetsManager
+     * @param string $rootDir
      */
     public function __construct(
         $environment = 'dev',
         array $assetsMapping = [],
         RouterInterface $router,
-        CacheManager $assetsManager
+        CacheManager $assetsManager,
+        $rootDir
     ) {
         $this->assetsMapping = $assetsMapping;
         
@@ -53,8 +62,21 @@ class AssetsHelper
         $this->router = $router;
         $this->environment = $environment;
         $this->assetsManager = $assetsManager;
+        $this->rootDir = $rootDir;
     }
     
+    /**
+     * Return the web path to a Media. If $cache=true, it returns the web path to the cached version.
+     *
+     * @param MediaInterface $media
+     * @param bool $absolute
+     * @param bool $cache
+     * @param null $mediaFilter
+     *
+     * @return string
+     *
+     * @throws Exception
+     */
     public function getMediaPath(MediaInterface $media, $absolute = true, $cache = true, $mediaFilter = null)
     {
         if (!array_key_exists($media->getType(), $this->assetsMapping)) {
@@ -76,7 +98,7 @@ class AssetsHelper
             $context = $this
                 ->router
                 ->getContext();
-            $path = $context->getScheme().'://'.$context->getHost().$path;
+            $path = $context->getScheme().'://'.$context->getHost().'/'.$path;
     
             $path = str_replace('app_'.$this->environment.'.php', '', $path);
         }
@@ -90,6 +112,15 @@ class AssetsHelper
         return $path;
     }
     
+    /**
+     * Return the web directory according to the given mapping name. The mapping name should exists.
+     *
+     * @param string $mappingName
+     *
+     * @return string
+     *
+     * @throws Exception
+     */
     public function getMediaDirectory($mappingName)
     {
         if (!array_key_exists($mappingName, $this->assetsMapping)) {
@@ -97,5 +128,50 @@ class AssetsHelper
         }
     
         return $this->assetsMapping[$mappingName];
+    }
+    
+    /**
+     * Upload a file into a media directory according to the mapping. Update the media entity with the new file data.
+     *
+     * @param MediaInterface $media
+     * @param UploadedFile $file
+     */
+    public function uploadAsset(MediaInterface $media, UploadedFile $file)
+    {
+        $fileSystem = new Filesystem();
+        $filename = urlencode($file->getClientOriginalName());
+        $directory = $this->getMediaDirectory($media->getType());
+    
+        // if a asset with the same name exists in the same directory, we generate a random file name
+        if ($fileSystem->exists($this->getWebDirectory().'/'.$directory.'/'.$filename)) {
+            $filename = uniqid('assets-').'.'.$file->getClientOriginalExtension();
+        }
+        // define the media attributes values
+        $media->setFileName($filename);
+        $media->setFileType($file->getClientOriginalExtension());
+        $media->setSize($file->getClientSize());
+        
+        // move the uploaded files to the given directory
+        $file->move($this->getWebDirectory().'/'.$directory, $media->getFileName());
+    }
+    
+    /**
+     * Return the web directory. It should exists or an Exception is thrown.
+     *
+     * @return string
+     *
+     * @throws Exception
+     */
+    protected function getWebDirectory()
+    {
+        $fileSystem = new Filesystem();
+        $webDirectory = realpath($this->rootDir.'/../web');
+    
+        // web directory must be found
+        if (!$fileSystem->exists($webDirectory)) {
+            throw new Exception('Web directory not found');
+        }
+    
+        return $webDirectory;
     }
 }
