@@ -26,9 +26,10 @@ class Configuration implements ConfigurationInterface
                 ->children()
                 ->arrayNode('mapping')
                     ->defaultValue([
-                        'gallery' => '/uploads/gallery',
-                        'article_thumbnail' => '/uploads/articles/thumbnails',
-                        'category_thumbnail' => '/uploads/categories/thumbnails',
+                        'media_gallery' => 'uploads/gallery',
+                        'media_thumbnail' => 'uploads/gallery',
+                        'article_thumbnail' => 'uploads/articles/thumbnails',
+                        'category_thumbnail' => 'uploads/categories/thumbnails',
                     ])
                     ->prototype('scalar')
                 ->end()
