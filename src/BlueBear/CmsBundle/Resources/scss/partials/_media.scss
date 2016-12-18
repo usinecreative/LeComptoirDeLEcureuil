@@ -1,9 +1,41 @@
-.media-list a.selected img {
-  opacity: 0.25;
+.media-list {
+  a.selected img {
+    opacity: 0.25;
+  }
+
+  li.media {
+    float: left;
+    height: 130px;
+    margin-top: 20px;
+    padding: 0 20px;
+    text-align: center;
+    width: 33%;
+
+    img {
+      height: 100px;
+    }
+  }
+  &.large li.media {
+    width: 144px;
+  }
 }
-.media-list li.media {
-  float: left;
-  margin-top: 20px;
+.media-information {
+  padding: 20px;
   text-align: center;
-  width: 33%;
+
+  table {
+    text-align: left;
+
+    th, td {
+      padding: 5px 20px;
+    }
+    th {
+      width: 200px;
+    }
+  }
+  img {
+    margin: 20px 0;
+  }
+
+
 }
