@@ -23,8 +23,11 @@ cc:
 	rm -rf var/cache/*
 	$(sf) doctrine:cache:clear-metadata
 
-deploy:
-	ansible-playbook etc/ansible/playbooks/deploy.yml
+deploy-production:
+	ansible-playbook etc/ansible/playbooks/deploy.yml -i etc/ansible/hosts/hosts
+
+deploy-staging:
+	ansible-playbook etc/ansible/playbooks/deploy.yml -i etc/ansible/hosts/staging_hosts
 
 assets:
 	$(sf) jk:assets:build
