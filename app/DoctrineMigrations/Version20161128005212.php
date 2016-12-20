@@ -108,7 +108,7 @@ class Version20161128005212 extends AbstractMigration implements ContainerAwareI
             $file = $thumbnailDirectory.$article['thumbnail_name'];
     
             if (!$fileSystem->exists($file)) {
-                throw new Exception('Article thumbnail '.$article['thumbnail_name'].' can not be found');
+                throw new Exception('Article thumbnail '.$thumbnailDirectory.$article['thumbnail_name'].' can not be found');
             }
             $media = new Media();
             $media->setName($article['thumbnail_name']);
