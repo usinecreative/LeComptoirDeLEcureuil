@@ -4,7 +4,6 @@ namespace JK\CmsBundle\Form\Transformer;
 
 use JK\CmsBundle\Assets\AssetsHelper;
 use JK\CmsBundle\Entity\MediaInterface;
-use JK\CmsBundle\Repository\MediaRepository;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -25,13 +24,19 @@ class MediaTransformer implements DataTransformerInterface
      * MediaEditTransformer constructor.
      *
      * @param AssetsHelper $assetsHelper
-     * @param MediaRepository $mediaRepository
      */
-    public function __construct(AssetsHelper $assetsHelper, MediaRepository $mediaRepository)
+    public function __construct(AssetsHelper $assetsHelper)
     {
         $this->assetsHelper = $assetsHelper;
     }
     
+    /**
+     * Transform the Media filename into an UploadedFile to be compatible with the File form type.
+     *
+     * @param MediaInterface $media
+     *
+     * @return MediaInterface
+     */
     public function transform($media)
     {
         if (!$media instanceof MediaInterface) {
@@ -52,6 +57,8 @@ class MediaTransformer implements DataTransformerInterface
     }
     
     /**
+     * Upload the new Media file if provided using the assets helper.
+     *
      * @param MediaInterface|null $media
      * @return mixed
      */
@@ -67,6 +74,7 @@ class MediaTransformer implements DataTransformerInterface
                 ->assetsHelper
                 ->uploadAsset($media, $uploadedFile);
         } else if (null === $uploadedFile) {
+            // if no file was uploaded, we must set the original filename to avoid setting null to the property
             $media->setFileName($this->originalFileName);
         }
     
@@ -74,6 +82,8 @@ class MediaTransformer implements DataTransformerInterface
     }
     
     /**
+     * Define the original filename to avoid setting null in case of no new file was uploaded
+     *
      * @param string $fileName
      */
     public function setOriginalFileName($fileName)

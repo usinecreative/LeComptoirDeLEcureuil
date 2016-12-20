@@ -23,4 +23,3 @@ services:
         class: JK\CmsBundle\Form\Transformer\MediaTransformer
         arguments:
             - '@cms.assets.helper'
-            - '@cms.media.media_repository'

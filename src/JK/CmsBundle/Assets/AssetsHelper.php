@@ -71,7 +71,7 @@ class AssetsHelper
      * @param MediaInterface $media
      * @param bool $absolute
      * @param bool $cache
-     * @param null $mediaFilter
+     * @param string|null $mediaFilter
      *
      * @return string
      *

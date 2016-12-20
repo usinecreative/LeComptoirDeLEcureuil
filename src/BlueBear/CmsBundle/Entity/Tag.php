@@ -47,7 +47,7 @@ class Tag
     protected $slug;
 
     /**
-     * @var Article[]
+     * @var Article[]|Collection
      *
      * @ORM\ManyToMany(targetEntity="JK\CmsBundle\Entity\Article", inversedBy="tags")
      * @ORM\JoinTable(name="cms_tag_article")
@@ -147,7 +147,7 @@ class Tag
     /**
      * Set entity id.
      *
-     * @param string $id
+     * @param integer $id
      */
     public function setId($id)
     {
