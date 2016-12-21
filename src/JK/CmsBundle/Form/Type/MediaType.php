@@ -60,7 +60,7 @@ class MediaType extends AbstractType
         
         $builder
             ->addModelTransformer($this->mediaTransformer)
-            ->addEventListener(FormEvents::PRE_SET_DATA, function(FormEvent $event) {
+            ->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
                 $media = $event->getData();
     
                 if (null !== $media->getFileName()) {
