@@ -1,13 +1,1 @@
-imports:
-    - { resource: repositories.yml }
-
 services:
-    bluebear.media.uploader:
-        class: BlueBear\MediaBundle\Uploader\MediaUploader
-        arguments: ['%bluebear.media.resources_path%']
-
-    bluebear.media.listener:
-        class: BlueBear\MediaBundle\Event\Listener\MediaListener
-        tags:
-            - { name: doctrine.event_listener, event: prePersist }
-        arguments: ['@bluebear.media.uploader']

@@ -2,24 +2,26 @@
 
 namespace BlueBear\CmsBundle\Cms;
 
-class ContentType 
+use Exception;
+
+class ContentType
 {
     protected $name;
-
+    
     protected $fields;
-
+    
     protected $behaviors = [];
-
+    
     protected $parent = null;
-
+    
     public function hydrateFromConfiguration($name, array $typeConfiguration)
     {
         $this->name = $name;
-
+        
         if (array_key_exists('fields', $typeConfiguration)) {
             $this->fields = $typeConfiguration['fields'];
         } else {
-            throw new \Exception("Content type \"{$this->name}\" should have fields");
+            throw new Exception("Content type \"{$this->name}\" should have fields");
         }
         if (array_key_exists('behaviors', $typeConfiguration)) {
             foreach ($typeConfiguration['behaviors'] as $behaviorName => $behavior) {
@@ -27,7 +29,7 @@ class ContentType
             }
         }
     }
-
+    
     /**
      * @return array
      */
@@ -35,7 +37,7 @@ class ContentType
     {
         return $this->behaviors;
     }
-
+    
     /**
      * @return mixed
      */
@@ -43,12 +45,12 @@ class ContentType
     {
         return $this->name;
     }
-
+    
     public function getType()
     {
         return $this->name;
     }
-
+    
     /**
      * @return array
      */

@@ -19,14 +19,14 @@ class FixturesLoader implements FixtureInterface
     public function load(ObjectManager $manager)
     {
         Fixtures::load([
-            __DIR__ . '/Partners.yml',
-            __DIR__ . '/User.yml',
-            __DIR__ . '/Categories.yml',
-            __DIR__ . '/Articles.yml',
-            __DIR__ . '/Comments.yml',
-            __DIR__ . '/Tags.yml',
+            __DIR__.'/Partners.yml',
+            __DIR__.'/User.yml',
+            __DIR__.'/Categories.yml',
+            __DIR__.'/Articles.yml',
+            __DIR__.'/Comments.yml',
+            __DIR__.'/Tags.yml',
         ], $manager, [
-            'locale' => 'fr_FR'
+            'locale' => 'fr_FR',
         ]);
     }
 }

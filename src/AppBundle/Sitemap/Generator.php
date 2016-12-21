@@ -102,7 +102,7 @@ class Generator
                 'items' => $items
             ]);
         $fileSystem = new Filesystem();
-        $sitemap = $fileSystem->tempnam($this->cacheDirectory, 'sitemap') . '.xml';
+        $sitemap = $fileSystem->tempnam($this->cacheDirectory, 'sitemap').'.xml';
         $fileSystem->dumpFile($sitemap, $content);
 
         return $sitemap;

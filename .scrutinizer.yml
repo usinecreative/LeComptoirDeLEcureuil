@@ -6,3 +6,4 @@ filter:
         - "*/Tests/*"
         - "Tests/*"
         - "DoctrineMigrations/*"
+        - 'var/'

@@ -17,7 +17,7 @@ class DatabaseLoadCommand extends Command implements ContainerAwareInterface
      * @var ContainerInterface
      */
     protected $container;
-
+    
     /**
      * Sets the container.
      *
@@ -27,7 +27,7 @@ class DatabaseLoadCommand extends Command implements ContainerAwareInterface
     {
         $this->container = $container;
     }
-
+    
     /**
      * Configure command.
      */
@@ -35,10 +35,9 @@ class DatabaseLoadCommand extends Command implements ContainerAwareInterface
     {
         $this
             ->setName('dizda:backup:load')
-            ->setDescription('Load a backup made by dizda cloudbackup bundle')
-        ;
+            ->setDescription('Load a backup made by dizda cloudbackup bundle');
     }
-
+    
     /**
      * @param InputInterface $input
      * @param OutputInterface $output
@@ -48,7 +47,7 @@ class DatabaseLoadCommand extends Command implements ContainerAwareInterface
     {
         $outputArray = [];
         $rootPath = realpath($this->container->getParameter('database_backup_path'));
-
+        
         // find 7z archives in dump directory
         $finder = new Finder();
         $finder
@@ -57,11 +56,10 @@ class DatabaseLoadCommand extends Command implements ContainerAwareInterface
             ->in($rootPath)
             ->sort(function(SplFileInfo $file1, SplFileInfo $file2) {
                 return $file1->getATime() < $file2->getATime();
-            })
-        ;
+            });
         // find last dump
         $lastModifiedArchive = null;
-
+        
         /** @var SplFileInfo $file */
         foreach ($finder as $file) {
             $lastModifiedArchive = $file;
@@ -69,28 +67,28 @@ class DatabaseLoadCommand extends Command implements ContainerAwareInterface
         }
         // extract last dump into cache directory
         $zipExtractCommand = '7za e %s -o%s -y';
-
+        
         $command = sprintf(
             $zipExtractCommand,
             $lastModifiedArchive->getRealPath(),
-            $this->container->getParameter('kernel.cache_dir') . '/mysql'
+            $this->container->getParameter('kernel.cache_dir').'/mysql'
         );
-        $output->writeln('Executing : ' . $command);
+        $output->writeln('Executing : '.$command);
         exec($command, $outputArray);
         $output->writeln($outputArray);
-
-
+        
+        
         $finder = new Finder();
         $finder
-            ->in($this->container->getParameter('kernel.cache_dir') . '/mysql')
+            ->in($this->container->getParameter('kernel.cache_dir').'/mysql')
             ->files()
             ->name('*.sql');
-
+        
         $mysqlImportCommand = 'mysql -u %s -p%s %s < %s';
-
+        
         foreach ($finder as $file) {
             $outputArray = [];
-
+            
             $mysqlImportCommand = sprintf(
                 $mysqlImportCommand,
                 $this->container->getParameter('database_user'),
@@ -103,12 +101,12 @@ class DatabaseLoadCommand extends Command implements ContainerAwareInterface
                 '**********',
                 $mysqlImportCommand
             );
-            $output->writeln('Executing : ' . $mysqlImportCommand);
+            $output->writeln('Executing : '.$mysqlImportCommand);
             exec($mysqlImportCommand, $outputArray);
             $output->writeln($outputArray);
         }
         $output->writeln('Removing extracted sql dump file');
         $fileSystem = new Filesystem();
-        $fileSystem->remove($this->container->getParameter('kernel.cache_dir') . '/mysql');
+        $fileSystem->remove($this->container->getParameter('kernel.cache_dir').'/mysql');
     }
 }
