@@ -60,6 +60,11 @@ class MediaController extends CRUDController
     {
         // TODO remove this method when AdminBundle can handle template configuration (v0.5)
         $viewParameters = parent::listAction($request);
+    
+        if ($viewParameters instanceof Response) {
+            return $viewParameters;
+        }
+        
         /** @var AdminInterface $admin */
         $admin = $viewParameters['admin'];
         $viewParameters['mediaEditAction'] = $admin->generateRouteName('edit');
