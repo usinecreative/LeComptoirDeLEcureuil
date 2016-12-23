@@ -25,8 +25,7 @@ services:
 
     cms.twig.cms_extension:
         class: JK\CmsBundle\Twig\CmsExtension
-        arguments:
-            - '@cms.assets.helper'
+        autowire: true
         tags:
             - {name: twig.extension}
 
