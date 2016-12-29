@@ -16,8 +16,8 @@ class ScriptRegistryTest extends AdminTestBase
         $twig
             ->method('render')
             ->willReturnCallback(function($template, $parameters) {
-    
-                if ('JKCmsBundle:Assets:script.template.html.twig' !== $template) {
+                
+                if ('@JKCms/Assets/script.template.html.twig' !== $template) {
                     return json_encode([
                         'template' => $template,
                         'parameters' => $parameters,

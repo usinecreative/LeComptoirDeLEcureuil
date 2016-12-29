@@ -47,7 +47,7 @@ class ScriptRegistry
      */
     public function __construct(
         Twig_Environment $twig,
-        $defaultTemplate = 'JKCmsBundle:Assets:script.template.html.twig'
+        $defaultTemplate = '@JKCms/Assets/script.template.html.twig'
     ){
         $this->defaultTemplate = $defaultTemplate;
         $this->twig = $twig;
