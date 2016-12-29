@@ -75,7 +75,7 @@ class AssetsExtensionTest extends AdminTestBase
                 'test.js' => []
             ]
         ];
-        $extension->buildView($view, $form, []);
+        $extension->finishView($view, $form, []);
     
         $this->assertEquals(FormType::class, $extension->getExtendedType());
     }
