@@ -109,6 +109,7 @@ cms:
         id: '#'
         article: Article
         _actions: ''
+        unsubscribe_success: Vous avez été désinscrit avec succès !
     media:
         list: Medias
         edit: Edition du média
@@ -131,7 +132,6 @@ cms:
 
 logout: Déconnexion
 login: Connexion
-
 
 lag.cms.publication.draft: Brouillon
 lag.cms.publication.validation: En attente de validation
