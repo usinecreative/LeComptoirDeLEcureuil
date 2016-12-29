@@ -13,12 +13,7 @@ use Symfony\Component\Form\FormView;
 
 class AssetsExtensionTest extends AdminTestBase
 {
-    public function testBuildView()
-    {
-        
-    }
-    
-    public function testGetExtendedType()
+    public function testAssetsExtension()
     {
         $loadedScripts = [
             'head' => [],
@@ -52,7 +47,7 @@ class AssetsExtensionTest extends AdminTestBase
     
         // an exception should be thrown if an invalid configuration is given
         $this->assertExceptionRaised(Exception::class, function() use ($extension, $view, $form) {
-            $extension->buildView($view, $form, []);
+            $extension->finishView($view, $form, []);
         });
         $this->assertCount(0, $loadedScripts['head']);
         $this->assertCount(0, $loadedScripts['footer']);
@@ -68,7 +63,7 @@ class AssetsExtensionTest extends AdminTestBase
                 ]
             ],
         ];
-        $extension->buildView($view, $form, []);
+        $extension->finishView($view, $form, []);
         
         $this->assertCount(2, $loadedScripts['head']);
         $this->assertArrayHasKey('test.js', $loadedScripts['head']);

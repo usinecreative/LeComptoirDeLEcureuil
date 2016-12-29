@@ -26,20 +26,27 @@ class AssetsExtension extends AbstractTypeExtension
         $this->scriptRegistry = $scriptRegistry;
     }
     
-    public function buildView(FormView $view, FormInterface $form, array $options)
+    /**
+     * Register the configured scripts using the FormView variables.
+     *
+     * @param FormView $view
+     * @param FormInterface $form
+     * @param array $options
+     *
+     * @throws Exception
+     */
+    public function finishView(FormView $view, FormInterface $form, array $options)
     {
         if (array_key_exists('scripts', $view->vars) && is_array($view->vars['scripts'])) {
-    
             foreach ($view->vars['scripts'] as $location => $scripts) {
-    
+            
                 if (!is_array($scripts)) {
                     throw new Exception(
-                        'Assets configuration for location '.$location.' should be an array in form'.$form->getName()
+                        'Assets configuration for location '.$location.' should be an array in form '.$form->getName()
                     );
                 }
-    
+                
                 foreach ($scripts as $name => $script) {
-                    
                     // provide a script name if none is provided
                     if (is_array($script) && !array_key_exists('script', $script)) {
                         $script['script'] = $name;
@@ -60,6 +67,12 @@ class AssetsExtension extends AbstractTypeExtension
         return FormType::class;
     }
     
+    /**
+     * Register a script for a location.
+     *
+     * @param string $location
+     * @param string $script
+     */
     protected function registerScript($location, $script)
     {
         if (is_string($script)) {
@@ -67,7 +80,7 @@ class AssetsExtension extends AbstractTypeExtension
                 ->scriptRegistry
                 ->register($location, $script);
         } elseif (is_array($script)) {
-        
+            
             if (!array_key_exists('template', $script)) {
                 $script['template'] = null;
             }
