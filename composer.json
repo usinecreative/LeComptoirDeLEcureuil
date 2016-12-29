@@ -38,7 +38,8 @@
     "johnkrovitch/sam-bundle": "dev-dev",
     "tinymce/tinymce": "^4.4",
     "blueimp/jquery-file-upload": "^9.14",
-    "liip/imagine-bundle": "^1.6"
+    "liip/imagine-bundle": "^1.6",
+    "google/recaptcha": "^1.1"
   },
   "require-dev": {
     "hautelook/alice-bundle": "^1.2",
