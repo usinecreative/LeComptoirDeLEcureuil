@@ -33,7 +33,7 @@
     "guzzlehttp/guzzle": "^6.1",
     "knplabs/knp-gaufrette-bundle": "^0.3.0",
     "eko/feedbundle": "^1.2",
-    "lag/adminbundle": "dev-release/v0.4.3",
+    "lag/adminbundle": "^0.4.3",
     "components/bootstrap": "^3.3",
     "johnkrovitch/sam-bundle": "dev-dev",
     "vich/uploader-bundle": "^1.3",
