@@ -23,7 +23,7 @@ class ArticleRepository extends DoctrineRepository
     {
         return $this
             ->createQueryBuilder('article')
-            ->orderBy('article.id', 'desc')
+            ->orderBy('article.publicationDate', 'desc')
             ->where('article.publicationStatus = :published')
             ->setParameter('published', Article::PUBLICATION_STATUS_PUBLISHED)
             ->setMaxResults($count)
