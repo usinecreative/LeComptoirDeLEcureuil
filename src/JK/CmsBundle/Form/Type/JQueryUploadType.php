@@ -22,18 +22,18 @@ class JQueryUploadType extends AbstractType
     /**
      * @var MediaUploadTransformer
      */
-    protected $MediaUploadTransformer;
+    protected $mediaUploadTransformer;
     
     /**
      * JQueryUploadType constructor.
      *
      * @param UploaderHelper $uploaderHelper
-     * @param MediaUploadTransformer $MediaUploadTransformer
+     * @param MediaUploadTransformer $mediaUploadTransformer
      */
-    public function __construct(UploaderHelper $uploaderHelper, MediaUploadTransformer $MediaUploadTransformer)
+    public function __construct(UploaderHelper $uploaderHelper, MediaUploadTransformer $mediaUploadTransformer)
     {
         $this->uploaderHelper = $uploaderHelper;
-        $this->MediaUploadTransformer = $MediaUploadTransformer;
+        $this->mediaUploadTransformer = $mediaUploadTransformer;
     }
     
     /**
@@ -60,7 +60,7 @@ class JQueryUploadType extends AbstractType
                 ],
             ])
         ;
-        $builder->addModelTransformer($this->MediaUploadTransformer);
+        $builder->addModelTransformer($this->mediaUploadTransformer);
     }
     
     /**
