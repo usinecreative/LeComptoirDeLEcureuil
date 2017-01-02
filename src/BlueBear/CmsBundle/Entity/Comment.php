@@ -79,6 +79,15 @@ class Comment
     protected $updatedAt;
     
     /**
+     * Indicate if the CMS should notify the Comment's author wants a notification when new Comments are posted.
+     *
+     * @var bool
+     *
+     * @ORM\Column(name="notify_new_comments", type="boolean")
+     */
+    protected $notifyNewComments = false;
+    
+    /**
      * @ORM\PrePersist()
      */
     public function setCreatedAt()
@@ -161,7 +170,7 @@ class Comment
     /**
      * @param Article $article
      */
-    public function setArticle(Article $article)
+    public function setArticle(Article $article = null)
     {
         $this->article = $article;
     }
@@ -281,5 +290,29 @@ class Comment
     public function setAuthorUrl($authorUrl)
     {
         $this->authorUrl = $authorUrl;
+    }
+    
+    /**
+     * @return bool
+     */
+    public function shouldNotifyNewComments()
+    {
+        return $this->notifyNewComments;
+    }
+    
+    /**
+     * @param bool $notifyNewComments
+     */
+    public function setNotifyNewComments($notifyNewComments)
+    {
+        $this->notifyNewComments = $notifyNewComments;
+    }
+    
+    /**
+     * @return bool
+     */
+    public function isNotifyNewComments()
+    {
+        return $this->notifyNewComments;
     }
 }
