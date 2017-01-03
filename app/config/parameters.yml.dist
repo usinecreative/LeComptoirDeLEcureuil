@@ -1,5 +1,7 @@
 # This file is a "template" of what your parameters.yml file should look like
 parameters:
+    locale:            en
+
     database_driver:   pdo_mysql
     database_host:     127.0.0.1
     database_port:     ~
@@ -7,9 +9,6 @@ parameters:
     database_user:     root
     database_password: ~
     database_backup_path: /home
-
-    # You should uncomment this if you want use pdo_sqlite
-    # database_path: "%kernel.root_dir%/data.db3"
 
     mailer_transport:  smtp
     mailer_host:       127.0.0.1
@@ -19,19 +18,16 @@ parameters:
     mailer_encryption: ssl
     mailer_auth_mode: login
 
-    squirrel_mail: ~
-    admin_mail: ~
+    secret: ThisTokenIsNotSoSecretChangeIt
 
-    locale:            en
-
-    # A secret key that's used to generate certain security-related tokens
-    secret:            ThisTokenIsNotSoSecretChangeIt
-
-    new_relic_api_key: ~
-    new_relic_license_key: ~
-
-    default_mail: ~
+    debug_toolbar: true
+    debug_redirects: false
 
     google_analytics_id: ~
+    google_recaptcha_secret: ~
+    google_recaptcha_site_key: ~
+
+    squirrel_mail: ~
+    admin_mail: ~
 
 
