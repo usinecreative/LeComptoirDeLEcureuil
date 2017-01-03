@@ -22,6 +22,8 @@ server_basic_auth_password:
 git_version:
 deploy_path:
 google_analytics_id:
+google_recaptcha_secret:
+google_recaptcha_site_key:
 
 # mail
 squirrel_mail:
