@@ -15,3 +15,6 @@ hautelook_alice:
     db_drivers:
         orm: ~
     locale: fr_FR
+
+swiftmailer:
+    delivery_address: '%admin_mail%'
