@@ -1,4 +1,5 @@
 services:
+    # Upload
     cms.upload.jquery_upload_type:
         class: JK\CmsBundle\Form\Type\JQueryUploadType
         arguments:
@@ -7,6 +8,7 @@ services:
         tags:
             - {name: form.type}
 
+    # Media
     cms.media.media_type:
         class: JK\CmsBundle\Form\Type\MediaType
         arguments:
@@ -23,3 +25,33 @@ services:
         class: JK\CmsBundle\Form\Transformer\MediaTransformer
         arguments:
             - '@cms.assets.helper'
+
+    # Comment
+    cms.comment.recaptcha_validator:
+        class: JK\CmsBundle\Form\Validator\RecaptchaValidator
+        arguments:
+            - '%google_recaptcha_secret%'
+            - '@request_stack'
+        tags:
+            - {name: validator.constraint_validator}
+
+    cms.comment.add_comment_type:
+        class: JK\CmsBundle\Form\Type\AddCommentType
+        autowire: true
+        tags:
+            - {name: form.type}
+
+    # Recaptcha
+    cms.recaptcha.recaptcha_type:
+        class: JK\CmsBundle\Form\Type\RecaptchaType
+        arguments:
+            - '%google_recaptcha_site_key%'
+        tags:
+            - {name: form.type}
+
+    # Form extensions
+    cms.form.assets_extension:
+        class: JK\CmsBundle\Form\Extension\AssetsExtension
+        autowire: true
+        tags:
+            - {name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\FormType}
