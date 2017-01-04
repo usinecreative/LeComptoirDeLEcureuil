@@ -2,7 +2,8 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Form\Type\CommentType;
+use BlueBear\CmsBundle\Entity\Comment;
+use JK\CmsBundle\Form\Type\AddCommentType;
 use JK\CmsBundle\Entity\Article;
 use BlueBear\CmsBundle\Entity\Category;
 use BlueBear\CmsBundle\Finder\Filter\ArticleFilter;
@@ -30,24 +31,30 @@ class ArticleController extends Controller
         $article = $this
             ->get('bluebear.cms.article_finder')
             ->findOne($filter);
-
-        $commentForm = $this->createForm(CommentType::class, [
-            'article' => $article
-        ], [
-            'articleRepository' => $this->get('cms.article.repository')
-        ]);
+        $comment = new Comment();
+        $comment->setArticle($article);
+        $commentForm = $this->createForm(AddCommentType::class, $comment);
         $commentForm->handleRequest($request);
 
         if ($commentForm->isValid()) {
+            // save the new Comment
             $this
-                ->get('app_comment_form_handler')
-                ->handle($commentForm, $request);
+                ->get('jk.cms.comment_repository')
+                ->save($comment);
+            
+            // notify older Comments authors
+            $this
+                ->get('cms.comment.comment_mailer')
+                ->sendNewCommentMail($comment);
 
-            $url = $this->generateUrl('lecomptoir.article.show', $article->getUrlParameters()).'#category-link';
+            // redirect to the new Comment
+            $url = $this->generateUrl(
+                'lecomptoir.article.show',
+                    $article->getUrlParameters()
+                ).'#comment-'.$comment->getId();
 
             return $this->redirect($url);
         }
-
         return [
             'article' => $article,
             'commentForm' => $commentForm->createView()
@@ -91,6 +98,24 @@ class ArticleController extends Controller
         return [
             'article' => $article
         ];
+    }
+    
+    /**
+     * Remove subscriptions for an User and an Article.
+     *
+     * @param string $slug
+     * @param string $email
+     * @return RedirectResponse
+     */
+    public function unsubscribeAction($slug, $email)
+    {
+        $this
+            ->get('jk.cms.comment_repository')
+            ->unsubscribe($slug, $email);
+        $this
+            ->addFlash('success', $this->get('translator')->trans('cms.comment.unsubscribe_success'));
+        
+        return $this->redirectToRoute('lecomptoir.homepage');
     }
 
     /**
