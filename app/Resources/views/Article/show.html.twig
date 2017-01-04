@@ -43,6 +43,17 @@
             {# Article comments (if allowed) #}
             {% if article.isCommentable %}
                 <div class="article-comments">
+                    <h3 id="add-comment-title">N'hésitez pas à commenter cet article !</h3>
+
+                    {% for comment in article.comments %}
+                        <div class="comment">
+                            <p class="title" id="comment-{{ comment.id }}">Par {{ comment.authorName }},
+                                le {{ comment.createdAt | localizeddate('full', 'none') }}
+                                à  {{ comment.createdAt | localizeddate('none', 'short') }}
+                            </p>
+                            <p class="">{{ comment.content | truncate(500, '...') }}</p>
+                        </div>
+                    {% endfor %}
 
                     {# Add comment form #}
                     <form action="" method="post">
@@ -50,16 +61,6 @@
 
                         <input type="submit" value="Poster un commentaire" class="btn btn-info comments-btn"/>
                     </form>
-
-                    {% for comment in article.comments %}
-                        <div class="comment">
-                            <p class="title">Par {{ comment.authorName }},
-                                le {{ comment.createdAt | localizeddate('full', 'none') }}
-                                à  {{ comment.createdAt | localizeddate('none', 'short') }}
-                            </p>
-                            <p class="">{{ comment.content | truncate(500, '...') }}</p>
-                        </div>
-                    {% endfor %}
                 </div>
             {% endif %}
         </div>
