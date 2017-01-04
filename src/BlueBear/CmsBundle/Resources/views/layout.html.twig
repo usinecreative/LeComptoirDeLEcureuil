@@ -54,6 +54,7 @@
                 }
             });
 
+            {# TODO move in a separate script #}
             $('#file-upload').fileupload({
                 done: function () {
                     galleryModal.find('#media-container').load(routes.modalGallery);

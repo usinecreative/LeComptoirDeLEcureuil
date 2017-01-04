@@ -3,14 +3,16 @@
 namespace JK\CmsBundle\Twig;
 
 use JK\CmsBundle\Assets\AssetsHelper;
+use JK\CmsBundle\Assets\ScriptRegistry;
 use JK\CmsBundle\Entity\MediaInterface;
 use Twig_Extension;
+use Twig_Extension_InitRuntimeInterface;
 use Twig_SimpleFunction;
 
 /**
  * Add helper methods to get media path and directory.
  */
-class CmsExtension extends Twig_Extension
+class CmsExtension extends Twig_Extension implements Twig_Extension_InitRuntimeInterface
 {
     /**
      * @var AssetsHelper
@@ -18,13 +20,20 @@ class CmsExtension extends Twig_Extension
     private $assetsHelper;
     
     /**
+     * @var ScriptRegistry
+     */
+    private $scriptRegistry;
+    
+    /**
      * CmsExtension constructor.
      *
      * @param AssetsHelper $assetsHelper
+     * @param ScriptRegistry $scriptRegistry
      */
-    public function __construct(AssetsHelper $assetsHelper)
+    public function __construct(AssetsHelper $assetsHelper, ScriptRegistry $scriptRegistry)
     {
         $this->assetsHelper = $assetsHelper;
+        $this->scriptRegistry = $scriptRegistry;
     }
     
     /**
@@ -38,6 +47,7 @@ class CmsExtension extends Twig_Extension
             new Twig_SimpleFunction('cms_media_path', [$this, 'cmsMediaPath']),
             new Twig_SimpleFunction('cms_media_directory', [$this, 'cmsMediaDirectory']),
             new Twig_SimpleFunction('cms_media_size', [$this, 'cmsMediaSize']),
+            new Twig_SimpleFunction('cms_dump_scripts', [$this, 'cmsDumpScripts']),
         ];
     }
     
@@ -91,5 +101,18 @@ class CmsExtension extends Twig_Extension
         }
     
         return $size.' Ko';
+    }
+    
+    /**
+     * Dump the scripts according to the location (head or footer).
+     *
+     * @param string $location
+     * @return string
+     */
+    public function cmsDumpScripts($location)
+    {
+        return $this
+            ->scriptRegistry
+            ->dumpScripts($location);
     }
 }
