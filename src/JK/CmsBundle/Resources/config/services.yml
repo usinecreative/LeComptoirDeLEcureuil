@@ -43,3 +43,11 @@ services:
         factory: ["@doctrine", getRepository]
         arguments:
             - JK\CmsBundle\Entity\Article
+
+    cms.comment.comment_mailer:
+        class: JK\CmsBundle\Mail\CommentMailer
+        arguments:
+            - '@swiftmailer.mailer'
+            - '@jk.cms.comment_repository'
+            - '@twig'
+            - '%squirrel_mail%'
