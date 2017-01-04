@@ -32,6 +32,10 @@ lecomptoir.article.list_by_tag:
     path: /tag/{tagSlug}
     defaults: {_controller: AppBundle:Article:filter}
 
+lecomptoir.article.unsubscribe:
+    path: /{slug}/{email}/unsubscribe
+    defaults: {_controller: AppBundle:Article:unsubscribe}
+
 # Article preview
 lecomptoir.article.preview:
     path: /article/{id}/preview
