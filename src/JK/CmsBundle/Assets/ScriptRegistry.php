@@ -7,59 +7,59 @@ use Twig_Environment;
 
 /**
  * Manage script to avoid adding javascript into the body, and allow dumping them into the head and footer section of
- * the html page
+ * the html page.
  */
 class ScriptRegistry
 {
     /**
-     * Scripts dumped into the head section of the html page
+     * Scripts dumped into the head section of the html page.
      *
      * @var array
      */
     protected $headScripts = [];
-    
+
     /**
-     * Scripts dumped into the footer section of the html page
+     * Scripts dumped into the footer section of the html page.
      *
      * @var array
      */
     protected $footerScripts = [];
-    
+
     /**
-     * Default template for rendering scripts
+     * Default template for rendering scripts.
      *
      * @var string
      */
     protected $defaultTemplate;
-    
+
     /**
-     * Used to render scripts template
+     * Used to render scripts template.
      *
      * @var Twig_Environment
      */
     protected $twig;
-    
+
     /**
      * ScriptRegistry constructor.
      *
      * @param Twig_Environment $twig
-     * @param string $defaultTemplate
+     * @param string           $defaultTemplate
      */
     public function __construct(
         Twig_Environment $twig,
         $defaultTemplate = '@JKCms/Assets/script.template.html.twig'
-    ){
+    ) {
         $this->defaultTemplate = $defaultTemplate;
         $this->twig = $twig;
     }
-    
+
     /**
      * Register an array for a location. A custom template and context can be provided.
      *
-     * @param string $location Where the script will be dumped (only head and footer are allowed)
-     * @param string $script The script name. If $template is provided, the script name is only used as array key
+     * @param string      $location Where the script will be dumped (only head and footer are allowed)
+     * @param string      $script   The script name. If $template is provided, the script name is only used as array key
      * @param string|null $template The template name (MyBundle:Some:template.html.twig)
-     * @param array $context The context given to the Twig template
+     * @param array       $context  The context given to the Twig template
      */
     public function register($location, $script, $template = null, array $context = [])
     {
@@ -69,7 +69,7 @@ class ScriptRegistry
             'template' => $template,
             'context' => $context,
         ];
-        
+
         if (null === $template) {
             // if no template is provided, we use the default script template
             $asset['template'] = $this->defaultTemplate;
@@ -77,7 +77,7 @@ class ScriptRegistry
                 'script' => $script,
             ];
         }
-        
+
         // register assets according to location
         if ('head' === $location) {
             $this->headScripts[$script] = $asset;
@@ -85,7 +85,7 @@ class ScriptRegistry
             $this->footerScripts[$script] = $asset;
         }
     }
-    
+
     /**
      * Dump the scripts for the given location.
      *
@@ -97,7 +97,7 @@ class ScriptRegistry
     {
         $this->checkLocation($location);
         $content = '';
-        
+
         if ('head' === $location) {
             foreach ($this->headScripts as $script) {
                 $content .= $this->renderScript($script);
@@ -107,14 +107,15 @@ class ScriptRegistry
                 $content .= $this->renderScript($script);
             }
         }
-    
+
         return $content;
     }
-    
+
     /**
-     * Check if the location is correct (only head and footer are allowed)
+     * Check if the location is correct (only head and footer are allowed).
      *
      * @param string $location
+     *
      * @throws Exception
      */
     protected function checkLocation($location)
@@ -123,7 +124,7 @@ class ScriptRegistry
             throw new Exception('Only "head" and "footer" locations are allowed');
         }
     }
-    
+
     /**
      * Render a script using the provided template and context.
      *

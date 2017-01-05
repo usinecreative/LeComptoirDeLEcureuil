@@ -2,7 +2,6 @@
 
 namespace BlueBear\CmsBundle\Cms\Content\Behaviors;
 
-class Publishable 
+class Publishable
 {
-
 }

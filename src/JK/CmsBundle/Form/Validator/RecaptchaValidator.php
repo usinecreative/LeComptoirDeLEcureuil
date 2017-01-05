@@ -18,21 +18,21 @@ class RecaptchaValidator extends ConstraintValidator
      * @var ReCaptcha
      */
     protected $recaptcha;
-    
+
     /**
      * @var Request
      */
     protected $request;
-    
+
     /**
      * @var ExecutionContextInterface
      */
     protected $context;
-    
+
     /**
      * RecaptchaValidator constructor.
      *
-     * @param string $secret
+     * @param string       $secret
      * @param RequestStack $requestStack
      */
     public function __construct($secret, RequestStack $requestStack)
@@ -40,7 +40,7 @@ class RecaptchaValidator extends ConstraintValidator
         $this->recaptcha = new ReCaptcha($secret);
         $this->request = $requestStack->getMasterRequest();
     }
-    
+
     /**
      * Initializes the constraint validator.
      *
@@ -50,11 +50,11 @@ class RecaptchaValidator extends ConstraintValidator
     {
         $this->context = $context;
     }
-    
+
     /**
      * Check if the recaptcha is valid.
      *
-     * @param string $value The value that should be validated
+     * @param string     $value      The value that should be validated
      * @param Constraint $constraint The constraint for the validation
      */
     public function validate($value, Constraint $constraint)
@@ -62,12 +62,12 @@ class RecaptchaValidator extends ConstraintValidator
         $value = $this
             ->request
             ->get('g-recaptcha-response');
-        
+
         // verify the captcha
         $result = $this
             ->recaptcha
             ->verify($value, $this->request->getClientIp());
-    
+
         // if the recaptcha is not valid, we add a violation
         if (!$result->isSuccess()) {
             $this

@@ -47,9 +47,6 @@ class Item
         return $this->priority;
     }
 
-    /**
-     * @return null
-     */
     public function getLastModification()
     {
         return $this->lastModification;

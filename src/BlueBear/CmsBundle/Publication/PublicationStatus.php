@@ -3,7 +3,7 @@
 namespace BlueBear\CmsBundle\Publication;
 
 /**
- * Cms publication status
+ * Cms publication status.
  */
 class PublicationStatus
 {

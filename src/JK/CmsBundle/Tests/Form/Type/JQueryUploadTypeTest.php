@@ -16,18 +16,18 @@ class JQueryUploadTypeTest extends TypeTestCase
             ->factory
             ->create(JQueryUploadType::class);
         $form->submit([]);
-        
+
         $this->assertTrue($form->isSubmitted());
         $this->assertTrue($form->isSynchronized());
-        
+
         $view = $form->createView();
         $this->assertCount(2, $view->children);
-    
+
         foreach ($view->children as $name => $child) {
             $this->assertContains($name, ['id', 'upload']);
         }
     }
-    
+
     protected function getExtensions()
     {
         $uploaderHelper = $this
@@ -38,12 +38,12 @@ class JQueryUploadTypeTest extends TypeTestCase
             ->getMockBuilder(MediaUploadTransformer::class)
             ->disableOriginalConstructor()
             ->getMock();
-        
+
         $recaptchaType = new JQueryUploadType($uploaderHelper, $uploadTransformer);
-        
+
         return [
             new PreloadedExtension([
-                $recaptchaType
+                $recaptchaType,
             ], []),
         ];
     }

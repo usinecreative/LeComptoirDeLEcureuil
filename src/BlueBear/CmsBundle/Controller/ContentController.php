@@ -8,6 +8,7 @@ use Pagerfanta\Pagerfanta;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class ContentController extends Controller
 {
@@ -15,6 +16,7 @@ class ContentController extends Controller
      * @Template()
      *
      * @param Request $request
+     *
      * @return array
      */
     public function listAction(Request $request)
@@ -27,7 +29,7 @@ class ContentController extends Controller
         $pager->setCurrentPage($request->get('page', 1));
 
         return [
-            'pager' => $pager
+            'pager' => $pager,
         ];
     }
 
@@ -35,12 +37,13 @@ class ContentController extends Controller
      * @Template("@BlueBearCms/Content/edit.html.twig")
      *
      * @param Request $request
-     * @return array
+     *
+     * @return array|Response
      */
     public function editAction(Request $request)
     {
         $type = $request->get('type');
-        
+
         if (!$type) {
             throw $this->createNotFoundException('Content name not found');
         }
@@ -66,17 +69,18 @@ class ContentController extends Controller
             if ($request->request->get('submit') == 'save') {
                 return $this->redirect('@bluebear.cms.content.edit', [
                     'id' => $content->getId(),
-                    'type' => $content->getType()
+                    'type' => $content->getType(),
                 ]);
             } else {
                 // redirect to list
                 return $this->redirect('@bluebear.cms.content.list', [
-                    'type' => $content->getType()
+                    'type' => $content->getType(),
                 ]);
             }
         }
+
         return [
-            'form' => $form->createView()
+            'form' => $form->createView(),
         ];
     }
 

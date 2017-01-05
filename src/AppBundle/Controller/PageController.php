@@ -12,6 +12,7 @@ class PageController extends Controller
      * @Template(":Page:show.html.twig")
      *
      * @param Request $request
+     *
      * @return array
      */
     public function showAction(Request $request)
@@ -19,13 +20,13 @@ class PageController extends Controller
         $page = $this
             ->get('jk.cms.page_repository')
             ->findPublished($request->get('pageSlug'));
-    
+
         if (!$page) {
             throw $this->createNotFoundException('Page not found');
         }
 
         return [
-            'page' => $page
+            'page' => $page,
         ];
     }
 }

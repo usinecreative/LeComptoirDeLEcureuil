@@ -11,7 +11,7 @@ class AddComment extends Constraint
     {
         return AddCommentValidator::class;
     }
-    
+
     public function getTargets()
     {
         return self::CLASS_CONSTRAINT;

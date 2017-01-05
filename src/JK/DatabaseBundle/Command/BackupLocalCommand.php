@@ -37,7 +37,6 @@ class BackupLocalCommand extends Command implements ContainerAwareInterface
             $fileSystem->mkdir($backupDir);
         }
 
-
         $fileName = 'backup_%s_local_%s.sql';
         $fileName = sprintf(
             $fileName,
@@ -51,7 +50,7 @@ class BackupLocalCommand extends Command implements ContainerAwareInterface
             $this->container->getParameter('database_user'),
             $this->container->getParameter('database_password'),
             $this->container->getParameter('database_name'),
-            $backupDir . '/' . $fileName
+            $backupDir.'/'.$fileName
         );
 
         $process = new Process($commandLine);

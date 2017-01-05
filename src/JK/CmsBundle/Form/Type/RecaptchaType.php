@@ -14,7 +14,7 @@ class RecaptchaType extends AbstractType
      * @var
      */
     private $siteKey;
-    
+
     /**
      * RecaptchaType constructor.
      *
@@ -24,13 +24,13 @@ class RecaptchaType extends AbstractType
     {
         $this->siteKey = $siteKey;
     }
-    
+
     /**
      * Add the Recaptcha api script to the html header using the ScriptRegistry.
      *
-     * @param FormView $view
+     * @param FormView      $view
      * @param FormInterface $form
-     * @param array $options
+     * @param array         $options
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
@@ -41,7 +41,7 @@ class RecaptchaType extends AbstractType
         ];
         $view->vars['site_key'] = $this->siteKey;
     }
-    
+
     /**
      * @param OptionsResolver $resolver
      */
@@ -50,7 +50,7 @@ class RecaptchaType extends AbstractType
         $resolver
             ->setDefaults([
                 'constraints' => [
-                    new Recaptcha()
+                    new Recaptcha(),
                 ],
             ])
         ;

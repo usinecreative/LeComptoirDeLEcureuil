@@ -2,32 +2,31 @@
 
 namespace BlueBear\CmsBundle\Dashboard;
 
-
 class DashboardItem
 {
     /**
-     * Font awesome icons
+     * Font awesome icons.
      *
      * @var string
      */
     protected $icon;
 
     /**
-     * Items counts
+     * Items counts.
      *
      * @var int
      */
     protected $count;
 
     /**
-     * Text for the link
+     * Text for the link.
      *
      * @var string
      */
     protected $text;
 
     /**
-     * Url for the link
+     * Url for the link.
      *
      * @var string
      */
@@ -46,12 +45,12 @@ class DashboardItem
     /**
      * DashboardCategory constructor.
      *
-     * @param int $count
-     * @param string $text
+     * @param int         $count
+     * @param string      $text
      * @param string|null $url
      * @param string|null $icon
-     * @param string $linkText
-     * @param string $panelClass
+     * @param string      $linkText
+     * @param string      $panelClass
      */
     public function __construct(
         $count,

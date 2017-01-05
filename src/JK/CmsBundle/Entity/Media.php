@@ -8,7 +8,6 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- *
  * @ORM\Table(name="cms_media")
  * @ORM\Entity(repositoryClass="JK\CmsBundle\Repository\MediaRepository")
  * @ORM\HasLifecycleCallbacks()

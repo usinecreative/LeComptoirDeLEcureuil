@@ -8,7 +8,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * Partner
+ * Partner.
  *
  * @ORM\Table(name="lecomptoir_partner", indexes={@ORM\Index(name="slug_idx", columns={"slug"})}))
  * @ORM\Entity(repositoryClass="AppBundle\Repository\PartnerRepository")
@@ -20,7 +20,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 class Partner
 {
     /**
-     * Entity id
+     * Entity id.
      *
      * @ORM\Id()
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -29,17 +29,19 @@ class Partner
     protected $id;
 
     /**
-     * Partner name
+     * Partner name.
      *
      * @ORM\Column(name="name", type="string", length=255)
+     *
      * @var string
      */
     protected $name;
 
     /**
-     * Partner description
+     * Partner description.
      *
      * @ORM\Column(name="description", type="text", nullable=true)
+     *
      * @var string
      */
     protected $description = '';
@@ -47,6 +49,7 @@ class Partner
     /**
      * @Gedmo\Slug(fields={"name"})
      * @ORM\Column(name="slug", type="string", length=255)
+     *
      * @var string
      */
     protected $slug;
@@ -85,7 +88,7 @@ class Partner
      * @ORM\Column(name="instagram", type="text", nullable=true)
      */
     protected $instagram;
-    
+
     /**
      * @var DateTime
      *
@@ -94,7 +97,7 @@ class Partner
      * @Gedmo\Timestampable(on="create")
      */
     protected $createdAt;
-    
+
     /**
      * @var DateTime
      *
@@ -122,6 +125,7 @@ class Partner
 
     /**
      * @param string $name
+     *
      * @return $this
      */
     public function setName($name)
@@ -141,6 +145,7 @@ class Partner
 
     /**
      * @param string $description
+     *
      * @return $this
      */
     public function setDescription($description)
@@ -152,11 +157,13 @@ class Partner
 
     /**
      * @param string $slug
+     *
      * @return Partner
      */
     public function setSlug($slug)
     {
         $this->slug = $slug;
+
         return $this;
     }
 
@@ -170,6 +177,7 @@ class Partner
 
     /**
      * @param string $baseline
+     *
      * @return $this
      */
     public function setBaseline($baseline)
@@ -189,6 +197,7 @@ class Partner
 
     /**
      * @param mixed $website
+     *
      * @return $this
      */
     public function setWebsite($website)
@@ -245,7 +254,7 @@ class Partner
     {
         $this->instagram = $instagram;
     }
-    
+
     /**
      * @return mixed
      */
@@ -253,7 +262,7 @@ class Partner
     {
         return $this->id;
     }
-    
+
     /**
      * @param mixed $id
      */
@@ -261,7 +270,7 @@ class Partner
     {
         $this->id = $id;
     }
-    
+
     /**
      * @return DateTime
      */
@@ -269,7 +278,7 @@ class Partner
     {
         return $this->createdAt;
     }
-    
+
     /**
      * @param DateTime $createdAt
      */
@@ -277,7 +286,7 @@ class Partner
     {
         $this->createdAt = $createdAt;
     }
-    
+
     /**
      * @return DateTime
      */
@@ -285,7 +294,7 @@ class Partner
     {
         return $this->updatedAt;
     }
-    
+
     /**
      * @param DateTime $updatedAt
      */

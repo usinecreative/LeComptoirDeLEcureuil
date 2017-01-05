@@ -17,7 +17,7 @@ class DatabaseLoadCommand extends Command implements ContainerAwareInterface
      * @var ContainerInterface
      */
     protected $container;
-    
+
     /**
      * Sets the container.
      *
@@ -27,7 +27,7 @@ class DatabaseLoadCommand extends Command implements ContainerAwareInterface
     {
         $this->container = $container;
     }
-    
+
     /**
      * Configure command.
      */
@@ -37,17 +37,18 @@ class DatabaseLoadCommand extends Command implements ContainerAwareInterface
             ->setName('dizda:backup:load')
             ->setDescription('Load a backup made by dizda cloudbackup bundle');
     }
-    
+
     /**
-     * @param InputInterface $input
+     * @param InputInterface  $input
      * @param OutputInterface $output
+     *
      * @return int|null|void
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $outputArray = [];
         $rootPath = realpath($this->container->getParameter('database_backup_path'));
-        
+
         // find 7z archives in dump directory
         $finder = new Finder();
         $finder
@@ -59,7 +60,7 @@ class DatabaseLoadCommand extends Command implements ContainerAwareInterface
             });
         // find last dump
         $lastModifiedArchive = null;
-        
+
         /** @var SplFileInfo $file */
         foreach ($finder as $file) {
             $lastModifiedArchive = $file;
@@ -67,7 +68,7 @@ class DatabaseLoadCommand extends Command implements ContainerAwareInterface
         }
         // extract last dump into cache directory
         $zipExtractCommand = '7za e %s -o%s -y';
-        
+
         $command = sprintf(
             $zipExtractCommand,
             $lastModifiedArchive->getRealPath(),
@@ -76,19 +77,18 @@ class DatabaseLoadCommand extends Command implements ContainerAwareInterface
         $output->writeln('Executing : '.$command);
         exec($command, $outputArray);
         $output->writeln($outputArray);
-        
-        
+
         $finder = new Finder();
         $finder
             ->in($this->container->getParameter('kernel.cache_dir').'/mysql')
             ->files()
             ->name('*.sql');
-        
+
         $mysqlImportCommand = 'mysql -u %s -p%s %s < %s';
-        
+
         foreach ($finder as $file) {
             $outputArray = [];
-            
+
             $mysqlImportCommand = sprintf(
                 $mysqlImportCommand,
                 $this->container->getParameter('database_user'),

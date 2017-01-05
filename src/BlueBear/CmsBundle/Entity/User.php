@@ -8,7 +8,7 @@ use Symfony\Component\Security\Core\Role\Role;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * User
+ * User.
  *
  * @ORM\Table(name="cms_user")
  * @ORM\Entity(repositoryClass="BlueBear\CmsBundle\Repository\UserRepository")
@@ -16,7 +16,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class User implements UserInterface
 {
     /**
-     * User unique id
+     * User unique id.
      *
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -25,7 +25,7 @@ class User implements UserInterface
     protected $id;
 
     /**
-     * User name
+     * User name.
      *
      * @var string
      * @ORM\Column(type="string", length=255, name="username")
@@ -33,7 +33,7 @@ class User implements UserInterface
     protected $username;
 
     /**
-     * User canonical name
+     * User canonical name.
      *
      * @var string
      * @ORM\Column(type="string", length=255, name="username_canonical")
@@ -41,7 +41,7 @@ class User implements UserInterface
     protected $usernameCanonical;
 
     /**
-     * User email
+     * User email.
      *
      * @var string
      * @ORM\Column(type="string", length=255, name="email")
@@ -49,7 +49,7 @@ class User implements UserInterface
     protected $email;
 
     /**
-     * User canonical email
+     * User canonical email.
      *
      * @var string
      * @ORM\Column(type="string", length=255, name="email_canonical")
@@ -57,15 +57,15 @@ class User implements UserInterface
     protected $emailCanonical;
 
     /**
-     * User enable state
+     * User enable state.
      *
-     * @var boolean
+     * @var bool
      * @ORM\Column(type="boolean", name="enabled")
      */
     protected $enabled = false;
 
     /**
-     * User password salt
+     * User password salt.
      *
      * @var string
      * @ORM\Column(type="string", length=255, name="salt")
@@ -73,7 +73,7 @@ class User implements UserInterface
     protected $salt;
 
     /**
-     * User password
+     * User password.
      *
      * @var string
      * @ORM\Column(type="string", length=255, name="password")
@@ -81,7 +81,7 @@ class User implements UserInterface
     protected $password;
 
     /**
-     * User name
+     * User name.
      *
      * @var DateTime
      * @ORM\Column(type="datetime", name="last_login", nullable=true)
@@ -89,23 +89,23 @@ class User implements UserInterface
     protected $lastLogin;
 
     /**
-     * Indicate if the user is locked
+     * Indicate if the user is locked.
      *
-     * @var boolean
+     * @var bool
      * @ORM\Column(type="boolean", name="locked")
      */
     protected $locked = false;
 
     /**
-     * Indicate if the user is expired
+     * Indicate if the user is expired.
      *
-     * @var boolean
+     * @var bool
      * @ORM\Column(type="boolean", name="expired")
      */
     protected $expired = false;
 
     /**
-     * User expiration date
+     * User expiration date.
      *
      * @var DateTime
      * @ORM\Column(type="datetime", name="expires_at", nullable=true)
@@ -113,7 +113,7 @@ class User implements UserInterface
     protected $expiresAt;
 
     /**
-     * User confirmation token
+     * User confirmation token.
      *
      * @var string
      * @ORM\Column(type="string", length=255, name="confirmation_token", nullable=true)
@@ -121,7 +121,7 @@ class User implements UserInterface
     protected $confirmationToken;
 
     /**
-     * User last password request date
+     * User last password request date.
      *
      * @var DateTime
      * @ORM\Column(type="datetime", name="password_requested_at", nullable=true)
@@ -129,7 +129,7 @@ class User implements UserInterface
     protected $passwordRequestedAt;
 
     /**
-     * User roles
+     * User roles.
      *
      * @var Role[]
      * @ORM\Column(type="array", name="roles")
@@ -137,15 +137,15 @@ class User implements UserInterface
     protected $roles = [];
 
     /**
-     * Indicate if the user creadentials are expired
+     * Indicate if the user creadentials are expired.
      *
-     * @var boolean
+     * @var bool
      * @ORM\Column(type="boolean", name="credentials_expired")
      */
     protected $credentialsExpired = false;
 
     /**
-     * User credentials expiration date
+     * User credentials expiration date.
      *
      * @var DateTime
      * @ORM\Column(type="datetime", name="credentials_expire_at", nullable=true)
@@ -213,6 +213,7 @@ class User implements UserInterface
         foreach ($this->roles as $role) {
             $roles[] = new Role($role);
         }
+
         return $roles;
     }
 
@@ -259,7 +260,6 @@ class User implements UserInterface
      */
     public function eraseCredentials()
     {
-
     }
 
     /**
@@ -280,11 +280,13 @@ class User implements UserInterface
 
     /**
      * @param string $usernameCanonical
+     *
      * @return User
      */
     public function setUsernameCanonical($usernameCanonical)
     {
         $this->usernameCanonical = $usernameCanonical;
+
         return $this;
     }
 
@@ -298,11 +300,13 @@ class User implements UserInterface
 
     /**
      * @param string $email
+     *
      * @return User
      */
     public function setEmail($email)
     {
         $this->email = $email;
+
         return $this;
     }
 
@@ -316,16 +320,18 @@ class User implements UserInterface
 
     /**
      * @param string $emailCanonical
+     *
      * @return User
      */
     public function setEmailCanonical($emailCanonical)
     {
         $this->emailCanonical = $emailCanonical;
+
         return $this;
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isEnabled()
     {
@@ -333,12 +339,14 @@ class User implements UserInterface
     }
 
     /**
-     * @param boolean $enabled
+     * @param bool $enabled
+     *
      * @return User
      */
     public function setEnabled($enabled)
     {
         $this->enabled = $enabled;
+
         return $this;
     }
 
@@ -352,16 +360,18 @@ class User implements UserInterface
 
     /**
      * @param DateTime $lastLogin
+     *
      * @return User
      */
     public function setLastLogin($lastLogin)
     {
         $this->lastLogin = $lastLogin;
+
         return $this;
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isLocked()
     {
@@ -369,17 +379,19 @@ class User implements UserInterface
     }
 
     /**
-     * @param boolean $locked
+     * @param bool $locked
+     *
      * @return User
      */
     public function setLocked($locked)
     {
         $this->locked = $locked;
+
         return $this;
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isExpired()
     {
@@ -387,12 +399,14 @@ class User implements UserInterface
     }
 
     /**
-     * @param boolean $expired
+     * @param bool $expired
+     *
      * @return User
      */
     public function setExpired($expired)
     {
         $this->expired = $expired;
+
         return $this;
     }
 
@@ -406,11 +420,13 @@ class User implements UserInterface
 
     /**
      * @param DateTime $expiresAt
+     *
      * @return User
      */
     public function setExpiresAt($expiresAt)
     {
         $this->expiresAt = $expiresAt;
+
         return $this;
     }
 
@@ -424,16 +440,18 @@ class User implements UserInterface
 
     /**
      * @param DateTime $passwordRequestedAt
+     *
      * @return User
      */
     public function setPasswordRequestedAt($passwordRequestedAt)
     {
         $this->passwordRequestedAt = $passwordRequestedAt;
+
         return $this;
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isCredentialsExpired()
     {
@@ -441,12 +459,14 @@ class User implements UserInterface
     }
 
     /**
-     * @param boolean $credentialsExpired
+     * @param bool $credentialsExpired
+     *
      * @return User
      */
     public function setCredentialsExpired($credentialsExpired)
     {
         $this->credentialsExpired = $credentialsExpired;
+
         return $this;
     }
 
@@ -460,14 +480,16 @@ class User implements UserInterface
 
     /**
      * @param DateTime $credentialsExpireAt
+     *
      * @return User
      */
     public function setCredentialsExpireAt($credentialsExpireAt)
     {
         $this->credentialsExpireAt = $credentialsExpireAt;
+
         return $this;
     }
-    
+
     /**
      * @return string
      */
@@ -478,11 +500,13 @@ class User implements UserInterface
 
     /**
      * @param string $username
+     *
      * @return User
      */
     public function setUsername($username)
     {
         $this->username = $username;
+
         return $this;
     }
 

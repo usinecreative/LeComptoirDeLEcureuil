@@ -11,10 +11,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Category
+ * Category.
  *
  * Category are articles parents
  *
@@ -27,9 +26,9 @@ class Article
     const PUBLICATION_STATUS_DRAFT = 0;
     const PUBLICATION_STATUS_VALIDATION = 1;
     const PUBLICATION_STATUS_PUBLISHED = 2;
-    
+
     /**
-     * Entity id
+     * Entity id.
      *
      * @var string
      *
@@ -38,52 +37,52 @@ class Article
      * @ORM\Column(type="integer")
      */
     protected $id;
-    
+
     /**
-     * Article title
+     * Article title.
      *
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255)
      */
     protected $title;
-    
+
     /**
-     * Article canonical url
+     * Article canonical url.
      *
      * @var string
      *
      * @ORM\Column(name="canonical", type="string", nullable=true)
      */
     protected $canonical;
-    
+
     /**
-     * Article current status for publication (draft, published...)
+     * Article current status for publication (draft, published...).
      *
      * @var int
      *
      * @ORM\Column(name="publication_status", type="smallint")
      */
     protected $publicationStatus;
-    
+
     /**
-     * Article publication date
+     * Article publication date.
      *
      * @var DateTime
      *
      * @ORM\Column(name="publication_date", type="datetime", nullable=true)
      */
     protected $publicationDate;
-    
+
     /**
-     * Article content
+     * Article content.
      *
      * @var string
      *
      * @ORM\Column(name="content", type="text")
      */
     protected $content;
-    
+
     /**
      * @var Category
      *
@@ -91,14 +90,14 @@ class Article
      * @ORM\JoinColumn(nullable=true)
      */
     protected $category;
-    
+
     /**
      * @var User
      *
      * @ORM\ManyToOne(targetEntity="BlueBear\CmsBundle\Entity\User", inversedBy="articles")
      */
     protected $author;
-    
+
     /**
      * @var ArrayCollection
      *
@@ -106,14 +105,14 @@ class Article
      * @ORM\JoinColumn(nullable=true)
      */
     protected $comments;
-    
+
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="is_commentable", type="boolean")
      */
     protected $isCommentable = true;
-    
+
     /**
      * @var string
      *
@@ -122,28 +121,28 @@ class Article
      * @ORM\Column(name="slug", type="string", length=255)
      */
     protected $slug;
-    
+
     /**
      * @var Tag[]|Collection
      *
      * @ORM\ManyToMany(targetEntity="BlueBear\CmsBundle\Entity\Tag", mappedBy="articles")
      */
     protected $tags;
-    
+
     /**
      * @var DateTime
      *
      * @ORM\Column(name="created_at", type="datetime")
      */
     protected $createdAt;
-    
+
     /**
      * @var DateTime
      *
      * @ORM\Column(name="updated_at", type="datetime", nullable=true)
      */
     protected $updatedAt;
-    
+
     /**
      * @var MediaInterface
      *
@@ -151,7 +150,7 @@ class Article
      * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      */
     protected $thumbnail;
-    
+
     /**
      * @ORM\PrePersist()
      */
@@ -161,10 +160,10 @@ class Article
             $this->createdAt = new DateTime();
         }
     }
-    
+
     /**
      * Created at cannot be set. But in some case (like imports...), it is required to set created at. Use this method
-     * in this case
+     * in this case.
      *
      * @param DateTime $createdAt
      */
@@ -172,7 +171,7 @@ class Article
     {
         $this->createdAt = $createdAt;
     }
-    
+
     /**
      * @return DateTime
      */
@@ -180,11 +179,13 @@ class Article
     {
         return $this->createdAt;
     }
-    
+
     /**
      * @ORM\PrePersist()
      * @ORM\PreUpdate()
+     *
      * @param null $value
+     *
      * @return $this
      */
     public function setUpdatedAt($value = null)
@@ -194,9 +195,10 @@ class Article
         } else {
             $this->updatedAt = new DateTime();
         }
+
         return $this;
     }
-    
+
     /**
      * @return DateTime
      */
@@ -204,7 +206,7 @@ class Article
     {
         return $this->updatedAt;
     }
-    
+
     /**
      * Article constructor.
      */
@@ -213,7 +215,7 @@ class Article
         $this->comments = new ArrayCollection();
         $this->tags = new ArrayCollection();
     }
-    
+
     /**
      * @return string
      */
@@ -221,10 +223,9 @@ class Article
     {
         return $this->title;
     }
-    
-    
+
     /**
-     * Return entity id
+     * Return entity id.
      *
      * @return mixed
      */
@@ -232,9 +233,9 @@ class Article
     {
         return $this->id;
     }
-    
+
     /**
-     * Set entity id
+     * Set entity id.
      *
      * @param mixed $id
      */
@@ -242,7 +243,7 @@ class Article
     {
         $this->id = $id;
     }
-    
+
     /**
      * @return mixed
      */
@@ -250,7 +251,7 @@ class Article
     {
         return $this->title;
     }
-    
+
     /**
      * @param mixed $title
      */
@@ -258,7 +259,7 @@ class Article
     {
         $this->title = $title;
     }
-    
+
     /**
      * @return string
      */
@@ -266,7 +267,7 @@ class Article
     {
         return $this->canonical;
     }
-    
+
     /**
      * @param string $canonical
      */
@@ -274,7 +275,7 @@ class Article
     {
         $this->canonical = $canonical;
     }
-    
+
     /**
      * @return mixed
      */
@@ -282,7 +283,7 @@ class Article
     {
         return $this->publicationStatus;
     }
-    
+
     /**
      * @param mixed $publicationStatus
      */
@@ -290,7 +291,7 @@ class Article
     {
         $this->publicationStatus = $publicationStatus;
     }
-    
+
     /**
      * @return mixed
      */
@@ -298,7 +299,7 @@ class Article
     {
         return $this->publicationDate;
     }
-    
+
     /**
      * @param mixed $publicationDate
      */
@@ -306,7 +307,7 @@ class Article
     {
         $this->publicationDate = $publicationDate;
     }
-    
+
     /**
      * @return string
      */
@@ -314,7 +315,7 @@ class Article
     {
         return $this->content;
     }
-    
+
     /**
      * @param string $content
      */
@@ -322,7 +323,7 @@ class Article
     {
         $this->content = $content;
     }
-    
+
     /**
      * @return mixed
      */
@@ -330,7 +331,7 @@ class Article
     {
         return $this->author;
     }
-    
+
     /**
      * @param mixed $author
      */
@@ -338,7 +339,7 @@ class Article
     {
         $this->author = $author;
     }
-    
+
     /**
      * @return mixed
      */
@@ -346,7 +347,7 @@ class Article
     {
         return $this->isCommentable;
     }
-    
+
     /**
      * @return bool
      */
@@ -354,7 +355,7 @@ class Article
     {
         return (bool) $this->isCommentable;
     }
-    
+
     /**
      * @param mixed $isCommentable
      */
@@ -362,7 +363,7 @@ class Article
     {
         $this->isCommentable = $isCommentable;
     }
-    
+
     /**
      * @return mixed
      */
@@ -370,7 +371,7 @@ class Article
     {
         return $this->comments;
     }
-    
+
     /**
      * @param mixed $comments
      */
@@ -378,7 +379,7 @@ class Article
     {
         $this->comments = $comments;
     }
-    
+
     /**
      * @param Comment $comment
      */
@@ -386,7 +387,7 @@ class Article
     {
         $this->comments->add($comment);
     }
-    
+
     /**
      * @return mixed
      */
@@ -394,7 +395,7 @@ class Article
     {
         return $this->slug;
     }
-    
+
     /**
      * @param mixed $slug
      */
@@ -402,7 +403,7 @@ class Article
     {
         $this->slug = $slug;
     }
-    
+
     /**
      * @return array
      */
@@ -411,23 +412,23 @@ class Article
         $year = date('Y');
         $month = date('m');
         $slug = $this->slug;
-        
+
         if (null !== $this->publicationDate) {
             $year = $this->publicationDate->format('Y');
             $month = $this->publicationDate->format('m');
         }
-        
+
         if (null === $slug) {
             $slug = '__TOKEN__';
         }
-        
+
         return [
             'year' => $year,
             'month' => $month,
-            'slug' => $slug
+            'slug' => $slug,
         ];
     }
-    
+
     /**
      * @return Category
      */
@@ -435,7 +436,7 @@ class Article
     {
         return $this->category;
     }
-    
+
     /**
      * @param Category $category
      */
@@ -443,7 +444,7 @@ class Article
     {
         $this->category = $category;
     }
-    
+
     /**
      * @return string
      */
@@ -451,16 +452,17 @@ class Article
     {
         $category = $this->category;
         $categories = [
-            $category
+            $category,
         ];
-        
+
         while ($category->getParent()) {
             $categories[] = $category->getParent();
             $category = $category->getParent();
         }
+
         return $categories;
     }
-    
+
     /**
      * @param Tag $tag
      */
@@ -469,9 +471,10 @@ class Article
         $this->tags->add($tag);
         $tag->addArticle($this);
     }
-    
+
     /**
      * @param Tag $tag
+     *
      * @return bool
      */
     public function hasTag(Tag $tag)
@@ -480,17 +483,19 @@ class Article
             ->tags
             ->contains($tag);
     }
-    
+
     /**
      * @param mixed $tags
+     *
      * @return Article
      */
     public function setTags($tags)
     {
         $this->tags = $tags;
+
         return $this;
     }
-    
+
     /**
      * @return mixed
      */
@@ -498,7 +503,7 @@ class Article
     {
         return $this->tags;
     }
-    
+
     /**
      * @return MediaInterface
      */
@@ -506,7 +511,7 @@ class Article
     {
         return $this->thumbnail;
     }
-    
+
     /**
      * @param MediaInterface $thumbnail
      */

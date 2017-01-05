@@ -26,32 +26,32 @@ class CommentMailerTest extends AdminTestBase
         $repository
             ->expects($this->once())
             ->method('findShouldBeNotified')
-            ->willReturnCallback(function(Comment $comment) {
+            ->willReturnCallback(function (Comment $comment) {
                 $comment1 = new Comment();
-    
+
                 return [
                     $comment1,
                 ];
             });
-        
+
         $twig = $this
             ->getMockBuilder(Twig_Environment::class)
             ->disableOriginalConstructor()
             ->getMock();
-    
+
         $comment = new Comment();
-        
+
         $mailer = new CommentMailer($swiftMailer, $repository, $twig, 'test@test.fr');
-    
+
         // an exception should be raised if the Comment has no Article
-        $this->assertExceptionRaised(Exception::class, function() use ($mailer, $comment) {
+        $this->assertExceptionRaised(Exception::class, function () use ($mailer, $comment) {
             $mailer->sendNewCommentMail($comment);
         });
-    
+
         $article = new Article();
         $article->setTitle('My Article');
         $comment->setArticle($article);
-    
+
         $mailer->sendNewCommentMail($comment);
     }
 }

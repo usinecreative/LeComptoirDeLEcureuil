@@ -14,7 +14,7 @@ class AddCommentTest extends AdminTestBase
         $constraint = new AddComment();
         $this->assertEquals(AddCommentValidator::class, $constraint->validatedBy());
     }
-    
+
     public function testGetTargets()
     {
         $constraint = new AddComment();

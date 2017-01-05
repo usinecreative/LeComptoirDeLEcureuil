@@ -15,28 +15,28 @@ class CommentMailer
      * @var Swift_Mailer
      */
     private $swiftMailer;
-    
+
     /**
      * @var CommentRepository
      */
     private $commentRepository;
-    
+
     /**
      * @var Twig_Environment
      */
     private $twig;
-    
+
     /**
      * @var string
      */
     private $squirrelMail;
-    
+
     /**
      * CommentMailer constructor.
      *
-     * @param Swift_Mailer $swiftMailer
+     * @param Swift_Mailer      $swiftMailer
      * @param CommentRepository $commentRepository
-     * @param Twig_Environment $twig
+     * @param Twig_Environment  $twig
      * @param $squirrelMail
      */
     public function __construct(
@@ -50,7 +50,7 @@ class CommentMailer
         $this->twig = $twig;
         $this->squirrelMail = $squirrelMail;
     }
-    
+
     /**
      * Send a new mail to notify on a new Comment.
      *
@@ -72,7 +72,7 @@ class CommentMailer
             "[LeComptoirDeLEcureuil] Un nouveau commentaire a été publié sur l'article %s",
             $newComment->getArticle()->getTitle()
         );
-    
+
         foreach ($comments as $comment) {
             $body = $this
                 ->twig
@@ -88,7 +88,7 @@ class CommentMailer
                 'noisette@lecomptoirdelecureuil.fr',
                 $comment->getAuthorEmail()
             );
-    
+
             // avoid duplicated mail
             $messages[$comment->getAuthorEmail()] = $message;
         }
@@ -97,11 +97,11 @@ class CommentMailer
             ->twig
             ->render('@JKCms/Mail/newCommentNotification.html.twig', [
                 'newComment' => $newComment,
-                'authorName' => 'Ecureuil'
+                'authorName' => 'Ecureuil',
             ]);
         $message = $this->createMessage($subject, $body, 'noisette@lecomptoirdelecureuil.fr', $this->squirrelMail);
         $messages[$this->squirrelMail] = $message;
-        
+
         foreach ($messages as $message) {
             // actually send the mail
             $this
@@ -109,7 +109,7 @@ class CommentMailer
                 ->send($message);
         }
     }
-    
+
     protected function createMessage($subject, $body, $from, $to)
     {
         return Swift_Message::newInstance($subject, $body, 'text/html', 'utf8')

@@ -22,7 +22,7 @@ class AddCommentTypeTest extends TypeTestCase
         $form = $this
             ->factory
             ->create(AddCommentType::class, $comment);
-    
+
         $data = [
             'authorName' => 'John The Panda',
             'authorUrl' => 'my.blog.fr',
@@ -32,7 +32,7 @@ class AddCommentTypeTest extends TypeTestCase
             'recaptcha' => null,
         ];
         $form->submit($data);
-        
+
         $this->assertTrue($form->isSubmitted());
         $this->assertTrue($form->isSynchronized());
         $this->assertFalse($form->isEmpty());
@@ -41,15 +41,15 @@ class AddCommentTypeTest extends TypeTestCase
         $this->assertEquals('my.blog.fr', $form->getData()->getAuthorUrl());
         $this->assertEquals('MY MESSAGE ! $ù**ù^', $form->getData()->getContent());
         $this->assertEquals(42, $form->getData()->getArticle()->getId());
-    
+
         $view = $form->createView();
         $children = $view->children;
-    
+
         foreach (array_keys($data) as $key) {
             $this->assertArrayHasKey($key, $children);
         }
     }
-    
+
     protected function getExtensions()
     {
         $article = new Article();
@@ -66,11 +66,11 @@ class AddCommentTypeTest extends TypeTestCase
             ->willReturn($article);
         $addCommentType = new AddCommentType($repository);
         $recaptchaType = new RecaptchaType('my-site-key');
-        
+
         return [
             new PreloadedExtension([
                 $addCommentType,
-                $recaptchaType
+                $recaptchaType,
             ], []),
         ];
     }

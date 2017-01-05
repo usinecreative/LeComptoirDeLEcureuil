@@ -2,7 +2,7 @@
 
 namespace BlueBear\CmsBundle\Cms\Configuration;
 
-class Cms 
+class Cms
 {
     protected $contentTypes;
 }

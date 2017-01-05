@@ -32,7 +32,7 @@ class MediaRepository extends DoctrineRepository
     {
         return $this
             ->findBy([], [
-                'updatedAt' => 'DESC'
+                'updatedAt' => 'DESC',
             ]);
     }
 }

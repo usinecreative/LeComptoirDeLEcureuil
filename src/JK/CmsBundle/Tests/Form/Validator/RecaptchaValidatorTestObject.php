@@ -11,7 +11,7 @@ class RecaptchaValidatorTestObject extends RecaptchaValidator
     public function __construct($secret, RequestStack $requestStack, $reCaptchaResponse)
     {
         parent::__construct($secret, $requestStack);
-    
+
         $this->recaptcha = new RecaptchaTestObject();
         $this->request = new Request([
             'g-recaptcha-response' => $reCaptchaResponse,

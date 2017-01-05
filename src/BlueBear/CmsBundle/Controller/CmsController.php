@@ -10,6 +10,7 @@ class CmsController extends Controller
 {
     /**
      * @Template()
+     *
      * @return array
      */
     public function homepageAction()
@@ -17,8 +18,9 @@ class CmsController extends Controller
         $categories = $this
             ->get('jk.cms.category_repository')
             ->findAll();
+
         return [
-            'categories' => $categories
+            'categories' => $categories,
         ];
     }
 
@@ -38,7 +40,7 @@ class CmsController extends Controller
             ->create($lastLogin);
 
         return [
-            'dashboard' => $dashboard
+            'dashboard' => $dashboard,
         ];
     }
 }

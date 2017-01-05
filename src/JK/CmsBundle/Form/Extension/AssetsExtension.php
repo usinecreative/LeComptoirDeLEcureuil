@@ -15,7 +15,7 @@ class AssetsExtension extends AbstractTypeExtension
      * @var ScriptRegistry
      */
     protected $scriptRegistry;
-    
+
     /**
      * AssetsExtension constructor.
      *
@@ -25,13 +25,13 @@ class AssetsExtension extends AbstractTypeExtension
     {
         $this->scriptRegistry = $scriptRegistry;
     }
-    
+
     /**
      * Register the configured scripts using the FormView variables.
      *
-     * @param FormView $view
+     * @param FormView      $view
      * @param FormInterface $form
-     * @param array $options
+     * @param array         $options
      *
      * @throws Exception
      */
@@ -39,13 +39,12 @@ class AssetsExtension extends AbstractTypeExtension
     {
         if (array_key_exists('scripts', $view->vars) && is_array($view->vars['scripts'])) {
             foreach ($view->vars['scripts'] as $location => $scripts) {
-            
                 if (!is_array($scripts)) {
                     throw new Exception(
                         'Assets configuration for location '.$location.' should be an array in form '.$form->getName()
                     );
                 }
-                
+
                 foreach ($scripts as $name => $script) {
                     // provide a script name if none is provided
                     if (is_array($script) && !array_key_exists('script', $script)) {
@@ -56,7 +55,7 @@ class AssetsExtension extends AbstractTypeExtension
             }
         }
     }
-    
+
     /**
      * Returns the name of the type being extended.
      *
@@ -66,7 +65,7 @@ class AssetsExtension extends AbstractTypeExtension
     {
         return FormType::class;
     }
-    
+
     /**
      * Register a script for a location.
      *
@@ -80,7 +79,6 @@ class AssetsExtension extends AbstractTypeExtension
                 ->scriptRegistry
                 ->register($location, $script);
         } elseif (is_array($script)) {
-            
             if (!array_key_exists('template', $script)) {
                 $script['template'] = null;
             }

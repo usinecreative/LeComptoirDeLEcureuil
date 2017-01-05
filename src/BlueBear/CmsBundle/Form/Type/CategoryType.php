@@ -14,7 +14,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Category edit form
+ * Category edit form.
  */
 class CategoryType extends AbstractType
 {
@@ -22,7 +22,7 @@ class CategoryType extends AbstractType
      * @var MediaUploadTransformer
      */
     protected $MediaUploadTransformer;
-    
+
     /**
      * CategoryType constructor.
      *
@@ -32,25 +32,25 @@ class CategoryType extends AbstractType
     {
         $this->MediaUploadTransformer = $MediaUploadTransformer;
     }
-    
+
     /**
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('name', TextType::class, [
                 'attr' => [
-                    'data-help' => 'cms.category.name_help'
-                ]
+                    'data-help' => 'cms.category.name_help',
+                ],
             ])
             ->add('slug', TextType::class, [
                 'disabled' => true,
                 'attr' => [
                     'read-only' => true,
                     'data-help' => 'cms.category.slug_help',
-                ]
+                ],
             ])
             ->add('thumbnail', JQueryUploadType::class, [
                 'end_point' => 'category_thumbnail',
@@ -58,14 +58,14 @@ class CategoryType extends AbstractType
             ->add('description', TextareaType::class, [
                 'required' => false,
                 'attr' => [
-                    'data-help' => 'cms.category.description_help'
-                ]
+                    'data-help' => 'cms.category.description_help',
+                ],
             ])
             ->add('displayInHomepage', CheckboxType::class, [
                 'required' => false,
                 'attr' => [
-                    'data-help' => 'cms.category.display_in_homepage_help'
-                ]
+                    'data-help' => 'cms.category.display_in_homepage_help',
+                ],
             ])
             ->add('updatedAt', DateType::class, [
                 'widget' => 'single_text',
@@ -73,7 +73,7 @@ class CategoryType extends AbstractType
                 'attr' => [
                     'read-only' => true,
                     'data-help' => 'cms.category.updated_at_help',
-                ]
+                ],
             ])
         ;
     }
@@ -92,7 +92,7 @@ class CategoryType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Category::class
+            'data_class' => Category::class,
         ]);
     }
 }

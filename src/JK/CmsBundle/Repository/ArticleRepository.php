@@ -8,8 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use LAG\AdminBundle\Repository\DoctrineRepository;
 
 /**
- * CategoryRepository
- *
+ * CategoryRepository.
  */
 class ArticleRepository extends DoctrineRepository
 {
@@ -17,6 +16,7 @@ class ArticleRepository extends DoctrineRepository
      * Find latest published articles.
      *
      * @param int $count
+     *
      * @return array
      */
     public function findLatest($count = 6)
@@ -34,6 +34,7 @@ class ArticleRepository extends DoctrineRepository
     /**
      * @param $categorySlug
      * @param int $count
+     *
      * @return mixed
      */
     public function findByCategory($categorySlug, $count = 6)
@@ -55,6 +56,7 @@ class ArticleRepository extends DoctrineRepository
      * Find articles created after $date.
      *
      * @param DateTime $date
+     *
      * @return array
      */
     public function findByDate(DateTime $date)

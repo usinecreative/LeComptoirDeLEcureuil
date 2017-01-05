@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Display an article or a list of filtered articles
+ * Display an article or a list of filtered articles.
  */
 class ArticleController extends Controller
 {
@@ -41,7 +41,7 @@ class ArticleController extends Controller
             $this
                 ->get('jk.cms.comment_repository')
                 ->save($comment);
-            
+
             // notify older Comments authors
             $this
                 ->get('cms.comment.comment_mailer')
@@ -55,9 +55,10 @@ class ArticleController extends Controller
 
             return $this->redirect($url);
         }
+
         return [
             'article' => $article,
-            'commentForm' => $commentForm->createView()
+            'commentForm' => $commentForm->createView(),
         ];
     }
 
@@ -65,6 +66,7 @@ class ArticleController extends Controller
      * @Template(":Article:filter.html.twig")
      *
      * @param Request $request
+     *
      * @return array
      */
     public function filterAction(Request $request)
@@ -80,7 +82,7 @@ class ArticleController extends Controller
             'pager' => $pager,
             'filter' => $filter,
             // title is dynamic in filter action
-            'title' => $this->getFilterTitle($filter)
+            'title' => $this->getFilterTitle($filter),
         ];
     }
 
@@ -96,15 +98,16 @@ class ArticleController extends Controller
         $this->denyAccessUnlessGranted('ROLE_USER');
 
         return [
-            'article' => $article
+            'article' => $article,
         ];
     }
-    
+
     /**
      * Remove subscriptions for an User and an Article.
      *
      * @param string $slug
      * @param string $email
+     *
      * @return RedirectResponse
      */
     public function unsubscribeAction($slug, $email)
@@ -114,7 +117,7 @@ class ArticleController extends Controller
             ->unsubscribe($slug, $email);
         $this
             ->addFlash('success', $this->get('translator')->trans('cms.comment.unsubscribe_success'));
-        
+
         return $this->redirectToRoute('lecomptoir.homepage');
     }
 
@@ -133,10 +136,11 @@ class ArticleController extends Controller
             $category = $this
                 ->get('jk.cms.category_repository')
                 ->findOneBy([
-                    'slug' => $parameters->get('categorySlug')
+                    'slug' => $parameters->get('categorySlug'),
                 ]);
             $title = $category->getName();
         }
+
         return $title;
     }
 }

@@ -12,6 +12,7 @@ class CommentRepository extends DoctrineRepository
      * Return all comments created after $date.
      *
      * @param DateTime $date
+     *
      * @return array
      */
     public function findByDate(DateTime $date)
@@ -23,7 +24,7 @@ class CommentRepository extends DoctrineRepository
             ->getQuery()
             ->getResult();
     }
-    
+
     /**
      * Find all Comments from an Article that should be notified in case of new Comment.
      *
@@ -44,7 +45,7 @@ class CommentRepository extends DoctrineRepository
             ->getQuery()
             ->getResult();
     }
-    
+
     /**
      * Unsubscribe an email from the notifications send on new Comment.
      *
@@ -63,7 +64,7 @@ class CommentRepository extends DoctrineRepository
             ->setParameter('email', $email)
             ->getQuery()
             ->getResult();
-    
+
         foreach ($comments as $comment) {
             $comment->setNotifyNewComments(false);
             $this->save($comment);

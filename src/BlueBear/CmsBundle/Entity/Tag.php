@@ -10,7 +10,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use JK\CmsBundle\Entity\Article;
 
 /**
- * Tag
+ * Tag.
  *
  * Article tags
  *
@@ -21,9 +21,9 @@ use JK\CmsBundle\Entity\Article;
 class Tag
 {
     /**
-     * Entity id
+     * Entity id.
      *
-     * @var integer
+     * @var int
      *
      * @ORM\Id()
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -53,21 +53,21 @@ class Tag
      * @ORM\JoinTable(name="cms_tag_article")
      */
     protected $articles;
-    
+
     /**
      * @var DateTime
      *
      * @ORM\Column(name="created_at", type="datetime")
      */
     protected $createdAt;
-    
+
     /**
      * @var DateTime
      *
      * @ORM\Column(name="updated_at", type="datetime", nullable=true)
      */
     protected $updatedAt;
-    
+
     /**
      * Tag constructor.
      */
@@ -123,7 +123,7 @@ class Tag
     {
         return $this->articles;
     }
-    
+
     /**
      * @param Article $article
      */
@@ -133,7 +133,7 @@ class Tag
             ->articles
             ->add($article);
     }
-    
+
     /**
      * Return entity id.
      *
@@ -143,17 +143,17 @@ class Tag
     {
         return $this->id;
     }
-    
+
     /**
      * Set entity id.
      *
-     * @param integer $id
+     * @param int $id
      */
     public function setId($id)
     {
         $this->id = $id;
     }
-    
+
     /**
      * @ORM\PrePersist()
      */
@@ -163,7 +163,7 @@ class Tag
             $this->createdAt = new DateTime();
         }
     }
-    
+
     /**
      * Created at cannot be set. But in some case (like imports...), it is required to set created at. Use this method
      * in this case.
@@ -174,7 +174,7 @@ class Tag
     {
         $this->createdAt = $createdAt;
     }
-    
+
     /**
      * @return DateTime
      */
@@ -182,7 +182,7 @@ class Tag
     {
         return $this->createdAt;
     }
-    
+
     /**
      * @ORM\PrePersist()
      * @ORM\PreUpdate()
@@ -198,9 +198,10 @@ class Tag
         } else {
             $this->updatedAt = new DateTime();
         }
+
         return $this;
     }
-    
+
     /**
      * @return DateTime
      */

@@ -14,7 +14,7 @@ class RecaptchaTest extends AdminTestBase
         $constraint = new Recaptcha();
         $this->assertEquals(RecaptchaValidator::class, $constraint->validatedBy());
     }
-    
+
     public function testGetTargets()
     {
         $constraint = new Recaptcha();

@@ -10,14 +10,14 @@ use SplFileInfo;
 class StaticClient
 {
     /**
-     * Guzzle client
+     * Guzzle client.
      *
      * @var Client
      */
     protected $client;
 
     /**
-     * Url of the static server
+     * Url of the static server.
      *
      * @var
      */
@@ -32,7 +32,7 @@ class StaticClient
     {
         // guzzle client creation
         $this->client = new Client([
-            'base_uri' => 'http://127.0.0.1:8000'
+            'base_uri' => 'http://127.0.0.1:8000',
         ]);
         $this->staticServerUrl = $staticServerUrl;
     }
@@ -40,7 +40,7 @@ class StaticClient
     public function post(SplFileInfo $file)
     {
         if (!$file->isReadable()) {
-            throw new Exception('File ' . $file->getRealPath() . ' is not readable');
+            throw new Exception('File '.$file->getRealPath().' is not readable');
         }
 
         try {
@@ -50,8 +50,8 @@ class StaticClient
                         'multipart' => [
                             [
                                 'name' => 'file_post[file]',
-                                'filename' => $file->getFilename() . '.' . $file->getExtension(),
-                                'contents' => file_get_contents($file->getRealPath())
+                                'filename' => $file->getFilename().'.'.$file->getExtension(),
+                                'contents' => file_get_contents($file->getRealPath()),
                             ],
                             [
                                 'name' => 'file_post[application]',
@@ -60,14 +60,13 @@ class StaticClient
                             [
                                 'name' => 'file_post[password]',
                                 'contents' => 'test',
-                            ]
-                        ]
+                            ],
+                        ],
                     ]
                 );
 
             // get new url from server response
             $url = $response->getBody();
-
         } catch (RequestException $e) {
             $url = false;
         }

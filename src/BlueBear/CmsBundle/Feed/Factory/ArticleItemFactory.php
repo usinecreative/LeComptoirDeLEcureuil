@@ -2,7 +2,6 @@
 
 namespace BlueBear\CmsBundle\Feed\Factory;
 
-
 use JK\CmsBundle\Entity\Article;
 use BlueBear\CmsBundle\Feed\Item\FeedItem;
 use Symfony\Component\Routing\RouterInterface;
@@ -13,7 +12,7 @@ class ArticleItemFactory
      * @var RouterInterface
      */
     protected $router;
-    
+
     /**
      * ArticleItemFactory constructor.
      *
@@ -23,17 +22,18 @@ class ArticleItemFactory
     {
         $this->router = $router;
     }
-    
+
     /**
      * Create a feed item from an array of articles.
      *
      * @param Article[] $articles
+     *
      * @return array
      */
     public function create(array $articles)
     {
         $items = [];
-        
+
         foreach ($articles as $article) {
             $items[] = new FeedItem(
                 $article->getTitle(),
@@ -42,7 +42,7 @@ class ArticleItemFactory
                 $article->getPublicationDate()
             );
         }
-        
+
         return $items;
     }
 }

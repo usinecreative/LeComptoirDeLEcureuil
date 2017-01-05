@@ -12,7 +12,9 @@ class ImportController extends CRUDController
 {
     /**
      * @Template()
+     *
      * @param Request $request
+     *
      * @return array
      */
     public function createAction(Request $request)
@@ -29,8 +31,9 @@ class ImportController extends CRUDController
 
             return $this->redirectToRoute('lecomptoir.cms.import.list');
         }
+
         return [
-            'form' => $form->createView()
+            'form' => $form->createView(),
         ];
     }
 }

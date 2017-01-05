@@ -19,7 +19,7 @@ class MediaType extends AbstractType
      * @var MediaTransformer
      */
     private $mediaTransformer;
-    
+
     /**
      * MediaType constructor.
      *
@@ -29,10 +29,10 @@ class MediaType extends AbstractType
     {
         $this->mediaTransformer = $mediaTransformer;
     }
-    
+
     /**
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -51,18 +51,18 @@ class MediaType extends AbstractType
                 ],
                 'attr' => [
                     'data-help' => 'cms.media.type_help',
-                ]
+                ],
             ])
             ->add('filename', FileType::class, [
                 'required' => false,
             ])
         ;
-        
+
         $builder
             ->addModelTransformer($this->mediaTransformer)
             ->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
                 $media = $event->getData();
-    
+
                 if (null !== $media->getFileName()) {
                     $this
                         ->mediaTransformer

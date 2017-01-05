@@ -28,9 +28,10 @@ class ArticleFinder
     }
 
     /**
-     * Return filtered articles
+     * Return filtered articles.
      *
      * @param ArticleFilter $filter
+     *
      * @return Pagerfanta
      */
     public function find(ArticleFilter $filter)
@@ -46,10 +47,12 @@ class ArticleFinder
     }
 
     /**
-     * Return one filtered article
+     * Return one filtered article.
      *
      * @param ArticleFilter $filter
+     *
      * @return Article
+     *
      * @throws NonUniqueResultException
      */
     public function findOne(ArticleFilter $filter)
@@ -63,9 +66,10 @@ class ArticleFinder
     }
 
     /**
-     * Return enriched query builder according to filter parameter
+     * Return enriched query builder according to filter parameter.
      *
      * @param ArticleFilter $filter
+     *
      * @return QueryBuilder
      */
     protected function buildQueryBuilder(ArticleFilter $filter)

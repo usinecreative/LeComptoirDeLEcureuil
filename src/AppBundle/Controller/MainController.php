@@ -16,6 +16,7 @@ class MainController extends Controller
 {
     /**
      * @Template(":Main:index.html.twig")
+     *
      * @return array
      */
     public function indexAction()
@@ -53,7 +54,7 @@ class MainController extends Controller
         }
 
         return [
-            'form' => $form->createView()
+            'form' => $form->createView(),
         ];
     }
 
@@ -61,7 +62,9 @@ class MainController extends Controller
      * Display the partner page.
      *
      * @Template(":Partner:partner.html.twig")
+     *
      * @param $partnerSlug
+     *
      * @return array
      */
     public function partnerAction($partnerSlug)
@@ -70,7 +73,7 @@ class MainController extends Controller
         $partner = $this
             ->get('app_partner_repository')
             ->findOneBy([
-                'slug' => $partnerSlug
+                'slug' => $partnerSlug,
             ]);
         $this->redirect404Unless($partner, 'lecomptoir.partner.not_found');
         // find linked articles (by tag)
@@ -80,7 +83,7 @@ class MainController extends Controller
 
         return [
             'partner' => $partner,
-            'articles' => $articles
+            'articles' => $articles,
         ];
     }
 
@@ -100,7 +103,7 @@ class MainController extends Controller
         $sitemap = $this
             ->get('app_sitemap_generator')
             ->generate();
-    
+
         if (!file_exists($sitemap)) {
             throw $this->createNotFoundException('Sitemap not found');
         }
@@ -181,7 +184,7 @@ class MainController extends Controller
     /**
      * Throw a 404 Exception if $boolean is false or null.
      *
-     * @param mixed $boolean
+     * @param mixed  $boolean
      * @param string $message
      */
     protected function redirect404Unless($boolean, $message = '404 Not Found')
@@ -190,7 +193,7 @@ class MainController extends Controller
             throw $this->createNotFoundException($this->translate($message));
         }
     }
-    
+
     protected function translate($message, array $parameters = [])
     {
         return $this

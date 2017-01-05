@@ -22,7 +22,7 @@ class AddCommentType extends AbstractType
      * @var ArticleRepository
      */
     private $articleRepository;
-    
+
     /**
      * AddCommentType constructor.
      *
@@ -32,41 +32,41 @@ class AddCommentType extends AbstractType
     {
         $this->articleRepository = $articleRepository;
     }
-    
+
     /**
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $articleTransformation = function (Article $article) {
             return $article->getId();
         };
-        $articleReverseTransformation = function($id) {
+        $articleReverseTransformation = function ($id) {
             return $this
                 ->articleRepository
                 ->find($id);
         };
-    
+
         $builder
             ->add('article', HiddenType::class)
             ->add('authorName', TextType::class, [
                 'label' => 'Votre Nom',
                 'attr' => [
-                    'placeholder' => 'Votre nom...'
-                ]
+                    'placeholder' => 'Votre nom...',
+                ],
             ])
             ->add('authorUrl', TextType::class, [
                 'label' => 'L\'adresse de votre blog, site...',
                 'required' => false,
                 'attr' => [
-                    'placeholder' => 'Un blog, un site ?'
-                ]
+                    'placeholder' => 'Un blog, un site ?',
+                ],
             ])
             ->add('content', TextareaType::class, [
                 'label' => 'Votre commentaire',
                 'attr' => [
-                    'placeholder' => 'Laissez votre commentaire ici...'
+                    'placeholder' => 'Laissez votre commentaire ici...',
                 ],
             ])
             ->add('notifyNewComments', CheckboxType::class, [
@@ -76,7 +76,7 @@ class AddCommentType extends AbstractType
             ->add('authorEmail', EmailType::class, [
                 'label' => 'Votre email (si vous voulez être notifié des réponses à votre commentaire)',
                 'attr' => [
-                    'placeholder' => 'Votre email...'
+                    'placeholder' => 'Votre email...',
                 ],
                 'required' => false,
             ])
@@ -85,12 +85,12 @@ class AddCommentType extends AbstractType
                 'mapped' => false,
             ])
         ;
-    
+
         $builder
             ->get('article')
             ->addModelTransformer(new CallbackTransformer($articleTransformation, $articleReverseTransformation));
     }
-    
+
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver

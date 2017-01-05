@@ -37,7 +37,7 @@ class UserProvider implements UserProviderInterface
         $user = $this
             ->userRepository
             ->findOneBy([
-                'username' => $username
+                'username' => $username,
             ]);
 
         if (!$user) {

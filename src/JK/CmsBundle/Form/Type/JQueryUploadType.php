@@ -18,16 +18,16 @@ class JQueryUploadType extends AbstractType
      * @var UploaderHelper
      */
     protected $uploaderHelper;
-    
+
     /**
      * @var MediaUploadTransformer
      */
     protected $mediaUploadTransformer;
-    
+
     /**
      * JQueryUploadType constructor.
      *
-     * @param UploaderHelper $uploaderHelper
+     * @param UploaderHelper         $uploaderHelper
      * @param MediaUploadTransformer $mediaUploadTransformer
      */
     public function __construct(UploaderHelper $uploaderHelper, MediaUploadTransformer $mediaUploadTransformer)
@@ -35,10 +35,10 @@ class JQueryUploadType extends AbstractType
         $this->uploaderHelper = $uploaderHelper;
         $this->mediaUploadTransformer = $mediaUploadTransformer;
     }
-    
+
     /**
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -52,7 +52,7 @@ class JQueryUploadType extends AbstractType
                         ->uploaderHelper
                         ->endpoint($options['end_point']),
                     'data-target' => '.'.$options['media_id_class'],
-                ]
+                ],
             ])
             ->add('id', HiddenType::class, [
                 'attr' => [
@@ -62,17 +62,17 @@ class JQueryUploadType extends AbstractType
         ;
         $builder->addModelTransformer($this->mediaUploadTransformer);
     }
-    
+
     /**
-     * @param FormView $view
+     * @param FormView      $view
      * @param FormInterface $form
-     * @param array $options
+     * @param array         $options
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
         $view->vars['mediaIdClass'] = '.'.$options['media_id_class'];
     }
-    
+
     /**
      * @param OptionsResolver $resolver
      */
@@ -86,7 +86,7 @@ class JQueryUploadType extends AbstractType
             ])
         ;
     }
-    
+
     /**
      * @return string
      */

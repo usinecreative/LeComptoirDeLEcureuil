@@ -7,17 +7,17 @@ use Exception;
 class ContentType
 {
     protected $name;
-    
+
     protected $fields;
-    
+
     protected $behaviors = [];
-    
+
     protected $parent = null;
-    
+
     public function hydrateFromConfiguration($name, array $typeConfiguration)
     {
         $this->name = $name;
-        
+
         if (array_key_exists('fields', $typeConfiguration)) {
             $this->fields = $typeConfiguration['fields'];
         } else {
@@ -29,7 +29,7 @@ class ContentType
             }
         }
     }
-    
+
     /**
      * @return array
      */
@@ -37,7 +37,7 @@ class ContentType
     {
         return $this->behaviors;
     }
-    
+
     /**
      * @return mixed
      */
@@ -45,12 +45,12 @@ class ContentType
     {
         return $this->name;
     }
-    
+
     public function getType()
     {
         return $this->name;
     }
-    
+
     /**
      * @return array
      */

@@ -13,7 +13,7 @@ interface MediaInterface
      * @param int $id
      */
     public function setId($id);
-    
+
     /**
      * Define the Media name.
      *
@@ -48,21 +48,21 @@ interface MediaInterface
      * @param int $size
      */
     public function setSize($size);
-    
+
     /**
      * Define the Media description.
      *
      * @param string $description
      */
     public function setDescription($description);
-    
+
     /**
      * Return the Media id.
      *
      * @return string
      */
     public function getId();
-    
+
     /**
      * Return the Media name.
      *
@@ -97,7 +97,7 @@ interface MediaInterface
      * @return int
      */
     public function getSize();
-    
+
     /**
      * Return the Media description.
      *

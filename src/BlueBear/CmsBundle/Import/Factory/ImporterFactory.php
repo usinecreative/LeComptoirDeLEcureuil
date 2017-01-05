@@ -13,7 +13,9 @@ class ImporterFactory
 
     /**
      * @param $importType
+     *
      * @return ImporterInterface
+     *
      * @throws Exception
      */
     public function create($importType)
@@ -25,7 +27,7 @@ class ImporterFactory
         } else {
             throw new Exception(sprintf('Invalid import type "%s"', $importType));
         }
-        
+
         return $importer;
     }
 }

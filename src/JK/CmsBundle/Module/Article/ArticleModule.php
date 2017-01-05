@@ -6,5 +6,4 @@ use JK\CmsBundle\Module\ModuleInterface;
 
 class ArticleModule implements ModuleInterface
 {
-    
 }

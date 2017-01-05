@@ -13,6 +13,7 @@ class PageRepository extends DoctrineRepository
      * Return a published page by its slug.
      *
      * @param $pageSlug
+     *
      * @return Page|null
      */
     public function findPublished($pageSlug)

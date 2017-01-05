@@ -14,24 +14,24 @@ class RecaptchaTypeTest extends TypeTestCase
             ->factory
             ->create(RecaptchaType::class);
         $form->submit([]);
-        
+
         $this->assertTrue($form->isSubmitted());
         $this->assertTrue($form->isSynchronized());
-        
+
         $view = $form->createView();
-    
+
         $this->assertArrayHasKey('scripts', $view->vars);
         $this->assertArrayHasKey('head', $view->vars['scripts']);
         $this->assertContains('https://www.google.com/recaptcha/api.js', $view->vars['scripts']['head']);
     }
-    
+
     protected function getExtensions()
     {
         $recaptchaType = new RecaptchaType('my-site-key');
-        
+
         return [
             new PreloadedExtension([
-                $recaptchaType
+                $recaptchaType,
             ], []),
         ];
     }

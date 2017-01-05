@@ -35,7 +35,7 @@ class AddUserCommand extends Command implements ContainerAwareInterface
         $user->setEmailCanonical($input->getArgument('email'));
         $user->setRoles([
             'ROLE_USER',
-            'ROLE_ADMIN'
+            'ROLE_ADMIN',
         ]);
         $user->setSalt(base_convert(sha1(uniqid(mt_rand(), true)), 16, 36));
         $encoded = $this

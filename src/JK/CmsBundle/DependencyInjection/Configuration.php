@@ -19,7 +19,7 @@ class Configuration implements ConfigurationInterface
     {
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('jk_cms');
-        
+
         $rootNode
             ->children()
             ->arrayNode('assets')

@@ -25,7 +25,7 @@ class GuardController extends Controller
 
         return $this->render('@BlueBearCms/Guard/login.html.twig', [
             'form' => $form->createView(),
-            'error' => $error
+            'error' => $error,
         ]);
     }
 

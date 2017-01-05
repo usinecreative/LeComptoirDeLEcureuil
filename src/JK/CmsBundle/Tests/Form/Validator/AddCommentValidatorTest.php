@@ -18,26 +18,25 @@ class AddCommentValidatorTest extends AdminTestBase
         $context
             ->expects($this->never())
             ->method('addViolation');
-        
+
         $validator = new AddCommentValidator();
         $validator->initialize($context);
-    
+
         $comment = new Comment();
         $constraint = new AddComment();
-        
+
         // if the given object is not a Comment, an exception SHOULD be raised
-        $this->assertExceptionRaised(\Exception::class, function() use ($validator, $constraint) {
+        $this->assertExceptionRaised(\Exception::class, function () use ($validator, $constraint) {
             $validator->validate(new stdClass(), $constraint);
         });
-        
+
         // with an empty Comment, no violations should be build
         $validator->validate($comment, $constraint);
-        
-        //
+
         $context = $this->getMock(ExecutionContextInterface::class);
         $context
             ->method('buildViolation')
-            ->willReturnCallback(function() {
+            ->willReturnCallback(function () {
                 $builder = $this
                     ->getMockBuilder(ConstraintViolationBuilder::class)
                     ->disableOriginalConstructor()
@@ -55,14 +54,14 @@ class AddCommentValidatorTest extends AdminTestBase
                             ->expects($this->once())
                             ->method('addViolation')
                         ;
-    
+
                         return $builder;
                     });
-    
+
                 return $builder;
             });
         $comment->setNotifyNewComments(true);
-        
+
         $validator->initialize($context);
         $validator->validate($comment, $constraint);
     }

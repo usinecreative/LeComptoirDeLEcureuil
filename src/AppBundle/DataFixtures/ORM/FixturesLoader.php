@@ -7,12 +7,12 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Nelmio\Alice\Fixtures;
 
 /**
- * Load yml fixtures from alice bundle
+ * Load yml fixtures from alice bundle.
  */
 class FixturesLoader implements FixtureInterface
 {
     /**
-     * Load data fixtures with the passed EntityManager
+     * Load data fixtures with the passed EntityManager.
      *
      * @param ObjectManager $manager
      */

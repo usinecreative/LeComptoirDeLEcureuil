@@ -26,7 +26,7 @@ class DashboardFactory
         $this->commentRepository = $commentRepository;
         $this->articleRepository = $articleRepository;
     }
-    
+
     /**
      * @param DateTime $lastLogin
      *
@@ -39,10 +39,10 @@ class DashboardFactory
 
         return $dashboard;
     }
-    
+
     /**
      * @param Dashboard $dashboard
-     * @param DateTime $lastLogin
+     * @param DateTime  $lastLogin
      */
     protected function createHeaders(Dashboard $dashboard, DateTime $lastLogin)
     {

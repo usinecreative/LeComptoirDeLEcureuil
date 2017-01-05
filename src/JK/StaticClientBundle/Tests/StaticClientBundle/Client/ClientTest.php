@@ -14,9 +14,8 @@ class ClientTest extends PHPUnit_Framework_TestCase
     {
         $client = new StaticClient('http://localhost:8000/');
 
-
         // if the file does not exists, it SHOULD thrown an exception
-        $this->assertExceptionRaised('Exception', function() use ($client) {
+        $this->assertExceptionRaised('Exception', function () use ($client) {
             $client->post(new SplFileInfo('/tmp/test.txt'));
         });
     }
@@ -39,6 +38,6 @@ class ClientTest extends PHPUnit_Framework_TestCase
                 $isClassValid = true;
             }
         }
-        $this->assertTrue($isClassValid, 'Expected ' . $exceptionClass . ', got ' . get_class($e));
+        $this->assertTrue($isClassValid, 'Expected '.$exceptionClass.', got '.get_class($e));
     }
 }

@@ -26,6 +26,7 @@ class BlueBearMediaBundle extends Bundle
         if ($this->extension) {
             return $this->extension;
         }
+
         return null;
     }
 }

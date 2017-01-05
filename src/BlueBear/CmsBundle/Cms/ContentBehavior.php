@@ -20,7 +20,6 @@ class ContentBehavior
         $this->name = $name;
         $this->class = $contentBehaviorConfiguration['class'];
         $this->fields = $contentBehaviorConfiguration['fields'];
-
     }
 
     public function getName()

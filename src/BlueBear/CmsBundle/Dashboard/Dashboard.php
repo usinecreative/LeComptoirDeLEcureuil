@@ -2,7 +2,6 @@
 
 namespace BlueBear\CmsBundle\Dashboard;
 
-
 use Exception;
 
 class Dashboard

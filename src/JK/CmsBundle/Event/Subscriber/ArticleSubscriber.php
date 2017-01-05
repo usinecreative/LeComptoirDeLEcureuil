@@ -18,7 +18,7 @@ class ArticleSubscriber implements EventSubscriber
     public function getSubscribedEvents()
     {
         return [
-            Events::preUpdate
+            Events::preUpdate,
         ];
     }
 

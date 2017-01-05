@@ -7,7 +7,7 @@ use Exception;
 use Symfony\Component\DependencyInjection\Container;
 
 /**
- * Content
+ * Content.
  *
  * @ORM\Table(name="cms_content")
  * @ORM\Entity(repositoryClass="BlueBear\CmsBundle\Repository\ContentRepository")
@@ -15,7 +15,7 @@ use Symfony\Component\DependencyInjection\Container;
 class Content
 {
     /**
-     * Entity id
+     * Entity id.
      *
      * @ORM\Id()
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -28,18 +28,18 @@ class Content
      * @ORM\Column(type="array")
      */
     protected $fields = [];
-    
+
     /**
-     * Entity type
+     * Entity type.
      *
      * @ORM\Column(type="string", length=255)
      */
     protected $type;
 
     protected $behaviors = [];
-    
+
     /**
-     * Return entity id
+     * Return entity id.
      *
      * @return mixed
      */
@@ -47,9 +47,9 @@ class Content
     {
         return $this->id;
     }
-    
+
     /**
-     * Set entity id
+     * Set entity id.
      *
      * @param mixed $id
      */
@@ -57,7 +57,7 @@ class Content
     {
         $this->id = $id;
     }
-    
+
     /**
      * @return array
      */
@@ -103,6 +103,7 @@ class Content
         if (array_key_exists($method, $this->fields)) {
             $value = $this->fields[$method];
         }
+
         return $value;
     }
 
@@ -111,6 +112,7 @@ class Content
         if (!array_key_exists($name, $this->fields)) {
             throw new Exception("Invalid field name \"{$name}\".");
         }
+
         return $this->fields[$name];
     }
 
@@ -121,9 +123,9 @@ class Content
         }
         $this->fields[$name] = $value;
     }
-    
+
     /**
-     * Return entity type
+     * Return entity type.
      *
      * @return string
      */
@@ -131,9 +133,9 @@ class Content
     {
         return $this->type;
     }
-    
+
     /**
-     * Set entity type
+     * Set entity type.
      *
      * @param string $type
      */

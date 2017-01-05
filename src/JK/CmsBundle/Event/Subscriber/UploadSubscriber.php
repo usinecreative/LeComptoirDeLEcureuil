@@ -14,12 +14,12 @@ class UploadSubscriber implements EventSubscriberInterface
      * @var MediaRepository
      */
     private $mediaRepository;
-    
+
     /**
      * @var AssetsHelper
      */
     private $assetsHelper;
-    
+
     /**
      * @return array
      */
@@ -29,12 +29,12 @@ class UploadSubscriber implements EventSubscriberInterface
             'oneup_uploader.post_persist' => 'onUpload',
         ];
     }
-    
+
     /**
      * UploadSubscriber constructor.
      *
      * @param MediaRepository $mediaRepository
-     * @param AssetsHelper $assetsHelper
+     * @param AssetsHelper    $assetsHelper
      */
     public function __construct(MediaRepository $mediaRepository, AssetsHelper $assetsHelper)
     {
@@ -51,7 +51,7 @@ class UploadSubscriber implements EventSubscriberInterface
     {
         /** @var File $file */
         $file = $event->getFile();
-        
+
         // creating a new media with the uploaded file
         $media = $this
             ->mediaRepository
@@ -64,14 +64,13 @@ class UploadSubscriber implements EventSubscriberInterface
         $this
             ->mediaRepository
             ->save($media);
-    
+
         // add the url and the id of the created media
         $response = $event->getResponse();
         $response['mediaId'] = $media->getId();
         $response['mediaUrl'] = $this
             ->assetsHelper
             ->getMediaPath($media);
-        
     }
 
     /**

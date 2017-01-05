@@ -15,7 +15,7 @@ class KernelSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return [
-            KernelEvents::CONTROLLER => 'onKernelController'
+            KernelEvents::CONTROLLER => 'onKernelController',
         ];
     }
 
@@ -34,9 +34,9 @@ class KernelSubscriber implements EventSubscriberInterface
     protected $configLoaded = false;
 
     /**
-     * @param Twig_Environment $twigEngine
+     * @param Twig_Environment   $twigEngine
      * @param ContentTypeFactory $contentTypeFactory
-     * @param array $contentTypeConfiguration
+     * @param array              $contentTypeConfiguration
      */
     public function __construct(Twig_Environment $twigEngine, ContentTypeFactory $contentTypeFactory, array $contentTypeConfiguration)
     {
@@ -51,6 +51,5 @@ class KernelSubscriber implements EventSubscriberInterface
             $this->contentTypeFactory->init($this->contentTypeConfiguration);
             $this->configLoaded = true;
         }
-
     }
 }

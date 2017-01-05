@@ -26,12 +26,12 @@ class RecaptchaValidatorTest extends AdminTestBase
         $validator = new RecaptchaValidatorTestObject('my-secret', $requestStack, true);
         $validator->initialize($context);
         $validator->validate(true, $constraint);
-    
+
         $validator = new RecaptchaValidatorTestObject('my-secret', $requestStack, false);
         $context = $this->getMock(ExecutionContextInterface::class);
         $context
             ->method('buildViolation')
-            ->willReturnCallback(function() {
+            ->willReturnCallback(function () {
                 $builder = $this
                     ->getMockBuilder(ConstraintViolationBuilder::class)
                     ->disableOriginalConstructor()
@@ -49,10 +49,10 @@ class RecaptchaValidatorTest extends AdminTestBase
                             ->expects($this->once())
                             ->method('addViolation')
                         ;
-                    
+
                         return $builder;
                     });
-            
+
                 return $builder;
             });
         $validator->initialize($context);

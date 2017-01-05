@@ -9,13 +9,13 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 /**
- * Contact form
+ * Contact form.
  */
 class ContactType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -23,19 +23,19 @@ class ContactType extends AbstractType
             ->add('firstName', TextType::class, [
                 'label' => 'lecomptoir.contact.first_name',
                 'attr' => [
-                    'placeholder' => 'lecomptoir.contact.first_name_placeholder'
-                ]
+                    'placeholder' => 'lecomptoir.contact.first_name_placeholder',
+                ],
             ])
             ->add('lastName', TextType::class, [
                 'label' => 'lecomptoir.contact.last_name',
                 'attr' => [
-                    'placeholder' => 'lecomptoir.contact.last_name_placeholder'
-                ]
+                    'placeholder' => 'lecomptoir.contact.last_name_placeholder',
+                ],
             ])
             ->add('email', EmailType::class, [
                 'attr' => [
-                    'placeholder' => 'lecomptoir.contact.email_placeholder'
-                ]
+                    'placeholder' => 'lecomptoir.contact.email_placeholder',
+                ],
             ])
             // anti spam field
             ->add('url', TextType::class, [
@@ -45,14 +45,14 @@ class ContactType extends AbstractType
                 'label' => 'lecomptoir.contact.message',
                 'attr' => [
                     'rows' => 10,
-                    'placeholder' => 'lecomptoir.contact.message_placeholder'
-                ]
+                    'placeholder' => 'lecomptoir.contact.message_placeholder',
+                ],
             ])
         ;
     }
 
     /**
-     * Return contact form name
+     * Return contact form name.
      *
      * @return string
      */

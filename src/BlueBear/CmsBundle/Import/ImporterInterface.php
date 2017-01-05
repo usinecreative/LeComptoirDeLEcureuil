@@ -2,7 +2,6 @@
 
 namespace BlueBear\CmsBundle\Import;
 
-
 use BlueBear\CmsBundle\Entity\Import;
 
 interface ImporterInterface

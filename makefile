@@ -41,3 +41,6 @@ tests:
 	$(sf) doctrine:migrations:migrate --env=test -n
 	$(sf) doctrine:fixtures:load --env=test -n
 	bin/phpunit -c app
+
+php-cs:
+	php bin/php-cs-fixer fix src/

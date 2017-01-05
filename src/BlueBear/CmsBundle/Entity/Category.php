@@ -8,10 +8,9 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use JK\CmsBundle\Entity\Article;
 use JK\CmsBundle\Entity\MediaInterface;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Category
+ * Category.
  *
  * Category are articles parents
  *
@@ -23,20 +22,20 @@ class Category
 {
     const PUBLICATION_NOT_PUBLISHED = 0;
     const PUBLICATION_STATUS_PUBLISHED = 1;
-    
+
     /**
-     * Category id
+     * Category id.
      *
-     * @var integer
+     * @var int
      *
      * @ORM\Id()
      * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(type="integer")
      */
     protected $id;
-    
+
     /**
-     * Entity name
+     * Entity name.
      *
      * @var string
      *
@@ -45,7 +44,7 @@ class Category
     protected $name;
 
     /**
-     * Parent Category
+     * Parent Category.
      *
      * @var Category
      *
@@ -54,7 +53,7 @@ class Category
     protected $parent;
 
     /**
-     * Children categories
+     * Children categories.
      *
      * @var Category[]
      *
@@ -63,7 +62,7 @@ class Category
     protected $children;
 
     /**
-     * Category publication status
+     * Category publication status.
      *
      * @var int
      *
@@ -72,7 +71,7 @@ class Category
     protected $publicationStatus;
 
     /**
-     * Category articles
+     * Category articles.
      *
      * @var ArrayCollection
      *
@@ -81,7 +80,7 @@ class Category
     protected $articles;
 
     /**
-     * Category slug
+     * Category slug.
      *
      * @var string
      *
@@ -99,36 +98,36 @@ class Category
      * @ORM\Column(name="display_in_homepage", type="boolean")
      */
     protected $displayInHomepage = false;
-    
+
     /**
-     * Category long description
+     * Category long description.
      *
      * @var string
      *
      * @ORM\Column(type="text", nullable=true)
      */
     protected $description;
-    
+
     /**
-     * Category creation date
+     * Category creation date.
      *
      * @var DateTime
      *
      * @ORM\Column(name="created_at", type="datetime")
      */
     protected $createdAt;
-    
+
     /**
-     * Category update date
+     * Category update date.
      *
      * @var DateTime
      *
      * @ORM\Column(name="updated_at", type="datetime", nullable=true)
      */
     protected $updatedAt;
-    
+
     /**
-     * Category thumbnail
+     * Category thumbnail.
      *
      * @var MediaInterface
      *
@@ -136,7 +135,7 @@ class Category
      * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      */
     protected $thumbnail;
-    
+
     /**
      * Return the Category name.
      *
@@ -146,7 +145,7 @@ class Category
     {
         return $this->name;
     }
-    
+
     /**
      * Set the Category name.
      *
@@ -158,7 +157,7 @@ class Category
     }
 
     /**
-     * Set description
+     * Set description.
      *
      * @param string $description
      */
@@ -168,7 +167,7 @@ class Category
     }
 
     /**
-     * Get description
+     * Get description.
      *
      * @return string
      */
@@ -250,7 +249,7 @@ class Category
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isDisplayInHomepage()
     {
@@ -258,7 +257,7 @@ class Category
     }
 
     /**
-     * @param boolean $displayInHomepage
+     * @param bool $displayInHomepage
      */
     public function setDisplayInHomepage($displayInHomepage)
     {
@@ -296,7 +295,7 @@ class Category
     {
         $this->children = $children;
     }
-    
+
     /**
      * @return mixed
      */
@@ -304,7 +303,7 @@ class Category
     {
         return $this->id;
     }
-    
+
     /**
      * @param mixed $id
      */
@@ -312,10 +311,10 @@ class Category
     {
         $this->id = $id;
     }
-        
+
     /**
      * Created at cannot be set. But in some case (like imports...), it is required to set created at. Use this method
-     * in this case
+     * in this case.
      *
      * @param DateTime $createdAt
      */
@@ -323,7 +322,7 @@ class Category
     {
         $this->createdAt = $createdAt;
     }
-    
+
     /**
      * @return DateTime
      */
@@ -331,11 +330,13 @@ class Category
     {
         return $this->createdAt;
     }
-    
+
     /**
      * @ORM\PrePersist()
      * @ORM\PreUpdate()
+     *
      * @param null $value
+     *
      * @return $this
      */
     public function setUpdatedAt($value = null)
@@ -345,9 +346,10 @@ class Category
         } else {
             $this->updatedAt = new DateTime();
         }
+
         return $this;
     }
-    
+
     /**
      * @return DateTime
      */
@@ -355,7 +357,7 @@ class Category
     {
         return $this->updatedAt;
     }
-    
+
     /**
      * @return MediaInterface
      */
@@ -363,7 +365,7 @@ class Category
     {
         return $this->thumbnail;
     }
-    
+
     /**
      * @param MediaInterface $thumbnail
      */
@@ -371,7 +373,7 @@ class Category
     {
         $this->thumbnail = $thumbnail;
     }
-    
+
     /**
      * @param DateTime $createdAt
      */

@@ -14,7 +14,7 @@ class AddCommentValidator implements ConstraintValidatorInterface
      * @var ExecutionContextInterface
      */
     protected $context;
-    
+
     /**
      * Initializes the constraint validator.
      *
@@ -24,12 +24,13 @@ class AddCommentValidator implements ConstraintValidatorInterface
     {
         $this->context = $context;
     }
-    
+
     /**
      * Checks if the passed value is valid.
      *
-     * @param Comment $comment The value that should be validated
+     * @param Comment    $comment    The value that should be validated
      * @param Constraint $constraint The constraint for the validation
+     *
      * @throws Exception
      */
     public function validate($comment, Constraint $constraint)
@@ -46,7 +47,6 @@ class AddCommentValidator implements ConstraintValidatorInterface
                 ->atPath('authorEmail')
                 ->addViolation()
             ;
-            
         }
     }
 }
