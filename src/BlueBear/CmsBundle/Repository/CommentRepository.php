@@ -22,7 +22,8 @@ class CommentRepository extends DoctrineRepository
             ->where('comment.createdAt > :date')
             ->setParameter('date', $date)
             ->getQuery()
-            ->getResult();
+            ->getResult()
+        ;
     }
 
     /**
@@ -43,7 +44,8 @@ class CommentRepository extends DoctrineRepository
             ->setParameter('notify', true)
             ->setParameter('id', $comment->getId())
             ->getQuery()
-            ->getResult();
+            ->getResult()
+        ;
     }
 
     /**
@@ -69,5 +71,32 @@ class CommentRepository extends DoctrineRepository
             $comment->setNotifyNewComments(false);
             $this->save($comment);
         }
+    }
+    
+    /**
+     * Return the number of new Comment after a given date. If no Date is provided, return the number of all Comments.
+     *
+     * @param DateTime|null $dateTime
+     *
+     * @return integer
+     */
+    public function findNewCommentCount(DateTime $dateTime = null)
+    {
+        $queryBuilder = $this
+            ->createQueryBuilder('comment')
+            ->select('count(comment.id)')
+        ;
+    
+        if (null !== $dateTime) {
+            $queryBuilder
+                ->where('comment.createdAt >= :date')
+                ->setParameter('date', $dateTime)
+            ;
+        }
+    
+        return $queryBuilder
+            ->getQuery()
+            ->getSingleScalarResult()
+        ;
     }
 }

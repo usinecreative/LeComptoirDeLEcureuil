@@ -112,6 +112,8 @@ cms:
         article: Article
         _actions: ''
         unsubscribe_success: Vous avez été désinscrit avec succès !
+        new_comment_count: Nouveaux commentaires publiés
+        see_new_comment: Voir les nouveaux commentaires
     media:
         list: Medias
         edit: Edition du média

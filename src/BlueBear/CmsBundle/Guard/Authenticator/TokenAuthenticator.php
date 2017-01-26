@@ -200,7 +200,7 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
         if (!$url) {
             $url = $this
                 ->router
-                ->generate('bluebear.cms.dashboard');
+                ->generate('cms.dashboard');
         }
 
         return new RedirectResponse($url);

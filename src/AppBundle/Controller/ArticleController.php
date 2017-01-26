@@ -11,6 +11,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Display an article or a list of filtered articles.
@@ -31,6 +32,10 @@ class ArticleController extends Controller
         $article = $this
             ->get('bluebear.cms.article_finder')
             ->findOne($filter);
+    
+        if (null === $article) {
+            throw new NotFoundHttpException('Article not found');
+        }
         $comment = new Comment();
         $comment->setArticle($article);
         $commentForm = $this->createForm(AddCommentType::class, $comment);

@@ -15,7 +15,7 @@ class GuardController extends Controller
 
         // already authenticated
         if ($user instanceof UserInterface) {
-            return $this->redirectToRoute('bluebear.cms.dashboard');
+            return $this->redirectToRoute('cms.dashboard');
         }
         $exception = $this
             ->get('security.authentication_utils')

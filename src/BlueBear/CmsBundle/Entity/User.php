@@ -157,6 +157,20 @@ class User implements UserInterface
      * @ORM\JoinColumn(nullable=true)
      */
     protected $articles;
+    
+    /**
+     * @var DateTime
+     *
+     * @ORM\Column(name="comment_last_view_date", type="datetime", nullable=true)
+     */
+    protected $commentLastViewDate;
+    
+    /**
+     * @var DateTime
+     *
+     * @ORM\Column(name="article_last_view_date", type="datetime", nullable=true)
+     */
+    protected $articleLastViewDate;
 
     /**
      * @return mixed
@@ -532,5 +546,37 @@ class User implements UserInterface
     public function setPassword($password)
     {
         $this->password = $password;
+    }
+    
+    /**
+     * @return DateTime
+     */
+    public function getCommentLastViewDate()
+    {
+        return $this->commentLastViewDate;
+    }
+    
+    /**
+     * @param DateTime $commentLastViewDate
+     */
+    public function setCommentLastViewDate($commentLastViewDate)
+    {
+        $this->commentLastViewDate = $commentLastViewDate;
+    }
+    
+    /**
+     * @return DateTime
+     */
+    public function getArticleLastViewDate()
+    {
+        return $this->articleLastViewDate;
+    }
+    
+    /**
+     * @param DateTime $articleLastViewDate
+     */
+    public function setArticleLastViewDate($articleLastViewDate)
+    {
+        $this->articleLastViewDate = $articleLastViewDate;
     }
 }

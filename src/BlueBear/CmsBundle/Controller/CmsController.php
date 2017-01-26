@@ -2,7 +2,6 @@
 
 namespace BlueBear\CmsBundle\Controller;
 
-use DateTime;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -21,26 +20,6 @@ class CmsController extends Controller
 
         return [
             'categories' => $categories,
-        ];
-    }
-
-    /**
-     * @Template("@BlueBearCms/Dashboard/dashboard.html.twig")
-     */
-    public function dashboardAction()
-    {
-        $lastLogin = $this->getUser()->getLastLogin();
-
-        if (!$lastLogin) {
-            $lastLogin = new DateTime();
-        }
-
-        $dashboard = $this
-            ->get('bluebear.cms.dashboard_factory')
-            ->create($lastLogin);
-
-        return [
-            'dashboard' => $dashboard,
         ];
     }
 }
