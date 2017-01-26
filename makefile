@@ -38,7 +38,6 @@ run:
 tests:
 	$(sf) doctrine:schema:drop --env=test --force
 	$(sf) doctrine:schema:create --env=test
-	$(sf) doctrine:migrations:migrate --env=test -n
 	$(sf) doctrine:fixtures:load --env=test -n
 	bin/phpunit -c app
 
