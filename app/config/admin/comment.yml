@@ -13,6 +13,8 @@ lag_admin:
                         _actions: ~
                     # Comments creations through backoffice is not allowed
                     menus: false
+                    order:
+                        updatedAt: desc
                 create: ~
                 edit: ~
                 delete: ~
