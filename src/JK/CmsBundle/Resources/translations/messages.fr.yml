@@ -1,6 +1,8 @@
 cms:
     main:
         cancel: Annuler
+    dashboard:
+        title: Dashboard
     page:
         edit:
             form_title: Edition d'une page
@@ -114,7 +116,10 @@ cms:
         list: Medias
         edit: Edition du média
         create: Ajouter un média
-        saved: Le média a été correctement sauvegardée
+        saved: Le média a été sauvegardée
+        delete: Supprimer
+        deleted: Le média a été supprimé
+
         filename: Nom du fichier
         extension: Extension du fichier
         size: Taille du fichier
@@ -128,7 +133,7 @@ cms:
         create: Importez vos données
     gallery:
       add_gallery: Ajouter une galerie d'image
-      upload_media: Uploader une média
+      upload_media: Uploader un média
 
 logout: Déconnexion
 login: Connexion
