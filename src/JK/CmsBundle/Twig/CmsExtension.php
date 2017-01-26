@@ -6,13 +6,12 @@ use JK\CmsBundle\Assets\AssetsHelper;
 use JK\CmsBundle\Assets\ScriptRegistry;
 use JK\CmsBundle\Entity\MediaInterface;
 use Twig_Extension;
-use Twig_Extension_InitRuntimeInterface;
 use Twig_SimpleFunction;
 
 /**
  * Add helper methods to get media path and directory.
  */
-class CmsExtension extends Twig_Extension implements Twig_Extension_InitRuntimeInterface
+class CmsExtension extends Twig_Extension
 {
     /**
      * @var AssetsHelper
