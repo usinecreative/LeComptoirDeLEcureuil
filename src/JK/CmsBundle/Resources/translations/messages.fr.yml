@@ -110,6 +110,8 @@ cms:
         content: Contenu
         id: '#'
         article: Article
+        createdAt: Créé le
+        updatedAt: Mis à jour le
         _actions: ''
         unsubscribe_success: Vous avez été désinscrit avec succès !
         new_comment_count: Nouveaux commentaires publiés
