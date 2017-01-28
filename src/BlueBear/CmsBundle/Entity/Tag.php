@@ -131,7 +131,29 @@ class Tag
     {
         $this
             ->articles
-            ->add($article);
+            ->add($article)
+        ;
+    }
+    
+    public function removeArticle(Article $article)
+    {
+        $this
+            ->articles
+            ->removeElement($article)
+        ;
+    }
+    
+    /**
+     * @param Article $article
+     *
+     * @return bool
+     */
+    public function hasArticle(Article $article)
+    {
+        return $this
+            ->articles
+            ->contains($article)
+        ;
     }
 
     /**
