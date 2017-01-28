@@ -11,8 +11,11 @@ class ScriptRegistryTest extends AdminTestBase
 {
     public function testRegister()
     {
-        /** @var Twig_Environment|\PHPUnit_Framework_MockObject_MockObject $twig */
-        $twig = $this->getMock(Twig_Environment::class);
+        $twig = $this
+            ->getMockBuilder(Twig_Environment::class)
+            ->disableOriginalConstructor()
+            ->getMock()
+        ;
         $twig
             ->method('render')
             ->willReturnCallback(function ($template, $parameters) {
