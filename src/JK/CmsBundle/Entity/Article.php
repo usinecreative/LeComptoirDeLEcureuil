@@ -11,6 +11,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use JK\CmsBundle\Form\Constraint as Assert;
 
 /**
  * Category.
@@ -20,8 +21,10 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\Table(name="cms_article")
  * @ORM\Entity(repositoryClass="JK\CmsBundle\Repository\ArticleRepository")
  * @ORM\HasLifecycleCallbacks()
+ *
+ * @Assert\Publication()
  */
-class Article
+class Article implements PublicationInterface
 {
     const PUBLICATION_STATUS_DRAFT = 0;
     const PUBLICATION_STATUS_VALIDATION = 1;
@@ -125,7 +128,7 @@ class Article
     /**
      * @var Tag[]|Collection
      *
-     * @ORM\ManyToMany(targetEntity="BlueBear\CmsBundle\Entity\Tag", mappedBy="articles")
+     * @ORM\ManyToMany(targetEntity="BlueBear\CmsBundle\Entity\Tag", mappedBy="articles", cascade={"persist", "remove"})
      */
     protected $tags;
 
@@ -485,15 +488,21 @@ class Article
     }
 
     /**
-     * @param mixed $tags
-     *
-     * @return Article
+     * @param Tag[] $tags
      */
     public function setTags($tags)
     {
+        foreach ($this->tags as $tag) {
+            $tag->removeArticle($this);
+        }
+        
+        foreach ($tags as $tag) {
+    
+            if (!$tag->hasArticle($this)) {
+                $tag->addArticle($this);
+            }
+        }
         $this->tags = $tags;
-
-        return $this;
     }
 
     /**
