@@ -52,8 +52,8 @@
       with_items:
         - { path: 'var/logs', src: "var/logs" }
         - { path: 'web/images', src: "web/images" }
-        - { path: 'uploads', src: "web/uploads" }
-        - { path: 'media_cache', src: "web/media" }
+        - { path: 'web/uploads', src: "web/images" }
+        - { path: 'web/media_cache', src: "web/media" }
 
     - name: Cache warmup
       shell: '{{ deploy_helper.new_release_path }}/bin/console cache:warmup --env=prod'
