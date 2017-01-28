@@ -4,6 +4,7 @@ namespace BlueBear\CmsBundle\Form\Type;
 
 use JK\CmsBundle\Entity\Article;
 use JK\CmsBundle\Form\Type\JQueryUploadType;
+use JK\CmsBundle\Form\Type\TagCollectionEmbedType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -94,6 +95,10 @@ class ArticleType extends AbstractType
                 'attr' => [
                     'data-help' => 'cms.article.isCommentable_help',
                 ],
+            ])
+            ->add('tags', TagCollectionEmbedType::class, [
+                'required' => false,
+                'compound' => false,
             ])
             ->add('createdAt', DateType::class, [
                 'label' => 'cms.article.createdAt',
