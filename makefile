@@ -39,6 +39,8 @@ tests:
 	$(sf) doctrine:schema:drop --env=test --force
 	$(sf) doctrine:schema:create --env=test
 	$(sf) doctrine:fixtures:load --env=test -n
+	make cc
+	$(sf) ca:cl --env=test
 	bin/phpunit -c app
 
 php-cs:
