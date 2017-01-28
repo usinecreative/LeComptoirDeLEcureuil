@@ -16,16 +16,6 @@ services:
         tags:
             - {name: form.type}
 
-    cms.media.media_upload_transformer:
-        class: JK\CmsBundle\Form\Transformer\MediaUploadTransformer
-        arguments:
-            - '@cms.media.media_repository'
-
-    cms.media.media_transformer:
-        class: JK\CmsBundle\Form\Transformer\MediaTransformer
-        arguments:
-            - '@cms.assets.helper'
-
     # Comment
     cms.comment.recaptcha_validator:
         class: JK\CmsBundle\Form\Validator\RecaptchaValidator
@@ -46,6 +36,13 @@ services:
         class: JK\CmsBundle\Form\Type\RecaptchaType
         arguments:
             - '%google_recaptcha_site_key%'
+        tags:
+            - {name: form.type}
+
+    cms.tag.embed_collection_type:
+        class: JK\CmsBundle\Form\Type\TagCollectionEmbedType
+        arguments:
+            - '@cms.tag.collection_transformer'
         tags:
             - {name: form.type}
 

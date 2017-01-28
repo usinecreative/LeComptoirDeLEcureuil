@@ -15,9 +15,6 @@ use Symfony\Component\DependencyInjection\Loader;
  */
 class JKCmsExtension extends Extension
 {
-    /**
-     * {@inheritdoc}
-     */
     public function load(array $configs, ContainerBuilder $container)
     {
         $configuration = new Configuration();
@@ -26,6 +23,7 @@ class JKCmsExtension extends Extension
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
         $loader->load('forms.yml');
+        $loader->load('transformers.yml');
 
         if (!array_key_exists('assets', $config)) {
             throw new InvalidConfigurationException('"assets" key should be present in configuration');
