@@ -24,6 +24,8 @@ class JKCmsExtension extends Extension
         $loader->load('services.yml');
         $loader->load('forms.yml');
         $loader->load('transformers.yml');
+        $loader->load('modules.yml');
+        $loader->load('repositories.yml');
 
         if (!array_key_exists('assets', $config)) {
             throw new InvalidConfigurationException('"assets" key should be present in configuration');

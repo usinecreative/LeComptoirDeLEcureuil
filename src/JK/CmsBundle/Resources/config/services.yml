@@ -17,12 +17,6 @@ services:
         tags:
             - {name: kernel.event_subscriber}
 
-    cms.media.media_repository:
-        class: JK\CmsBundle\Repository\MediaRepository
-        factory: ["@doctrine", getRepository]
-        arguments:
-            - JK\CmsBundle\Entity\Media
-
     cms.twig.cms_extension:
         class: JK\CmsBundle\Twig\CmsExtension
         autowire: true
@@ -38,12 +32,6 @@ services:
             - '@liip_imagine.cache.manager'
             - '%kernel.root_dir%'
 
-    cms.article.repository:
-        class: JK\CmsBundle\Repository\ArticleRepository
-        factory: ["@doctrine", getRepository]
-        arguments:
-            - JK\CmsBundle\Entity\Article
-
     cms.comment.comment_mailer:
         class: JK\CmsBundle\Mail\CommentMailer
         arguments:
@@ -51,3 +39,9 @@ services:
             - '@jk.cms.comment_repository'
             - '@twig'
             - '%squirrel_mail%'
+
+    cms.module.renderer:
+        class: JK\CmsBundle\Module\ModuleRenderer
+        arguments:
+            - '@twig'
+            - '@cms.module.repository'

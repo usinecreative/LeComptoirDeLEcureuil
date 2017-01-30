@@ -13,3 +13,7 @@ cms.dashboard.go_to_new_comments:
 cms.dashboard:
     path: /admin/dashboard
     defaults: {_controller: JKCmsBundle:Dashboard:dashboard}
+
+cms.module.render:
+    path: /modules/render/{zone}
+    defaults: {_controller: JKCmsBundle:Module:render}
