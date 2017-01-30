@@ -132,6 +132,20 @@ cms:
         category_thumbnail: Miniature d'une Catégorie
         article_thumbnail: Miniature d'un Article
 
+    tag:
+        list: Tags
+        edit: Editer
+        create: Ajouter un tag
+        saved: Le tag a été sauvegardée
+        delete: Supprimer
+        deleted: Le tag a été supprimé
+
+        id: '#'
+        name: Nom
+        createdAt: Créé le
+        updatedAt: Mis à jour le
+        _actions: ''
+
     import:
         list: Imports
         create: Importez vos données
