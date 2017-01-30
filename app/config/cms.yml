@@ -3,6 +3,7 @@ imports:
     - { resource: admin/article.yml }
     - { resource: admin/comment.yml }
     - { resource: admin/media.yml }
+    - { resource: admin/tag.yml }
 
 blue_bear_cms:
     content:
@@ -81,6 +82,9 @@ lag_admin:
                 article:
                     admin: article
                     icon: fa fa-newspaper-o
+                tag:
+                    admin: tag
+                    icon: fa fa-tags
                 media:
                     admin: media
                     icon: fa fa-image
@@ -234,6 +238,10 @@ oneup_uploader:
                 directory: '%kernel.root_dir%/../web/uploads/categories/thumbnails'
 
 liip_imagine:
+    loaders:
+        default:
+            filesystem:
+                data_root: '%liip_imagine_bundle_root%'
     resolvers:
         default:
             web_path: ~
