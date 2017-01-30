@@ -32,7 +32,9 @@ class ArticleRepository extends DoctrineRepository
     }
 
     /**
-     * @param $categorySlug
+     * Find Articles from a given Category slug.
+     *
+     * @param string $categorySlug
      * @param int $count
      *
      * @return mixed
@@ -49,7 +51,8 @@ class ArticleRepository extends DoctrineRepository
             ->setParameter('slug', $categorySlug)
             ->setMaxResults($count)
             ->getQuery()
-            ->getResult();
+            ->getResult()
+        ;
     }
 
     /**
