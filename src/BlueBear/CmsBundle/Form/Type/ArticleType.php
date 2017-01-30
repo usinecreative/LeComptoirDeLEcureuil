@@ -81,6 +81,10 @@ class ArticleType extends AbstractType
                 ],
                 'required' => false,
             ])
+            ->add('tags', TagCollectionEmbedType::class, [
+                'required' => false,
+                'compound' => false,
+            ])
             ->add('author', EntityType::class, [
                 'label' => 'cms.article.author',
                 'attr' => [
@@ -95,10 +99,6 @@ class ArticleType extends AbstractType
                 'attr' => [
                     'data-help' => 'cms.article.isCommentable_help',
                 ],
-            ])
-            ->add('tags', TagCollectionEmbedType::class, [
-                'required' => false,
-                'compound' => false,
             ])
             ->add('createdAt', DateType::class, [
                 'label' => 'cms.article.createdAt',
