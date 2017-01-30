@@ -25,6 +25,15 @@
         path={{ deploy_helper.new_release_path }}/{{ deploy_helper.unfinished_filename }}
         state=touch
 
+    - name: Create folders in the shared folder
+      file:
+        path={{ item }}
+        state=directory
+      with_items:
+        - '{{ deploy_helper.shared_path }}/var/logs'
+        - '{{ deploy_helper.shared_path }}/web/images'
+        - '{{ deploy_helper.shared_path }}/web/media_cache'
+
     - name: Run composer update
       composer:
         command=update
@@ -35,25 +44,21 @@
     - name: Update database schema (using migrations)
       shell: '{{ deploy_helper.new_release_path }}/bin/console doctrine:migrations:migrate --no-interaction'
 
-    - name: Create folders in the shared folder
-      file:
-        path={{ deploy_helper.shared_path }}/{{ item }}
-        state=directory
-      with_items:
-        - 'var/logs'
-        - 'web/images'
-
     - name: Add symlinks from the new release to the shared folder
       file:
-        path='{{ deploy_helper.new_release_path }}/{{ item.path }}'
-        src='{{ deploy_helper.shared_path }}/{{ item.src }}'
+        path='{{ item.path }}'
+        src='{{ item.src }}'
         state=link
         force=yes
       with_items:
-        - { path: 'var/logs', src: "var/logs" }
-        - { path: 'web/images', src: "web/images" }
-        - { path: 'web/uploads', src: "web/images" }
-        - { path: 'web/media_cache', src: "web/media" }
+        - {path: '{{ deploy_helper.new_release_path }}/var/logs', src: "{{ deploy_helper.shared_path }}/var/logs" }
+        - {path: '{{ deploy_helper.new_release_path }}/web/images', src: "{{ deploy_helper.shared_path }}/web/images" }
+        - {path: '{{ deploy_helper.new_release_path }}/web/uploads', src: "{{ deploy_helper.shared_path }}/web/images" }
+        - {path: '{{ deploy_helper.new_release_path }}/web/media_cache', src: "{{ deploy_helper.shared_path }}web/media_cache" }
+        - {path: '{{ deploy_helper.shared_path }}/web/uploads', src: "{{ deploy_helper.shared_path }}web/images" }
+
+    - name: Cache clear
+      shell: '{{ deploy_helper.new_release_path }}/bin/console cache:clear --env=prod'
 
     - name: Cache warmup
       shell: '{{ deploy_helper.new_release_path }}/bin/console cache:warmup --env=prod'
