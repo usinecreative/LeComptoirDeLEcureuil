@@ -1,0 +1,12 @@
+<div class="col-md-12 item">
+    <h2>Brèves de Comptoir</h2>
+    <ol>
+        {% for article in articles %}
+        <li>
+            <a href="{{ path('lecomptoir.article.show', article.urlParameters) }}">
+                {{ article.title }} - {{ article.publicationDate | date('d/m/Y') }}
+            </a>
+        </li>
+        {% endfor %}
+    </ol>
+</div>
