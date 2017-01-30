@@ -54,8 +54,8 @@
         - {path: '{{ deploy_helper.new_release_path }}/var/logs', src: "{{ deploy_helper.shared_path }}/var/logs" }
         - {path: '{{ deploy_helper.new_release_path }}/web/images', src: "{{ deploy_helper.shared_path }}/web/images" }
         - {path: '{{ deploy_helper.new_release_path }}/web/uploads', src: "{{ deploy_helper.shared_path }}/web/images" }
-        - {path: '{{ deploy_helper.new_release_path }}/web/media_cache', src: "{{ deploy_helper.shared_path }}web/media_cache" }
-        - {path: '{{ deploy_helper.shared_path }}/web/uploads', src: "{{ deploy_helper.shared_path }}web/images" }
+        - {path: '{{ deploy_helper.new_release_path }}/web/media_cache', src: "{{ deploy_helper.shared_path }}/web/media_cache" }
+        - {path: '{{ deploy_helper.shared_path }}/web/uploads', src: "{{ deploy_helper.shared_path }}/web/images" }
 
     - name: Cache clear
       shell: '{{ deploy_helper.new_release_path }}/bin/console cache:clear --env=prod'
