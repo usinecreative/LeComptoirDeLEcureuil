@@ -30,4 +30,4 @@ parameters:
     squirrel_mail: ~
     admin_mail: ~
 
-
+    liip_imagine_bundle_root: ~
