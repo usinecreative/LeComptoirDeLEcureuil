@@ -53,8 +53,14 @@ class TagCollectionTransformer implements DataTransformerInterface
      */
     public function reverseTransform($tagsString)
     {
+        if (!$tagsString) {
+            return [];
+        }
+        
         if (!is_string($tagsString)) {
-            throw new TransformationFailedException('Only a string containing Tag names can be reversed');
+            throw new TransformationFailedException(
+                'Only a string containing Tag names can be reversed, '.gettype($tagsString).' given'
+            );
         }
         $names = explode(',', $tagsString);
         $tags = [];
