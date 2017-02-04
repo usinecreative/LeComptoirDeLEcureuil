@@ -13,7 +13,7 @@
     ]
   },
   "require": {
-    "php": ">=5.5 || >=7.0",
+    "php": ">=5.5.9 || >=7.0",
     "symfony/symfony": "~3.0",
     "symfony/swiftmailer-bundle": "~2.3",
     "symfony/assetic-bundle": "~2.7",
@@ -42,7 +42,8 @@
     "tinymce/tinymce": "^4.4",
     "blueimp/jquery-file-upload": "^9.14",
     "liip/imagine-bundle": "^1.6",
-    "google/recaptcha": "^1.1"
+    "google/recaptcha": "^1.1",
+    "friendsofphp/php-cs-fixer": "^2.0"
   },
   "require-dev": {
     "hautelook/alice-bundle": "^1.2",
