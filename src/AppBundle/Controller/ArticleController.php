@@ -137,12 +137,15 @@ class ArticleController extends Controller
         $title = implode(',', $parameters->all());
 
         if ($parameters->has('categorySlug')) {
-            /** @var Category $category */
             $category = $this
                 ->get('jk.cms.category_repository')
                 ->findOneBy([
                     'slug' => $parameters->get('categorySlug'),
                 ]);
+    
+            if (null === $category) {
+                throw new NotFoundHttpException();
+            }
             $title = $category->getName();
         }
 
