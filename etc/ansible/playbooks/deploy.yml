@@ -38,7 +38,7 @@
       composer:
         command=update
         working_dir={{ deploy_helper.new_release_path }}
-        no_dev=no
+        no_dev=false
         optimize_autoloader=yes
 
     - name: Update database schema (using migrations)
@@ -55,7 +55,6 @@
         - {path: '{{ deploy_helper.new_release_path }}/web/images', src: "{{ deploy_helper.shared_path }}/web/images" }
         - {path: '{{ deploy_helper.new_release_path }}/web/uploads', src: "{{ deploy_helper.shared_path }}/web/images" }
         - {path: '{{ deploy_helper.new_release_path }}/web/media_cache', src: "{{ deploy_helper.shared_path }}/web/media_cache" }
-        - {path: '{{ deploy_helper.shared_path }}/web/uploads', src: "{{ deploy_helper.shared_path }}/web/images" }
 
     - name: Cache clear
       shell: '{{ deploy_helper.new_release_path }}/bin/console cache:clear --env=prod'
