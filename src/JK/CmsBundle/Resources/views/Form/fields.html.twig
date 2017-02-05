@@ -3,7 +3,7 @@
         {{ block('form_widget') }}
 
         <div class="media-form-preview">
-            {% if form.vars.data and form.vars.data.id %}
+            {% if form.vars.data and form.vars.data.id and form.vars.data.type is defined %}
                 {% set mediaUrl = cms_media_directory('media_gallery') %}
                 {% set mediaUrl = cms_media_directory(form.vars.data.type) ~ '/' ~ form.vars.data.filename %}
 
