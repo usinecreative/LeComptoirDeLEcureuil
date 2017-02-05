@@ -25,7 +25,7 @@ class ArticleModule implements ModuleInterface
         }
         $articles = $this
             ->articleRepository
-            ->findByCategory($context['categorySlug'])
+            ->findByCategory($context['categorySlug'], 5)
         ;
     
         return $twig->render('@JKCms/Module/article.html.twig', [
