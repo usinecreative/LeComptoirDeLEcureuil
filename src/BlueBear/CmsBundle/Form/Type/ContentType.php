@@ -2,7 +2,6 @@
 
 namespace BlueBear\CmsBundle\Form\Type;
 
-
 use BlueBear\CmsBundle\Entity\Content;
 use BlueBear\CmsBundle\Factory\ContentTypeFactory;
 use Symfony\Component\Form\AbstractType;
@@ -19,7 +18,7 @@ class ContentType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->addEventListener(FormEvents::PRE_SET_DATA, function(FormEvent $event) {
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
             /** @var Content $content */
             $content = $event->getData();
             $fields = $content->getFields();
@@ -27,7 +26,6 @@ class ContentType extends AbstractType
             $fieldsType = $this->contentTypeFactory->getContentType($content->getType())->getFields();
 
             foreach ($fields as $fieldName => $fieldValue) {
-
                 if ($fieldsType[$fieldName]['contribuable']) {
                     $options = array_key_exists('options', $fieldsType[$fieldName]) ? $fieldsType[$fieldName]['options'] : [];
                     $options['property_path'] = null;

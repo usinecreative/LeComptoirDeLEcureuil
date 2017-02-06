@@ -15,8 +15,8 @@ class ImportType extends AbstractType
         $builder
             ->add('type', ChoiceType::class, [
                 'choices' => [
-                    'bluebear.cms.import.wordpress' => Import::IMPORT_TYPE_WORDPRESS
-                ]
+                    'bluebear.cms.import.wordpress' => Import::IMPORT_TYPE_WORDPRESS,
+                ],
             ])
             ->add('file', FileType::class, [
             ]);

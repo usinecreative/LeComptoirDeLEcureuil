@@ -5,12 +5,12 @@ namespace BlueBear\CmsBundle\Entity\Behavior;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Define the behavior of having an array of string tag
+ * Define the behavior of having an array of string tag.
  */
 trait Taggable
 {
     /**
-     * Tags array
+     * Tags array.
      *
      * @var string[]
      * @ORM\Column(name="tags", type="array")
@@ -18,9 +18,10 @@ trait Taggable
     protected $tags = [];
 
     /**
-     * Define tags
+     * Define tags.
      *
      * @param string[] $tags
+     *
      * @return Taggable
      */
     public function setTags($tags)
@@ -31,7 +32,7 @@ trait Taggable
     }
 
     /**
-     * Return tags
+     * Return tags.
      *
      * @return string[]
      */

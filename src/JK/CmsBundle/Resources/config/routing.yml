@@ -1,0 +1,19 @@
+cms.media.gallery.modal:
+    path: /media/gallery/modal
+    defaults: {_controller: JKCmsBundle:Media:modalGallery}
+
+cms.media.gallery.content:
+    path: /media/gallery/content
+    defaults: {_controller: JKCmsBundle:Media:galleryContent}
+
+cms.dashboard.go_to_new_comments:
+    path: /dashboard/new-comments
+    defaults: {_controller: JKCmsBundle:Dashboard:goToNewComments}
+
+cms.dashboard:
+    path: /admin/dashboard
+    defaults: {_controller: JKCmsBundle:Dashboard:dashboard}
+
+cms.module.render:
+    path: /modules/render/{zone}
+    defaults: {_controller: JKCmsBundle:Module:render}

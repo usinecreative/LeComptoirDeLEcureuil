@@ -1,4 +1,4 @@
-BlueBear\CmsBundle\Entity\Article:
+JK\CmsBundle\Entity\Article:
     articles{1..100}:
         title: <realText(20, 2)>
         canonical (unique): <url()>
@@ -9,3 +9,5 @@ BlueBear\CmsBundle\Entity\Article:
         author: '@user*'
         isCommentable: true
         slug (unique): <slug()>
+        createdAt: <dateTime()>
+        updatedAt: <dateTime()>

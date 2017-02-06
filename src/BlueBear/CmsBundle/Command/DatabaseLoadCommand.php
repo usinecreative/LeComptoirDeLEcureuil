@@ -35,13 +35,13 @@ class DatabaseLoadCommand extends Command implements ContainerAwareInterface
     {
         $this
             ->setName('dizda:backup:load')
-            ->setDescription('Load a backup made by dizda cloudbackup bundle')
-        ;
+            ->setDescription('Load a backup made by dizda cloudbackup bundle');
     }
 
     /**
-     * @param InputInterface $input
+     * @param InputInterface  $input
      * @param OutputInterface $output
+     *
      * @return int|null|void
      */
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -55,10 +55,9 @@ class DatabaseLoadCommand extends Command implements ContainerAwareInterface
             ->name('*.7z')
             ->files()
             ->in($rootPath)
-            ->sort(function(SplFileInfo $file1, SplFileInfo $file2) {
+            ->sort(function (SplFileInfo $file1, SplFileInfo $file2) {
                 return $file1->getATime() < $file2->getATime();
-            })
-        ;
+            });
         // find last dump
         $lastModifiedArchive = null;
 
@@ -73,16 +72,15 @@ class DatabaseLoadCommand extends Command implements ContainerAwareInterface
         $command = sprintf(
             $zipExtractCommand,
             $lastModifiedArchive->getRealPath(),
-            $this->container->getParameter('kernel.cache_dir') . '/mysql'
+            $this->container->getParameter('kernel.cache_dir').'/mysql'
         );
-        $output->writeln('Executing : ' . $command);
+        $output->writeln('Executing : '.$command);
         exec($command, $outputArray);
         $output->writeln($outputArray);
 
-
         $finder = new Finder();
         $finder
-            ->in($this->container->getParameter('kernel.cache_dir') . '/mysql')
+            ->in($this->container->getParameter('kernel.cache_dir').'/mysql')
             ->files()
             ->name('*.sql');
 
@@ -103,12 +101,12 @@ class DatabaseLoadCommand extends Command implements ContainerAwareInterface
                 '**********',
                 $mysqlImportCommand
             );
-            $output->writeln('Executing : ' . $mysqlImportCommand);
+            $output->writeln('Executing : '.$mysqlImportCommand);
             exec($mysqlImportCommand, $outputArray);
             $output->writeln($outputArray);
         }
         $output->writeln('Removing extracted sql dump file');
         $fileSystem = new Filesystem();
-        $fileSystem->remove($this->container->getParameter('kernel.cache_dir') . '/mysql');
+        $fileSystem->remove($this->container->getParameter('kernel.cache_dir').'/mysql');
     }
 }

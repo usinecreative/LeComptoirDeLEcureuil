@@ -3,7 +3,7 @@ jk_assets:
     register_assets: true
     filters:
         compass:
-            bin: /usr/local/bin/compass
+            bin: compass
         merge: ~
         minify: ~
         copy: ~
@@ -40,35 +40,24 @@ jk_assets:
             destinations:
                 - src/BlueBear/CmsBundle/Resources/public/css/cms.css
 
-#        tinymce:
-#            filters:
-#                - copy
-#            sources:
-#                - vendor/tinymce/tinymce/*.js
-#                - vendor/tinymce/tinymce/themes/*
-#                - vendor/tinymce/tinymce/skins/*
-#            destinations:
-#                - web/js/tinymce/
+        cms.js:
+            filters:
+                - merge
+                - minify
+            sources:
+                - src/JK/CmsBundle/Resources/assets/js/jquery.iframe-transport.js
+                - src/JK/CmsBundle/Resources/assets/js/cms/fileupload.js
+                - vendor/blueimp/jquery-file-upload/js/jquery.fileupload.js
+            destinations:
+                - src/JK/CmsBundle/Resources/public/js/cms.js
 
-
-#        bootstrap:
-#            filters:
-#                - copy
-#            sources:
-#                # bootstrap
-#                - vendor/components/bootstrap/css/bootstrap.min.css
-#                - vendor/components/bootstrap/css/bootstrap-theme.min.css
-#                - vendor/components/bootstrap/js/bootstrap.min.js
-#                - vendor/components/bootstrap/fonts/*
-#                # font-awesome
-#                - vendor/components/font-awesome/css/font-awesome.min.css
-#                - vendor/components/font-awesome/fonts/*
-#            destinations:
-#                # bootstrap
-#                - web/css/bootstrap.min.css
-#                - web/css/bootstrap-theme.min.css
-#                - web/js/bootstrap.min.js
-#                - web/fonts/
-#                # font-awesome
-#                - web/css/font-awesome.min.css
-#                - web/fonts/
+        tinymce.css:
+            filters:
+                - compass
+                - merge
+                - minify
+            sources:
+                - src/JK/CmsBundle/Resources/assets/sass/tinymce.scss
+                - web/css/main.css
+            destinations:
+                - src/JK/CmsBundle/Resources/public/css/tinymce.css

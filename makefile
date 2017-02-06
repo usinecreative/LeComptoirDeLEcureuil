@@ -3,7 +3,6 @@ assets_dir=./app/Resources/assets
 web_dir=web
 copy=rsync
 
-
 all: install
 
 install:
@@ -11,7 +10,6 @@ install:
 	make assets
 	make cc
 	make install-ansible
-
 
 install-ansible:
 	sudo apt-get install python python-pip
@@ -25,21 +23,25 @@ cc:
 	rm -rf var/cache/*
 	$(sf) doctrine:cache:clear-metadata
 
+deploy-production:
+	ansible-playbook etc/ansible/playbooks/deploy.yml -i etc/ansible/hosts/hosts
 
-deploy:
-	ansible-playbook etc/ansible/playbooks/deploy.yml
-
-
+deploy-staging:
+	ansible-playbook etc/ansible/playbooks/deploy.yml -i etc/ansible/hosts/staging_hosts
 
 assets:
 	$(sf) jk:assets:build
 
-watch:
-	@while [ "true" ] ; do \
-		@echo "building symfony assets" ; \
-		make assets ; \
-		sleep 2; \
-	done;
-
 run:
 	$(sf) server:run
+
+tests:
+	$(sf) doctrine:schema:drop --env=test --force
+	$(sf) doctrine:schema:create --env=test
+	$(sf) doctrine:fixtures:load --env=test -n
+	make cc
+	$(sf) ca:cl --env=test
+	bin/phpunit -c app
+
+php-cs:
+	php bin/php-cs-fixer fix src/

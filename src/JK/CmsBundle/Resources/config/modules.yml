@@ -1,0 +1,7 @@
+services:
+    cms.module.article:
+        class: JK\CmsBundle\Module\Article\ArticleModule
+        arguments:
+            - '@cms.article.repository'
+        tags:
+            - {name: 'cms.module'}

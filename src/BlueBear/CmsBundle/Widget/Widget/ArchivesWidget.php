@@ -2,13 +2,12 @@
 
 namespace BlueBear\CmsBundle\Widget\Widget;
 
-
 use BlueBear\CmsBundle\Widget\WidgetInterface;
 
 class ArchivesWidget implements WidgetInterface
 {
     /**
-     * Return the widget name
+     * Return the widget name.
      *
      * @return string
      */
@@ -19,6 +18,5 @@ class ArchivesWidget implements WidgetInterface
 
     public function render(array $options = [])
     {
-
     }
 }

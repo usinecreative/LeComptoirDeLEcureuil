@@ -10,9 +10,13 @@ lag_admin:
                         id: ~
                         content: {type: string, options: {length: 150}}
                         article: ~
+                        createdAt: {type: date, options: {format: 'd/m/Y à h:i'}}
+                        updatedAt: {type: date, options: {format: 'd/m/Y à h:i'}}
                         _actions: ~
                     # Comments creations through backoffice is not allowed
                     menus: false
+                    order:
+                        updatedAt: desc
                 create: ~
                 edit: ~
                 delete: ~

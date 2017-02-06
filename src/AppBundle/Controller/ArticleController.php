@@ -2,17 +2,18 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Form\Type\CommentType;
-use BlueBear\CmsBundle\Entity\Article;
-use BlueBear\CmsBundle\Entity\Category;
+use BlueBear\CmsBundle\Entity\Comment;
+use JK\CmsBundle\Form\Type\AddCommentType;
+use JK\CmsBundle\Entity\Article;
 use BlueBear\CmsBundle\Finder\Filter\ArticleFilter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
- * Display an article or a list of filtered articles
+ * Display an article or a list of filtered articles.
  */
 class ArticleController extends Controller
 {
@@ -30,27 +31,38 @@ class ArticleController extends Controller
         $article = $this
             ->get('bluebear.cms.article_finder')
             ->findOne($filter);
-
-        $commentForm = $this->createForm(CommentType::class, [
-            'article' => $article
-        ], [
-            'articleRepository' => $this->get('jk.cms.article_repository')
-        ]);
+    
+        if (null === $article) {
+            throw new NotFoundHttpException('Article not found');
+        }
+        $comment = new Comment();
+        $comment->setArticle($article);
+        $commentForm = $this->createForm(AddCommentType::class, $comment);
         $commentForm->handleRequest($request);
 
         if ($commentForm->isValid()) {
+            // save the new Comment
             $this
-                ->get('app_comment_form_handler')
-                ->handle($commentForm, $request);
+                ->get('jk.cms.comment_repository')
+                ->save($comment);
 
-            $url = $this->generateUrl('lecomptoir.article.show', $article->getUrlParameters()).'#category-link';
+            // notify older Comments authors
+            $this
+                ->get('cms.comment.comment_mailer')
+                ->sendNewCommentMail($comment);
+
+            // redirect to the new Comment
+            $url = $this->generateUrl(
+                'lecomptoir.article.show',
+                    $article->getUrlParameters()
+                ).'#comment-'.$comment->getId();
 
             return $this->redirect($url);
         }
 
         return [
             'article' => $article,
-            'commentForm' => $commentForm->createView()
+            'commentForm' => $commentForm->createView(),
         ];
     }
 
@@ -58,6 +70,7 @@ class ArticleController extends Controller
      * @Template(":Article:filter.html.twig")
      *
      * @param Request $request
+     *
      * @return array
      */
     public function filterAction(Request $request)
@@ -73,7 +86,7 @@ class ArticleController extends Controller
             'pager' => $pager,
             'filter' => $filter,
             // title is dynamic in filter action
-            'title' => $this->getFilterTitle($filter)
+            'title' => $this->getFilterTitle($filter),
         ];
     }
 
@@ -89,8 +102,27 @@ class ArticleController extends Controller
         $this->denyAccessUnlessGranted('ROLE_USER');
 
         return [
-            'article' => $article
+            'article' => $article,
         ];
+    }
+
+    /**
+     * Remove subscriptions for an User and an Article.
+     *
+     * @param string $slug
+     * @param string $email
+     *
+     * @return RedirectResponse
+     */
+    public function unsubscribeAction($slug, $email)
+    {
+        $this
+            ->get('jk.cms.comment_repository')
+            ->unsubscribe($slug, $email);
+        $this
+            ->addFlash('success', $this->get('translator')->trans('cms.comment.unsubscribe_success'));
+
+        return $this->redirectToRoute('lecomptoir.homepage');
     }
 
     /**
@@ -104,14 +136,18 @@ class ArticleController extends Controller
         $title = implode(',', $parameters->all());
 
         if ($parameters->has('categorySlug')) {
-            /** @var Category $category */
             $category = $this
                 ->get('jk.cms.category_repository')
                 ->findOneBy([
-                    'slug' => $parameters->get('categorySlug')
+                    'slug' => $parameters->get('categorySlug'),
                 ]);
+    
+            if (null === $category) {
+                throw new NotFoundHttpException();
+            }
             $title = $category->getName();
         }
+
         return $title;
     }
 }

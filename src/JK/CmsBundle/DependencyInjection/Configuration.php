@@ -20,9 +20,21 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('jk_cms');
 
-        // Here you should define the parameters that are allowed to
-        // configure your bundle. See the documentation linked above for
-        // more information on that topic.
+        $rootNode
+            ->children()
+            ->arrayNode('assets')
+                ->children()
+                ->arrayNode('mapping')
+                    ->defaultValue([
+                        'media_gallery' => 'uploads/gallery',
+                        'media_thumbnail' => 'uploads/gallery',
+                        'article_thumbnail' => 'uploads/articles/thumbnails',
+                        'category_thumbnail' => 'uploads/categories/thumbnails',
+                    ])
+                    ->prototype('scalar')
+                ->end()
+            ->end()
+            ->end();
 
         return $treeBuilder;
     }

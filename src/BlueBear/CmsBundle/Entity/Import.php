@@ -5,10 +5,9 @@ namespace BlueBear\CmsBundle\Entity;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Import
+ * Import.
  *
  * Import from various sources
  *
@@ -23,33 +22,34 @@ class Import
     const IMPORT_STATUS_IN_PROGRESS = 'in_progress';
 
     const IMPORT_TYPE_WORDPRESS = 'wordpress';
-    
+
     /**
-     * Entity id
+     * Entity id.
      *
      * @ORM\Id()
      * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(type="integer")
      */
     protected $id;
-    
+
     /**
-     * Entity label
+     * Entity label.
      *
      * @ORM\Column(name="label", type="string")
      */
     protected $label;
-    
+
     /**
-     * Import type (Wordpress...)
+     * Import type (Wordpress...).
      *
      * @ORM\Column(name="type", type="string", length=255)
+     *
      * @var string
      */
     protected $type;
 
     /**
-     * The path to the import data file
+     * The path to the import data file.
      *
      * @ORM\Column(name="file_path", type="string")
      * TODO add an file assertion
@@ -70,26 +70,26 @@ class Import
      * @ORM\Column(name="comments", type="text", nullable=true)
      */
     protected $comments;
-    
+
     /**
      * @var
      */
     protected $file;
-    
+
     /**
      * @var DateTime
      * @ORM\Column(name="created_at", type="datetime")
      */
     protected $createdAt;
-    
+
     /**
      * @var DateTime
      * @ORM\Column(name="updated_at", type="datetime", nullable=true)
      */
     protected $updatedAt;
-    
+
     /**
-     * Return entity id
+     * Return entity id.
      *
      * @return mixed
      */
@@ -97,9 +97,9 @@ class Import
     {
         return $this->id;
     }
-    
+
     /**
-     * Set entity id
+     * Set entity id.
      *
      * @param mixed $id
      */
@@ -107,9 +107,9 @@ class Import
     {
         $this->id = $id;
     }
-    
+
     /**
-     * Return entity label
+     * Return entity label.
      *
      * @return string
      */
@@ -117,9 +117,9 @@ class Import
     {
         return $this->label;
     }
-    
+
     /**
-     * Set entity label
+     * Set entity label.
      *
      * @param string $label
      */
@@ -227,7 +227,7 @@ class Import
     {
         $this->comments = $comments;
     }
-    
+
     /**
      * @ORM\PrePersist()
      */
@@ -237,10 +237,10 @@ class Import
             $this->createdAt = new DateTime();
         }
     }
-    
+
     /**
      * Created at cannot be set. But in some case (like imports...), it is required to set created at. Use this method
-     * in this case
+     * in this case.
      *
      * @param DateTime $createdAt
      */
@@ -248,7 +248,7 @@ class Import
     {
         $this->createdAt = $createdAt;
     }
-    
+
     /**
      * @return DateTime
      */
@@ -256,11 +256,13 @@ class Import
     {
         return $this->createdAt;
     }
-    
+
     /**
      * @ORM\PrePersist()
      * @ORM\PreUpdate()
+     *
      * @param null $value
+     *
      * @return $this
      */
     public function setUpdatedAt($value = null)
@@ -270,9 +272,10 @@ class Import
         } else {
             $this->updatedAt = new DateTime();
         }
+
         return $this;
     }
-    
+
     /**
      * @return DateTime
      */

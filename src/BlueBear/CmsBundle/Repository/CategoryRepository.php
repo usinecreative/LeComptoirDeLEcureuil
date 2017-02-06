@@ -6,12 +6,12 @@ use BlueBear\CmsBundle\Entity\Category;
 use LAG\AdminBundle\Repository\DoctrineRepository;
 
 /**
- * CategoryRepository
+ * CategoryRepository.
  */
 class CategoryRepository extends DoctrineRepository
 {
     /**
-     * Return categories that should be display in homepage. They are indexed by slug
+     * Return categories that should be display in homepage. They are indexed by slug.
      *
      * @return Category[]
      */

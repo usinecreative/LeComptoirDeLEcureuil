@@ -4,10 +4,7 @@ namespace BlueBear\CmsBundle\Manager;
 
 use BlueBear\BaseBundle\Behavior\ManagerTrait;
 use BlueBear\CmsBundle\Entity\Category;
-use BlueBear\CmsBundle\Entity\Content;
 use BlueBear\CmsBundle\Repository\CategoryRepository;
-use Doctrine\ORM\EntityRepository;
-use Exception;
 
 class CategoryManager
 {
@@ -20,12 +17,12 @@ class CategoryManager
             ->createQueryBuilder('category')
             ->where('category.publicationStatus = :published')
             ->setParameters([
-                'published' => Category::PUBLICATION_STATUS_PUBLISHED
+                'published' => Category::PUBLICATION_STATUS_PUBLISHED,
             ]);
     }
 
     /**
-     * Return current manager repository
+     * Return current manager repository.
      *
      * @return CategoryRepository
      */

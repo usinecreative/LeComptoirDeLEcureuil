@@ -4,9 +4,10 @@ namespace BlueBear\CmsBundle\Entity;
 
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+use JK\CmsBundle\Entity\Article;
 
 /**
- * Comment
+ * Comment.
  *
  * Category are articles parents
  *
@@ -17,7 +18,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Comment
 {
     /**
-     * Entity id
+     * Entity id.
      *
      * @ORM\Id()
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -26,7 +27,7 @@ class Comment
     protected $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="BlueBear\CmsBundle\Entity\Article", inversedBy="comments")
+     * @ORM\ManyToOne(targetEntity="JK\CmsBundle\Entity\Article", inversedBy="comments")
      */
     protected $article;
 
@@ -64,19 +65,28 @@ class Comment
      * @ORM\Column(name="metadata", type="array")
      */
     protected $metadata = [];
-    
+
     /**
      * @var DateTime
      * @ORM\Column(name="created_at", type="datetime")
      */
     protected $createdAt;
-    
+
     /**
      * @var DateTime
      * @ORM\Column(name="updated_at", type="datetime", nullable=true)
      */
     protected $updatedAt;
-    
+
+    /**
+     * Indicate if the CMS should notify the Comment's author wants a notification when new Comments are posted.
+     *
+     * @var bool
+     *
+     * @ORM\Column(name="notify_new_comments", type="boolean")
+     */
+    protected $notifyNewComments = false;
+
     /**
      * @ORM\PrePersist()
      */
@@ -86,10 +96,10 @@ class Comment
             $this->createdAt = new DateTime();
         }
     }
-    
+
     /**
      * Created at cannot be set. But in some case (like imports...), it is required to set created at. Use this method
-     * in this case
+     * in this case.
      *
      * @param DateTime $createdAt
      */
@@ -97,7 +107,7 @@ class Comment
     {
         $this->createdAt = $createdAt;
     }
-    
+
     /**
      * @return DateTime
      */
@@ -105,11 +115,13 @@ class Comment
     {
         return $this->createdAt;
     }
-    
+
     /**
      * @ORM\PrePersist()
      * @ORM\PreUpdate()
+     *
      * @param null $value
+     *
      * @return $this
      */
     public function setUpdatedAt($value = null)
@@ -119,9 +131,10 @@ class Comment
         } else {
             $this->updatedAt = new DateTime();
         }
+
         return $this;
     }
-    
+
     /**
      * @return DateTime
      */
@@ -129,9 +142,9 @@ class Comment
     {
         return $this->updatedAt;
     }
-    
+
     /**
-     * Return entity id
+     * Return entity id.
      *
      * @return mixed
      */
@@ -139,9 +152,9 @@ class Comment
     {
         return $this->id;
     }
-    
+
     /**
-     * Set entity id
+     * Set entity id.
      *
      * @param mixed $id
      */
@@ -160,7 +173,7 @@ class Comment
     /**
      * @param Article $article
      */
-    public function setArticle(Article $article)
+    public function setArticle(Article $article = null)
     {
         $this->article = $article;
     }
@@ -230,7 +243,7 @@ class Comment
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function getIsApproved()
     {
@@ -238,7 +251,7 @@ class Comment
     }
 
     /**
-     * @param boolean $isApproved
+     * @param bool $isApproved
      */
     public function setIsApproved($isApproved)
     {
@@ -280,5 +293,29 @@ class Comment
     public function setAuthorUrl($authorUrl)
     {
         $this->authorUrl = $authorUrl;
+    }
+
+    /**
+     * @return bool
+     */
+    public function shouldNotifyNewComments()
+    {
+        return $this->notifyNewComments;
+    }
+
+    /**
+     * @param bool $notifyNewComments
+     */
+    public function setNotifyNewComments($notifyNewComments)
+    {
+        $this->notifyNewComments = $notifyNewComments;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isNotifyNewComments()
+    {
+        return $this->notifyNewComments;
     }
 }

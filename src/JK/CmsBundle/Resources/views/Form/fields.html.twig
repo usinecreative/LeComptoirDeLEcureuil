@@ -1,0 +1,29 @@
+{% block jquery_upload_widget %}
+    <div class="media-form-container">
+        {{ block('form_widget') }}
+
+        <div class="media-form-preview">
+            {% if form.vars.data and form.vars.data.id and form.vars.data.type is defined %}
+                {% set mediaUrl = cms_media_directory('media_gallery') %}
+                {% set mediaUrl = cms_media_directory(form.vars.data.type) ~ '/' ~ form.vars.data.filename %}
+
+                <img src="{{ mediaUrl | imagine_filter('media_gallery') }}" class="media-target"/>
+                <br />
+                <a href="#" class="remove-media" data-target="{{ form.vars.mediaIdClass }}">
+                    <i class="fa fa-remove"></i>
+                    Remove Media
+                </a>
+            {% else %}
+                <img src="" class="media-target"/>
+                <a href="#" class="remove-media hide" data-target="{{ form.vars.mediaIdClass }}">
+                    <i class="fa fa-remove"></i>
+                    Remove Media
+                </a>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block recaptcha_widget %}
+    <div class="g-recaptcha" data-sitekey="{{ site_key }}"></div>
+{% endblock %}

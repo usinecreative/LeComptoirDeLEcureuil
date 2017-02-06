@@ -4,11 +4,13 @@ namespace BlueBear\CmsBundle\Entity;
 
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use JK\CmsBundle\Entity\Article;
 
 /**
- * Tag
+ * Tag.
  *
  * Article tags
  *
@@ -19,7 +21,9 @@ use Gedmo\Mapping\Annotation as Gedmo;
 class Tag
 {
     /**
-     * Entity id
+     * Entity id.
+     *
+     * @var int
      *
      * @ORM\Id()
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -28,34 +32,42 @@ class Tag
     protected $id;
 
     /**
+     * @var string
+     *
      * @ORM\Column(name="name", type="string", length=255)
      */
     protected $name;
 
     /**
+     * @var string
+     *
      * @Gedmo\Slug(fields={"name"})
      * @ORM\Column(name="slug", type="string", length=255)
      */
     protected $slug;
 
     /**
-     * @ORM\ManyToMany(targetEntity="BlueBear\CmsBundle\Entity\Article", inversedBy="tags")
+     * @var Article[]|Collection
+     *
+     * @ORM\ManyToMany(targetEntity="JK\CmsBundle\Entity\Article", inversedBy="tags")
      * @ORM\JoinTable(name="cms_tag_article")
      */
     protected $articles;
-    
+
     /**
      * @var DateTime
+     *
      * @ORM\Column(name="created_at", type="datetime")
      */
     protected $createdAt;
-    
+
     /**
      * @var DateTime
+     *
      * @ORM\Column(name="updated_at", type="datetime", nullable=true)
      */
     protected $updatedAt;
-    
+
     /**
      * Tag constructor.
      */
@@ -65,7 +77,7 @@ class Tag
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getName()
     {
@@ -73,17 +85,15 @@ class Tag
     }
 
     /**
-     * @param mixed $name
-     * @return Tag
+     * @param string $name
      */
     public function setName($name)
     {
         $this->name = $name;
-        return $this;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getSlug()
     {
@@ -91,58 +101,81 @@ class Tag
     }
 
     /**
-     * @param mixed $slug
-     * @return Tag
+     * @param string $slug
      */
     public function setSlug($slug)
     {
         $this->slug = $slug;
-        return $this;
     }
 
     /**
-     * @param mixed $articles
-     * @return Tag
+     * @param Article[] $articles
      */
     public function setArticles($articles)
     {
         $this->articles = $articles;
-        return $this;
     }
 
     /**
-     * @return mixed
+     * @return Article[]|Collection
      */
     public function getArticles()
     {
         return $this->articles;
     }
 
+    /**
+     * @param Article $article
+     */
     public function addArticle(Article $article)
     {
-        $this->articles->add($article);
+        $this
+            ->articles
+            ->add($article)
+        ;
+    }
+    
+    public function removeArticle(Article $article)
+    {
+        $this
+            ->articles
+            ->removeElement($article)
+        ;
     }
     
     /**
-     * Return entity id
+     * @param Article $article
      *
-     * @return mixed
+     * @return bool
+     */
+    public function hasArticle(Article $article)
+    {
+        return $this
+            ->articles
+            ->contains($article)
+        ;
+    }
+
+    /**
+     * Return entity id.
+     *
+     * @return string
      */
     public function getId()
     {
         return $this->id;
     }
-    
+
     /**
-     * Set entity id
+     * Set entity id.
      *
-     * @param mixed $id
+     * @param int $id
      */
     public function setId($id)
     {
         $this->id = $id;
     }
-    
+
     /**
      * @ORM\PrePersist()
      */
@@ -152,10 +185,10 @@ class Tag
             $this->createdAt = new DateTime();
         }
     }
-    
+
     /**
      * Created at cannot be set. But in some case (like imports...), it is required to set created at. Use this method
-     * in this case
+     * in this case.
      *
      * @param DateTime $createdAt
      */
@@ -163,7 +196,7 @@ class Tag
     {
         $this->createdAt = $createdAt;
     }
-    
+
     /**
      * @return DateTime
      */
@@ -171,11 +204,13 @@ class Tag
     {
         return $this->createdAt;
     }
-    
+
     /**
      * @ORM\PrePersist()
      * @ORM\PreUpdate()
-     * @param null $value
+     *
+     * @param string $value
+     *
      * @return $this
      */
     public function setUpdatedAt($value = null)
@@ -185,9 +220,10 @@ class Tag
         } else {
             $this->updatedAt = new DateTime();
         }
+
         return $this;
     }
-    
+
     /**
      * @return DateTime
      */

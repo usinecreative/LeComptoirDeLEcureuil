@@ -16,7 +16,7 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
-            
+
             // BlueBear
             new LAG\AdminBundle\LAGAdminBundle(),
             new BlueBear\CmsBundle\BlueBearCmsBundle(),
@@ -40,7 +40,8 @@ class AppKernel extends Kernel
             new JK\SamBundle\JKSamBundle(),
             new JK\CmsBundle\JKCmsBundle(),
 
-            new Vich\UploaderBundle\VichUploaderBundle()
+            new Liip\ImagineBundle\LiipImagineBundle(),
+            new Oneup\UploaderBundle\OneupUploaderBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'])) {

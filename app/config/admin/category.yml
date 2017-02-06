@@ -39,14 +39,14 @@ lag_admin:
                                     type: action
                                     options:
                                         title: cms.menu.edit
-                                        route: cms.article.edit
+                                        route: cms.category.edit
                                         parameters: {id: ~}
                                         icon: pencil
                                 _delete:
                                     type: action
                                     options:
                                         title: cms.menu.delete
-                                        route: cms.article.delete
+                                        route: cms.category.delete
                                         parameters: {id: ~}
                                         icon: remove
                     order:

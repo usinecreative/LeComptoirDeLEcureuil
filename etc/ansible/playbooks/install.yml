@@ -47,26 +47,41 @@
                    name='github.com'
                    key="{{ lookup('pipe', 'ssh-keyscan -t rsa github.com') }}"
 
+    - name: Create apache basic authentication file if required
+      htpasswd:
+        path: /etc/apache/htpwd/lecomptoir.htpasswd
+        name: '{{ server_basic_auth_user }}'
+        password: '{{ server_basic_auth_password }}'
+        owner: root
+        group: www-data
+        mode: 0640
+      when: '{{ server_basic_auth_user is defined }} and {{ server_basic_auth_password is defined}}'
+
+
     ###################
     # Oh My Zsh
     ###################
-    - name: Clone oh-my-zsh repo
-      git: 'repo=https://github.com/robbyrussell/oh-my-zsh.git dest=/home/{{ user }}/.oh-my-zsh'
 
-    - name: Create conf folder in home directory
-      file: path=/home/{{ user }}/conf/ state=directory owner={{ user }}
-
-    - name: Deploy .zshrc
-      template: src=../templates/.zshrc.j2 dest=/home/{{ user }}/conf/zshrc owner={{ user }}
-
-    - name: Remove standard zshrc
-      file: path=/home/{{ user }}/.zshrc state=absent
-
-    - name: Symlink zshrc
-      file: path=/home/{{ user }}/.zshrc src=/home/{{ user }}/conf/zshrc state=link owner={{ user }}
-
-    - name: Set zsh as default shell
-      user: name={{ user }} shell=/bin/zsh
+#    - stat: path=/home/{{ user }}/.oh-my-zsh/.git/index.lock
+#      register: zshlock
+#
+#    - name: Clone oh-my-zsh repo
+#      git: 'repo=https://github.com/robbyrussell/oh-my-zsh.git dest=/home/{{ user }}/.oh-my-zsh'
+#
+#    - name: Create conf folder in home directory
+#      file: path=/home/{{ user }}/conf/ state=directory owner={{ user }}
+#
+#    - name: Deploy .zshrc
+#      template: src=../templates/.zshrc.j2 dest=/home/{{ user }}/conf/zshrc owner={{ user }}
+#
+#    - name: Remove standard zshrc
+#      file: path=/home/{{ user }}/.zshrc state=absent
+#
+#    - name: Symlink zshrc
+#      file: path=/home/{{ user }}/.zshrc src=/home/{{ user }}/conf/zshrc state=link owner={{ user }}
+#
+#    - name: Set zsh as default shell
+#      user: name={{ user }} shell=/bin/zsh
 
   ###################
   # Handlers

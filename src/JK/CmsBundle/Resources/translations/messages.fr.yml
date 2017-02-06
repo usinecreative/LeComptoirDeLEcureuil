@@ -1,4 +1,8 @@
 cms:
+    main:
+        cancel: Annuler
+    dashboard:
+        title: Dashboard
     page:
         edit:
             form_title: Edition d'une page
@@ -93,6 +97,11 @@ cms:
         edit: Editer
         delete: Supprimer
         batch.delete: Supprimer
+        name_help: Nom de la catégorie. Ce nom sera affiché aux lecteurs du site
+        slug_help: Slug unique de la catégorie. Ne doit pas contenir d'espaces ou de majuscules
+        description_help: Description de la catégorie
+        display_in_homepage_help: Si la case est coché, la catégorie sera affiché sur la page d'accueil
+        updated_at_help: Date de la dernière modification de la catégorie
     comment:
         create: Ajouter un commentaire
         list: Commentaires
@@ -101,17 +110,51 @@ cms:
         content: Contenu
         id: '#'
         article: Article
+        createdAt: Créé le
+        updatedAt: Mis à jour le
         _actions: ''
+        unsubscribe_success: Vous avez été désinscrit avec succès !
+        new_comment_count: Nouveaux commentaires publiés
+        see_new_comment: Voir les nouveaux commentaires
     media:
         list: Medias
+        edit: Edition du média
+        create: Ajouter un média
+        saved: Le média a été sauvegardée
+        delete: Supprimer
+        deleted: Le média a été supprimé
+
+        filename: Nom du fichier
+        extension: Extension du fichier
+        size: Taille du fichier
+        type: Type du média
+        type_help: Le type du média va changer le répertoire où est stockée l'image
+        category_thumbnail: Miniature d'une Catégorie
+        article_thumbnail: Miniature d'un Article
+
+    tag:
+        list: Tags
+        edit: Editer
+        create: Ajouter un tag
+        saved: Le tag a été sauvegardée
+        delete: Supprimer
+        deleted: Le tag a été supprimé
+
+        id: '#'
+        name: Nom
+        createdAt: Créé le
+        updatedAt: Mis à jour le
+        _actions: ''
 
     import:
         list: Imports
         create: Importez vos données
+    gallery:
+      add_gallery: Ajouter une galerie d'image
+      upload_media: Uploader un média
 
 logout: Déconnexion
 login: Connexion
-
 
 lag.cms.publication.draft: Brouillon
 lag.cms.publication.validation: En attente de validation

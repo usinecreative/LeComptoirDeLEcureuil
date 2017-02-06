@@ -12,7 +12,7 @@ services:
         arguments:
             - '%kernel.cache_dir%'
             - '@router'
-            - '@jk.cms.article_repository'
+            - '@cms.article.repository'
             - '@twig'
 
     app_comment_form_handler:

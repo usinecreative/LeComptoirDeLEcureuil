@@ -7,6 +7,7 @@ parameters:
     database_name: {{ database_name }}
     database_user: {{ database_name }}
     database_password: {{ mysql_remote_password }}
+    database_backup_path: null
 
     mailer_transport: smtp
     mailer_host: smtp.gmail.com
@@ -18,15 +19,16 @@ parameters:
 
     secret: ThisIsASecretTokenForColibriWebsite
 
-    use_assetic_controller: false
     debug_toolbar: true
     debug_redirects: false
 
-    new_relic_api_key: null
-    new_relic_license_key: null
-
-    default_mail: afrezet@larriereguichet.com
     google_analytics_id: {{ google_analytics_id }}
+    google_recaptcha_secret: {{ google_recaptcha_secret }}
+    google_recaptcha_site_key: {{ google_recaptcha_site_key }}
 
     squirrel_mail: {{ squirrel_mail }}
     admin_mail: {{ admin_mail }}
+
+    liip_imagine_bundle_root:
+        - {{ liip_imagine_bundle_root[0] }}
+        - {{ liip_imagine_bundle_root[1] }}

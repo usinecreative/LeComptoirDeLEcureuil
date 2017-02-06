@@ -1,0 +1,41 @@
+.media-list {
+  a.selected img {
+    opacity: 0.25;
+  }
+
+  li.media {
+    float: left;
+    height: 130px;
+    margin-top: 20px;
+    padding: 0 20px;
+    text-align: center;
+    width: 33%;
+
+    img {
+      height: 100px;
+    }
+  }
+  &.large li.media {
+    width: 144px;
+  }
+}
+.media-information {
+  padding: 20px;
+  text-align: center;
+
+  table {
+    text-align: left;
+
+    th, td {
+      padding: 5px 20px;
+    }
+    th {
+      width: 200px;
+    }
+  }
+  img {
+    margin: 20px 0;
+  }
+
+
+}

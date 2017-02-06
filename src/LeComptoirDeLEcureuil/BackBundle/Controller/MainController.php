@@ -22,7 +22,7 @@ class MainController extends Controller
         return [
             'contentTypes' => $contentTypes,
             'addUserRoute' => $userAdmin->generateRouteName('create'),
-            'listUserRoute' => $userAdmin->generateRouteName('list')
+            'listUserRoute' => $userAdmin->generateRouteName('list'),
         ];
     }
 

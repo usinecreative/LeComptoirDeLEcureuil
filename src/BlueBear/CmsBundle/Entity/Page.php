@@ -14,14 +14,14 @@ use Gedmo\Mapping\Annotation as Gedmo;
 class Page
 {
     /**
-     * Entity id
+     * Entity id.
      *
      * @ORM\Id()
      * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(type="integer")
      */
     protected $id;
-    
+
     /**
      * @Gedmo\Slug(fields={"title"})
      * @ORM\Column(name="slug", type="string", length=255)
@@ -30,30 +30,34 @@ class Page
 
     /**
      * @ORM\Column(name="content", type="text", nullable=true)
+     *
      * @var string
      */
     protected $content;
 
     /**
-     * Article title
+     * Article title.
      *
      * @ORM\Column(name="title", type="string", length=255)
+     *
      * @var string
      */
     protected $title;
 
     /**
-     * Article current status for publication (draft, published...)
+     * Article current status for publication (draft, published...).
      *
      * @ORM\Column(name="publication_status", type="smallint")
+     *
      * @var int
      */
     protected $publicationStatus;
 
     /**
-     * Article publication date
+     * Article publication date.
      *
      * @ORM\Column(name="publication_date", type="datetime", nullable=true)
+     *
      * @var DateTime
      */
     protected $publicationDate;
@@ -62,15 +66,15 @@ class Page
      * @ORM\Column(name="created_at", type="datetime")
      */
     protected $createdAt;
-    
+
     /**
      * @var DateTime
      * @ORM\Column(name="updated_at", type="datetime", nullable=true)
      */
     protected $updatedAt;
-    
+
     /**
-     * Return entity id
+     * Return entity id.
      *
      * @return mixed
      */
@@ -78,9 +82,9 @@ class Page
     {
         return $this->id;
     }
-    
+
     /**
-     * Set entity id
+     * Set entity id.
      *
      * @param mixed $id
      */
@@ -88,7 +92,7 @@ class Page
     {
         $this->id = $id;
     }
-    
+
     /**
      * @return string
      */
@@ -168,7 +172,7 @@ class Page
     {
         $this->publicationDate = $publicationDate;
     }
-    
+
     /**
      * @ORM\PrePersist()
      */
@@ -178,10 +182,10 @@ class Page
             $this->createdAt = new DateTime();
         }
     }
-    
+
     /**
      * Created at cannot be set. But in some case (like imports...), it is required to set created at. Use this method
-     * in this case
+     * in this case.
      *
      * @param DateTime $createdAt
      */
@@ -189,7 +193,7 @@ class Page
     {
         $this->createdAt = $createdAt;
     }
-    
+
     /**
      * @return DateTime
      */
@@ -197,11 +201,13 @@ class Page
     {
         return $this->createdAt;
     }
-    
+
     /**
      * @ORM\PrePersist()
      * @ORM\PreUpdate()
+     *
      * @param null $value
+     *
      * @return $this
      */
     public function setUpdatedAt($value = null)
@@ -211,9 +217,10 @@ class Page
         } else {
             $this->updatedAt = new DateTime();
         }
+
         return $this;
     }
-    
+
     /**
      * @return DateTime
      */

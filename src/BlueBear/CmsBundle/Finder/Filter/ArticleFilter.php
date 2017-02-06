@@ -6,7 +6,7 @@ use Symfony\Component\HttpFoundation\ParameterBag;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Article filter is use to find Article with ArticleFinder
+ * Article filter is use to find Article with ArticleFinder.
  */
 class ArticleFilter
 {
@@ -21,7 +21,7 @@ class ArticleFilter
     protected $allowedParameters;
 
     /**
-     * ArticleFilter constructor. Initialize parameters and allowed parameters bag
+     * ArticleFilter constructor. Initialize parameters and allowed parameters bag.
      */
     public function __construct()
     {
@@ -33,12 +33,12 @@ class ArticleFilter
             'slug',
             'year',
             'month',
-            'page'
+            'page',
         ]);
     }
 
     /**
-     * Search parameters value from request according to allowed parameters
+     * Search parameters value from request according to allowed parameters.
      *
      * @param Request $request
      */
@@ -57,7 +57,7 @@ class ArticleFilter
     }
 
     /**
-     * Return parameters computed by handleRequest method
+     * Return parameters computed by handleRequest method.
      *
      * @return ParameterBag
      */
@@ -67,10 +67,11 @@ class ArticleFilter
     }
 
     /**
-     * Return a parameter value by its name
+     * Return a parameter value by its name.
      *
      * @param $name
      * @param null $default
+     *
      * @return mixed
      */
     public function getParameter($name, $default = null)

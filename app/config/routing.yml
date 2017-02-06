@@ -1,6 +1,9 @@
 jk_cms:
     resource: "@JKCmsBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /cms
+
+_liip_imagine:
+    resource: "@LiipImagineBundle/Resources/config/routing.xml"
 
 jk_database:
     resource: "@JKDatabaseBundle/Resources/config/routing.yml"
@@ -15,6 +18,11 @@ blue_bear_admin:
     resource: .
     prefix: /cms
     type: extra
+
+oneup_uploader:
+    resource: .
+    type: uploader
+    prefix: /cms
 
 blue_bear_cms:
     resource: "@BlueBearCmsBundle/Resources/config/routing.yml"

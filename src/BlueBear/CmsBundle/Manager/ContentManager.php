@@ -12,10 +12,12 @@ class ContentManager
     use ManagerTrait;
 
     /**
-     * Create content from configured type
+     * Create content from configured type.
      *
      * @param $type
+     *
      * @return Content
+     *
      * @throws Exception
      */
     public function create($type)
@@ -31,6 +33,7 @@ class ContentManager
         foreach ($fields as $fieldName => $fieldConfiguration) {
             $content->addField($fieldName, null);
         }
+
         return $content;
     }
 
@@ -50,7 +53,7 @@ class ContentManager
     }
 
     /**
-     * Return current manager repository
+     * Return current manager repository.
      *
      * @return EntityRepository
      */

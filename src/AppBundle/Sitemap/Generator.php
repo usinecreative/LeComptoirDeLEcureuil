@@ -2,7 +2,7 @@
 
 namespace AppBundle\Sitemap;
 
-use BlueBear\CmsBundle\Repository\ArticleRepository;
+use JK\CmsBundle\Repository\ArticleRepository;
 use AppBundle\Sitemap\Item\Item;
 use Exception;
 use Symfony\Component\Filesystem\Filesystem;
@@ -37,9 +37,10 @@ class Generator
      * Generator constructor.
      *
      * @param $cacheDirectory
-     * @param RouterInterface $router
+     * @param RouterInterface   $router
      * @param ArticleRepository $articleRepository
-     * @param Twig_Environment $twig
+     * @param Twig_Environment  $twig
+     *
      * @throws Exception
      */
     public function __construct(
@@ -47,8 +48,7 @@ class Generator
         RouterInterface $router,
         ArticleRepository $articleRepository,
         Twig_Environment $twig
-    )
-    {
+    ) {
         $this->router = $router;
         $this->articleRepository = $articleRepository;
         $this->twig = $twig;
@@ -99,10 +99,10 @@ class Generator
         $content = $this
             ->twig
             ->render(':Sitemap:sitemap.xml.twig', [
-                'items' => $items
+                'items' => $items,
             ]);
         $fileSystem = new Filesystem();
-        $sitemap = $fileSystem->tempnam($this->cacheDirectory, 'sitemap') . '.xml';
+        $sitemap = $fileSystem->tempnam($this->cacheDirectory, 'sitemap').'.xml';
         $fileSystem->dumpFile($sitemap, $content);
 
         return $sitemap;

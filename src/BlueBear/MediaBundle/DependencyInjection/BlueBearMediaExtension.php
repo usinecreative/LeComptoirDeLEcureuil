@@ -8,7 +8,7 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
 
 /**
- * This is the class that loads and manages your bundle configuration
+ * This is the class that loads and manages your bundle configuration.
  *
  * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
  */
@@ -24,7 +24,7 @@ class BlueBearMediaExtension extends Extension
 
         if (!array_key_exists('resources_path', $config)) {
             // default value %kernel.root_dir%/../resources
-            $config['resources_path'] = $container->getParameter('kernel.root_dir') . '/../resources';
+            $config['resources_path'] = $container->getParameter('kernel.root_dir').'/../resources';
         }
         $container->setParameter('bluebear.media.resources_path', $config['resources_path']);
     }

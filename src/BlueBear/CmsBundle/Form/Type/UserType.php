@@ -15,44 +15,43 @@ class UserType extends AbstractType
         $user = $options['data'];
 
         $builder->add('username', 'text', [
-            'label' => 'form.username'
+            'label' => 'form.username',
         ]);
         $builder->add('email', 'text', [
-            'label' => 'form.email'
+            'label' => 'form.email',
         ]);
         if (!$user->getId()) {
             $builder->add('plainPassword', 'repeated', [
                 'type' => 'password',
-                'first_options'  => [
-                    'label' => 'form.password'
+                'first_options' => [
+                    'label' => 'form.password',
                 ],
                 'second_options' => [
-                    'label' => 'form.password_confirmation'
+                    'label' => 'form.password_confirmation',
                 ],
             ]);
         }
         $builder->add('roles', 'choice', [
             'choices' => [
                 'ROLE_ADMIN' => 'bluebear.cms.administrator',
-                'ROLE_CONTRIBUTOR' => 'bluebear.cms.contributor'
+                'ROLE_CONTRIBUTOR' => 'bluebear.cms.contributor',
             ],
             'expanded' => true,
             'multiple' => true,
-            'translation_domain' => 'messages'
+            'translation_domain' => 'messages',
         ]);
         $builder->add('enabled', 'checkbox', [
             'required' => false,
             'label' => 'bluebear.cms.enabled',
-            'translation_domain' => 'messages'
+            'translation_domain' => 'messages',
         ]);
     }
 
     public function setDefaultOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'translation_domain' => 'FOSUserBundle'
+            'translation_domain' => 'FOSUserBundle',
         ]);
-
     }
 
     public function getName()

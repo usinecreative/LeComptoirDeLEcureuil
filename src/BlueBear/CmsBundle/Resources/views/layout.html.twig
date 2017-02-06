@@ -2,13 +2,6 @@
 
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('bundles/bluebearcms/css/cms.css') }}">
-
-    <style>
-        .mce-close::before {
-            content: "";
-            float: right;
-        }
-    </style>
 {% endblock %}
 
 {% block mainTitle %}
@@ -18,12 +11,18 @@
 {% block javascripts %}
     <script src="{{ asset('js/tinymce/tinymce.min.js') }}"></script>
     <script src="{{ asset('js/tinymce/jquery.tinymce.min.js') }}"></script>
+    <script src="{{ asset('bundles/jkcms/js/cms.js') }}"></script>
 
     <script>
         $(document).on('ready', function () {
             var translations = {
-                addGallery: "{{ 'cms.tinymce.add_gallery' | trans }}"
+                addGallery: "{{ 'cms.gallery.add_gallery' | trans | raw }}"
             };
+            var routes = {
+                modalGallery: '{{ path('cms.media.gallery.modal') }}',
+                galleryContent: '{{ path('cms.media.gallery.content') }}'
+            };
+            var galleryModal = $('#gallery-modal');
 
             tinymce.init({
                 selector: '.tinymce',
@@ -34,11 +33,11 @@
                     'emoticons template paste textcolor colorpicker textpattern imagetools'
                 ],
                 toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
-                toolbar2: 'print preview media | forecolor backcolor emoticons code | add_gallery',
+                toolbar2: 'print preview media | forecolor backcolor emoticons code | add_gallery add_gallery',
                 image_advtab: true,
                 imagetools_toolbar: "rotateleft rotateright | flipv fliph | editimage imageoptions",
-                height: 300,
-                content_css: '{{ asset('css/main.css') }}',
+                height: 600,
+                content_css: '{{ asset('bundles/jkcms/css/tinymce.css') }}',
                 body_class: 'mceForceColors container',
                 content_style: 'body.container {background-color:#eeeae8; padding:20px 60px;}',
                 setup: function (editor) {
@@ -46,56 +45,43 @@
                         text: translations.addGallery,
                         icon: false,
                         onclick: function () {
-
-                            $('#myModal').modal('show');
-
-                            {#editor.windowManager.open({#}
-                                {#title: 'My html dialog',#}
-                                {#url: '{{ path('cms.image.gallery_dialog') }}',#}
-                                {#width: 700,#}
-                                {#height: 600#}
-                            {#});#}
-
-                            {#editor.insertContent('&nbsp;<b>It\'s my button!</b>&nbsp;');#}
+                            galleryModal.on('show.bs.modal', function () {
+                                galleryModal.find('#media-container').load(routes.modalGallery);
+                            });
+                            galleryModal.modal('show');
                         }
                     });
                 }
             });
 
+            {# TODO move in a separate script #}
+            $('#file-upload').fileupload({
+                done: function () {
+                    galleryModal.find('#media-container').load(routes.modalGallery);
+                }
+            });
 
+            $('#add-gallery-btn').on('click', function () {
+                var selectedMedias = galleryModal.find('.media a.selected');
+
+                if (selectedMedias.length == 0) {
+                    return;
+                }
+                var ids = [];
+
+                selectedMedias.each(function (index, value) {
+                    ids.push($(value).data('id'));
+                });
+                var route = routes.galleryContent + '?ids=' + ids.join(',');
+
+                $.get(route, function (data) {
+                    tinymce.activeEditor.execCommand('mceInsertContent', false, data);
+                    galleryModal.modal('hide');
+                });
+            });
         });
     </script>
 
-    <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">Modal title</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p>One fine body&hellip;</p>
-                        
-                        <ul class="media-list">
-                            <li class="media">
-                                <div class="media-left">
-                                    <a href="#">
-                                        <img class="media-object" src="{{ asset('img/books.jpg') }}" alt="...">
-                                    </a>
-                                </div>
-                                <div class="media-body">
-                                    <h4 class="media-heading">Media heading</h4>
-                                    ...
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
+    {% include '@JKCms/Media/modal.html.twig' %}
 {% endblock %}
 

@@ -11,33 +11,6 @@ doctrine:
         result_cache_driver: apcu
         query_cache_driver: apcu
 
-# Monolog Configuration
-monolog:
-    handlers:
-        main:
-            type: rotating_file
-            max_files: 5
-            path: "%kernel.logs_dir%/bluebear-%kernel.environment%.log"
-            level: error
-
-#ekino_new_relic:
-#    enabled: true
-#    application_name: LeComptoir
-#    deployment_names: ~
-#    api_key:
-#    license_key:
-#    xmit: false
-#    logging: false
-#    instrument: false
-#    log_exceptions: false
-#    log_commands: true
-#    using_symfony_cache: false
-#    transaction_naming: route
-#    transaction_naming_service: ~
-#    ignored_routes: []
-#    ignored_paths: []
-#    ignored_commands: []
-
 jk_assets:
     debug: true
     filters:

@@ -13,9 +13,10 @@ class ContentTypeFactory
     protected $behaviors = [];
 
     /**
-     * Initialize content type configuration
+     * Initialize content type configuration.
      *
      * @param array $contentConfiguration
+     *
      * @throws Exception
      */
     public function init(array $contentConfiguration)
@@ -38,7 +39,6 @@ class ContentTypeFactory
         // load content types
         if (array_key_exists('types', $contentConfiguration)) {
             if (is_array($contentConfiguration['types'])) {
-
                 foreach ($contentConfiguration['types'] as $typeName => $typeConfiguration) {
                     if (array_key_exists('parent', $typeConfiguration)) {
                         $toInherit[$typeName] = $typeConfiguration['parent'];
@@ -63,10 +63,11 @@ class ContentTypeFactory
     }
 
     /**
-     * Create a content type from configuration
+     * Create a content type from configuration.
      *
      * @param $typeName
      * @param $typeConfiguration
+     *
      * @throws Exception
      */
     public function create($typeName, $typeConfiguration)
@@ -80,7 +81,7 @@ class ContentTypeFactory
                 $field = [];
             }
             $typedFields[$fieldName] = array_merge($this->getDefaultFieldConfiguration(), [
-                'type' => $this->guessFieldType($fieldName, $field)
+                'type' => $this->guessFieldType($fieldName, $field),
             ], $field);
         }
         $typeConfiguration['fields'] = $typedFields;
@@ -109,7 +110,7 @@ class ContentTypeFactory
     }
 
     /**
-     * Return default configuration
+     * Return default configuration.
      *
      * @return array
      */
@@ -122,31 +123,31 @@ class ContentTypeFactory
                     'fields' => [
                         'author' => [
                             'type' => 'text',
-                            'contribuable' => false
-                        ]
-                    ]
+                            'contribuable' => false,
+                        ],
+                    ],
                 ],
                 'timestampable' => [
                     'class' => 'BlueBear\CmsBundle\Cms\Content\Behaviors\Timestampable',
                     'fields' => [
                         'createdAt' => [
                             'type' => 'datetime',
-                            'contribuable' => false
+                            'contribuable' => false,
                         ],
                         'updatedAt' => [
                             'type' => 'datetime',
-                            'contribuable' => false
-                        ]
-                    ]
+                            'contribuable' => false,
+                        ],
+                    ],
                 ],
                 'publishable' => [
                     'class' => 'BlueBear\CmsBundle\Cms\Content\Behaviors\Publishable',
                     'fields' => [
                         'publishing_status' => [
                             'type' => 'text',
-                            'contribuable' => false
-                        ]
-                    ]
+                            'contribuable' => false,
+                        ],
+                    ],
                 ],
                 'commentable' => [
                     'class' => 'BlueBear\CmsBundle\Cms\Content\Behaviors\Publishable',
@@ -154,32 +155,33 @@ class ContentTypeFactory
                         'hasComments' => [
                             'type' => 'choice',
                             'options' => [
-                                'choices' => [true => 'bluebear.cms.yes', false => 'bluebear.cms.no']
-                            ]
-                        ]
-                    ]
-                ]
-            ]
+                                'choices' => [true => 'bluebear.cms.yes', false => 'bluebear.cms.no'],
+                            ],
+                        ],
+                    ],
+                ],
+            ],
         ];
     }
 
     /**
-     * Return field default configuration
+     * Return field default configuration.
      *
      * @return array
      */
     protected function getDefaultFieldConfiguration()
     {
         return [
-            'contribuable' => true
+            'contribuable' => true,
         ];
     }
 
     /**
-     * Try to guess field type if not defined. It should be an Symfony form type
+     * Try to guess field type if not defined. It should be an Symfony form type.
      *
      * @param $fieldName
      * @param $field
+     *
      * @return null|string
      */
     protected function guessFieldType($fieldName, $field)
@@ -191,12 +193,13 @@ class ContentTypeFactory
         } else {
             if (in_array($fieldName, ['content'])) {
                 $type = 'ckeditor';
-            } else if (in_array($fieldName, ['description'])) {
+            } elseif (in_array($fieldName, ['description'])) {
                 $type = 'textarea';
             } else {
                 $type = 'text';
             }
         }
+
         return $type;
     }
 
@@ -210,7 +213,9 @@ class ContentTypeFactory
 
     /**
      * @param string $name
+     *
      * @return ContentType
+     *
      * @throws Exception
      */
     public function getContentType($name)
@@ -218,6 +223,7 @@ class ContentTypeFactory
         if (!array_key_exists($name, $this->contentTypes)) {
             throw new Exception("Content type {$name} not found. Check your configuration");
         }
+
         return $this->contentTypes[$name];
     }
 }

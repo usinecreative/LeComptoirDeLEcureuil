@@ -1,13 +1,23 @@
-<VirtualHost *:443>
+<VirtualHost *:1443>
     ServerAdmin {{ server_admin }}
     ServerName {{ server_name }}
-    DocumentRoot /home/{{ user }}/www/{{ user }}/current/web
+    {% if server_alias is defined %}
+        ServerAlias {{ server_alias }}
+    {% endif %}
+    DocumentRoot {{ server_document_root }}
 
-    <Directory /home/{{ user }}/www/{{ user }}/current/web>
-    Options +Indexes  +FollowSymLinks
-    DirectoryIndex app.php
-    AllowOverride All
-    Require all granted
+    <Directory {{ server_document_root }}>
+        Options +Indexes  +FollowSymLinks
+        DirectoryIndex app.php
+        AllowOverride All
+        Require all granted
+
+        {% if server_basic_auth_user is defined and server_basic_auth_password is defined %}
+            AuthType Basic
+            AuthName "Restricted Content"
+            AuthUserFile /etc/apache2/.htpasswd
+            Require valid-user
+        {% endif %}
     </Directory>
 
     <IfModule mpm_itk_module>
@@ -35,13 +45,15 @@
 </VirtualHost>
 
 
-<VirtualHost *:80>
+<VirtualHost *:8080>
     ServerAdmin {{ server_admin }}
     ServerName {{ server_name }}
-    ServerAlias {{ server_alias }}
-    DocumentRoot /home/{{ user }}/www/{{ user }}/current/web
+    {% if server_alias is defined %}
+        ServerAlias {{ server_alias }}
+    {% endif %}
+    DocumentRoot {{ server_document_root }}
 
-    <Directory /home/{{ user }}/www/{{ user }}/current/web>
+    <Directory {{ server_document_root }}>
         Options +Indexes  +FollowSymLinks
         DirectoryIndex app.php
         AllowOverride All

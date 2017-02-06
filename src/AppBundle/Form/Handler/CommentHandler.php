@@ -2,7 +2,6 @@
 
 namespace AppBundle\Form\Handler;
 
-
 use BlueBear\CmsBundle\Entity\Comment;
 use BlueBear\CmsBundle\Repository\CommentRepository;
 use Symfony\Component\Form\FormInterface;

@@ -2,7 +2,9 @@
 
 namespace BlueBear\CmsBundle\Cms;
 
-class ContentType 
+use Exception;
+
+class ContentType
 {
     protected $name;
 
@@ -19,7 +21,7 @@ class ContentType
         if (array_key_exists('fields', $typeConfiguration)) {
             $this->fields = $typeConfiguration['fields'];
         } else {
-            throw new \Exception("Content type \"{$this->name}\" should have fields");
+            throw new Exception("Content type \"{$this->name}\" should have fields");
         }
         if (array_key_exists('behaviors', $typeConfiguration)) {
             foreach ($typeConfiguration['behaviors'] as $behaviorName => $behavior) {

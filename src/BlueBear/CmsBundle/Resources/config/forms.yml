@@ -11,6 +11,8 @@ services:
 
     bluebear.cms.category_type:
         class: 'BlueBear\CmsBundle\Form\Type\CategoryType'
+        arguments:
+            - '@cms.media.media_upload_transformer'
         tags:
             - {name: form.type, alias: category}
 
@@ -19,15 +21,10 @@ services:
         tags:
             - {name: form.type, alias: parameters}
 
-    bluebear.cms.article_type:
+    cms.article.article_type:
         class: 'BlueBear\CmsBundle\Form\Type\ArticleType'
         tags:
             - {name: form.type, alias: article}
-
-    bluebear.cms.comment_type:
-        class: 'BlueBear\CmsBundle\Form\Type\CommentType'
-        tags:
-            - {name: form.type, alias: comment}
 
     cms.form.page_type:
         class: 'BlueBear\CmsBundle\Form\Type\PageType'
@@ -40,13 +37,6 @@ services:
         class: 'BlueBear\CmsBundle\Form\Type\ImportType'
         tags:
             - {name: form.type, alias: import}
-
-    # Form Handler
-    bluebear.cms.article.handler:
-        class: 'BlueBear\CmsBundle\Form\Handler\ArticleFormHandler'
-        arguments:
-            - '%kernel.root_dir%'
-            - '@jk.media.media_repository'
 
     # Form Helper
     cms.form.helper:

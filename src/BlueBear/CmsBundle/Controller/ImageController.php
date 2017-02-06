@@ -1,6 +1,5 @@
 <?php
 
-
 namespace BlueBear\CmsBundle\Controller;
 
 use LAG\AdminBundle\Controller\CRUDController;
@@ -13,6 +12,5 @@ class ImageController extends CRUDController
      */
     public function galleryDialogAction()
     {
-
     }
 }

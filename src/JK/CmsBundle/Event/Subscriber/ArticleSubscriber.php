@@ -2,7 +2,7 @@
 
 namespace JK\CmsBundle\Event\Subscriber;
 
-use BlueBear\CmsBundle\Entity\Article;
+use JK\CmsBundle\Entity\Article;
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Events;
@@ -18,7 +18,7 @@ class ArticleSubscriber implements EventSubscriber
     public function getSubscribedEvents()
     {
         return [
-            Events::preUpdate
+            Events::preUpdate,
         ];
     }
 

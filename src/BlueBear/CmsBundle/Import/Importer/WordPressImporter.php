@@ -2,7 +2,7 @@
 
 namespace BlueBear\CmsBundle\Import\Importer;
 
-use BlueBear\CmsBundle\Entity\Article;
+use JK\CmsBundle\Entity\Article;
 use BlueBear\CmsBundle\Entity\Category;
 use BlueBear\CmsBundle\Entity\Comment;
 use BlueBear\CmsBundle\Entity\Import;
@@ -10,7 +10,7 @@ use BlueBear\CmsBundle\Entity\Tag;
 use BlueBear\CmsBundle\Entity\User;
 use BlueBear\CmsBundle\Exception\ImportException;
 use BlueBear\CmsBundle\Import\ImporterInterface;
-use BlueBear\CmsBundle\Repository\ArticleRepository;
+use JK\CmsBundle\Repository\ArticleRepository;
 use BlueBear\CmsBundle\Repository\CategoryRepository;
 use BlueBear\CmsBundle\Repository\CommentRepository;
 use BlueBear\CmsBundle\Repository\ImportRepository;
@@ -77,7 +77,7 @@ class WordPressImporter implements ImporterInterface
     /**
      * @var string[]
      */
-    protected $imageUrls= [];
+    protected $imageUrls = [];
 
     /**
      * @var StaticClient
@@ -87,14 +87,14 @@ class WordPressImporter implements ImporterInterface
     /**
      * WordPressImporter constructor.
      *
-     * @param LoggerInterface $logger
+     * @param LoggerInterface    $logger
      * @param CategoryRepository $categoryRepository
-     * @param UserRepository $userRepository
-     * @param ArticleRepository $articleRepository
-     * @param TagRepository $tagRepository
-     * @param CommentRepository $commentRepository
-     * @param ImportRepository $importRepository
-     * @param StaticClient $staticClient
+     * @param UserRepository     $userRepository
+     * @param ArticleRepository  $articleRepository
+     * @param TagRepository      $tagRepository
+     * @param CommentRepository  $commentRepository
+     * @param ImportRepository   $importRepository
+     * @param StaticClient       $staticClient
      */
     public function __construct(
         LoggerInterface $logger,
@@ -121,7 +121,7 @@ class WordPressImporter implements ImporterInterface
      */
     public function import(Import $import)
     {
-        $filePath = $import->getfilePath() . '/' . $import->getFileName();
+        $filePath = $import->getfilePath().'/'.$import->getFileName();
         $fileSystem = new Filesystem();
         $status = Import::IMPORT_STATUS_SUCCESS;
         $comments = '';
@@ -131,107 +131,95 @@ class WordPressImporter implements ImporterInterface
 
             // wordpress needed info are stored in node channel->item
             if ($xml->channel) {
-                $this->host = (string)$xml->channel->link;
+                $this->host = (string) $xml->channel->link;
 
                 if ($xml->channel->item) {
                     /** @var SimpleXMLElement $item */
                     foreach ($xml->channel->item as $item) {
-
                         try {
                             $this->importUser($item);
-
                         } catch (Exception $e) {
                             // log import error
                             $this
                                 ->logger
-                                ->log(Logger::ERROR, 'An error has occured during a import : ' . $e->getMessage() . ' ' . $e->getTraceAsString());
+                                ->log(Logger::ERROR, 'An error has occured during a import : '.$e->getMessage().' '.$e->getTraceAsString());
 
-                            // set import as errored
+                            // set import as error
                             $status = Import::IMPORT_STATUS_ERROR;
                             $comments .= $e->getMessage();
                         }
                     }
                     /** @var SimpleXMLElement $item */
                     foreach ($xml->channel->item as $item) {
-
                         try {
                             $this->importCategory($item);
-
                         } catch (Exception $e) {
                             // log import error
                             $this
                                 ->logger
-                                ->log(Logger::ERROR, 'An error has occured during a import : ' . $e->getMessage() . ' ' . $e->getTraceAsString());
+                                ->log(Logger::ERROR, 'An error has occured during a import : '.$e->getMessage().' '.$e->getTraceAsString());
 
-                            // set import as errored
+                            // set import as error
                             $status = Import::IMPORT_STATUS_ERROR;
                             $comments .= $e->getMessage();
                         }
                     }
                     /** @var SimpleXMLElement $item */
                     foreach ($xml->channel->item as $item) {
-
                         try {
                             $this->importArticle($item);
-
                         } catch (Exception $e) {
                             // log import error
                             $this
                                 ->logger
-                                ->log(Logger::ERROR, 'An error has occured during a import : ' . $e->getMessage() . ' ' . $e->getTraceAsString());
+                                ->log(Logger::ERROR, 'An error has occured during a import : '.$e->getMessage().' '.$e->getTraceAsString());
 
-                            // set import as errored
+                            // set import as error
                             $status = Import::IMPORT_STATUS_ERROR;
                             $comments .= $e->getMessage();
                         }
                     }
                     /** @var SimpleXMLElement $item */
                     foreach ($xml->channel->item as $item) {
-
                         try {
                             $this->importTag($item);
-
                         } catch (Exception $e) {
                             // log import error
                             $this
                                 ->logger
-                                ->log(Logger::ERROR, 'An error has occured during a import : ' . $e->getMessage() . ' ' . $e->getTraceAsString());
+                                ->log(Logger::ERROR, 'An error has occured during a import : '.$e->getMessage().' '.$e->getTraceAsString());
 
-                            // set import as errored
+                            // set import as error
                             $status = Import::IMPORT_STATUS_ERROR;
                             $comments .= $e->getMessage();
                         }
                     }
                     /** @var SimpleXMLElement $item */
                     foreach ($xml->channel->item as $item) {
-
                         try {
                             $this->importComment($item);
-
                         } catch (Exception $e) {
                             // log import error
                             $this
                                 ->logger
-                                ->log(Logger::ERROR, 'An error has occured during a import : ' . $e->getMessage() . ' ' . $e->getTraceAsString());
+                                ->log(Logger::ERROR, 'An error has occured during a import : '.$e->getMessage().' '.$e->getTraceAsString());
 
-                            // set import as errored
+                            // set import as error
                             $status = Import::IMPORT_STATUS_ERROR;
                             $comments .= $e->getMessage();
                         }
                     }
                     /** @var SimpleXMLElement $item */
                     foreach ($xml->channel->item as $item) {
-
                         try {
                             $this->importImages($item);
-
                         } catch (Exception $e) {
                             // log import error
                             $this
                                 ->logger
-                                ->log(Logger::ERROR, 'An error has occured during a import : ' . $e->getMessage() . ' ' . $e->getTraceAsString());
+                                ->log(Logger::ERROR, 'An error has occured during a import : '.$e->getMessage().' '.$e->getTraceAsString());
 
-                            // set import as errored
+                            // set import as error
                             $status = Import::IMPORT_STATUS_ERROR;
                             $comments .= $e->getMessage();
                         }
@@ -242,10 +230,9 @@ class WordPressImporter implements ImporterInterface
             }
         }
 
-
         $this->fixSlugs();
 
-        $import->setLabel('WORDPRESS Importing xml file ' . $import->getFileName());
+        $import->setLabel('WORDPRESS Importing xml file '.$import->getFileName());
         $import->setStatus($status);
         $import->setComments($comments);
 
@@ -266,9 +253,8 @@ class WordPressImporter implements ImporterInterface
 
         // WordPress xml export has many <category> but only one is an actual category; we must to find it
         foreach ($element->category as $categoryElement) {
-
-            if ((string)$categoryElement['domain'] == 'category') {
-                $categoryName = (string)$categoryElement;
+            if ((string) $categoryElement['domain'] == 'category') {
+                $categoryName = (string) $categoryElement;
                 break;
             }
         }
@@ -280,7 +266,7 @@ class WordPressImporter implements ImporterInterface
         $category = $this
             ->categoryRepository
             ->findOneBy([
-                'name' => $categoryName
+                'name' => $categoryName,
             ]);
 
         // if not create new one
@@ -303,7 +289,7 @@ class WordPressImporter implements ImporterInterface
     protected function importUser(SimpleXMLElement $element)
     {
         // get user name from element
-        $userName = (string)$element->children(self::DC_NAMESPACE)->creator;
+        $userName = (string) $element->children(self::DC_NAMESPACE)->creator;
 
         if (!$userName) {
             return;
@@ -312,7 +298,7 @@ class WordPressImporter implements ImporterInterface
         $author = $this
             ->userRepository
             ->findOneBy([
-                'username' => $userName
+                'username' => $userName,
             ]);
 
         if (!$author) {
@@ -328,42 +314,42 @@ class WordPressImporter implements ImporterInterface
      * Import an article from an xml element.
      *
      * @param SimpleXMLElement $element
+     *
      * @throws ImportException
      */
     protected function importArticle(SimpleXMLElement $element)
     {
         // only process post type
-        $postType = (string)$element->children(self::WP_NAMESPACE)->post_type;
+        $postType = (string) $element->children(self::WP_NAMESPACE)->post_type;
 
         if ($postType != 'post') {
             return;
         }
-        $authorName = (string)$element->children(self::DC_NAMESPACE)->creator;
+        $authorName = (string) $element->children(self::DC_NAMESPACE)->creator;
 
         // author must exist
         $author = $this->userRepository->findOneBy([
-            'username' => $authorName
+            'username' => $authorName,
         ]);
 
         if (!$author) {
             throw new ImportException("Author {$authorName} not found");
         }
-        $isCommentable = ((string)$element->children(self::WP_NAMESPACE)->comment_status == 'open') ? true : false;
+        $isCommentable = ((string) $element->children(self::WP_NAMESPACE)->comment_status == 'open') ? true : false;
         $categoryName = '';
 
         // WordPress xml export has many <category> but only one is an actual category; we must to find it
         foreach ($element->category as $categoryElement) {
-
-            if ((string)$categoryElement['domain'] == 'category') {
-                $categoryName = (string)$categoryElement;
+            if ((string) $categoryElement['domain'] == 'category') {
+                $categoryName = (string) $categoryElement;
                 break;
             }
         }
-        $articleName = (string)$element->title;
+        $articleName = (string) $element->title;
 
         /** @var Category $category */
         $category = $this->categoryRepository->findOneBy([
-            'name' => $categoryName
+            'name' => $categoryName,
         ]);
 
         if (!$category) {
@@ -372,22 +358,22 @@ class WordPressImporter implements ImporterInterface
 
         // if the article already exists, we update this one
         $article = $this->articleRepository->findOneBy([
-            'title' => $articleName
+            'title' => $articleName,
         ]);
 
         if (!$article) {
             $article = new Article();
         }
-        $article->setTitle((string)$element->title);
-        $article->setCanonical((string)$element->link);
+        $article->setTitle((string) $element->title);
+        $article->setCanonical((string) $element->link);
         $article->setPublicationDate((new DateTime())->setTimestamp(strtotime($element->pubDate)));
         $article->setAuthor($author);
-        $article->setContent((string)$element->children(self::CONTENT_NAMESPACE)->encoded);
+        $article->setContent((string) $element->children(self::CONTENT_NAMESPACE)->encoded);
         $article->forceCreatedAt((new DateTime())->setTimestamp(strtotime($element->children(self::WP_NAMESPACE)->post_date)));
         $article->setIsCommentable($isCommentable);
         $article->setPublicationStatus(Article::PUBLICATION_STATUS_VALIDATION);
         $article->setCategory($category);
-        $article->setSlug((string)$element->children(self::WP_NAMESPACE)->post_name[0]);
+        $article->setSlug((string) $element->children(self::WP_NAMESPACE)->post_name[0]);
 
         $this
             ->articleRepository
@@ -404,9 +390,8 @@ class WordPressImporter implements ImporterInterface
         $tagName = '';
 
         foreach ($element->category as $categoryElement) {
-
-            if ((string)$categoryElement['domain'] == 'post_tag') {
-                $tagName = (string)$categoryElement;
+            if ((string) $categoryElement['domain'] == 'post_tag') {
+                $tagName = (string) $categoryElement;
                 break;
             }
         }
@@ -420,7 +405,7 @@ class WordPressImporter implements ImporterInterface
         $tag = $this
             ->tagRepository
             ->findOneBy([
-                'name' => $tagName
+                'name' => $tagName,
             ]);
 
         // if not create new one
@@ -433,11 +418,11 @@ class WordPressImporter implements ImporterInterface
             ->save($tag);
 
         // find a linked article
-        $articleName = (string)$element->title;
+        $articleName = (string) $element->title;
 
         /** @var Article $article */
         $article = $this->articleRepository->findOneBy([
-            'title' => $articleName
+            'title' => $articleName,
         ]);
 
         if ($article && !$article->hasTag($tag)) {
@@ -453,21 +438,22 @@ class WordPressImporter implements ImporterInterface
      * Import a comment from an xml element.
      *
      * @param SimpleXMLElement $element
+     *
      * @throws Exception
      */
     protected function importComment(SimpleXMLElement $element)
     {
         // only process post type
-        $postType = (string)$element->children(self::WP_NAMESPACE)->post_type;
+        $postType = (string) $element->children(self::WP_NAMESPACE)->post_type;
 
         if ($postType != 'post') {
             return;
         }
-        $articleTitle = (string)$element->title;
+        $articleTitle = (string) $element->title;
 
         /** @var Article $article */
         $article = $this->articleRepository->findOneBy([
-            'title' => $articleTitle
+            'title' => $articleTitle,
         ]);
 
         if (!$article) {
@@ -484,11 +470,11 @@ class WordPressImporter implements ImporterInterface
             $comment->setAuthorIp($commentItem->comment_author_ip);
             $comment->forceCreatedAt($commentDate);
             $comment->setContent($commentItem->comment_content);
-            $comment->setIsApproved((bool)$commentItem->comment_author);
+            $comment->setIsApproved((bool) $commentItem->comment_author);
             $comment->setArticle($article);
 
             foreach ($commentItem->children(self::WP_NAMESPACE)->commentmeta as $commentMeta) {
-                $comment->addMetadata((string)$commentMeta->key, (string)$commentMeta->value);
+                $comment->addMetadata((string) $commentMeta->key, (string) $commentMeta->value);
             }
             $article->addComment($comment);
 
@@ -507,12 +493,12 @@ class WordPressImporter implements ImporterInterface
     protected function importImages(SimpleXMLElement $element)
     {
         // only process post type
-        $postType = (string)$element->children(self::WP_NAMESPACE)->post_type;
+        $postType = (string) $element->children(self::WP_NAMESPACE)->post_type;
 
         if ($postType != 'attachment') {
             return;
         }
-        $url = trim((string)$element->children(self::WP_NAMESPACE)->attachment_url);
+        $url = trim((string) $element->children(self::WP_NAMESPACE)->attachment_url);
 
         $array = explode('.', $url);
         $extension = array_pop($array);
@@ -520,8 +506,9 @@ class WordPressImporter implements ImporterInterface
         if (!in_array($extension, [
             'jpg',
             'jpeg',
-            'png'
-        ])) {
+            'png',
+        ])
+        ) {
             return;
         }
         $this->imageUrls[] = $url;
@@ -533,14 +520,13 @@ class WordPressImporter implements ImporterInterface
     protected function processImages()
     {
         $fileSystem = new Filesystem();
-        $imagesDirectory = sys_get_temp_dir() . '/wp-importer';
+        $imagesDirectory = sys_get_temp_dir().'/wp-importer';
         $fileSystem->mkdir($imagesDirectory);
 
         // first, download images in imports directory
         foreach ($this->imageUrls as $imageUrl) {
-
             $imageName = $this->getFileNameFromUrl($imageUrl);
-            $path = $imagesDirectory . '/imports/' . $imageName;
+            $path = $imagesDirectory.'/imports/'.$imageName;
 
             if (!$fileSystem->exists($path)) {
                 $fileSystem->dumpFile($path, file_get_contents($imageUrl));
@@ -549,7 +535,7 @@ class WordPressImporter implements ImporterInterface
 
         // then upload it into the new assets server
         foreach ($this->imageUrls as $imageUrl) {
-            $file = new SplFileInfo($imagesDirectory . '/imports/' . $this->getFileNameFromUrl($imageUrl));
+            $file = new SplFileInfo($imagesDirectory.'/imports/'.$this->getFileNameFromUrl($imageUrl));
 
             $url = $this
                 ->staticClient
@@ -561,7 +547,7 @@ class WordPressImporter implements ImporterInterface
                 ->articleRepository
                 ->createQueryBuilder('article')
                 ->where('article.content like :image_url')
-                ->setParameter('image_url', '%' . $imageUrl . '%')
+                ->setParameter('image_url', '%'.$imageUrl.'%')
                 ->getQuery()
                 ->getResult();
 
@@ -583,6 +569,7 @@ class WordPressImporter implements ImporterInterface
 
     /**
      * @param $url
+     *
      * @return string
      */
     protected function getFileNameFromUrl($url)
@@ -606,11 +593,10 @@ class WordPressImporter implements ImporterInterface
                     '-1',
                     '-2',
                     '-3',
-                ]
+                ],
             ]);
         /** @var Article $article */
         foreach ($articles as $article) {
-
             $slug = Urlizer::transliterate($article->getTitle());
             $article->setSlug($slug);
 
