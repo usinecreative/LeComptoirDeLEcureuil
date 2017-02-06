@@ -98,7 +98,7 @@ class Version20161128005212 extends AbstractMigration implements ContainerAwareI
     
         $thumbnailDirectory = $this
                 ->container
-                ->getParameter('kernel.root_dir').'/../web/images/articles/thumbnails/';
+                ->getParameter('kernel.root_dir').'/../../../current/../web/images/articles/thumbnails/';
         $newThumbnailDirectory = $this
                 ->container
                 ->getParameter('kernel.root_dir').'/../web/uploads/articles/thumbnails/';
