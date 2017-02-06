@@ -50,7 +50,7 @@ class Version20161128005212 extends AbstractMigration implements ContainerAwareI
     {
         parent::postUp($schema);
     
-        $this->updateArticleThumbnails();
+        //$this->updateArticleThumbnails();
     }
     
     /**
