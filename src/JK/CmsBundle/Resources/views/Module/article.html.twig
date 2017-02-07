@@ -1,37 +1,18 @@
 <style>
-    .article-widget li a {
-        color: white;
-        /*text-decoration: underline;*/
-        font-size: 120%;
-        /*color: lightblue;*/
-    }
-    .article-widget h2 a{
-        color: white;
-    }
-    .article-widget .more-link {
-        float: right;
-    }
-    .article-widget {
-        padding: 15px;
-    }
-    .article-widget ul {
-        padding-left: 0;
-        margin-bottom: 0;
-    }
-    .article-widget ul li{
-        list-style: none;
-    }
+
 </style>
 
 <div class="col-md-12 item article-widget">
     <h2>
-        <a href="{{ path('lecomptoir.article.list_by_category', {categorySlug: 'breves-de-comptoir'}) }}">Brèves de Comptoir</a>
+        <a href="{{ path('lecomptoir.article.list_by_category', {categorySlug: 'breves-de-comptoir'}) }}"
+           title="Voir toutes les brèves de comptoir">Brèves de Comptoir</a>
     </h2>
 
     <ul>
         {% for article in articles %}
         <li>
-            <a href="{{ path('lecomptoir.article.show', article.urlParameters) }}">
+            <a href="{{ path('lecomptoir.article.show', article.urlParameters) }}"
+               title="Voir l'article {{ article.title }}">
                 <i class="fa fa-angle-double-right "></i>
                 {{ article.title }}
             </a>
@@ -39,5 +20,6 @@
         {% endfor %}
     </ul>
     <a href="{{ path('lecomptoir.article.list_by_category', {categorySlug: 'breves-de-comptoir'}) }}"
+       title="Voir toutes les brèves de comptoir"
        class="more-link">Voir plus de brèves...</a>
 </div>
