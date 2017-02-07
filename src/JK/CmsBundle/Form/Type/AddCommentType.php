@@ -70,11 +70,11 @@ class AddCommentType extends AbstractType
                 ],
             ])
             ->add('notifyNewComments', CheckboxType::class, [
-                'label' => 'Etre notifié des nouveaux comentaires',
+                'label' => 'Etre notifié des nouveaux commentaires',
                 'required' => false,
             ])
             ->add('authorEmail', EmailType::class, [
-                'label' => 'Votre email (si vous voulez être notifié des réponses à votre commentaire)',
+                'label' => 'Votre email (si vous voulez être notifié lorsque des nouveaux commentaires seront postés)',
                 'attr' => [
                     'placeholder' => 'Votre email...',
                 ],
