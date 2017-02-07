@@ -10,6 +10,8 @@ lag_admin:
                         id: ~
                         content: {type: string, options: {length: 150}}
                         article: ~
+                        authorName: ~
+                        authorEmail: ~
                         createdAt: {type: date, options: {format: 'd/m/Y à h:i'}}
                         updatedAt: {type: date, options: {format: 'd/m/Y à h:i'}}
                         _actions: ~

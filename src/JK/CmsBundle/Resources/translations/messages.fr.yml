@@ -110,6 +110,8 @@ cms:
         content: Contenu
         id: '#'
         article: Article
+        authorName: Auteur
+        authorEmail: Email
         createdAt: Créé le
         updatedAt: Mis à jour le
         _actions: ''
