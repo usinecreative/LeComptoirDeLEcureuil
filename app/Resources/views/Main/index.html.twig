@@ -79,7 +79,7 @@
 
                         {% if article.thumbnail %}
                             <img src="{{ cms_media_path(article.thumbnail) }}"
-                                 alt="Couverture de{{ article.title }}">
+                                 alt="Couverture de {{ article.title }}">
                         {% endif %}
                     </a>
                     <span class="title-date">{{ article.publicationDate | localizeddate('full', 'none') }}</span>
