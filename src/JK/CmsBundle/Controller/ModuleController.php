@@ -15,7 +15,7 @@ class ModuleController extends Controller
         }
         $content = $this
             ->get('cms.module.renderer')
-            ->render($request->get('zone'))
+            ->renderZone($request->get('zone'))
         ;
     
         return new Response($content);

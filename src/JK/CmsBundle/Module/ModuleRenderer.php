@@ -39,7 +39,12 @@ class ModuleRenderer
         $this->moduleRepository = $moduleRepository;
     }
     
-    public function render($zone)
+    /**
+     * @param string $zone Zone name
+     *
+     * @return string
+     */
+    public function renderZone($zone)
     {
         if (!in_array($zone, $this->allowedZones)) {
             throw new LogicException('Zone "'.$zone.'" is not allowed for Module rendering');
@@ -60,5 +65,20 @@ class ModuleRenderer
         }
     
         return $content;
+    }
+    
+    /**
+     * @param string $name Module name
+     *
+     * @return string
+     */
+    public function render($name)
+    {
+        $module = $this
+            ->moduleRepository
+            ->get($name)
+        ;
+    
+        return $module->render($this->twig);
     }
 }

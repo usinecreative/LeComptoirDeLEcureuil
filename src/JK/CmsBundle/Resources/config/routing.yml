@@ -17,3 +17,8 @@ cms.dashboard:
 cms.module.render:
     path: /modules/render/{zone}
     defaults: {_controller: JKCmsBundle:Module:render}
+
+cms.search:
+    path: /search
+    prefix: /
+    defaults: {_controller: JKCmsBundle:Search:search}

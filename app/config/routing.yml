@@ -1,16 +1,20 @@
 jk_cms:
-    resource: "@JKCmsBundle/Resources/config/routing.yml"
+    resource: '@JKCmsBundle/Resources/config/routing.yml'
     prefix:   /cms
 
 _liip_imagine:
-    resource: "@LiipImagineBundle/Resources/config/routing.xml"
+    resource: '@LiipImagineBundle/Resources/config/routing.xml'
 
 jk_database:
-    resource: "@JKDatabaseBundle/Resources/config/routing.yml"
+    resource: '@JKDatabaseBundle/Resources/config/routing.yml'
     prefix:   /
 
+#cms.search:
+#    path: /search
+#    defaults: {_controller: 'JKCmsBundle:Search:search'}
+
 app:
-    resource: "@AppBundle/Resources/config/routing.yml"
+    resource: '@AppBundle/Resources/config/routing.yml'
     prefix:   /
 
 # BlueBear AdminBundle
@@ -25,13 +29,13 @@ oneup_uploader:
     prefix: /cms
 
 blue_bear_cms:
-    resource: "@BlueBearCmsBundle/Resources/config/routing.yml"
+    resource: '@BlueBearCmsBundle/Resources/config/routing.yml'
     prefix:   /cms
 
 le_comptoir_de_l_ecureuil_front:
-    resource: "@AppBundle/Resources/config/routing.yml"
+    resource: '@AppBundle/Resources/config/routing.yml'
     prefix:   /
 
 blue_bear_media:
-    resource: "@BlueBearMediaBundle/Resources/config/routing.yml"
+    resource: '@BlueBearMediaBundle/Resources/config/routing.yml'
     prefix:   /

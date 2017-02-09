@@ -40,4 +40,18 @@ class ModuleRepository
         }
         $this->modules[$module->getName()] = $module;
     }
+    
+    /**
+     * @param $name
+     *
+     * @return ModuleInterface
+     */
+    public function get($name)
+    {
+        if (!array_key_exists($name, $this->modules)) {
+            throw new LogicException('Module "'.$name.'" not found');
+        }
+    
+        return $this->modules[$name];
+    }
 }

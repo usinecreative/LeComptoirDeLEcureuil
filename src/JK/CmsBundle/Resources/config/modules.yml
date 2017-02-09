@@ -5,3 +5,10 @@ services:
             - '@cms.article.repository'
         tags:
             - {name: 'cms.module'}
+
+    cms.module.search:
+        class: JK\CmsBundle\Module\SearchModule
+        arguments:
+            - '@form.factory'
+        tags:
+            - {name: 'cms.module'}

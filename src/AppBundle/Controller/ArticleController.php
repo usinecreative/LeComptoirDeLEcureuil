@@ -79,7 +79,8 @@ class ArticleController extends Controller
         $filter->handleRequest($request);
         $pager = $this
             ->get('bluebear.cms.article_finder')
-            ->find($filter);
+            ->find($filter)
+        ;
 
         return [
             'articles' => $pager->getCurrentPageResults(),
