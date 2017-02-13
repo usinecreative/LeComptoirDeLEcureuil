@@ -2,6 +2,7 @@
 
 namespace JK\DatabaseBundle\Command;
 
+use LogicException;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -62,6 +63,7 @@ class BackupCommand extends Command implements ContainerAwareInterface
         ;
         $style->success('Backup done at '.$backup);
         $zipBackup = true;
+        $sendArchive = true;
     
         if ($zipBackup) {
             $style->text('Archive backup...');
@@ -72,6 +74,27 @@ class BackupCommand extends Command implements ContainerAwareInterface
                 ->archive($backup)
             ;
             $style->success('Archive done at '.$archive);
+    
+            if ($sendArchive) {
+                $style->text('Sending archive...');
+    
+                $numberOfAttachmentSend = $this
+                    ->container
+                    ->get('jk.database.archive_manager')
+                    ->send(
+                        $archive,
+                        'lecomptoirdelecureuil@gmail.com',
+                        'afrezet@larriereguichet.fr',
+                        '[BACKUP] Le Comptoir De L\'Ecureuil Backup',
+                        'Hi<br/> Here is the backup for Le Comptoir De L\'Ecureuil'
+                    )
+                ;
+    
+                if (1 !== $numberOfAttachmentSend) {
+                    throw new LogicException('An error has occurred during the mailing of the backup archive');
+                }
+                $style->success('Sending done...');
+            }
         }
     }
 

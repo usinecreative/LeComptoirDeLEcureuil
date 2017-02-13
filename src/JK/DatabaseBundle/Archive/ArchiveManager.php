@@ -3,6 +3,9 @@
 namespace JK\DatabaseBundle\Archive;
 
 use SplFileInfo;
+use Swift_Attachment;
+use Swift_Mailer;
+use Swift_Message;
 use Symfony\Component\Filesystem\Exception\FileNotFoundException;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
@@ -19,13 +22,20 @@ class ArchiveManager
     private $numberOfArchivesToKeep;
     
     /**
+     * @var Swift_Mailer
+     */
+    private $mailer;
+    
+    /**
      * ArchiveManager constructor.
      *
      * @param int $numberOfArchivesToKeep
+     * @param Swift_Mailer $mailer
      */
-    public function __construct($numberOfArchivesToKeep = 5)
+    public function __construct(Swift_Mailer $mailer, $numberOfArchivesToKeep = 5)
     {
         $this->numberOfArchivesToKeep = $numberOfArchivesToKeep;
+        $this->mailer = $mailer;
     }
     
     /**
@@ -83,6 +93,39 @@ class ArchiveManager
             }
             $toKeep++;
         }
+    }
+    
+    /**
+     * Send a mail with an archive in attachments.
+     *
+     * @param string $archive
+     * @param string $from
+     * @param string $to
+     * @param string $subject
+     * @param string $body
+     *
+     * @return int
+     */
+    public function send($archive, $from, $to, $subject, $body)
+    {
+        // create an attachment with the archive
+        $attachment = Swift_Attachment::fromPath($archive);
+        
+        // send successful backup mail
+        $message = Swift_Message::newInstance();
+        $message
+            ->setFrom($from)
+            ->setTo($to)
+            ->setSubject($subject)
+            ->attach($attachment)
+            ->setBody($body, 'text/html')
+        ;
+        
+        // send the archive message
+        return $this
+            ->mailer
+            ->send($message)
+        ;
     }
     
     /**
