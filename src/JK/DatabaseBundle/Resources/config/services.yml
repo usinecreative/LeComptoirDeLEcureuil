@@ -1,4 +1,6 @@
 services:
-#    jk_database.example:
-#        class: JK\DatabaseBundle\Example
-#        arguments: ["@service_id", "plain_value", %parameter%]
+    jk.database.backup_manager:
+        class: JK\DatabaseBundle\Backup\BackupManager
+
+    jk.database.archive_manager:
+        class: JK\DatabaseBundle\Archive\ArchiveManager
