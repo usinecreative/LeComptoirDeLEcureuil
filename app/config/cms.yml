@@ -266,3 +266,6 @@ liip_imagine:
 
 jk_cms:
     assets: ~
+
+jk_database:
+    backup_directory: '%backup_directory%'

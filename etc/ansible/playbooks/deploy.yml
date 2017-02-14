@@ -25,6 +25,9 @@
         path={{ deploy_helper.new_release_path }}/{{ deploy_helper.unfinished_filename }}
         state=touch
 
+    - name: Backup database
+      shell: '{{ deploy_helper.current_path }}/bin/console jk:database:backup'
+
     - name: Create folders in the shared folder
       file:
         path={{ item }}

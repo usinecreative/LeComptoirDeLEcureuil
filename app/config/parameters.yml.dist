@@ -8,7 +8,6 @@ parameters:
     database_name:     symfony
     database_user:     root
     database_password: ~
-    database_backup_path: /home
 
     mailer_transport:  smtp
     mailer_host:       127.0.0.1
@@ -31,3 +30,5 @@ parameters:
     admin_mail: ~
 
     liip_imagine_bundle_root: ~
+
+    backup_directory: ~

@@ -47,16 +47,12 @@
                    name='github.com'
                    key="{{ lookup('pipe', 'ssh-keyscan -t rsa github.com') }}"
 
-    - name: Create apache basic authentication file if required
-      htpasswd:
-        path: /etc/apache/htpwd/lecomptoir.htpasswd
-        name: '{{ server_basic_auth_user }}'
-        password: '{{ server_basic_auth_password }}'
-        owner: root
-        group: www-data
-        mode: 0640
-      when: '{{ server_basic_auth_user is defined }} and {{ server_basic_auth_password is defined}}'
-
+    - name: Ensure backup directory exists
+      file:
+        state: directory
+        path: '{{ backup_directory }}'
+        owner: '{{ user }}'
+        group: '{{ user }}'
 
     ###################
     # Oh My Zsh

@@ -2,9 +2,11 @@
 
 namespace JK\DatabaseBundle\Command;
 
+use Doctrine\DBAL\Connection;
 use LogicException;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
@@ -21,44 +23,65 @@ class BackupCommand extends Command implements ContainerAwareInterface
     {
         $this
             ->setName('jk:database:backup')
+            ->addOption(
+                'connection',
+                'c',
+                InputOption::VALUE_OPTIONAL,
+                'The connection used to get the database configuration',
+                null
+            )
+            ->addOption(
+                'backup_directory',
+                'dir',
+                InputOption::VALUE_OPTIONAL,
+                'The directory where the backup and archive are stored',
+                null
+            )
         ;
     }
-
+    
+    /**
+     * Dump a database into a file, archive it and send it to a recipient.
+     *
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     *
+     * @return int|null|void
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $host = $this
+        /** @var Connection $connection */
+        $connection = $this
             ->container
-            ->getParameter('database_host')
+            ->get('doctrine')
+            ->getConnection($input->getOption('connection'))
         ;
-        $name = $this
-            ->container
-            ->getParameter('database_name')
-        ;
-        $port = $this
-            ->container
-            ->getParameter('database_port')
-        ;
-        $user = $this
-            ->container
-            ->getParameter('database_user')
-        ;
-        $password = $this
-            ->container
-            ->getParameter('database_password')
-        ;
-        $backupDirectory = '/home/johnkrovitch/Projects/LeComptoir/';
+    
+        $backupDirectory = $input->getOption('backup_directory');
+    
+        if (!$backupDirectory) {
+            $backupDirectory = $this
+                ->container
+                ->getParameter('jk_database.backup_directory');
+        }
+    
+        if (!$backupDirectory) {
+            throw new LogicException(
+                'You must provide a backup directory, either in the configuration (jk_database.backup_directory, either in the command options (-dir)'
+            );
+        }
         $style = new SymfonyStyle($input, $output);
     
-        $style->text('Backup database '.$name.' ...');
+        $style->text('Backup database '.$connection->getDatabase().' ...');
         $backup = $this
             ->container
             ->get('jk.database.backup_manager')
             ->backup([
-                'host' => $host,
-                'name' => $name,
-                'port' => $port,
-                'user' => $user,
-                'password' => $password,
+                'host' => $connection->getHost(),
+                'name' => $connection->getDatabase(),
+                'port' => $connection->getPort(),
+                'user' => $connection->getUsername(),
+                'password' => $connection->getPassword(),
             ], $backupDirectory)
         ;
         $style->success('Backup done at '.$backup);
