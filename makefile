@@ -17,7 +17,8 @@ install-ansible:
 	ansible-galaxy install carlosbuenosvinos.ansistrano-deploy carlosbuenosvinos.ansistrano-rollback
 
 install-server:
-	ansible-playbook etc/ansible/playbooks/install.yml --ask-become-pass
+	ansible-playbook etc/ansible/playbooks/install.yml --ask-become-pass -i etc/ansible/hosts/hosts
+	ansible-playbook etc/ansible/playbooks/install.yml --ask-become-pass -i etc/ansible/hosts/staging_hosts
 
 cc:
 	rm -rf var/cache/*
