@@ -24,5 +24,9 @@ class JKDatabaseExtension extends Extension
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
+    
+        if (array_key_exists('backup_directory', $config)) {
+            $container->setParameter('jk_database.backup_directory', $config['backup_directory']);
+        }
     }
 }
