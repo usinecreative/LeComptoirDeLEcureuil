@@ -127,6 +127,7 @@ class Import
     {
         $this->label = $label;
     }
+
     /**
      * @return string
      */

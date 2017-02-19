@@ -134,7 +134,7 @@ class Tag
             ->add($article)
         ;
     }
-    
+
     public function removeArticle(Article $article)
     {
         $this
@@ -142,7 +142,7 @@ class Tag
             ->removeElement($article)
         ;
     }
-    
+
     /**
      * @param Article $article
      *

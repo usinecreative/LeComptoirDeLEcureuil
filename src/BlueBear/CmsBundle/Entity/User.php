@@ -157,14 +157,14 @@ class User implements UserInterface
      * @ORM\JoinColumn(nullable=true)
      */
     protected $articles;
-    
+
     /**
      * @var DateTime
      *
      * @ORM\Column(name="comment_last_view_date", type="datetime", nullable=true)
      */
     protected $commentLastViewDate;
-    
+
     /**
      * @var DateTime
      *
@@ -547,7 +547,7 @@ class User implements UserInterface
     {
         $this->password = $password;
     }
-    
+
     /**
      * @return DateTime
      */
@@ -555,7 +555,7 @@ class User implements UserInterface
     {
         return $this->commentLastViewDate;
     }
-    
+
     /**
      * @param DateTime $commentLastViewDate
      */
@@ -563,7 +563,7 @@ class User implements UserInterface
     {
         $this->commentLastViewDate = $commentLastViewDate;
     }
-    
+
     /**
      * @return DateTime
      */
@@ -571,7 +571,7 @@ class User implements UserInterface
     {
         return $this->articleLastViewDate;
     }
-    
+
     /**
      * @param DateTime $articleLastViewDate
      */

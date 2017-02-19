@@ -11,7 +11,7 @@ class ModuleRepository
      * @var ModuleInterface[]
      */
     private $modules = [];
-    
+
     /**
      * @param $zone
      *
@@ -20,16 +20,16 @@ class ModuleRepository
     public function load($zone)
     {
         $modules = [];
-    
+
         foreach ($this->modules as $module) {
             if (in_array($zone, $module->getZones())) {
                 $modules[] = $module;
             }
         }
-        
+
         return $modules;
     }
-    
+
     /**
      * @param ModuleInterface $module
      */
@@ -40,7 +40,7 @@ class ModuleRepository
         }
         $this->modules[$module->getName()] = $module;
     }
-    
+
     /**
      * @param $name
      *
@@ -51,7 +51,7 @@ class ModuleRepository
         if (!array_key_exists($name, $this->modules)) {
             throw new LogicException('Module "'.$name.'" not found');
         }
-    
+
         return $this->modules[$name];
     }
 }

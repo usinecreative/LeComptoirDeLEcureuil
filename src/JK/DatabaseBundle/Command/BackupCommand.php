@@ -18,7 +18,7 @@ class BackupCommand extends Command implements ContainerAwareInterface
      * @var ContainerInterface
      */
     protected $container;
-    
+
     protected function configure()
     {
         $this
@@ -39,11 +39,11 @@ class BackupCommand extends Command implements ContainerAwareInterface
             )
         ;
     }
-    
+
     /**
      * Dump a database into a file, archive it and send it to a recipient.
      *
-     * @param InputInterface $input
+     * @param InputInterface  $input
      * @param OutputInterface $output
      *
      * @return int|null|void
@@ -56,22 +56,22 @@ class BackupCommand extends Command implements ContainerAwareInterface
             ->get('doctrine')
             ->getConnection($input->getOption('connection'))
         ;
-    
+
         $backupDirectory = $input->getOption('backup_directory');
-    
+
         if (!$backupDirectory) {
             $backupDirectory = $this
                 ->container
                 ->getParameter('jk_database.backup_directory');
         }
-    
+
         if (!$backupDirectory) {
             throw new LogicException(
                 'You must provide a backup directory, either in the configuration (jk_database.backup_directory, either in the command options (-dir)'
             );
         }
         $style = new SymfonyStyle($input, $output);
-    
+
         $style->text('Backup database '.$connection->getDatabase().' ...');
         $backup = $this
             ->container
@@ -87,20 +87,20 @@ class BackupCommand extends Command implements ContainerAwareInterface
         $style->success('Backup done at '.$backup);
         $zipBackup = true;
         $sendArchive = true;
-    
+
         if ($zipBackup) {
             $style->text('Archive backup...');
-            
+
             $archive = $this
                 ->container
                 ->get('jk.database.archive_manager')
                 ->archive($backup)
             ;
             $style->success('Archive done at '.$archive);
-    
+
             if ($sendArchive) {
                 $style->text('Sending archive...');
-    
+
                 $numberOfAttachmentSend = $this
                     ->container
                     ->get('jk.database.archive_manager')
@@ -112,7 +112,7 @@ class BackupCommand extends Command implements ContainerAwareInterface
                         'Hi<br/> Here is the backup for Le Comptoir De L\'Ecureuil'
                     )
                 ;
-    
+
                 if (1 !== $numberOfAttachmentSend) {
                     throw new LogicException('An error has occurred during the mailing of the backup archive');
                 }

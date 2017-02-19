@@ -495,9 +495,8 @@ class Article implements PublicationInterface
         foreach ($this->tags as $tag) {
             $tag->removeArticle($this);
         }
-        
+
         foreach ($tags as $tag) {
-    
             if (!$tag->hasArticle($this)) {
                 $tag->addArticle($this);
             }

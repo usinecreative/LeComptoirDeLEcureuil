@@ -19,7 +19,7 @@ class Configuration implements ConfigurationInterface
     {
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('jk_database');
-    
+
         $rootNode
             ->children()
             ->scalarNode('backup_directory')

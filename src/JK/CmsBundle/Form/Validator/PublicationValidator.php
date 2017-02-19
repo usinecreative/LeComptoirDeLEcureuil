@@ -15,7 +15,7 @@ class PublicationValidator implements ConstraintValidatorInterface
      * @var ExecutionContextInterface
      */
     protected $context;
-    
+
     /**
      * @param ExecutionContextInterface $context
      */
@@ -23,19 +23,19 @@ class PublicationValidator implements ConstraintValidatorInterface
     {
         $this->context = $context;
     }
-    
+
     /**
      * Add a new violation if a Publication is published but have no publication date.
      *
      * @param PublicationInterface $publication
-     * @param Constraint $constraint
+     * @param Constraint           $constraint
      */
     public function validate($publication, Constraint $constraint)
     {
         if (!$publication instanceof PublicationInterface) {
             throw new LogicException('Only instance of '.PublicationInterface::class.' can be validated');
         }
-    
+
         // if an Article is published, it should have a publication date
         if (Article::PUBLICATION_STATUS_PUBLISHED === $publication->getPublicationStatus()
             && null === $publication->getPublicationDate()) {

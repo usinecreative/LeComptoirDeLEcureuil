@@ -19,14 +19,13 @@ class PublicationValidatorTest extends AdminTestBase
         ;
         $validator = new PublicationValidator();
         $validator->initialize($context);
-    
+
         $constraint = new Publication();
-    
-        $this->assertExceptionRaised(\LogicException::class, function() use ($validator, $constraint) {
+
+        $this->assertExceptionRaised(\LogicException::class, function () use ($validator, $constraint) {
             $validator->validate(new \stdClass(), $constraint);
         });
-    
-    
+
         $constraintBuilder = $this
             ->getMockBuilder(ConstraintViolationBuilder::class)
             ->disableOriginalConstructor()
@@ -42,7 +41,7 @@ class PublicationValidatorTest extends AdminTestBase
             ->expects($this->once())
             ->method('addViolation')
         ;
-        
+
         $context = $this
             ->getMockBuilder(ExecutionContextInterface::class)
             ->disableOriginalConstructor()
@@ -55,7 +54,7 @@ class PublicationValidatorTest extends AdminTestBase
         ;
         $article = new Article();
         $article->setPublicationStatus(Article::PUBLICATION_STATUS_PUBLISHED);
-    
+
         $validator->initialize($context);
         $validator->validate($article, $constraint);
     }

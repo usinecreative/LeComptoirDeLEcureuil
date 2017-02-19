@@ -14,12 +14,12 @@ class DashboardController extends Controller
             ->get('jk.cms.comment_repository')
             ->findNewCommentCount($user->getCommentLastViewDate())
         ;
-        
+
         return $this->render('@JKCms/Dashboard/dashboard.html.twig', [
             'newCommentCount' => $newCommentCount,
         ]);
     }
-    
+
     public function goToNewCommentsAction()
     {
         $user = $this->getUser();
@@ -28,7 +28,7 @@ class DashboardController extends Controller
             ->get('jk.cms.user_repository')
             ->save($user)
         ;
-    
+
         return $this->redirectToRoute('cms.comment.list');
     }
 }

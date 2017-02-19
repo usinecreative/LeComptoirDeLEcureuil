@@ -2,7 +2,6 @@
 
 namespace JK\CmsBundle\Module;
 
-
 use JK\CmsBundle\Repository\ModuleRepository;
 use LogicException;
 use Twig_Environment;
@@ -13,17 +12,17 @@ class ModuleRenderer
      * @var array
      */
     private $allowedZones;
-    
+
     /**
      * @var Twig_Environment
      */
     private $twig;
-    
+
     /**
      * @var ModuleRepository
      */
     private $moduleRepository;
-    
+
     /**
      * ModuleRenderer constructor.
      *
@@ -38,7 +37,7 @@ class ModuleRenderer
         $this->twig = $twig;
         $this->moduleRepository = $moduleRepository;
     }
-    
+
     /**
      * @param string $zone Zone name
      *
@@ -55,18 +54,18 @@ class ModuleRenderer
         ;
         $content = '';
         $context = [];
-    
+
         if ('left' === $zone) {
             $context['categorySlug'] = 'breves-de-comptoir';
         }
-    
+
         foreach ($modules as $module) {
             $content .= $module->render($this->twig, $context);
         }
-    
+
         return $content;
     }
-    
+
     /**
      * @param string $name Module name
      *
@@ -78,7 +77,7 @@ class ModuleRenderer
             ->moduleRepository
             ->get($name)
         ;
-    
+
         return $module->render($this->twig);
     }
 }

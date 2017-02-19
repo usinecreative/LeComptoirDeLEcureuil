@@ -17,21 +17,22 @@ class SearchFormHandler
      * @var Twig_Environment
      */
     private $twig;
-    
+
     /**
      * SearchFormHandler constructor.
      *
      * @param ArticleRepository $articleRepository
-     * @param Twig_Environment $twig
+     * @param Twig_Environment  $twig
      */
     public function __construct(ArticleRepository $articleRepository, Twig_Environment $twig)
     {
         $this->articleRepository = $articleRepository;
         $this->twig = $twig;
     }
-    
+
     /**
      * @param Request $request
+     *
      * @return Response
      */
     public function handle(Request $request)
@@ -39,11 +40,11 @@ class SearchFormHandler
         $search = $request->get('search');
         $page = $request->get('page', 1);
         $terms = $this->extractTerms($search);
-        
+
         $pager = $this
             ->articleRepository
             ->findByTerms($terms, true, $page);
-        
+
         $content = $this
             ->twig
             ->render(':Article:filter.html.twig', [
@@ -52,10 +53,10 @@ class SearchFormHandler
                 'pager' => $pager,
             ])
         ;
-    
+
         return new Response($content);
     }
-    
+
     /**
      * @param string $search
      *
@@ -64,17 +65,17 @@ class SearchFormHandler
     private function extractTerms($search)
     {
         $terms = [];
-    
+
         $data['search'] = str_replace(',', ' ', $search);
         $notTrimmedTerms = explode(' ', $search);
-        
+
         foreach ($notTrimmedTerms as $term) {
             $terms[trim($term)] = trim($term);
         }
-        
+
         return $terms;
     }
-    
+
     private function generateTitle(array $terms)
     {
         if (count($terms) > 1) {
@@ -82,7 +83,7 @@ class SearchFormHandler
         } else {
             $title = 'Recherche pour le mot "'.array_pop($terms).'"';
         }
-    
+
         return $title;
     }
 }

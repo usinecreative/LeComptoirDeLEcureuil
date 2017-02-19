@@ -17,7 +17,7 @@ class Publication extends Constraint
     {
         return PublicationValidator::class;
     }
-    
+
     /**
      * @return string
      */

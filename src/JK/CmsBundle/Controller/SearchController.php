@@ -20,12 +20,12 @@ class SearchController extends Controller
             ->headers
             ->get('referer')
         ;
-    
+
         // if no referer, redirect to the homepage
         if (null === $url) {
             $url = $this->generateUrl('lecomptoir.homepage');
         }
-    
+
         return $this->redirect($url);
     }
 }

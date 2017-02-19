@@ -162,6 +162,7 @@ class Comment
     {
         $this->id = $id;
     }
+
     /**
      * @return Article
      */

@@ -24,18 +24,18 @@ class TagCollectionTransformerTest extends AdminTestBase
         $tag1->setName('bamboo');
         $tag2 = new Tag();
         $tag2->setName('eating');
-        
+
         $transformer = new TagCollectionTransformer($tagRepository);
         $transformer->transform([
             $tag1,
             $tag2,
         ]);
-        
-        $this->assertExceptionRaised(TransformationFailedException::class, function() use ($transformer) {
+
+        $this->assertExceptionRaised(TransformationFailedException::class, function () use ($transformer) {
             $transformer->transform('a string');
         });
     }
-    
+
     /**
      * On reverse transform, the transformer should return a list of Tags from a string.
      */
@@ -47,7 +47,7 @@ class TagCollectionTransformerTest extends AdminTestBase
         $tag2->setName('eating');
         $tag3 = new Tag();
         $tag3->setName('panda');
-        
+
         $tagRepository = $this
             ->getMockBuilder(TagRepository::class)
             ->disableOriginalConstructor()
@@ -65,7 +65,7 @@ class TagCollectionTransformerTest extends AdminTestBase
         $transformer = new TagCollectionTransformer($tagRepository);
         $tags = $transformer->reverseTransform('bamboo, eating, panda, mountains');
         $this->assertCount(4, $tags);
-        
+
         foreach ($tags as $tag) {
             $this->assertContains($tag->getName(), [
                 'bamboo',
@@ -74,9 +74,9 @@ class TagCollectionTransformerTest extends AdminTestBase
                 'mountains',
             ]);
         }
-    
+
         $this
-            ->assertExceptionRaised(TransformationFailedException::class, function() use ($transformer) {
+            ->assertExceptionRaised(TransformationFailedException::class, function () use ($transformer) {
                 $transformer->reverseTransform([
                     'tags, lol',
                 ]);

@@ -14,7 +14,7 @@ class SearchType extends AbstractType
             ->add('search', TextType::class, [
                 'attr' => [
                     'placeholder' => 'lecomptoir.menu.search',
-                ]
+                ],
             ])
         ;
     }

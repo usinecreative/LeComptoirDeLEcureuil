@@ -17,7 +17,7 @@ class ModuleController extends Controller
             ->get('cms.module.renderer')
             ->renderZone($request->get('zone'))
         ;
-    
+
         return new Response($content);
     }
 }

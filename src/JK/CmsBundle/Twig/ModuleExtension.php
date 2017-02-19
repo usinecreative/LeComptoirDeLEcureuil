@@ -12,7 +12,7 @@ class ModuleExtension extends Twig_Extension
      * @var ModuleRenderer
      */
     private $moduleRenderer;
-    
+
     /**
      * ModuleExtension constructor.
      *
@@ -22,7 +22,7 @@ class ModuleExtension extends Twig_Extension
     {
         $this->moduleRenderer = $moduleRenderer;
     }
-    
+
     /**
      * Return the Twig function mapping.
      *
@@ -34,7 +34,7 @@ class ModuleExtension extends Twig_Extension
             new Twig_SimpleFunction('cms_render_module', [$this, 'cmsRenderModule']),
         ];
     }
-    
+
     /**
      * @param string $name Module name
      *

@@ -37,7 +37,7 @@ class ArticleRepository extends DoctrineRepository
      * Find Articles from a given Category slug.
      *
      * @param string $categorySlug
-     * @param int $count
+     * @param int    $count
      *
      * @return mixed
      */
@@ -114,11 +114,11 @@ class ArticleRepository extends DoctrineRepository
             ->setParameter('tag', $tag)
         ;
     }
-    
+
     /**
      * @param array $terms
-     * @param bool $usePagination
-     * @param int $page
+     * @param bool  $usePagination
+     * @param int   $page
      *
      * @return Pagerfanta|Article[]
      */
@@ -134,15 +134,15 @@ class ArticleRepository extends DoctrineRepository
             ->setParameter('publication_status', Article::PUBLICATION_STATUS_PUBLISHED)
         ;
         $i = 0;
-    
+
         foreach ($terms as $term) {
             $queryBuilder
                 ->andWhere('article.title like :term'.$i.' or category.name like :term'.$i.' or article.content like :term'.$i.' or tag.name like :term'.$i.'')
                 ->setParameter('term'.$i, '%'.$term.'%')
             ;
-            $i++;
+            ++$i;
         }
-    
+
         if (false === $usePagination) {
             return $queryBuilder
                 ->getQuery()
@@ -153,7 +153,7 @@ class ArticleRepository extends DoctrineRepository
         $pager = new Pagerfanta($adapter);
         $pager->setMaxPerPage(10);
         $pager->setCurrentPage($page);
-    
+
         return $pager;
     }
 }

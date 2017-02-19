@@ -12,7 +12,7 @@ class SearchModule implements ModuleInterface
      * @var FormFactoryInterface
      */
     private $formFactory;
-    
+
     /**
      * SearchModule constructor.
      *
@@ -22,7 +22,7 @@ class SearchModule implements ModuleInterface
     {
         $this->formFactory = $formFactory;
     }
-    
+
     /**
      * Return the Module name.
      *
@@ -32,10 +32,10 @@ class SearchModule implements ModuleInterface
     {
         return 'search';
     }
-    
+
     /**
      * @param Twig_Environment $twig
-     * @param array $context
+     * @param array            $context
      *
      * @return string
      */
@@ -45,12 +45,12 @@ class SearchModule implements ModuleInterface
             ->formFactory
             ->create(SearchType::class)
         ;
-        
+
         return $twig->render('@JKCms/Search/search.html.twig', [
             'form' => $form->createView(),
         ]);
     }
-    
+
     /**
      * @return array
      */

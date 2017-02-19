@@ -13,7 +13,7 @@ class TagCollectionEmbedType extends AbstractType
      * @var TagCollectionTransformer
      */
     private $transformer;
-    
+
     /**
      * TagCollectionEmbedType constructor.
      *
@@ -23,10 +23,10 @@ class TagCollectionEmbedType extends AbstractType
     {
         $this->transformer = $transformer;
     }
-    
+
     /**
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -34,7 +34,7 @@ class TagCollectionEmbedType extends AbstractType
             ->addModelTransformer($this->transformer)
         ;
     }
-    
+
     /**
      * @return string
      */
