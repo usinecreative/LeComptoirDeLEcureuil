@@ -1,6 +1,6 @@
 jk_cms:
     resource: '@JKCmsBundle/Resources/config/routing.yml'
-    prefix:   /cms
+    prefix:   /
 
 _liip_imagine:
     resource: '@LiipImagineBundle/Resources/config/routing.xml'
@@ -8,10 +8,6 @@ _liip_imagine:
 jk_database:
     resource: '@JKDatabaseBundle/Resources/config/routing.yml'
     prefix:   /
-
-#cms.search:
-#    path: /search
-#    defaults: {_controller: 'JKCmsBundle:Search:search'}
 
 app:
     resource: '@AppBundle/Resources/config/routing.yml'
