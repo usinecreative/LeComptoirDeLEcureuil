@@ -66,7 +66,7 @@ class SearchFormHandler
     {
         $terms = [];
 
-        $data['search'] = str_replace(',', ' ', $search);
+        $search = str_replace(',', ' ', $search);
         $notTrimmedTerms = explode(' ', $search);
 
         foreach ($notTrimmedTerms as $term) {
@@ -75,7 +75,12 @@ class SearchFormHandler
 
         return $terms;
     }
-
+    
+    /**
+     * @param array $terms
+     *
+     * @return string
+     */
     private function generateTitle(array $terms)
     {
         if (count($terms) > 1) {
