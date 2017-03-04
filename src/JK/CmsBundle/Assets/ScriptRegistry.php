@@ -118,7 +118,7 @@ class ScriptRegistry
      *
      * @throws Exception
      */
-    protected function checkLocation($location)
+    private function checkLocation($location)
     {
         if (!in_array($location, ['footer', 'head'])) {
             throw new Exception('Only "head" and "footer" locations are allowed');
@@ -132,10 +132,11 @@ class ScriptRegistry
      *
      * @return string
      */
-    protected function renderScript($script)
+    private function renderScript($script)
     {
         return $this
             ->twig
-            ->render($script['template'], $script['context']);
+            ->render($script['template'], $script['context'])
+        ;
     }
 }
