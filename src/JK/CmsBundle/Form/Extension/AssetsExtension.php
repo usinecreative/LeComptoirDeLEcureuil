@@ -14,7 +14,7 @@ class AssetsExtension extends AbstractTypeExtension
     /**
      * @var ScriptRegistry
      */
-    protected $scriptRegistry;
+    private $scriptRegistry;
 
     /**
      * AssetsExtension constructor.
@@ -37,23 +37,26 @@ class AssetsExtension extends AbstractTypeExtension
      */
     public function finishView(FormView $view, FormInterface $form, array $options)
     {
-        if (array_key_exists('scripts', $view->vars) && is_array($view->vars['scripts'])) {
-            foreach ($view->vars['scripts'] as $location => $scripts) {
-                if (!is_array($scripts)) {
-                    throw new Exception(
-                        'Assets configuration for location '.$location.' should be an array in form '.$form->getName()
-                    );
+        if (!array_key_exists('scripts', $view->vars) || !is_array($view->vars['scripts'])) {
+            return;
+        }
+        foreach ($view->vars['scripts'] as $location => $scripts) {
+            
+            if (!is_array($scripts)) {
+                throw new Exception(
+                    'Assets configuration for location '.$location.' should be an array in form '.$form->getName()
+                );
+            }
+        
+            foreach ($scripts as $name => $script) {
+                // provide a script name if none is provided
+                if (is_array($script) && !array_key_exists('script', $script)) {
+                    $script['script'] = $name;
                 }
-
-                foreach ($scripts as $name => $script) {
-                    // provide a script name if none is provided
-                    if (is_array($script) && !array_key_exists('script', $script)) {
-                        $script['script'] = $name;
-                    }
-                    $this->registerScript($location, $script);
-                }
+                $this->registerScript($location, $script);
             }
         }
+        
     }
 
     /**
@@ -72,12 +75,13 @@ class AssetsExtension extends AbstractTypeExtension
      * @param string $location
      * @param string $script
      */
-    protected function registerScript($location, $script)
+    private function registerScript($location, $script)
     {
         if (is_string($script)) {
             $this
                 ->scriptRegistry
-                ->register($location, $script);
+                ->register($location, $script)
+            ;
         } elseif (is_array($script)) {
             if (!array_key_exists('template', $script)) {
                 $script['template'] = null;
@@ -87,7 +91,8 @@ class AssetsExtension extends AbstractTypeExtension
             }
             $this
                 ->scriptRegistry
-                ->register($location, $script['script'], $script['template'], $script['context']);
+                ->register($location, $script['script'], $script['template'], $script['context'])
+            ;
         }
     }
 }
