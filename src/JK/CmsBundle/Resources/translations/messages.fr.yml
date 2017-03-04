@@ -1,6 +1,7 @@
 cms:
     main:
         cancel: Annuler
+        return: Retour
     dashboard:
         title: Dashboard
     page:
