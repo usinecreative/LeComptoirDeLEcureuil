@@ -16,8 +16,10 @@ install-ansible:
 	sudo pip install ansible
 	ansible-galaxy install carlosbuenosvinos.ansistrano-deploy carlosbuenosvinos.ansistrano-rollback
 
-install-server:
+install-production:
 	ansible-playbook etc/ansible/playbooks/install.yml --ask-become-pass -i etc/ansible/hosts/hosts
+
+install-staging:
 	ansible-playbook etc/ansible/playbooks/install.yml --ask-become-pass -i etc/ansible/hosts/staging_hosts
 
 cc:
@@ -32,6 +34,7 @@ deploy-staging:
 
 assets:
 	$(sf) jk:assets:build
+	$(sf) assets:install --symlink
 
 run:
 	$(sf) server:run

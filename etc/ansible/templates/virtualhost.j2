@@ -6,17 +6,18 @@
     {% endif %}
     DocumentRoot {{ server_document_root }}
 
-    <Directory {{ server_document_root }}>
+    <Directory {{ server_document_root }}>
         Options +Indexes  +FollowSymLinks
         DirectoryIndex app.php
         AllowOverride All
-        Require all granted
 
-        {% if server_basic_auth_user is defined and server_basic_auth_password is defined %}
+        {% if add_basic_auth == true %}
             AuthType Basic
             AuthName "Restricted Content"
-            AuthUserFile /etc/apache2/.htpasswd
+            AuthUserFile /home/{{ user }}/auth/passwdfile
             Require valid-user
+        {% else %}
+            Require all-granted
         {% endif %}
     </Directory>
 
@@ -57,7 +58,15 @@
         Options +Indexes  +FollowSymLinks
         DirectoryIndex app.php
         AllowOverride All
-        Require all granted
+
+        {% if add_basic_auth == true %}
+            AuthType Basic
+            AuthName "Restricted Content"
+            AuthUserFile /home/{{ user }}/auth/passwdfile
+            Require valid-user
+        {% else %}
+            Require all-granted
+        {% endif %}
     </Directory>
 
     <IfModule mpm_itk_module>

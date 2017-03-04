@@ -75,7 +75,7 @@ class SearchFormHandler
 
         return $terms;
     }
-    
+
     /**
      * @param array $terms
      *
