@@ -101,14 +101,14 @@ class ArticleType extends AbstractType
             ])
         ;
     }
-    
+
     /**
      * @param OptionsResolver $resolver
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $selector = uniqid('tinymce-');
-        
+
         $resolver->setDefaults([
             'data_class' => Article::class,
             'tinymce_selector' => $selector,

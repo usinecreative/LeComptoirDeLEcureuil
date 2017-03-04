@@ -41,13 +41,12 @@ class AssetsExtension extends AbstractTypeExtension
             return;
         }
         foreach ($view->vars['scripts'] as $location => $scripts) {
-            
             if (!is_array($scripts)) {
                 throw new Exception(
                     'Assets configuration for location '.$location.' should be an array in form '.$form->getName()
                 );
             }
-        
+
             foreach ($scripts as $name => $script) {
                 // provide a script name if none is provided
                 if (is_array($script) && !array_key_exists('script', $script)) {
@@ -56,7 +55,6 @@ class AssetsExtension extends AbstractTypeExtension
                 $this->registerScript($location, $script);
             }
         }
-        
     }
 
     /**

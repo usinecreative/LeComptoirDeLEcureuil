@@ -14,13 +14,13 @@ class TinyMceType extends AbstractType
     {
         return TextareaType::class;
     }
-    
+
     /**
      * Add the required javascript to make tinymce working.
      *
-     * @param FormView $view
+     * @param FormView      $view
      * @param FormInterface $form
-     * @param array $options
+     * @param array         $options
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
@@ -44,7 +44,7 @@ class TinyMceType extends AbstractType
         // we should define a real unique id (afaik, Symfony form factory does not handle yet)
         $view->vars['id'] = $options['tinymce_selector'];
     }
-    
+
     /**
      * @param OptionsResolver $resolver
      */
