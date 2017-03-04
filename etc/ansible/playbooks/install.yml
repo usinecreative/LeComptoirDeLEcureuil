@@ -7,35 +7,67 @@
     # User Management
     ###################
     - name: Create {{ user }} user group
-      group: name={{ user }} state=present
+      group:
+        name: '{{ user }}'
+        state: present
 
     - name: Create user {{ user }}
-      user: name={{ user }}
-            comment="{{ user }} user"
-            shell=/bin/zsh
-            groups={{ user }},ssh
+      user:
+        name: '{{ user }}'
+        comment: '{{ user }} user'
+        shell: /bin/zsh
+        groups: '{{ user }},ssh'
 
     - name: Add my public key to {{ user }}
-      authorized_key: user={{ user }}
-                      key="{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+      authorized_key:
+        user: '{{ user }}'
+        key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
 
     ###################
     # Database
     ###################
     - name: Create database {{ database_name }}
-      mysql_db: name={{ database_name }} state=present login_user=root login_password={{ mysql_remote_root_password }}
+      mysql_db:
+        name: '{{ database_name }}'
+        state: present
+        login_user: '{{ mysql_remote_root_user }}'
+        login_password: '{{ mysql_remote_root_password }}'
 
     - name: Create user {{ database_name }} for database {{ database_name }}
-      mysql_user: name={{ database_name }} password={{ mysql_remote_password }} priv={{ database_name }}.*:ALL state=present login_user=root login_password={{ mysql_remote_root_password }}
+      mysql_user:
+        name: '{{ database_name }}'
+        password: '{{ mysql_remote_password }}'
+        priv: '{{ database_name }}.*:ALL'
+        state: present
+        login_user: '{{ mysql_remote_root_user }}'
+        login_password: '{{ mysql_remote_root_password }}'
 
     ###################
     # Website
     ###################
     - name: Create www directory in {{ user }} home
-      file: path=/home/{{ user }}/www state=directory mode=0755 owner={{ user }} group={{ user }}
+      file:
+        path: /home/{{ user }}/www
+        state: directory
+        mode: 0755
+        owner: '{{ user }}'
+        group: '{{ user }}'
+
+    - name: Create basic authentication file
+      htpasswd:
+        path: /home/{{ user }}/auth/passwdfile
+        name: '{{ basic_auth_user }}'
+        password: '{{ basic_auth_password }}'
+        owner: root
+        group: 'www-data'
+        mode: 0640
+      when: '{{ add_basic_auth }} == true'
 
     - name: Create vhost
-      template: src=../templates/virtualhost.j2 dest=/etc/apache2/sites-available/{{ server_name }}.conf force=yes
+      template:
+        src: ../templates/virtualhost.j2
+        dest: /etc/apache2/sites-available/{{ server_name }}.conf
+        force: yes
       notify:
         - restart apache
 
@@ -57,27 +89,32 @@
     ###################
     # Oh My Zsh
     ###################
+    - stat: path=/home/{{ user }}/.oh-my-zsh/.git/index.lock
+      when: install_zsh == true
 
-#    - stat: path=/home/{{ user }}/.oh-my-zsh/.git/index.lock
-#      register: zshlock
-#
-#    - name: Clone oh-my-zsh repo
-#      git: 'repo=https://github.com/robbyrussell/oh-my-zsh.git dest=/home/{{ user }}/.oh-my-zsh'
-#
-#    - name: Create conf folder in home directory
-#      file: path=/home/{{ user }}/conf/ state=directory owner={{ user }}
-#
-#    - name: Deploy .zshrc
-#      template: src=../templates/.zshrc.j2 dest=/home/{{ user }}/conf/zshrc owner={{ user }}
-#
-#    - name: Remove standard zshrc
-#      file: path=/home/{{ user }}/.zshrc state=absent
-#
-#    - name: Symlink zshrc
-#      file: path=/home/{{ user }}/.zshrc src=/home/{{ user }}/conf/zshrc state=link owner={{ user }}
-#
-#    - name: Set zsh as default shell
-#      user: name={{ user }} shell=/bin/zsh
+    - name: Clone oh-my-zsh repo
+      git: 'repo=https://github.com/robbyrussell/oh-my-zsh.git dest=/home/{{ user }}/.oh-my-zsh'
+      when: install_zsh == true
+
+    - name: Create conf folder in home directory
+      file: path=/home/{{ user }}/conf/ state=directory owner={{ user }}
+      when: install_zsh == true
+
+    - name: Deploy .zshrc
+      template: src=../templates/.zshrc.j2 dest=/home/{{ user }}/conf/zshrc owner={{ user }}
+      when: install_zsh == true
+
+    - name: Remove standard zshrc
+      file: path=/home/{{ user }}/.zshrc state=absent
+      when: install_zsh == true
+
+    - name: Symlink zshrc
+      file: path=/home/{{ user }}/.zshrc src=/home/{{ user }}/conf/zshrc state=link owner={{ user }}
+      when: install_zsh == true
+
+    - name: Set zsh as default shell
+      user: name={{ user }} shell=/bin/zsh
+      when: install_zsh == true
 
   ###################
   # Handlers
@@ -85,4 +122,3 @@
   handlers:
     - name: restart apache
       service: name=apache2 state=restarted enabled=yes
-
