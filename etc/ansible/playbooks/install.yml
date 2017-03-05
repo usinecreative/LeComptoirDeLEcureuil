@@ -86,6 +86,13 @@
         owner: '{{ user }}'
         group: '{{ user }}'
 
+    - cron:
+        name: 'LeComptoirDeLEcureuil database backup (every day at 2am)'
+        minute: '0'
+        hour: '2'
+        job: '{{ deploy_path }}/current/app/console app:database:backup'
+        user: '{{ user }}'
+
     ###################
     # Oh My Zsh
     ###################
