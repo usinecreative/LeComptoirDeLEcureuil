@@ -6,3 +6,5 @@ Disallow: /cms
 
 #User-agent: *
 #Disallow:
+
+Sitemap: https://lecomptoirdelecureuil.fr/sitemap
