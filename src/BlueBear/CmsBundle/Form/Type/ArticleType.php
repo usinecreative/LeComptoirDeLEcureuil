@@ -5,13 +5,12 @@ namespace BlueBear\CmsBundle\Form\Type;
 use JK\CmsBundle\Entity\Article;
 use JK\CmsBundle\Form\Type\JQueryUploadType;
 use JK\CmsBundle\Form\Type\TagCollectionEmbedType;
+use JK\CmsBundle\Form\Type\TinyMceType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -49,16 +48,6 @@ class ArticleType extends AbstractType
                 'attr' => [
                     'data-help' => 'cms.article.category_help',
                 ],
-            ])
-            ->add('content', TextareaType::class, [
-                'attr' => [
-                    'rows' => 15,
-                    'class' => 'tinymce',
-                    'data-theme' => 'advanced',
-                    'data-help' => 'cms.article.content_help',
-                ],
-                'label' => 'cms.article.content',
-                'required' => false,
             ])
             ->add('thumbnail', JQueryUploadType::class, [
                 'end_point' => 'article_thumbnail',
@@ -100,23 +89,15 @@ class ArticleType extends AbstractType
                     'data-help' => 'cms.article.isCommentable_help',
                 ],
             ])
-            ->add('createdAt', DateType::class, [
-                'label' => 'cms.article.createdAt',
+            ->add('content', TinyMceType::class, [
                 'attr' => [
-                    'data-help' => 'cms.article.createdAt_help',
+                    'rows' => 15,
+                    'class' => 'tinymce sticky-menu affick affick-top',
+                    'data-theme' => 'advanced',
+                    'data-help' => 'cms.article.content_help',
                 ],
-                'disabled' => true,
-                'widget' => 'single_text',
-                'format' => 'dd/MM/yyyy',
-            ])
-            ->add('updatedAt', DateType::class, [
-                'label' => 'cms.article.updatedAt',
-                'attr' => [
-                    'data-help' => 'cms.article.updatedAt_help',
-                ],
-                'disabled' => true,
-                'widget' => 'single_text',
-                'format' => 'dd/MM/yyyy',
+                'label' => 'cms.article.content',
+                'required' => false,
             ])
         ;
     }
@@ -126,8 +107,14 @@ class ArticleType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
+        $selector = uniqid('tinymce-');
+
         $resolver->setDefaults([
             'data_class' => Article::class,
+            'tinymce_selector' => $selector,
+            'attr' => [
+                'id' => $selector,
+            ],
         ]);
     }
 

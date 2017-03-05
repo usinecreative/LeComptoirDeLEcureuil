@@ -61,6 +61,10 @@
                         Editions du Peuple de Mü</a>
                 </li>
                 <li>
+                    <a href="{{ path('lecomptoir.partner', {partnerSlug: 'editions-scrineo'}) }}"
+                       title="">Editions Scrineo</a>
+                </li>
+                <li>
                     <a href="{{ path('lecomptoir.partner', {partnerSlug: 'editions-du-chat-noir'}) }}"
                        title="Editions Du Chat Noir">Editions Du Chat Noir</a>
                 </li>
@@ -125,4 +129,6 @@
             </a>
         </li>
     </ul>
+
+    {{ cms_render_module('search') | raw }}
 </nav>

@@ -13,7 +13,7 @@ class ModuleCompilerPass implements CompilerPassInterface
     {
         $moduleDefinitions = $container->findTaggedServiceIds(JKCmsBundle::SERVICE_TAG_MODULE);
         $moduleRepositoryDefinition = $container->findDefinition(JKCmsBundle::SERVICE_ID_MODULE_REPOSITORY);
-    
+
         foreach ($moduleDefinitions as $id => $moduleDefinition) {
             $moduleRepositoryDefinition->addMethodCall('addModule', [
                 new Reference($id),

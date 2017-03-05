@@ -1,19 +1,23 @@
 cms.media.gallery.modal:
-    path: /media/gallery/modal
+    path: /cms/media/gallery/modal
     defaults: {_controller: JKCmsBundle:Media:modalGallery}
 
 cms.media.gallery.content:
-    path: /media/gallery/content
+    path: /cms/media/gallery/content
     defaults: {_controller: JKCmsBundle:Media:galleryContent}
 
 cms.dashboard.go_to_new_comments:
-    path: /dashboard/new-comments
+    path: /cms/dashboard/new-comments
     defaults: {_controller: JKCmsBundle:Dashboard:goToNewComments}
 
 cms.dashboard:
-    path: /admin/dashboard
+    path: /cms/dashboard
     defaults: {_controller: JKCmsBundle:Dashboard:dashboard}
 
 cms.module.render:
-    path: /modules/render/{zone}
+    path: /cms/modules/render/{zone}
     defaults: {_controller: JKCmsBundle:Module:render}
+
+cms.search:
+    path: /search
+    defaults: {_controller: JKCmsBundle:Search:search}

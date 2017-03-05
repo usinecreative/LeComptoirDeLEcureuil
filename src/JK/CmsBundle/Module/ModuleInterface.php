@@ -12,15 +12,15 @@ interface ModuleInterface
      * @return string
      */
     public function getName();
-    
+
     /**
      * @param Twig_Environment $twig
-     * @param array $context
+     * @param array            $context
      *
      * @return string
      */
     public function render(Twig_Environment $twig, array $context = []);
-    
+
     /**
      * @return array
      */

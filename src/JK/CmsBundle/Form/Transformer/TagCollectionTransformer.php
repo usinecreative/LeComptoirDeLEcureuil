@@ -14,7 +14,7 @@ class TagCollectionTransformer implements DataTransformerInterface
      * @var TagRepository
      */
     private $tagRepository;
-    
+
     /**
      * TagCollectionTransformer constructor.
      *
@@ -24,7 +24,7 @@ class TagCollectionTransformer implements DataTransformerInterface
     {
         $this->tagRepository = $tagRepository;
     }
-    
+
     /**
      * @param Tag[] $tags
      *
@@ -38,14 +38,14 @@ class TagCollectionTransformer implements DataTransformerInterface
             );
         }
         $content = [];
-    
+
         foreach ($tags as $tag) {
             $content[] = $tag->getName();
         }
-    
+
         return implode(', ', $content);
     }
-    
+
     /**
      * @param string $tagsString
      *
@@ -56,7 +56,7 @@ class TagCollectionTransformer implements DataTransformerInterface
         if (!$tagsString) {
             return [];
         }
-        
+
         if (!is_string($tagsString)) {
             throw new TransformationFailedException(
                 'Only a string containing Tag names can be reversed, '.gettype($tagsString).' given'
@@ -64,7 +64,7 @@ class TagCollectionTransformer implements DataTransformerInterface
         }
         $names = explode(',', $tagsString);
         $tags = [];
-    
+
         foreach ($names as $name) {
             $name = trim($name);
             $tag = $this
@@ -72,11 +72,11 @@ class TagCollectionTransformer implements DataTransformerInterface
                 ->findOneBy([
                     'name' => $name,
                 ]);
-    
+
             if (null === $tag) {
                 $tag = new Tag();
                 $tag->setName($name);
-    
+
                 $this
                     ->tagRepository
                     ->save($tag)
@@ -84,7 +84,7 @@ class TagCollectionTransformer implements DataTransformerInterface
             }
             $tags[] = $tag;
         }
-    
+
         return $tags;
     }
 }

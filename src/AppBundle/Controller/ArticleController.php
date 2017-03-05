@@ -31,7 +31,7 @@ class ArticleController extends Controller
         $article = $this
             ->get('bluebear.cms.article_finder')
             ->findOne($filter);
-    
+
         if (null === $article) {
             throw new NotFoundHttpException('Article not found');
         }
@@ -79,7 +79,8 @@ class ArticleController extends Controller
         $filter->handleRequest($request);
         $pager = $this
             ->get('bluebear.cms.article_finder')
-            ->find($filter);
+            ->find($filter)
+        ;
 
         return [
             'articles' => $pager->getCurrentPageResults(),
@@ -141,7 +142,7 @@ class ArticleController extends Controller
                 ->findOneBy([
                     'slug' => $parameters->get('categorySlug'),
                 ]);
-    
+
             if (null === $category) {
                 throw new NotFoundHttpException();
             }

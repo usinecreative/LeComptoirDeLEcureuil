@@ -1,6 +1,5 @@
 # symfony
 app/config/parameters.yml
-var/bootstrap.php.cache
 var/logs
 app/phpunit.xml
 bin/*
@@ -27,3 +26,5 @@ web/images/articles
 web/images/categories
 
 web/uploads
+
+.php_cs.cache

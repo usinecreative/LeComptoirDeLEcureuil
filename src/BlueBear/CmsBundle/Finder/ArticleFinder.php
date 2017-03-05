@@ -2,6 +2,7 @@
 
 namespace BlueBear\CmsBundle\Finder;
 
+use DateTime;
 use JK\CmsBundle\Entity\Article;
 use JK\CmsBundle\Repository\ArticleRepository;
 use BlueBear\CmsBundle\Finder\Filter\ArticleFilter;
@@ -84,7 +85,10 @@ class ArticleFinder
         // only the published articles
         $queryBuilder
             ->andWhere('article.publicationStatus = :publication_status')
-            ->setParameter('publication_status', Article::PUBLICATION_STATUS_PUBLISHED);
+            ->andWhere('article.publicationDate <= :now')
+            ->setParameter('publication_status', Article::PUBLICATION_STATUS_PUBLISHED)
+            ->setParameter('now', new DateTime())
+        ;
 
         // get parameters from filters
         $parameters = $filter->getParameters();

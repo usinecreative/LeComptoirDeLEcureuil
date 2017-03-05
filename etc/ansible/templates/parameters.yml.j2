@@ -7,7 +7,6 @@ parameters:
     database_name: {{ database_name }}
     database_user: {{ database_name }}
     database_password: {{ mysql_remote_password }}
-    database_backup_path: null
 
     mailer_transport: smtp
     mailer_host: smtp.gmail.com
@@ -32,3 +31,5 @@ parameters:
     liip_imagine_bundle_root:
         - {{ liip_imagine_bundle_root[0] }}
         - {{ liip_imagine_bundle_root[1] }}
+
+    backup_directory: {{ backup_directory }}

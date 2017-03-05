@@ -23,6 +23,12 @@ services:
         tags:
             - {name: twig.extension}
 
+    cms.twig.module_extension:
+        class: JK\CmsBundle\Twig\ModuleExtension
+        autowire: true
+        tags:
+            - {name: twig.extension}
+
     cms.assets.helper:
         class: JK\CmsBundle\Assets\AssetsHelper
         arguments:
