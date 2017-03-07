@@ -36,8 +36,9 @@ article {
 
 // Article
 .article {
-  padding: 0;
+  min-height: 668px;
   font-family: "Gabriela", arial, sans-serif;
+  padding: 0;
 
   h1, h2 {
     color: #11112f;
