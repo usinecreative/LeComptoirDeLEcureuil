@@ -2,8 +2,8 @@
 
 namespace AppBundle\Form\Type;
 
+use JK\CmsBundle\Form\Type\TinyMceType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -16,11 +16,9 @@ class PartnerType extends AbstractType
             ->add('name', TextType::class, [
                 'label' => 'cms.partner.name',
             ])
-            ->add('description', TextareaType::class, [
+            ->add('description', TinyMceType::class, [
                 'attr' => [
                     'rows' => 10,
-                    'class' => 'tinymce',
-                    'data-theme' => 'advanced',
                 ],
                 'label' => 'cms.partner.description',
                 'required' => false,

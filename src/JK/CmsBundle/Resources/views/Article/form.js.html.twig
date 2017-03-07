@@ -2,14 +2,15 @@
     .sticky-menu {
         position: sticky;
     }
+
     .mce-toolbar, .mce-container {
         background-color: #f8f8f8;
     }
+
     .sticky-wrapper.is-sticky .mce-container:first-child {
         background-color: #f8f8f8;
-        margin-left: -49px;
+        margin-left: -46px;
         padding-left: 49px;
-
     }
 </style>
 <script src="{{ asset('js/tinymce/tinymce.min.js') }}"></script>
@@ -42,26 +43,35 @@
                     text: translations.addGallery,
                     icon: false,
                     onclick: function () {
+                        var galleryModal = $('#gallery-modal');
+
                         galleryModal.on('show.bs.modal', function () {
-                            galleryModal.find('#media-container').load(routes.modalGallery);
+                            galleryModal.find('#media-container').load('{{ path('cms.media.gallery.modal') }}');
                         });
                         galleryModal.modal('show');
                     }
                 });
-                editor.on('PostRender', function(e) {
+                editor.on('PostRender', function (e) {
                     var top = 51;
 
-                    $('.mce-toolbar').each(function () {
-                        $(this).sticky({
-                            topSpacing: top,
-                            zIndex: 5000,
-                            bottomSpacing: 400
-                        });
-                        top += 35;
-                        $(this).show();
-                    }).css('height', '35px');
+                    $('.mce-toolbar')
+                        .each(function () {
+                            $(this).sticky({
+                                topSpacing: top,
+                                zIndex: 5000,
+                                bottomSpacing: 400
+                            });
+                            top += 35;
+                            $(this).show();
+                        })
+                        .css('height', '35px')
+                        .parent('.sticky-wrapper')
+                        .css('height', '35px')
+                    ;
                 });
             }
         });
     });
 </script>
+
+{% include '@JKCms/Media/modal.html.twig' %}

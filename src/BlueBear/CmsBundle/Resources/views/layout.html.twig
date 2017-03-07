@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block head %}
+    {# inject scripts in head section #}
     {{ cms_dump_scripts('head') | raw }}
 {% endblock %}
 
@@ -16,15 +17,13 @@
     <script src="{{ asset('bundles/jkcms/js/cms.js') }}"></script>
     <script>
         $(document).on('ready', function () {
+            {# TODO move in a separate script #}
             var routes = {
                 modalGallery: '{{ path('cms.media.gallery.modal') }}',
                 galleryContent: '{{ path('cms.media.gallery.content') }}'
             };
             var galleryModal = $('#gallery-modal');
 
-
-
-            {# TODO move in a separate script #}
             $('#file-upload').fileupload({
                 done: function () {
                     galleryModal.find('#media-container').load(routes.modalGallery);
@@ -51,8 +50,8 @@
             });
         });
     </script>
-    {{ cms_dump_scripts('footer') | raw }}
 
-    {% include '@JKCms/Media/modal.html.twig' %}
+    {# inject scripts in footer section #}
+    {{ cms_dump_scripts('footer') | raw }}
 {% endblock %}
 
