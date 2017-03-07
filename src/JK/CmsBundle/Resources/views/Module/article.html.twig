@@ -10,7 +10,7 @@
             <a href="{{ path('lecomptoir.article.show', article.urlParameters) }}"
                title="Voir l'article {{ article.title }}">
                 <i class="fa fa-angle-double-right "></i>
-                {{ article.title }}
+                {{ article.title | truncate(25, '...') }}
             </a>
         </li>
         {% endfor %}
