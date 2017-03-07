@@ -27,7 +27,9 @@ class ArticleRepository extends DoctrineRepository
             ->createQueryBuilder('article')
             ->orderBy('article.publicationDate', 'desc')
             ->where('article.publicationStatus = :published')
+            ->andWhere('article.publicationDate <= :now')
             ->setParameter('published', Article::PUBLICATION_STATUS_PUBLISHED)
+            ->setParameter('now', new DateTime())
             ->setMaxResults($count)
             ->getQuery()
             ->getResult();
