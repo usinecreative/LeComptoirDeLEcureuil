@@ -4,7 +4,6 @@ lag_admin:
             entity: BlueBear\CmsBundle\Entity\Category
             form: BlueBear\CmsBundle\Form\Type\CategoryType
             actions:
-                batch: ~
                 create: ~
                 edit: ~
                 delete: ~
