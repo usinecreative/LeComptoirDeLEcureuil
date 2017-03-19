@@ -1,6 +1,6 @@
 <?php
 
-namespace BlueBear\CmsBundle\Form\Type;
+namespace JK\CmsBundle\Form\Type;
 
 use JK\CmsBundle\Entity\Article;
 use Symfony\Component\Form\AbstractType;
@@ -40,14 +40,7 @@ class PageType extends AbstractType
                 ],
             ])
             ->add('publicationDate', DateTimeType::class)
-            ->add('content', TextareaType::class, [
-                'required' => false,
-                'label' => 'cms.page.edit.content',
-                'attr' => [
-                    'class' => 'tinymce',
-                    'data-help' => 'cms.page.edit.content_help',
-                ],
-            ])
+            ->add('content', TinyMceType::class)
         ;
     }
 

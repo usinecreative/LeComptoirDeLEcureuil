@@ -56,3 +56,11 @@ services:
     cms.search.form_handler:
         class: JK\CmsBundle\Form\Handler\SearchFormHandler
         autowire: true
+
+    # Page
+    cms.page.page_type:
+        class: JK\CmsBundle\Form\Type\PageType
+        tags:
+            - {name: form.type, alias: page}
+        arguments:
+            - '@cms.form.helper'

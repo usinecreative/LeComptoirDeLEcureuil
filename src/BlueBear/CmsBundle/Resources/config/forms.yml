@@ -26,13 +26,6 @@ services:
         tags:
             - {name: form.type, alias: article}
 
-    cms.form.page_type:
-        class: 'BlueBear\CmsBundle\Form\Type\PageType'
-        tags:
-            - {name: form.type, alias: page}
-        arguments:
-            - '@cms.form.helper'
-
     bluebear.cms.import_type:
         class: 'BlueBear\CmsBundle\Form\Type\ImportType'
         tags:
