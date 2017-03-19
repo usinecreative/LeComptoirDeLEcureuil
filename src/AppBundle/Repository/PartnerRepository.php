@@ -2,7 +2,7 @@
 
 namespace AppBundle\Repository;
 
-use LAG\AdminBundle\Repository\DoctrineRepository;
+use LAG\AdminBundle\Doctrine\Repository\DoctrineRepository;
 
 class PartnerRepository extends DoctrineRepository
 {

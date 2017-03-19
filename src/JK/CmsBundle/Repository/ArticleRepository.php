@@ -5,7 +5,7 @@ namespace JK\CmsBundle\Repository;
 use JK\CmsBundle\Entity\Article;
 use DateTime;
 use Doctrine\Common\Collections\Collection;
-use LAG\AdminBundle\Repository\DoctrineRepository;
+use LAG\AdminBundle\Doctrine\Repository\DoctrineRepository;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\Pagerfanta;
 
@@ -90,7 +90,25 @@ class ArticleRepository extends DoctrineRepository
             ->where('article.publicationStatus != :publication_status')
             ->setParameter('publication_status', Article::PUBLICATION_STATUS_PUBLISHED)
             ->getQuery()
-            ->getResult();
+            ->getResult()
+        ;
+    }
+    
+    /**
+     * Return the number of not published Articles.
+     *
+     * @return mixed
+     */
+    public function findNotPublishedCount()
+    {
+        return $this
+            ->createQueryBuilder('article')
+            ->select('count(article.id)')
+            ->where('article.publicationStatus != :publication_status')
+            ->setParameter('publication_status', Article::PUBLICATION_STATUS_PUBLISHED)
+            ->getQuery()
+            ->getSingleScalarResult()
+        ;
     }
 
     /**

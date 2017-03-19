@@ -2,7 +2,7 @@
 
 namespace BlueBear\CmsBundle\Repository;
 
-use LAG\AdminBundle\Repository\DoctrineRepository;
+use LAG\AdminBundle\Doctrine\Repository\DoctrineRepository;
 
 class ParametersRepository extends DoctrineRepository
 {

@@ -14,9 +14,14 @@ class DashboardController extends Controller
             ->get('jk.cms.comment_repository')
             ->findNewCommentCount($user->getCommentLastViewDate())
         ;
+        $notPublishedArticleCount = $this
+            ->get('cms.article.repository')
+            ->findNotPublishedCount()
+        ;
 
         return $this->render('@JKCms/Dashboard/dashboard.html.twig', [
             'newCommentCount' => $newCommentCount,
+            'notPublishedArticleCount' => $notPublishedArticleCount,
         ]);
     }
 

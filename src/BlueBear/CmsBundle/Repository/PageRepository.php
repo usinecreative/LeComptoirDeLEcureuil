@@ -5,7 +5,7 @@ namespace BlueBear\CmsBundle\Repository;
 use BlueBear\CmsBundle\Entity\Page;
 use BlueBear\CmsBundle\Publication\PublicationStatus;
 use DateTime;
-use LAG\AdminBundle\Repository\DoctrineRepository;
+use LAG\AdminBundle\Doctrine\Repository\DoctrineRepository;
 
 class PageRepository extends DoctrineRepository
 {

@@ -4,7 +4,7 @@ namespace BlueBear\CmsBundle\Repository;
 
 use BlueBear\CmsBundle\Entity\Comment;
 use DateTime;
-use LAG\AdminBundle\Repository\DoctrineRepository;
+use LAG\AdminBundle\Doctrine\Repository\DoctrineRepository;
 
 class CommentRepository extends DoctrineRepository
 {

@@ -2,6 +2,8 @@ cms:
     main:
         cancel: Annuler
         return: Retour
+        delete: Supprimer
+        edit: Editer
         align_left: Aligné à gauche
         align_right: Aligné à droite
         align_center: Centré
@@ -73,6 +75,7 @@ cms:
         thumbnailFile: Minitature de l'article
         thumbnailFile_help: Minitature affichée sur la page d'accueil ou dans les catégories
         _actions: ''
+        not_published_articles: Article non publiés
     menu:
         edit: Editer
         delete: Supprimer

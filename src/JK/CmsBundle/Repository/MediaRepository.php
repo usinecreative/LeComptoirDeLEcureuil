@@ -4,7 +4,7 @@ namespace JK\CmsBundle\Repository;
 
 use Exception;
 use JK\CmsBundle\Entity\MediaInterface;
-use LAG\AdminBundle\Repository\DoctrineRepository;
+use LAG\AdminBundle\Doctrine\Repository\DoctrineRepository;
 
 class MediaRepository extends DoctrineRepository
 {
