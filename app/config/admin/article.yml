@@ -6,6 +6,15 @@ lag_admin:
             actions:
                 list:
                     title: cms.article.list
+                    filters:
+                        title: ~
+                        publicationStatus:
+                            type: choice
+                            options:
+                                choices:
+                                    cms.publication.draft: 0
+                                    cms.publication.waiting_validation: 1
+                                    cms.publication.published: 2
                     order:
                         id: desc
                     menus:
@@ -25,26 +34,46 @@ lag_admin:
                                 parameters: {id: ~}
                         category: ~
                         author: ~
-                        publicationStatus: ~
+                        publicationStatus:
+                            type: mapped
+                            options:
+                                mapping:
+                                    0: cms.publication.draft
+                                    1: cms.publication.waiting_validation
+                                    2: cms.publication.published
                         publicationDate: {type: date, options: {format: d/m/Y}}
                         updatedAt: {type: date, options: {format: d/m/Y}}
                         _actions:
-                            type: collection
+                            type: action_collection
                             options:
-                                _edit:
-                                    type: action
-                                    options:
-                                        title: cms.menu.edit
+                                actions:
+                                    edit:
                                         route: cms.article.edit
-                                        parameters: {id: ~}
-                                        icon: pencil
-                                _delete:
-                                    type: action
-                                    options:
-                                        title: cms.menu.delete
+                                        parameters:
+                                            id: ~
+                                        text: cms.main.edit
+                                    delete:
                                         route: cms.article.delete
-                                        parameters: {id: ~}
-                                        icon: remove
+                                        parameters:
+                                            id: ~
+                                        text: cms.main.delete
+#                        _actions:
+#                            type: collection
+#                            options:
+#                                _edit:
+#                                    type: action
+#                                    options:
+#                                        title: cms.menu.edit
+#                                        route: cms.article.edit
+#                                        parameters: {id: ~}
+#                                        icon: pencil
+#                                _delete:
+#                                    type: action
+#                                    options:
+#                                        title: cms.menu.delete
+#                                        route: cms.article.delete
+#                                        parameters: {id: ~}
+#                                        icon: remove
                 create: ~
                 edit:
                     menus:
