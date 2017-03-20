@@ -90,7 +90,7 @@
         name: 'LeComptoirDeLEcureuil database backup (every day at 2am)'
         minute: '0'
         hour: '2'
-        job: '{{ deploy_path }}/current/bin/console app:database:backup'
+        job: '{{ deploy_path }}/current/bin/console jk:database:backup'
         user: '{{ user }}'
 
     ###################
