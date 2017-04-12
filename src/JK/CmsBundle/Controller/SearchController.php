@@ -3,10 +3,17 @@
 namespace JK\CmsBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class SearchController extends Controller
 {
+    /**
+     * @param Request $request
+     *
+     * @return RedirectResponse|Response
+     */
     public function searchAction(Request $request)
     {
         if ($request->get('search')) {
