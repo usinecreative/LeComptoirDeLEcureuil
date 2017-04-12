@@ -52,6 +52,8 @@ class RecaptchaType extends AbstractType
                 'constraints' => [
                     new Recaptcha(),
                 ],
+                'label' => false,
+                'mapped' => false,
             ])
         ;
     }

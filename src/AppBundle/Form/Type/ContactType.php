@@ -2,6 +2,7 @@
 
 namespace AppBundle\Form\Type;
 
+use JK\CmsBundle\Form\Type\RecaptchaType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -48,6 +49,7 @@ class ContactType extends AbstractType
                     'placeholder' => 'lecomptoir.contact.message_placeholder',
                 ],
             ])
+            ->add('recaptcha', RecaptchaType::class)
         ;
     }
 
