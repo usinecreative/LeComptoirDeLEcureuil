@@ -130,12 +130,12 @@ class ArticleRepository extends DoctrineRepository
     {
         $queryBuilder = $this
             ->createQueryBuilder('article')
-            ->addSelect('article, category, tag')
             ->leftJoin('article.category', 'category')
             ->leftJoin('article.tags', 'tag')
             ->orderBy('article.publicationDate', 'desc')
             ->where('article.publicationStatus = :publication_status')
             ->setParameter('publication_status', Article::PUBLICATION_STATUS_PUBLISHED)
+            ->distinct(true)
         ;
         $i = 0;
 
@@ -153,10 +153,12 @@ class ArticleRepository extends DoctrineRepository
                 ->getResult()
             ;
         }
-        $adapter = new DoctrineORMAdapter($queryBuilder, false);
+        $adapter = new DoctrineORMAdapter($queryBuilder, false, false);
         $pager = new Pagerfanta($adapter);
-        $pager->setMaxPerPage(10);
-        $pager->setCurrentPage($page);
+        $pager
+            ->setMaxPerPage(10)
+            ->setCurrentPage($page)
+        ;
 
         return $pager;
     }
