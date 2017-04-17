@@ -58,7 +58,7 @@ class TinyMceType extends AbstractType
                     'advlist', 'autolink', 'autoresize', 'lists', 'link', 'image', 'charmap', 'print', 'preview',
                     'hr', 'anchor', 'pagebreak',
                     'searchreplace', 'wordcount', 'visualblocks', 'visualchars', 'code', 'fullscreen',
-                    'insertdatetime', 'media', 'nonbreaking', 'save', 'table', 'contextmenu', 'directionality',
+                    'insertdatetime', 'media', 'nonbreaking', 'save', 'table', 'directionality',
                     'emoticons', 'template', 'paste', 'textcolor', 'colorpicker', 'textpattern', 'imagetools',
                 ],
                 'tinymce_toolbar' => 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter '

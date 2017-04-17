@@ -32,6 +32,8 @@ class ArticleType extends AbstractType
                 'label' => 'cms.article.title',
                 'attr' => [
                     'data-help' => 'cms.article.title_help',
+                    'contenteditable' => 'true',
+                    'spellcheck' => 'true',
                 ],
             ])
             ->add('canonical', UrlType::class, [
@@ -73,6 +75,10 @@ class ArticleType extends AbstractType
             ->add('tags', TagCollectionEmbedType::class, [
                 'required' => false,
                 'compound' => false,
+                'attr' => [
+                    'contenteditable' => 'true',
+                    'spellcheck' => 'true',
+                ],
             ])
             ->add('author', EntityType::class, [
                 'label' => 'cms.article.author',
@@ -95,6 +101,8 @@ class ArticleType extends AbstractType
                     'class' => 'tinymce sticky-menu affick affick-top',
                     'data-theme' => 'advanced',
                     'data-help' => 'cms.article.content_help',
+                    'contenteditable' => 'true',
+                    'spellcheck' => 'true',
                 ],
                 'label' => 'cms.article.content',
                 'required' => false,
