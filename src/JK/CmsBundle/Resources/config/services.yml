@@ -38,6 +38,10 @@ services:
             - '@liip_imagine.cache.manager'
             - '%kernel.root_dir%'
 
+    cms.assets.script_registry:
+        class: JK\CmsBundle\Assets\ScriptRegistry
+        autowire: true
+
     cms.comment.comment_mailer:
         class: JK\CmsBundle\Mail\CommentMailer
         arguments:
@@ -51,3 +55,4 @@ services:
         arguments:
             - '@twig'
             - '@cms.module.repository'
+
