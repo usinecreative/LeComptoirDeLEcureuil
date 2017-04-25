@@ -19,7 +19,7 @@ install:
     - bin/console cache:clear --env=test
 
 script:
-  - phpunit --coverage-text --coverage-clover=coverage.clover -c app
+  - bin/phpunit --coverage-text --coverage-clover=coverage.clover -c app
 
 after_script:
   - wget https://scrutinizer-ci.com/ocular.phar
