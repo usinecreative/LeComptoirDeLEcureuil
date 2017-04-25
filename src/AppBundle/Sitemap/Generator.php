@@ -60,7 +60,7 @@ class Generator
     }
 
     /**
-     * Generate a xml sitemap file and return its filepath.
+     * Generate a xml sitemap file and return its file path.
      *
      * @return string
      */
