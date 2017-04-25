@@ -68,6 +68,20 @@
 <footer>
     <script src="{{ asset('bundles/lagadmin/js/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('bundles/lagadmin/js/bootstrap/bootstrap.min.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            $('.page-content, .article-content').find('img').each(function () {
+                var float = $(this).css('float');
+                console.log('traec', float);
+
+                if (float === 'left') {
+                    $(this).addClass('pull-left');
+                } else if (float === 'right') {
+                    $(this).addClass('pull-right');
+                }
+            });
+        });
+    </script>
     {{ cms_dump_scripts('footer') }}
 
     {% if hotjar_enabled %}

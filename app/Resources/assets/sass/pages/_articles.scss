@@ -36,6 +36,7 @@ article {
 
 // Article
 .article {
+  background-color: $main-color;
   min-height: 668px;
   font-family: "Gabriela", arial, sans-serif;
   padding: 0;
@@ -63,6 +64,13 @@ article {
 
     img {
       margin: 0 20px;
+
+      &.pull-left {
+        margin-left: 0;
+      }
+      &.pull-right {
+        margin-right: 0;
+      }
     }
   }
 

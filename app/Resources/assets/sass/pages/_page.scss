@@ -1,15 +1,11 @@
-.page {
+// Pages global styles
+.page,
+.free-page {
+  background-color: $main-color;
+
   h1 {
     text-align: center;
   }
-  .page-content {
-
-  }
-}
-
-.free-page {
-  padding: 0;
-
   .page-content {
     line-height: 1.8;
     min-height: 610px;
@@ -18,6 +14,19 @@
 
     img {
       margin: 0 20px;
+
+      &.pull-left {
+        margin-left: 0;
+      }
+      &.pull-right {
+        margin-right: 0;
+      }
     }
+  }
+}
+
+.free-page {
+  .page-content {
+    padding: 20px;
   }
 }
