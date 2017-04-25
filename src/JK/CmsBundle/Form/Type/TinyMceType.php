@@ -10,6 +10,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class TinyMceType extends AbstractType
 {
+    /**
+     * @return string
+     */
     public function getParent()
     {
         return TextareaType::class;

@@ -53,14 +53,14 @@
                         galleryModal.modal('show');
                     }
                 });
-                editor.on('PostRender', function (e) {
+                editor.on('PostRender', function () {
                     var top = 51;
 
                     $('.mce-toolbar')
                         .each(function () {
                             $(this).sticky({
                                 topSpacing: top,
-                                zIndex: 5000,
+                                zIndex: 900,
                                 bottomSpacing: 400
                             });
                             top += 35;
