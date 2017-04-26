@@ -66,7 +66,7 @@ class AssetsHelper
     }
 
     /**
-     * Return the web path to a Media. If $cache=true, it returns the web path to the cached version.
+     * Return the web path to a Media. If $cache is true, it returns the web path to the cached version.
      *
      * @param MediaInterface $media
      * @param bool           $absolute
@@ -94,13 +94,16 @@ class AssetsHelper
         );
         $path = $relativePath;
 
-        if ($absolute) {
+        if (true === $absolute) {
             $context = $this
                 ->router
                 ->getContext();
             $path = $context->getScheme().'://'.$context->getHost().'/'.$path;
 
-            $path = str_replace('app_'.$this->environment.'.php', '', $path);
+            // bug fix for development environment
+            if ('prod' !== $this->environment) {
+                $path = str_replace('app_'.$this->environment.'.php', '', $path);
+            }
         }
 
         if ($cache) {

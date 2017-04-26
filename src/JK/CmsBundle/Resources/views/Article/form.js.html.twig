@@ -24,7 +24,8 @@
         var tinyMceContentCss = '{{ asset(contentCss) }}';
 
         var translations = {
-            addGallery: "{{ 'cms.gallery.add_gallery' | trans | raw }}"
+            addGallery: "{{ 'cms.gallery.add_gallery' | trans | raw }}",
+            addImage: "{{ 'cms.gallery.add_image' | trans | raw }}"
         };
         var plugins = {{ plugins | default('[]') | json_encode | raw }};
         var toolbar = '{{ toolbar }}';
@@ -53,9 +54,20 @@
                         galleryModal.modal('show');
                     }
                 });
+                editor.addButton('add_image', {
+                    text: translations.addImage,
+                    icon: 'image',
+                    onclick: function () {
+                        var imageModal = $('#add-image-modal');
+
+                        imageModal.find('#image-form-container').load('{{ path('cms.media.add_image_modal') }}');
+                        imageModal.modal('show');
+                    }
+                });
                 editor.on('PostRender', function () {
                     var top = 51;
 
+                    // add sticky tinymce toolbar to avoid issues with long articles
                     $('.mce-toolbar')
                         .each(function () {
                             $(this).sticky({
@@ -77,3 +89,4 @@
 </script>
 
 {% include '@JKCms/Media/modal.html.twig' %}
+{% include '@JKCms/Article/addImage.modal.html.twig' %}

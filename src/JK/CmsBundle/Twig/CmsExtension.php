@@ -64,7 +64,8 @@ class CmsExtension extends Twig_Extension
     {
         return $this
             ->assetsHelper
-            ->getMediaPath($media, $absolute, $cache, $mediaFilter);
+            ->getMediaPath($media, $absolute, $cache, $mediaFilter)
+        ;
     }
 
     /**
@@ -78,7 +79,8 @@ class CmsExtension extends Twig_Extension
     {
         return $this
             ->assetsHelper
-            ->getMediaDirectory($mappingName);
+            ->getMediaDirectory($mappingName)
+        ;
     }
 
     /**
@@ -114,6 +116,7 @@ class CmsExtension extends Twig_Extension
     {
         return $this
             ->scriptRegistry
-            ->dumpScripts($location);
+            ->dumpScripts($location)
+        ;
     }
 }

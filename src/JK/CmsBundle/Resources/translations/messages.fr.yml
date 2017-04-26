@@ -134,7 +134,10 @@ cms:
         type_help: Le type du média va changer le répertoire où est stockée l'image
         category_thumbnail: Miniature d'une Catégorie
         article_thumbnail: Miniature d'un Article
-
+        upload_from_url: Uploader à partir d'une url
+        upload_from_computer: Uploader à partir d'un fichier sur votre ordinateur
+        choose_from_collection: Choisir un média dans la médiathèque
+        choose: Choisir
     tag:
         list: Tags
         edit: Editer
@@ -154,6 +157,7 @@ cms:
         create: Importez vos données
     gallery:
       add_gallery: Ajouter une galerie d'image
+      add_image: Ajouter une image
       upload_media: Uploader un média
 
 logout: Déconnexion
