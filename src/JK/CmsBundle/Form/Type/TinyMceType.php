@@ -66,7 +66,7 @@ class TinyMceType extends AbstractType
                 ],
                 'tinymce_toolbar' => 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter '
                     .'alignright alignjustify | bullist numlist outdent indent | link image toolbar2: print preview '
-                    .'media | forecolor backcolor emoticons code | add_gallery add_gallery',
+                    .'media | forecolor backcolor emoticons code | add_gallery add_image',
             ])
             ->setAllowedTypes('tinymce_plugins', 'array')
         ;

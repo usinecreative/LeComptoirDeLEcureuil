@@ -224,3 +224,7 @@ jk_cms:
 
 jk_database:
     backup_directory: '%backup_directory%'
+
+dunglas_action:
+    directories:
+        - '../src/JK/CmsBundle/Action/*'

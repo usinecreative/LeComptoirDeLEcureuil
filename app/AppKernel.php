@@ -16,33 +16,32 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Symfony\Bundle\WebServerBundle\WebServerBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
-
-            // BlueBear
-            new LAG\AdminBundle\LAGAdminBundle(),
-            new BlueBear\CmsBundle\BlueBearCmsBundle(),
-            new BlueBear\MediaBundle\BlueBearMediaBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
-            
-            // Noisettes
-            new LeComptoirDeLEcureuil\BackBundle\LeComptoirDeLEcureuilBackBundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
             
+            // Nuts
+            new AppBundle\AppBundle(),
+            new LeComptoirDeLEcureuil\BackBundle\LeComptoirDeLEcureuilBackBundle(),
+    
             // CMS
+            new LAG\AdminBundle\LAGAdminBundle(),
+            new JK\CmsBundle\JKCmsBundle(),
+            new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
+            new BlueBear\CmsBundle\BlueBearCmsBundle(),
+            new BlueBear\MediaBundle\BlueBearMediaBundle(),
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
-            new AppBundle\AppBundle(),
             new JK\DatabaseBundle\JKDatabaseBundle(),
-
             new Knp\Bundle\GaufretteBundle\KnpGaufretteBundle(),
-            new Eko\FeedBundle\EkoFeedBundle(),
-            new JK\SamBundle\JKSamBundle(),
-            new JK\CmsBundle\JKCmsBundle(),
-            new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
-
+    
+            // Assets
             new Liip\ImagineBundle\LiipImagineBundle(),
             new Oneup\UploaderBundle\OneupUploaderBundle(),
+            new JK\SamBundle\JKSamBundle(),
+            new Eko\FeedBundle\EkoFeedBundle(),
+            new Dunglas\ActionBundle\DunglasActionBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'])) {

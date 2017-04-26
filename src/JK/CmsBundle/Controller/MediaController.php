@@ -42,7 +42,8 @@ class MediaController extends CRUDController
             ->get('cms.media.media_repository')
             ->findBy([
                 'id' => $ids,
-            ]);
+            ])
+        ;
 
         return $this->render('@JKCms/Media/galleryContent.html.twig', [
             'mediaList' => $mediaList,

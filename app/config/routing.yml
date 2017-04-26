@@ -29,6 +29,10 @@ app:
     resource: '@AppBundle/Resources/config/routing.yml'
     prefix:   /
 
+cms.media.add_image_modal:
+    path: /cms/media/add-image
+    defaults: {_controller: 'JK\CmsBundle\Action\AddImage'}
+
 # BlueBear AdminBundle
 blue_bear_admin:
     resource: .
