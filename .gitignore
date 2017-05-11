@@ -28,3 +28,4 @@ web/images/categories
 web/uploads
 
 .php_cs.cache
+etc/ansible/playbooks/fetch-images.yml
