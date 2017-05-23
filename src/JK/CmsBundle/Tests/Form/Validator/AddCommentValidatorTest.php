@@ -36,7 +36,10 @@ class AddCommentValidatorTest extends AdminTestBase
         // with an empty Comment, no violations should be build
         $validator->validate($comment, $constraint);
 
-        $context = $this->getMock(ExecutionContextInterface::class);
+        $context = $this
+            ->getMockBuilder(ExecutionContextInterface::class)
+            ->getMock()
+        ;
         $context
             ->method('buildViolation')
             ->willReturnCallback(function () {
