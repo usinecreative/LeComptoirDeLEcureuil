@@ -14,7 +14,10 @@ class AddCommentValidatorTest extends AdminTestBase
 {
     public function testValidate()
     {
-        $context = $this->getMock(ExecutionContextInterface::class);
+        $context = $this
+            ->getMockBuilder(ExecutionContextInterface::class)
+            ->getMock()
+        ;
         $context
             ->expects($this->never())
             ->method('addViolation');

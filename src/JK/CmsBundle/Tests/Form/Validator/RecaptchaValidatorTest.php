@@ -28,7 +28,10 @@ class RecaptchaValidatorTest extends AdminTestBase
         $validator->validate(true, $constraint);
 
         $validator = new RecaptchaValidatorTestObject('my-secret', $requestStack, false);
-        $context = $this->getMock(ExecutionContextInterface::class);
+        $context = $this
+            ->getMockBuilder(ExecutionContextInterface::class)
+            ->getMock()
+        ;
         $context
             ->method('buildViolation')
             ->willReturnCallback(function () {
