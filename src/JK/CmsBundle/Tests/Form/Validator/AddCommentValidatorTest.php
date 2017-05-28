@@ -14,7 +14,10 @@ class AddCommentValidatorTest extends AdminTestBase
 {
     public function testValidate()
     {
-        $context = $this->getMock(ExecutionContextInterface::class);
+        $context = $this
+            ->getMockBuilder(ExecutionContextInterface::class)
+            ->getMock()
+        ;
         $context
             ->expects($this->never())
             ->method('addViolation');
@@ -33,7 +36,10 @@ class AddCommentValidatorTest extends AdminTestBase
         // with an empty Comment, no violations should be build
         $validator->validate($comment, $constraint);
 
-        $context = $this->getMock(ExecutionContextInterface::class);
+        $context = $this
+            ->getMockBuilder(ExecutionContextInterface::class)
+            ->getMock()
+        ;
         $context
             ->method('buildViolation')
             ->willReturnCallback(function () {
