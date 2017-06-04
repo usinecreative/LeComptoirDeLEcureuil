@@ -39,6 +39,7 @@ class AppKernel extends Kernel
             new Eko\FeedBundle\EkoFeedBundle(),
             new JK\SamBundle\JKSamBundle(),
             new JK\CmsBundle\JKCmsBundle(),
+            new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
 
             new Liip\ImagineBundle\LiipImagineBundle(),
             new Oneup\UploaderBundle\OneupUploaderBundle(),

@@ -44,7 +44,8 @@
     "liip/imagine-bundle": "^1.6",
     "google/recaptcha": "^1.1",
     "friendsofphp/php-cs-fixer": "^2.0",
-    "johnkrovitch/configuration": "~1.0"
+    "johnkrovitch/configuration": "~1.0",
+    "hwi/oauth-bundle": "^0.5.3"
   },
   "require-dev": {
     "hautelook/alice-bundle": "^1.2",

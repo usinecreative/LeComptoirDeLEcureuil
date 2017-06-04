@@ -1,0 +1,31 @@
+{% extends '@BlueBearCms/layout.html.twig' %}
+
+{% block container %}
+    {# flash messages #}
+    {% include "LAGAdminBundle:Layout:flash_messages.html.twig" %}
+
+    <style>
+        .login-container {
+            margin-top: 50px;
+        }
+    </style>
+
+    <div class="row login-container">
+        <div class="col-lg-4 col-lg-offset-4">
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    {% if error is defined and error %}
+                        <span>{{ error }}</span>
+                    {% endif %}
+                    {% for owner in hwi_oauth_resource_owners() %}
+                        <a href="{{ hwi_oauth_login_url(owner) }}" class="btn btn-default">
+                            Se connecter avec Google
+                        </a>
+                        <br />
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
