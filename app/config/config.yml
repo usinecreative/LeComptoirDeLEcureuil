@@ -7,7 +7,7 @@ imports:
     - { resource: '@AppBundle/Resources/config/services.yml' }
 
 framework:
-    translator:      { fallbacks: [en] }
+    translator:      {fallbacks: [en]}
     assets: ~
     secret:          '%secret%'
     router:
@@ -15,15 +15,15 @@ framework:
         strict_requirements: ~
     form:            ~
     csrf_protection: ~
-    validation:      { enable_annotations: true }
+    validation:      {enable_annotations: true}
     templating:
         engines: ['twig']
     default_locale:  'fr'
     trusted_hosts:   ~
     trusted_proxies: ~
     session:
-        # handler_id set to null will use default session handler from php.ini
-        handler_id:  ~
+        handler_id:  session.handler.native_file
+        save_path:   '%kernel.root_dir%/../var/sessions/%kernel.environment%'
     fragments:       ~
     http_method_override: true
 
@@ -86,3 +86,13 @@ stof_doctrine_extensions:
         default:
             sluggable: true
             timestampable: true
+
+hwi_oauth:
+    firewall_names:
+        - main
+    resource_owners:
+        google:
+            type: google
+            client_id: '%google_client_id%'
+            client_secret: '%google_client_secret%'
+            scope: '%google_scope%'

@@ -56,3 +56,16 @@ table th a {
   content: "";
   float: right;
 }
+
+.navbar-header {
+  width: 100%;
+}
+
+.profile-header-container {
+  .profile-header-img {
+    .img-circle {
+      margin-top: 5px;
+      margin-right: 5px;
+    }
+  }
+}

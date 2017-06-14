@@ -33,3 +33,10 @@ parameters:
         - {{ liip_imagine_bundle_root[1] }}
 
     backup_directory: {{ backup_directory }}
+
+    google_client_id: {{ google_client_id }}
+    google_client_secret: {{ google_client_secret }}
+    google_scope: 'https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile'
+    google_allowed_users:
+        - {{ google_user_1 }}
+        - {{ google_user_2 }}

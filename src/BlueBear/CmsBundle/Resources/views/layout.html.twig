@@ -13,6 +13,22 @@
     <a href="{{ path('bluebear.cms.homepage') }}" class="navbar-brand">Le comptoir des noisettes</a>
 {% endblock %}
 
+{% block topMenu %}
+
+    {% if app.user %}
+        <div class="pull-right">
+            <div class="profile-header-container">
+                <div class="profile-header-img">
+                    <img class="img-circle"
+                         height="40"
+                         style="margin-top: 5px"
+                         src="{{ app.user.profilePicture }}" />
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
+
 {% block javascripts %}
     <script src="{{ asset('bundles/jkcms/js/cms.js') }}"></script>
     <script>

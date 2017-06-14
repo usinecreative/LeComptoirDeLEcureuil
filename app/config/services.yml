@@ -12,3 +12,9 @@ services:
             - '@router'
             - '@form.factory'
             - '@security.encoder_factory'
+
+    google.user_provider:
+        class: AppBundle\Google\UserProvider
+        autowire: true
+        arguments:
+            - '%google_allowed_users%'

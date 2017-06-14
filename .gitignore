@@ -1,6 +1,7 @@
 # symfony
 app/config/parameters.yml
 var/logs
+var/sessions
 app/phpunit.xml
 bin/*
 !bin/console
