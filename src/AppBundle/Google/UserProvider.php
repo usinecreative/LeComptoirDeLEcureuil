@@ -3,6 +3,7 @@
 namespace AppBundle\Google;
 
 use BlueBear\CmsBundle\Entity\User;
+use BlueBear\CmsBundle\Repository\UserRepository;
 use HWI\Bundle\OAuthBundle\OAuth\Response\UserResponseInterface;
 use HWI\Bundle\OAuthBundle\Security\Core\User\OAuthAwareUserProviderInterface;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
@@ -18,13 +19,20 @@ class UserProvider implements OAuthAwareUserProviderInterface, UserProviderInter
     private $allowedUserEmails;
     
     /**
+     * @var UserRepository
+     */
+    private $userRepository;
+    
+    /**
      * GoogleUserProvider constructor.
      *
-     * @param array $allowedUserEmails
+     * @param array          $allowedUserEmails
+     * @param UserRepository $userRepository
      */
-    public function __construct(array $allowedUserEmails)
+    public function __construct(array $allowedUserEmails, UserRepository $userRepository)
     {
         $this->allowedUserEmails = $allowedUserEmails;
+        $this->userRepository = $userRepository;
     }
     
     /**
@@ -41,12 +49,32 @@ class UserProvider implements OAuthAwareUserProviderInterface, UserProviderInter
         if (!in_array($response->getEmail(), $this->allowedUserEmails)) {
             throw new UsernameNotFoundException();
         }
-        $user = new User();
-        $user->setUsername($response->getUsername());
-        $user->setEmail($response->getEmail());
-        $user->setProfilePicture($response->getProfilePicture());
-        $user->setFirstName($response->getFirstName());
-        $user->setLastName($response->getLastName());
+    
+        $user = $this
+            ->userRepository
+            ->findOneBy([
+                'email' => $response->getEmail(),
+            ])
+        ;
+        
+        if ($user === null) {
+            $user = new User();
+            $user->setUsername($response->getUsername());
+            $user->setUsernameCanonical($response->getUsername());
+            $user->setEmail($response->getEmail());
+            $user->setEmailCanonical($response->getEmail());
+            $user->setProfilePicture($response->getProfilePicture());
+            $user->setFirstName($response->getFirstName());
+            $user->setLastName($response->getLastName());
+            $user->setSalt('google');
+            $user->setPassword('google');
+    
+            $this
+                ->userRepository
+                ->save($user)
+            ;
+        }
+    
         $user->setRoles([
             'ROLE_ADMIN',
         ]);

@@ -15,5 +15,6 @@ services:
 
     google.user_provider:
         class: AppBundle\Google\UserProvider
+        autowire: true
         arguments:
             - '%google_allowed_users%'
