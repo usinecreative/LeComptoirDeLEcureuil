@@ -36,9 +36,16 @@
     font-family: Gabriela, sans-serif;
     padding: 15px;
 
-    .thumbnails img {
-      margin-top: 10px;
-      border-radius: 50%;
+    .thumbnails {
+      img {
+        margin-top: 10px;
+        border-radius: 50%;
+      }
+      span {
+        padding-top: 5px;
+        display: inline-block;
+        margin-top: 5px;
+      }
     }
   }
   // "Friends" block
