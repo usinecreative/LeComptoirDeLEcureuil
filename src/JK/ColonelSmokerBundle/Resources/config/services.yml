@@ -1,0 +1,4 @@
+services:
+#    jk_colonel_smoker.example:
+#        class: JK\ColonelSmokerBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

@@ -43,6 +43,7 @@ class AppKernel extends Kernel
 
             new Liip\ImagineBundle\LiipImagineBundle(),
             new Oneup\UploaderBundle\OneupUploaderBundle(),
+            new JK\ColonelSmokerBundle\JKColonelSmokerBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'])) {

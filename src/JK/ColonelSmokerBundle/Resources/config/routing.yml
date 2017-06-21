@@ -1,0 +1,3 @@
+jk_colonel_smoker_homepage:
+    path:     /
+    defaults: { _controller: JKColonelSmokerBundle:Default:index }

@@ -1,3 +1,7 @@
+jk_colonel_smoker:
+    resource: "@JKColonelSmokerBundle/Resources/config/routing.yml"
+    prefix:   /
+
 # OAuth
 hwi_oauth_redirect:
     resource: "@HWIOAuthBundle/Resources/config/routing/redirect.xml"
