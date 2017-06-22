@@ -14,11 +14,15 @@
 {% endblock %}
 
 {% block topMenu %}
+    <div class="pull-left">
+        {{ parent() }}
+    </div>
 
     {% if app.user %}
         <div class="pull-right">
             <div class="profile-header-container">
                 <div class="profile-header-img">
+                    Bienvenue {{ app.user.email }}
                     <img class="img-circle"
                          height="40"
                          style="margin-top: 5px"

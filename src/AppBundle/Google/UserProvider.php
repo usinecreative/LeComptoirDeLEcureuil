@@ -56,6 +56,7 @@ class UserProvider implements OAuthAwareUserProviderInterface, UserProviderInter
                 'email' => $response->getEmail(),
             ])
         ;
+        $user->setProfilePicture($response->getProfilePicture());
         
         if ($user === null) {
             $user = new User();
@@ -63,7 +64,6 @@ class UserProvider implements OAuthAwareUserProviderInterface, UserProviderInter
             $user->setUsernameCanonical($response->getUsername());
             $user->setEmail($response->getEmail());
             $user->setEmailCanonical($response->getEmail());
-            $user->setProfilePicture($response->getProfilePicture());
             $user->setFirstName($response->getFirstName());
             $user->setLastName($response->getLastName());
             $user->setSalt('google');
