@@ -5,11 +5,12 @@ namespace JK\CmsBundle\Action;
 use JK\CmsBundle\Form\Type\AddImageType;
 use JK\CmsBundle\Repository\MediaRepository;
 use Symfony\Component\Form\FormFactoryInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Twig_Environment;
 
-class AddImage
+class AddImageModal
 {
     /**
      * @var FormFactoryInterface
@@ -50,18 +51,33 @@ class AddImage
      */
     public function __invoke(Request $request)
     {
-        $form = $this
-            ->formFactory
-            ->create(AddImageType::class)
-        ;
         $medias = $this
             ->mediaRepository
             ->findAll()
         ;
+        $form = $this
+            ->formFactory
+            ->create(AddImageType::class)
+        ;
+        $form->handleRequest($request);
+    
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+    
+            if (AddImageType::UPLOAD_FROM_COMPUTER === $data['uploadType']) {
+                $file = $data['upload'];
+                
+            }
+            
+            
+            return new JsonResponse([
+                'lol' => 'test',
+            ]);
+        }
     
         $content = $this
             ->twig
-            ->render('@JKCms/Article/addImage.form.hml.twig', [
+            ->render('@JKCms/Article/addImage.modal.html.twig', [
                 'form' => $form->createView(),
                 'mediaList' => $medias,
             ])

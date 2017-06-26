@@ -55,7 +55,8 @@ class UploadSubscriber implements EventSubscriberInterface
         // creating a new media with the uploaded file
         $media = $this
             ->mediaRepository
-            ->create();
+            ->create()
+        ;
         $media->setName($this->generateFileName().'.'.$file->getExtension());
         $media->setFileName($file->getFilename());
         $media->setFileType($file->getExtension());

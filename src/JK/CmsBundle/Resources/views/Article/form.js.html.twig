@@ -57,11 +57,18 @@
                 editor.addButton('add_image', {
                     text: translations.addImage,
                     icon: 'image',
+                    'class': 'test',
                     onclick: function () {
-                        var imageModal = $('#add-image-modal');
+                        var url = '{{ path('cms.media.add_image_modal') }}';
 
-                        imageModal.find('#image-form-container').load('{{ path('cms.media.add_image_modal') }}');
-                        imageModal.modal('show');
+                        console.log('trace');
+
+                        Modal.open(url);
+
+//                        var imageModal = $('#add-image-modal');
+//
+//                        imageModal.find('#image-form-container').load();
+//                        imageModal.modal('show');
                     }
                 });
                 editor.on('PostRender', function () {
@@ -89,4 +96,4 @@
 </script>
 
 {% include '@JKCms/Media/modal.html.twig' %}
-{% include '@JKCms/Article/addImage.modal.html.twig' %}
+{#{% include '@JKCms/Article/addImage.modal.html.twig' %}#}
