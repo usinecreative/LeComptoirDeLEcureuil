@@ -1,0 +1,80 @@
+{% extends "LAGAdminBundle::admin.layout.html.twig" %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/cms.css') }}">
+{% endblock %}
+
+{% block head %}
+    {# inject scripts in head section #}
+    {{ cms_dump_scripts('head') | raw }}
+{% endblock %}
+
+{% block mainTitle %}
+    <a href="{{ path('bluebear.cms.homepage') }}" class="navbar-brand">Le comptoir des noisettes</a>
+{% endblock %}
+
+{% block topMenu %}
+    <div class="pull-left">
+        {{ parent() }}
+    </div>
+
+    {% if app.user %}
+        <div class="pull-right">
+            <div class="profile-header-container">
+                <div class="profile-header-img">
+                    Bienvenue {{ app.user.email }}
+                    <img class="img-circle"
+                         height="40"
+                         style="margin-top: 5px"
+                         src="{{ app.user.profilePicture }}" />
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/cms.js') }}"></script>
+    <script>
+        $(document).on('ready', function () {
+            {# TODO move in a separate script #}
+            var routes = {
+                modalGallery: '{{ path('cms.media.gallery.modal') }}',
+                galleryContent: '{{ path('cms.media.gallery.content') }}'
+            };
+            var galleryModal = $('#gallery-modal');
+
+            $('#file-upload').fileupload({
+                done: function () {
+                    galleryModal.find('#media-container').load(routes.modalGallery);
+                }
+            });
+
+            $('#add-gallery-btn').on('click', function () {
+                var selectedMedias = galleryModal.find('.media a.selected');
+
+                if (selectedMedias.length === 0) {
+                    return;
+                }
+                var ids = [];
+
+                selectedMedias.each(function (index, value) {
+                    ids.push($(value).data('id'));
+                });
+                var route = routes.galleryContent + '?ids=' + ids.join(',');
+
+                $.get(route, function (data) {
+                    tinymce.activeEditor.execCommand('mceInsertContent', false, data);
+                    galleryModal.modal('hide');
+                });
+            });
+        });
+    </script>
+
+    {# inject scripts in footer section #}
+    {{ cms_dump_scripts('footer') | raw }}
+
+    {# modal template #}
+    {% include '@JKCms/Modal/_modal.html.twig' %}
+{% endblock %}
+

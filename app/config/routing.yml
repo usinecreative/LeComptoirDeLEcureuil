@@ -31,7 +31,7 @@ app:
 
 cms.media.add_image_modal:
     path: /cms/media/add-image
-    defaults: {_controller: 'JK\CmsBundle\Action\AddImage'}
+    defaults: {_controller: JK\CmsBundle\Action\AddImageModal}
 
 # BlueBear AdminBundle
 blue_bear_admin:

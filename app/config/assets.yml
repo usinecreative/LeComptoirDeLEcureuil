@@ -8,16 +8,13 @@ jk_assets:
         minify: ~
         copy: ~
     tasks:
-        main.css:
+        app.css:
             filters:
                 - compass
                 - merge
                 - minify
             sources:
                 - app/Resources/assets/sass/main.scss
-                - vendor/components/bootstrap/css/bootstrap.min.css
-                - vendor/components/bootstrap/css/bootstrap-theme.min.css
-                - vendor/components/font-awesome/css/font-awesome.min.css
                 - app/Resources/assets/css/hover-min.css
             destinations:
                 - web/css/main.css
@@ -37,19 +34,11 @@ jk_assets:
                 - minify
             sources:
                 - src/BlueBear/CmsBundle/Resources/scss/cms.scss
+                - vendor/components/bootstrap/css/bootstrap.min.css
+                - vendor/components/bootstrap/css/bootstrap-theme.min.css
+                - vendor/components/font-awesome/css/font-awesome.min.css
             destinations:
-                - src/BlueBear/CmsBundle/Resources/public/css/cms.css
-
-        cms.js:
-            filters:
-                - merge
-                - minify
-            sources:
-                - src/JK/CmsBundle/Resources/assets/js/jquery.iframe-transport.js
-                - src/JK/CmsBundle/Resources/assets/js/cms/fileupload.js
-                - vendor/blueimp/jquery-file-upload/js/jquery.fileupload.js
-            destinations:
-                - src/JK/CmsBundle/Resources/public/js/cms.js
+                - web/css/cms.css
 
         tinymce.css:
             filters:
@@ -61,3 +50,13 @@ jk_assets:
                 - web/css/main.css
             destinations:
                 - src/JK/CmsBundle/Resources/public/css/tinymce.css
+
+        cms.js:
+            filters:
+                - minify
+                - merge
+            sources:
+                - src/JK/CmsBundle/Resources/assets/js
+                - vendor/blueimp/jquery-file-upload/js/jquery.fileupload.js
+            destinations:
+                - web/js/cms.js

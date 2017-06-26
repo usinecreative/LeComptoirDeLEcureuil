@@ -157,6 +157,11 @@ class AssetsHelper
         // move the uploaded files to the given directory
         $file->move($this->getWebDirectory().'/'.$directory, $media->getFileName());
     }
+    
+    public function createFromFile(UploadedFile $file)
+    {
+    
+    }
 
     /**
      * Return the web directory. It should exists or an Exception is thrown.
