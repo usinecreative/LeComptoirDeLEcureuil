@@ -37,3 +37,5 @@ parameters:
     liip_imagine_bundle_root: ~
 
     backup_directory: ~
+
+    hotjar_enabled: false
