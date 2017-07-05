@@ -36,6 +36,7 @@ twig:
         - 'JKCmsBundle:Form:fields.html.twig'
     globals:
         google_analytics_id: '%google_analytics_id%'
+        hotjar_enabled: '%hotjar_enabled%'
 
 services:
     twig.extension.text:
