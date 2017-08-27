@@ -31,7 +31,10 @@ class Configuration implements ConfigurationInterface
                         'article_thumbnail' => 'uploads/articles/thumbnails',
                         'category_thumbnail' => 'uploads/categories/thumbnails',
                     ])
-                    ->prototype('scalar')
+                    ->prototype('scalar')->end()
+                ->end()
+                ->scalarNode('upload_directory')
+                    ->defaultValue('web/uploads')
                 ->end()
             ->end()
             ->end();

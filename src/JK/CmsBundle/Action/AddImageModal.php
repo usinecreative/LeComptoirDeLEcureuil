@@ -2,6 +2,8 @@
 
 namespace JK\CmsBundle\Action;
 
+use JK\CmsBundle\Assets\Uploader\Uploader;
+use JK\CmsBundle\Assets\Uploader\UploaderInterface;
 use JK\CmsBundle\Form\Type\AddImageType;
 use JK\CmsBundle\Repository\MediaRepository;
 use Symfony\Component\Form\FormFactoryInterface;
@@ -28,20 +30,28 @@ class AddImageModal
     private $mediaRepository;
     
     /**
+     * @var UploaderInterface
+     */
+    private $uploader;
+    
+    /**
      * AddImage constructor.
      *
      * @param FormFactoryInterface $formFactory
      * @param Twig_Environment     $twig
      * @param MediaRepository      $mediaRepository
+     * @param UploaderInterface    $uploader
      */
     public function __construct(
         FormFactoryInterface $formFactory,
         Twig_Environment $twig,
-        MediaRepository $mediaRepository
+        MediaRepository $mediaRepository,
+        UploaderInterface $uploader
     ) {
         $this->formFactory = $formFactory;
         $this->twig = $twig;
         $this->mediaRepository = $mediaRepository;
+        $this->uploader = $uploader;
     }
     
     /**
@@ -65,14 +75,10 @@ class AddImageModal
             $data = $form->getData();
     
             if (AddImageType::UPLOAD_FROM_COMPUTER === $data['uploadType']) {
-                $file = $data['upload'];
-                
+                $this->uploader->upload($data['upload']);
             }
             
-            
-            return new JsonResponse([
-                'lol' => 'test',
-            ]);
+            return new Response(null, Response::HTTP_NO_CONTENT);
         }
     
         $content = $this

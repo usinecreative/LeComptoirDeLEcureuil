@@ -57,18 +57,39 @@
                 editor.addButton('add_image', {
                     text: translations.addImage,
                     icon: 'image',
-                    'class': 'test',
                     onclick: function () {
                         var url = '{{ path('cms.media.add_image_modal') }}';
 
-                        console.log('trace');
+                        Modal.open(url, function (modal) {
+                            bindForm(modal.find('form'));
 
-                        Modal.open(url);
+                            // bind the media modal form
+                            function bindForm(form) {
+                                modal.find('form').on('submit', function () {
+                                    var url = form.attr('action');
 
-//                        var imageModal = $('#add-image-modal');
-//
-//                        imageModal.find('#image-form-container').load();
-//                        imageModal.modal('show');
+                                    $.ajax({
+                                        url: url,
+                                        method: 'post',
+                                        data: form.serialize(),
+                                        success: function (response, status) {
+
+                                            if (status === 'nocontent') {
+                                                Modal.close();
+
+                                                return;
+                                            }
+                                            //console.log(response, status);
+                                            modal.find('.modal-content').html(response);
+                                            bindForm(modal.find('form'));
+                                            MediaModal.init();
+                                        }
+                                    });
+
+                                    return false;
+                                });
+                            }
+                        });
                     }
                 });
                 editor.on('PostRender', function () {

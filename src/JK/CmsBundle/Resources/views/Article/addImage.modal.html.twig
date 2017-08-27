@@ -4,12 +4,13 @@
                     aria-hidden="true">&times;</span></button>
         <h4 class="modal-title">{{ 'cms.gallery.add_image' | trans }}</h4>
     </div>
-    <div class="modal-body">
-        <div class="row">
-            <div id="image-form-container" class="col-lg-12">
-                <form action="{{ path('cms.media.add_image_modal') }}"
-                      method="post"
-                      enctype="multipart/form-data">
+    <form action="{{ path('cms.media.add_image_modal') }}"
+          method="post"
+          enctype="multipart/form-data">
+        <div class="modal-body">
+            <div class="row">
+                <div id="image-form-container" class="col-lg-12">
+                    {{ form_errors(form) }}
 
                     <div class="form-group">
                         {{ form_row(form.uploadType) }}
@@ -26,35 +27,25 @@
                     <div class="form-group hidden media-choice-item media-gallery-item">
                         {#{% include '@JKCms/Media/modalGallery.html.twig' %}#}
                     </div>
-                </form>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-default"
-        data-dismiss="modal">{{ 'cms.main.cancel' | trans }}</button>
-        <button type="button" id="add-image-btn"
-        class="btn btn-primary">{{ 'cms.gallery.add_image' | trans }}</button>
-    </div>
+        <div class="modal-footer">
+            {{ form_rest(form) }}
+
+            <button type="button"
+                    class="btn btn-default"
+                    data-dismiss="modal">{{ 'cms.main.cancel' | trans }}</button>
+            <input type="submit"
+                   id="add-image-btn"
+                   value="{{ 'cms.gallery.add_image' | trans }}"
+                   class="btn btn-primary"/>
+        </div>
+    </form>
 </div>
 
 <script>
-   // MediaGallery.init();
-
-    $('.media-choice').on('change', function () {
-        var value = $(this).find(':checked').val();
-
-        if (value === 'upload_from_url') {
-            $('.media-choice-item').addClass('hidden');
-            $('.upload_from_url').parents('.media-choice-item').removeClass('hidden');
-        } else if (value === 'upload_from_computer') {
-            $('.media-choice-item').addClass('hidden');
-            $('.upload_from_computer').parents('.media-choice-item').removeClass('hidden');
-        } else if (value === 'choose_from_collection') {
-            $('.media-choice-item').addClass('hidden');
-            $('.media-gallery-item').removeClass('hidden');
-        }
-    });
+    MediaModal.init();
 
     $('#add-image-btn').on('click', function () {
 
@@ -66,6 +57,6 @@
 //            galleryModal.modal('hide');
 //        });
 
-        return false;
+        //return false;
     });
 </script>
