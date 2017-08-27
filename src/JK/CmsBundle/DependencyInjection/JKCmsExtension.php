@@ -31,5 +31,6 @@ class JKCmsExtension extends Extension
             throw new InvalidConfigurationException('"assets" key should be present in configuration');
         }
         $container->setParameter('cms.assets.mapping', $config['assets']['mapping']);
+        $container->setParameter('cms.assets.upload_directory', $config['assets']['upload_directory']);
     }
 }
