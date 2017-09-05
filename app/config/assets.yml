@@ -8,6 +8,7 @@ jk_assets:
         minify: ~
         copy: ~
     tasks:
+        # App
         app.css:
             filters:
                 - compass
@@ -21,6 +22,15 @@ jk_assets:
             destinations:
                 - web/css/main.css
 
+        app.js:
+            filters:
+                - minify
+                - merge
+            sources:
+                - vendor/components/jquery/jquery.min.js
+                - vendor/components/bootstrap/js/bootstrap.min.js
+            destinations:
+                - web/js/app.js
         fonts:
             filters: ~
             sources:
@@ -29,6 +39,7 @@ jk_assets:
             destinations:
                 - web/fonts/
 
+        # CMS
         cms.css:
             filters:
                 - compass
@@ -51,7 +62,7 @@ jk_assets:
                 - src/JK/CmsBundle/Resources/assets/sass/tinymce.scss
             destinations:
                 - web/css/cms.tinymce.css
-#
+
         cms.js:
             filters:
                 - minify
