@@ -3,9 +3,16 @@
 namespace JK\CmsBundle\Assets\Uploader;
 
 use JK\CmsBundle\Entity\Article;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
+use JK\CmsBundle\Entity\MediaInterface;
 
 interface UploaderInterface
 {
-    public function upload(UploadedFile $file, Article $article = null);
+    /**
+     * @param              $data
+     * @param              $type
+     * @param Article|null $article
+     *
+     * @return MediaInterface
+     */
+    public function upload($data, $type, Article $article = null);
 }

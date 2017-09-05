@@ -62,3 +62,4 @@ services:
         autowire: true
         arguments:
             - '%cms.assets.upload_directory%'
+            - '%kernel.cache_dir%'

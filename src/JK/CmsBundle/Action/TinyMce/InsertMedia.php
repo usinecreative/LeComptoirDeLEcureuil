@@ -6,7 +6,7 @@ use JK\CmsBundle\Assets\AssetsHelper;
 use JK\CmsBundle\Repository\MediaRepository;
 use Symfony\Component\HttpFoundation\Request;
 
-class GetImage
+class InsertMedia
 {
     /**
      * @var AssetsHelper

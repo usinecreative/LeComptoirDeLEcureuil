@@ -26,6 +26,10 @@ class AddImageValidator implements ConstraintValidatorInterface
         $this->context = $context;
     }
     
+    /**
+     * @param mixed      $data
+     * @param Constraint $constraint
+     */
     public function validate($data, Constraint $constraint)
     {
         if ($data['uploadType'] === AddImageType::UPLOAD_FROM_COMPUTER) {
@@ -34,6 +38,15 @@ class AddImageValidator implements ConstraintValidatorInterface
                 $this
                     ->context
                     ->buildViolation('cms.media.violations.empty_upload_from_computer')
+                    ->atPath('upload')
+                    ->addViolation()
+                ;
+            }
+        } elseif ($data['uploadType'] == AddImageType::UPLOAD_FROM_URL) {
+            if (!$data['url']) {
+                $this
+                    ->context
+                    ->buildViolation('cms.media.violations.empty_upload_from_url')
                     ->atPath('upload')
                     ->addViolation()
                 ;

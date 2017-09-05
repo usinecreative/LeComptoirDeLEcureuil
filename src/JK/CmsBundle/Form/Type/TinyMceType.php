@@ -29,8 +29,6 @@ class TinyMceType extends AbstractType
     {
         $view->vars['scripts'] = [
             'footer' => [
-                // add the sticky js to handle the tinymce toolbars when scrolling and improve UX
-                '/bundles/jkcms/js/jquery.sticky.js',
                 // tinymce configuration. The array key "tinymce" does not matter here, he can be anything else, as we
                 // provide and template, this template will be used to render the script
                 'tinymce' => [
@@ -56,7 +54,8 @@ class TinyMceType extends AbstractType
         $resolver
             ->setDefaults([
                 'tinymce_selector' => uniqid('tinymce-'),
-                'tinymce_content_css' => 'bundles/jkcms/css/tinymce.css',
+                'tinymce_content_css' => 'css/cms.tinymce.css',
+                //'tinymce_content_css' => null,
                 'tinymce_plugins' => [
                     'advlist', 'autolink', 'autoresize', 'lists', 'link', 'image', 'charmap', 'print', 'preview',
                     'hr', 'anchor', 'pagebreak',
@@ -66,7 +65,7 @@ class TinyMceType extends AbstractType
                 ],
                 'tinymce_toolbar' => 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter '
                     .'alignright alignjustify | bullist numlist outdent indent | link image toolbar2: print preview '
-                    .'media | forecolor backcolor emoticons code | add_gallery add_image',
+                    .'media | forecolor backcolor emoticons code | add_gallery add_image edit_image',
             ])
             ->setAllowedTypes('tinymce_plugins', 'array')
         ;

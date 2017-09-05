@@ -25,7 +25,7 @@
                     </div>
 
                     <div class="form-group hidden media-choice-item media-gallery-item">
-                        {#{% include '@JKCms/Media/modalGallery.html.twig' %}#}
+                        {% include '@JKCms/Media/modalGallery.html.twig' %}
                     </div>
                 </div>
             </div>
@@ -43,20 +43,3 @@
         </div>
     </form>
 </div>
-
-<script>
-    MediaModal.init();
-
-    $('#add-image-btn').on('click', function () {
-
-//        var ids = MediaGallery.getSelectedMediaIds();
-//
-//
-//        $.get(route, function (data) {
-//            tinymce.activeEditor.execCommand('mceInsertContent', false, data);
-//            galleryModal.modal('hide');
-//        });
-
-        //return false;
-    });
-</script>

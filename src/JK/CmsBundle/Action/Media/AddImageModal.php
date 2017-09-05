@@ -1,8 +1,8 @@
 <?php
 
-namespace JK\CmsBundle\Action;
+namespace JK\CmsBundle\Action\Media;
 
-use JK\CmsBundle\Assets\Uploader\Uploader;
+use JK\CmsBundle\Assets\AssetsHelper;
 use JK\CmsBundle\Assets\Uploader\UploaderInterface;
 use JK\CmsBundle\Form\Type\AddImageType;
 use JK\CmsBundle\Repository\MediaRepository;
@@ -35,23 +35,31 @@ class AddImageModal
     private $uploader;
     
     /**
+     * @var AssetsHelper
+     */
+    private $assetsHelper;
+    
+    /**
      * AddImage constructor.
      *
      * @param FormFactoryInterface $formFactory
      * @param Twig_Environment     $twig
      * @param MediaRepository      $mediaRepository
      * @param UploaderInterface    $uploader
+     * @param AssetsHelper         $assetsHelper
      */
     public function __construct(
         FormFactoryInterface $formFactory,
         Twig_Environment $twig,
         MediaRepository $mediaRepository,
-        UploaderInterface $uploader
+        UploaderInterface $uploader,
+        AssetsHelper $assetsHelper
     ) {
         $this->formFactory = $formFactory;
         $this->twig = $twig;
         $this->mediaRepository = $mediaRepository;
         $this->uploader = $uploader;
+        $this->assetsHelper = $assetsHelper;
     }
     
     /**
@@ -73,14 +81,19 @@ class AddImageModal
     
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
-    
-            if (AddImageType::UPLOAD_FROM_COMPUTER === $data['uploadType']) {
-                $this->uploader->upload($data['upload']);
-            }
+            $media = $this
+                ->uploader
+                ->upload($data['upload'], $data['uploadType'])
+            ;
             
-            return new Response(null, Response::HTTP_NO_CONTENT);
+            return new JsonResponse([
+                'media' => [
+                    'id' => $media->getId(),
+                    // get the url for the raw filter (no resizing)
+                    'path' => $this->assetsHelper->getMediaPath($media, true, true, 'raw'),
+                ]
+            ]);
         }
-    
         $content = $this
             ->twig
             ->render('@JKCms/Article/addImage.modal.html.twig', [
@@ -88,7 +101,6 @@ class AddImageModal
                 'mediaList' => $medias,
             ])
         ;
-    
         return new Response($content);
     }
 }

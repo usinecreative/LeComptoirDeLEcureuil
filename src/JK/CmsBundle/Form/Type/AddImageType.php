@@ -40,7 +40,8 @@ class AddImageType extends AbstractType
                     'class' => self::UPLOAD_FROM_URL,
                 ],
             ])
-            ->add('upload', FileType::class, [
+            ->add('upload', JQueryUploadType::class, [
+                'end_point' => 'article_content',
                 'required' => false,
                 'attr' => [
                     'class' => self::UPLOAD_FROM_COMPUTER,
@@ -49,6 +50,9 @@ class AddImageType extends AbstractType
         ;
     }
     
+    /**
+     * @param OptionsResolver $resolver
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
