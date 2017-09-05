@@ -46,7 +46,7 @@ jk_assets:
                 - merge
                 - minify
             sources:
-                - src/BlueBear/CmsBundle/Resources/scss/cms.scss
+                - src/JK/CmsBundle/Resources/assets/scss/cms.scss
                 - vendor/components/bootstrap/css/bootstrap.min.css
                 - vendor/lag/adminbundle/LAG/AdminBundle/Resources/public/scss/admin.scss
                 - vendor/components/font-awesome/css/font-awesome.min.css
@@ -59,7 +59,7 @@ jk_assets:
                 - merge
                 - minify
             sources:
-                - src/JK/CmsBundle/Resources/assets/sass/tinymce.scss
+                - src/JK/CmsBundle/Resources/assets/scss/tinymce.scss
             destinations:
                 - web/css/cms.tinymce.css
 
