@@ -12,7 +12,7 @@ before_install:
     - cp app/config/parameters.yml.dist app/config/parameters.yml
 
 install:
-    - composer install --ignore-platform-reqs
+    - composer install
     - bin/console doctrine:database:create -n --if-not-exists --env=test
     - bin/console doctrine:schema:update -n -f --env=test
     - bin/console doctrine:fixtures:load --append -v --env=test
