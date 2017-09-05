@@ -162,6 +162,10 @@ oneup_uploader:
             frontend: blueimp
             storage:
                 directory: '%kernel.root_dir%/../web/uploads/categories/thumbnails'
+        article_content:
+            frontend: blueimp
+            storage:
+                directory: '%kernel.root_dir%/../web/uploads/articles/content'
 
 liip_imagine:
     loaders:
@@ -183,12 +187,16 @@ liip_imagine:
         article_thumbnail:
             filters:
                 thumbnail: {size: [200, 300], mode: outbound}
+        article_content:
+            filters:
+                thumbnail: {size: [200, 250], mode: outbound}
         category_thumbnail:
             filters:
                 thumbnail: {size: [200, 300], mode: outbound}
         category_big:
             filters:
                 thumbnail: {size: [439, 305], mode: outbound}
+        raw: ~
 
 jk_cms:
     assets: ~

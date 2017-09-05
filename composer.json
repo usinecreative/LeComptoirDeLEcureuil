@@ -38,7 +38,8 @@
     "lag/adminbundle": "dev-release/v0.4.6",
     "hwi/oauth-bundle": "^0.5.3",
     "symfony/web-server-bundle": "^3.3",
-    "johnkrovitch/sam-bundle": "^0.1.0"
+    "johnkrovitch/sam-bundle": "dev-release/v0.1.1",
+    "dunglas/action-bundle": "^0.4.1"
   },
   "require-dev": {
     "hautelook/alice-bundle": "^1.3",

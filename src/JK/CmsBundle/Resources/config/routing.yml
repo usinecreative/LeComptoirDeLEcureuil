@@ -8,7 +8,11 @@ cms.media.gallery.content:
 
 cms.media.tinymce.insert_image:
     path: /cms/media/tinymce/insert-media/{ids}
-    defaults: {_controller: JK\CmsBundle\TinyMce\InsertImage}
+    defaults: {_controller: JK\CmsBundle\Action\TinyMce\InsertImage}
+
+cms.media.tinymce.edit_image:
+    path: /cms/media/tinymce/edit-media
+    defaults: {_controller: JK\CmsBundle\Action\TinyMce\EditMedia}
 
 cms.dashboard.go_to_new_comments:
     path: /cms/dashboard/new-comments

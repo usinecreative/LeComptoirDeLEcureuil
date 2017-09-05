@@ -2,7 +2,7 @@ var Modal = {
     modal: null,
 
     init: function (modalSelector, triggerSelector) {
-        this.modal = $(modalSelector);
+        Modal.modal = $(modalSelector);
 
         $(triggerSelector).on('click', function () {
             var url = $(this).data('target');
@@ -28,7 +28,12 @@ var Modal = {
         });
     },
 
+    replace: function (content) {
+        Modal.modal.find('.modal-content').html(content);
+    },
+
     close: function () {
-        Modal.modal.modal('close');
+        Modal.replace('');
+        Modal.modal.modal('hide');
     }
 };

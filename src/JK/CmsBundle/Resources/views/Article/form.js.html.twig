@@ -17,7 +17,7 @@
 <script src="{{ asset('js/tinymce/jquery.tinymce.min.js') }}"></script>
 
 <script>
-    $(document).on('ready', function () {
+    $(document).ready(function () {
         // textarea unique selector
         var selector = '#{{ id }}';
         // tinyMce content css path
@@ -31,16 +31,50 @@
         var toolbar = '{{ toolbar }}';
 
         tinymce.init({
+            branding: false,
             selector: selector,
             plugins: plugins,
             toolbar1: toolbar,
             image_advtab: true,
+            relative_urls: false,
+            convert_urls : false,
             imagetools_toolbar: "rotateleft rotateright | flipv fliph | editimage imageoptions",
             content_css: tinyMceContentCss,
             body_class: 'mceForceColors container',
-            content_style: 'body.container {background-color:#eeeae8; padding:20px 60px;}',
+            //content_style: 'body.container {background-color:#eeeae8; padding:20px 60px;}',
             // enable default browser spell check
             browser_spellcheck: true,
+            init_instance_callback: function (editor) {
+                editor.on('dblclick', function (e) {
+                    var element = $(e.target);
+                    var url = '{{ url('cms.media.tinymce.edit_image') }}';
+                    var queryString = '?';
+
+                    //console.log('attr', e.target.attributes);
+                    var index = 0;
+
+                    $.each(e.target.attributes, function (index, attribute) {
+                        //console.log(attribute);
+                        queryString += 'attributes[' + attribute.name + ']=' + attribute.value;
+
+                        if (index <= e.target.attributes.length - 1) {
+                            queryString += '&';
+                        }
+                    });
+                    url += queryString;
+                    //console.log('url', url + queryString);
+
+                    if (element.length !== 1 || e.target.tagName !== 'IMG') {
+                        return;
+                    }
+
+                    Modal.open(url, function (modal) {
+                        TinyMceMediaModal.init(modal, tinymce);
+                    });
+
+                    //console.log('event', e.target);
+                })
+            },
             setup: function (editor) {
                 editor.addButton('add_gallery', {
                     text: translations.addGallery,
@@ -61,34 +95,7 @@
                         var url = '{{ path('cms.media.add_image_modal') }}';
 
                         Modal.open(url, function (modal) {
-                            bindForm(modal.find('form'));
-
-                            // bind the media modal form
-                            function bindForm(form) {
-                                modal.find('form').on('submit', function () {
-                                    var url = form.attr('action');
-
-                                    $.ajax({
-                                        url: url,
-                                        method: 'post',
-                                        data: form.serialize(),
-                                        success: function (response, status) {
-
-                                            if (status === 'nocontent') {
-                                                Modal.close();
-
-                                                return;
-                                            }
-                                            //console.log(response, status);
-                                            modal.find('.modal-content').html(response);
-                                            bindForm(modal.find('form'));
-                                            MediaModal.init();
-                                        }
-                                    });
-
-                                    return false;
-                                });
-                            }
+                            UploadModal.init(modal, tinymce);
                         });
                     }
                 });

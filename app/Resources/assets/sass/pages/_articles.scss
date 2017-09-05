@@ -175,3 +175,14 @@ article {
     }
   }
 }
+
+
+.article .article-content img.pull-fit_to_width {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.article .article-content img.pull-center {
+  display: block;
+  margin: auto;
+}

@@ -24,6 +24,24 @@ var MediaGallery = {
                 return false
             })
         ;
+        $('#add-gallery-btn').on('click', function () {
+            var selectedMedias = galleryModal.find('.media a.selected');
+
+            if (selectedMedias.length === 0) {
+                return;
+            }
+            var ids = [];
+
+            selectedMedias.each(function (index, value) {
+                ids.push($(value).data('id'));
+            });
+            var route = routes.galleryContent + '?ids=' + ids.join(',');
+
+            $.get(route, function (data) {
+                tinymce.activeEditor.execCommand('mceInsertContent', false, data);
+                galleryModal.modal('hide');
+            });
+        });
     },
 
     getSelectedMediaIds: function () {
