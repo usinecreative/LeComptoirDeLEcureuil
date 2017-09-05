@@ -40,14 +40,14 @@ class HtmlPropertyTransformer implements DataTransformerInterface
         if (key_exists('class', $data)) {
             if ('pull-'.EditMediaType::ALIGNMENT_FIT_TO_WIDTH === $data['class']) {
                 $data['alignment'] = EditMediaType::ALIGNMENT_FIT_TO_WIDTH;
-            } elseif ('pull-'.EditMediaType::ALIGNMENT_FIT_TO_WIDTH === $data['class']) {
-                $data['alignment'] = EditMediaType::ALIGNMENT_FIT_TO_WIDTH;
             } elseif ('pull-'.EditMediaType::ALIGNMENT_LEFT === $data['class']) {
                 $data['alignment'] = EditMediaType::ALIGNMENT_LEFT;
             } elseif ('pull-'.EditMediaType::ALIGNMENT_RIGHT === $data['class']) {
                 $data['alignment'] = EditMediaType::ALIGNMENT_RIGHT;
             } elseif ('pull-'.EditMediaType::ALIGNMENT_CENTER === $data['class']) {
                 $data['alignment'] = EditMediaType::ALIGNMENT_CENTER;
+            } elseif ('pull-'.EditMediaType::ALIGNMENT_CENTER === $data['class']) {
+                $data['alignment'] = EditMediaType::ALIGNMENT_NONE;
             }
         }
         

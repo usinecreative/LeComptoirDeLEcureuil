@@ -5,6 +5,8 @@ cms:
         align_left: Aligné à gauche
         align_right: Aligné à droite
         align_center: Centré
+        align_none: Aucun alignement
+        fit_to_width: Prendre toute la largeur
         save: Sauvegarder
     dashboard:
         title: Dashboard

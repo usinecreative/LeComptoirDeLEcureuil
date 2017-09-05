@@ -15,6 +15,7 @@ class EditMediaType extends AbstractType
     const ALIGNMENT_LEFT = 'left';
     const ALIGNMENT_RIGHT = 'right';
     const ALIGNMENT_CENTER = 'center';
+    const ALIGNMENT_NONE = 'none';
     const ALIGNMENT_FIT_TO_WIDTH = 'fit_to_width';
     
     /**
@@ -60,6 +61,7 @@ class EditMediaType extends AbstractType
                     'cms.main.align_left' => self::ALIGNMENT_LEFT,
                     'cms.main.align_right' => self::ALIGNMENT_RIGHT,
                     'cms.main.align_center' => self::ALIGNMENT_CENTER,
+                    'cms.main.align_none' => self::ALIGNMENT_NONE,
                     'cms.main.fit_to_width' => self::ALIGNMENT_FIT_TO_WIDTH,
                 ],
                 //'data' =>  self::ALIGNMENT_LEFT,
