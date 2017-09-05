@@ -78,6 +78,5 @@ class MainControllerTest extends WebTestCase
         $this->assertFileExists('web/css/main.css');
         $this->assertNotContains('} ', file_get_contents('web/css/main.css'));
         $this->assertNotContains(' {', file_get_contents('web/css/main.css'));
-        $this->assertFileExists('web/js/bootstrap.min.js');
     }
 }
