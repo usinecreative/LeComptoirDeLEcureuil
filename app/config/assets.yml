@@ -31,10 +31,10 @@ jk_assets:
                 - vendor/components/bootstrap/js/bootstrap.min.js
             destinations:
                 - web/js/app.js
+
         fonts:
             filters: ~
             sources:
-                - vendor/components/bootstrap/fonts/
                 - vendor/components/font-awesome/fonts/
             destinations:
                 - web/fonts/
@@ -47,9 +47,6 @@ jk_assets:
                 - minify
             sources:
                 - src/JK/CmsBundle/Resources/assets/scss/cms.scss
-                - vendor/components/bootstrap/css/bootstrap.min.css
-                - vendor/lag/adminbundle/LAG/AdminBundle/Resources/public/scss/admin.scss
-                - vendor/components/font-awesome/css/font-awesome.min.css
             destinations:
                 - web/css/cms.css
 
@@ -68,9 +65,6 @@ jk_assets:
                 - minify
                 - merge
             sources:
-                - vendor/components/jquery/jquery.min.js
-                - vendor/components/jqueryui/jquery-ui.min.js
-                - vendor/components/bootstrap/js/bootstrap.min.js
                 - src/JK/CmsBundle/Resources/assets/js
                 - vendor/blueimp/jquery-file-upload/js/jquery.fileupload.js
             destinations:

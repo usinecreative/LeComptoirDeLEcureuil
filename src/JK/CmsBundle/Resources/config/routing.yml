@@ -1,9 +1,9 @@
 cms.media.gallery.modal:
-    path: /cms/media/gallery/modal
+    path: /media/gallery/modal
     defaults: {_controller: JKCmsBundle:Media:modalGallery}
 
 cms.media.gallery.content:
-    path: /cms/media/gallery/content
+    path: /media/gallery/content
     defaults: {_controller: JKCmsBundle:Media:galleryContent}
 
 cms.media.tinymce.insert_image:
@@ -15,17 +15,34 @@ cms.media.tinymce.edit_image:
     defaults: {_controller: JK\CmsBundle\Action\TinyMce\EditMedia}
 
 cms.dashboard.go_to_new_comments:
-    path: /cms/dashboard/new-comments
+    path: /dashboard/new-comments
     defaults: {_controller: JKCmsBundle:Dashboard:goToNewComments}
 
 cms.dashboard:
-    path: /cms/dashboard
+    path: /dashboard
     defaults: {_controller: JKCmsBundle:Dashboard:dashboard}
 
 cms.module.render:
-    path: /cms/modules/render/{zone}
+    path: /modules/render/{zone}
     defaults: {_controller: JKCmsBundle:Module:render}
 
 cms.search:
     path: /search
     defaults: {_controller: JKCmsBundle:Search:search}
+
+logout:
+    path: /logout
+
+# Cms
+bluebear.cms.homepage:
+    path: /
+    defaults: {_controller: 'JKCmsBundle:Dashboard:dashboard'}
+
+bluebear.cms.article.preview:
+    path: /article/preview/{id}
+    defaults: {_controller: 'BlueBearCmsBundle:Article:preview'}
+
+# Image
+cms.image.gallery_dialog:
+    path: /images/gallery/dialog
+    defaults: {_controller: 'BlueBearCmsBundle:Image:galleryDialog'}

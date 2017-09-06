@@ -9,6 +9,8 @@ lag_admin:
                     pager: false
                     order:
                         updatedAt: desc
+                    route_defaults:
+                        _controller: JKCmsBundle:Media:list
                 edit:
-                create:
-                delete:
+                create: ~
+                delete: ~

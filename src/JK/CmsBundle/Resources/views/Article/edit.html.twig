@@ -1,0 +1,22 @@
+{# override the default admin template to add a right menu #}
+{% extends '@LAGAdmin/CRUD/edit.html.twig' %}
+
+{% block right_menu %}
+    Yo publie mec
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <button type="submit"
+           form="article"
+           class="btn btn-success"
+           title="{{ 'cms.article.save_and_publish' | trans }}">
+        <i class="fa fa-ship"></i>
+        {{ 'cms.article.publish' | trans }}
+    </button>
+{% endblock %}

@@ -41,10 +41,11 @@ lag_admin:
             name_pattern: cms.{admin}.{action}
             # CmsBundle already have "cms" prefix
             url_pattern:  /{admin}/{action}
-        date_format: '\L\e d/m/Y à h:i:s'
+        date_format: 'd/m/Y à h:i:s'
         translation:
             enabled: true
             pattern: cms.{admin}.{key}
+
     menus:
         main:
             items:

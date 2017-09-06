@@ -16,7 +16,7 @@ google_login:
 
 jk_cms:
     resource: '@JKCmsBundle/Resources/config/routing.yml'
-    prefix:   /
+    prefix:   /cms
 
 _liip_imagine:
     resource: '@LiipImagineBundle/Resources/config/routing.xml'
@@ -25,33 +25,24 @@ jk_database:
     resource: '@JKDatabaseBundle/Resources/config/routing.yml'
     prefix:   /
 
+admin_bundle:
+    resource: '@LAGAdminBundle/Resources/config/routing.yml'
+    prefix: /cms
+
 app:
     resource: '@AppBundle/Resources/config/routing.yml'
     prefix:   /
+
+cms.media.add_image_modal:
+    path: /cms/media/add-image
+    defaults: {_controller: JK\CmsBundle\Action\Media\AddImageModal}
 
 oneup_uploader:
     resource: .
     type: uploader
     prefix: /cms
 
-cms.media.add_image_modal:
-    path: /cms/media/add-image
-    defaults: {_controller: JK\CmsBundle\Action\Media\AddImageModal}
-
-# BlueBear AdminBundle
-blue_bear_admin:
-    resource: .
-    prefix: /cms
-    type: extra
-
-blue_bear_cms:
-    resource: '@BlueBearCmsBundle/Resources/config/routing.yml'
-    prefix:   /cms
-
-le_comptoir_de_l_ecureuil_front:
-    resource: '@AppBundle/Resources/config/routing.yml'
-    prefix:   /
-
 blue_bear_media:
     resource: '@BlueBearMediaBundle/Resources/config/routing.yml'
     prefix:   /
+

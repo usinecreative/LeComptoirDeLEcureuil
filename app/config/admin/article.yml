@@ -15,6 +15,12 @@ lag_admin:
                                     cms.publication.draft: 0
                                     cms.publication.waiting_validation: 1
                                     cms.publication.published: 2
+                                placeholder: cms.search.by_publication_status
+                        category:
+                            type: entity
+                            options:
+                                class: BlueBear\CmsBundle\Entity\Category
+                                placeholder: cms.search.by_category
                     order:
                         id: desc
                     menus:
@@ -43,39 +49,10 @@ lag_admin:
                                     2: cms.publication.published
                         publicationDate: {type: date, options: {format: d/m/Y}}
                         updatedAt: {type: date, options: {format: d/m/Y}}
-                        _actions:
-                            type: action_collection
-                            options:
-                                actions:
-                                    edit:
-                                        route: cms.article.edit
-                                        parameters:
-                                            id: ~
-                                        text: cms.main.edit
-                                    delete:
-                                        route: cms.article.delete
-                                        parameters:
-                                            id: ~
-                                        text: cms.main.delete
-#                        _actions:
-#                            type: collection
-#                            options:
-#                                _edit:
-#                                    type: action
-#                                    options:
-#                                        title: cms.menu.edit
-#                                        route: cms.article.edit
-#                                        parameters: {id: ~}
-#                                        icon: pencil
-#                                _delete:
-#                                    type: action
-#                                    options:
-#                                        title: cms.menu.delete
-#                                        route: cms.article.delete
-#                                        parameters: {id: ~}
-#                                        icon: remove
+                        _actions: ~
                 create: ~
                 edit:
+                    template: '@JKCms/Article/edit.html.twig'
                     menus:
                         top:
                             items:
@@ -86,5 +63,4 @@ lag_admin:
                                     icon: fa fa-eye
                                     attr:
                                         target: _blank
-
                 delete: ~

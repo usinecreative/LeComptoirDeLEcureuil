@@ -47,7 +47,7 @@ cms:
         list: Articles
         create: Ajouter un article
         edit: Edition d'un article
-        delete: Supprimer un article
+        delete: Supprimer
         deleted: L'article a été supprimé
         see: Voir
         # Fields
@@ -136,7 +136,12 @@ cms:
         delete: Supprimer
         deleted: Le média a été supprimé
 
-        filename: Nom du fichier
+        name: Nom du média
+        fileName: Nom du fichier
+        fileType: Type du fichier
+        createdAt: Créé le
+        updatedAt: Mis à jour le
+        _actions: ''
         extension: Extension du fichier
         size: Taille du fichier
         type: Type du média
@@ -170,6 +175,9 @@ cms:
       add_gallery: Ajouter une galerie d'image
       add_image: Ajouter une image
       upload_media: Uploader un média
+    search:
+        by_category: Recherche par catégorie
+        by_publication_status: Recherche par statut de publication
 
 logout: Déconnexion
 login: Connexion

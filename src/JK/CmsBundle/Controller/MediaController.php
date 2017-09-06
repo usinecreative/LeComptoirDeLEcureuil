@@ -2,13 +2,17 @@
 
 namespace JK\CmsBundle\Controller;
 
+use LAG\AdminBundle\Action\ActionInterface;
+use LAG\AdminBundle\Action\Configuration\ActionConfiguration;
 use LAG\AdminBundle\Admin\AdminInterface;
 use LAG\AdminBundle\Controller\CRUDController;
+use LAG\AdminBundle\Field\FieldInterface;
+use LAG\AdminBundle\Responder\ResponderInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class MediaController extends CRUDController
+class MediaController extends CRUDController implements ActionInterface
 {
     /**
      * Return the Media gallery for the modal (no layout used).
@@ -59,6 +63,16 @@ class MediaController extends CRUDController
      */
     public function listAction(Request $request)
     {
+        $admin = $this->getAdminFromRequest($request);
+        $admin->handleRequest($request);
+        //$con = $this->get('lag.admin.configuration_factory')->createActionConfiguration();
+        //$admin->getCurrentAction()->setConfiguration();
+        
+        return $this->render('@JKCms/Media/list.html.twig', [
+            'admin' => $admin,
+        ]);
+        
+        
         // TODO remove this method when AdminBundle can handle template configuration (v0.5)
         $viewParameters = parent::listAction($request);
 
@@ -140,5 +154,93 @@ class MediaController extends CRUDController
             'admin' => $admin,
             'form' => $form->createView(),
         ]);
+    }
+    
+    /**
+     * Define the Action configuration.
+     *
+     * @param ActionConfiguration $actionConfiguration
+     */
+    public function setConfiguration(ActionConfiguration $actionConfiguration)
+    {
+        // TODO: Implement setConfiguration() method.
+    }
+    
+    /**
+     * Return the Action's configuration.
+     *
+     * @return ActionConfiguration
+     */
+    public function getConfiguration()
+    {
+        // TODO: Implement getConfiguration() method.
+    }
+    
+    /**
+     * Return true if the Action require entity loading.
+     *
+     * @return bool
+     */
+    public function isLoadingRequired()
+    {
+        // TODO: Implement isLoadingRequired() method.
+    }
+    
+    /**
+     * The Action's name.
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        // TODO: Implement getName() method.
+    }
+    
+    /**
+     * @return FieldInterface[]
+     */
+    public function getFields()
+    {
+        // TODO: Implement getFields() method.
+    }
+    
+    /**
+     * @param FieldInterface[] $fields
+     */
+    public function setFields(array $fields)
+    {
+        // TODO: Implement setFields() method.
+    }
+    
+    /**
+     * @param AdminInterface $admin
+     */
+    public function setAdmin(AdminInterface $admin)
+    {
+        // TODO: Implement setAdmin() method.
+    }
+    
+    /**
+     * @return AdminInterface
+     */
+    public function getAdmin()
+    {
+        // TODO: Implement getAdmin() method.
+    }
+    
+    /**
+     * @return ResponderInterface
+     */
+    public function getResponder()
+    {
+        // TODO: Implement getResponder() method.
+    }
+    
+    /**
+     * @param ResponderInterface $responder
+     */
+    public function setResponder(ResponderInterface $responder)
+    {
+        // TODO: Implement setResponder() method.
     }
 }

@@ -2,14 +2,14 @@
 
 namespace BlueBear\CmsBundle\Import\Factory;
 
-use BlueBear\BaseBundle\Behavior\ContainerTrait;
 use BlueBear\CmsBundle\Entity\Import;
 use BlueBear\CmsBundle\Import\ImporterInterface;
 use Exception;
+use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 
 class ImporterFactory
 {
-    use ContainerTrait;
+    use ContainerAwareTrait;
 
     /**
      * @param $importType

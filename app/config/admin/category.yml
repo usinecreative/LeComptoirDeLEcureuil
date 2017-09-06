@@ -34,13 +34,6 @@ lag_admin:
                         _actions:
                             type: collection
                             options:
-                                _edit:
-                                    type: action
-                                    options:
-                                        title: cms.menu.edit
-                                        route: cms.category.edit
-                                        parameters: {id: ~}
-                                        icon: pencil
                                 _delete:
                                     type: action
                                     options:

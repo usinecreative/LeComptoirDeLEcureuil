@@ -8,8 +8,6 @@ parameters:
     bluebear.cms.dashboard_factory: BlueBear\CmsBundle\Dashboard\Factory\DashboardFactory
     # Subscribers
     bluebear.cms.kernel_subscriber.class: BlueBear\CmsBundle\Event\Subscriber\KernelSubscriber
-    # Managers
-    bluebear.cms.manager.content.class: BlueBear\CmsBundle\Manager\ContentManager
     # Finders
     bluebear.cms.article_finder.class: BlueBear\CmsBundle\Finder\ArticleFinder
 
@@ -31,12 +29,6 @@ services:
         arguments: ['@twig', '@bluebear.cms.content_type_factory', '%bluebear.cms.content%']
         tags:
             - {name: kernel.event_subscriber}
-
-    # Managers
-    bluebear.cms.manager.content:
-        class: '%bluebear.cms.manager.content.class%'
-        calls:
-            - [setContainer, ['@service_container']]
 
     # Finders
     bluebear.cms.article_finder:
