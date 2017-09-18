@@ -17,15 +17,16 @@
                     </div>
 
                     <div class="form-group hidden media-choice-item">
-                        {{ form_row(form.url) }}
+                        {#{{ form_row(form.url) }}#}
                     </div>
 
                     <div class="form-group hidden media-choice-item">
                         {{ form_row(form.upload) }}
                     </div>
 
-                    <div class="form-group hidden media-choice-item media-gallery-item">
-                        {% include '@JKCms/Media/modalGallery.html.twig' %}
+                    <div class="form-group hidden media-choice-item media-gallery-item"
+                         data-target="{{ path('cms.media.gallery.ajax') }}">
+                        {{ 'cms.main.loading_in_progress' | trans }}
                     </div>
                 </div>
             </div>

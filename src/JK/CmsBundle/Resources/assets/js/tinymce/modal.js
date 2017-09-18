@@ -32,6 +32,7 @@ var TinyMceMediaModal = {
 
             return false;
         });
+
         // keep the media size proportion if the check box is checked
         form.find('.keep-proportion-checkbox:checked').each(function () {
             var heightElement = $($(this).data('target-height'));

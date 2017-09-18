@@ -9,10 +9,9 @@ interface UploaderInterface
 {
     /**
      * @param              $data
-     * @param              $type
      * @param Article|null $article
      *
      * @return MediaInterface
      */
-    public function upload($data, $type, Article $article = null);
+    public function upload(array $data, Article $article = null);
 }

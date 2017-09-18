@@ -67,20 +67,6 @@
 
 <footer>
     <script src="{{ asset('js/app.js') }}"></script>
-    <script>
-        $(document).ready(function () {
-            $('.page-content, .article-content').find('img').each(function () {
-                var float = $(this).css('float');
-                console.log('traec', float);
-
-                if (float === 'left') {
-                    $(this).addClass('pull-left');
-                } else if (float === 'right') {
-                    $(this).addClass('pull-right');
-                }
-            });
-        });
-    </script>
     {{ cms_dump_scripts('footer') }}
 
     {% if hotjar_enabled %}

@@ -1,0 +1,19 @@
+<ul class="media-list">
+    {% for media in pager.currentPageResults %}
+        <li class="media">
+            <a href="#"
+               class="media-link media-item"
+               data-id="{{ media.id }}">
+                <img src="{{ cms_media_path(media, true, true, 'media_thumbnail') }}"
+                     alt="{{ media.description }}"/>
+                <br/>{{ media.name }}
+            </a>
+        </li>
+    {% endfor %}
+</ul>
+
+<div class="media-pagination">
+    {% if pager.haveToPaginate %}
+        {{ pagerfanta(pager, 'twitter_bootstrap3', {page: pager.currentPage}) }}
+    {% endif %}
+</div>

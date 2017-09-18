@@ -15,14 +15,20 @@ class MediaController extends CRUDController
      *
      * @return Response
      */
-    public function modalGalleryAction()
+    public function modalGalleryAction(Request $request)
     {
+        $pager = $this
+            ->get('cms.media.media_repository')
+            ->findPagination((int)$request->get('page', 1))
+        ;
         $mediaList = $this
             ->get('cms.media.media_repository')
-            ->findAll();
+            ->findAll()
+        ;
 
-        return $this->render('@JKCms/Media/modalGallery.html.twig', [
+        return $this->render('@JKCms/Media/modals/add-image-modal.html.twig', [
             'mediaList' => $mediaList,
+            'pager' => $pager,
         ]);
     }
 

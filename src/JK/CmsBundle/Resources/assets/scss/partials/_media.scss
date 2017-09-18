@@ -19,6 +19,7 @@
     width: 144px;
   }
 }
+
 .media-information {
   padding: 20px;
   text-align: center;
@@ -36,6 +37,38 @@
   img {
     margin: 20px 0;
   }
+}
 
+.gallery-modal {
+  // this is the information message displayed in the modal to add a gallery in tinymce
+  p.bg-info {
+    padding: 5px;
+  }
+}
 
+.media-gallery {
+  text-align: center;
+  width: 100%;
+
+  align-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+
+  .media {
+    margin: 10px 10px;
+
+    &:first-child &first-child {
+      margin: 0;
+    }
+  }
+  figure {
+    flex-grow: 1;
+
+    figcaption {
+      color: dimgrey;
+      font-style: italic;
+    }
+  }
 }

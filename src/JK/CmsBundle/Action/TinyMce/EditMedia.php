@@ -2,7 +2,7 @@
 
 namespace JK\CmsBundle\Action\TinyMce;
 
-use JK\CmsBundle\Form\Type\EditMediaType;
+use JK\CmsBundle\Form\Type\MediaModalType;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -33,7 +33,7 @@ class EditMedia
         //dump($attributes);
         //die;
     
-        $form = $this->formFactory->create(EditMediaType::class, $attributes);
+        $form = $this->formFactory->create(MediaModalType::class, $attributes);
         $form->handleRequest($request);
     
         if ($form->isSubmitted() && $form->isValid()) {

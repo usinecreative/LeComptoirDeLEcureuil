@@ -27,6 +27,13 @@ class Uploader implements UploaderInterface
      */
     private $cacheDirectory;
     
+    /**
+     * Uploader constructor.
+     *
+     * @param string          $uploadDirectory
+     * @param string          $cacheDirectory
+     * @param MediaRepository $mediaRepository
+     */
     public function __construct(
         $uploadDirectory,
         $cacheDirectory,
@@ -37,22 +44,41 @@ class Uploader implements UploaderInterface
         $this->cacheDirectory = $cacheDirectory;
     }
     
-    public function upload($data, $type, Article $article = null)
+    /**
+     * @param array        $data
+     * @param Article|null $article
+     *
+     * @return MediaInterface
+     *
+     * @throws Exception
+     */
+    public function upload(array $data, Article $article = null)
     {
         $media = null;
+    
+        //dump($data);
         
-        if (AddImageType::UPLOAD_FROM_COMPUTER === $type) {
+        if (AddImageType::UPLOAD_FROM_COMPUTER === $data['uploadType']) {
             if ($data instanceof UploadedFile) {
                 // upload done in php
                 $media = $this->uploadFile($data);
-            } else if ($data instanceof MediaInterface) {
+            } else if ($data['upload'] instanceof MediaInterface) {
                 // upload done in ajax
-                $media = $data;
+                $media = $data['upload'];
             }
-        } elseif (AddImageType::UPLOAD_FROM_URL === $type) {
+        } elseif (AddImageType::UPLOAD_FROM_URL === $data['uploadType']) {
         
+        
+        
+        } elseif (AddImageType::CHOOSE_FROM_COLLECTION === $data['uploadType']) {
+            // find from the repository with the selected id
+            $media = $this
+                ->mediaRepository
+                ->find($data['gallery'])
+            ;
         }
     
+        // a media has to be found at this point
         if (null === $media) {
             throw new Exception('Unable to retrieve an media object from the upload data');
         }

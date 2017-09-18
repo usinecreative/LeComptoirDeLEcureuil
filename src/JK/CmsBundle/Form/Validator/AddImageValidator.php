@@ -43,11 +43,22 @@ class AddImageValidator implements ConstraintValidatorInterface
                 ;
             }
         } elseif ($data['uploadType'] == AddImageType::UPLOAD_FROM_URL) {
+            
             if (!$data['url']) {
                 $this
                     ->context
                     ->buildViolation('cms.media.violations.empty_upload_from_url')
                     ->atPath('upload')
+                    ->addViolation()
+                ;
+            }
+        } elseif ($data['uploadType'] == AddImageType::CHOOSE_FROM_COLLECTION) {
+    
+            if (!$data['gallery']) {
+                $this
+                    ->context
+                    ->buildViolation('cms.media.violations.invalid_gallery_item')
+                    ->atPath('gallery')
                     ->addViolation()
                 ;
             }

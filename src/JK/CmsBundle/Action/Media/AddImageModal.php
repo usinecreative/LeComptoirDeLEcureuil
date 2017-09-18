@@ -83,7 +83,7 @@ class AddImageModal
             $data = $form->getData();
             $media = $this
                 ->uploader
-                ->upload($data['upload'], $data['uploadType'])
+                ->upload($data)
             ;
             
             return new JsonResponse([

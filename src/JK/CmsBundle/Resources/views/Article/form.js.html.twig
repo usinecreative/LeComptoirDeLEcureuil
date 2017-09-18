@@ -45,16 +45,12 @@
             // enable default browser spell check
             browser_spellcheck: true,
             init_instance_callback: function (editor) {
-                editor.on('dblclick', function (e) {
+                editor.on('click dblclick', function (e) {
                     var element = $(e.target);
                     var url = '{{ url('cms.media.tinymce.edit_image') }}';
                     var queryString = '?';
 
-                    //console.log('attr', e.target.attributes);
-                    var index = 0;
-
                     $.each(e.target.attributes, function (index, attribute) {
-                        //console.log(attribute);
                         queryString += 'attributes[' + attribute.name + ']=' + attribute.value;
 
                         if (index <= e.target.attributes.length - 1) {
@@ -62,7 +58,6 @@
                         }
                     });
                     url += queryString;
-                    //console.log('url', url + queryString);
 
                     if (element.length !== 1 || e.target.tagName !== 'IMG') {
                         return;
@@ -71,8 +66,6 @@
                     Modal.open(url, function (modal) {
                         TinyMceMediaModal.init(modal, tinymce);
                     });
-
-                    //console.log('event', e.target);
                 })
             },
             setup: function (editor) {
@@ -80,12 +73,18 @@
                     text: translations.addGallery,
                     icon: false,
                     onclick: function () {
-                        var galleryModal = $('#gallery-modal');
+                        var url = "{{ path('cms.media.add_gallery_modal') }}";
 
-                        galleryModal.on('show.bs.modal', function () {
-                            galleryModal.find('#media-container').load('{{ path('cms.media.gallery.modal') }}');
+                        Modal.open(url, function (modal) {
+                            TinyMceGalleryModal.init(modal, tinymce);
                         });
-                        galleryModal.modal('show');
+
+                        {#var galleryModal = $('#gallery-modal');#}
+
+                        {#galleryModal.on('show.bs.modal', function () {#}
+                            {#galleryModal.find('#media-container').load('{{ path('cms.media.add_gallery_modal') }}');#}
+                        {#});#}
+                        {#galleryModal.modal('show');#}
                     }
                 });
                 editor.addButton('add_image', {

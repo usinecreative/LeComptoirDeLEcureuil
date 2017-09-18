@@ -44,8 +44,6 @@ class JQueryUploadType extends AbstractType
     {
         $builder
             ->add('upload', FileType::class, [
-                'mapped' => false,
-                'property_path' => 'filename',
                 'attr' => [
                     'class' => 'cms-fileupload',
                     'data-url' => $this
@@ -53,6 +51,9 @@ class JQueryUploadType extends AbstractType
                         ->endpoint($options['end_point']),
                     'data-target' => '.'.$options['media_id_class'],
                 ],
+                'label' => 'cms.media.upload_from_computer',
+                'mapped' => false,
+                'property_path' => 'filename',
             ])
             ->add('id', HiddenType::class, [
                 'attr' => [

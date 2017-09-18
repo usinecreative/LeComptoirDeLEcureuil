@@ -17,7 +17,7 @@ class TinyMceType extends AbstractType
     {
         return TextareaType::class;
     }
-
+    
     /**
      * Add the required javascript to make tinymce working.
      *
@@ -45,7 +45,7 @@ class TinyMceType extends AbstractType
         // we should define a real unique id (afaik, Symfony form factory does not handle yet)
         $view->vars['id'] = $options['tinymce_selector'];
     }
-
+    
     /**
      * @param OptionsResolver $resolver
      */
@@ -55,13 +55,38 @@ class TinyMceType extends AbstractType
             ->setDefaults([
                 'tinymce_selector' => uniqid('tinymce-'),
                 'tinymce_content_css' => 'css/cms.tinymce.css',
-                //'tinymce_content_css' => null,
                 'tinymce_plugins' => [
-                    'advlist', 'autolink', 'autoresize', 'lists', 'link', 'image', 'charmap', 'print', 'preview',
-                    'hr', 'anchor', 'pagebreak',
-                    'searchreplace', 'wordcount', 'visualblocks', 'visualchars', 'code', 'fullscreen',
-                    'insertdatetime', 'media', 'nonbreaking', 'save', 'table', 'directionality',
-                    'emoticons', 'template', 'paste', 'textcolor', 'colorpicker', 'textpattern', 'imagetools',
+                    'advlist',
+                    'autolink',
+                    'autoresize',
+                    'lists',
+                    'link',
+//                    'image',
+                    'charmap',
+                    'print',
+                    'preview',
+                    'hr',
+                    'anchor',
+                    'pagebreak',
+                    'searchreplace',
+                    'wordcount',
+                    'visualblocks',
+                    'visualchars',
+                    'code',
+                    'fullscreen',
+                    'insertdatetime',
+                    'media',
+                    'nonbreaking',
+                    'save',
+                    'table',
+                    'directionality',
+                    'emoticons',
+                    'template',
+                    'paste',
+                    'textcolor',
+                    'colorpicker',
+                    'textpattern',
+//                    'imagetools',
                 ],
                 'tinymce_toolbar' => 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter '
                     .'alignright alignjustify | bullist numlist outdent indent | link image toolbar2: print preview '

@@ -29,6 +29,9 @@ cc:
 deploy-production:
 	ansible-playbook etc/ansible/playbooks/deploy.yml -i etc/ansible/hosts/hosts
 
+fetch-images:
+	ansible-playbook etc/ansible/playbooks/fetch-images.yml -i etc/ansible/hosts/hosts
+
 deploy-staging:
 	ansible-playbook etc/ansible/playbooks/deploy.yml -i etc/ansible/hosts/staging_hosts
 

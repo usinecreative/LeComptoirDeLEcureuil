@@ -1,4 +1,4 @@
-cms.media.gallery.modal:
+cms.media.add_gallery_modal:
     path: /cms/media/gallery/modal
     defaults: {_controller: JKCmsBundle:Media:modalGallery}
 
@@ -29,3 +29,7 @@ cms.module.render:
 cms.search:
     path: /search
     defaults: {_controller: JKCmsBundle:Search:search}
+
+cms.media.gallery.ajax:
+    path: /cm/media/gallery/ajax
+    defaults: {_controller: JK\CmsBundle\Action\Media\Gallery}

@@ -10,7 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\Range;
 
-class EditMediaType extends AbstractType
+class MediaModalType extends AbstractType
 {
     const ALIGNMENT_LEFT = 'left';
     const ALIGNMENT_RIGHT = 'right';
@@ -42,7 +42,7 @@ class EditMediaType extends AbstractType
                 'constraints' => [
                     new Range([
                         'min' => 1,
-                        // TODO move into configuration (site max width)
+                        // TODO move into a theme configuration (site max width)
                         'max' => 2000,
                     ])
                 ]
@@ -64,7 +64,7 @@ class EditMediaType extends AbstractType
                     'cms.main.align_none' => self::ALIGNMENT_NONE,
                     'cms.main.fit_to_width' => self::ALIGNMENT_FIT_TO_WIDTH,
                 ],
-                //'data' =>  self::ALIGNMENT_LEFT,
+                'empty_data' =>  self::ALIGNMENT_NONE,
                 'expanded' => true,
             ])
             ->addModelTransformer(new HtmlPropertyTransformer())

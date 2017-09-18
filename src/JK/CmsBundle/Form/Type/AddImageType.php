@@ -5,8 +5,7 @@ namespace JK\CmsBundle\Form\Type;
 use JK\CmsBundle\Form\Constraint\AddImage;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Form\Extension\Core\Type\UrlType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -25,7 +24,7 @@ class AddImageType extends AbstractType
         $builder
             ->add('uploadType', ChoiceType::class, [
                 'choices' => [
-                    'cms.media.upload_from_url' => self::UPLOAD_FROM_URL,
+                    //'cms.media.upload_from_url' => self::UPLOAD_FROM_URL,
                     'cms.media.upload_from_computer' => self::UPLOAD_FROM_COMPUTER,
                     'cms.media.choose_from_collection' => self::CHOOSE_FROM_COLLECTION,
                 ],
@@ -34,17 +33,17 @@ class AddImageType extends AbstractType
                     'class' => 'media-choice',
                 ],
             ])
-            ->add('url', UrlType::class, [
-                'required' => false,
-                'attr' => [
-                    'class' => self::UPLOAD_FROM_URL,
-                ],
-            ])
             ->add('upload', JQueryUploadType::class, [
-                'end_point' => 'article_content',
-                'required' => false,
                 'attr' => [
                     'class' => self::UPLOAD_FROM_COMPUTER,
+                ],
+                'label' => false,
+                'end_point' => 'article_content',
+                'required' => false,
+            ])
+            ->add('gallery', HiddenType::class, [
+                'attr' => [
+                    'class' => 'gallery-hidden-input',
                 ],
             ])
         ;

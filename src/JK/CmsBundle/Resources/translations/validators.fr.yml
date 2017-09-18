@@ -6,6 +6,7 @@ cms:
         violations:
             empty_upload_from_computer: Vous devez choisir un ficher à uploader
             empty_upload_from_url: Vous devez choisir une url
+            invalid_gallery_item: L'image choisie dans la gallerie est invalide
 
 cms.comment.violations.authorEmailWithCheckbox: Vous devez fournir un email valide pour être notifié des réponses au commentaire
 cms.comment.violations.recaptcha: Le captcha est invalide. Pouvez-vous réessayer ?
