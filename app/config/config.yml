@@ -6,6 +6,9 @@ imports:
     - { resource: cms.yml }
     - { resource: '@AppBundle/Resources/config/services.yml' }
 
+parameters:
+    security.requires_channel: https
+
 framework:
     translator:      {fallbacks: [en]}
     assets: ~
