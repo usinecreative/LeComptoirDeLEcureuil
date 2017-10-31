@@ -45,10 +45,6 @@ DirectoryIndex app.php
     RewriteCond %{HTTPS} off
     RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
 
-    RewriteEngine On
-    RewriteCond %{HTTP_HOST} !^www.lecomptoirdelecureuil\.fr$ [NC]
-    RewriteRule ^(.*)$ https://lecomptoirdelecureuil\.fr/$1 [R=301,L]
-
     # Rewrite all other queries to the front controller.
     RewriteRule .? %{ENV:BASE}/app.php [L]
 </IfModule>
