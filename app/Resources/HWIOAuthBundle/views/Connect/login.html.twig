@@ -1,34 +1,26 @@
 {% extends '@JKCms/base.html.twig' %}
 
-{% block container %}
-    {# flash messages #}
+{% block navbar %}{% endblock %}
+
+{% block layout %}
     {% include "LAGAdminBundle:Layout:flash_messages.html.twig" %}
 
-    <style>
-        .login-container {
-            margin-top: 50px;
-        }
-    </style>
+    <div class="container login-container">
+        <div class="row align-items-center">
+            <div class="col-12">
+                <h1>Le comptoir de l'écureuil</h1>
+                <p>le dessous des noisettes</p>
 
-    <div class="row login-container">
-        <div class="col-lg-4 col-lg-offset-4">
-
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h1>Le comptoir de l'écureuil</h1>
-                    <p>le dessous des noisettes</p>
-                </div>
-                <div class="panel-body">
-                    {% if error is defined and error %}
-                        <span>{{ error }}</span>
-                    {% endif %}
-                    {% for owner in hwi_oauth_resource_owners() %}
-                        <a href="{{ hwi_oauth_login_url(owner) }}" class="btn btn-default">
-                            Se connecter avec Google
-                        </a>
-                        <br />
-                    {% endfor %}
-                </div>
+                {% if error is defined and error %}
+                    <span>{{ error }}</span>
+                {% endif %}
+                {% for owner in hwi_oauth_resource_owners() %}
+                    <a href="{{ hwi_oauth_login_url(owner) }}"
+                       class="btn btn-primary">
+                        {{ 'cms.main.login_with_google' | trans }}
+                        <i class="fa fa-arrow-right"></i>
+                    </a>
+                {% endfor %}
             </div>
         </div>
     </div>

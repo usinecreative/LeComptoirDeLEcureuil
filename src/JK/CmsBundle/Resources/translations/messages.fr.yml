@@ -10,6 +10,7 @@ cms:
         align_none: Aucun alignement
         fit_to_width: Prendre toute la largeur
         save: Sauvegarder
+        login_with_google: Se connecter avec Google
     dashboard:
         title: Dashboard
     page:
