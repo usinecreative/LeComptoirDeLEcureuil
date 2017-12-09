@@ -35,11 +35,11 @@ lag_admin:
         title: Le Comptoir De L'Ecureuil, derrière les noisettes
         description: Des noisettes et des livres
         bootstrap: true
-        base_template: 'BlueBearCmsBundle::layout.html.twig'
+        base_template: 'JKCmsBundle::base.html.twig'
         max_per_page: 25
         routing:
             name_pattern: cms.{admin}.{action}
-            # CmsBundle already have "cms" prefix
+            # CmsBundle already have "cms" prefix configured in routing.yml
             url_pattern:  /{admin}/{action}
         date_format: 'd/m/Y à h:i:s'
         translation:

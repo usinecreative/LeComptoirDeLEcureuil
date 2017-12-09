@@ -9,8 +9,8 @@
 
     .sticky-wrapper.is-sticky .mce-container:first-child {
         background-color: #f8f8f8;
-        margin-left: -46px;
-        padding-left: 49px;
+        margin-left: 0;
+        padding-left: 0;
     }
 </style>
 <script src="{{ asset('js/tinymce/tinymce.min.js') }}"></script>
@@ -41,8 +41,6 @@
             imagetools_toolbar: "rotateleft rotateright | flipv fliph | editimage imageoptions",
             content_css: tinyMceContentCss,
             body_class: 'mceForceColors container',
-            //content_style: 'body.container {background-color:#eeeae8; padding:20px 60px;}',
-            // enable default browser spell check
             browser_spellcheck: true,
             init_instance_callback: function (editor) {
                 editor.on('dblclick', function (e) {
@@ -50,11 +48,7 @@
                     var url = '{{ url('cms.media.tinymce.edit_image') }}';
                     var queryString = '?';
 
-                    //console.log('attr', e.target.attributes);
-                    var index = 0;
-
                     $.each(e.target.attributes, function (index, attribute) {
-                        //console.log(attribute);
                         queryString += 'attributes[' + attribute.name + ']=' + attribute.value;
 
                         if (index <= e.target.attributes.length - 1) {
@@ -62,7 +56,6 @@
                         }
                     });
                     url += queryString;
-                    //console.log('url', url + queryString);
 
                     if (element.length !== 1 || e.target.tagName !== 'IMG') {
                         return;
@@ -71,8 +64,6 @@
                     Modal.open(url, function (modal) {
                         TinyMceMediaModal.init(modal, tinymce);
                     });
-
-                    //console.log('event', e.target);
                 })
             },
             setup: function (editor) {
@@ -100,7 +91,7 @@
                     }
                 });
                 editor.on('PostRender', function () {
-                    var top = 51;
+                    var top = 0;
 
                     // add sticky tinymce toolbar to avoid issues with long articles
                     $('.mce-toolbar')
