@@ -66,17 +66,17 @@ class MainControllerTest extends WebTestCase
 
     public function testAssets()
     {
-        // main.css SHOULD be included in the page
+        // app.css SHOULD be included in the page
         $this->assertContains(
-            '<link rel="stylesheet" href="/css/main.css">',
+            '<link rel="stylesheet" href="/css/app.css">',
             $this
                 ->client
                 ->getResponse()
                 ->getContent()
         );
         // assert commit file exists and contains no space
-        $this->assertFileExists('web/css/main.css');
-        $this->assertNotContains('} ', file_get_contents('web/css/main.css'));
-        $this->assertNotContains(' {', file_get_contents('web/css/main.css'));
+        $this->assertFileExists('web/css/app.css');
+        $this->assertNotContains('} ', file_get_contents('web/css/app.css'));
+        $this->assertNotContains(' {', file_get_contents('web/css/app.css'));
     }
 }

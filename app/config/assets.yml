@@ -20,7 +20,7 @@ jk_assets:
                 - vendor/components/bootstrap/css/bootstrap.min.css
                 - vendor/components/font-awesome/css/font-awesome.min.css
             destinations:
-                - web/css/main.css
+                - web/css/app.css
 
         app.js:
             filters:

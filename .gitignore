@@ -25,6 +25,7 @@ admin-bundle-local.sh
 web/assets
 web/images/articles
 web/images/categories
+web/images/gallery
 
 web/uploads
 
