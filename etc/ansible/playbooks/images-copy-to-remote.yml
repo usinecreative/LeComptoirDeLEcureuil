@@ -1,0 +1,17 @@
+---
+- hosts: staging
+  user: '{{ user }}'
+
+  tasks:
+#    - name: Synchronize the local images directory to the remote images directory
+#      synchronize:
+#        mode: push
+#        src: web/images
+#        dest: '{{ project_path }}/shared/web'
+#        perms: yes
+#        archive: no
+#
+#    - name: Copy the local backup file on the remote filesystem
+#      copy:
+#        src: ../../../web/images
+#        dest: '{{ project_path }}/shared/web'

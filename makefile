@@ -42,13 +42,29 @@ database_staging_copy-to-local:
 
 database_staging_copy-to-remote:
 	ansible-playbook etc/ansible/playbooks/copy-database-to-remote.yml -i etc/ansible/hosts/staging_hosts
+
+database_production_copy-to-local:
+	ansible-playbook etc/ansible/playbooks/copy-database-to-local.yml -i etc/ansible/hosts/hosts
 ###############
 
 ### Server ###
 serve:
 	bin/console server:run
+
+synchronize-staging:
+	make database_production_copy-to-local
+	make database_staging_copy-to-remote
+	make images_pull-to-local
+	make images_push-to-remote
 #############
 
+### Images ###
+images_pull-to-local:
+	ansible-playbook etc/ansible/playbooks/images-copy-to-local.yml -i etc/ansible/hosts/hosts
+
+images_push-to-remote:
+	ansible-playbook etc/ansible/playbooks/images-copy-to-remote.yml -i etc/ansible/hosts/staging_hosts
+#############
 assets:
 	$(sf) jk:assets:build
 	$(sf) assets:install --symlink
