@@ -11,6 +11,9 @@ install:
 	make cc
 	make install-ansible
 
+update:
+	composer update
+
 install-ansible:
 	sudo apt-get install python python-pip
 	sudo pip install ansible
@@ -29,11 +32,20 @@ cc:
 deploy-production:
 	ansible-playbook etc/ansible/playbooks/deploy.yml -i etc/ansible/hosts/hosts
 
-fetch-images:
-	ansible-playbook etc/ansible/playbooks/fetch-images.yml -i etc/ansible/hosts/hosts
-
 deploy-staging:
 	ansible-playbook etc/ansible/playbooks/deploy.yml -i etc/ansible/hosts/staging_hosts
+
+
+### Database ###
+database-staging-copy-to-local:
+	ansible-playbook etc/ansible/playbooks/copy-database-to-local.yml -i etc/ansible/hosts/staging_hosts
+
+###############
+
+### Server ###
+serve:
+	bin/console server:run
+#############
 
 assets:
 	$(sf) jk:assets:build
