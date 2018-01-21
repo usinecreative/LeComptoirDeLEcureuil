@@ -37,9 +37,11 @@ deploy-staging:
 
 
 ### Database ###
-database-staging-copy-to-local:
+database_staging_copy-to-local:
 	ansible-playbook etc/ansible/playbooks/copy-database-to-local.yml -i etc/ansible/hosts/staging_hosts
 
+database_staging_copy-to-remote:
+	ansible-playbook etc/ansible/playbooks/copy-database-to-remote.yml -i etc/ansible/hosts/staging_hosts
 ###############
 
 ### Server ###
