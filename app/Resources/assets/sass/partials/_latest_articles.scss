@@ -1,7 +1,7 @@
-// Lastest articles
-.latest-article {
+.latest-article,
+.filter-article {
+  padding: 20px 60px;
   background-color: $main-color;
-  padding: 20px;
 
   .article-item {
     padding: 20px;
@@ -14,7 +14,7 @@
       padding-right: 15px;
       width: 150px;
       height: 172px;
-      margin-bottom: 25px;
+      //margin-bottom: 25px;
     }
     h1 {
       font-family: "Playball", arial, sans-serif;

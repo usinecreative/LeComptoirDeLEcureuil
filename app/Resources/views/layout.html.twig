@@ -1,7 +1,7 @@
 <!doctype html>
-<html lang="{{ app.request.locale }}">
+<html lang="{{ app.request.locale }}" dir="ltr">
 <head>
-    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel='stylesheet' id='googlefonts-css'
           href="https://fonts.googleapis.com/css?family={{ 'Redressed:400|Gabriela:400|Playball:400|Gabriela:400&subset=latin' | url_encode }}"
           type='text/css' media='all'/>
@@ -15,7 +15,7 @@
           content="Le comptoir de l'écureuil, le rendez-vous des amateurs de littératures et de noisettes"/>
     <meta name="keywords"
           content="littérature, livres, sf, chroniques, science-fiction, fanstasy, histoire, historique, rencontres, auteurs, éditeurs, éditions">
-    <meta charset="UTF-8"/>
+    <meta charset="utf-8"/>
 
     <title>{% block title %}Le Comptoir de l'écureuil{% endblock %}</title>
 
@@ -66,8 +66,7 @@
 {% endblock %}
 
 <footer>
-    <script src="{{ asset('bundles/lagadmin/js/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('bundles/lagadmin/js/bootstrap/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
     {{ cms_dump_scripts('footer') }}
 
     {% if hotjar_enabled %}

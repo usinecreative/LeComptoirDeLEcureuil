@@ -24,38 +24,10 @@ blue_bear_cms:
                 parent: Page
                 behaviors:
                   commentable: ~
-
-#stfalcon_tinymce:
-#    include_jquery: false
-#    tinymce_jquery: false
-#    external_plugins:
-#        imagetools:
-#            url: 'asset[bundles/bluebearcms/js/tinymce/plugins/imagetools/plugin.js]'
-#    theme:
-#        simple:
-#            theme: "modern"
-#        advanced:
-#             theme: "modern"
-#             plugins:
-#                 - "advlist autolink lists link image charmap print preview hr anchor pagebreak"
-#                 - "searchreplace wordcount visualblocks visualchars code fullscreen"
-#                 - "insertdatetime media nonbreaking save table contextmenu directionality"
-#                 - "emoticons template paste textcolor"
-#             toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
-#             toolbar2: "print preview media | forecolor backcolor emoticons | imagetools"
-#             image_advtab: true
-#             menubar: true
-#             imagetools_toolbar: "imageoptions"
-
-
-# app/config/config.yml
 knp_menu:
-    # use "twig: false" to disable the Twig extension and the TwigRenderer
     twig:
         template: 'LAGAdminBundle:Menu:bootstrap_menu.html.twig'
-    #  if true, enables the helper for PHP templates
     templating: false
-    # the renderer to use, list is also available by default
     default_renderer: twig
 
 lag_admin:
@@ -73,7 +45,6 @@ lag_admin:
         translation:
             enabled: true
             pattern: cms.{admin}.{key}
-
     menus:
         main:
             items:
@@ -191,6 +162,10 @@ oneup_uploader:
             frontend: blueimp
             storage:
                 directory: '%kernel.root_dir%/../web/uploads/categories/thumbnails'
+        article_content:
+            frontend: blueimp
+            storage:
+                directory: '%kernel.root_dir%/../web/uploads/articles/content'
 
 liip_imagine:
     loaders:
@@ -212,15 +187,23 @@ liip_imagine:
         article_thumbnail:
             filters:
                 thumbnail: {size: [200, 300], mode: outbound}
+        article_content:
+            filters:
+                thumbnail: {size: [200, 250], mode: outbound}
         category_thumbnail:
             filters:
                 thumbnail: {size: [200, 300], mode: outbound}
         category_big:
             filters:
                 thumbnail: {size: [439, 305], mode: outbound}
+        raw: ~
 
 jk_cms:
     assets: ~
 
 jk_database:
     backup_directory: '%backup_directory%'
+
+dunglas_action:
+    directories:
+        - '../src/JK/CmsBundle/Action'

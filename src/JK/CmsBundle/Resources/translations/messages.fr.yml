@@ -2,6 +2,13 @@ cms:
     main:
         cancel: Annuler
         return: Retour
+        align_left: Aligné à gauche
+        align_right: Aligné à droite
+        align_center: Centré
+        align_none: Aucun alignement
+        fit_to_width: Prendre toute la largeur
+        save: Sauvegarder
+        loading_in_progress: Chargement en cours...
     dashboard:
         title: Dashboard
     page:
@@ -126,7 +133,6 @@ cms:
         saved: Le média a été sauvegardée
         delete: Supprimer
         deleted: Le média a été supprimé
-
         filename: Nom du fichier
         extension: Extension du fichier
         size: Taille du fichier
@@ -134,7 +140,12 @@ cms:
         type_help: Le type du média va changer le répertoire où est stockée l'image
         category_thumbnail: Miniature d'une Catégorie
         article_thumbnail: Miniature d'un Article
-
+        upload_from_url: Uploader à partir d'une url
+        upload_from_computer: Uploader à partir d'un fichier sur votre ordinateur
+        choose_from_collection: Choisir un média dans la médiathèque
+        choose: Choisir
+        insert_tinymce: Insérer l'image à l'article
+        edit_properties: Editer les propriétés du média
     tag:
         list: Tags
         edit: Editer
@@ -142,19 +153,21 @@ cms:
         saved: Le tag a été sauvegardée
         delete: Supprimer
         deleted: Le tag a été supprimé
-
         id: '#'
         name: Nom
         createdAt: Créé le
         updatedAt: Mis à jour le
         _actions: ''
-
     import:
         list: Imports
         create: Importez vos données
     gallery:
       add_gallery: Ajouter une galerie d'image
-      upload_media: Uploader un média
+      add_gallery_info: >
+        Cliquer sur une ou plusieurs images (jusqu'à 3) pour les ajouter à votre galerie. Ensuite cliquer sur
+        "Ajouter une galerie d'image". Vous pouvez ajouter des images à la gallerie en cliquant sur "Ajouter une image"
+      add_image: Ajouter une image
+      upload_media: Ajouter une image
 
 logout: Déconnexion
 login: Connexion

@@ -29,16 +29,20 @@ app:
     resource: '@AppBundle/Resources/config/routing.yml'
     prefix:   /
 
+oneup_uploader:
+    resource: .
+    type: uploader
+    prefix: /cms
+
+cms.media.add_image_modal:
+    path: /cms/media/add-image
+    defaults: {_controller: JK\CmsBundle\Action\Media\AddImageModal}
+
 # BlueBear AdminBundle
 blue_bear_admin:
     resource: .
     prefix: /cms
     type: extra
-
-oneup_uploader:
-    resource: .
-    type: uploader
-    prefix: /cms
 
 blue_bear_cms:
     resource: '@BlueBearCmsBundle/Resources/config/routing.yml'

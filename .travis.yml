@@ -12,14 +12,11 @@ before_install:
     - cp app/config/parameters.yml.dist app/config/parameters.yml
 
 install:
-    - composer install --ignore-platform-reqs
-    - bin/console doctrine:database:create -n --if-not-exists --env=test
-    - bin/console doctrine:schema:update -n -f --env=test
-    - bin/console doctrine:fixtures:load --append -v --env=test
-    - bin/console cache:clear --env=test
+    - make update
+    - make tests
 
 script:
-  - phpunit --coverage-text --coverage-clover=coverage.clover -c app
+  - bin/phpunit --coverage-text --coverage-clover=coverage.clover -c app
 
 after_script:
   - wget https://scrutinizer-ci.com/ocular.phar

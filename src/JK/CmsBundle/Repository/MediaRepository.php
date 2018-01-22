@@ -5,6 +5,8 @@ namespace JK\CmsBundle\Repository;
 use Exception;
 use JK\CmsBundle\Entity\MediaInterface;
 use LAG\AdminBundle\Repository\DoctrineRepository;
+use Pagerfanta\Adapter\DoctrineORMAdapter;
+use Pagerfanta\Pagerfanta;
 
 class MediaRepository extends DoctrineRepository
 {
@@ -34,5 +36,20 @@ class MediaRepository extends DoctrineRepository
             ->findBy([], [
                 'updatedAt' => 'DESC',
             ]);
+    }
+    
+    public function findPagination($page = 1, $maxPerPage = 9)
+    {
+        $queryBuilder = $this
+            ->createQueryBuilder('media')
+            ->addOrderBy('media.updatedAt', 'DESC')
+        ;
+        
+        $adapter = new DoctrineORMAdapter($queryBuilder->getQuery(), false);
+        $pager = new Pagerfanta($adapter);
+        $pager->setMaxPerPage($maxPerPage);
+        $pager->setCurrentPage($page);
+    
+        return $pager;
     }
 }

@@ -56,3 +56,10 @@ services:
             - '@twig'
             - '@cms.module.repository'
 
+
+    JK\CmsBundle\Assets\Uploader\Uploader:
+        class: JK\CmsBundle\Assets\Uploader\Uploader
+        autowire: true
+        arguments:
+            - '%cms.assets.upload_directory%'
+            - '%kernel.cache_dir%'

@@ -4,7 +4,7 @@ JK\CmsBundle\Entity\Article:
         canonical (unique): <url()>
         publicationStatus: <numberBetween(0,2)>
         publicationDate: <dateTime()>
-        content: <realText(2500, 2)>
+        content: <realText(500, 2)>
         category: '@category*'
         author: '@user*'
         isCommentable: true

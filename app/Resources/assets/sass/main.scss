@@ -76,9 +76,6 @@ h1, h2, h3 {
     background-color: #2f2f49;
     margin-bottom: 1px;
   }
-  .main-content {
-    background-color: $main-color;
-  }
 }
 
 .more-link {
@@ -102,4 +99,8 @@ h1, h2, h3 {
 
 p {
   margin-bottom: 22px;
+}
+
+.pull-fit_to_width {
+  width: 100%;
 }

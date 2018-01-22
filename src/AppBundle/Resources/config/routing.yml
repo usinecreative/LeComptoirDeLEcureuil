@@ -52,7 +52,7 @@ lecomptoir.article.show2:
 
 # Sitemap
 lecomptoir.sitemap:
-    path: /sitemap
+    path: /sitemap.xml
     defaults: {_controller: AppBundle:Main:sitemap}
 
 # Free Pages

@@ -1,0 +1,11 @@
+---
+- hosts: all
+  user: '{{ user }}'
+
+  tasks:
+    - name: Synchronize the remote images directory to the local images directory
+      synchronize:
+        mode: pull
+        src: '{{ project_path }}/shared/web/images'
+        dest: web
+        delete: no

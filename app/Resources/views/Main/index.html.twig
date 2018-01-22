@@ -23,7 +23,9 @@
 
                     <a href="{{ path('lecomptoir.article.list_by_category', {categorySlug: category.slug}) }}"
                        class="thumbnail hvr-sweep-to-bottom" title="{{ category.description }}">
-                        <img src="{{ asset('img/homepage/manga.jpg') | imagine_filter('category_big') }}" alt="{{ category.name }}" title="{{ category.description }}">
+                        <img src="{{ asset('img/homepage/manga.jpg') | imagine_filter('category_big') }}"
+                             alt="{{ category.name }}"
+                             title="{{ category.description }}">
 
                         <div class="overlay">{{ category.name }}</div>
                     </a>

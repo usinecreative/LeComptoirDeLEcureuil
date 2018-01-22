@@ -7,4 +7,4 @@ Disallow: /cms
 #User-agent: *
 #Disallow:
 
-Sitemap: https://lecomptoirdelecureuil.fr/sitemap
+Sitemap: https://lecomptoirdelecureuil.fr/sitemap.xml

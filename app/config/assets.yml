@@ -8,20 +8,29 @@ jk_assets:
         minify: ~
         copy: ~
     tasks:
-        main.css:
+        # App
+        app.css:
             filters:
                 - compass
                 - merge
                 - minify
             sources:
                 - app/Resources/assets/sass/main.scss
-                - vendor/components/bootstrap/css/bootstrap.min.css
-                - vendor/components/bootstrap/css/bootstrap-theme.min.css
-                - vendor/components/font-awesome/css/font-awesome.min.css
                 - app/Resources/assets/css/hover-min.css
+                - vendor/components/bootstrap/css/bootstrap.min.css
+                - vendor/components/font-awesome/css/font-awesome.min.css
             destinations:
-                - web/css/main.css
+                - web/css/app.css
 
+        app.js:
+            filters:
+                - minify
+                - merge
+            sources:
+                - vendor/components/jquery/jquery.min.js
+                - vendor/components/bootstrap/js/bootstrap.min.js
+            destinations:
+                - web/js/app.js
         fonts:
             filters: ~
             sources:
@@ -30,34 +39,46 @@ jk_assets:
             destinations:
                 - web/fonts/
 
+        # CMS
         cms.css:
             filters:
                 - compass
                 - merge
                 - minify
             sources:
-                - src/BlueBear/CmsBundle/Resources/scss/cms.scss
+                - src/JK/CmsBundle/Resources/assets/scss/cms.scss
+                - vendor/components/bootstrap/css/bootstrap.min.css
+                - vendor/lag/adminbundle/LAG/AdminBundle/Resources/public/scss/admin.scss
+                - vendor/components/font-awesome/css/font-awesome.min.css
             destinations:
-                - src/BlueBear/CmsBundle/Resources/public/css/cms.css
+                - web/css/cms.css
 
-        cms.js:
-            filters:
-                - merge
-                - minify
-            sources:
-                - src/JK/CmsBundle/Resources/assets/js/jquery.iframe-transport.js
-                - src/JK/CmsBundle/Resources/assets/js/cms/fileupload.js
-                - vendor/blueimp/jquery-file-upload/js/jquery.fileupload.js
-            destinations:
-                - src/JK/CmsBundle/Resources/public/js/cms.js
-
-        tinymce.css:
+        cms.tinymce.css:
             filters:
                 - compass
                 - merge
                 - minify
             sources:
-                - src/JK/CmsBundle/Resources/assets/sass/tinymce.scss
-                - web/css/main.css
+                - src/JK/CmsBundle/Resources/assets/scss/tinymce.scss
             destinations:
-                - src/JK/CmsBundle/Resources/public/css/tinymce.css
+                - web/css/cms.tinymce.css
+
+        cms.js:
+            filters:
+                - minify
+                - merge
+            sources:
+                - vendor/components/jquery/jquery.min.js
+                - vendor/components/jqueryui/jquery-ui.min.js
+                - vendor/components/bootstrap/js/bootstrap.min.js
+                - src/JK/CmsBundle/Resources/assets/js
+                - vendor/blueimp/jquery-file-upload/js/jquery.fileupload.js
+            destinations:
+                - web/js/cms.js
+
+        tinymce:
+            filters: ~
+            sources:
+                - vendor/tinymce/tinymce
+            destinations:
+                - web/js/tinymce
