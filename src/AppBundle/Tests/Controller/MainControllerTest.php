@@ -21,6 +21,7 @@ class MainControllerTest extends WebTestCase
     public function setUp()
     {
         $this->client = static::createClient();
+        $this->client->followRedirects(true);
         $this->crawler = $this
             ->client
             ->request('GET', '/');
