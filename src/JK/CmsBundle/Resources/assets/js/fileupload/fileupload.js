@@ -1,7 +1,3 @@
-$(document).on('ready', function () {
-    FileUploader.init();
-});
-
 var FileUploader = {
     init: function () {
         var fileupload = $('.cms-fileupload');
