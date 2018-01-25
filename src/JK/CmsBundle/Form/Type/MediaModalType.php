@@ -42,7 +42,6 @@ class MediaModalType extends AbstractType
                 'constraints' => [
                     new Range([
                         'min' => 1,
-                        // TODO move into a theme configuration (site max width)
                         'max' => 2000,
                     ])
                 ]
