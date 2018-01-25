@@ -12,6 +12,8 @@ var FileUploader = {
                 // target media id hidden field
                 var targetMediaIdSelector = $(this).data('target');
 
+                console.log('trace', formInput, formInput.find('.media-target'), result.mediaUrl);
+
                 // add the new media to the template image src attribute
                 formInput.find('.media-target').attr('src', result.mediaUrl);
                 // add the new media id to the target media id field

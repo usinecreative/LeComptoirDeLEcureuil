@@ -40,6 +40,7 @@ class AddImageType extends AbstractType
                 'label' => false,
                 'end_point' => 'article_content',
                 'required' => false,
+                'media_id_class' => 'modal-media-hidden-target',
             ])
             ->add('gallery', HiddenType::class, [
                 'attr' => [

@@ -20,13 +20,24 @@ class EditMedia
      * @var FormFactoryInterface
      */
     private $formFactory;
-    
+
+    /**
+     * EditMedia constructor.
+     *
+     * @param Twig_Environment     $twig
+     * @param FormFactoryInterface $formFactory
+     */
     public function __construct(Twig_Environment $twig, FormFactoryInterface $formFactory)
     {
         $this->twig = $twig;
         $this->formFactory = $formFactory;
     }
-    
+
+    /**
+     * @param Request $request
+     *
+     * @return JsonResponse|Response
+     */
     public function __invoke(Request $request)
     {
         $attributes = $request->get('attributes', []);

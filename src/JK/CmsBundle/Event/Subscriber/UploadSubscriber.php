@@ -52,7 +52,7 @@ class UploadSubscriber implements EventSubscriberInterface
         /** @var File $file */
         $file = $event->getFile();
 
-        // creating a new media with the uploaded file
+        // Create a new media with the uploaded file
         $media = $this
             ->mediaRepository
             ->create()
@@ -64,14 +64,16 @@ class UploadSubscriber implements EventSubscriberInterface
         $media->setSize($file->getSize());
         $this
             ->mediaRepository
-            ->save($media);
+            ->save($media)
+        ;
 
-        // add the url and the id of the created media
+        // Add the url and the id of the created media
         $response = $event->getResponse();
         $response['mediaId'] = $media->getId();
         $response['mediaUrl'] = $this
             ->assetsHelper
-            ->getMediaPath($media);
+            ->getMediaPath($media)
+        ;
     }
 
     /**
