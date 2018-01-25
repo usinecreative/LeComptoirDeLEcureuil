@@ -30,9 +30,11 @@ class EditMedia
     public function __invoke(Request $request)
     {
         $attributes = $request->get('attributes', []);
-        //dump($attributes);
-        //die;
-    
+
+        if (!array_key_exists('alignment', $attributes)) {
+            $attributes['alignment'] = MediaModalType::ALIGNMENT_NONE;
+        }
+
         $form = $this->formFactory->create(MediaModalType::class, $attributes);
         $form->handleRequest($request);
     

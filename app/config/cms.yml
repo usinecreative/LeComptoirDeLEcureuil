@@ -134,7 +134,7 @@ lag_admin:
         partner:
             entity: AppBundle\Entity\Partner
             form: AppBundle\Form\Type\PartnerType
-            actions: ~
+            actions: []
 
 bluebear_media: ~
 
