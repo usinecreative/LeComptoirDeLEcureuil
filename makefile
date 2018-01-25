@@ -9,7 +9,6 @@ install:
 	composer install -n
 	make assets
 	make cc
-	make install-ansible
 
 update:
 	composer update
@@ -37,13 +36,13 @@ deploy-staging:
 
 
 ### Database ###
-database_staging_copy-to-local:
+database_copy-staging-to-local:
 	ansible-playbook etc/ansible/playbooks/copy-database-to-local.yml -i etc/ansible/hosts/staging_hosts
 
-database_staging_copy-to-remote:
+database_copy-local-to-staging:
 	ansible-playbook etc/ansible/playbooks/copy-database-to-remote.yml -i etc/ansible/hosts/staging_hosts
 
-database_production_copy-to-local:
+database_copy-production-to-local:
 	ansible-playbook etc/ansible/playbooks/copy-database-to-local.yml -i etc/ansible/hosts/hosts
 ###############
 

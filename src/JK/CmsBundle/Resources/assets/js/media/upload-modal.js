@@ -124,5 +124,6 @@ var UploadModalForm = {
             target: target,
             mediaLimit: 1
         });
+        MediaGallery.load();
     }
 };

@@ -55,9 +55,7 @@ class Uploader implements UploaderInterface
     public function upload(array $data, Article $article = null)
     {
         $media = null;
-    
-        //dump($data);
-        
+
         if (AddImageType::UPLOAD_FROM_COMPUTER === $data['uploadType']) {
             if ($data instanceof UploadedFile) {
                 // upload done in php
