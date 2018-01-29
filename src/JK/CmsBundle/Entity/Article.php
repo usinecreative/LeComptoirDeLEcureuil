@@ -449,7 +449,7 @@ class Article implements PublicationInterface
     }
 
     /**
-     * @return string
+     * @return Category[]
      */
     public function getCategories()
     {
