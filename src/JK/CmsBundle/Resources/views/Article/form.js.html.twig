@@ -45,7 +45,7 @@
             // enable default browser spell check
             browser_spellcheck: true,
             init_instance_callback: function (editor) {
-                editor.on('click dblclick', function (e) {
+                editor.on('dblclick', function (e) {
                     var element = $(e.target);
                     var url = '{{ url('cms.media.tinymce.edit_image') }}';
                     var queryString = '?';
@@ -78,13 +78,6 @@
                         Modal.open(url, function (modal) {
                             TinyMceGalleryModal.init(modal, tinymce);
                         });
-
-                        {#var galleryModal = $('#gallery-modal');#}
-
-                        {#galleryModal.on('show.bs.modal', function () {#}
-                            {#galleryModal.find('#media-container').load('{{ path('cms.media.add_gallery_modal') }}');#}
-                        {#});#}
-                        {#galleryModal.modal('show');#}
                     }
                 });
                 editor.addButton('add_image', {
@@ -119,6 +112,7 @@
                 });
             }
         });
+        FileUploader.init();
     });
 </script>
 

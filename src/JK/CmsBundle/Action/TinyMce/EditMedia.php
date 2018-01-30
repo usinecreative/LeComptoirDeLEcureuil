@@ -20,19 +20,32 @@ class EditMedia
      * @var FormFactoryInterface
      */
     private $formFactory;
-    
+
+    /**
+     * EditMedia constructor.
+     *
+     * @param Twig_Environment     $twig
+     * @param FormFactoryInterface $formFactory
+     */
     public function __construct(Twig_Environment $twig, FormFactoryInterface $formFactory)
     {
         $this->twig = $twig;
         $this->formFactory = $formFactory;
     }
-    
+
+    /**
+     * @param Request $request
+     *
+     * @return JsonResponse|Response
+     */
     public function __invoke(Request $request)
     {
         $attributes = $request->get('attributes', []);
-        //dump($attributes);
-        //die;
-    
+
+        if (!array_key_exists('alignment', $attributes)) {
+            $attributes['alignment'] = MediaModalType::ALIGNMENT_NONE;
+        }
+
         $form = $this->formFactory->create(MediaModalType::class, $attributes);
         $form->handleRequest($request);
     
