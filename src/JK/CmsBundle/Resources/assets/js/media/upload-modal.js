@@ -63,7 +63,6 @@ var UploadModalForm = {
          */
         function bindForm () {
             UploadModalForm.form.off().on('submit', function () {
-                console.log('trace');
                 var url = UploadModalForm.form.attr('action');
 
                 $.ajax({
@@ -71,8 +70,6 @@ var UploadModalForm = {
                     method: 'post',
                     data: UploadModalForm.form.serialize(),
                     success: function (response, status) {
-                        console.log('response', response);
-
                         if (response.media && response.media.id) {
                             var elementId = 'assets-' + Math.round(Math.random()) + '-' + Math.round(Math.random());
                             // add br to allow the user to add some content after the image if it is the last tag
