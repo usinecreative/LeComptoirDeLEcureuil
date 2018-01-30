@@ -17,6 +17,7 @@ var TinyMceGalleryModal = {
             target: target,
             mediaLimit: 3
         });
+        MediaGallery.load();
 
         this.modal.find('.add-gallery-link').off().on('click', function () {
             var url = $(this).data('target');
