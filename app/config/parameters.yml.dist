@@ -39,3 +39,5 @@ parameters:
     backup_directory: ~
 
     hotjar_enabled: false
+
+    http_scheme: https

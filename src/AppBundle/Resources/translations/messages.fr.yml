@@ -107,6 +107,7 @@ cms:
         delete: Supprimer un partenaire
         edit: Edition d'un partenaire
         saved: Le partenaire a été sauvegardé
+        deleted: Le partenaire a été supprimé
 
         id: '#'
         name: Nom
