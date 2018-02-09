@@ -13,7 +13,7 @@
         ]
     },
     "require": {
-        "php": ">=5.5.9",
+        "php": ">=7.0",
         "ext-gd": "*",
         "blueimp/jquery-file-upload": "^9.18",
         "components/bootstrap": "^3.3",
@@ -71,10 +71,7 @@
     "config": {
         "bin-dir": "bin",
         "component-dir": "web/assets",
-        "minimum-stability": "dev",
-        "platform": {
-            "php": "5.5.9"
-        }
+        "minimum-stability": "dev"
     },
     "extra": {
         "symfony-app-dir": "app",
