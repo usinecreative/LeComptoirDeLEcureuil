@@ -18,22 +18,24 @@ install-ansible:
 	sudo pip install ansible
 	ansible-galaxy install carlosbuenosvinos.ansistrano-deploy carlosbuenosvinos.ansistrano-rollback
 
-install-production:
-	ansible-playbook etc/ansible/playbooks/install.yml --ask-become-pass -i etc/ansible/hosts/hosts
-
-install-staging:
-	ansible-playbook etc/ansible/playbooks/install.yml --ask-become-pass -i etc/ansible/hosts/staging_hosts
 
 cc:
 	rm -rf var/cache/*
 	$(sf) doctrine:cache:clear-metadata
+
+### Deployment ###
+install-production:
+	ansible-playbook etc/ansible/playbooks/install.yml -i etc/ansible/hosts/hosts
+
+install-staging:
+	ansible-playbook etc/ansible/playbooks/install.yml -i etc/ansible/hosts/staging_hosts
 
 deploy-production:
 	ansible-playbook etc/ansible/playbooks/deploy.yml -i etc/ansible/hosts/hosts
 
 deploy-staging:
 	ansible-playbook etc/ansible/playbooks/deploy.yml -i etc/ansible/hosts/staging_hosts
-
+##################
 
 ### Database ###
 database_copy-staging-to-local:
