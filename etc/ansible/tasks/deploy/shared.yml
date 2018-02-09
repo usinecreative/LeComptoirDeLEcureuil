@@ -1,0 +1,16 @@
+- name: Create required folders in the shared folder
+  file:
+    path: '{{ item }}'
+    state: directory
+    group: www-data
+  with_items:
+    - '{{ deploy_helper.shared_path }}/var/logs'
+
+- name: Add symlinks from the new release to the shared folder
+  file:
+    path: '{{ item.path }}'
+    src: '{{ item.src }}'
+    state: link
+    force: yes
+  with_items:
+    - {path: '{{ deploy_helper.new_release_path }}/var/logs', src: "{{ deploy_helper.shared_path }}/var/logs"}

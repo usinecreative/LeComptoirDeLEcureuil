@@ -1,0 +1,42 @@
+---
+- hosts: staging
+
+  tasks:
+    - name: Ensure the temporary path for backup exists
+      delegate_to: 127.0.0.1
+      file:
+        state: directory
+        path: /tmp/ansible/database
+
+    - name: Dump a backup from the local database
+      delegate_to: 127.0.0.1
+      mysql_db:
+        state: dump
+        name: '{{ database_local_name }}'
+        target: /tmp/ansible/database/{{ database_name }}.sql
+        login_user: '{{ database_local_user }}'
+        login_password: '{{ database_local_password }}'
+
+    - name: Copy the local backup file on the remote filesystem
+      copy:
+        src: /tmp/ansible/database/{{ database_name }}.sql
+        dest: /tmp/ansible/database/
+
+    - name: Load the backup on the remote database
+      mysql_db:
+        state: import
+        target: /tmp/ansible/database/{{ database_name }}.sql
+        name: '{{ database_name }}'
+        login_user: '{{ database_user }}'
+        login_password: '{{ database_password }}'
+
+    - name: Remove the local backup file
+      delegate_to: 127.0.0.1
+      file:
+        state: absent
+        path: /tmp/ansible/database/{{ database_name }}.sql
+
+    - name: Remove the remote backup file
+      file:
+        state: absent
+        path: /tmp/ansible/database/{{ database_name }}.sql

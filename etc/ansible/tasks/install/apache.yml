@@ -1,0 +1,23 @@
+- name: Create the apache virtual host file "{{ server_name }}.conf"
+  become: yes
+  template:
+    src: ../templates/apache/virtualhost.j2
+    dest: /etc/apache2/sites-available/{{ server_name }}.conf
+    force: yes
+  notify:
+    - Restart apache
+
+- name: Create the apache basic authentication file "{{ project_path }}/auth/passwdfile"
+  become: yes
+  htpasswd:
+    path: '{{ project_path }}/auth/passwdfile'
+    name: '{{ basic_auth_user }}'
+    password: '{{ basic_auth_password }}'
+    owner: root
+    group: 'www-data'
+    mode: 0640
+  when: 'add_basic_auth == true'
+
+- name: Enable the {{ server_name }} site
+  become: yes
+  command: a2ensite {{ server_name }}.conf
