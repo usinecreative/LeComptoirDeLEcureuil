@@ -30,4 +30,7 @@ web/images/gallery
 web/uploads
 
 .php_cs.cache
-etc/ansible/playbooks/fetch-images.yml
+
+### Ansible ###
+etc/ansible/hosts/hosts
+etc/ansible/hosts/staging_hosts
