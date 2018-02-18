@@ -3,10 +3,10 @@
   become: no
 
   tasks:
-     - include_tasks: ../tasks/install/database.yml
-     - include_tasks: ../tasks/install/filesystem.yml
-     - include_tasks: ../tasks/install/apache.yml
-     - include_tasks: ../tasks/install/github.yml
+     - import_tasks: ../tasks/install/database.yml
+     - import_tasks: ../tasks/install/filesystem.yml
+     - import_tasks: ../tasks/install/apache.yml
+     - import_tasks: ../tasks/install/github.yml
 
   handlers:
     - name: Restart apache
