@@ -1,19 +1,43 @@
 parameters:
+    locale: {{ symfony_locale }}
     database_driver: pdo_mysql
     database_host: 127.0.0.1
     database_port: null
     database_name: {{ database_name }}
     database_user: {{ database_user }}
-    database_password: {{ database_password }}
+    database_password: {{ database_password }}
+
     mailer_transport: smtp
-    mailer_host: 127.0.0.1
-    mailer_user: null
-    mailer_password: null
-    mailer_delivery_address: arnaudfrezet@gmail.com
-    secret: STColibriRKfDs342EDSrOFDIdsE54g5B7865N2
-    migrations_database_driver: pdo_mysql
-    migrations_database_host: 127.0.0.1
-    migrations_database_port: null
-    migrations_database_name: colibri-green-legacy
-    migrations_database_user: root
-    migrations_database_password: grozaloumek23
+    mailer_host: smtp.gmail.com
+    mailer_port: 587
+    mailer_user: {{ symfony_mailer_user }}
+    mailer_password: {{ symfony_mailer_password }}
+    mailer_encryption: ssl
+    mailer_auth_mode: login
+
+    secret: {{ symfony_secret }}
+    debug_toolbar: false
+    debug_redirects: false
+
+    google_analytics_id: {{ symfony_google_analytics_id }}
+    google_recaptcha_secret: {{ symfony_google_recaptcha_secret }}
+    google_recaptcha_site_key: {{ symfony_google_recaptcha_site_key }}
+
+    squirrel_mail: {{ symfony_squirrel_mail }}
+    admin_mail: {{ symfony_admin_mail }}
+
+    liip_imagine_bundle_root:
+        - {{ symfony_liip_imagine_bundle_root_0 }}
+        - {{ symfony_liip_imagine_bundle_root_1 }}
+
+    backup_directory: {{ symfony_backup_directory }}
+
+    google_client_id: {{ symfony_google_client_id }}
+    google_client_secret: {{ symfony_google_client_secret }}
+    google_scope: 'https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile'
+    google_allowed_users:
+        - {{ symfony_google_allowed_user_0 }}
+        - {{ symfony_google_allowed_user_1 }}
+
+    hotjar_enabled: {{ symfony_hotjar_enabled }}
+    http_scheme: {{ symfony_http_scheme }}

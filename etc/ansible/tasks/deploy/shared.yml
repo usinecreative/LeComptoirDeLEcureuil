@@ -5,6 +5,7 @@
     group: www-data
   with_items:
     - '{{ deploy_helper.shared_path }}/var/logs'
+    - '{{ deploy_helper.shared_path }}/web/uploads'
 
 - name: Add symlinks from the new release to the shared folder
   file:
@@ -14,3 +15,4 @@
     force: yes
   with_items:
     - {path: '{{ deploy_helper.new_release_path }}/var/logs', src: "{{ deploy_helper.shared_path }}/var/logs"}
+    - {path: '{{ deploy_helper.new_release_path }}/web/uploads', src: "{{ deploy_helper.shared_path }}/web/uploads"}

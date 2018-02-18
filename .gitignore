@@ -15,6 +15,7 @@ dumps
 .sass-cache
 
 /etc/ansible/hosts/host_vars/*.yml
+/etc/ansible_old/
 
 # backup
 backups

@@ -18,7 +18,6 @@ install-ansible:
 	sudo pip install ansible
 	ansible-galaxy install carlosbuenosvinos.ansistrano-deploy carlosbuenosvinos.ansistrano-rollback
 
-
 cc:
 	rm -rf var/cache/*
 	$(sf) doctrine:cache:clear-metadata
@@ -39,13 +38,13 @@ deploy-staging:
 
 ### Database ###
 database_copy-staging-to-local:
-	ansible-playbook etc/ansible/playbooks/copy-database-to-local.yml -i etc/ansible/hosts/staging_hosts
+	ansible-playbook etc/ansible/playbooks/database/copy-database-to-local.yml -i etc/ansible/hosts/staging_hosts
 
 database_copy-local-to-staging:
-	ansible-playbook etc/ansible/playbooks/copy-database-to-remote.yml -i etc/ansible/hosts/staging_hosts
+	ansible-playbook etc/ansible/playbooks/database/copy-database-to-remote.yml -i etc/ansible/hosts/staging_hosts
 
 database_copy-production-to-local:
-	ansible-playbook etc/ansible/playbooks/copy-database-to-local.yml -i etc/ansible/hosts/hosts
+	ansible-playbook etc/ansible/playbooks/database/copy-database-to-local.yml -i etc/ansible/hosts/hosts
 ###############
 
 ### Server ###
@@ -61,10 +60,10 @@ synchronize-staging:
 
 ### Images ###
 images_pull-to-local:
-	ansible-playbook etc/ansible/playbooks/images-copy-to-local.yml -i etc/ansible/hosts/hosts
+	ansible-playbook etc/ansible/playbooks/images/images-copy-to-local.yml -i etc/ansible/hosts/hosts
 
 images_push-to-remote:
-	ansible-playbook etc/ansible/playbooks/images-copy-to-remote.yml -i etc/ansible/hosts/staging_hosts
+	ansible-playbook etc/ansible/playbooks/images/images-copy-to-remote.yml -i etc/ansible/hosts/staging_hosts
 #############
 assets:
 	$(sf) jk:assets:build
