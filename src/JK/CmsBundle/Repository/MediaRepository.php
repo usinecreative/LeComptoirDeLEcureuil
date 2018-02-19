@@ -2,13 +2,13 @@
 
 namespace JK\CmsBundle\Repository;
 
+use Doctrine\ORM\EntityRepository;
 use Exception;
 use JK\CmsBundle\Entity\MediaInterface;
-use LAG\AdminBundle\Repository\DoctrineRepository;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\Pagerfanta;
 
-class MediaRepository extends DoctrineRepository
+class MediaRepository extends EntityRepository
 {
     /**
      * Return a new instance of the configured Media class.

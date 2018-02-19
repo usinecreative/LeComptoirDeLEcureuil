@@ -2,17 +2,17 @@
 
 namespace JK\CmsBundle\Repository;
 
+use Doctrine\ORM\EntityRepository;
 use JK\CmsBundle\Entity\Article;
 use DateTime;
 use Doctrine\Common\Collections\Collection;
-use LAG\AdminBundle\Repository\DoctrineRepository;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\Pagerfanta;
 
 /**
  * CategoryRepository.
  */
-class ArticleRepository extends DoctrineRepository
+class ArticleRepository extends EntityRepository
 {
     /**
      * Find latest published articles.

@@ -3,12 +3,12 @@
 namespace BlueBear\CmsBundle\Repository;
 
 use BlueBear\CmsBundle\Entity\Category;
-use LAG\AdminBundle\Repository\DoctrineRepository;
+use Doctrine\ORM\EntityRepository;
 
 /**
  * CategoryRepository.
  */
-class CategoryRepository extends DoctrineRepository
+class CategoryRepository extends EntityRepository
 {
     /**
      * Return categories that should be display in homepage. They are indexed by slug.
