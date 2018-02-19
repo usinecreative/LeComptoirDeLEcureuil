@@ -3,12 +3,12 @@
 namespace JK\CmsBundle\Controller;
 
 use LAG\AdminBundle\Admin\AdminInterface;
-use LAG\AdminBundle\Controller\CRUDController;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class MediaController extends CRUDController
+class MediaController extends Controller
 {
     /**
      * Return the Media gallery for the modal (no layout used).

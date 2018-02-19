@@ -2,10 +2,10 @@
 
 namespace BlueBear\CmsBundle\Controller;
 
-use LAG\AdminBundle\Controller\CRUDController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class ImageController extends CRUDController
+class ImageController extends Controller
 {
     /**
      * @Template()

@@ -2,8 +2,8 @@
 
 namespace BlueBear\MediaBundle\Controller;
 
-use LAG\AdminBundle\Controller\CRUDController;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class MediaController extends CRUDController
+class MediaController extends Controller
 {
 }
