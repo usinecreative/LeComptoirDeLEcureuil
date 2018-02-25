@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="{{ admin_config('locale') }}">
+<head>
+    <title>
+        {% block title %}{{ admin_config('title') }}{% endblock %}
+    </title>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{{ admin_config('description') }}">
+    <meta name="keywords" content="in progress">
+    <meta name="author" content="in progress">
+    {% block head %}
+        {# inject scripts in head section #}
+        {{ cms_dump_scripts('head') | raw }}
+    {% endblock %}
+
+    {% if admin_config('bootstrap') %}
+        {# bootstrap css #}
+        {#<link href="{{ asset('bundles/lagadmin/css/bootstrap/bootstrap.min.css') }}" rel="stylesheet" />#}
+
+        {# font awesomes icons #}
+        {#<link href="{{ asset('bundles/lagadmin/css/font-awesome/font-awesome.min.css') }}" rel="stylesheet" />#}
+
+        {# Start Bootstrap theme #}
+
+        {#<link href="{{ asset('bundles/lagadmin/css/bootstrap/timeline.css') }}" rel="stylesheet" />#}
+
+        {# tinymce #}
+        {#<link href="{{ asset('bundles/lagadmin/css/tinymce/editor.min.css') }}" rel="stylesheet">#}
+        {#<link href="{{ asset('bundles/lagadmin/css/tinymce/dashicon.min.css') }}" rel="stylesheet">#}
+    {% endif %}
+
+    {% block adminCss %}
+        {# AdminBundle css #}
+        {#<link href="{{ asset('bundles/lagadmin/css/admin.css') }}" rel="stylesheet" />#}
+    {% endblock %}
+
+
+    {% block stylesheets %}
+        <link href="{{ asset('bundles/lagadmin/css/bootstrap/sb-admin-2.css') }}" rel="stylesheet" />
+        <link rel="stylesheet" href="{{ asset('css/cms.css') }}">
+    {% endblock %}
+</head>
+<body>
+
+{% block body %}
+    {% import "LAGAdminBundle:CRUD:macros.html.twig" as AdminBundle %}
+
+    {% if admin is not defined %}
+        {% set admin = null %}
+    {% endif %}
+
+    <div class="wrapper">
+        {% if app.user %}
+            <nav style="margin-bottom: 0" role="navigation" id="admin-top-menu"
+                 class="navbar navbar-default navbar-static-top">
+                <div class="navbar-header">
+                    {# collapse button for responsive #}
+                    <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    {% block mainTitle %}
+                        <a href="{{ path('bluebear.cms.homepage') }}" class="navbar-brand">Le comptoir des noisettes</a>
+                    {% endblock %}
+
+                    {% block topMenu %}
+                        <div class="pull-left">
+                            {{ AdminBundle.adminMenu('top', admin) }}
+                        </div>
+
+                        {% if app.user %}
+                            <div class="pull-right">
+                                <div class="profile-header-container">
+                                    <div class="profile-header-img">
+                                        Bienvenue {{ app.user.email }}
+                                        <img class="img-circle"
+                                             height="40"
+                                             style="margin-top: 5px"
+                                             src="{{ app.user.profilePicture }}" />
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endblock %}
+
+                    {% block leftMenu %}
+                        <div role="navigation" class="navbar-default sidebar">
+                            <div class="sidebar-nav navbar-collapse">
+                                {{ AdminBundle.adminMenu('main', admin) }}
+                            </div>
+                        </div>
+                    {% endblock %}
+                </div>
+            </nav>
+        {% endif %}
+
+        {% block container %}
+            <div id="page-wrapper">
+                {# flash messages #}
+                {% include "LAGAdminBundle:Layout:flash_messages.html.twig" %}
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        {% block content %}{% endblock %}
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
+    </div>
+    <footer>
+        {# jquery #}
+        {#<script src="{{ asset('bundles/lagadmin/js/jquery/jquery.min.js') }}"></script>#}
+        {#<script src="{{ asset('bundles/lagadmin/js/jquery/jquery-ui.min.js') }}"></script>#}
+
+        {% if admin_config('bootstrap') %}
+            {# bootstrap js #}
+
+            {#<script src="{{ asset('bundles/lagadmin/js/bootstrap/metisMenu.min.js') }}"></script>#}
+            {#<script src="{{ asset('bundles/lagadmin/js/bootstrap/sb-admin-2.js') }}"></script>#}
+        {% endif %}
+
+        {% block adminJs %}
+
+        {% endblock %}
+
+        {% block javascripts %}
+            <script src="{{ asset('js/cms.js') }}"></script>
+            {#<script src="{{ asset('bundles/lagadmin/js/bootstrap/bootstrap.min.js') }}"></script>#}
+            <script>
+                // AdminJS
+                $(document).ready(function () {
+                    /*var datetimePickerSelector = '.datepicker';
+
+                    $(datetimePickerSelector).datetimepicker({
+                        format: 'd/m/yyyy',
+                        language: 'fr'
+                    });*/
+                    var selectAllForm = $('.selectable-list');
+                    var selectAllInput = selectAllForm.find('.select-all');
+
+                    selectAllInput.on('change', function () {
+                        selectAllForm.find('input[type=checkbox]').prop('checked', $(this).prop('checked'));
+                    });
+                    selectAllForm.find('input[type=checkbox]').not('.select-all').on('change', function () {
+                        if (!$(this).prop('checked')) {
+                            selectAllInput.prop('checked', false);
+                        }
+                    });
+                });
+            </script>
+
+            {# inject scripts in footer section #}
+            {{ cms_dump_scripts('footer') | raw }}
+
+            {# modal template #}
+            {% include '@JKCms/Modal/_modal.html.twig' %}
+        {% endblock %}
+    </footer>
+
+{% endblock %}
+</body>
+
+</html>

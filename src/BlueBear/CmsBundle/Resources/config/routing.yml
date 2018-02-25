@@ -11,9 +11,9 @@ logout:
     path: /logout
 
 # Cms
-bluebear.cms.homepage:
-    path: /
-    defaults: {_controller: 'JKCmsBundle:Dashboard:dashboard'}
+#bluebear.cms.homepage:
+#    path: /
+#    defaults: {_controller: 'JKCmsBundle:Dashboard:dashboard'}
 
 bluebear.cms.article.preview:
     path: /article/preview/{id}

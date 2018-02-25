@@ -4,9 +4,9 @@ namespace BlueBear\CmsBundle\Repository;
 
 use BlueBear\CmsBundle\Entity\Comment;
 use DateTime;
-use LAG\AdminBundle\Repository\DoctrineRepository;
+use Doctrine\ORM\EntityRepository;
 
-class CommentRepository extends DoctrineRepository
+class CommentRepository extends EntityRepository
 {
     /**
      * Return all comments created after $date.

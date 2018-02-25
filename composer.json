@@ -16,7 +16,6 @@
         "php": ">=7.0",
         "ext-gd": "*",
         "blueimp/jquery-file-upload": "^9.18",
-        "components/bootstrap": "^3.3",
         "doctrine/orm": "^2.5",
         "doctrine/doctrine-bundle": "^1.6",
         "doctrine/doctrine-migrations-bundle": "^1.2",
@@ -26,7 +25,6 @@
         "incenteev/composer-parameter-handler": "^2.1",
         "johnkrovitch/sam-bundle": "dev-release/v0.1.1",
         "knplabs/knp-gaufrette-bundle": "^0.4.0",
-        "lag/adminbundle": "dev-release/v0.4.6",
         "liip/imagine-bundle": "^1.8",
         "google/recaptcha": "^1.1",
         "guzzlehttp/guzzle": "^6.2",
@@ -39,13 +37,27 @@
         "stof/doctrine-extensions-bundle": "^1.2",
         "symfony/asset": "~3.0",
         "symfony/swiftmailer-bundle": "~2.3",
-        "symfony/symfony": "~3.2"
+        "symfony/symfony": "~3.2",
+
+        "twbs/bootstrap": "4.0.0",
+        "components/font-awesome": "~4.5",
+        "components/jquery": "~3.0",
+        "components/jqueryui": "~1.0",
+        "egeloen/ckeditor-bundle": "^4.0",
+        "gedmo/doctrine-extensions": "^2.4",
+        "johnkrovitch/configuration": "^1.0",
+        "knplabs/knp-menu-bundle": "^2.1",
+        "lag/array-utils": "^0.1",
+        "stfalcon/tinymce-bundle": "~2.0",
+        "symfony/monolog-bundle": "~3.0",
+        "white-october/pagerfanta-bundle": "~1.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^4.8",
         "symfony/web-server-bundle": "^3.4",
         "hautelook/alice-bundle": "^2.0",
-        "doctrine/data-fixtures": "^1.3"
+        "doctrine/data-fixtures": "^1.3",
+        "doctrine/doctrine-fixtures-bundle": "^3.0"
     },
     "scripts": {
         "post-install-cmd": [
