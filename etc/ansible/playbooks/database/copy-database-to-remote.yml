@@ -23,6 +23,7 @@
         dest: /tmp/ansible/database/
 
     - name: Load the backup on the remote database
+      become: yes
       mysql_db:
         state: import
         target: /tmp/ansible/database/{{ database_name }}.sql
