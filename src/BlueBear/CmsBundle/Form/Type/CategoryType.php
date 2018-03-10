@@ -3,10 +3,12 @@
 namespace BlueBear\CmsBundle\Form\Type;
 
 use BlueBear\CmsBundle\Entity\Category;
+use JK\CmsBundle\Entity\Article;
 use JK\CmsBundle\Form\Transformer\MediaUploadTransformer;
 use JK\CmsBundle\Form\Type\JQueryUploadType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -59,6 +61,16 @@ class CategoryType extends AbstractType
                 'required' => false,
                 'attr' => [
                     'data-help' => 'cms.category.description_help',
+                ],
+            ])
+            ->add('publicationStatus', ChoiceType::class, [
+                'label' => 'cms.article.publicationStatus',
+                'attr' => [
+                    'data-help' => 'cms.article.publicationStatus_help',
+                ],
+                'choices' => [
+                    'lag.cms.publication.draft' => Article::PUBLICATION_STATUS_DRAFT,
+                    'lag.cms.publication.published' => Article::PUBLICATION_STATUS_PUBLISHED,
                 ],
             ])
             ->add('displayInHomepage', CheckboxType::class, [
