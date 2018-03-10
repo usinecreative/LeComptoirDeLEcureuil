@@ -2,8 +2,8 @@
 
 namespace BlueBear\CmsBundle\Repository;
 
-use LAG\AdminBundle\Repository\DoctrineRepository;
+use Doctrine\ORM\EntityRepository;
 
-class TagRepository extends DoctrineRepository
+class TagRepository extends EntityRepository
 {
 }
