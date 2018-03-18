@@ -76,7 +76,7 @@ tests:
 	$(sf) doctrine:database:drop --env=test --force --if-exists
 	$(sf) doctrine:database:create --env=test
 	$(sf) doctrine:schema:create --env=test
-	$(sf) hautelook_alice:doctrine:fixtures:load --env=test -n --bundle=AppBundle
+	$(sf) hautelook:fixtures:load --env=test -n
 	make cc
 	$(sf) ca:cl --env=test
 	bin/phpunit -c app

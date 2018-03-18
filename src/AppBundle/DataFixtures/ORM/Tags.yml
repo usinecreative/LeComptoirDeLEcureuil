@@ -2,4 +2,4 @@ BlueBear\CmsBundle\Entity\Tag:
     tags{1..50}:
         name: <word()>
         slug: <slug()>
-        articles: 20x @articles*
+        articles: '@articles{1..20}'
