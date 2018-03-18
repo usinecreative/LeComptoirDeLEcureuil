@@ -8,12 +8,6 @@ lag_admin:
                     title: cms.article.list
                     order:
                         id: desc
-                    menus:
-                        top:
-                            create:
-                                admin: article
-                                action: create
-                                icon: fa fa-plus
                     fields:
                         id: ~
                         title:
@@ -24,26 +18,16 @@ lag_admin:
                                 parameters: {id: ~}
                         category: ~
                         author: ~
-                        publicationStatus: ~
+                        publicationStatus:
+                            type: mapped
+                            options:
+                                map:
+                                    0: Draft
+                                    1: Validation
+                                    2: Published
                         publicationDate: {type: date, options: {format: d/m/Y}}
                         updatedAt: {type: date, options: {format: d/m/Y}}
-                        _actions:
-                            type: collection
-                            options:
-                                _edit:
-                                    type: action
-                                    options:
-                                        title: cms.menu.edit
-                                        route: cms.article.edit
-                                        parameters: {id: ~}
-                                        icon: pencil
-                                _delete:
-                                    type: action
-                                    options:
-                                        title: cms.menu.delete
-                                        route: cms.article.delete
-                                        parameters: {id: ~}
-                                        icon: remove
+                        _delete: ~
                 create: ~
                 edit:
                     menus:

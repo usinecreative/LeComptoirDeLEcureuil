@@ -10,44 +10,19 @@ lag_admin:
                 delete: ~
                 list:
                     title: cms.category.list
-                    menus:
-                        top:
-                            items:
-                                create:
-                                    admin: category
-                                    action: create
-                                    icon: fa fa-plus
                     fields:
                         id: ~
-                        name:
-                            type: link
+                        name: ~
+                        publicationStatus:
+                            type: mapped
                             options:
-                                route: cms.category.edit
-                                parameters: {id: ~}
-                        createdAt:
-                            type: date
-                        updatedAt:
-                            type: date
+                                map:
+                                    0: Published
+                                    1: Draft
                         articles:
                             type: count
                         displayInHomepage:
                             type: boolean
-                        _actions:
-                            type: collection
-                            options:
-                                _edit:
-                                    type: action
-                                    options:
-                                        title: cms.menu.edit
-                                        route: cms.category.edit
-                                        parameters: {id: ~}
-                                        icon: pencil
-                                _delete:
-                                    type: action
-                                    options:
-                                        title: cms.menu.delete
-                                        route: cms.category.delete
-                                        parameters: {id: ~}
-                                        icon: remove
+                        _delete: ~
                     order:
                         updatedAt: desc

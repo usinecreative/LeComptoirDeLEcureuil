@@ -19,8 +19,7 @@ install-ansible:
 	ansible-galaxy install carlosbuenosvinos.ansistrano-deploy carlosbuenosvinos.ansistrano-rollback
 
 cc:
-	rm -rf var/cache/*
-	$(sf) doctrine:cache:clear-metadata
+	bin/console cache:clear
 
 ### Deployment ###
 install-production:

@@ -5,13 +5,6 @@ lag_admin:
             form: JK\CmsBundle\Form\Type\PageType
             actions:
                 list:
-                    menus:
-                        top:
-                            items:
-                                create:
-                                    admin: page
-                                    action: create
-                                    icon: fa fa-plus
                     fields:
                         id: ~
                         title:

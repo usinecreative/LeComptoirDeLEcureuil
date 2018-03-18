@@ -36,11 +36,10 @@ lag_admin:
         description: Des noisettes et des livres
         bootstrap: true
         base_template: 'BlueBearCmsBundle::layout.html.twig'
-        max_per_page: 25
         routing_name_pattern: cms.{admin}.{action}
         # CmsBundle already have "cms" prefix
         routing_url_pattern:  /{admin}/{action}
-        date_format: '\L\e d/m/Y à h:i:s'
+        date_format: 'd/m/Y à h:i'
         translation:
             enabled: true
             pattern: cms.{admin}.{key}

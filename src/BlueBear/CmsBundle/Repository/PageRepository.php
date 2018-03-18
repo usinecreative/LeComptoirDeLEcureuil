@@ -5,9 +5,9 @@ namespace BlueBear\CmsBundle\Repository;
 use BlueBear\CmsBundle\Entity\Page;
 use BlueBear\CmsBundle\Publication\PublicationStatus;
 use DateTime;
-use LAG\AdminBundle\Repository\DoctrineRepository;
+use Doctrine\ORM\EntityRepository;
 
-class PageRepository extends DoctrineRepository
+class PageRepository extends EntityRepository
 {
     /**
      * Return a published page by its slug.
