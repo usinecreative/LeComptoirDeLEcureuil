@@ -1,0 +1,17 @@
+---
+- hosts: staging
+
+  tasks:
+    - name: Synchronize the local images directory to the remote images directory
+      synchronize:
+        mode: push
+        src: '{{ local_upload_directory_1 }}'
+        dest: '{{ project_path }}/shared/web/uploads'
+        recursive: yes
+
+    - name: Synchronize the local images directory to the remote images directory
+      synchronize:
+        mode: push
+        src: '{{ local_upload_directory_2 }}'
+        dest: '{{ project_path }}/shared/web/uploads'
+        recursive: yes

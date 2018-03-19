@@ -5,5 +5,5 @@ BlueBear\CmsBundle\Entity\Comment:
         authorEmail: <email()>
         authorUrl: <url()>
         authorIp: <ipv4()>
-        content: <realText(250)>
+        content: <paragraph(3)>
         isApproved: <randomElement([true, false])>

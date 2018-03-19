@@ -13,7 +13,7 @@
         ]
     },
     "require": {
-        "php": ">=5.5.9",
+        "php": ">=7.0",
         "ext-gd": "*",
         "blueimp/jquery-file-upload": "^9.18",
         "components/bootstrap": "^3.3",
@@ -42,15 +42,12 @@
         "symfony/symfony": "~3.2"
     },
     "require-dev": {
-        "hautelook/alice-bundle": "^1.3",
-        "doctrine/data-fixtures": "^1.1",
         "phpunit/phpunit": "^4.8",
-        "symfony/web-server-bundle": "^3.4"
+        "symfony/web-server-bundle": "^3.4",
+        "hautelook/alice-bundle": "^2.0",
+        "doctrine/data-fixtures": "^1.3"
     },
     "scripts": {
-        "post-root-package-install": [
-            "SymfonyStandard\\Composer::hookRootPackageInstall"
-        ],
         "post-install-cmd": [
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
@@ -71,10 +68,7 @@
     "config": {
         "bin-dir": "bin",
         "component-dir": "web/assets",
-        "minimum-stability": "dev",
-        "platform": {
-            "php": "5.5.9"
-        }
+        "minimum-stability": "dev"
     },
     "extra": {
         "symfony-app-dir": "app",

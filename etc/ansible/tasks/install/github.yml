@@ -1,0 +1,5 @@
+- name: Add the github.com ssh key to the known hosts
+  known_hosts:
+    path: '/home/{{ ansible_user }}/.ssh/known_hosts'
+    name: 'github.com'
+    key: "{{ lookup('pipe', 'ssh-keyscan -t rsa github.com') }}"

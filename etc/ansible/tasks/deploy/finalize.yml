@@ -1,0 +1,6 @@
+- name: Finalize the deploy for the release "{{ deploy_helper.new_release }}" (clean releases, switch current symlink)
+  deploy_helper:
+    path: '{{ project_path }}'
+    release: '{{ deploy_helper.new_release }}'
+    state: finalize
+    keep_releases: 5

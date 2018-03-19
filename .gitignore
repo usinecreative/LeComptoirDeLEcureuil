@@ -15,6 +15,7 @@ dumps
 .sass-cache
 
 /etc/ansible/hosts/host_vars/*.yml
+/etc/ansible_old/
 
 # backup
 backups
@@ -30,4 +31,7 @@ web/images/gallery
 web/uploads
 
 .php_cs.cache
-etc/ansible/playbooks/fetch-images.yml
+
+### Ansible ###
+etc/ansible/hosts/hosts
+etc/ansible/hosts/staging_hosts

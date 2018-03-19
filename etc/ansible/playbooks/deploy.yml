@@ -1,75 +1,11 @@
 ---
 - hosts: all
-  user: lecomptoirdelecureuil
-  vars:
-    ansible_user: lecomptoirdelecureuil
 
   tasks:
-    - name: Initialize the deploy structure
-      deploy_helper:
-        path: '{{ deploy_path }}'
-
-    - name: Clone the new release
-      git:
-        repo: git@github.com:johnkrovitch/LeComptoirDeLEcureuil.git
-        dest: '{{ deploy_helper.new_release_path }}'
-        version: '{{ git_version }}'
-
-    - name: Create Symfony's parameters.yml
-      template:
-        src: ../templates/parameters.yml.j2
-        dest: '{{ deploy_helper.new_release_path }}/app/config/parameters.yml'
-        force: yes
-        owner: '{{ user }}'
-
-    - name: Add an unfinished file, to allow cleanup on successful finalize
-      file:
-        path: '{{ deploy_helper.new_release_path }}/{{ deploy_helper.unfinished_filename }}'
-        state: touch
-
-    - name: Create folders in the shared folder
-      file:
-        path: '{{ item }}'
-        state: directory
-      with_items:
-        - '{{ deploy_helper.shared_path }}/var/logs'
-        - '{{ deploy_helper.shared_path }}/web/images'
-        - '{{ deploy_helper.shared_path }}/web/media_cache'
-
-    - name: Run composer install
-      composer:
-        command: install
-        working_dir: '{{ deploy_helper.new_release_path }}'
-        no_dev: false
-        optimize_autoloader: yes
-
-    - name: Backup database
-      shell: '{{ deploy_helper.current_path }}/bin/console jk:database:backup --env=prod'
-
-    - name: Update database schema (using migrations)
-      shell: '{{ deploy_helper.new_release_path }}/bin/console doctrine:migrations:migrate --no-interaction'
-
-    - name: Add symlinks from the new release to the shared folder
-      file:
-        path: '{{ item.path }}'
-        src: '{{ item.src }}'
-        state: link
-        force: yes
-      with_items:
-        - {path: '{{ deploy_helper.new_release_path }}/var/logs', src: "{{ deploy_helper.shared_path }}/var/logs" }
-        - {path: '{{ deploy_helper.new_release_path }}/web/images', src: "{{ deploy_helper.shared_path }}/web/images" }
-        - {path: '{{ deploy_helper.new_release_path }}/web/uploads', src: "{{ deploy_helper.shared_path }}/web/images" }
-        - {path: '{{ deploy_helper.new_release_path }}/web/media_cache', src: "{{ deploy_helper.shared_path }}/web/media_cache" }
-
-    - name: Cache clear
-      shell: '{{ deploy_helper.new_release_path }}/bin/console cache:clear --env=prod'
-
-    - name: Cache warmup
-      shell: '{{ deploy_helper.new_release_path }}/bin/console cache:warmup --env=prod'
-
-    - name: Finalize the deploy, removing the unfinished file and switching the symlink
-      deploy_helper:
-        path: '{{ deploy_path }}'
-        release: '{{ deploy_helper.new_release }}'
-        state: finalize
-        keep_releases: 5
+       - import_tasks: ../tasks/deploy/init.yml
+       - import_tasks: ../tasks/deploy/git.yml
+       - import_tasks: ../tasks/deploy/symfony.init.yml
+       - import_tasks: ../tasks/deploy/shared.yml
+       - import_tasks: ../tasks/deploy/composer.yml
+       - import_tasks: ../tasks/deploy/symfony.yml
+       - import_tasks: ../tasks/deploy/finalize.yml

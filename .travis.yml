@@ -1,9 +1,7 @@
 language: php
 
 php:
-    - 5.5.9
-    - 5.6
-    - 7.0
+    - 7.2
 
 before_install:
     - echo "memory_limit=3G" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
@@ -12,7 +10,7 @@ before_install:
     - cp app/config/parameters.yml.dist app/config/parameters.yml
 
 install:
-    - make update
+    - composer install
     - make tests
 
 script:

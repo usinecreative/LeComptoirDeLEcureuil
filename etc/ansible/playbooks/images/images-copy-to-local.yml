@@ -1,6 +1,5 @@
 ---
 - hosts: all
-  user: '{{ user }}'
 
   tasks:
     - name: Synchronize the remote images directory to the local images directory
