@@ -36,10 +36,18 @@ lag_admin:
         description: Des noisettes et des livres
         bootstrap: true
         base_template: 'BlueBearCmsBundle::layout.html.twig'
+<<<<<<< 3abc2f092f46403bf436113de25869e7c07f0148
         routing_name_pattern: cms.{admin}.{action}
         # CmsBundle already have "cms" prefix
         routing_url_pattern:  /{admin}/{action}
         date_format: 'd/m/Y à h:i'
+=======
+        max_per_page: 25
+        routing_name_pattern: cms.{admin}.{action}
+        # CmsBundle already have "cms" prefix
+        routing_url_pattern:  /{admin}/{action}
+        date_format: '\L\e d/m/Y à h:i:s'
+>>>>>>> remove not required configuration after admin upgrade
         translation:
             enabled: true
             pattern: cms.{admin}.{key}

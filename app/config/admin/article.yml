@@ -8,6 +8,15 @@ lag_admin:
                     title: cms.article.list
                     order:
                         id: desc
+<<<<<<< 3abc2f092f46403bf436113de25869e7c07f0148
+=======
+                    menus:
+                        top:
+                            create:
+                                admin: article
+                                action: create
+                                icon: fa fa-plus
+>>>>>>> remove not required configuration after admin upgrade
                     fields:
                         id: ~
                         title:

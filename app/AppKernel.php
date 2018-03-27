@@ -29,8 +29,6 @@ class AppKernel extends Kernel
             new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
             new BlueBear\CmsBundle\BlueBearCmsBundle(),
             new BlueBear\MediaBundle\BlueBearMediaBundle(),
-            new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
-            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
             new JK\DatabaseBundle\JKDatabaseBundle(),
             new Knp\Bundle\GaufretteBundle\KnpGaufretteBundle(),
