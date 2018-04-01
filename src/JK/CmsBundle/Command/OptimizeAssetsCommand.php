@@ -24,7 +24,7 @@ class OptimizeAssetsCommand extends ContainerAwareCommand
         $style->title('CMS - Optimize Assets');
         $assetsDirectories = [
             $this->getContainer()->getParameter('kernel.project_dir').'/web/img',
-            $this->getContainer()->getParameter('kernel.project_dir').'/web/images',
+            $this->getContainer()->getParameter('kernel.project_dir').'/web/uploads',
         ];
 
         $finder = new Finder();
