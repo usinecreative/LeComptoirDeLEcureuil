@@ -3,6 +3,7 @@ lag_admin:
         article:
             entity: JK\CmsBundle\Entity\Article
             form: BlueBear\CmsBundle\Form\Type\ArticleType
+            controller: JKCmsBundle:Article
             actions:
                 list:
                     title: cms.article.list
