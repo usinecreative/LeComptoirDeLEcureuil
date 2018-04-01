@@ -41,3 +41,5 @@ parameters:
     hotjar_enabled: false
 
     http_scheme: https
+
+    assets_hosts: https://lecomptoirdelecureuil.com
