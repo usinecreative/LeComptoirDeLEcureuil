@@ -8,4 +8,5 @@
        - import_tasks: ../tasks/deploy/shared.yml
        - import_tasks: ../tasks/deploy/composer.yml
        - import_tasks: ../tasks/deploy/symfony.yml
+       - import_tasks: ../tasks/deploy/optimize-assets.yml
        - import_tasks: ../tasks/deploy/finalize.yml

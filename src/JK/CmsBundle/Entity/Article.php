@@ -155,6 +155,24 @@ class Article implements PublicationInterface
     protected $thumbnail;
 
     /**
+     * Article constructor.
+     */
+    public function __construct()
+    {
+        $this->comments = new ArrayCollection();
+        $this->tags = new ArrayCollection();
+        $this->title = 'My new article...';
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->title;
+    }
+
+    /**
      * @ORM\PrePersist()
      */
     public function setCreatedAt()
@@ -208,23 +226,6 @@ class Article implements PublicationInterface
     public function getUpdatedAt()
     {
         return $this->updatedAt;
-    }
-
-    /**
-     * Article constructor.
-     */
-    public function __construct()
-    {
-        $this->comments = new ArrayCollection();
-        $this->tags = new ArrayCollection();
-    }
-
-    /**
-     * @return string
-     */
-    public function __toString()
-    {
-        return $this->title;
     }
 
     /**

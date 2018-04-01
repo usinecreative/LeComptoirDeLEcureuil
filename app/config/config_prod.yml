@@ -1,2 +1,7 @@
 imports:
     - { resource: config.yml }
+
+framework:
+    assets:
+        base_urls:
+            - '%assets_hosts%'

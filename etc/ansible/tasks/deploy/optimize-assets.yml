@@ -1,0 +1,2 @@
+- name: Optimize the assets
+  shell: '{{ deploy_helper.new_release_path }}/bin/console cms:assets:optimize'

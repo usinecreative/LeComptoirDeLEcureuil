@@ -69,6 +69,9 @@ assets:
 	$(sf) jk:assets:build
 	$(sf) assets:install --symlink
 
+assets-optimize:
+	$(sf) cms:assets:optimize
+
 run:
 	$(sf) server:run
 
