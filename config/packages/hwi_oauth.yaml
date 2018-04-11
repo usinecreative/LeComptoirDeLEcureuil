@@ -1,0 +1,9 @@
+hwi_oauth:
+    firewall_names:
+        - main
+    resource_owners:
+        google:
+            type: google
+            client_id: '%google_client_id%'
+            client_secret: '%google_client_secret%'
+            scope: '%google_scope%'

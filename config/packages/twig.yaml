@@ -1,0 +1,11 @@
+twig:
+    paths:
+        - '%kernel.project_dir%/templates'
+    debug: '%kernel.debug%'
+    strict_variables: '%kernel.debug%'
+    form_themes:
+        - 'LAGAdminBundle:Form:fields.html.twig'
+        - 'JKCmsBundle:Form:fields.html.twig'
+    globals:
+        google_analytics_id: '%google_analytics_id%'
+        hotjar_enabled: '%hotjar_enabled%'

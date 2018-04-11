@@ -1,0 +1,8 @@
+hautelook_alice:
+    db_drivers:
+        orm: ~
+    locale: fr_FR
+    fixtures_path: 'src/AppBundle/DataFixtures/ORM'
+    root_dirs:
+        - '%kernel.root_dir%'
+        - '%kernel.project_dir%'

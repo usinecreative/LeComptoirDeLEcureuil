@@ -104,7 +104,7 @@ ksort($headers);
 $max = max(array_map('strlen', array_keys($headers))) + 1;
 $content ='';
 foreach ($headers as $name => $values) {
-$name = implode('-', array_map('ucfirst', explode('-', $name)));
+$name = ucwords($name,'-');
 foreach ($values as $value) {
 $content .= sprintf("%-{$max}s %s\r\n", $name.':', $value);
 }
@@ -383,10 +383,6 @@ const HEADER_X_FORWARDED_HOST = 0b00100;
 const HEADER_X_FORWARDED_PROTO = 0b01000;
 const HEADER_X_FORWARDED_PORT = 0b10000;
 const HEADER_X_FORWARDED_ALL = 0b11110; const HEADER_X_FORWARDED_AWS_ELB = 0b11010;
-const HEADER_CLIENT_IP = self::HEADER_X_FORWARDED_FOR;
-const HEADER_CLIENT_HOST = self::HEADER_X_FORWARDED_HOST;
-const HEADER_CLIENT_PROTO = self::HEADER_X_FORWARDED_PROTO;
-const HEADER_CLIENT_PORT = self::HEADER_X_FORWARDED_PORT;
 const METHOD_HEAD ='HEAD';
 const METHOD_GET ='GET';
 const METHOD_POST ='POST';
@@ -400,13 +396,6 @@ const METHOD_CONNECT ='CONNECT';
 protected static $trustedProxies = array();
 protected static $trustedHostPatterns = array();
 protected static $trustedHosts = array();
-protected static $trustedHeaders = array(
-self::HEADER_FORWARDED =>'FORWARDED',
-self::HEADER_CLIENT_IP =>'X_FORWARDED_FOR',
-self::HEADER_CLIENT_HOST =>'X_FORWARDED_HOST',
-self::HEADER_CLIENT_PROTO =>'X_FORWARDED_PROTO',
-self::HEADER_CLIENT_PORT =>'X_FORWARDED_PORT',
-);
 protected static $httpMethodParameterOverride = false;
 public $attributes;
 public $request;
@@ -434,18 +423,18 @@ protected static $requestFactory;
 private $isHostValid = true;
 private $isForwardedValid = true;
 private static $trustedHeaderSet = -1;
-private static $trustedHeaderNames = array(
-self::HEADER_FORWARDED =>'FORWARDED',
-self::HEADER_CLIENT_IP =>'X_FORWARDED_FOR',
-self::HEADER_CLIENT_HOST =>'X_FORWARDED_HOST',
-self::HEADER_CLIENT_PROTO =>'X_FORWARDED_PROTO',
-self::HEADER_CLIENT_PORT =>'X_FORWARDED_PORT',
-);
 private static $forwardedParams = array(
 self::HEADER_X_FORWARDED_FOR =>'for',
 self::HEADER_X_FORWARDED_HOST =>'host',
 self::HEADER_X_FORWARDED_PROTO =>'proto',
 self::HEADER_X_FORWARDED_PORT =>'host',
+);
+private static $trustedHeaders = array(
+self::HEADER_FORWARDED =>'FORWARDED',
+self::HEADER_X_FORWARDED_FOR =>'X_FORWARDED_FOR',
+self::HEADER_X_FORWARDED_HOST =>'X_FORWARDED_HOST',
+self::HEADER_X_FORWARDED_PROTO =>'X_FORWARDED_PROTO',
+self::HEADER_X_FORWARDED_PORT =>'X_FORWARDED_PORT',
 );
 public function __construct(array $query = array(), array $request = array(), array $attributes = array(), array $cookies = array(), array $files = array(), array $server = array(), $content = null)
 {
@@ -474,16 +463,7 @@ $this->format = null;
 }
 public static function createFromGlobals()
 {
-$server = $_SERVER;
-if ('cli-server'=== PHP_SAPI) {
-if (array_key_exists('HTTP_CONTENT_LENGTH', $_SERVER)) {
-$server['CONTENT_LENGTH'] = $_SERVER['HTTP_CONTENT_LENGTH'];
-}
-if (array_key_exists('HTTP_CONTENT_TYPE', $_SERVER)) {
-$server['CONTENT_TYPE'] = $_SERVER['HTTP_CONTENT_TYPE'];
-}
-}
-$request = self::createRequestFromFactory($_GET, $_POST, array(), $_COOKIE, $_FILES, $server);
+$request = self::createRequestFromFactory($_GET, $_POST, array(), $_COOKIE, $_FILES, $_SERVER);
 if (0 === strpos($request->headers->get('CONTENT_TYPE'),'application/x-www-form-urlencoded')
 && in_array(strtoupper($request->server->get('REQUEST_METHOD','GET')), array('PUT','DELETE','PATCH'))
 ) {
@@ -494,7 +474,7 @@ return $request;
 }
 public static function create($uri, $method ='GET', $parameters = array(), $cookies = array(), $files = array(), $server = array(), $content = null)
 {
-$server = array_replace(array('SERVER_NAME'=>'localhost','SERVER_PORT'=> 80,'HTTP_HOST'=>'localhost','HTTP_USER_AGENT'=>'Symfony/3.X','HTTP_ACCEPT'=>'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8','HTTP_ACCEPT_LANGUAGE'=>'en-us,en;q=0.5','HTTP_ACCEPT_CHARSET'=>'ISO-8859-1,utf-8;q=0.7,*;q=0.7','REMOTE_ADDR'=>'127.0.0.1','SCRIPT_NAME'=>'','SCRIPT_FILENAME'=>'','SERVER_PROTOCOL'=>'HTTP/1.1','REQUEST_TIME'=> time(),
+$server = array_replace(array('SERVER_NAME'=>'localhost','SERVER_PORT'=> 80,'HTTP_HOST'=>'localhost','HTTP_USER_AGENT'=>'Symfony','HTTP_ACCEPT'=>'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8','HTTP_ACCEPT_LANGUAGE'=>'en-us,en;q=0.5','HTTP_ACCEPT_CHARSET'=>'ISO-8859-1,utf-8;q=0.7,*;q=0.7','REMOTE_ADDR'=>'127.0.0.1','SCRIPT_NAME'=>'','SCRIPT_FILENAME'=>'','SERVER_PROTOCOL'=>'HTTP/1.1','REQUEST_TIME'=> time(),
 ), $server);
 $server['PATH_INFO'] ='';
 $server['REQUEST_METHOD'] = strtoupper($method);
@@ -656,17 +636,9 @@ foreach (str_split($requestOrder) as $order) {
 $_REQUEST = array_merge($_REQUEST, $request[$order]);
 }
 }
-public static function setTrustedProxies(array $proxies)
+public static function setTrustedProxies(array $proxies, int $trustedHeaderSet)
 {
 self::$trustedProxies = $proxies;
-if (2 > func_num_args()) {
-@trigger_error(sprintf('The %s() method expects a bit field of Request::HEADER_* as second argument since Symfony 3.3. Defining it will be required in 4.0. ', __METHOD__), E_USER_DEPRECATED);
-return;
-}
-$trustedHeaderSet = (int) func_get_arg(1);
-foreach (self::$trustedHeaderNames as $header => $name) {
-self::$trustedHeaders[$header] = $header & $trustedHeaderSet ? $name : null;
-}
 self::$trustedHeaderSet = $trustedHeaderSet;
 }
 public static function getTrustedProxies()
@@ -687,40 +659,6 @@ self::$trustedHosts = array();
 public static function getTrustedHosts()
 {
 return self::$trustedHostPatterns;
-}
-public static function setTrustedHeaderName($key, $value)
-{
-@trigger_error(sprintf('The "%s()" method is deprecated since Symfony 3.3 and will be removed in 4.0. Use the $trustedHeaderSet argument of the Request::setTrustedProxies() method instead.', __METHOD__), E_USER_DEPRECATED);
-if ('forwarded'=== $key) {
-$key = self::HEADER_FORWARDED;
-} elseif ('client_ip'=== $key) {
-$key = self::HEADER_CLIENT_IP;
-} elseif ('client_host'=== $key) {
-$key = self::HEADER_CLIENT_HOST;
-} elseif ('client_proto'=== $key) {
-$key = self::HEADER_CLIENT_PROTO;
-} elseif ('client_port'=== $key) {
-$key = self::HEADER_CLIENT_PORT;
-} elseif (!array_key_exists($key, self::$trustedHeaders)) {
-throw new \InvalidArgumentException(sprintf('Unable to set the trusted header name for key "%s".', $key));
-}
-self::$trustedHeaders[$key] = $value;
-if (null !== $value) {
-self::$trustedHeaderNames[$key] = $value;
-self::$trustedHeaderSet |= $key;
-} else {
-self::$trustedHeaderSet &= ~$key;
-}
-}
-public static function getTrustedHeaderName($key)
-{
-if (2 > func_num_args() || func_get_arg(1)) {
-@trigger_error(sprintf('The "%s()" method is deprecated since Symfony 3.3 and will be removed in 4.0. Use the Request::getTrustedHeaderSet() method instead.', __METHOD__), E_USER_DEPRECATED);
-}
-if (!array_key_exists($key, self::$trustedHeaders)) {
-throw new \InvalidArgumentException(sprintf('Unable to get the trusted header name for key "%s".', $key));
-}
-return self::$trustedHeaders[$key];
 }
 public static function normalizeQueryString($qs)
 {
@@ -785,7 +723,7 @@ $ip = $this->server->get('REMOTE_ADDR');
 if (!$this->isFromTrustedProxy()) {
 return array($ip);
 }
-return $this->getTrustedValues(self::HEADER_CLIENT_IP, $ip) ?: array($ip);
+return $this->getTrustedValues(self::HEADER_X_FORWARDED_FOR, $ip) ?: array($ip);
 }
 public function getClientIp()
 {
@@ -823,9 +761,9 @@ return $this->isSecure() ?'https':'http';
 }
 public function getPort()
 {
-if ($this->isFromTrustedProxy() && $host = $this->getTrustedValues(self::HEADER_CLIENT_PORT)) {
+if ($this->isFromTrustedProxy() && $host = $this->getTrustedValues(self::HEADER_X_FORWARDED_PORT)) {
 $host = $host[0];
-} elseif ($this->isFromTrustedProxy() && $host = $this->getTrustedValues(self::HEADER_CLIENT_HOST)) {
+} elseif ($this->isFromTrustedProxy() && $host = $this->getTrustedValues(self::HEADER_X_FORWARDED_HOST)) {
 $host = $host[0];
 } elseif (!$host = $this->headers->get('HOST')) {
 return $this->server->get('SERVER_PORT');
@@ -920,7 +858,7 @@ return''=== $qs ? null : $qs;
 }
 public function isSecure()
 {
-if ($this->isFromTrustedProxy() && $proto = $this->getTrustedValues(self::HEADER_CLIENT_PROTO)) {
+if ($this->isFromTrustedProxy() && $proto = $this->getTrustedValues(self::HEADER_X_FORWARDED_PROTO)) {
 return in_array(strtolower($proto[0]), array('https','on','ssl','1'), true);
 }
 $https = $this->server->get('HTTPS');
@@ -928,7 +866,7 @@ return !empty($https) &&'off'!== strtolower($https);
 }
 public function getHost()
 {
-if ($this->isFromTrustedProxy() && $host = $this->getTrustedValues(self::HEADER_CLIENT_HOST)) {
+if ($this->isFromTrustedProxy() && $host = $this->getTrustedValues(self::HEADER_X_FORWARDED_HOST)) {
 $host = $host[0];
 } elseif (!$host = $this->headers->get('HOST')) {
 if (!$host = $this->server->get('SERVER_NAME')) {
@@ -1064,8 +1002,7 @@ return $this->getMethod() === strtoupper($method);
 public function isMethodSafe()
 {
 if (!func_num_args() || func_get_arg(0)) {
-@trigger_error('Checking only for cacheable HTTP methods with Symfony\Component\HttpFoundation\Request::isMethodSafe() is deprecated since Symfony 3.2 and will throw an exception in 4.0. Disable checking only for cacheable methods by calling the method with `false` as first argument or use the Request::isMethodCacheable() instead.', E_USER_DEPRECATED);
-return in_array($this->getMethod(), array('GET','HEAD'));
+throw new \BadMethodCallException('Checking only for cacheable HTTP methods with Symfony\Component\HttpFoundation\Request::isMethodSafe() is not supported.');
 }
 return in_array($this->getMethod(), array('GET','HEAD','OPTIONS','TRACE'));
 }
@@ -1090,9 +1027,6 @@ return $this->server->get('SERVER_PROTOCOL');
 public function getContent($asResource = false)
 {
 $currentContentIsResource = is_resource($this->content);
-if (\PHP_VERSION_ID < 50600 && false === $this->content) {
-throw new \LogicException('getContent() can only be called once when using the resource return type and PHP below 5.6.');
-}
 if (true === $asResource) {
 if ($currentContentIsResource) {
 rewind($this->content);
@@ -1318,7 +1252,7 @@ protected static function initializeFormats()
 static::$formats = array('html'=> array('text/html','application/xhtml+xml'),'txt'=> array('text/plain'),'js'=> array('application/javascript','application/x-javascript','text/javascript'),'css'=> array('text/css'),'json'=> array('application/json','application/x-json'),'jsonld'=> array('application/ld+json'),'xml'=> array('text/xml','application/xml','application/x-xml'),'rdf'=> array('application/rdf+xml'),'atom'=> array('application/atom+xml'),'rss'=> array('application/rss+xml'),'form'=> array('application/x-www-form-urlencoded'),
 );
 }
-private function setPhpDefaultLocale($locale)
+private function setPhpDefaultLocale(string $locale)
 {
 try {
 if (class_exists('Locale', false)) {
@@ -1327,7 +1261,7 @@ if (class_exists('Locale', false)) {
 } catch (\Exception $e) {
 }
 }
-private function getUrlencodedPrefix($string, $prefix)
+private function getUrlencodedPrefix(string $string, string $prefix)
 {
 if (0 !== strpos(rawurldecode($string), $prefix)) {
 return false;
@@ -1357,12 +1291,12 @@ private function getTrustedValues($type, $ip = null)
 {
 $clientValues = array();
 $forwardedValues = array();
-if (self::$trustedHeaders[$type] && $this->headers->has(self::$trustedHeaders[$type])) {
+if ((self::$trustedHeaderSet & $type) && $this->headers->has(self::$trustedHeaders[$type])) {
 foreach (explode(',', $this->headers->get(self::$trustedHeaders[$type])) as $v) {
-$clientValues[] = (self::HEADER_CLIENT_PORT === $type ?'0.0.0.0:':'').trim($v);
+$clientValues[] = (self::HEADER_X_FORWARDED_PORT === $type ?'0.0.0.0:':'').trim($v);
 }
 }
-if (self::$trustedHeaders[self::HEADER_FORWARDED] && $this->headers->has(self::$trustedHeaders[self::HEADER_FORWARDED])) {
+if ((self::$trustedHeaderSet & self::HEADER_FORWARDED) && $this->headers->has(self::$trustedHeaders[self::HEADER_FORWARDED])) {
 $forwardedValues = $this->headers->get(self::$trustedHeaders[self::HEADER_FORWARDED]);
 $forwardedValues = preg_match_all(sprintf('{(?:%s)=(?:"?\[?)([a-zA-Z0-9\.:_\-/]*+)}', self::$forwardedParams[$type]), $forwardedValues, $matches) ? $matches[1] : array();
 }
@@ -1407,4 +1341,4 @@ return $clientIps ? array_reverse($clientIps) : array($firstTrustedIp);
 }
 }
 }
-namespace {require __DIR__.'/../vendor/symfony/symfony/src/Symfony/Component/ClassLoader/ClassCollectionLoader.php';}
+namespace {require __DIR__.'/../vendor/symfony/class-loader/ClassCollectionLoader.php';}

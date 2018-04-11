@@ -1,4 +1,4 @@
-# OAuth
+### HWI OAuth ###
 hwi_oauth_redirect:
     resource: "@HWIOAuthBundle/Resources/config/routing/redirect.xml"
     prefix:   /connect
@@ -11,8 +11,11 @@ hwi_oauth_login:
     resource: "@HWIOAuthBundle/Resources/config/routing/login.xml"
     prefix:   /login
 
-google_login:
+app.login.google:
     path: /login/check-google
+#################
+
+
 
 jk_cms:
     resource: '@JKCmsBundle/Resources/config/routing.yml'

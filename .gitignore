@@ -35,9 +35,15 @@ web/uploads
 ### Ansible ###
 etc/ansible/hosts/hosts
 etc/ansible/hosts/staging_hosts
-.env
 ###############
 
 ### Docker ###
 etc/docker/data
 ##############
+
+###> symfony/framework-bundle ###
+/.env
+/public/bundles/
+/var/
+/vendor/
+###< symfony/framework-bundle ###

@@ -2,14 +2,21 @@ security:
     encoders:
         BlueBear\CmsBundle\Entity\User: sha512
 
+    providers:
+        cms_user_provider:
+            id: google.user_provider
+
     role_hierarchy:
         ROLE_OAUTH_USER:  ROLE_ADMIN
         ROLE_ADMIN:       ROLE_USER
         ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
-    providers:
-        cms_user_provider:
-            id: google.user_provider
+    access_control:
+        - {path: ^/login, role: IS_AUTHENTICATED_ANONYMOUSLY}
+        - {path: ^/connect/google, roles: IS_AUTHENTICATED_ANONYMOUSLY}
+        - {path: ^/cms, role: ROLE_ADMIN}
+        - {path: ^/article/, role: ROLE_ADMIN}
+        - {path: ^/, role: IS_AUTHENTICATED_ANONYMOUSLY}
 
     firewalls:
         dev:
@@ -29,10 +36,3 @@ security:
                 use_forward:  false
                 oauth_user_provider:
                     service: google.user_provider
-
-    access_control:
-        - {path: ^/login, role: IS_AUTHENTICATED_ANONYMOUSLY}
-        - {path: ^/connect/google, roles: IS_AUTHENTICATED_ANONYMOUSLY}
-        - {path: ^/cms, role: ROLE_ADMIN}
-        - {path: ^/article/, role: ROLE_ADMIN}
-        - {path: ^/, role: IS_AUTHENTICATED_ANONYMOUSLY}
