@@ -20,6 +20,7 @@
     - {path: '{{ deploy_helper.new_release_path }}/web/uploads', src: "{{ deploy_helper.shared_path }}/web/uploads"}
 
 - name: Fix permissions for uploads directory '{{ deploy_helper.shared_path }}/web/uploads'
+  become: yes
   file:
     path: '{{ item }}'
     state: directory
