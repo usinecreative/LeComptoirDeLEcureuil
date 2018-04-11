@@ -1,8 +1,9 @@
-- name: Create required folders in the shared folder
+- name: Create shared folder with recursive permissions for group www-data
   file:
     path: '{{ item }}'
     state: directory
     group: www-data
+    recurse: yes
   with_items:
     - '{{ deploy_helper.shared_path }}/var/logs'
     - '{{ deploy_helper.shared_path }}/web/uploads'
@@ -10,9 +11,20 @@
 - name: Add symlinks from the new release to the shared folder
   file:
     path: '{{ item.path }}'
+    owner: '{{ ansible_user }}'
     src: '{{ item.src }}'
     state: link
     force: yes
   with_items:
     - {path: '{{ deploy_helper.new_release_path }}/var/logs', src: "{{ deploy_helper.shared_path }}/var/logs"}
     - {path: '{{ deploy_helper.new_release_path }}/web/uploads', src: "{{ deploy_helper.shared_path }}/web/uploads"}
+
+- name: Fix permissions for uploads directory '{{ deploy_helper.shared_path }}/web/uploads'
+  file:
+    path: '{{ item }}'
+    state: directory
+    owner: www-data
+    group: www-data
+    recurse: yes
+  with_items:
+    - '{{ deploy_helper.shared_path }}/web/uploads'
