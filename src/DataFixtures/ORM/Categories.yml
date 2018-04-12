@@ -1,4 +1,4 @@
-BlueBear\CmsBundle\Entity\Category:
+App\Entity\Category:
     category{1..4}:
         name: <realText(20, 1)>
         slug (unique): <randomElement(['litterature', 'manga-bd', 'sorties', 'rencontres'])>

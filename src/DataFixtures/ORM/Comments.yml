@@ -1,4 +1,4 @@
-BlueBear\CmsBundle\Entity\Comment:
+App\Entity\Comment:
     comments{1..200}:
         article: '@article*'
         authorName: <userName()>

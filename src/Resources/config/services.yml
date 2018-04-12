@@ -1,14 +1,14 @@
 services:
     app_partner_repository:
-        class: AppBundle\Repository\PartnerRepository
+        class: App\Repository\PartnerRepository
         factory:
             - '@doctrine'
             - getRepository
         arguments:
-            - AppBundle\Entity\Partner
+            - App\Entity\Partner
 
     app_sitemap_generator:
-        class: AppBundle\Sitemap\Generator
+        class: App\Sitemap\Generator
         arguments:
             - '%kernel.cache_dir%'
             - '@router'
@@ -16,6 +16,6 @@ services:
             - '@twig'
 
     app_comment_form_handler:
-        class: AppBundle\Form\Handler\CommentHandler
+        class: App\Form\Handler\CommentHandler
         arguments:
             - '@jk.cms.comment_repository'

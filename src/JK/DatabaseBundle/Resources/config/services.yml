@@ -1,8 +1,0 @@
-services:
-    jk.database.backup_manager:
-        class: JK\DatabaseBundle\Backup\BackupManager
-
-    jk.database.archive_manager:
-        class: JK\DatabaseBundle\Archive\ArchiveManager
-        arguments:
-            - '@mailer'

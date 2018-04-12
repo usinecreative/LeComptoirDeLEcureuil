@@ -1,9 +1,9 @@
 <?php
 
-namespace AppBundle\Sitemap;
+namespace App\Sitemap;
 
 use JK\CmsBundle\Repository\ArticleRepository;
-use AppBundle\Sitemap\Item\Item;
+use App\Sitemap\Item\Item;
 use Exception;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Routing\RouterInterface;

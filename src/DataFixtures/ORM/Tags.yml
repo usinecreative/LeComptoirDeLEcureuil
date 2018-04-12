@@ -1,4 +1,4 @@
-BlueBear\CmsBundle\Entity\Tag:
+App\Entity\Tag:
     tags{1..50}:
         name: <word()>
         slug: <slug()>

@@ -1,62 +1,62 @@
 lecomptoir.homepage:
     path:     /
-    defaults: {_controller: AppBundle:Main:index}
+    defaults: {_controller: App:Main:index}
 
 lecomptoir.contact:
     path: /contact
-    defaults: {_controller: AppBundle:Main:contact}
+    defaults: {_controller: App:Main:contact}
 
 lecomptoir.about:
     path: /a-propos
-    defaults: {_controller: AppBundle:Main:whoAmI}
+    defaults: {_controller: App:Main:whoAmI}
 
 lecomptoir.legal:
     path: /mentions-legales
-    defaults: {_controller: AppBundle:Main:legal}
+    defaults: {_controller: App:Main:legal}
 
 lecomptoir.feed:
     path: /feed
-    defaults: {_controller: AppBundle:Main:feed}
+    defaults: {_controller: App:Main:feed}
 
 # Partners pages
 lecomptoir.partner:
     path: /partenaires/{partnerSlug}
-    defaults: {_controller: AppBundle:Main:partner}
+    defaults: {_controller: App:Main:partner}
 
 # Articles Pages
 lecomptoir.article.list_by_category:
     path: /category/{categorySlug}
-    defaults: {_controller: AppBundle:Article:filter}
+    defaults: {_controller: App:Article:filter}
 
 lecomptoir.article.list_by_tag:
     path: /tag/{tagSlug}
-    defaults: {_controller: AppBundle:Article:filter}
+    defaults: {_controller: App:Article:filter}
 
 lecomptoir.article.unsubscribe:
     path: /{slug}/{email}/unsubscribe
-    defaults: {_controller: AppBundle:Article:unsubscribe}
+    defaults: {_controller: App:Article:unsubscribe}
 
 # Article preview
 lecomptoir.article.preview:
     path: /article/{id}/preview
-    defaults: {_controller: AppBundle:Article:preview}
+    defaults: {_controller: App:Article:preview}
 
 lecomptoir.article.show:
     path:  /{year}/{month}/{slug}
-    defaults: {_controller: AppBundle:Article:show}
+    defaults: {_controller: App:Article:show}
 
 # fix for bad wordpress urls
 lecomptoir.article.show2:
     path:  /{year}/{month}/{slug}/
-    defaults: {_controller: AppBundle:Article:show}
+    defaults: {_controller: App:Article:show}
 
 # Sitemap
 lecomptoir.sitemap:
     path: /sitemap.xml
-    defaults: {_controller: AppBundle:Main:sitemap}
+    defaults: {_controller: App:Main:sitemap}
 
 # Free Pages
 lecomptoir.free_pages:
     path: /{pageSlug}
-    defaults: {_controller: AppBundle:Page:show}
+    defaults: {_controller: App:Page:show}
 

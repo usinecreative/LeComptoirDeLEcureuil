@@ -1,4 +1,4 @@
-JK\CmsBundle\Entity\Article:
+App\Entity\Article:
     articles{1..100}:
         title: <realText(20, 2)>
         canonical (unique): <url()>

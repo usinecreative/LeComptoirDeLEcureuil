@@ -1,10 +1,10 @@
 <?php
 
-namespace AppBundle\Controller;
+namespace App\Controller;
 
-use BlueBear\CmsBundle\Entity\Comment;
+use App\Entity\Article;
+use App\Entity\Comment;
 use JK\CmsBundle\Form\Type\AddCommentType;
-use JK\CmsBundle\Entity\Article;
 use BlueBear\CmsBundle\Finder\Filter\ArticleFilter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;

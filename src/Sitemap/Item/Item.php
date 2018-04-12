@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Sitemap\Item;
+namespace App\Sitemap\Item;
 
 class Item
 {

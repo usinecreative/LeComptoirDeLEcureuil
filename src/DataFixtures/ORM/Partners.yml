@@ -1,4 +1,4 @@
-AppBundle\Entity\Partner:
+App\Entity\Partner:
     edition_mnemos:
         name: Edition Mnemos
         description: >

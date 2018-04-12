@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace App\Entity;
 
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
@@ -11,7 +11,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * Partner.
  *
  * @ORM\Table(name="lecomptoir_partner", indexes={@ORM\Index(name="slug_idx", columns={"slug"})}))
- * @ORM\Entity(repositoryClass="AppBundle\Repository\PartnerRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\PartnerRepository")
  *
  * @UniqueEntity(fields={"name", "slug"})
  *

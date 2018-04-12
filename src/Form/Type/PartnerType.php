@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Form\Type;
+namespace App\Form\Type;
 
 use JK\CmsBundle\Form\Type\TinyMceType;
 use Symfony\Component\Form\AbstractType;

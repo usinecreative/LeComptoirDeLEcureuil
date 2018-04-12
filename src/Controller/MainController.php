@@ -1,9 +1,9 @@
 <?php
 
-namespace AppBundle\Controller;
+namespace App\Controller;
 
-use AppBundle\Entity\Partner;
-use AppBundle\Form\Type\ContactType;
+use App\Entity\Partner;
+use App\Form\Type\ContactType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Swift_Message;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
