@@ -21,6 +21,8 @@
     "php": ">=7.0",
     "ext-gd": "*",
     "hwi/oauth-bundle": "^0.6.2",
+    "liip/imagine-bundle": "^2.0@dev",
+    "oneup/uploader-bundle": "^2.0",
     "php-http/guzzle6-adapter": "^1.1",
     "php-http/httplug-bundle": "^1.10",
     "sensio/framework-extra-bundle": "^5.1",
