@@ -1,2 +1,2 @@
 swiftmailer:
-    delivery_address: '%admin_mail%'
+    delivery_address: '%delivery_address%'

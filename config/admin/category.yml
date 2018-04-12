@@ -1,7 +1,7 @@
 lag_admin:
     admins:
         category:
-            entity: BlueBear\CmsBundle\Entity\Category
+            entity: App\Entity\Category
             form: BlueBear\CmsBundle\Form\Type\CategoryType
             actions:
                 batch: ~

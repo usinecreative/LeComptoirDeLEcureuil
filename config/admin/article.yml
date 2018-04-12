@@ -1,7 +1,7 @@
 lag_admin:
     admins:
         article:
-            entity: JK\CmsBundle\Entity\Article
+            entity: App\Entity\Article
             form: BlueBear\CmsBundle\Form\Type\ArticleType
             controller: JKCmsBundle:Article
             actions:

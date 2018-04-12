@@ -1,10 +1,10 @@
 security:
     encoders:
-        BlueBear\CmsBundle\Entity\User: sha512
+        App\Entity\User: sha512
 
     providers:
-        cms_user_provider:
-            id: google.user_provider
+        App\Service\Guard\UserProvider\GoogleUserProvider:
+            id: App\Service\Guard\UserProvider\GoogleUserProvider
 
     role_hierarchy:
         ROLE_OAUTH_USER:  ROLE_ADMIN
@@ -35,4 +35,4 @@ security:
                 default_target_path: /cms/dashboard
                 use_forward:  false
                 oauth_user_provider:
-                    service: google.user_provider
+                    service: App\Service\Guard\UserProvider\GoogleUserProvider

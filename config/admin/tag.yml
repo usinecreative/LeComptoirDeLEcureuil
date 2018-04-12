@@ -1,7 +1,7 @@
 lag_admin:
     admins:
         tag:
-            entity: BlueBear\CmsBundle\Entity\Tag
+            entity: App\Entity\Tag
             form: JK\CmsBundle\Form\Type\TagType
             actions:
                 list:

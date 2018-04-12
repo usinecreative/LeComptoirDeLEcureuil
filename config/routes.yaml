@@ -16,21 +16,14 @@ app.login.google:
 #################
 
 
-
-jk_cms:
-    resource: '@JKCmsBundle/Resources/config/routing.yml'
-    prefix:   /
+### Cms ###
+app.cms.homepage:
+    path: /cms
+    defaults: {_controller: App\Controller\Cms\HomepageAction}
 
 _liip_imagine:
-    resource: '@LiipImagineBundle/Resources/config/routing.xml'
-
-jk_database:
-    resource: '@JKDatabaseBundle/Resources/config/routing.yml'
-    prefix:   /
-
-app:
-    resource: '@AppBundle/Resources/config/routing.yml'
-    prefix:   /
+    resource: '@LiipImagineBundle/Resources/config/routing.yaml'
+###########
 
 oneup_uploader:
     resource: .
@@ -41,20 +34,46 @@ cms.media.add_image_modal:
     path: /cms/media/add-image
     defaults: {_controller: JK\CmsBundle\Action\Media\AddImageModal}
 
-# BlueBear AdminBundle
-blue_bear_admin:
-    resource: .
-    prefix: /cms
-    type: extra
+## BlueBear AdminBundle
+#jk_admin:
+#    resource: .
+#    prefix: /cms
+#    type: extra
 
-blue_bear_cms:
-    resource: '@BlueBearCmsBundle/Resources/config/routing.yml'
-    prefix:   /cms
+#blue_bear_cms:
+#    resource: '@BlueBearCmsBundle/Resources/config/routing.yml'
+#    prefix:   /cms
+#
+#le_comptoir_de_l_ecureuil_front:
+#    resource: '@AppBundle/Resources/config/routing.yml'
+#    prefix:   /
+#
+#blue_bear_media:
+#    resource: '@BlueBearMediaBundle/Resources/config/routing.yml'
+#    prefix:   /
 
-le_comptoir_de_l_ecureuil_front:
-    resource: '@AppBundle/Resources/config/routing.yml'
-    prefix:   /
+# Guard
+#login:
+#    path: /login
+#    defaults: {_controller: 'BlueBearCmsBundle:Guard:login'}
+#
+#login_check:
+#    path: /login_check
+#    defaults: {_controller: 'BlueBearCmsBundle:Guard:loginCheck'}
+#
+#logout:
+#    path: /logout
 
-blue_bear_media:
-    resource: '@BlueBearMediaBundle/Resources/config/routing.yml'
-    prefix:   /
+# Cms
+#bluebear.cms.homepage:
+#    path: /
+#    defaults: {_controller: 'JKCmsBundle:Dashboard:dashboard'}
+#
+#bluebear.cms.article.preview:
+#    path: /article/preview/{id}
+#    defaults: {_controller: 'BlueBearCmsBundle:Article:preview'}
+#
+## Image
+#cms.image.gallery_dialog:
+#    path: /images/gallery/dialog
+#    defaults: {_controller: 'BlueBearCmsBundle:Image:galleryDialog'}

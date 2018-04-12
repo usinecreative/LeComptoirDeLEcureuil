@@ -1,7 +1,7 @@
 lag_admin:
     admins:
         page:
-            entity: BlueBear\CmsBundle\Entity\Page
+            entity: App\Entity\Page
             form: JK\CmsBundle\Form\Type\PageType
             actions:
                 list:

@@ -1,14 +1,21 @@
 parameters:
     locale: 'fr'
+    google_analytics_id: '%env(GOOGLE_ANALYTICS_ID)%'
+    hotjar_enabled: '%env(HOTJAR_ENABLED)%'
+    delivery_address: '%env(DELIVERY_ADDRESS)%'
+    google_client_id: '%env(GOOGLE_CLIENT_ID)%'
+    google_client_secret: '%env(GOOGLE_CLIENT_SECRET)%'
+    google_scope: '%env(GOOGLE_SCOPE)%'
+    google_allowed_users: '%env(GOOGLE_ALLOWED_USERS)%'
 
 services:
     # default configuration for services in *this* file
     _defaults:
-        autowire: true      # Automatically injects dependencies in your services.
-        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
-        public: false       # Allows optimizing the container by removing unused services; this also means
-                            # fetching services directly from the container via $container->get() won't work.
-                            # The best practice is to be explicit about your dependencies anyway.
+        autowire: true
+        autoconfigure: true
+        public: false
+        bind:
+            $googleAllowedUser: '%google_allowed_users%'
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
@@ -22,21 +29,4 @@ services:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
 
-    cms_user_provider:
-        class: BlueBear\CmsBundle\Guard\UserProvider\UserProvider
-        arguments:
-            - '@jk.cms.user_repository'
-
-    cms_authenticator:
-        class: BlueBear\CmsBundle\Guard\Authenticator\TokenAuthenticator
-        arguments:
-            - '@router'
-            - '@form.factory'
-            - '@security.encoder_factory'
-
-    google.user_provider:
-        class: AppBundle\Google\UserProvider
-        autowire: true
-        arguments:
-            - '%google_allowed_users%'
 

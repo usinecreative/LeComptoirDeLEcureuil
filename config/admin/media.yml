@@ -2,7 +2,7 @@ lag_admin:
     admins:
         media:
             controller: JKCmsBundle:Media
-            entity: JK\CmsBundle\Entity\Media
+            entity: App\Entity\Media
             form: JK\CmsBundle\Form\Type\MediaType
             actions:
                 list:

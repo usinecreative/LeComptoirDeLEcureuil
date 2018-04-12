@@ -1,7 +1,7 @@
 lag_admin:
     admins:
         comment:
-            entity: BlueBear\CmsBundle\Entity\Comment
+            entity: App\Entity\Comment
             form: BlueBear\CmsBundle\Form\Type\CommentType
             actions:
                 list:
