@@ -49,7 +49,6 @@ lecomptoir:
         edit: Editer
         name: Nom
         description: Description
-        website: Site internet
         slug: Slug
         baseline: Baseline
         createdAt: Crée le
@@ -97,7 +96,7 @@ lecomptoir.tags: Tags
 
 
 lag.admin.partner.saved: Partenaire sauvegardé
-lag.admin.partner.saved: Partenaire supprimer
+lag.admin.partner.deleted: Partenaire supprimer
 
 # Partner is not part of the cms bundle
 cms:
