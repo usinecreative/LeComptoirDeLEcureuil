@@ -3,7 +3,7 @@
 namespace JK\CmsBundle\Tests\Form\Validator;
 
 use App\Entity\Comment;
-use JK\CmsBundle\Form\Constraint\AddComment;
+use App\Form\Constraint\AddComment;
 use JK\CmsBundle\Form\Validator\AddCommentValidator;
 use LAG\AdminBundle\Tests\AdminTestBase;
 use stdClass;

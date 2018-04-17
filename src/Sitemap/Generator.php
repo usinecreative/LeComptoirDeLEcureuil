@@ -2,7 +2,7 @@
 
 namespace App\Sitemap;
 
-use JK\CmsBundle\Repository\ArticleRepository;
+use App\Repository\ArticleRepository;
 use App\Sitemap\Item\Item;
 use Exception;
 use Symfony\Component\Filesystem\Filesystem;

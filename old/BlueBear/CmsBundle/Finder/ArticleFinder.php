@@ -4,7 +4,7 @@ namespace BlueBear\CmsBundle\Finder;
 
 use DateTime;
 use App\Entity\Article;
-use JK\CmsBundle\Repository\ArticleRepository;
+use App\Repository\ArticleRepository;
 use BlueBear\CmsBundle\Finder\Filter\ArticleFilter;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\QueryBuilder;

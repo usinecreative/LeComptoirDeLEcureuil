@@ -7,7 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
-use JK\CmsBundle\Form\Constraint as Assert;
+use App\Form\Constraint as Assert;
 
 /**
  * Category.
@@ -15,7 +15,7 @@ use JK\CmsBundle\Form\Constraint as Assert;
  * Category are articles parents
  *
  * @ORM\Table(name="cms_article")
- * @ORM\Entity(repositoryClass="JK\CmsBundle\Repository\ArticleRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\ArticleRepository")
  * @ORM\HasLifecycleCallbacks()
  *
  * @Assert\Publication()

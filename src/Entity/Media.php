@@ -9,7 +9,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Table(name="cms_media")
- * @ORM\Entity(repositoryClass="JK\CmsBundle\Repository\MediaRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\MediaRepository")
  * @ORM\HasLifecycleCallbacks()
  *
  * @UniqueEntity("name")

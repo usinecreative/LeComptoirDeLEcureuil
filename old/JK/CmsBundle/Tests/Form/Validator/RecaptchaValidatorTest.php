@@ -2,7 +2,7 @@
 
 namespace JK\CmsBundle\Tests\Form\Validator;
 
-use JK\CmsBundle\Form\Constraint\Recaptcha;
+use App\Form\Constraint\Recaptcha;
 use LAG\AdminBundle\Tests\AdminTestBase;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;

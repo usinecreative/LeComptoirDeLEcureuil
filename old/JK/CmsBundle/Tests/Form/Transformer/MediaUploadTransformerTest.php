@@ -4,7 +4,7 @@ namespace JK\CmsBundle\Tests\Form\Transformer;
 
 use App\Entity\Media;
 use JK\CmsBundle\Form\Transformer\MediaUploadTransformer;
-use JK\CmsBundle\Repository\MediaRepository;
+use App\Repository\MediaRepository;
 use PHPUnit_Framework_TestCase;
 
 class MediaUploadTransformerTest extends PHPUnit_Framework_TestCase

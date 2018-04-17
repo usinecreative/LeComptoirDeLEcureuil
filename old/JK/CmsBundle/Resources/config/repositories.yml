@@ -1,15 +1,15 @@
 services:
     cms.media.media_repository:
-        class: JK\CmsBundle\Repository\MediaRepository
+        class: App\Repository\MediaRepository
         factory: ["@doctrine", getRepository]
         arguments:
             - App\Entity\Media
 
     cms.article.repository:
-        class: JK\CmsBundle\Repository\ArticleRepository
+        class: App\Repository\ArticleRepository
         factory: ["@doctrine", getRepository]
         arguments:
             - App\Entity\Article
 
     cms.module.repository:
-        class: JK\CmsBundle\Repository\ModuleRepository
+        class: App\Repository\ModuleRepository

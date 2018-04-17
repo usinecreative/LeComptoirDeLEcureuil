@@ -10,7 +10,7 @@ use App\Entity\Tag;
 use App\Entity\User;
 use BlueBear\CmsBundle\Exception\ImportException;
 use BlueBear\CmsBundle\Import\ImporterInterface;
-use JK\CmsBundle\Repository\ArticleRepository;
+use App\Repository\ArticleRepository;
 use App\Repository\CategoryRepository;
 use App\Repository\CommentRepository;
 use App\Repository\ImportRepository;

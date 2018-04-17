@@ -2,7 +2,7 @@
 
 namespace JK\CmsBundle\Tests\Form\Constraint;
 
-use JK\CmsBundle\Form\Constraint\AddComment;
+use App\Form\Constraint\AddComment;
 use JK\CmsBundle\Form\Validator\AddCommentValidator;
 use LAG\AdminBundle\Tests\AdminTestBase;
 use Symfony\Component\Validator\Constraint;

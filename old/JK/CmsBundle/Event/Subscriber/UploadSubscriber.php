@@ -3,7 +3,7 @@
 namespace JK\CmsBundle\Event\Subscriber;
 
 use JK\CmsBundle\Assets\AssetsHelper;
-use JK\CmsBundle\Repository\MediaRepository;
+use App\Repository\MediaRepository;
 use Oneup\UploaderBundle\Event\PostPersistEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\File\File;

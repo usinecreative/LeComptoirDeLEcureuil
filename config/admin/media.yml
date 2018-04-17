@@ -3,7 +3,7 @@ lag_admin:
         media:
             controller: JKCmsBundle:Media
             entity: App\Entity\Media
-            form: JK\CmsBundle\Form\Type\MediaType
+            form: App\Form\Type\MediaType
             actions:
                 list:
                     pager: false

@@ -3,7 +3,7 @@
 namespace JK\CmsBundle\Tests\Form\Validator;
 
 use App\Entity\Article;
-use JK\CmsBundle\Form\Constraint\Publication;
+use App\Form\Constraint\Publication;
 use JK\CmsBundle\Form\Validator\PublicationValidator;
 use LAG\AdminBundle\Tests\AdminTestBase;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;

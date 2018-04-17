@@ -2,7 +2,7 @@ lag_admin:
     admins:
         page:
             entity: App\Entity\Page
-            form: JK\CmsBundle\Form\Type\PageType
+            form: App\Form\Type\PageType
             actions:
                 list:
                     menus:

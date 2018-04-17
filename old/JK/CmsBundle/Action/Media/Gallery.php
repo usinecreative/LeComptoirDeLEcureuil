@@ -2,7 +2,7 @@
 
 namespace JK\CmsBundle\Action\Media;
 
-use JK\CmsBundle\Repository\MediaRepository;
+use App\Repository\MediaRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Twig_Environment;

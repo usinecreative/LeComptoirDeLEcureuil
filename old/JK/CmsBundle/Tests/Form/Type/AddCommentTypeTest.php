@@ -6,7 +6,7 @@ use App\Entity\Comment;
 use App\Entity\Article;
 use JK\CmsBundle\Form\Type\AddCommentType;
 use JK\CmsBundle\Form\Type\RecaptchaType;
-use JK\CmsBundle\Repository\ArticleRepository;
+use App\Repository\ArticleRepository;
 use PHPUnit_Framework_MockObject_MockObject;
 use Symfony\Component\Form\PreloadedExtension;
 use Symfony\Component\Form\Test\TypeTestCase;

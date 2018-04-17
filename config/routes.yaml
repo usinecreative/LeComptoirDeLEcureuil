@@ -1,3 +1,9 @@
+### App ###
+app.homepage:
+    path: /
+    defaults: {_controller: App\Controller\HomepageAction}
+###########
+
 ### HWI OAuth ###
 hwi_oauth_redirect:
     resource: "@HWIOAuthBundle/Resources/config/routing/redirect.xml"
@@ -14,7 +20,6 @@ hwi_oauth_login:
 app.login.google:
     path: /login/check-google
 #################
-
 
 ### Cms ###
 app.cms.homepage:
@@ -44,9 +49,6 @@ cms.media.add_image_modal:
 #    resource: '@BlueBearCmsBundle/Resources/config/routing.yml'
 #    prefix:   /cms
 #
-#le_comptoir_de_l_ecureuil_front:
-#    resource: '@AppBundle/Resources/config/routing.yml'
-#    prefix:   /
 #
 #blue_bear_media:
 #    resource: '@BlueBearMediaBundle/Resources/config/routing.yml'

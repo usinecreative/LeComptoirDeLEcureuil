@@ -22,16 +22,16 @@ class GoogleUserProvider implements OAuthAwareUserProviderInterface, UserProvide
      * @var UserRepository
      */
     private $userRepository;
-    
+
     /**
      * GoogleUserProvider constructor.
      *
-     * @param array          $googleAllowedUser
+     * @param string         $googleAllowedUser
      * @param UserRepository $userRepository
      */
-    public function __construct(array $googleAllowedUser, UserRepository $userRepository)
+    public function __construct(string $googleAllowedUser, UserRepository $userRepository)
     {
-        $this->googleAllowedUser = $googleAllowedUser;
+        $this->googleAllowedUser = explode(',', $googleAllowedUser);
         $this->userRepository = $userRepository;
     }
     

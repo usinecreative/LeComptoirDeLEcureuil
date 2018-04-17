@@ -5,7 +5,7 @@ namespace JK\CmsBundle\Action\Media;
 use JK\CmsBundle\Assets\AssetsHelper;
 use JK\CmsBundle\Assets\Uploader\UploaderInterface;
 use JK\CmsBundle\Form\Type\AddImageType;
-use JK\CmsBundle\Repository\MediaRepository;
+use App\Repository\MediaRepository;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;

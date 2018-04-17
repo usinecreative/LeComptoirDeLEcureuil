@@ -3,7 +3,7 @@
 namespace JK\CmsBundle\Module\Article;
 
 use JK\CmsBundle\Module\ModuleInterface;
-use JK\CmsBundle\Repository\ArticleRepository;
+use App\Repository\ArticleRepository;
 use Twig_Environment;
 
 class ArticleModule implements ModuleInterface
