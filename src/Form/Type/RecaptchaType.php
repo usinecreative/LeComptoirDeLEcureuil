@@ -1,8 +1,8 @@
 <?php
 
-namespace JK\CmsBundle\Form\Type;
+namespace App\Form\Type;
 
-use JK\CmsBundle\Form\Constraint\Recaptcha;
+use App\Form\Constraint\Recaptcha;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
@@ -18,11 +18,11 @@ class RecaptchaType extends AbstractType
     /**
      * RecaptchaType constructor.
      *
-     * @param $siteKey
+     * @param string $googleRecaptchaSiteKey
      */
-    public function __construct($siteKey)
+    public function __construct(string $googleRecaptchaSiteKey)
     {
-        $this->siteKey = $siteKey;
+        $this->siteKey = $googleRecaptchaSiteKey;
     }
 
     /**
