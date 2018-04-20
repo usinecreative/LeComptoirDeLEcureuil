@@ -1,0 +1,18 @@
+oneup_uploader:
+    mappings:
+        media_gallery:
+            frontend: blueimp
+            storage:
+                directory: '%kernel.root_dir%/../web/uploads/gallery'
+        article_thumbnail:
+            frontend: blueimp
+            storage:
+                directory: '%kernel.root_dir%/../web/uploads/articles/thumbnails'
+        category_thumbnail:
+            frontend: blueimp
+            storage:
+                directory: '%kernel.root_dir%/../web/uploads/categories/thumbnails'
+        article_content:
+            frontend: blueimp
+            storage:
+                directory: '%kernel.root_dir%/../web/uploads/articles/content'

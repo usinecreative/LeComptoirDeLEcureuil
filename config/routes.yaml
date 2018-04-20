@@ -1,5 +1,5 @@
 ### App ###
-app.homepage:
+lecomptoir.homepage:
     path: /
     defaults: {_controller: App\Controller\HomepageAction}
 ###########
@@ -22,7 +22,7 @@ app.login.google:
 #################
 
 ### Cms ###
-app.cms.homepage:
+lecomptoir.cms.homepage:
     path: /cms
     defaults: {_controller: App\Controller\Cms\HomepageAction}
 
@@ -46,12 +46,12 @@ cms.media.add_image_modal:
 #    type: extra
 
 #blue_bear_cms:
-#    resource: '@BlueBearCmsBundle/Resources/config/routing.yml'
+#    resource: '@BlueBearCmsBundle/Resources/config/lecomptoir.yaml'
 #    prefix:   /cms
 #
 #
 #blue_bear_media:
-#    resource: '@BlueBearMediaBundle/Resources/config/routing.yml'
+#    resource: '@BlueBearMediaBundle/Resources/config/lecomptoir.yaml'
 #    prefix:   /
 
 # Guard

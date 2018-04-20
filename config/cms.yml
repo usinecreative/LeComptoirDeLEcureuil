@@ -1,10 +1,4 @@
-imports:
-    - { resource: admin/category.yml }
-    - { resource: admin/article.yml }
-    - { resource: admin/comment.yml }
-    - { resource: admin/media.yml }
-    - { resource: admin/tag.yml }
-    - { resource: admin/page.yml }
+
 
 blue_bear_cms:
     content:
@@ -136,74 +130,5 @@ lag_admin:
             form: AppBundle\Form\Type\PartnerType
             actions: []
 
-bluebear_media: ~
 
-# rss/atom feed bundle
-eko_feed:
-    feeds:
-        article:
-            title: Le Comptoir de L'Ecureuil - Articles
-            description: Voici les articles du comptoir de l'écureuil
-            link:
-                route_name: lecomptoir.feed
-            encoding: utf-8
 
-oneup_uploader:
-    mappings:
-        media_gallery:
-            frontend: blueimp
-            storage:
-                directory: '%kernel.root_dir%/../web/uploads/gallery'
-        article_thumbnail:
-            frontend: blueimp
-            storage:
-                directory: '%kernel.root_dir%/../web/uploads/articles/thumbnails'
-        category_thumbnail:
-            frontend: blueimp
-            storage:
-                directory: '%kernel.root_dir%/../web/uploads/categories/thumbnails'
-        article_content:
-            frontend: blueimp
-            storage:
-                directory: '%kernel.root_dir%/../web/uploads/articles/content'
-
-liip_imagine:
-    loaders:
-        default:
-            filesystem:
-                data_root: '%liip_imagine_bundle_root%'
-    resolvers:
-        default:
-            web_path: ~
-    filter_sets:
-        cache: ~
-        media_thumbnail:
-            quality: 75
-            filters:
-                thumbnail: {size: [120, 90], mode: outbound}
-        media_gallery:
-            filters:
-                thumbnail: {size: [200, 250], mode: outbound}
-        article_thumbnail:
-            filters:
-                thumbnail: {size: [200, 300], mode: outbound}
-        article_content:
-            filters:
-                thumbnail: {size: [200, 250], mode: outbound}
-        category_thumbnail:
-            filters:
-                thumbnail: {size: [200, 300], mode: outbound}
-        category_big:
-            filters:
-                thumbnail: {size: [439, 305], mode: outbound}
-        raw: ~
-
-jk_cms:
-    assets: ~
-
-jk_database:
-    backup_directory: '%backup_directory%'
-
-dunglas_action:
-    directories:
-        - '../src/JK/CmsBundle/Action'

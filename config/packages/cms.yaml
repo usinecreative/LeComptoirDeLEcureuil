@@ -1,0 +1,25 @@
+imports:
+    - {resource: ../admin/category.yml}
+    - {resource: ../admin/article.yml}
+    - {resource: ../admin/comment.yml}
+    - {resource: ../admin/media.yml}
+    - {resource: ../admin/tag.yml}
+    - {resource: ../admin/page.yml}
+
+parameters:
+    cms.assets.mapping:
+        article_content: uploads/articles/content
+        article_thumbnail: uploads/articles/thumbnails
+        category_thumbnail: uploads/categories/thumbnails
+        media_gallery: uploads/gallery
+        media_thumbnail: uploads/gallery
+
+# RSS/Atom feed bundle
+eko_feed:
+    feeds:
+        article:
+            title: Le Comptoir de L'Ecureuil - Articles
+            description: Voici les articles du comptoir de l'écureuil
+            link:
+                route_name: lecomptoir.feed
+            encoding: utf-8
