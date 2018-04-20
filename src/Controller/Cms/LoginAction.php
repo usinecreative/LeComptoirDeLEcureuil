@@ -88,7 +88,7 @@ class LoginAction
         ], $user);
 
         if ($isGranted) {
-            return new RedirectResponse($this->router->generate('app.cms.homepage'));
+            return new RedirectResponse($this->router->generate('lecomptoir.cms.homepage'));
         }
         $exception = $this
             ->authenticationUtils

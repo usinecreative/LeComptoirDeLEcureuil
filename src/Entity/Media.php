@@ -42,14 +42,14 @@ class Media implements MediaInterface
     /**
      * @var string
      *
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="string", nullable=true, name="fileName")
      */
     protected $fileName;
 
     /**
      * @var string
      *
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="string", nullable=true, name="fileType")
      */
     protected $fileType;
 
@@ -70,7 +70,7 @@ class Media implements MediaInterface
     /**
      * @var DateTime
      *
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", name="createdAt")
      *
      * @Gedmo\Timestampable(on="create")
      */
@@ -79,7 +79,7 @@ class Media implements MediaInterface
     /**
      * @var DateTime
      *
-     * @ORM\Column(type="datetime"))
+     * @ORM\Column(type="datetime", name="updatedAt"))
      *
      * @Gedmo\Timestampable(on="update")
      */

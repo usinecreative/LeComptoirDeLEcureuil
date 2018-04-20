@@ -14,6 +14,9 @@
     "components/jqueryui": {
         "version": "1.12.1"
     },
+    "container-interop/container-interop": {
+        "version": "1.2.0"
+    },
     "doctrine/annotations": {
         "version": "1.0",
         "recipe": {
@@ -85,6 +88,9 @@
     },
     "egulias/email-validator": {
         "version": "2.1.3"
+    },
+    "eko/feedbundle": {
+        "version": "1.2.6"
     },
     "fzaninotto/faker": {
         "version": "v1.7.1"
@@ -470,7 +476,31 @@
     "zendframework/zend-code": {
         "version": "3.3.0"
     },
+    "zendframework/zend-escaper": {
+        "version": "2.5.2"
+    },
     "zendframework/zend-eventmanager": {
         "version": "3.2.0"
+    },
+    "zendframework/zend-feed": {
+        "version": "2.9.0"
+    },
+    "zendframework/zend-http": {
+        "version": "2.7.0"
+    },
+    "zendframework/zend-loader": {
+        "version": "2.5.1"
+    },
+    "zendframework/zend-servicemanager": {
+        "version": "3.3.2"
+    },
+    "zendframework/zend-stdlib": {
+        "version": "3.1.1"
+    },
+    "zendframework/zend-uri": {
+        "version": "2.6.0"
+    },
+    "zendframework/zend-validator": {
+        "version": "2.10.2"
     }
 }
