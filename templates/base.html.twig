@@ -45,23 +45,23 @@
 {% block container %}
     <div class="container">
         {# site header : logo and title#}
-        {% include '::Main/header.html.twig' %}
+        {% include 'Main/header.html.twig' %}
         {# main menu #}
-        {% include '::Menu/navbar.html.twig' %}
+        {% include 'Menu/navbar.html.twig' %}
 
         <div class="row content">
             {% include '@LAGAdmin/Layout/flash_messages.html.twig' %}
 
             {# left column #}
             {% block left %}
-                {% include '::Menu/left.html.twig' %}
+                {% include 'Menu/left.html.twig' %}
             {% endblock %}
 
             {% block content %}{% endblock %}
         </div>
         {% block latestArticles %}{% endblock %}
 
-        {% include ':Main:footer.html.twig' %}
+        {% include 'Main/footer.html.twig' %}
     </div>
 {% endblock %}
 
