@@ -24,8 +24,8 @@
     text-align: center;
     text-transform: uppercase;
     opacity: 0.7;
-    @include transition-property(background-color);
-    @include transition-duration(0.3s);
+    transition-property: background-color;
+    transition-duration: 0.3s;
   }
   img {
     height: 305px;

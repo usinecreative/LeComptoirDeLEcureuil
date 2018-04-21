@@ -158,7 +158,7 @@ article {
 
 .ribbon:before {
   content: " ";
-  @include background("ribbon.png");
+  background: "ribbon.png";
   display: block;
   width: 10px;
   height: 10px;

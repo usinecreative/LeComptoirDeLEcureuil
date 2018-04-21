@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="{{ app.request.locale }}" dir="ltr">
 <head>
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('build/app.css') }}">
     <link rel='stylesheet' id='googlefonts-css'
           href="https://fonts.googleapis.com/css?family={{ 'Redressed:400|Gabriela:400|Playball:400|Gabriela:400&subset=latin' | url_encode }}"
           type='text/css' media='all'/>
@@ -66,7 +66,7 @@
 {% endblock %}
 
 <footer>
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('build/app.js') }}"></script>
     {{ cms_dump_scripts('footer') }}
 
     {% if hotjar_enabled %}

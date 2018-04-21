@@ -15,7 +15,7 @@ jk_assets:
                 - merge
                 - minify
             sources:
-                - app/Resources/assets/sass/main.scss
+                - app/Resources/assets/sass/app.scss
                 - app/Resources/assets/css/hover-min.css
                 - vendor/components/bootstrap/css/bootstrap.min.css
                 - vendor/components/font-awesome/css/font-awesome.min.css
