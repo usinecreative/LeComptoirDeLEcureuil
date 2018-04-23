@@ -8,8 +8,9 @@
                     {% set category = categories['litterature'] %}
 
                     <a href="{{ path('lecomptoir.article.list_by_category', {categorySlug: category.slug}) }}"
-                       class="thumbnail hvr-sweep-to-bottom" title="{{ category.description }}">
-                        <img src="{{ 'img/homepage/litterature.jpg' | imagine_filter('category_big') }}"
+                       class="thumbnail hvr-sweep-to-bottom"
+                       title="{{ category.description }}">
+                        <img src="{{ 'images/app/litterature.jpg' | imagine_filter('category_big') }}"
                              alt="{{ category.name }}"
                              title="{{ category.description }}"/>
 
@@ -22,8 +23,9 @@
                     {% set category = categories['manga-bd'] %}
 
                     <a href="{{ path('lecomptoir.article.list_by_category', {categorySlug: category.slug}) }}"
-                       class="thumbnail hvr-sweep-to-bottom" title="{{ category.description }}">
-                        <img src="{{ 'img/homepage/manga.jpg' | imagine_filter('category_big') }}"
+                       class="thumbnail hvr-sweep-to-bottom"
+                       title="{{ category.description }}">
+                        <img src="{{ 'images/app/manga.jpg' | imagine_filter('category_big') }}"
                              alt="{{ category.name }}"
                              title="{{ category.description }}"/>
 
@@ -37,8 +39,9 @@
                 {% if categories['sorties']  is defined %}
                     {% set category = categories['sorties'] %}
                     <a href="{{ path('lecomptoir.article.list_by_category', {categorySlug: category.slug}) }}"
-                       class="thumbnail hvr-sweep-to-bottom" title="{{ category.description }}">
-                        <img src="{{ 'img/homepage/voyages.jpg' | imagine_filter('category_big') }}"
+                       class="thumbnail hvr-sweep-to-bottom"
+                       title="{{ category.description }}">
+                        <img src="{{ 'images/app/voyages.jpg' | imagine_filter('category_big') }}"
                              alt="{{ category.name }}"
                              title="{{ category.description }}"/>
 
@@ -50,8 +53,9 @@
                 {% if categories['rencontres'] is defined %}
                     {% set category = categories['rencontres'] %}
                     <a href="{{ path('lecomptoir.article.list_by_category', {categorySlug: category.slug}) }}"
-                       class="thumbnail hvr-sweep-to-bottom" title="{{ category.description }}">
-                        <img src="{{ 'img/homepage/rencontres.jpg' | imagine_filter('category_big') }}"
+                       class="thumbnail hvr-sweep-to-bottom"
+                       title="{{ category.description }}">
+                        <img src="{{ 'images/app/rencontres.jpg' | imagine_filter('category_big') }}"
                              alt="{{ category.name }}" title="{{ category.description }}">
 
                         <div class="overlay">{{ category.name }}</div>

@@ -3,11 +3,13 @@
         <a href="{{ path('lecomptoir.homepage') }}"
            title="{{ 'lecomptoir.menu.home' | trans }}"><h1 class="site-title">Le Comptoir de l'Ecureuil</h1>
         </a>
-        <img src="/img/cropped-bancomptoirvincent.jpg"
+        <img src="{{ asset('images/app/cropped-bancomptoirvincent.jpg') }}"
              alt="Logo du comptoir de l'cureuil"
              class="header-image" />
         <a href="{{ path('lecomptoir.homepage') }}"
-           title="{{ 'lecomptoir.menu.home' | trans }}"><img src="{{ asset('img/logo.png') }}" alt="Logo écureuil" id="squirrel-logo">
+           title="{{ 'lecomptoir.menu.home' | trans }}"><img src="{{ asset('images/app/logo.png') }}"
+                                                             alt="Logo écureuil"
+                                                             id="squirrel-logo"/>
         </a>
     </div>
 </div>

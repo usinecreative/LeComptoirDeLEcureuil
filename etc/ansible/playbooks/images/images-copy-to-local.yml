@@ -2,9 +2,15 @@
 - hosts: all
 
   tasks:
+    - name: test
+      become: false
+      delegate_to: 127.0.0.1
+      file:
+        state: absent
+        path: '{{ project_path }}/shared/web/uploads'
     - name: Synchronize the remote images directory to the local images directory
       synchronize:
         mode: pull
-        src: '{{ project_path }}/shared/web/images'
-        dest: web
+        src: '{{ project_path }}/shared/web/uploads'
+        dest: ../../../../public
         delete: no

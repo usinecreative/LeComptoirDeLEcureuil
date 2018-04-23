@@ -14,16 +14,20 @@ Encore
             path.resolve(__dirname, "./node_modules/compass-mixins/lib")
         ];
     })
-    // .addRule({
-    //     test: /\.css$/,
-    //     use: ['style-loader', 'css-loader']
-    // })
     .autoProvidejQuery()
     .addPlugin(new WebpackNotifierPlugin({
         alwaysNotify: true
     }))
+    .addLoader({
+        test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: "url-loader?limit=10000&mimetype=application/font-woff"
+    })
+    .addLoader({
+        test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: "file-loader"
+    })
     // uncomment to create hashed filenames (e.g. app.abc123.css)
-    // .enableVersioning(Encore.isProduction())
+    .enableVersioning(Encore.isProduction())
     // uncomment to define the assets of the project
     .addEntry('app', './assets/js/app.js')
 ;

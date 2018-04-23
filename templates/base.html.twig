@@ -38,6 +38,9 @@
         </script>
     {% endif %}
 
+    {% block stylesheets %}
+        <link href="{{ asset('font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" />
+    {% endblock %}
     {{ cms_dump_scripts('head') | raw }}
 </head>
 <body>
