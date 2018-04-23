@@ -16,6 +16,7 @@ dumps
 
 /etc/ansible/hosts/host_vars/*.yml
 /etc/ansible_old/
+old
 
 # backup
 backups
@@ -28,7 +29,7 @@ web/images/articles
 web/images/categories
 web/images/gallery
 
-web/uploads
+public/uploads
 
 .php_cs.cache
 
