@@ -13,6 +13,8 @@
 
   // menu
   .navbar-nav {
+    flex-direction: row;
+
     // menu items
     & > li {
       float: left;
@@ -32,6 +34,8 @@
       a {
         color: $main-color;
         text-shadow: none;
+        padding: 10px 30px;
+        display: inline-block;
       }
     }
     .dropdown {

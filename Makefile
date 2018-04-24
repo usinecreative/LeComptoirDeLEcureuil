@@ -75,6 +75,8 @@ assets-build-production:
 	yarn run encore production
 	$(sf) assets:install --symlink
 
+assets-watch:
+	yarn run encore dev --watch
 
 assets-optimize:
 	$(sf) cms:assets:optimize
