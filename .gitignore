@@ -35,3 +35,9 @@ web/uploads
 ### Ansible ###
 etc/ansible/hosts/hosts
 etc/ansible/hosts/staging_hosts
+.env
+###############
+
+### Docker ###
+etc/docker/data
+##############

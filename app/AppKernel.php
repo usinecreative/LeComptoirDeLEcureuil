@@ -26,6 +26,7 @@ class AppKernel extends Kernel
             // CMS
             new LAG\AdminBundle\LAGAdminBundle(),
             new JK\CmsBundle\JKCmsBundle(),
+            new Http\HttplugBundle\HttplugBundle(),
             new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
             new BlueBear\CmsBundle\BlueBearCmsBundle(),
             new BlueBear\MediaBundle\BlueBearMediaBundle(),

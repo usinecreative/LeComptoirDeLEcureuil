@@ -65,6 +65,31 @@ images_pull-to-local:
 images_push-to-remote:
 	ansible-playbook etc/ansible/playbooks/images/images-copy-to-remote.yml -i etc/ansible/hosts/staging_hosts
 #############
+
+### Docker ###
+docker-up:
+	docker-compose -f etc/docker/docker-compose.yaml up --build
+	docker-install
+
+docker-down:
+	docker-compose -f etc/docker/docker-compose.yaml down
+
+docker-composer-install:
+	docker exec le_comptoir_php composer install --ansi
+
+docker-composer-update:
+	docker exec le_comptoir_php composer update --ansi
+
+docker-composer-require:
+	docker exec le_comptoir_php composer require --ansi $(package)
+
+docker-composer-remove:
+	docker exec le_comptoir_php composer update --ansi $(package)
+
+docker-symfony-console:
+	docker exec le_comptoir_php bin/console --ansi $(command)
+###############
+
 assets:
 	$(sf) jk:assets:build
 	$(sf) assets:install --symlink
@@ -86,3 +111,5 @@ tests:
 
 php-cs:
 	php bin/php-cs-fixer fix src/
+
+
