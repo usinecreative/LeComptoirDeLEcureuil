@@ -33,20 +33,24 @@ var TinyMceMediaModal = {
             return false;
         });
 
-        // keep the media size proportion if the check box is checked
-        form.find('.keep-proportion-checkbox:checked').each(function () {
-            var heightElement = $($(this).data('target-height'));
-            var widthElement = $($(this).data('target-width'));
-            var ratio = heightElement.val() / widthElement.val();
+        // Keep the media size proportion if the check box is checked
+        let keepRatioCheckbox = form.find('.keep-proportion-checkbox');
+        let heightElement = $(keepRatioCheckbox.data('target-height'));
+        let widthElement = $(keepRatioCheckbox.data('target-width'));
+        let ratio = heightElement.val() / widthElement.val();
 
-            heightElement.on('change', function () {
-                var newWidth = $(this).val() / ratio;
+        heightElement.on('change', function () {
+            if (keepRatioCheckbox.is(':checked')) {
+                let newWidth = $(this).val() / ratio;
                 widthElement.val(Math.round(newWidth));
-            });
-            widthElement.on('change', function () {
-                var newHeight = $(this).val() * ratio;
+            }
+        });
+
+        widthElement.on('change', function () {
+            if (keepRatioCheckbox.is(':checked')) {
+                let newHeight = $(this).val() * ratio;
                 heightElement.val(Math.round(newHeight));
-            });
+            }
         });
     }
 };
