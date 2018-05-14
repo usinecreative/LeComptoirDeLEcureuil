@@ -49,7 +49,7 @@ database_copy-production-to-local:
 
 ### Server ###
 serve:
-	bin/console server:run
+	bin/console server:run --docroot=web
 
 synchronize-staging:
 	make database_production_copy-to-local
