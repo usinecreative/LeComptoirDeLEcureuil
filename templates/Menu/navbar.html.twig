@@ -1,19 +1,22 @@
 <nav class="main-menu navbar navbar-default row">
-    <ul class="nav navbar-nav" role="navigation">
-        <li>
-            <a href="{{ path('lecomptoir.homepage') }}" title="{{ 'lecomptoir.menu.home' | trans }}">
-                <i class="fa fa-home"></i><span class="sr-only">{{ 'lecomptoir.menu.home' | trans }}</span>
+    <ul class="nav navbar-nav"
+        role="menu">
+        <li class="nav-item">
+            <a href="{{ path('lecomptoir.homepage') }}"
+               title="{{ 'lecomptoir.menu.home' | trans }}">
+                <i class="fa fa-home"></i><span class="sr-only">{{ 'lecomptoir.menu.home' | trans }}
+                </span>
             </a>
         </li>
-        <li class="dropdown">
-            <a href="#" class="dropdown-toggle "
+        <li class="nav-item dropdown">
+            <a href="#"
+               class="nav-link dropdown-toggle"
                title="{{ 'lecomptoir.menu.articles' | trans }}"
                data-toggle="dropdown"
                role="button"
                aria-haspopup="true"
                aria-expanded="false">
                 &nbsp;{{ 'lecomptoir.menu.articles' | trans }}
-                <span class="caret"></span></a>
             <ul class="dropdown-menu">
                 <li>
                     <a href="{{ path('lecomptoir.article.list_by_category', {categorySlug: 'litterature'}) }}"
@@ -37,15 +40,15 @@
                 </li>
             </ul>
         </li>
-        <li class="dropdown">
+        <li class=" nav-item dropdown">
             <a href="#"
-               class="dropdown-toggle"
+               class="nav-link dropdown-toggle"
                title="{{ 'lecomptoir.menu.partners' | trans }}"
                data-toggle="dropdown"
                role="button"
                aria-haspopup="true"
                aria-expanded="false">
-                {{ 'lecomptoir.menu.partners' | trans }}<span class="caret"></span>
+                {{ 'lecomptoir.menu.partners' | trans }}
             </a>
             <ul class="dropdown-menu">
                 <li>

@@ -1,17 +1,15 @@
 // Vars
 $font-family-title: Gabriela, sans-serif;
-$font-family: Gabriela, sans-serif;
+$font-family: "Helvetica Neue", Helvetica, Gabriela, sans-serif;
 $main-color: #e9d9d3;
 $main-color: #EEEAE8;
 $menu-backgroud-color: #09090F;
 $background-color: #11112f;
 
 // Fonts
-//@include font-face("Trench 100", font-files("trench100free.otf"));
 @font-face {
-  font-family: "Open Sans";
-  src: url("/fonts/OpenSans-Regular-webfont.woff2") format("woff2"),
-  url("/fonts/OpenSans-Regular-webfont.woff") format("woff");
+  font-family: "Trench 100";
+  src: url("trench100free.otf") format("otf")
 }
 
 // Partials
