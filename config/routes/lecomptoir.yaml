@@ -14,10 +14,6 @@ lecomptoir.legal:
     path: /mentions-legales
     defaults: {_controller: App:Main:legal}
 
-lecomptoir.feed:
-    path: /feed
-    defaults: {_controller: App:Main:feed}
-
 # Partners pages
 lecomptoir.partner:
     path: /partenaires/{partnerSlug}
@@ -49,6 +45,12 @@ lecomptoir.article.show:
 lecomptoir.article.show2:
     path:  /{year}/{month}/{slug}/
     defaults: {_controller: App:Article:show}
+
+### RSS ###
+lecomptoir.feed:
+    path: /feed
+    defaults: {_controller: App:Main:feed}
+###########
 
 # Sitemap
 lecomptoir.sitemap:
