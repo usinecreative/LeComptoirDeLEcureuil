@@ -4,11 +4,12 @@ namespace App\Controller\Cms;
 
 use App\Repository\CategoryRepository;
 use Symfony\Component\HttpFoundation\Response;
+use Twig_Environment;
 
 class HomepageAction
 {
     /**
-     * @var \Twig_Environment
+     * @var Twig_Environment
      */
     private $twig;
 
@@ -20,10 +21,10 @@ class HomepageAction
     /**
      * HomepageAction constructor.
      *
-     * @param \Twig_Environment  $twig
+     * @param Twig_Environment  $twig
      * @param CategoryRepository $categoryRepository
      */
-    public function __construct(\Twig_Environment $twig, CategoryRepository $categoryRepository)
+    public function __construct(Twig_Environment $twig, CategoryRepository $categoryRepository)
     {
         $this->twig = $twig;
         $this->categoryRepository = $categoryRepository;
@@ -40,7 +41,7 @@ class HomepageAction
         ;
         $content = $this
             ->twig
-            ->render(':cms/homepage:homepage.html.twig', [
+            ->render('Cms/homepage.html.twig', [
                 'categories' => $categories,
             ])
         ;
