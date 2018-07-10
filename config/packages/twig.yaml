@@ -7,5 +7,5 @@ twig:
         - 'LAGAdminBundle:Form:fields.html.twig'
         - 'JKCmsBundle:Form:fields.html.twig'
     globals:
-        google_analytics_id: '%google_analytics_id%'
-        hotjar_enabled: '%hotjar_enabled%'
+        google_analytics_id: 'env(string:GOOGLE_ANALYTICS_ID)%'
+        hotjar_enabled: '%env(bool:HOTJAR_ENABLED)%'
