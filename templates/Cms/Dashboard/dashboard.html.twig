@@ -1,6 +1,6 @@
-{% extends "BlueBearCmsBundle::layout.html.twig" %}
+{% extends "Cms/base.html.twig" %}
 
-{% block container %}
+{% block content %}
     {# main wrapper #}
     <div id="page-wrapper">
         <div class="row">
@@ -9,7 +9,7 @@
             </div>
         </div>
         <div class="row">
-            {% include "@JKCms/Dashboard/dashboard.header.html.twig" %}
+            {% include "Cms/Dashboard/_header.html.twig" %}
         </div>
         <div class="row">
             <div class="col-lg-8">
