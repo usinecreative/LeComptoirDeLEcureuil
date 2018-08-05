@@ -1,6 +1,6 @@
 let Encore = require('@symfony/webpack-encore');
 let WebpackNotifierPlugin = require('webpack-notifier');
-let path = require('path');
+let CopyWebpackPlugin = require('copy-webpack-plugin');
 
 Encore
     // the project directory where compiled assets will be stored
@@ -9,15 +9,14 @@ Encore
     .setPublicPath('/build')
     .cleanupOutputBeforeBuild()
     .enableSourceMaps(!Encore.isProduction())
-    .enableSassLoader((options) => {
-        options.includePaths = [
-            path.resolve(__dirname, "./node_modules/compass-mixins/lib")
-        ];
-    })
+    .enableSassLoader()
     .autoProvidejQuery()
-    .addPlugin(new WebpackNotifierPlugin({
-        alwaysNotify: true
-    }))
+    .addPlugin(new WebpackNotifierPlugin())
+    .addPlugin(new CopyWebpackPlugin([
+        {from: 'node_modules/tinymce/skins', to: 'skins'},
+        {from: 'node_modules/tinymce-i18n/langs', to: 'langs'},
+        {from: 'node_modules/tinymce/plugins/emoticons/img/', to: 'plugins/emoticons/img/'}
+    ]))
     .addLoader({
         test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         loader: "url-loader?limit=10000&mimetype=application/font-woff"
@@ -30,6 +29,7 @@ Encore
     .enableVersioning(Encore.isProduction())
     // uncomment to define the assets of the project
     .addEntry('app', './assets/js/app.js')
+    .addEntry('cms', './assets/js/cms.js')
 ;
 
 module.exports = Encore.getWebpackConfig();
