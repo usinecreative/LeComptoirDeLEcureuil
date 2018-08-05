@@ -7,18 +7,18 @@ lecomptoir.homepage:
 ### HWI OAuth ###
 hwi_oauth_redirect:
     resource: "@HWIOAuthBundle/Resources/config/routing/redirect.xml"
-    prefix:   /connect
+    prefix:   /cms/redirect
 
 hwi_oauth_connect:
     resource: "@HWIOAuthBundle/Resources/config/routing/connect.xml"
-    prefix:   /connect
+    prefix:   /cms/connect
 
 hwi_oauth_login:
     resource: "@HWIOAuthBundle/Resources/config/routing/login.xml"
-    prefix:   /login
+    prefix:   /cms/login
 
 app.login.google:
-    path: /login/check-google
+    path: /cms/login/check-google
 #################
 
 ### Cms ###
@@ -39,11 +39,12 @@ cms.media.add_image_modal:
     path: /cms/media/add-image
     defaults: {_controller: JK\CmsBundle\Action\Media\AddImageModal}
 
-## BlueBear AdminBundle
-#jk_admin:
-#    resource: .
-#    prefix: /cms
-#    type: extra
+### AdminBundle ###
+jk_admin:
+    resource: .
+    prefix: /cms
+    type: extra
+###################
 
 #blue_bear_cms:
 #    resource: '@BlueBearCmsBundle/Resources/config/lecomptoir.yaml'

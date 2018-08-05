@@ -12,8 +12,9 @@ security:
         ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     access_control:
-        - {path: ^/login, role: IS_AUTHENTICATED_ANONYMOUSLY}
+        - {path: ^/cms/login, role: IS_AUTHENTICATED_ANONYMOUSLY}
         - {path: ^/connect/google, roles: IS_AUTHENTICATED_ANONYMOUSLY}
+        - {path: ^/cms/redirect/google, roles: IS_AUTHENTICATED_ANONYMOUSLY}
         - {path: ^/cms, role: ROLE_ADMIN}
         - {path: ^/article/, role: ROLE_ADMIN}
         - {path: ^/, role: IS_AUTHENTICATED_ANONYMOUSLY}
@@ -29,10 +30,11 @@ security:
                 path: /cms/logout
             oauth:
                 resource_owners:
-                    google:   /login/check-google
-                login_path:   /login
-                failure_path: /login
+                    google:   /cms/login/check-google
+                login_path:   /cms/login
+                failure_path: /cms/login
                 default_target_path: /cms/dashboard
                 use_forward:  false
+                provider: App\Service\Guard\UserProvider\GoogleUserProvider
                 oauth_user_provider:
                     service: App\Service\Guard\UserProvider\GoogleUserProvider
