@@ -1,6 +1,6 @@
 imports:
-    - {resource: ../admin/category.yml}
     - {resource: ../admin/article.yml}
+    - {resource: ../admin/category.yml}
     - {resource: ../admin/comment.yml}
     - {resource: ../admin/media.yml}
     - {resource: ../admin/tag.yml}
@@ -14,7 +14,7 @@ parameters:
         media_gallery: uploads/gallery
         media_thumbnail: uploads/gallery
 
-# RSS/Atom feed bundle
+### RSS/Atom feed bundle ###
 eko_feed:
     feeds:
         article:
@@ -23,3 +23,17 @@ eko_feed:
             link:
                 route_name: lecomptoir.feed
             encoding: utf-8
+
+### Cms ###
+lag_admin:
+    application:
+        title: Derrière les noisettes...
+        description: Des noisettes et des livres
+        max_per_page: 25
+        routing_name_pattern: cms.{admin}.{action}
+        routing_url_pattern: /{admin}/{action}
+        date_format: '\L\e d/m/Y à h:i:s'
+        base_template: 'Cms/base.html.twig'
+        translation:
+            enabled: true
+            pattern: cms.{admin}.{key}
