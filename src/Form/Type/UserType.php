@@ -1,11 +1,14 @@
 <?php
 
-namespace BlueBear\CmsBundle\Form\Type;
+namespace App\Form\Type;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class UserType extends AbstractType
 {
@@ -14,14 +17,14 @@ class UserType extends AbstractType
         /** @var User $user */
         $user = $options['data'];
 
-        $builder->add('username', 'text', [
+        $builder->add('username', TextType::class, [
             'label' => 'form.username',
         ]);
-        $builder->add('email', 'text', [
+        $builder->add('email', TextType::class, [
             'label' => 'form.email',
         ]);
         if (!$user->getId()) {
-            $builder->add('plainPassword', 'repeated', [
+            $builder->add('plainPassword', RepeatedType::class, [
                 'type' => 'password',
                 'first_options' => [
                     'label' => 'form.password',
@@ -31,7 +34,7 @@ class UserType extends AbstractType
                 ],
             ]);
         }
-        $builder->add('roles', 'choice', [
+        $builder->add('roles', ChoiceType::class, [
             'choices' => [
                 'ROLE_ADMIN' => 'bluebear.cms.administrator',
                 'ROLE_CONTRIBUTOR' => 'bluebear.cms.contributor',
@@ -40,22 +43,10 @@ class UserType extends AbstractType
             'multiple' => true,
             'translation_domain' => 'messages',
         ]);
-        $builder->add('enabled', 'checkbox', [
+        $builder->add('enabled', CheckboxType::class, [
             'required' => false,
             'label' => 'bluebear.cms.enabled',
             'translation_domain' => 'messages',
         ]);
-    }
-
-    public function setDefaultOptions(OptionsResolver $resolver)
-    {
-        $resolver->setDefaults([
-            'translation_domain' => 'FOSUserBundle',
-        ]);
-    }
-
-    public function getName()
-    {
-        return 'user';
     }
 }

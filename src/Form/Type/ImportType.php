@@ -1,6 +1,6 @@
 <?php
 
-namespace BlueBear\CmsBundle\Form\Type;
+namespace App\Form\Type;
 
 use App\Entity\Import;
 use Symfony\Component\Form\AbstractType;
@@ -18,12 +18,7 @@ class ImportType extends AbstractType
                     'bluebear.cms.import.wordpress' => Import::IMPORT_TYPE_WORDPRESS,
                 ],
             ])
-            ->add('file', FileType::class, [
-            ]);
-    }
-
-    public function getName()
-    {
-        return 'import';
+            ->add('file', FileType::class)
+        ;
     }
 }

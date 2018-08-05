@@ -1,10 +1,9 @@
 <?php
 
-namespace BlueBear\CmsBundle\Form\Type;
+namespace App\Form\Type;
 
 use App\Entity\Category;
-use JK\CmsBundle\Form\Transformer\MediaUploadTransformer;
-use JK\CmsBundle\Form\Type\JQueryUploadType;
+use App\Form\Transformer\MediaUploadTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;

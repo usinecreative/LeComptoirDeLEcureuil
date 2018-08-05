@@ -1,11 +1,8 @@
 <?php
 
-namespace BlueBear\CmsBundle\Form\Type;
+namespace App\Form\Type;
 
 use App\Entity\Article;
-use JK\CmsBundle\Form\Type\JQueryUploadType;
-use JK\CmsBundle\Form\Type\TagCollectionEmbedType;
-use JK\CmsBundle\Form\Type\TinyMceType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
