@@ -5,6 +5,8 @@ namespace App\Twig;
 use App\Service\Assets\AssetsHelper;
 use App\Service\Assets\ScriptRegistry;
 use App\Entity\MediaInterface;
+use LAG\AdminBundle\Configuration\ApplicationConfiguration;
+use LAG\AdminBundle\Configuration\ApplicationConfigurationStorage;
 use Twig_Extension;
 use Twig_SimpleFunction;
 
@@ -24,15 +26,25 @@ class CmsExtension extends Twig_Extension
     private $scriptRegistry;
 
     /**
+     * @var ApplicationConfigurationStorage
+     */
+    private $applicationConfigurationStorage;
+
+    /**
      * CmsExtension constructor.
      *
-     * @param AssetsHelper   $assetsHelper
-     * @param ScriptRegistry $scriptRegistry
+     * @param AssetsHelper                    $assetsHelper
+     * @param ScriptRegistry                  $scriptRegistry
+     * @param ApplicationConfigurationStorage $applicationConfigurationStorage
      */
-    public function __construct(AssetsHelper $assetsHelper, ScriptRegistry $scriptRegistry)
-    {
+    public function __construct(
+        AssetsHelper $assetsHelper,
+        ScriptRegistry $scriptRegistry,
+        ApplicationConfigurationStorage $applicationConfigurationStorage
+    ) {
         $this->assetsHelper = $assetsHelper;
         $this->scriptRegistry = $scriptRegistry;
+        $this->applicationConfigurationStorage = $applicationConfigurationStorage;
     }
 
     /**
@@ -47,6 +59,7 @@ class CmsExtension extends Twig_Extension
             new Twig_SimpleFunction('cms_media_directory', [$this, 'cmsMediaDirectory']),
             new Twig_SimpleFunction('cms_media_size', [$this, 'cmsMediaSize']),
             new Twig_SimpleFunction('cms_dump_scripts', [$this, 'cmsDumpScripts']),
+            new Twig_SimpleFunction('cms_config', [$this, 'cmsConfig']),
         ];
     }
 
@@ -118,5 +131,15 @@ class CmsExtension extends Twig_Extension
             ->scriptRegistry
             ->dumpScripts($location)
         ;
+    }
+
+    /**
+     * Return the application configuration object from the admin bundle.
+     *
+     * @return ApplicationConfiguration
+     */
+    public function cmsConfig()
+    {
+        return $this->applicationConfigurationStorage->getConfiguration();
     }
 }
