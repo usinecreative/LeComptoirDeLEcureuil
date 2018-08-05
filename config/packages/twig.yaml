@@ -4,8 +4,8 @@ twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
     form_themes:
-        - 'LAGAdminBundle:Form:fields.html.twig'
-        - 'JKCmsBundle:Form:fields.html.twig'
+        - '@LAGAdmin/Form/fields.html.twig'
+        - 'Cms/Form/fields.html.twig'
     globals:
         google_analytics_id: 'env(string:GOOGLE_ANALYTICS_ID)%'
         hotjar_enabled: '%env(bool:HOTJAR_ENABLED)%'
