@@ -1,8 +1,0 @@
-{% extends "BlueBearCmsBundle::layout.html.twig" %}
-
-{% block stylesheets %}
-    {% stylesheets '@LeComptoirDeLEcureuilBackBundle/Resources/public/scss/*.scss'
-    filter='compass, ?cssrewrite, ?yui_css' output="css/backoffice.css" %}
-    <link rel="stylesheet" href="{{ asset_url }}"/>
-    {% endstylesheets %}
-{% endblock %}

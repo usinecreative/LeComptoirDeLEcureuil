@@ -1,0 +1,35 @@
+# This file is auto-generated during the composer install
+parameters:
+    locale: en
+    database_driver: pdo_mysql
+    database_host: 127.0.0.1
+    database_port: 3306
+    database_name: le_comptoir
+    database_user: root
+    database_password: grozaloumek23
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_port: null
+    mailer_user: null
+    mailer_password: null
+    mailer_encryption: ssl
+    mailer_auth_mode: login
+    secret: ThisTokenIsNotSoSecretChangeIt
+    debug_toolbar: true
+    debug_redirects: true
+    google_analytics_id: null
+    google_recaptcha_secret: null
+    google_recaptcha_site_key: null
+    google_client_id: 350309832220-0jrf32d9m7gfhgpqp1ggrue2krplcnv7.apps.googleusercontent.com
+    google_client_secret: XHOep_2E9bZoRwb5r-GlRYS0
+    google_scope: 'https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile'
+    google_allowed_users:
+        - arnaudfrezet@gmail.com
+    squirrel_mail: null
+    admin_mail: null
+    liip_imagine_bundle_root:
+        - /home/johnkrovitch/Projects/LeComptoirDeLEcureuil/web
+    backup_directory: null
+    hotjar_enabled: false
+    http_scheme: http
+    assets_hosts: 'http://127.0.0.1:8000/'
