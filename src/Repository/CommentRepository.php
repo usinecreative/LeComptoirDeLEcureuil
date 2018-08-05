@@ -4,9 +4,8 @@ namespace App\Repository;
 
 use App\Entity\Comment;
 use DateTime;
-use Doctrine\ORM\EntityRepository;
 
-class CommentRepository extends EntityRepository
+class CommentRepository extends AbstractRepository
 {
     /**
      * Return all comments created after $date.
