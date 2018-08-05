@@ -82,7 +82,7 @@ lag_admin:
         ### User ###
         user:
             entity: App\Entity\User
-            form: BlueBear\CmsBundle\Form\Type\UserType
+            form: App\Form\Type\UserType
             actions:
                 list:
                     fields:
@@ -97,7 +97,7 @@ lag_admin:
 
         parameters:
             entity: App\Entity\Parameters
-            form: BlueBear\CmsBundle\Form\Type\ParametersType
+            form: App\Form\Type\ParametersType
             actions:
                 list: ~
                 create: ~
@@ -106,7 +106,7 @@ lag_admin:
 
         import:
             entity: App\Entity\Import
-            form: BlueBear\CmsBundle\Form\Type\ImportType
+            form: App\Form\Type\ImportType
             controller: 'BlueBearCmsBundle:Import'
             actions:
                 list:

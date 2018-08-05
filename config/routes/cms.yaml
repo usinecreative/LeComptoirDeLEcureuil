@@ -20,7 +20,7 @@ cms.dashboard.go_to_new_comments:
 
 cms.dashboard:
     path: /cms/dashboard
-    defaults: {_controller: JKCmsBundle:Dashboard:dashboard}
+    defaults: {_controller: App\Controller\Cms\DashboardAction}
 
 cms.module.render:
     path: /cms/modules/render/{zone}
