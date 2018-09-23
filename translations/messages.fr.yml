@@ -165,8 +165,8 @@ cms:
         preview: Prévisualiser l'article
         list: Articles
         create: Ajouter un article
-        edit: Edition d'un article
-        delete: Supprimer un article
+        edit: Editer
+        delete: Supprimer
         deleted: L'article a été supprimé
         see: Voir
         # Fields
@@ -283,10 +283,6 @@ cms:
 
 logout: Déconnexion
 login: Connexion
-
-lag.cms.publication.draft: Brouillon
-lag.cms.publication.validation: En attente de validation
-lag.cms.publication.published: Publié
 
 lag.admin.article.saved: L'article a été sauvegardé
 lag.admin.article.deleted: L'article a été supprimé

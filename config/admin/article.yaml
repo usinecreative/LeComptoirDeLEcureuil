@@ -9,13 +9,6 @@ lag_admin:
                     title: cms.article.list
                     order:
                         id: desc
-                    menus:
-                        top:
-                            items:
-                                create:
-                                    admin: article
-                                    action: create
-                                    icon: fa fa-plus
                     fields:
                         id: ~
                         title:
@@ -26,26 +19,33 @@ lag_admin:
                                 parameters: {id: ~}
                         category: ~
                         author: ~
-                        publicationStatus: ~
+                        publicationStatus:
+                            type: mapped
+                            options:
+                                map:
+                                    0: cms.publication.draft
+                                    1: cms.publication.validation
+                                    2: cms.publication.published
                         publicationDate: {type: date, options: {format: d/m/Y}}
                         updatedAt: {type: date, options: {format: d/m/Y}}
                         _actions:
-                            type: collection
+                            type: action_collection
                             options:
-                                _edit:
-                                    type: action
-                                    options:
-                                        title: cms.menu.edit
-                                        route: cms.article.edit
-                                        parameters: {id: ~}
-                                        icon: pencil
-                                _delete:
-                                    type: action
-                                    options:
-                                        title: cms.menu.delete
-                                        route: cms.article.delete
-                                        parameters: {id: ~}
-                                        icon: remove
+                                fields:
+                                    _edit:
+                                        type: action
+                                        options:
+                                            title: cms.menu.edit
+                                            route: cms.article.edit
+                                            parameters: {id: ~}
+                                            icon: pencil
+                                    _delete:
+                                        type: action
+                                        options:
+                                            title: cms.menu.delete
+                                            route: cms.article.delete
+                                            parameters: {id: ~}
+                                            icon: remove
                 create: ~
                 edit:
                     menus:

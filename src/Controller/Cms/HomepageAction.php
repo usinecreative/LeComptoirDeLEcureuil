@@ -3,6 +3,9 @@
 namespace App\Controller\Cms;
 
 use App\Repository\CategoryRepository;
+use LAG\AdminBundle\Event\AdminEvents;
+use LAG\AdminBundle\Event\MenuEvent;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Twig_Environment;
 
@@ -19,15 +22,25 @@ class HomepageAction
     private $categoryRepository;
 
     /**
+     * @var EventDispatcherInterface
+     */
+    private $eventDispatcher;
+
+    /**
      * HomepageAction constructor.
      *
-     * @param Twig_Environment  $twig
-     * @param CategoryRepository $categoryRepository
+     * @param Twig_Environment         $twig
+     * @param CategoryRepository       $categoryRepository
+     * @param EventDispatcherInterface $eventDispatcher
      */
-    public function __construct(Twig_Environment $twig, CategoryRepository $categoryRepository)
-    {
+    public function __construct(
+        Twig_Environment $twig,
+        CategoryRepository $categoryRepository,
+        EventDispatcherInterface $eventDispatcher
+    ) {
         $this->twig = $twig;
         $this->categoryRepository = $categoryRepository;
+        $this->eventDispatcher = $eventDispatcher;
     }
 
     /**
@@ -35,6 +48,8 @@ class HomepageAction
      */
     public function __invoke()
     {
+        $this->eventDispatcher->dispatch(AdminEvents::MENU, new MenuEvent());
+
         $categories = $this
             ->categoryRepository
             ->findAll()

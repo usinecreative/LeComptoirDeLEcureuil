@@ -1,5 +1,5 @@
 imports:
-    - {resource: ../admin/article.yml}
+    - {resource: ../admin/article.yaml}
     - {resource: ../admin/category.yml}
     - {resource: ../admin/comment.yml}
     - {resource: ../admin/media.yml}
@@ -14,16 +14,6 @@ parameters:
         media_gallery: uploads/gallery
         media_thumbnail: uploads/gallery
 
-### RSS/Atom feed bundle ###
-eko_feed:
-    feeds:
-        article:
-            title: Le Comptoir de L'Ecureuil - Articles
-            description: Voici les articles du comptoir de l'écureuil
-            link:
-                route_name: lecomptoir.feed
-            encoding: utf-8
-
 ### Cms ###
 lag_admin:
     application:
@@ -32,8 +22,71 @@ lag_admin:
         max_per_page: 25
         routing_name_pattern: cms.{admin}.{action}
         routing_url_pattern: /{admin}/{action}
-        date_format: '\L\e d/m/Y à h:i:s'
+        date_format: 'd/m/Y'
         base_template: 'Cms/base.html.twig'
         translation:
             enabled: true
             pattern: cms.{admin}.{key}
+    # Admins configurations
+    admins:
+        ### User ###
+        user:
+            entity: App\Entity\User
+            form: App\Form\Type\UserType
+            actions:
+                list:
+                    fields:
+                        id: ~
+                        username: ~
+                        email: ~
+                        enabled: ~
+                        _actions: ~
+                create: ~
+                edit: ~
+                delete: ~
+
+        parameters:
+            entity: App\Entity\Parameters
+            form: App\Form\Type\ParametersType
+            actions:
+                list: ~
+                create: ~
+                edit: ~
+                delete: ~
+
+        import:
+            entity: App\Entity\Import
+            form: App\Form\Type\ImportType
+            controller: 'BlueBearCmsBundle:Import'
+            actions:
+                list:
+                    menus:
+                        top:
+                            items:
+                                import:
+                                    admin: import
+                                    action: create
+                                    icon: fa fa-upload
+                    fields:
+                        id: ~
+                        label: {type: string, options: {length: 100}}
+                        comments: {type: string, options: {length: 100}}
+                        status: ~
+                create: ~
+                edit: ~
+                delete: ~
+        partner:
+            entity: AppBundle\Entity\Partner
+            form: AppBundle\Form\Type\PartnerType
+            actions: []
+
+### RSS/Atom Feed bundle ###
+eko_feed:
+    feeds:
+        article:
+            title: Le Comptoir de L'Ecureuil - Articles
+            description: Voici les articles du comptoir de l'écureuil
+            link:
+                route_name: lecomptoir.feed
+            encoding: utf-8
+############################
