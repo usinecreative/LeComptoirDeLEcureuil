@@ -9,7 +9,7 @@ before_install:
     - mysql -e "create database IF NOT EXISTS symfony_test;"
 
 install:
-    - composer install
+    - composer install --dev
     - make tests
 
 script:
