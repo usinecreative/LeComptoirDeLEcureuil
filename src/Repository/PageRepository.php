@@ -4,9 +4,8 @@ namespace App\Repository;
 
 use App\Entity\Page;
 use DateTime;
-use Doctrine\ORM\EntityRepository;
 
-class PageRepository extends EntityRepository
+class PageRepository extends AbstractRepository
 {
     /**
      * Return a published page by its slug.
@@ -26,6 +25,7 @@ class PageRepository extends EntityRepository
             ->setParameter('slug', $pageSlug)
             ->setParameter('publication_date', new DateTime())
             ->getQuery()
-            ->getOneOrNullResult();
+            ->getOneOrNullResult()
+        ;
     }
 }

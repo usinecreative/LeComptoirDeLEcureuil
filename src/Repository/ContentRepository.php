@@ -2,8 +2,10 @@
 
 namespace App\Repository;
 
-use Doctrine\ORM\EntityRepository;
+use App\Entity\Content;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Symfony\Bridge\Doctrine\RegistryInterface;
 
-class ContentRepository extends EntityRepository
+class ContentRepository extends AbstractRepository
 {
 }
