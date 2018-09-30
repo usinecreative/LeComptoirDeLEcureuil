@@ -80,3 +80,102 @@ jk_admin:
 #cms.image.gallery_dialog:
 #    path: /images/gallery/dialog
 #    defaults: {_controller: 'BlueBearCmsBundle:Image:galleryDialog'}
+
+cms.media.add_gallery_modal:
+    path: /cms/media/gallery/modal
+    defaults: {_controller: JKCmsBundle:Media:modalGallery}
+
+cms.media.gallery.content:
+    path: /cms/media/gallery/content
+    defaults: {_controller: JKCmsBundle:Media:galleryContent}
+
+cms.media.tinymce.insert_image:
+    path: /cms/media/tinymce/insert-media/{ids}
+    defaults: {_controller: JK\CmsBundle\Action\TinyMce\InsertImage}
+
+cms.media.tinymce.edit_image:
+    path: /cms/media/tinymce/edit-media
+    defaults: {_controller: JK\CmsBundle\Action\TinyMce\EditMedia}
+
+cms.dashboard.go_to_new_comments:
+    path: /cms/dashboard/new-comments
+    defaults: {_controller: JKCmsBundle:Dashboard:goToNewComments}
+
+cms.dashboard:
+    path: /cms/dashboard
+    defaults: {_controller: App\Controller\Cms\DashboardAction}
+
+cms.module.render:
+    path: /cms/modules/render/{zone}
+    defaults: {_controller: JKCmsBundle:Module:render}
+
+cms.search:
+    path: /search
+    defaults: {_controller: JKCmsBundle:Search:search}
+
+cms.media.gallery.ajax:
+    path: /cm/media/gallery/ajax
+    defaults: {_controller: JK\CmsBundle\Action\Media\Gallery}
+
+
+
+lecomptoir.contact:
+    path: /contact
+    defaults: {_controller: App:Main:contact}
+
+lecomptoir.about:
+    path: /a-propos
+    defaults: {_controller: App:Main:whoAmI}
+
+lecomptoir.legal:
+    path: /mentions-legales
+    defaults: {_controller: App:Main:legal}
+
+# Partners pages
+lecomptoir.partner:
+    path: /partenaires/{partnerSlug}
+    defaults: {_controller: App:Main:partner}
+
+# Articles Pages
+lecomptoir.article.list_by_category:
+    path: /category/{categorySlug}
+    defaults: {_controller: App:Article:filter}
+
+lecomptoir.article.list_by_tag:
+    path: /tag/{tagSlug}
+    defaults: {_controller: App:Article:filter}
+
+lecomptoir.article.unsubscribe:
+    path: /{slug}/{email}/unsubscribe
+    defaults: {_controller: App:Article:unsubscribe}
+
+# Article preview
+lecomptoir.article.preview:
+    path: /article/{id}/preview
+    defaults: {_controller: App:Article:preview}
+
+lecomptoir.article.show:
+    path:  /{year}/{month}/{slug}
+    defaults: {_controller: App:Article:show}
+
+# fix for bad wordpress urls
+lecomptoir.article.show2:
+    path:  /{year}/{month}/{slug}/
+    defaults: {_controller: App:Article:show}
+
+### RSS ###
+lecomptoir.feed:
+    path: /feed
+    defaults: {_controller: App:Main:feed}
+###########
+
+# Sitemap
+lecomptoir.sitemap:
+    path: /sitemap.xml
+    defaults: {_controller: App:Main:sitemap}
+
+# Free Pages
+lecomptoir.free_pages:
+    path: /{pageSlug}
+    defaults: {_controller: App\Controller\PageController::showAction}
+
