@@ -59,10 +59,10 @@ synchronize-staging:
 #############
 
 ### Images ###
-images_pull-to-local:
+production@images.copy-remote-to-local:
 	ansible-playbook etc/ansible/playbooks/images/images-copy-to-local.yml -i etc/ansible/hosts/hosts
 
-images_push-to-remote:
+staging@images.copy-local-to-remote:
 	ansible-playbook etc/ansible/playbooks/images/images-copy-to-remote.yml -i etc/ansible/hosts/staging_hosts
 #############
 
