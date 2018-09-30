@@ -23,27 +23,27 @@ cc:
 	$(sf) doctrine:cache:clear-metadata
 
 ### Deployment ###
-install-production:
+production@install:
 	ansible-playbook etc/ansible/playbooks/install.yml -i etc/ansible/hosts/hosts
 
-install-staging:
+staging@install:
 	ansible-playbook etc/ansible/playbooks/install.yml -i etc/ansible/hosts/staging_hosts
 
-deploy-production:
+production@deploy:
 	ansible-playbook etc/ansible/playbooks/deploy.yml -i etc/ansible/hosts/hosts
 
-deploy-staging:
+staging@deploy:
 	ansible-playbook etc/ansible/playbooks/deploy.yml -i etc/ansible/hosts/staging_hosts
 ##################
 
 ### Database ###
-database_copy-staging-to-local:
+staging@database.copy-remote-to-local:
 	ansible-playbook etc/ansible/playbooks/database/copy-database-to-local.yml -i etc/ansible/hosts/staging_hosts
 
-database_copy-local-to-staging:
+staging@database.copy-local-to-remote:
 	ansible-playbook etc/ansible/playbooks/database/copy-database-to-remote.yml -i etc/ansible/hosts/staging_hosts
 
-database_copy-production-to-local:
+production@database.copy-remote-to-local:
 	ansible-playbook etc/ansible/playbooks/database/copy-database-to-local.yml -i etc/ansible/hosts/hosts
 ###############
 
