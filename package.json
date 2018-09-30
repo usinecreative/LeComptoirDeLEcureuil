@@ -17,6 +17,7 @@
         "compass-mixins": "^0.12.10",
         "copy-webpack-plugin": "^4.5.2",
         "css-loader": "^0.28.11",
+        "hover.css": "^2.3.2",
         "jquery": "^3.3.1",
         "path": "^0.12.7",
         "popper.js": "^1.14.3",
