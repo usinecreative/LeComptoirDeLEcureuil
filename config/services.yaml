@@ -15,7 +15,7 @@ services:
     _defaults:
         autowire: true
         autoconfigure: true
-        public: false
+        public: true
         bind:
             $googleAllowedUser: '%google_allowed_users%'
             $kernelEnvironment: '%kernel.environment%'
@@ -23,12 +23,15 @@ services:
             $googleRecaptchaSiteKey: '%google.recaptcha.site_key%'
             $googleRecaptchaSecret: '%google.recaptcha.secret%'
             $assetsMapping: '%cms.assets.mapping%'
+            $uploadDirectory: '%kernel.project_dir%/public/uploads'
+            $cacheDirectory: '%kernel.cache_dir%'
+            #uploadDirectory: null
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
     App\:
         resource: '../src/*'
-        exclude: '../src/{Entity,Migrations,Tests,Kernel.php}'
+        exclude: '../src/{Entity,Migrations,Tests,Kernel.php,Sitemap/Item}'
 
     # controllers are imported separately to make sure services can be injected
     # as action arguments even if you don't extend any base controller class
