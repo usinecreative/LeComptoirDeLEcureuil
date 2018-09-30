@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\PageRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,7 +19,7 @@ class PageController extends Controller
     public function showAction(Request $request)
     {
         $page = $this
-            ->get('jk.cms.page_repository')
+            ->get(PageRepository::class)
             ->findPublished($request->get('pageSlug'));
 
         if (!$page) {
