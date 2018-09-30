@@ -1,0 +1,25 @@
+{% extends ':Mail:base.html.twig' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+    Bonjour {{ authorName }},<br/><br/>
+
+    un nouveau commentaire a été publié pour l'article "{{ newComment.article.title }}".<br/><br/>
+
+    {{ newComment.authorName }} a dit :<br/>
+    "{{ newComment.content }}"<br/><br/><br/>
+
+    {% set seeCommentUrl = url('lecomptoir.article.show', newComment.article.getUrlParameters()) %}
+
+    <a href="{{ seeCommentUrl }}#comment-{{ newComment.id }}"
+       title="Voir le commentaire">Voir le commentaire</a><br>
+
+    {% if comment is defined %}
+        {% set unsubscribeUrl = url('lecomptoir.article.unsubscribe', {slug: comment.article.slug, email: comment.authorEmail}) %}
+
+        <a href="{{ unsubscribeUrl }}" title="Se désinscrire des notifications pour cet article">
+            Se désinscrire des notifications pour cet article
+        </a>
+    {% endif %}
+{% endblock %}

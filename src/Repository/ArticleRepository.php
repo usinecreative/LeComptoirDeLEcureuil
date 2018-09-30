@@ -5,9 +5,59 @@ namespace App\Repository;
 use App\Entity\Article;
 use DateTime;
 use Doctrine\Common\Collections\Collection;
+use Pagerfanta\Adapter\DoctrineORMAdapter;
+use Pagerfanta\Pagerfanta;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ArticleRepository extends AbstractRepository
 {
+    public function findByFilters(array $filters): Pagerfanta
+    {
+        $filters = $this->resolveFilters($filters);
+
+        $queryBuilder = $this
+            ->createQueryBuilder('article')
+            ->distinct()
+            ->andWhere('article.publicationStatus = :publication_status')
+            ->andWhere('article.publicationDate <= :now')
+            ->addOrderBy('article.publicationDate', 'desc')
+            ->setParameter('publication_status', Article::PUBLICATION_STATUS_PUBLISHED)
+            ->setParameter('now', new DateTime())
+        ;
+
+        if (null !== $filters['categorySlug']) {
+            $queryBuilder
+                ->addSelect('category')
+                ->innerJoin('article.category', 'category')
+                ->andWhere('category.slug = :category')
+                ->setParameter('category', $filters['categorySlug']);
+        }
+        if (null !== $filters['slug']) {
+            $queryBuilder
+                ->andWhere('article.slug = :slug')
+                ->setParameter('slug', $filters['slug']);
+        }
+        if (null !== $filters['tagSlug']) {
+            $queryBuilder
+                ->innerJoin('article.tags', 'tag')
+                ->andWhere('tag.slug = :tag_slug')
+                ->setParameter('tag_slug', $filters['tagSlug']);
+        }
+        if (null !== $filters['tag']) {
+            $queryBuilder
+                ->join('article.tags', 'tag')
+                ->where('tag.name = :tag')
+                ->setParameter('tag', $filters['tag'])
+            ;
+        }
+        $adapter = new DoctrineORMAdapter($queryBuilder);
+        $pager = new Pagerfanta($adapter);
+        $pager->setMaxPerPage(10);
+        $pager->setCurrentPage($filters['page']);
+
+        return $pager;
+    }
+
     /**
      * Find the latest published articles.
      *
@@ -103,16 +153,6 @@ class ArticleRepository extends AbstractRepository
             ->getResult();
     }
 
-    public function findByTag($tag)
-    {
-        return $this
-            ->createQueryBuilder('article')
-            ->join('article.tags', 'tag')
-            ->where('tag.slug = :tag')
-            ->setParameter('tag', $tag)
-        ;
-    }
-
     /**
      * @param array $terms
      * @param bool  $usePagination
@@ -155,5 +195,30 @@ class ArticleRepository extends AbstractRepository
         ;
 
         return $pager;
+    }
+
+    protected function resolveFilters(array $filters): array
+    {
+        $resolver = new OptionsResolver();
+        $resolver
+            ->setDefaults([
+                'categorySlug',
+                'tagSlug',
+                'tag',
+                'slug',
+                'year',
+                'month',
+                'page',
+            ])
+            ->setAllowedValues('categorySlug', 'string')
+            ->setAllowedValues('tagSlug', 'string')
+            ->setAllowedValues('tag', 'string')
+            ->setAllowedValues('slug', 'string')
+            ->setAllowedValues('year', 'string')
+            ->setAllowedValues('month', 'string')
+            ->setAllowedValues('page', 'integer')
+        ;
+
+        return $resolver->resolve($filters);
     }
 }

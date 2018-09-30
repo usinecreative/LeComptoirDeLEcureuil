@@ -11,7 +11,6 @@ parameters:
     google.recaptcha.secret: '%env(GOOGLE_RECAPTCHA_SECRET)%'
 
 services:
-    # default configuration for services in *this* file
     _defaults:
         autowire: true
         autoconfigure: true
@@ -25,21 +24,16 @@ services:
             $assetsMapping: '%cms.assets.mapping%'
             $uploadDirectory: '%kernel.project_dir%/public/uploads'
             $cacheDirectory: '%kernel.cache_dir%'
-            #uploadDirectory: null
+            $administratorEmail: '%env(APP_ADMINISTRATOR_EMAIL)%'
 
-    # makes classes in src/ available to be used as services
-    # this creates a service per class whose id is the fully-qualified class name
     App\:
         resource: '../src/*'
         exclude: '../src/{Entity,Migrations,Tests,Kernel.php,Sitemap/Item}'
 
-    # controllers are imported separately to make sure services can be injected
-    # as action arguments even if you don't extend any base controller class
     App\Controller\:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
 
-    # wire service when autowiring not working
     App\Form\Type\JQueryUploadType:
         class: App\Form\Type\JQueryUploadType
         arguments:

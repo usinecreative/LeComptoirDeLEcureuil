@@ -69,6 +69,7 @@ class MainController extends Controller
      */
     public function partnerAction($partnerSlug)
     {
+        // TODO
         /** @var Partner $partner */
         $partner = $this
             ->get('app_partner_repository')

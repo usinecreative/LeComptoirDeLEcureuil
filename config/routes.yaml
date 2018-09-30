@@ -2,6 +2,22 @@
 lecomptoir.homepage:
     path: /
     defaults: {_controller: App\Controller\HomepageAction}
+
+lecomptoir.contact:
+    path: /contact
+    defaults: {_controller: App:Main:contact}
+
+lecomptoir.about:
+    path: /a-propos
+    defaults: {_controller: App:Main:whoAmI}
+
+lecomptoir.legal:
+    path: /mentions-legales
+    defaults: {_controller: App:Main:legal}
+
+lecomptoir.article.show:
+    path:  /{year}/{month}/{slug}
+    defaults: {_controller: App\Controller\Article\Show}
 ###########
 
 ### HWI OAuth ###
@@ -119,17 +135,6 @@ cms.media.gallery.ajax:
 
 
 
-lecomptoir.contact:
-    path: /contact
-    defaults: {_controller: App:Main:contact}
-
-lecomptoir.about:
-    path: /a-propos
-    defaults: {_controller: App:Main:whoAmI}
-
-lecomptoir.legal:
-    path: /mentions-legales
-    defaults: {_controller: App:Main:legal}
 
 # Partners pages
 lecomptoir.partner:
@@ -153,10 +158,6 @@ lecomptoir.article.unsubscribe:
 lecomptoir.article.preview:
     path: /article/{id}/preview
     defaults: {_controller: App:Article:preview}
-
-lecomptoir.article.show:
-    path:  /{year}/{month}/{slug}
-    defaults: {_controller: App\Controller\ArticleController::showAction}
 
 # fix for bad wordpress urls
 lecomptoir.article.show2:

@@ -20,4 +20,10 @@ abstract class AbstractRepository extends ServiceEntityRepository
 
         parent::__construct($registry, $entityClass);
     }
+
+    public function save($entity)
+    {
+        $this->_em->persist($entity);
+        $this->_em->flush();
+    }
 }
