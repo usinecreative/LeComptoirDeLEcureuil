@@ -17,7 +17,7 @@ class MediaModalType extends AbstractType
     const ALIGNMENT_CENTER = 'center';
     const ALIGNMENT_NONE = 'none';
     const ALIGNMENT_FIT_TO_WIDTH = 'fit_to_width';
-    
+
     /**
      * @param FormBuilderInterface $builder
      * @param array                $options
@@ -32,7 +32,7 @@ class MediaModalType extends AbstractType
                 'constraints' => [
                     new Range([
                         'min' => 1,
-                    ])
+                    ]),
                 ],
             ])
             ->add('width', IntegerType::class, [
@@ -43,8 +43,8 @@ class MediaModalType extends AbstractType
                     new Range([
                         'min' => 1,
                         'max' => 2000,
-                    ])
-                ]
+                    ]),
+                ],
             ])
             ->add('keep_proportion', CheckboxType::class, [
                 'attr' => [
@@ -63,7 +63,7 @@ class MediaModalType extends AbstractType
                     'cms.main.align_none' => self::ALIGNMENT_NONE,
                     'cms.main.fit_to_width' => self::ALIGNMENT_FIT_TO_WIDTH,
                 ],
-                'empty_data' =>  self::ALIGNMENT_NONE,
+                'empty_data' => self::ALIGNMENT_NONE,
                 'expanded' => true,
             ])
             ->addModelTransformer(new HtmlPropertyTransformer())

@@ -2,8 +2,6 @@
 
 namespace App\Form\Validator;
 
-use App\Entity\Comment;
-use Exception;
 use App\Form\Type\AddImageType;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidatorInterface;
@@ -25,15 +23,14 @@ class AddImageValidator implements ConstraintValidatorInterface
     {
         $this->context = $context;
     }
-    
+
     /**
      * @param mixed      $data
      * @param Constraint $constraint
      */
     public function validate($data, Constraint $constraint)
     {
-        if ($data['uploadType'] === AddImageType::UPLOAD_FROM_COMPUTER) {
-    
+        if (AddImageType::UPLOAD_FROM_COMPUTER === $data['uploadType']) {
             if (!$data['upload']) {
                 $this
                     ->context
@@ -42,8 +39,7 @@ class AddImageValidator implements ConstraintValidatorInterface
                     ->addViolation()
                 ;
             }
-        } elseif ($data['uploadType'] == AddImageType::UPLOAD_FROM_URL) {
-            
+        } elseif (AddImageType::UPLOAD_FROM_URL == $data['uploadType']) {
             if (!$data['url']) {
                 $this
                     ->context
@@ -52,8 +48,7 @@ class AddImageValidator implements ConstraintValidatorInterface
                     ->addViolation()
                 ;
             }
-        } elseif ($data['uploadType'] == AddImageType::CHOOSE_FROM_COLLECTION) {
-    
+        } elseif (AddImageType::CHOOSE_FROM_COLLECTION == $data['uploadType']) {
             if (!$data['gallery']) {
                 $this
                     ->context

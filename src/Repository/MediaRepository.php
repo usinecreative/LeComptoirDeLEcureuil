@@ -37,19 +37,19 @@ class MediaRepository extends AbstractRepository
             ])
         ;
     }
-    
+
     public function findPagination($page = 1, $maxPerPage = 9)
     {
         $queryBuilder = $this
             ->createQueryBuilder('media')
             ->addOrderBy('media.updatedAt', 'DESC')
         ;
-        
+
         $adapter = new DoctrineORMAdapter($queryBuilder->getQuery(), false);
         $pager = new Pagerfanta($adapter);
         $pager->setMaxPerPage($maxPerPage);
         $pager->setCurrentPage($page);
-    
+
         return $pager;
     }
 }

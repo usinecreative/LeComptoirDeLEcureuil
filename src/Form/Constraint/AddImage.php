@@ -11,7 +11,7 @@ class AddImage extends Constraint
     {
         return AddImageValidator::class;
     }
-    
+
     public function getTargets()
     {
         return self::CLASS_CONSTRAINT;

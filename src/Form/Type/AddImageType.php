@@ -14,7 +14,7 @@ class AddImageType extends AbstractType
     const UPLOAD_FROM_URL = 'upload_from_url';
     const UPLOAD_FROM_COMPUTER = 'upload_from_computer';
     const CHOOSE_FROM_COLLECTION = 'choose_from_collection';
-    
+
     /**
      * @param FormBuilderInterface $builder
      * @param array                $options
@@ -49,7 +49,7 @@ class AddImageType extends AbstractType
             ])
         ;
     }
-    
+
     /**
      * @param OptionsResolver $resolver
      */

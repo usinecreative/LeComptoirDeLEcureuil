@@ -27,9 +27,9 @@ class HomepageAction
     /**
      * HomepageAction constructor.
      *
-     * @param ArticleRepository $articleRepository
+     * @param ArticleRepository  $articleRepository
      * @param CategoryRepository $categoryRepository
-     * @param Twig_Environment $twig
+     * @param Twig_Environment   $twig
      */
     public function __construct(
         ArticleRepository $articleRepository,

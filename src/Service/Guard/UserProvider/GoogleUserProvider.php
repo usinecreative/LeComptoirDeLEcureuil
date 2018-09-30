@@ -17,7 +17,7 @@ class GoogleUserProvider implements OAuthAwareUserProviderInterface, UserProvide
      * @var array
      */
     private $googleAllowedUser;
-    
+
     /**
      * @var UserRepository
      */
@@ -34,7 +34,7 @@ class GoogleUserProvider implements OAuthAwareUserProviderInterface, UserProvide
         $this->googleAllowedUser = explode(',', $googleAllowedUser);
         $this->userRepository = $userRepository;
     }
-    
+
     /**
      * Loads the user by a given UserResponseInterface object.
      *
@@ -49,7 +49,7 @@ class GoogleUserProvider implements OAuthAwareUserProviderInterface, UserProvide
         if (!in_array($response->getEmail(), $this->googleAllowedUser)) {
             throw new UsernameNotFoundException();
         }
-    
+
         $user = $this
             ->userRepository
             ->findOneBy([
@@ -57,8 +57,8 @@ class GoogleUserProvider implements OAuthAwareUserProviderInterface, UserProvide
             ])
         ;
         $user->setProfilePicture($response->getProfilePicture());
-        
-        if ($user === null) {
+
+        if (null === $user) {
             $user = new User();
             $user->setUsername($response->getUsername());
             $user->setUsernameCanonical($response->getUsername());
@@ -68,20 +68,20 @@ class GoogleUserProvider implements OAuthAwareUserProviderInterface, UserProvide
             $user->setLastName($response->getLastName());
             $user->setSalt('google');
             $user->setPassword('google');
-    
+
             $this
                 ->userRepository
                 ->save($user)
             ;
         }
-    
+
         $user->setRoles([
             'ROLE_ADMIN',
         ]);
-        
+
         return $user;
     }
-    
+
     /**
      * Loads the user for the given username.
      *
@@ -98,7 +98,7 @@ class GoogleUserProvider implements OAuthAwareUserProviderInterface, UserProvide
     {
         throw new UsernameNotFoundException();
     }
-    
+
     /**
      * Refreshes the user for the account interface.
      *
@@ -117,7 +117,7 @@ class GoogleUserProvider implements OAuthAwareUserProviderInterface, UserProvide
     {
         return $user;
     }
-    
+
     /**
      * Whether this provider supports the given user class.
      *

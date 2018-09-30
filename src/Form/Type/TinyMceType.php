@@ -12,7 +12,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class TinyMceType extends AbstractType
 {
-    const ALLOWED_PLUGINS  = [
+    const ALLOWED_PLUGINS = [
         'advlist',
         'anchor',
         'autolink',
@@ -53,7 +53,7 @@ class TinyMceType extends AbstractType
     {
         return TextareaType::class;
     }
-    
+
     /**
      * Add the required javascript to make tinymce working.
      *
@@ -67,7 +67,7 @@ class TinyMceType extends AbstractType
         $view->vars['id'] = str_replace('#', '', $options['tinymce']['selector']);
         $view->vars['attr']['class'] .= ' tinymce-textarea';
     }
-    
+
     /**
      * @param OptionsResolver $resolver
      */

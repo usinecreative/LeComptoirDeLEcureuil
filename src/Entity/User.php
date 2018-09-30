@@ -171,17 +171,17 @@ class User implements UserInterface
      * @ORM\Column(name="article_last_view_date", type="datetime", nullable=true)
      */
     protected $articleLastViewDate;
-    
+
     /**
      * @var string
      */
     protected $profilePicture;
-    
+
     /**
      * @var string
      */
     protected $firstName;
-    
+
     /**
      * @var string
      */
@@ -594,7 +594,7 @@ class User implements UserInterface
     {
         $this->articleLastViewDate = $articleLastViewDate;
     }
-    
+
     /**
      * @return string
      */
@@ -602,7 +602,7 @@ class User implements UserInterface
     {
         return $this->profilePicture;
     }
-    
+
     /**
      * @param string $profilePicture
      */
@@ -610,7 +610,7 @@ class User implements UserInterface
     {
         $this->profilePicture = $profilePicture;
     }
-    
+
     /**
      * @return string
      */
@@ -618,7 +618,7 @@ class User implements UserInterface
     {
         return $this->firstName;
     }
-    
+
     /**
      * @param string $firstName
      */
@@ -626,7 +626,7 @@ class User implements UserInterface
     {
         $this->firstName = $firstName;
     }
-    
+
     /**
      * @return string
      */
@@ -634,7 +634,7 @@ class User implements UserInterface
     {
         return $this->lastName;
     }
-    
+
     /**
      * @param string $lastName
      */

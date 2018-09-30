@@ -85,6 +85,6 @@ class UserProvider implements UserProviderInterface
      */
     public function supportsClass($class)
     {
-        return $class == 'App\Entity\User';
+        return 'App\Entity\User' == $class;
     }
 }

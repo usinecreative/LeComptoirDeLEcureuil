@@ -2,7 +2,6 @@
 
 namespace App\Form\Type;
 
-use App\Form\Type\RecaptchaType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;

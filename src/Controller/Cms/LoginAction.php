@@ -83,7 +83,7 @@ class LoginAction
         }
         $user = $token->getUser();
         $isGranted = $this->authorizationChecker->isGranted([
-            'ROLE_ADMIN'
+            'ROLE_ADMIN',
         ], $user);
 
         if ($isGranted) {
@@ -95,7 +95,7 @@ class LoginAction
         $error = $exception ? $exception->getMessage() : null;
         $form = $this->formFactory->create(LoginType::class);
 
-        $content =$this->twig->render('@BlueBearCms/Guard/login.html.twig', [
+        $content = $this->twig->render('@BlueBearCms/Guard/login.html.twig', [
             'form' => $form->createView(),
             'error' => $error,
         ]);

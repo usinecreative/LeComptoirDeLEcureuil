@@ -9,7 +9,7 @@ use Symfony\Component\Form\Exception\TransformationFailedException;
 class HtmlPropertyTransformer implements DataTransformerInterface
 {
     protected $excludedAttributes = [];
-    
+
     public function transform($data)
     {
         if (!is_array($data)) {
@@ -24,30 +24,30 @@ class HtmlPropertyTransformer implements DataTransformerInterface
             'height' => 150,
             'width' => 150,
         ];
-        
+
         if (!key_exists('height', $data) || !key_exists('width', $data)) {
             $webDirectory = __DIR__.'/../../../../../web';
             $webDirectory = realpath($webDirectory);
-            
+
             $position = strpos($data['src'], 'cache/resolve/raw/');
             $delta = strlen('cache/resolve/raw/');
-    
+
             if (false === $position) {
                 $position = strpos($data['src'], 'cache/raw/');
                 $delta = strlen('cache/raw/');
             }
             $relativePathPosition = $position + $delta;
             $relativePath = substr($data['src'], $relativePathPosition);
-    
+
             $localPath = $webDirectory.'/'.$relativePath;
-    
+
             if (file_exists($localPath)) {
                 $imageSize = getimagesize($localPath);
                 $data['width'] = $imageSize[0];
                 $data['height'] = $imageSize[1];
             }
         }
-    
+
         if (key_exists('class', $data)) {
             if ('pull-'.MediaModalType::ALIGNMENT_FIT_TO_WIDTH === $data['class']) {
                 $data['alignment'] = MediaModalType::ALIGNMENT_FIT_TO_WIDTH;
@@ -61,38 +61,38 @@ class HtmlPropertyTransformer implements DataTransformerInterface
                 $data['alignment'] = MediaModalType::ALIGNMENT_NONE;
             }
         }
-        
+
         foreach ($data as $name => $value) {
             if (in_array(strtolower($name), $excludedAttributes)) {
                 unset($data[$name]);
             }
         }
         $attributes = array_merge($defaultAttributes, $data);
-        
+
         return $attributes;
     }
-    
+
     public function reverseTransform($data)
     {
         if (!is_array($data)) {
             throw new TransformationFailedException('Data should an array');
         }
         unset($data['fit_to_width']);
-        
+
         $data['style'] = '';
-    
+
         if (key_exists('alignment', $data)) {
             $data['class'] = 'pull-'.$data['alignment'];
-            
+
             unset($data['alignment']);
         }
         $content = '<img';
-    
+
         foreach ($data as $attribute => $value) {
             $content .= ' '.$attribute.'="'.$value.'"';
         }
         $content .= ' />';
-        
+
         return $content;
     }
 }

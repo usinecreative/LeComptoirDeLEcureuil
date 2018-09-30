@@ -108,6 +108,7 @@ class Mailer
             ;
         }
     }
+
     protected function createMessage($subject, $body, $from, $to)
     {
         return Swift_Message::newInstance($subject, $body, 'text/html', 'utf8')
