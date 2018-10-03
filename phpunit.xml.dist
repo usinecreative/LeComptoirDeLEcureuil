@@ -5,15 +5,19 @@
          xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/4.1/phpunit.xsd"
          backupGlobals="false"
          colors="true"
-         bootstrap="./vendor/autoload.php"
->
+         bootstrap="./vendor/autoload.php">
     <testsuites>
         <testsuite name="Project Test Suite">
-            <directory>../src/*/*Bundle/Tests</directory>
-            <directory>../src/*/Bundle/*Bundle/Tests</directory>
-            <directory>../src/*Bundle/Tests</directory>
+            <directory>tests</directory>
         </testsuite>
     </testsuites>
+
+    <php>
+        <env name="KERNEL_CLASS" value="App\Kernel" />
+        <env name="APP_SECRET" value="MyLittleSecret" />
+        <env name="HOTJAR_ENABLED" value="false" />
+        <env name="GOOGLE_ALLOWED_USERS" value="false" />
+    </php>
 
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
