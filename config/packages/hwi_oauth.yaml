@@ -4,6 +4,6 @@ hwi_oauth:
     resource_owners:
         google:
             type: google
-            client_id: '%google_client_id%'
-            client_secret: '%google_client_secret%'
-            scope: '%google_scope%'
+            client_id: '%env(GOOGLE_CLIENT_ID)%'
+            client_secret: '%env(GOOGLE_CLIENT_SECRET)%'
+            scope: '%env(GOOGLE_SCOPE)%'

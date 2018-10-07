@@ -14,27 +14,23 @@ lecomptoir.about:
 lecomptoir.legal:
     path: /mentions-legales
     defaults: {_controller: App:Main:legal}
-
-lecomptoir.article.show:
-    path:  /{year}/{month}/{slug}
-    defaults: {_controller: App\Controller\Article\Show}
 ###########
 
 ### HWI OAuth ###
 hwi_oauth_redirect:
-    resource: "@HWIOAuthBundle/Resources/config/routing/redirect.xml"
-    prefix:   /cms/redirect
+    resource: "@HWIOAuthBundle/Resources/config/routing/redirect_41.xml"
+    prefix:   /cms/connect
 
 hwi_oauth_connect:
-    resource: "@HWIOAuthBundle/Resources/config/routing/connect.xml"
+    resource: "@HWIOAuthBundle/Resources/config/routing/connect_41.xml"
     prefix:   /cms/connect
 
 hwi_oauth_login:
-    resource: "@HWIOAuthBundle/Resources/config/routing/login.xml"
+    resource: "@HWIOAuthBundle/Resources/config/routing/login_41.xml"
     prefix:   /cms/login
 
-app.login.google:
-    path: /cms/login/check-google
+#app.login.google:
+#    path: /cms/login/check-google
 #################
 
 ### Cms ###
@@ -175,8 +171,12 @@ lecomptoir.sitemap:
     path: /sitemap.xml
     defaults: {_controller: App:Main:sitemap}
 
-# Free Pages
+### App (generic routes) ###
+lecomptoir.article.show:
+    path:  /{year}/{month}/{slug}
+    defaults: {_controller: App\Controller\Article\Show}
+
 lecomptoir.free_pages:
     path: /{pageSlug}
     defaults: {_controller: App\Controller\PageController::showAction}
-
+#############################

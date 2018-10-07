@@ -3,6 +3,7 @@ framework:
     default_locale: fr
     csrf_protection: true
     http_method_override: true
+    ide: 'phpstorm://open?url=file://%%f&line=%%l'
 
     session:
         handler_id: ~

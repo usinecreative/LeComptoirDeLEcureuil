@@ -13,7 +13,7 @@ security:
 
     access_control:
         - {path: ^/cms/login, role: IS_AUTHENTICATED_ANONYMOUSLY}
-        - {path: ^/connect/google, roles: IS_AUTHENTICATED_ANONYMOUSLY}
+        - {path: ^/cms/connect/google, roles: IS_AUTHENTICATED_ANONYMOUSLY}
         - {path: ^/cms/redirect/google, roles: IS_AUTHENTICATED_ANONYMOUSLY}
         - {path: ^/cms, role: ROLE_ADMIN}
         - {path: ^/article/, role: ROLE_ADMIN}
