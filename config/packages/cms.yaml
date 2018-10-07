@@ -24,9 +24,8 @@ lag_admin:
         routing_url_pattern: /{admin}/{action}
         date_format: 'd/m/Y'
         base_template: 'Cms/base.html.twig'
-        translation:
-            enabled: true
-            pattern: cms.{admin}.{key}
+        translation: true
+        translation_pattern: cms.{admin}.{key}
     # Admins configurations
     admins:
         ### User ###

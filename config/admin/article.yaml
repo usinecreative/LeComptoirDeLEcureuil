@@ -26,8 +26,12 @@ lag_admin:
                                     0: cms.publication.draft
                                     1: cms.publication.validation
                                     2: cms.publication.published
-                        publicationDate: {type: date, options: {format: d/m/Y}}
-                        updatedAt: {type: date, options: {format: d/m/Y}}
+                        publicationDate:
+                            type: date
+                            options: {format: d/m/Y}
+                        updatedAt:
+                            type: date
+                            options: {format: d/m/Y}
                         _actions:
                             type: action_collection
                             options:
