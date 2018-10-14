@@ -16,7 +16,8 @@ services:
         class: App\JK\SmokerBundle\Command\SmokeCommand
         arguments:
             - '%kernel.cache_dir%'
-            - App\JK\SmokerBundle\Url\Response\Registry\ResponseHandlerRegistry
+            - '@App\JK\SmokerBundle\Url\Response\Registry\ResponseHandlerRegistry'
+            - '@router'
         tags:
             - {name: console.command}
 
