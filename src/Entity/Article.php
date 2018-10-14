@@ -524,4 +524,31 @@ class Article
     {
         $this->thumbnail = $thumbnail;
     }
+
+    public function getYear(): ?string
+    {
+        if (null === $this->publicationDate) {
+            return '';
+        }
+
+        return $this->publicationDate->format('Y');
+    }
+
+    public function getMonth(): ?string
+    {
+        if (null === $this->publicationDate) {
+            return '';
+        }
+
+        return $this->publicationDate->format('m');
+    }
+
+    public function getDay(): ?string
+    {
+        if (null === $this->publicationDate) {
+            return '';
+        }
+
+        return $this->publicationDate->format('d');
+    }
 }

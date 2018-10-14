@@ -28,7 +28,7 @@ services:
 
     App\:
         resource: '../src/*'
-        exclude: '../src/{Entity,Migrations,Tests,Kernel.php,Sitemap/Item}'
+        exclude: '../src/{Entity,Migrations,Tests,Kernel.php,Sitemap/Item,JK}'
 
     App\Controller\:
         resource: '../src/Controller'

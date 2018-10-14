@@ -1,0 +1,23 @@
+jk_smoker:
+    mapping:
+        article:
+            entity: App\Entity\Article
+            pattern: 'article'
+            excludes:
+                - lecomptoir.article.list_by_tag
+                - lecomptoir.article.show2
+                - lecomptoir.article.show
+            requirements:
+                id: id
+                categorySlug: category.slug
+                slug: slug
+                email: '@test@test.fr'
+                year: year
+                month: month
+                day: day
+
+        tag:
+            entity: App\Entity\Tag
+            route: lecomptoir.article.list_by_tag
+            requirements:
+                tagSlug: slug

@@ -1,0 +1,42 @@
+services:
+    App\JK\SmokerBundle\Url\Provider\UrlProviderRegistry:
+        class: App\JK\SmokerBundle\Url\Provider\UrlProviderRegistry
+        calls:
+            - ['add', ['default', '@App\JK\SmokerBundle\Url\Provider\RoutingUrlProvider']]
+
+    App\JK\SmokerBundle\Command\GenerateCacheCommand:
+        class: App\JK\SmokerBundle\Command\GenerateCacheCommand
+        arguments:
+            - '%kernel.cache_dir%'
+            - '@App\JK\SmokerBundle\Url\Provider\UrlProviderRegistry'
+        tags:
+            - {name: console.command}
+
+    App\JK\SmokerBundle\Command\SmokeCommand:
+        class: App\JK\SmokerBundle\Command\SmokeCommand
+        arguments:
+            - '%kernel.cache_dir%'
+            - App\JK\SmokerBundle\Url\Response\Registry\ResponseHandlerRegistry
+        tags:
+            - {name: console.command}
+
+    App\JK\SmokerBundle\Url\Provider\RoutingUrlProvider:
+        class: App\JK\SmokerBundle\Url\Provider\RoutingUrlProvider
+        arguments:
+            - '@router'
+            - '@App\JK\SmokerBundle\Url\Requirements\Registry\RequirementsProviderRegistry'
+
+    App\JK\SmokerBundle\Url\Requirements\Provider\RequirementsProvider:
+        class: App\JK\SmokerBundle\Url\Requirements\Provider\RequirementsProvider
+        arguments:
+            - '%jk_smoker.mapping%'
+            - '@router'
+            - '@doctrine'
+
+    App\JK\SmokerBundle\Url\Requirements\Registry\RequirementsProviderRegistry:
+        class: App\JK\SmokerBundle\Url\Requirements\Registry\RequirementsProviderRegistry
+        calls:
+            - ['add', ['default', '@App\JK\SmokerBundle\Url\Requirements\Provider\RequirementsProvider']]
+
+    App\JK\SmokerBundle\Url\Response\Registry\ResponseHandlerRegistry:
+        class: App\JK\SmokerBundle\Url\Response\Registry\ResponseHandlerRegistry

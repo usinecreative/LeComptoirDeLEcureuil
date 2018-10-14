@@ -107,6 +107,9 @@
     "eko/feedbundle": {
         "version": "1.2.6"
     },
+    "fabpot/goutte": {
+        "version": "v3.2.3"
+    },
     "facebook/webdriver": {
         "version": "1.6.0"
     },
