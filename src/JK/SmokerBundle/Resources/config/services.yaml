@@ -1,14 +1,10 @@
 services:
-    App\JK\SmokerBundle\Url\Provider\UrlProviderRegistry:
-        class: App\JK\SmokerBundle\Url\Provider\UrlProviderRegistry
-        calls:
-            - ['add', ['default', '@App\JK\SmokerBundle\Url\Provider\RoutingUrlProvider']]
-
+    ### Console commands ###
     App\JK\SmokerBundle\Command\GenerateCacheCommand:
         class: App\JK\SmokerBundle\Command\GenerateCacheCommand
         arguments:
             - '%kernel.cache_dir%'
-            - '@App\JK\SmokerBundle\Url\Provider\UrlProviderRegistry'
+            - '@App\JK\SmokerBundle\Url\Registry\UrlProviderRegistry'
         tags:
             - {name: console.command}
 
@@ -16,28 +12,43 @@ services:
         class: App\JK\SmokerBundle\Command\SmokeCommand
         arguments:
             - '%kernel.cache_dir%'
-            - '@App\JK\SmokerBundle\Url\Response\Registry\ResponseHandlerRegistry'
+            - '@App\JK\SmokerBundle\Response\Registry\ResponseHandlerRegistry'
             - '@router'
         tags:
             - {name: console.command}
+    ########################
 
+    ### Providers ###
     App\JK\SmokerBundle\Url\Provider\RoutingUrlProvider:
         class: App\JK\SmokerBundle\Url\Provider\RoutingUrlProvider
         arguments:
             - '@router'
-            - '@App\JK\SmokerBundle\Url\Requirements\Registry\RequirementsProviderRegistry'
+            - '@App\JK\SmokerBundle\Requirements\Registry\RequirementsProviderRegistry'
 
-    App\JK\SmokerBundle\Url\Requirements\Provider\RequirementsProvider:
-        class: App\JK\SmokerBundle\Url\Requirements\Provider\RequirementsProvider
+    App\JK\SmokerBundle\Requirements\Provider\RequirementsProvider:
+        class: App\JK\SmokerBundle\Requirements\Provider\RequirementsProvider
         arguments:
             - '%jk_smoker.mapping%'
             - '@router'
             - '@doctrine'
+    #################
 
-    App\JK\SmokerBundle\Url\Requirements\Registry\RequirementsProviderRegistry:
-        class: App\JK\SmokerBundle\Url\Requirements\Registry\RequirementsProviderRegistry
+    ### Registries ###
+    App\JK\SmokerBundle\Requirements\Registry\RequirementsProviderRegistry:
+        class: App\JK\SmokerBundle\Requirements\Registry\RequirementsProviderRegistry
         calls:
-            - ['add', ['default', '@App\JK\SmokerBundle\Url\Requirements\Provider\RequirementsProvider']]
+            - ['add', ['default', '@App\JK\SmokerBundle\Requirements\Provider\RequirementsProvider']]
 
-    App\JK\SmokerBundle\Url\Response\Registry\ResponseHandlerRegistry:
-        class: App\JK\SmokerBundle\Url\Response\Registry\ResponseHandlerRegistry
+    App\JK\SmokerBundle\Response\Registry\ResponseHandlerRegistry:
+        class: App\JK\SmokerBundle\Response\Registry\ResponseHandlerRegistry
+
+    App\JK\SmokerBundle\Url\Registry\UrlProviderRegistry:
+        class: App\JK\SmokerBundle\Url\Registry\UrlProviderRegistry
+        calls:
+            - ['add', ['default', '@App\JK\SmokerBundle\Url\Provider\RoutingUrlProvider']]
+    ##################
+
+    ### Response handlers ###
+    App\JK\SmokerBundle\Response\Handler\SuccessResponseHandler:
+        class: App\JK\SmokerBundle\Response\Handler\SuccessResponseHandler
+    #########################

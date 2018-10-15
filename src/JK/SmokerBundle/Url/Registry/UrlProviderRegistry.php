@@ -1,6 +1,8 @@
 <?php
 
-namespace App\JK\SmokerBundle\Url\Provider;
+namespace App\JK\SmokerBundle\Url\Registry;
+
+use App\JK\SmokerBundle\Url\Provider\UrlProviderInterface;
 
 class UrlProviderRegistry
 {

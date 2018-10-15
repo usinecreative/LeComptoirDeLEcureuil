@@ -2,10 +2,12 @@
 
 namespace App\JK\SmokerBundle\Command;
 
-use App\JK\SmokerBundle\Url\Response\Registry\ResponseHandlerRegistry;
+use App\JK\SmokerBundle\Exception\Exception;
+use App\JK\SmokerBundle\Response\Registry\ResponseHandlerRegistry;
 use Goutte\Client;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Routing\RouterInterface;
@@ -45,37 +47,69 @@ class SmokeCommand extends Command
         $this->router = $router;
     }
 
+    protected function configure()
+    {
+        $this
+            ->addOption(
+                'stop-on-failure',
+                null,
+                InputOption::VALUE_OPTIONAL,
+                'Stop all tests if an error is detected',
+                false
+            )
+        ;
+    }
+
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $io = new SymfonyStyle($input, $output);
         $io->title('Smoker Tests');
 
         $host = 'http://127.0.0.1:8000/index.php';
-
         $cacheFile = $this->cacheDir.'/smoker/smoker.cache';
-        //$lineCount = $this->getLineCount($cacheFile);
+
+        if (!file_exists($cacheFile)) {
+            $io->warning('The cache file is not generated. Nothing will be done.');
+            $io->note('The cache can be generated with the command bin/console smoker:generate-cache');
+
+            return;
+        }
 
         $handle = fopen($cacheFile, "r");
-        $client = new Client();
+
 
         if ($handle) {
             $io->text('Start reading urls in cache...');
-            //$io->progressStart($lineCount);
 
             while (($row = fgets($handle, 4096)) !== false) {
+                $client = new Client();
                 $data = unserialize($row);
                 $url = $host.$data['location'];
+                $io->write('Processing '.$url.'...');
                 $crawler = $client->request('get', $url);
 
-                $routeName = $this->router->match($data['location']);
+                $routeInfo = $this->router->match($data['location']);
 
-                foreach ($this->registry->all() as $responseHandler) {
-                    if ($responseHandler->supports($routeName)) {
+                foreach ($this->registry->all() as $responseHandlerName => $responseHandler) {
+
+                    if ($responseHandler->supports($routeInfo['_route'])) {
+                        try {
+                            $responseHandler->handle($routeInfo['_route'], $crawler, $client);
+                        } catch (Exception $exception) {
+                            $io->note('Error in '.$responseHandlerName);
+
+                            if (true === (bool)$input->getOption('stop-on-failure')) {
+                                throw $exception;
+                            }
+                            $io->error($exception->getMessage());
+                        }
 
                     }
                 }
+                $io->write('...[<info>OK</info>]');
+                $io->newLine();
 
-                $io->text('Processing '.$url.'... [<info>OK</info>]');
+
                 //$io->progressAdvance();
             }
             //$io->progressFinish();
@@ -85,7 +119,6 @@ class SmokeCommand extends Command
             }
             fclose($handle);
         }
-
     }
 
     protected function getLineCount(string $cacheFile)

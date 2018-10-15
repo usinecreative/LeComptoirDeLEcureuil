@@ -1,9 +1,9 @@
 <?php
 
-namespace App\JK\SmokerBundle\Url\Response\Registry;
+namespace App\JK\SmokerBundle\Response\Registry;
 
 use App\JK\SmokerBundle\Exception\Exception;
-use App\JK\SmokerBundle\Url\Response\Handler\ResponseHandlerInterface;
+use App\JK\SmokerBundle\Response\Handler\ResponseHandlerInterface;
 
 class ResponseHandlerRegistry
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\JK\SmokerBundle\Url\Requirements\Provider;
+namespace App\JK\SmokerBundle\Requirements\Provider;
 
 interface RequirementsProviderInterface
 {

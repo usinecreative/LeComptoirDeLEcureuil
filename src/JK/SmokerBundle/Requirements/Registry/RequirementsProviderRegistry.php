@@ -1,8 +1,8 @@
 <?php
 
-namespace App\JK\SmokerBundle\Url\Requirements\Registry;
+namespace App\JK\SmokerBundle\Requirements\Registry;
 
-use App\JK\SmokerBundle\Url\Requirements\Provider\RequirementsProviderInterface;
+use App\JK\SmokerBundle\Requirements\Provider\RequirementsProviderInterface;
 
 class RequirementsProviderRegistry
 {

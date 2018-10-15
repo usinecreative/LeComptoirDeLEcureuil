@@ -2,7 +2,7 @@
 
 namespace App\JK\SmokerBundle\Command;
 
-use App\JK\SmokerBundle\Url\Provider\UrlProviderRegistry;
+use App\JK\SmokerBundle\Url\Registry\UrlProviderRegistry;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;

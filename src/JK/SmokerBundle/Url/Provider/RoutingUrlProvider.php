@@ -3,8 +3,8 @@
 namespace App\JK\SmokerBundle\Url\Provider;
 
 use App\JK\SmokerBundle\Url\Collection\UrlCollection;
-use App\JK\SmokerBundle\Url\Requirements\Provider\RequirementsProviderInterface;
-use App\JK\SmokerBundle\Url\Requirements\Registry\RequirementsProviderRegistry;
+use App\JK\SmokerBundle\Requirements\Provider\RequirementsProviderInterface;
+use App\JK\SmokerBundle\Requirements\Registry\RequirementsProviderRegistry;
 use App\JK\SmokerBundle\Url\Url;
 use Symfony\Component\Routing\Exception\MissingMandatoryParametersException;
 use Symfony\Component\Routing\RouterInterface;
@@ -19,6 +19,19 @@ class RoutingUrlProvider implements UrlProviderInterface
     protected $ignoredUrls = [];
 
     protected $errorUrls = [];
+
+    protected $excludes = [
+        // Symfony profiler
+        '_wdt',
+        '_profiler_search_results',
+        '_profiler',
+        '_profiler_router',
+        '_profiler_exception',
+        '_profiler_exception_css',
+
+        // LiipImagineBundle
+        'liip_imagine_filter_runtime',
+    ];
 
     /**
      * @var RequirementsProviderRegistry
@@ -36,6 +49,9 @@ class RoutingUrlProvider implements UrlProviderInterface
         $collection = new UrlCollection();
 
         foreach ($this->router->getRouteCollection() as $routeName => $route) {
+            if (in_array($routeName, $this->excludes)) {
+                continue;
+            }
             $requirements = [];
 
             if (0 < count($route->getRequirements()) || preg_match('/\{(.*?)\}/', $route->getPath())) {

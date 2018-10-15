@@ -1,6 +1,6 @@
 <?php
 
-namespace App\JK\SmokerBundle\Url\Requirements\Provider;
+namespace App\JK\SmokerBundle\Requirements\Provider;
 
 use Doctrine\Bundle\DoctrineBundle\Registry;
 use Doctrine\ORM\EntityRepository;
@@ -16,26 +16,6 @@ class RequirementsProvider implements RequirementsProviderInterface
         '_twig_error_test' => [
             'code' => 500,
         ],
-        '_wdt' => [
-            'token' => 'smoke',
-        ],
-        '_profiler_search_results' => [
-            'token' => 'smoke',
-        ],
-        '_profiler' => [
-            'token' => 'smoke',
-        ],
-        '_profiler_router' => [
-            'token' => 'smoke',
-        ],
-        '_profiler_exception' => [
-            'token' => 'smoke',
-        ],
-        '_profiler_exception_css' => [
-            'token' => 'smoke',
-        ],
-
-
         'hwi_oauth_connect_service' => [
             'service' => 'hwi_oauth_connect_service',
         ],
@@ -73,6 +53,7 @@ class RequirementsProvider implements RequirementsProviderInterface
      *
      * @param array           $mapping
      * @param RouterInterface $router
+     * @param Registry        $registry
      */
     public function __construct(array $mapping, RouterInterface $router, Registry $registry)
     {
