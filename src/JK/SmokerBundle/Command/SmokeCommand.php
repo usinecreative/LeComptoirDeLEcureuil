@@ -6,10 +6,13 @@ use App\JK\SmokerBundle\Exception\Exception;
 use App\JK\SmokerBundle\Response\Registry\ResponseHandlerRegistry;
 use Goutte\Client;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Helper\Helper;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Output\Output;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Routing\RouterInterface;
 
 class SmokeCommand extends Command
@@ -32,19 +35,51 @@ class SmokeCommand extends Command
     protected $router;
 
     /**
+     * @var string
+     */
+    protected $cacheFile;
+
+    /**
+     * @var string
+     */
+    protected $errorsFile;
+
+    /**
+     * @var string
+     */
+    protected $successFile;
+
+    /**
+     * @var \Twig_Environment
+     */
+    protected $twig;
+
+    /**
+     * @var Filesystem
+     */
+    protected $fileSystem;
+
+    /**
      * SmokeCommand constructor.
      *
      * @param string                  $cacheDir
      * @param ResponseHandlerRegistry $registry
      * @param RouterInterface         $router
+     * @param \Twig_Environment       $twig
      */
-    public function __construct(string $cacheDir, ResponseHandlerRegistry $registry, RouterInterface $router)
-    {
+    public function __construct(
+        string $cacheDir,
+        ResponseHandlerRegistry $registry,
+        RouterInterface $router,
+        \Twig_Environment $twig
+    ) {
         parent::__construct();
 
         $this->cacheDir = $cacheDir;
         $this->registry = $registry;
         $this->router = $router;
+        $this->twig = $twig;
+        $this->fileSystem = new Filesystem();
     }
 
     protected function configure()
@@ -65,60 +100,15 @@ class SmokeCommand extends Command
         $io = new SymfonyStyle($input, $output);
         $io->title('Smoker Tests');
 
+        $io->note('Initialize results cache...');
+        $this->initializeCache();
+
         $host = 'http://127.0.0.1:8000/index.php';
-        $cacheFile = $this->cacheDir.'/smoker/smoker.cache';
 
-        if (!file_exists($cacheFile)) {
-            $io->warning('The cache file is not generated. Nothing will be done.');
-            $io->note('The cache can be generated with the command bin/console smoker:generate-cache');
+        $this->smoke($host, $io, (bool)$input->getOption('stop-on-failure'));
 
-            return;
-        }
-
-        $handle = fopen($cacheFile, "r");
-
-
-        if ($handle) {
-            $io->text('Start reading urls in cache...');
-
-            while (($row = fgets($handle, 4096)) !== false) {
-                $client = new Client();
-                $data = unserialize($row);
-                $url = $host.$data['location'];
-                $io->write('Processing '.$url.'...');
-                $crawler = $client->request('get', $url);
-
-                $routeInfo = $this->router->match($data['location']);
-
-                foreach ($this->registry->all() as $responseHandlerName => $responseHandler) {
-
-                    if ($responseHandler->supports($routeInfo['_route'])) {
-                        try {
-                            $responseHandler->handle($routeInfo['_route'], $crawler, $client);
-                        } catch (Exception $exception) {
-                            $io->note('Error in '.$responseHandlerName);
-
-                            if (true === (bool)$input->getOption('stop-on-failure')) {
-                                throw $exception;
-                            }
-                            $io->error($exception->getMessage());
-                        }
-
-                    }
-                }
-                $io->write('...[<info>OK</info>]');
-                $io->newLine();
-
-
-                //$io->progressAdvance();
-            }
-            //$io->progressFinish();
-
-            if (!feof($handle)) {
-                echo "Erreur: fgets() a échoué\n";
-            }
-            fclose($handle);
-        }
+        $io->note('Generating results report');
+        $this->generateResults();
     }
 
     protected function getLineCount(string $cacheFile)
@@ -138,5 +128,122 @@ class SmokeCommand extends Command
         }
 
         return $count;
+    }
+
+    protected function initializeCache()
+    {
+        $fileSystem = new Filesystem();
+
+        $this->cacheFile = $this->cacheDir.'/smoker/smoker.cache';
+        $this->errorsFile = $this->cacheDir.'/smoker/smoker.error';
+        $this->successFile = $this->cacheDir.'/smoker/smoker.success';
+
+        $fileSystem->dumpFile($this->errorsFile, '');
+        $fileSystem->dumpFile($this->successFile, '');
+    }
+
+    /**
+     * @param string       $host
+     * @param SymfonyStyle $io
+     * @param bool         $stopOnFailure
+     *
+     * @throws Exception
+     */
+    protected function smoke(string $host, SymfonyStyle $io, bool $stopOnFailure)
+    {
+        if (!$this->fileSystem->exists($this->cacheFile)) {
+            $io->warning('The cache file is not generated. Nothing will be done.');
+            $io->note('The cache can be generated with the command bin/console smoker:generate-cache');
+
+            return;
+        }
+        $handle = fopen($this->cacheFile, "r");
+
+        if ($handle) {
+            $io->text('Start reading urls in cache...');
+
+            while (($row = fgets($handle, 4096)) !== false) {
+                $data = unserialize($row);
+                $url = $host.$data['location'];
+                $io->write('Processing '.$url.'...');
+                $client = new Client();
+                $crawler = $client->request('get', $url);
+                $response = $client->getResponse();
+
+                $routeInfo = $this->router->match($data['location']);
+                $hasError = false;
+
+                foreach ($this->registry->all() as $responseHandlerName => $responseHandler) {
+                    if ($responseHandler->supports($routeInfo['_route'])) {
+                        try {
+                            $responseHandler->handle($routeInfo['_route'], $crawler, $client);
+                        } catch (Exception $exception) {
+                            $io->note('Error in '.$responseHandlerName);
+
+                            if (true === $stopOnFailure) {
+                                throw $exception;
+                            }
+                            $error = serialize([
+                                'url' => $url,
+                                'message' => $exception->getMessage(),
+                                'handler' => $responseHandlerName,
+                                'responseCode' => $response->getStatus(),
+                            ]);
+                            $this->fileSystem->appendToFile($this->errorsFile, $error.PHP_EOL);
+                            $io->error($exception->getMessage());
+
+                            $hasError = true;
+                        }
+                    }
+                }
+
+                if (!$hasError) {
+                    $success = serialize([
+                        'url' => $url,
+                        'responseCode' => $response->getStatus(),
+                    ]);
+                    $this->fileSystem->appendToFile($this->successFile, $success.PHP_EOL);
+                    $io->write('...[<info>OK</info>]');
+                }
+
+                if (Output::VERBOSITY_DEBUG === $io->getVerbosity()) {
+                    $io->write('  '.Helper::formatMemory(memory_get_usage(true)));
+                }
+                $io->newLine();
+                gc_collect_cycles();
+            }
+
+            if (!feof($handle)) {
+                echo "Erreur: fgets() a échoué\n";
+            }
+            fclose($handle);
+        }
+    }
+
+    protected function generateResults()
+    {
+        $this->errorsFile = $this->cacheDir.'/smoker/smoker.error';
+        $this->successFile = $this->cacheDir.'/smoker/smoker.success';
+
+        $raw = file_get_contents($this->successFile);
+        $successData = explode(PHP_EOL, $raw);
+        array_pop($successData);
+        $successData = array_map(function ($serializedData) {
+            return unserialize($serializedData);
+        }, $successData);
+
+        $raw = file_get_contents($this->errorsFile);
+        $errorData = explode(PHP_EOL, $raw);
+        array_pop($errorData);
+        $errorData = array_map(function ($serializedData) {
+            return unserialize($serializedData);
+        }, $errorData);
+
+        $content = $this->twig->render('@JKSmoker/Results/results.html.twig', [
+            'successData' => $successData,
+            'errorData' => $errorData,
+        ]);
+
+        $this->fileSystem->dumpFile($this->cacheDir.'/smoker/results.html', $content);
     }
 }
