@@ -107,8 +107,9 @@ class SmokeCommand extends Command
 
         $this->smoke($host, $io, (bool)$input->getOption('stop-on-failure'));
 
-        $io->note('Generating results report');
+        $io->note('Generating results report...');
         $this->generateResults();
+        $io->text('The results report has been generated here '.$this->cacheDir.'/smoker/results.html');
     }
 
     protected function getLineCount(string $cacheFile)
