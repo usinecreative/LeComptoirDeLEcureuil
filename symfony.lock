@@ -164,6 +164,9 @@
     "lag/adminbundle": {
         "version": "dev-refonte"
     },
+    "lag/colonel-smoker-bundle": {
+        "version": "dev-master"
+    },
     "liip/imagine-bundle": {
         "version": "1.8",
         "recipe": {

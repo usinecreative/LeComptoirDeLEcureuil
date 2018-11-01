@@ -1,4 +1,7 @@
 jk_smoker:
+    providers:
+        symfony:
+            strategy: all
     mapping:
         article:
             entity: App\Entity\Article

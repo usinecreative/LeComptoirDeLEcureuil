@@ -25,5 +25,5 @@ return [
     WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle::class => ['all' => true],
     LAG\AdminBundle\LAGAdminBundle::class => ['all' => true],
     Eko\FeedBundle\EkoFeedBundle::class => ['all' => true],
-    \App\JK\SmokerBundle\JKSmokerBundle::class => ['dev' => true],
+    LAG\SmokerBundle\LAGSmokerBundle::class => ['dev' => true,]
 ];
