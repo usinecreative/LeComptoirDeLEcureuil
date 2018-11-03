@@ -1,7 +1,9 @@
 jk_smoker:
     providers:
         symfony:
-            strategy: all
+            strategy: inclusive
+            routes:
+                - cms.article.edit
     mapping:
         article:
             entity: App\Entity\Article
