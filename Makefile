@@ -67,18 +67,18 @@ staging@images.copy-local-to-remote:
 #############
 
 ### Assets ###
-assets-build:
+assets@build:
 	yarn run encore dev
 	$(sf) assets:install --symlink
 
-assets-build-production:
+assets@build-production:
 	yarn run encore production
 	$(sf) assets:install --symlink
 
-assets-watch:
+assets@watch:
 	yarn run encore dev --watch
 
-assets-optimize:
+assets@optimize:
 	$(sf) cms:assets:optimize
 
 ##############
