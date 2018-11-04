@@ -165,7 +165,7 @@ cms:
         preview: Prévisualiser l'article
         list: Articles
         create: Ajouter un article
-        edit: Editer
+        edit: Editer un article
         delete: Supprimer
         deleted: L'article a été supprimé
         see: Voir
