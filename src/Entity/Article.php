@@ -157,7 +157,6 @@ class Article
     {
         $this->comments = new ArrayCollection();
         $this->tags = new ArrayCollection();
-        $this->title = 'My new article...';
     }
 
     /**
