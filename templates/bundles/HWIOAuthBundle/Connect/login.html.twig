@@ -1,17 +1,22 @@
-{% extends '@BlueBearCms/layout.html.twig' %}
+{% extends '@JKCms/base.html.twig' %}
 
 {% block container %}
-    {# flash messages #}
-    {% include "LAGAdminBundle:Layout:flash_messages.html.twig" %}
+    {# Display flash messages to not hide errors #}
+    {% include '@LAGAdmin/Layout/flash_messages.html.twig' %}
 
     <style>
         .login-container {
             margin-top: 50px;
         }
+        .login-container .panel {
+            border: 1px solid darkgray;
+            border-radius: 5px;
+            padding: 25px;
+        }
     </style>
 
     <div class="row login-container">
-        <div class="col-lg-4 col-lg-offset-4">
+        <div class="col-4 offset-4">
 
             <div class="panel panel-default">
                 <div class="panel-heading">
