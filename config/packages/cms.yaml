@@ -26,6 +26,7 @@ lag_admin:
         base_template: 'Cms/base.html.twig'
         translation: true
         translation_pattern: cms.{admin}.{key}
+        homepage_route: cms.homepage
     # Admins configurations
     admins:
         ### User ###
