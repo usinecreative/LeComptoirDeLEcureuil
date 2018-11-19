@@ -79,7 +79,12 @@ class TinyMceType extends AbstractType
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
-        $this->scriptRegistry->register('footer', 'tinymce/cms.tinymce.js');
+        // Register the cms tinymce here build to avoid merging it with the main cms build
+        $this
+            ->scriptRegistry
+            ->register('footer', 'build/tinymce/cms.tinymce.js')
+        ;
+
         $view->vars['attr']['data-tinymce'] = json_encode($options['tinymce']);
         $view->vars['id'] = str_replace('#', '', $options['tinymce']['selector']);
         $view->vars['attr']['class'] .= ' tinymce-textarea';
@@ -111,7 +116,6 @@ class TinyMceType extends AbstractType
                         'theme' => 'modern',
                         'skin' => 'lightgray',
                         'imagetools_toolbar' => 'rotateleft rotateright | flipv fliph | editimage imageoptions',
-                        //'content_css' => 'css/cms.tinymce.css',
                         'content_css' => '',
                         'body_class' => 'mceForceColors container',
                         'browser_spellcheck' => true,
