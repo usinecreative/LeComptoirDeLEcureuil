@@ -76,17 +76,28 @@ assets@build-production:
 	$(sf) assets:install --symlink
 
 assets@watch:
+	$(sf) assets:install --symlink
 	yarn run encore dev --watch
 
 assets@optimize:
 	$(sf) cms:assets:optimize
-
 ##############
+
+### Tests ###
+tests@phpunit:
+	bin/phpunit
+
+tests@database:
+	$(sf) doctrine:database:drop --env=test --force --if-exists
+	$(sf) doctrine:database:create --env=test
+	$(sf) doctrine:schema:create --env=test
+	$(sf) hautelook:fixtures:load --env=test -n
+#############
 
 run:
 	$(sf) server:run
 
-tests:
+tests-legacy:
 	$(sf) doctrine:database:drop --env=test --force --if-exists
 	$(sf) doctrine:database:create --env=test
 	$(sf) doctrine:schema:create --env=test
