@@ -17,6 +17,7 @@
         <env name="APP_SECRET" value="MyLittleSecret" />
         <env name="HOTJAR_ENABLED" value="false" />
         <env name="GOOGLE_ALLOWED_USERS" value="false" />
+        <env name="DATABASE_URL" value="mysql://root@127.0.0.1:3306/symfony_test" />
     </php>
 
     <filter>
