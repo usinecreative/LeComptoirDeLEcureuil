@@ -21,7 +21,7 @@
     </php>
 
     <filter>
-        <whitelist processUncoveredFilesFromWhitelist="true">
+        <whitelist>
             <directory suffix=".php">src</directory>
             <exclude>
                 <directory>src/Resources</directory>
@@ -31,9 +31,7 @@
 
     <logging>
         <log type="coverage-html"
-             target="var/phpunit/build/coverage"
-             lowUpperBound="35"
-             highLowerBound="70"/>
+             target="var/phpunit/build/coverage"/>
         <log type="coverage-clover"
              target="var/phpunit/build/logs/clover.xml"/>
         <log type="junit"
