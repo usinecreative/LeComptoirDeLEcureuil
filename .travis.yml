@@ -1,12 +1,14 @@
 language: php
 
+services:
+    - mysql
+
 php:
     - 7.2
 
 before_install:
     - echo "memory_limit=3G" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
-    - mysql -e "create database IF NOT EXISTS symfony;"
-    - mysql -e "create database IF NOT EXISTS symfony_test;"
+    - make tests@database
 
 install:
     - composer install --dev
