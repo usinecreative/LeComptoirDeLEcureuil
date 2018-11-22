@@ -23,6 +23,7 @@
         "jquery.ui.widget": "^1.10.3",
         "path": "^0.12.7",
         "popper.js": "^1.14.3",
+        "select2": "^4.0.6-rc.1",
         "style-loader": "^0.21.0",
         "tinymce": "^4.8.1",
         "tinymce-i18n": "^18.7.12",
